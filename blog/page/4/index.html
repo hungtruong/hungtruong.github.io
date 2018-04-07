@@ -121,187 +121,6 @@ ga('send', 'pageview');
 
 <p>In this quick start guide, I’ll go through the steps of writing your first GDK app, “Where Am I?” This app will ensure you are never lost. By simply shouting “Okay Glass, where am I?” the app will find your latitude and longitude, and try to find the nearest street address.</p>
 
-<h2 id="prerequisites">Prerequisites</h2>
-
-<p>In order to start writing native apps for Google Glass, here’s what you’ll need:</p>
-
-<ul>
-  <li>Google Glass! There is currently no way to emulate the device and its sensors, so getting a real device is a must. You can request an invite directly from Google <a href="http://www.google.com/glass/start/how-to-get-one/">here</a>, or search on Twitter for someone with a <a href="https://twitter.com/search?q=google%20glass%20invite&amp;src=typd">spare invite to share</a>.</li>
-  <li>ADT – <a href="http://developer.android.com/tools/sdk/eclipse-adt.html">Android Development Tools</a> is basically a plugin for Eclipse that lets you compile and load your native code onto Glass.</li>
-  <li>Source Code (optional) – I’ve included the source code for this app on Github <a href="https://github.com/hungtruong/GDK-WhereAmI">here</a>. If you want to follow along without copying and pasting a bunch of code, you can simply skip back and forth by running git commands that I’ll describe later on.</li>
-</ul>
-
-<h2 id="getting-started">Getting Started</h2>
-
-<p>Google Glass runs on a special version of Android, “Glass Development Kit Sneak Peek” – a tricked out version of API 15.  You’ll need to download this version with the Android SDK Manager within ADT (you can open it by clicking on the icon of the Android with a blue box and an arrow on it).</p>
-
-<p><a href="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png" rel="lightbox[2771]"><img class="aligncenter size-large wp-image-2773" alt="Glass Sneak Peek" src="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png?resize=604%2C294" width="604" height="294" srcset="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png?resize=1024%2C500 1024w, /blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png?resize=500%2C244 500w, /blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png?w=1208 1208w, /blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-11.28.47-AM.png?w=1812 1812w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
-
-<p>Once you’ve done that, you’ll need to create a new Android project with the correct SDK settings. Use API 15 for Minimum and Target SDK, and set “Compile With” to the GDK Sneak Peek.<a href="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-12.52.50-PM.png" rel="lightbox[2771]"><img class="aligncenter size-full wp-image-2774" alt="GDK Settings" src="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-12.52.50-PM.png?resize=604%2C597" width="604" height="597" srcset="/blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-12.52.50-PM.png?w=753 753w, /blog/wp-content/uploads/2014/01/Screen-Shot-2014-01-25-at-12.52.50-PM.png?resize=500%2C494 500w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a>Congratulations! You’ve created a project that should run on Google Glass! If you try running the app on your device, it may or may not work, since it won’t have a voice trigger associated with it yet. We’ll add a voice trigger in the next step.</p>
-
-<h2 id="adding-a-voice-trigger">Adding a Voice Trigger</h2>
-
-<p><em>If you’re following along with git, you can type the following command to fill out all the code for this step:</em></p>
-
-<pre>git checkout -f step-1</pre>
-
-<p>Because Google Glass is such a new paradigm for user input, we’ll need to set up a voice trigger to allow the user to start our app. To do this, we’ll add some some strings to our strings.xml and add an xml resource that describes the voice trigger. Finally, we’ll add an intent filter to our AndroidManifest.xml to register the voice command.</p>
-
-<ol>
-  <li>In res/values/strings.xml</li>
-</ol>
-
-<pre class="lang:default decode:true" title="res/values/strings.xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-
-    &lt;string name="app_name"&gt;WhereAmI&lt;/string&gt;
-    &lt;string name="action_settings"&gt;Settings&lt;/string&gt;
-    &lt;string name="hello_world"&gt;Hello world!&lt;/string&gt;
-    &lt;string name="glass_voice_trigger"&gt;where am I?&lt;/string&gt;
-
-&lt;/resources&gt;</pre>
-
-<ol>
-  <li>In res/xml/whereami.xml (you can name this file anything as long as you refer to the same file in AndroidManifest.xml</li>
-</ol>
-
-<pre class="lang:java decode:true" title="res/xml/whereami.xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;trigger keyword="@string/glass_voice_trigger" /&gt;</pre>
-
-<ol>
-  <li>In AndroidManifest.xml:</li>
-</ol>
-
-<pre class="lang:java decode:true" title="AndroidManifest.xml">...
-            &lt;intent-filter&gt;
-                &lt;action
-                    android:name="com.google.android.glass.action.VOICE_TRIGGER" /&gt;
-            &lt;/intent-filter&gt;
-            &lt;meta-data android:name="com.google.android.glass.VoiceTrigger"
-                android:resource="@xml/whereami" /&gt;
-...</pre>
-
-<p>Now, if you run your code on Glass, you should be able to find the “Where Am I?” command in the Ok, Glass menu!</p>
-
-<p><a href="/blog/wp-content/uploads/2014/01/Glass-Voice-Trigger.png" rel="lightbox[2771]"><img class="aligncenter size-full wp-image-2782" alt="Glass Voice Trigger" src="/blog/wp-content/uploads/2014/01/Glass-Voice-Trigger.png?resize=604%2C347" width="604" height="347" srcset="/blog/wp-content/uploads/2014/01/Glass-Voice-Trigger.png?w=900 900w, /blog/wp-content/uploads/2014/01/Glass-Voice-Trigger.png?resize=500%2C287 500w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
-
-<h2 id="using-glass-cards">Using Glass Cards</h2>
-
-<p>We’ve gotten voice commands working, and that’s half the battle. Next we’ll learn how to use Cards, the native user interface for Glass. We’ll need to remove the existing style, then instantiate a Card object, set up its text and set it as the content view.</p>
-
-<ol>
-  <li>Remove the line in AndroidManifest.xml that reads:</li>
-</ol>
-
-<pre>android:theme="@style/AppTheme"&gt;</pre>
-
-<ol>
-  <li>Import Card from the GDK and create a new <a href="https://developers.google.com/glass/develop/gdk/reference/com/google/android/glass/app/Card">Card</a> instance in OnCreate()</li>
-</ol>
-
-<pre class="lang:java decode:true" title="MainActivity.java">...
-import android.view.View;
-import com.google.android.glass.app.Card;
-
-public class MainActivity extends Activity {
-private Card card;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		card = new Card(this.getApplicationContext());
-        card.setText("Getting your location...");
-        View cardView = card.toView();
-        setContentView(cardView);
-...</pre>
-
-<p>If you run the app, should see something like this:</p>
-
-<p><a href="/blog/wp-content/uploads/2014/01/Glass-Card.png" rel="lightbox[2771]"><img class="aligncenter size-full wp-image-2783" alt="Glass Card" src="/blog/wp-content/uploads/2014/01/Glass-Card.png?resize=604%2C342" width="604" height="342" srcset="/blog/wp-content/uploads/2014/01/Glass-Card.png?w=900 900w, /blog/wp-content/uploads/2014/01/Glass-Card.png?resize=500%2C283 500w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
-
-<h2 id="getting-location-and-updating-the-card">Getting Location and Updating the Card</h2>
-
-<p><em>If you’re following along with git, you can type the following command to fill out all the code for this step:</em></p>
-
-<pre>git checkout -f step-2</pre>
-
-<p>Finally, we want to get the Glass’ location and update the card with the appropriate info. Our lost Glass Explorer will be found and all will be well. We’ll do this by requesting location permissions, setting up a LocationManager and handling its callbacks by updating the card with lat long and a geocoded address, if available.</p>
-
-<ol>
-  <li>Ask for permissions for user location and internet in AndroidManifest.xml</li>
-</ol>
-
-<pre class="lang:java decode:true" title="AndroidManifest.xml">...
-    &lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /&gt;
-    &lt;uses-permission
-        android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /&gt;
-    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-...</pre>
-
-<ol>
-  <li>Create a LocationManager that uses certain criteria to figure out which location services it can use on Glass in MainActivity.java</li>
-</ol>
-
-<pre class="lang:java decode:true" title="MainActivity.java">...
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setAltitudeRequired(true);
-
-        List&lt;String&gt; providers = locationManager.getProviders(
-                criteria, true /* enabledOnly */);
-
-        for (String provider : providers) {
-            locationManager.requestLocationUpdates(provider, 1000,
-                    10, this);
-        }
-...</pre>
-
-<ol>
-  <li>Implement callbacks that will update the card when you get a location update in MainActivity.java</li>
-</ol>
-
-<pre class="lang:java decode:true" title="MainActivity.java">@Override
-    public void onLocationChanged(Location arg0) {
-		//show lat long to user
-        String lat = String.valueOf(arg0.getLatitude());
-        String lon = String.valueOf(arg0.getLongitude());
-
-        card.setText("your location is " + lat + " " + lon);
-
-        Geocoder geocoder = new Geocoder(this);
-
-        try {
-			List&lt;Address&gt; addresses = geocoder.getFromLocation(arg0.getLatitude(), arg0.getLongitude(), 1);
-			if(addresses.size() &gt; 0)
-			{
-				Address address = addresses.get(0);
-				String addressString = "";
-
-				for(int i = 0; i &lt; address.getMaxAddressLineIndex(); i++)
-				{
-					addressString += address.getAddressLine(i) + " ";
-				}
-			card.setFootnote(addressString);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-        View cardView = card.toView();
-        setContentView(cardView);
-	}</pre>
-
-<p>The app should now start getting location updates on the Glass (it can take a while to get a good fix) and update the Card once it finds you. The result should look something like this:</p>
-
-<p><a href="/blog/wp-content/uploads/2014/01/Glass-Card-Complete.png" rel="lightbox[2771]"><img class="aligncenter size-full wp-image-2786" alt="Glass Card Complete" src="/blog/wp-content/uploads/2014/01/Glass-Card-Complete.png?resize=604%2C334" width="604" height="334" srcset="/blog/wp-content/uploads/2014/01/Glass-Card-Complete.png?w=900 900w, /blog/wp-content/uploads/2014/01/Glass-Card-Complete.png?resize=500%2C276 500w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a></p>
-
-<p>Congratulations! You’ve finished your first Glass app. Future generations will wonder how they ever knew where they were without a head mounted computer printing out their exact location on the earth into a glowing prism directly above their field of vision at all times!</p>
-
-<p>For more information about the GDK, check out Google’s <a href="https://developers.google.com/glass/develop/gdk/index">official documentation</a>! Glass on!</p>
-
-<p> </p>
 
 
           
@@ -309,6 +128,8 @@ private Card card;
             
             
 
+            
+              <a href="/blog/2014/02/25/writing-google-glass-apps-with-the-gdk-sneak-peek/">More &hellip;</a>
             
           
           
@@ -415,66 +236,6 @@ private Card card;
 
 <p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.</p>
 
-<p>In iOS, you can use the <code class="highlighter-rouge">dispatch_async</code> call to run code on a background <a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1">dispatch queue</a>. Say we get an NSArray of JSON objects and want to save them to a Core Data store. We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:</p>
-
-<pre lang="objc">NSArray *stuff = [NSJSONSerialization JSONObjectWithData:responseData ...];
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //if using core data, set up a new NSManagedObjectContext for this background thread
-
-    for (id *obj in stuff) {
-      //do time consuming work here
-    }
-
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        //do stuff on UI, send notifications!
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"stuffHappenedNotification" object:nil];
-    });
-});</pre>
-
-<p>In Android, performing a lightweight asynchronous task requires you to subclass <a href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</a>. I guess I’m using the term “lightweight” loosely because creating a subclass just to do something asynchronously seems a bit heavy, but at least you get to reuse your code!</p>
-
-<p>You must define three generic types which describe what the input is (in this example, a String), the progress type (an Integer) and a result (a Boolean).</p>
-
-<pre lang="java">private class SomeBackgroundTask extends AsyncTask&lt;String, Integer, Boolean&gt; {
-
-  @Override
-  protected void onPreExecute() {
-    //this is called first; you can use this to set up UI elements like a progress bar
-  }
-
-  @Override
-  protected Boolean doInBackground(String... response) {
-    JSONTokener tokenizer = new JSONTokener(response[0]);
-    JSONArray stuff = new JSONArray(tokenizer);
-    for(int i = 0; i &lt; root.length(); i++){
-      //do time consuming work here
-      //the return type is Boolean, but it could really be anything we want
-      //we can call publishProgress(Progress...) here to call the onProgressUpdate method below on the ui thread
-    }
-    return Boolean.TRUE;
-  }
-
-  @Override
-  protected void onPostExecute(Boolean aBoolean) {
-    //this is called with the result of doInBackground as a parameter. this method is also called on the ui thread
-  }
-
-  @Override
-  protected void onProgressUpdate(Integer... progress) {
-    //this is called from doInBackground with the function "publishProgress(Progress...)"
-    //I use this method to send a local broadcast intent back to my main activity
-  }
-
-}
-</pre>
-
-<p>Once you have that AsyncTask set up, you can call</p>
-
-<pre lang="java">new SomeBackgroundTask().execute(yourString);</pre>
-
-<p>to run your asynchronous task. One tricky thing to remember is that execute takes a list of objects and sends it to doInBackground as an array. I’m not BFF with Java so the syntax threw me a bit, but apparently it’s using a feature called <a href="http://docs.oracle.com/javase/1.5.0/docs/guide/language/varargs.html">varargs</a> that’s been in Java for a while now.</p>
-
-<p>That’s all for today. I hope this blog post was useful. I certainly found it useful, since I had to do some research to really understand what the heck I was writing about. I’ll probably write about <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDelegate_Protocol/Reference/Reference.html">UITableViewDelegate</a>/<a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDataSource_Protocol/Reference/Reference.html">Datasource</a> vs. <a href="http://developer.android.com/reference/android/widget/ListAdapter.html">ListAdapter</a> next, unless there’s something else that seems more timely.</p>
 
 
           
@@ -482,6 +243,8 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             
 
+            
+              <a href="/blog/2013/11/20/design-patterns-ios-and-android-dispatch-queues-and-asynctask/">More &hellip;</a>
             
           
           

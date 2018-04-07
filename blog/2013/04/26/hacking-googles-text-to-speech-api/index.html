@@ -119,9 +119,9 @@ ga('send', 'pageview');
   
   <p>When I was at my previous job, one task I had was localizing a large set of phrases to multiple languages, both in text and audio files. I did this by using the awesome <a href="https://developers.google.com/translate/">Google Translate API</a>.</p>
 
-<p>The <a href="http://translate.google.com/">Google Translate</a> website has features for translating text and playing audio of it in the translated language. There’s no official API for getting audio, though. Luckily, I’ve never let a lack of an official API stop me before.</p>
-
-<p>I had read a few old blog posts about how Google’s undocumented TTS API could be used, albeit with a 100 character limit. Going over 100 characters would result in a truncated audio file. Some of the text I needed to output to audio was longer than that. It turns out that with a little bit of Chrome web inspector, I could replicate the functionality of the Google Translate site.</p>
+<p>The <a href="http://translate.google.com/">Google Translate</a> website has features for translating text and playing audio of it in the translated language. There’s no official API for getting audio, though. Luckily, I’ve never let a lack of an official API stop me before. 
+<!--more-->
+I had read a few old blog posts about how Google’s undocumented TTS API could be used, albeit with a 100 character limit. Going over 100 characters would result in a truncated audio file. Some of the text I needed to output to audio was longer than that. It turns out that with a little bit of Chrome web inspector, I could replicate the functionality of the Google Translate site.</p>
 
 <p>The first thing to check out is the url scheme of the audio files, which looks like this:</p>
 

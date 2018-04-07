@@ -119,9 +119,9 @@ ga('send', 'pageview');
   
   <p>For the past few weeks, I’ve been learning Android and porting one of my iOS apps to the platform. While there are many differences between the two platforms, it’s also kind of interesting to see common design patterns between them. I figured I should write up the common design patterns that I notice and maybe help out some iOS developers who are also learning Android like me.</p>
 
-<p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.</p>
-
-<p>In iOS, you can use the <code class="highlighter-rouge">dispatch_async</code> call to run code on a background <a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1">dispatch queue</a>. Say we get an NSArray of JSON objects and want to save them to a Core Data store. We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:</p>
+<p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.
+<!--more-->
+In iOS, you can use the <code class="highlighter-rouge">dispatch_async</code> call to run code on a background <a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1">dispatch queue</a>. Say we get an NSArray of JSON objects and want to save them to a Core Data store. We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:</p>
 
 <pre lang="objc">NSArray *stuff = [NSJSONSerialization JSONObjectWithData:responseData ...];
 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

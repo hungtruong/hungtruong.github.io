@@ -203,99 +203,6 @@ ga('send', 'pageview');
 
 <p>I’ve been really getting into home automation and buying a lot of “internet of things” products lately. I decided to do an introductory talk on home automation along with ideas on how people can get up and running quickly. I did the talk last weekend and had a great turnout. Some people asked for more information so I thought I’d write up a blog post that more or less summarized the talk. So here it is!</p>
 
-<h2 id="what-exactly-is-the-internet-of-things">What exactly is the “Internet of Things?”</h2>
-
-<p>“The Internet of Things” is a term that gets thrown around a lot but doesn’t seem to have an official definition. I like to think of it as the concept that, as devices gain more intelligence through the ability to communicate wirelessly and through the internet, they become more useful. In other words, things will form their own internet and will generally be awesome. I was reminded the video game, <a href="http://youtu.be/ykcnwQNZ1D0?t=5m">Megaman Battle Network</a>, where literally everything, including a microwave, has a port to jack into (and can thus catch a virus).</p>
-
-<p><a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png" rel="lightbox[2817]"><img class="aligncenter size-medium wp-image-2818" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png?resize=500%2C276" alt="MMBN" width="500" height="276" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png?resize=500%2C276 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png?resize=1024%2C565 1024w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png?w=1278 1278w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.13-AM-139.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a> <a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png" rel="lightbox[2817]"><img class="aligncenter wp-image-2819 size-medium" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png?resize=500%2C274" alt="Screen Shot 2014-05-05 at 10.06.29 AM-140" width="500" height="274" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png?resize=500%2C274 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png?resize=1024%2C562 1024w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png?w=1278 1278w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.29-AM-140.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a> <a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png" rel="lightbox[2817]"><img class="aligncenter wp-image-2820 size-medium" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png?resize=500%2C270" alt="Screen Shot 2014-05-05 at 10.06.50 AM-138" width="500" height="270" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png?resize=500%2C270 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png?resize=1024%2C554 1024w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png?w=1278 1278w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-05-at-10.06.50-AM-138.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>It also means that your refrigerator might be able to tweet when you run out of milk, or stream music via Pandora.</p>
-
-<h2 id="why-am-i-hearing-so-much-about-the-iot-right-now">Why am I hearing so much about the IoT right now?</h2>
-
-<p>In the past few decades, we’ve seen the cost of producing software go way down. Starting a software business simply costs less today than it did in the 90s. While hardware always brings more upfront costs, it seems like commodity hardware and <a href="https://www.kickstarter.com/">Kickstarter</a> are making it easier for smaller companies to get into the hardware game. On top of that, wireless technologies like Bluetooth LE and low power Wifi are enabling devices to talk to one another as well as to the internet. In the past few years we’ve seen large companies like Belkin get into this space as well as smaller startups like Nest (though they were aquired by Google pretty recently).</p>
-
-<h2 id="some-things-you-can-accomplish">Some things you can accomplish</h2>
-
-<p>I’m just going to list a few use cases that I consider to fall in the category of “Internet of Things.” After I give an initial survey, I’ll go into ways that you can use these off-the-shelf solutions to automate your home.</p>
-
-<h3 id="turn-onoff-light-switches">Turn on/off light switches</h3>
-
-<p><a href="/blog/wp-content/uploads/2014/05/ironing-board-305.jpg" rel="lightbox[2817]"><img class="aligncenter size-full wp-image-2823" src="/blog/wp-content/uploads/2014/05/ironing-board-305.jpg?resize=291%2C304" alt="Wemo" width="291" height="304" data-recalc-dims="1" /></a></p>
-
-<p>One of the simplest use cases for home automation is turning off/on light switches. You can do this with the <a href="http://www.amazon.com/b/?_encoding=UTF8&amp;camp=1789&amp;creative=390957&amp;linkCode=ur2&amp;node=8136516011&amp;qid=1400470799&amp;sr=8-3-acs&amp;tag=hungtruong-20&amp;linkId=QY5JR5HILFSFZ3UT">Belkin Wemo</a> (which is what I use) or with something like <a href="http://ninjablocks.com/pages/home">Ninja Blocks</a> or <a href="http://www.amazon.com/gp/product/B00EORV53G/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B00EORV53G&amp;linkCode=as2&amp;tag=b00003ph0-20&amp;linkId=IXK5WMOEKZFE5DKW">SmartThings</a>.</p>
-
-<h3 id="detect-motion">Detect Motion</h3>
-
-<p><a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-8.44.18-PM-341.png" rel="lightbox[2817]"><img class="aligncenter size-medium wp-image-2824" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-8.44.18-PM-341.png?resize=500%2C275" alt="Dropcam" width="500" height="275" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-8.44.18-PM-341.png?resize=500%2C275 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-8.44.18-PM-341.png?w=600 600w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
-
-<p>You can use <a href="https://www.dropcam.com/">Dropcam</a> to detect motion with video, or Wemo / SmartThings to detect motion events. This is mostly useful indoors if you don’t have pets since they can set false alarms.</p>
-
-<h3 id="detect-when-doorswindows-are-open">Detect when doors/windows are open</h3>
-
-<p><img class="aligncenter size-medium wp-image-2825" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.09.45-PM-558.png?resize=500%2C356" alt="SmartThings" width="500" height="356" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.09.45-PM-558.png?resize=500%2C356 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.09.45-PM-558.png?w=700 700w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
-
-<p>You can use SmartThings to detect when a door or window has been opened. This could be useful for knowing if you left a window open while it’s raining, though it would be even more helpful if it could close the window for you automatically.</p>
-
-<h3 id="detect-water-moisture-floods">Detect water moisture / floods</h3>
-
-<p><img class="aligncenter size-medium wp-image-2826" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.10.48-PM-573.png?resize=500%2C355" alt="Flood" width="500" height="355" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.10.48-PM-573.png?resize=500%2C355 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.10.48-PM-573.png?w=700 700w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
-
-<p>Apparently it really sucks to have a flood in your basement. It might be worth the extra money to install a SmartThings moisture detector to tell you if there’s a water leak or flood.</p>
-
-<h3 id="lock-or-unlock-your-front-door">Lock or unlock your front door</h3>
-
-<p><a href="/blog/wp-content/uploads/2014/05/schlage-century-BE469NX-chrome-580.jpg" rel="lightbox[2817]"><img class="aligncenter size-medium wp-image-2827" src="/blog/wp-content/uploads/2014/05/schlage-century-BE469NX-chrome-580.jpg?resize=500%2C424" alt="schlage-century-BE469NX-chrome-580" width="500" height="424" srcset="/blog/wp-content/uploads/2014/05/schlage-century-BE469NX-chrome-580.jpg?resize=500%2C424 500w, /blog/wp-content/uploads/2014/05/schlage-century-BE469NX-chrome-580.jpg?w=600 600w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
-
-<p>I ordered a <a href="https://lockitron.com/">Lockitron</a> a really long time ago and am happy to announce that it should be shipping soon! I also found a product by Schlage that seems to do something similar.</p>
-
-<h3 id="keep-track-of-your-driving">Keep track of your driving</h3>
-
-<p><a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.21.27-PM-679.png" rel="lightbox[2817]"><img class="aligncenter size-medium wp-image-2828" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.21.27-PM-679.png?resize=500%2C240" alt="Automatic" width="500" height="240" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.21.27-PM-679.png?resize=500%2C240 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-07-at-9.21.27-PM-679.png?w=700 700w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a><a href="https://www.automatic.com/">Automatic</a> helps you keep track of your MPG and total distance traveled by connecting to the data port of your car.</p>
-
-<h3 id="dont-kill-your-plants">Don’t kill your plants</h3>
-
-<p><img class="aligncenter size-medium wp-image-2829" src="/blog/wp-content/uploads/2014/05/flowerpower.jpg?resize=500%2C281" alt="flowerpower" width="500" height="281" srcset="/blog/wp-content/uploads/2014/05/flowerpower.jpg?resize=500%2C281 500w, /blog/wp-content/uploads/2014/05/flowerpower.jpg?w=530 530w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
-
-<p>This is a fairly stupid product called the <a href="http://www.parrot.com/flowerpower/us">Parrot Flower Power</a> that can remind you to water your plant when the soil gets too dry. It’s probably more cost effective to just buy a new plant if yours dies from under/over watering but whatever.</p>
-
-<h3 id="keep-track-of-how-many-eggs-you-have-left">Keep track of how many eggs you have left</h3>
-
-<p><a href="/blog/wp-content/uploads/2014/05/eggminder.jpeg" rel="lightbox[2817]"><img class="aligncenter size-full wp-image-2830" src="/blog/wp-content/uploads/2014/05/eggminder.jpeg?resize=467%2C467" alt="eggminder" width="467" height="467" srcset="/blog/wp-content/uploads/2014/05/eggminder.jpeg?w=467 467w, /blog/wp-content/uploads/2014/05/eggminder.jpeg?resize=150%2C150 150w" sizes="(max-width: 467px) 100vw, 467px" data-recalc-dims="1" /></a></p>
-
-<p>The Quirky Egg Minder keeps track of how many eggs you have in your fridge.</p>
-
-<h2 id="recipes-with-ifttt--zapier">Recipes with IFTTT / Zapier</h2>
-
-<p><a href="https://ifttt.com">IFTTT</a> (if this then that) is an online tool that makes it easy for non-programmers to connect different internet and mobile services to each other. Think of it as glue that can tie all of your IoT devices together via triggers and actions. A trigger might be that your Wemo has detected motion, and an action might be to open your garage door. IFTTT works well with many of the devices I’ve listed previously and offers an iOS and Android app that can hook into things like your location and photos.</p>
-
-<p><a href="http://zpr.io/HrwM">Zapier</a> is another tool that is similar to IFTTT but a bit more complicated and expensive to use. Some recipes are only compatible with Zapier (like Lockitron) so you might need to sign up for that service as well.</p>
-
-<p>I’ll share a few recipes on IFTTT or Zapier that you can use to automate your home with your newfound gadgets.</p>
-
-<h3 id="play-the-radio-when-a-burglar-enters-your-home">Play the radio when a burglar enters your home</h3>
-
-<p>This recipe is possible without using IFTTT (and is probably more secure since it doesn’t require internet). I set up my motion detector to turn on a switch that’s connected to a portable radio. During certain hours when I’m not at home, if someone enters my house, the radio will start playing. The hope here is that the noise will be a deterrent to the invader. If I was feeling in a Home Alone mood, I could also connect the switch to a tape player that played scenes from a mobster movie.</p>
-
-<h3 id="make-sure-your-doors-are-locked-when-you-leave-home"> Make sure your doors are locked when you leave home</h3>
-
-<p>When your IFTTT mobile app detects that you are leaving your home, you can send an email that Zapier can use to connect to Lockitron to ensure that your doors are locked. This is a pretty convoluted recipe since it uses both services, but there isn’t really a better way to do this, unless you want to simply lock your door with the Lockitron app when you leave.</p>
-
-<h3 id="automatically-start-the-coffee-maker-by-waking-up">Automatically start the coffee maker by waking up</h3>
-
-<p><a href="https://ifttt.com/view\_embed\_recipe/128213-turn-my-coffee-maker-on-the-moment-i-wake-up" target="\_blank" class="embed\_recipe embed\_recipe-l\_45" id="embed_recipe-128213"><img src="https://ifttt.com/recipe\_embed\_img/128213" alt="IFTTT Recipe: Turn my #coffee maker on the moment I wake up connects up-by-jawbone to wemo-switch" width="370px" style="max-width:100%" /></a></p>
-
-<p>This is a really cool IFTTT recipe I found that was shared by another user. The Jawbone UP 24 has a feature that can wake you up at the best time in your sleep cycle in the morning. The UP can send a message the moment you wake up to IFTTT that can turn on a switch that’s connected to your coffee maker. Voila, your coffee is ready as soon as you get out of bed.</p>
-
-<h3 id="log-all-of-your-driving-trips-in-google-docs">Log all of your driving trips in Google Docs</h3>
-
-<p><a href="https://ifttt.com/view\_embed\_recipe/175933-keep-track-of-all-my-driving-trips" target="\_blank" class="embed\_recipe embed\_recipe-l\_34" id="embed_recipe-175933"><img src="https://ifttt.com/recipe\_embed\_img/175933" alt="IFTTT Recipe: Keep track of all my driving trips connects automatic to google-drive" width="370px" style="max-width:100%" /></a></p>
-
-<p>I use this recipe to keep track of total miles driven and my fuel efficiency. It’s not particularly useful for anything, but if I was a taxi driver (or Lyft or Uber X) it might be pretty useful for tax purposes.</p>
-
-<h2 id="diy-home-automation">DIY Home Automation</h2>
-
-<p>One thing I haven’t really touched on is creating DIY projects to automate your home. I’m a big fan of home grown projects like this <a href="https://www.twilio.com/blog/2014/03/build-your-own-lockitron-with-twilio-arduino-and-node-js.html">DIY Lockitron using Arduino</a>. I recently bought a <a href="http://www.raspberrypi.org/">Raspberry Pi</a> to act as an iBeacon in my home. I’m trying to create an app that will be location aware to the room in my house that I’m in (or at least that my iPhone is in). I’ve heard that the best way to predict the future is to invent it, so if there’s anything in this space that you haven’t seen available, the best solution is to do it yourself!</p>
-
-<p>If you have any interesting projects or recipes you’d like to share, I’d love to hear about them. I am about to move into a new house, so the automation potential is about to grow a lot more for me (versus living in an apartment). Good luck and try not to get any viruses in your microwaves!</p>
 
 
           
@@ -303,6 +210,8 @@ ga('send', 'pageview');
             
             
 
+            
+              <a href="/blog/2014/05/20/ideas-and-recipes-for-home-automation-with-the-internet-of-things/">More &hellip;</a>
             
           
           

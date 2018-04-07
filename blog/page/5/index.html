@@ -180,26 +180,6 @@ ga('send', 'pageview');
 
 <p>The <a href="http://translate.google.com/">Google Translate</a> website has features for translating text and playing audio of it in the translated language. There’s no official API for getting audio, though. Luckily, I’ve never let a lack of an official API stop me before.</p>
 
-<p>I had read a few old blog posts about how Google’s undocumented TTS API could be used, albeit with a 100 character limit. Going over 100 characters would result in a truncated audio file. Some of the text I needed to output to audio was longer than that. It turns out that with a little bit of Chrome web inspector, I could replicate the functionality of the Google Translate site.</p>
-
-<p>The first thing to check out is the url scheme of the audio files, which looks like this:</p>
-
-<pre class="prettyprint"><code>http://translate.google.com/translate_tts?ie=UTF-8&amp;q=hello%20world&amp;tl=en&amp;total=1&amp;idx=0&amp;textlen=11&amp;prev=input
-</code></pre>
-
-<p>Breaking down the parameters, “ie” is the text’s encoding, “q” is the text to convert to audio, “tl” is the text language, “total” is the total number of chunks (more on that later), “idx” is which chunk we’re on, “textlen” is the length of the text in that chunk and “prev” is not really important.</p>
-
-<p>The Google Translate site itself gets around its own character limit by breaking big blocks of text into “chunks”. It seems to try and break along punctuation, but for super long sentences it will also break in the middle of a sentence, which ends up sounding pretty weird. Using the Gettysburg Address as an example, Google makes a request for the chunk “civil war”.</p>
-
-<p><a href="/blog/wp-content/uploads/2013/04/Gettysburg-Address.png" rel="lightbox[2665]"><img src="/blog/wp-content/uploads/2013/04/Gettysburg-Address.png?resize=500%2C92" alt="Gettysburg Address" width="500" height="92" class="aligncenter size-medium wp-image-2675" srcset="/blog/wp-content/uploads/2013/04/Gettysburg-Address.png?resize=500%2C92 500w, /blog/wp-content/uploads/2013/04/Gettysburg-Address.png?resize=1024%2C188 1024w, /blog/wp-content/uploads/2013/04/Gettysburg-Address.png?w=1324 1324w, /blog/wp-content/uploads/2013/04/Gettysburg-Address.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
-
-<p>In order to download audio files for longer chunks of text, I wrote up a python script that broke the text down and made separate requests to Google. The script would write all of the files to one file, and somehow, it worked! Just to be safe, I also set my script up to use Google’s Flash player as the referer (sic) and set the user agent to a version of Firefox.</p>
-
-<p>At the time, I didn’t want to release the code as it was being used for some uber top secret stuff. But since I’m not working on that project anymore, I refactored the original code into a command line Python script. Along the way I had to learn how to use Python’s <a href="http://docs.python.org/dev/library/argparse.html">argparse</a>, which is a pretty neat way of parsing command line arguments.</p>
-
-<p>The project is available on Github right now, so <a href="https://github.com/hungtruong/Google-Translate-TTS">go grab it and try it out</a>. If you’re curious what the output sounds like, here’s a recording of female Abraham Lincoln reciting the <a href="http://www.hung-truong.com/blog/wp-content/uploads/2013/04/Gettysburg.mp3">Gettysburg Address</a> (yes, she mispronounces some words). One fun thing to try out is outputting clashing input and output languages. Here’s Female Japanese Abraham Lincoln reciting <a href="http://www.hung-truong.com/blog/wp-content/uploads/2013/04/Gettysbaago.mp3">the same speech</a> (she just seems to be spelling words, slacker).</p>
-
-<p>If you enjoyed this hack, let me know and I could post some other ones I’ve been working on. And if you find a way to improve the code (probably not difficult at all) go ahead and submit a pull request on Github. And if you’re from Google, please don’t shut down my Gmail and Adsense accounts.</p>
 
 
           
@@ -207,6 +187,8 @@ ga('send', 'pageview');
             
             
 
+            
+              <a href="/blog/2013/04/26/hacking-googles-text-to-speech-api/">More &hellip;</a>
             
           
           
