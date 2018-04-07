@@ -113,6 +113,29 @@ ga('send', 'pageview');
   <ul class="posts noList">
     
       <li>
+        <span class="date">April 29, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/04/29/delayed-gratification-in-engineering-and-entrepreneurship/">Delayed Gratification in Engineering and Entrepreneurship</a></h3>
+        <p><p>I read a blog post about <a href="http://niniane.blogspot.com/2010/08/delayed-rewards.html">Engineers and Delayed Gratification</a> a while ago from ex-Googler and ex-Microsoftie Ninane Wang that made me think. She says that new engineers (like straight from school) have a hard time adjusting to the real world because they expect to be rewarded immediately for their work. In the real world, you don’t see rewards for your work for months, or even years! Her solution is to have managers provide instant feedback to their reports so they get at least some acknowledgment of their work.</p>
+
+<p>Since quitting Microsoft and setting out on my own (and even before that), I’ve had to trust that the stuff I am working on is meaningful and worthwhile. This is hard sometimes, especially if the thing I’m working on seems like a gamble. Having done the whole independent hacking thing for a while, I think I’ve built up the rolling reward cycle that Niniane mentions. Some days I’ll feel like I’m underachieving or working on something that no one will find useful. Then I’ll get a donation from someone for <a href="http://www.instascriber.com/">Instascriber</a> (this actually happened!!!) or see another <a href="http://itunes.apple.com/us/app/id403917180?mt=8">5 star review</a> for my Threadless app and get re-encouraged.</p>
+
+<p>At the end of the day, I think what really separates the employees from the entrepreneurs is the willingness to be unsure about something and still do it. The uncertainty is much greater when you’re working on an unproven idea, business model, or whatever, but then so are the potential rewards, too. And <a href="http://www.hung-truong.com/blog/2009/03/04/managing-rejection-and-success/">even if you end up failing, you learn something and are better for it</a>.</p>
+
+<p>In some ways, delaying gratification even sort of makes sense. If you immediately were rewarded for doing something innovative, you might lose the passion (like Rocky did) and stop innovating so you can enjoy your riches. While I can’t say that delaying gratification indefinitely would be a good idea, accepting that there will be a delay is probably healthy.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">April 25, 2011</span>
         <h3><a class="post-link" href="/blog/2011/04/25/the-internet-is-for-downtime/">The Internet Is For&#8230; Downtime.</a></h3>
         <p><p>These last few weeks have been really, really bad for the internet. I mean, in general. What with Media Temple going down due to their <a href="https://twitter.com/#!/mediatemple/status/60348605478862849">nameservers</a>, <a href="http://newenterprise.allthingsd.com/20110421/amazons-cloud-crashed-overnight-and-brought-several-other-companies-down-too/">Amazon EC2 going down</a>, and also the <a href="http://blog.us.playstation.com/2011/04/23/latest-update-for-psnqriocity-services/">Playstation Network refusing to let me log in</a>… You’d think there was a cyberattack going on or something.</p>
@@ -227,35 +250,6 @@ ga('send', 'pageview');
 <p>Hopefully the iPad app continues the mission of the iPhone app, which is to provide a really easy and fun way to browse and share awesome Threadless designs! I may have been an early iPad doubter, but I really believe that it’s a great device for consuming content. Even on my iPad 1, the designs and colors just pop on the app. At least I think so. But you don’t have to take my word for it!</p>
 
 <p><a href="http://itunes.apple.com/us/app/id403917180?mt=8">Get the app if you don’t have it already</a>!</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">March 14, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/03/14/note-to-myself-about-uisplitviewcontroller-and-auto-rotation/">Note to Myself about UISplitViewController and Auto-Rotation</a></h3>
-        <p><p><a href="/blog/wp-content/uploads/2011/03/fuuuuu.jpg" rel="lightbox[2389]"><img src="/blog/wp-content/uploads/2011/03/fuuuuu-e1300154340809.jpg?resize=268%2C343" alt="" title="fuuuuu" width="268" height="343" class="aligncenter size-full wp-image-2391" data-recalc-dims="1" /></a></p>
-
-<p>In order to prevent my future self from wasting like, 2 hours fucking around with UISplitViewController getting it to auto-rotate its subviews, here’s a little post!</p>
-
-<p>Most of the time, UISplitViewController doesn’t want to rotate because you didn’t set it as the root subview of the Window. This is pretty well documented on StackOverflow, etc. I thought this was why my splitviewblahblahblah wasn’t rotating. It turns out that, according to Apple’s documentation,</p>
-
-<blockquote>
-  <p>A split view controller relies on its two view controllers to determine whether interface orientation changes should be made. If one or both of the view controllers do not support the new orientation, no change is made. This is true even in portrait mode, where the first view controller is not displayed. Therefore, you must override the shouldAutorotateToInterfaceOrientation: method for both view controllers and return YES for all supported orientations.</p>
-</blockquote>
-
-<p>The key here is that the view controller wasn’t autorotating because the subviews did not answer “YES!!!” (exclamation points added by me) to shouldAutoRotateToInterfaceOrientation. I was fucking around with the Split View Controller in Interface Builder (and later programmatically) to no avail. Adding the stupid autorotate thing to yes in the subviews made it work (shouldn’t it default to YES!?!??!).</p>
-
-<p>Okay, lesson learned. Just don’t forget this next time, Hung!</p>
 
 
           

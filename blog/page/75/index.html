@@ -114,6 +114,27 @@ ga('send', 'pageview');
     
       <li>
         <span class="date">April 12, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/04/12/craigslist-and-google-maps-mashup-thingy-day-6-mysql-refactoring/">Craigslist and Google Maps Mashup Thingy: Day 6 &#8211; MySQL Refactoring</a></h3>
+        <p><p>One of the things I didn’t really care about when I was coming up with my Google Maps Craigslist mashup thing was the correctness of the database schema. I’ve written database schema before, but this time I just got sort of lazy. When porting the application to CakePHP, I realized it was a bad idea to slack off. Today I spent some time refactoring and adding a association table to the db.</p>
+
+<p>I also learned some more MySQL syntax stuff. Previously, I had worked with Rails, which sort of handles the query making itself. Since I wrote a custom listing parser, I had to do some MySQL magic with JOINs and whatnot.</p>
+
+<p>I also worked a lot on the Facebook puzzle that I wrote about earlier today. I came up with an approach that was better than the last one I came up with, but only slightly. It’s still in the range of O(n), so I’ll have to figure out the last “clever” thing before I’ve got it finished. It’s actually a lot more interesting now due to the efficiency constraints.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
+        <span class="date">April 12, 2007</span>
         <h3><a class="post-link" href="/blog/2007/04/12/facebook-programming-puzzles-prime-bits-revisited/">Facebook Programming Puzzles &#8211; Prime Bits Revisited</a></h3>
         <p><p>So I got a comment on my original post about the <a href="http://www.hung-truong.com/blog/2007/03/30/facebook-programming-puzzles-a-boatload-of-fun/">Facebook Programming Puzzle called “Prime Bits”</a> that asked:</p>
 
@@ -215,31 +236,6 @@ ga('send', 'pageview');
 <p>Besides that minor problem, everything seems to be going along smoothly. PHP has a lot of nice built in functionality for doing string manipulation, which this project has a lot of. It’s also got really nice networking and file reading capability. I guess that makes sense, since it originally came about as a tool for creating websites.</p>
 
 <p>Tomorrow I’ll try to get the mashup site setup with actual options and navigation. Right now it’s just set on Ann Arbor. I’ll have to do some routing to get the many different options that people might want set up.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 08, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/08/craigslist-and-google-maps-mashup-thingy-day-3/">Craigslist and Google Maps Mashup Thingy: Day 3</a></h3>
-        <p><center>
-  <img src="/blog/wp-content/uploads/2007/04/google-map-2.gif?w=604" alt="google-map-2.gif" data-recalc-dims="1" />
-</center>
-
-<p>Yesterday I worked on the mashup thing, but then I got sleepy and didn’t write a post about it. So here’s a post!</p>
-
-<p>Basically I worked on adding the individual listings onto the Google Map with stuff like the description, address, and price. At first I thought about importing the points from some kind of xml document, but I figured the approach with just embedding it was easier.</p>
-
-<p>Then I figured out how to start scraping some of the listing info from the Michigan off campus housing site. This site seems to have better listings in terms of quality and price. I think today I’ll work on getting all of that info into the database so I can map it as well.</p>
 
 
           

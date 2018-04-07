@@ -5,9 +5,47 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 07 Apr 2018 10:23:50 -0700</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 10:23:50 -0700</lastBuildDate>
+    <pubDate>Sat, 07 Apr 2018 11:09:29 -0700</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 11:09:29 -0700</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      
+      <item>
+        <title>Updating My Blog and Killing Wordpress!</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/static/hungs-old-blog.png&quot; /&gt;
+&lt;figcaption&gt;R.I.P. old blog!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A week or two ago I got an email from Google telling me that my blog had once again been hacked. I’ve written before about getting hacked and I basically knew how to unhack myself, but I put it off for a bit until I checked my website again and noticed that Chrome was warning me to avoid it! This was pretty much the last straw. I decided to move off of self-hosted Wordpress and switch to something a bit more secure.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;I looked at some options such as &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; or &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt; but it seemed like &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; was the most mature static blog platform, so I went with that. I used a plugin that would generate the Markdown files that I’d need to regenerate my blog. It also ended up transferring my image files, etc, which made it pretty easy to get started.&lt;/p&gt;
+
+&lt;p&gt;I found a cool looking theme called &lt;a href=&quot;http://brianmaierjr.com/long-haul/&quot;&gt;Long Haul&lt;/a&gt; that I ended up modifying quite a bit. I updated the header image, changed up some colors and added an archives page and support for post excepts. What’s currently missing is a site search and category/tag support, but I can live with that. I’m happy with the speed that the site loads as it’s all static and hosted on Github pages.&lt;/p&gt;
+
+&lt;p&gt;I wouldn’t necessarily recommend Jekyll to everyone who wants to convert their blog. It’s clearly written by developers for developers as it’s insanely un-user friendly. Don’t get me wrong, the documentation is great, but it’s surprising to me that something resembling a blogging platform has been around this long without anyone setting up a WYSIWYG type of editor like the kind that Wordpress has. I ran into quite a few issues and a pretty steep learning curve while converting my blog. Now that I’m past that, hopefully I can start blogging more often again!&lt;/p&gt;
+
+&lt;p&gt;(I checked the hilariously outdated “friends” links on my blog and most of them died around 2009 or the domain names ended up failing or being transferred to new owners, so I guess I’m one of the few remaining bloggers of the world)&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/static/hungs-old-blog.png&quot; /&gt;
+&lt;figcaption&gt;R.I.P. old blog!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A week or two ago I got an email from Google telling me that my blog had once again been hacked. I’ve written before about getting hacked and I basically knew how to unhack myself, but I put it off for a bit until I checked my website again and noticed that Chrome was warning me to avoid it! This was pretty much the last straw. I decided to move off of self-hosted Wordpress and switch to something a bit more secure.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 07 Apr 2018 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2018/04/07/updating-my-blog-and-killing-wordpress/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2018/04/07/updating-my-blog-and-killing-wordpress/</guid>
+        
+        
+      </item>
+      
     
       
       <item>
@@ -598,93 +636,6 @@ I set up a Twilio phone number to receive and send text messages. Actually, I ju
         <category>PhantomJS</category>
         
         <category>twitter</category>
-        
-        
-        <category>Code</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>How Ghost Inspector Helped Me Furnish My House</title>
-        <description>&lt;h2 id=&quot;act-1&quot;&gt;Act 1&lt;/h2&gt;
-
-&lt;p&gt;Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best. When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it. The problem was that it never seemed to be in stock.&lt;/p&gt;
-&lt;figure&gt;
-  &lt;a href=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2912&quot; src=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500&quot; alt=&quot;Behold the majesty.&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1208 1208w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1812 1812w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;
-  &lt;figcaption&gt;Behold the majesty.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;!--more--&gt;
-&lt;p&gt;I must have waited for months, maybe even a year, to see if the unit was available in my Ikea store, but apparently there were production issues. The Ikea phone support was never useful and just told me to check again later. I was stuck waiting it out while my current Ikea (non-Stockholm) tv stand bowed under the weight of my 60″ television.&lt;/p&gt;
-
-&lt;p&gt;On a random visit in December, though, my interest was piqued. The “buy” button was actually there on the page! I tried faking an order and got a preliminary ship date! For whatever stupid reason, I thought this meant that the supply issues had been fixed. I delayed. I wanted to make sure the thing would fit in my living room. I missed out. Later that week, when I checked the site, the unit was gone.&lt;/p&gt;
-
-&lt;h2 id=&quot;act-2&quot;&gt;Act 2&lt;/h2&gt;
-
-&lt;p&gt;I noticed that the website did something weird when I tried buying the tv unit. The “buy” button was still working. The item was added to my cart. But when I tried to enter my address, I would get an error in my cart saying the unit wasn’t available. There must’ve been some issue with their inventory system.&lt;/p&gt;
-
-&lt;p&gt;Instead of checking manually every day to see if Ikea had any real stock, I decided to automate the process using a tool called Ghost Inspector.&lt;/p&gt;
-
-&lt;p&gt;Ghost Inspector is a service that lets you define actions for a headless (ghostly) web browser to run for you. It’s mostly intended for running tests on parts of your website (like verifying that a user can log in, get some data, not get an error, etc). If you end up changing a part of your website and it breaks another, Ghost Inspector can automate the process of discovering that regression.&lt;/p&gt;
-
-&lt;p&gt;As the title of my blog post implies, Ghost Inspector can also tell you when that piece of furniture you want goes back in stock.&lt;/p&gt;
-
-&lt;p&gt;To get started, I created a free account on &lt;a href=&quot;https://ghostinspector.com/&quot;&gt;ghostinspector.com&lt;/a&gt;. The free tier allows you to run 100 automated tests per month. This was more than enough for me to check Ikea once every day. To create a “test,” you can either download a Chrome extension that assists you in recording a test, or enter steps into the site itself using actions and CSS selectors (you can also use the extension to record a rough version of a test and edit it later, as I did).&lt;/p&gt;
-
-&lt;p&gt;This is what my first test run looked like after I recorded the process of adding the item to the cart, entering my address info and trying to check out:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/testfail.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2916&quot; src=&quot;/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;310&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310 500w, /blog/wp-content/uploads/2015/01/testfail.png?resize=1024%2C634 1024w, /blog/wp-content/uploads/2015/01/testfail.png?w=1596 1596w, /blog/wp-content/uploads/2015/01/testfail.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;As you can see, the test failed, which is bad, because I was testing to see if the item was out of stock (which I knew was true). The Ghost Inspector recorder picked up that I clicked on a button with a “pressed” state active. Unfortunately, the headless browser doesn’t hover over a button when clicking it, so it didn’t actually see this element and couldn’t click it. I fixed this by selecting the ‘a’ tag with the specific id that I knew would actually add the item to my cart (I also made the browser pause in case something needed to finish loading before hitting the button):&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/success.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2917&quot; src=&quot;/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;263&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263 500w, /blog/wp-content/uploads/2015/01/success.png?resize=1024%2C539 1024w, /blog/wp-content/uploads/2015/01/success.png?w=1566 1566w, /blog/wp-content/uploads/2015/01/success.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;Here’s the screenshot of my successful (empty cart) test:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2918&quot; src=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;470&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470 500w, /blog/wp-content/uploads/2015/01/ikeaempty.png?resize=1024%2C963 1024w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1280 1280w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;At the end of the test, I created an assertion that an element with class “#cartTableError” exists, which shouldn’t happen if your cart is full of Stockholm awesomeness and ready to be shipped. With the test running automatically every day, all that was left for me to do was wait until Ghost Inspector emailed me to notify me of the test “failure,” which meant the item was in stock.&lt;/p&gt;
-
-&lt;h2 id=&quot;act-3&quot;&gt;Act 3&lt;/h2&gt;
-
-&lt;p&gt;The fateful day. I got an email from Ghost Inspector that my test failed. I hurriedly typed “ikea.com” into my browser. The product page slowly revealed itself and I girded my loins for the moment I could click “buy.” But the buy button wasn’t there! The test failed because the website now correctly showed that the item was not for sale. Boo!&lt;figure id=&quot;attachment_2926&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2926&quot; src=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261&quot; alt=&quot;Test failed, but not the way I wanted&quot; width=&quot;500&quot; height=&quot;261&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261 500w, /blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?w=792 792w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;Test failed, but not the way I wanted&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
-
-&lt;p&gt;I had to write another test. But unfortunately, I couldn’t assert the non-existence of an object. Instead, I faked clicking the buy button (which apparently worked fine) and then tested whether the cart was empty when I clicked to it. The test looked like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/emptcart.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2921&quot; src=&quot;/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;173&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173 500w, /blog/wp-content/uploads/2015/01/emptcart.png?resize=1024%2C353 1024w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1576 1576w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Apparently this is a stupid test because it is actually still passing. But Ghost Inspector has a feature where it takes a screenshot after every passed test and compares it to the next test. In this case, the screenshot diff test failed and I was notified  a few days ago. And it turns out that the tv stand is actually in stock!&lt;figure id=&quot;attachment_2922&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2922&quot; src=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262&quot; alt=&quot;A comparison of screenshots.&quot; width=&quot;500&quot; height=&quot;262&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262 500w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=1024%2C537 1024w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;A comparison of screenshots.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
-
-&lt;p&gt;I’ve ordered the tv stand and it should be on its way by the end of the month. Many thanks to Ghost Inspector for creating a free tier for this service so that furniture aficionados like me can automate their obsessive compulsive shopping. But in future versions, please support:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;More specific selection of css selectors when using the Chrome recording tool&lt;/li&gt;
-  &lt;li&gt;Negative assertions that check when an element doesn’t exist. (I can probably do this by evaluating Javascript but tests take so long to run that it’s hard to debug)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;If you’re interested in creating automated tests for your website (or in getting notifications for furniture availability), definitely give &lt;a href=&quot;https://ghostinspector.com/&quot;&gt;Ghost Inspector&lt;/a&gt; a shot.&lt;/p&gt;
-</description>
-        
-          <description>&lt;h2 id=&quot;act-1&quot;&gt;Act 1&lt;/h2&gt;
-
-&lt;p&gt;Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best. When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it. The problem was that it never seemed to be in stock.&lt;/p&gt;
-&lt;figure&gt;
-  &lt;a href=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2912&quot; src=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500&quot; alt=&quot;Behold the majesty.&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1208 1208w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1812 1812w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;
-  &lt;figcaption&gt;Behold the majesty.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-</description>
-        
-        <pubDate>Tue, 20 Jan 2015 06:43:15 -0800</pubDate>
-        <link>http://www.hung-truong.com//blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/</guid>
-        
-        <category>Furniture</category>
-        
-        <category>Ikea</category>
         
         
         <category>Code</category>
