@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hung Truong: The Blog!</title>
+    <description>I say potato, you say potato...</description>
+    <link>http://www.hung-truong.com//blog/</link>
+    <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 07 Apr 2018 09:59:56 -0700</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 09:59:56 -0700</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      
+      <item>
+        <title>Introducing DeadRinger: An iPhone X Lockscreen Replica</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/static/deadringer_demo.gif&quot; alt=&quot;Deadringer Demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk. I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you have a 50% chance of having the same phone color as any other person. I was thinking that if I did mistake it as my phone and entered my passcode, I’d basically be transmitting the key to all of my personal data.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;That led me to think about how hard it would be to reproduce the iPhone X’s lock screen and spoof one of my own. It turns out that with some experience with iOS development, it’s not that hard. Thanks to the iPhone X’s Super Retina display, a screen full of black pixels is indistinguishable from a device that’s asleep. And thanks to the omission of the home button, and a public API for disabling the swipe to go home gesture, I was able to make a pretty convincing copy of the iPhone X’s lock screen. Your mileage may vary if you’re trying to spoof other iPhone X models.
+Oh also I just decided to call it “DeadRinger” because I was inspired by security exploits like &lt;a href=&quot;http://heartbleed.com/&quot;&gt;HeartBleed&lt;/a&gt; that basically have their own marketing departments. I wanted my app to have a slightly scary and trendy name as well.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;/blog/static/deadringer_side_by_side.gif&quot; /&gt;
+&lt;figcaption&gt;On the left is the app, on the right is the real lock screen.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I uploaded the source code to a &lt;a href=&quot;https://github.com/hungtruong/DeadRinger&quot;&gt;Github repo&lt;/a&gt; which has a pretty good README file but I’ll go into a bit more detail about some interesting code implementation for the rest of this post. If you want to watch the full demo video, you can watch it below:&lt;/p&gt;
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/0fR6mmrMFyQ&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;h4 id=&quot;usage&quot;&gt;Usage&lt;/h4&gt;
+&lt;p&gt;I’m not suggesting you actually use this app but here’s the theoretical attack vector. You would load this app on to a phone that you supply (you’d have to be okay with losing it). The only change you would probably need to make is to the wallpaper image which should match the target’s phone. Swap your phone with the target’s phone and then wait for them to try to unlock their device. If the target has a case I guess you’d want to get the same one or swap it when you swap phones. You could theoretically write some networking code to transmit the entered passcode and then use it to unlock the real phone which you have in your possession.&lt;/p&gt;
+
+&lt;p&gt;The app works by entering the inactive state, which just shows a black screen and mimics the phone being asleep. Upon raising to wake the phone or tapping on the device, the lock screen will show up, then the passcode entry view will appear shortly afterwards. The user can cancel back to the lock screen and if they want they can tap to get back to the passcode entry mode. The app isn’t sophisticated enough to handle things like pressing the physical lock button but that’s considered outside the scope of this proof of concept. The app does intercept swipes up from the bottom which would normally take the user back to the home screen.&lt;/p&gt;
+
+&lt;h4 id=&quot;implementation&quot;&gt;Implementation&lt;/h4&gt;
+&lt;p&gt;Probably the most interesting part of the project is disabling the swipe to go home gesture. You can find documentation about the iPhone X methods for deferring system gestures &lt;a href=&quot;https://developer.apple.com/documentation/uikit/uiviewcontroller?language=objc#2887625&quot;&gt;here&lt;/a&gt;. Here’s my implementation below, found in a UIViewController.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/31604eff878378e75f12d5520e8e313d.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;This prevents an initial gesture but if the user tries again then they’ll go to the home screen and your app will be defeated. Your target will also probably be really confused. There’s also code in the app that handles the visibility of the home indicator, since you want it hidden on the “inactive” screen but visible on lock screen.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/1eeea58893ea005a92d49d65e7b04270.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;With the home indicator logic out of the way, there are a few other tasks like making sure the phone doesn’t really go to sleep. This has been possible since iOS 2. The line of code to accomplish that is&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;UIApplication.shared.isIdleTimerDisabled = true &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To recreate the tilt to wake feature, I use a CMMotionManager to sample the device’s pitch. I just guessed that 0.5 would be a good value but it could probably be tweaked a bit. If the device is put back down, it will go to the inactive state, but not while a user is entering the passcode. The real device also seems to wake on a delay so I used a Timer to handle that state change.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/3e51567235cff2c08c345cb933a954db.js&quot;&gt;&lt;/script&gt;
+
+&lt;h4 id=&quot;todo&quot;&gt;TODO&lt;/h4&gt;
+&lt;p&gt;I’d say my recreation of the lock screen is just about good enough to convince most people that they’re using the real thing, but there are a few nitpicks and details that I didn’t get to in the interest of time (since I’m not actually going to use this app to steal anyone’s passcode).&lt;/p&gt;
+
+&lt;p&gt;The camera and flashlight buttons on the lock screen have a cool 3D Touch effect that requires you to push with force to get them to fire. I didn’t implement these because I don’t want my target to take a photo, I want their passcode. The flashlight one would actually be simple enough to implement though.&lt;/p&gt;
+
+&lt;p&gt;iOS 11.2 has a special control center indicator on the lock screen that I haven’t implemented yet. I would just need to do a check on the OS version and add the view if I’m on iOS 11.2 or higher.&lt;/p&gt;
+
+&lt;p&gt;There are some cool transition animations in the keypad when going into the passcode entry mode in the real view that I haven’t recreated yet. The buttons animate on a slight delay from the bottom up and have a slight zoom animation in. The average person is not going to notice the difference, though.&lt;/p&gt;
+
+&lt;p&gt;There isn’t a way to get the real notification center items from a user’s device and put them on another device so I’m not going there. For some people I guess the lack of a billion notifications would signal that something is fishy.&lt;/p&gt;
+
+&lt;h4 id=&quot;possible-solutions&quot;&gt;Possible Solutions&lt;/h4&gt;
+&lt;p&gt;I think there are a few ways to solve this “vulnerability” (which I put in quotes because it doesn’t seem too terrible to me). One solution would be to include a “personal security image” like banks do on their login screens. It’s also pretty easy to defeat, though, if you know the target’s image. Plus it’s probably too tacky for Apple to implement.&lt;/p&gt;
+
+&lt;p&gt;Another solution would be to add a hardware feature like an LED that lights up when you’re entering something into an OS control. There’s precedent for this like how the MacBook camera causes an LED to light up when it’s on. This would also mitigate some &lt;a href=&quot;https://krausefx.com/blog/ios-privacy-stealpassword-easily-get-the-users-apple-id-password-just-by-asking&quot;&gt;other security issues&lt;/a&gt; that have popped up. As long as everything is replicable in software there’s always a way to spoof it.&lt;/p&gt;
+
+&lt;p&gt;As a user you could also immediately cover your phone in stickers or something easily identifiable. Or keep your phone really dirty. Or find some other way to &lt;a href=&quot;https://www.cnet.com/news/apple-iphone-x-drop-test/&quot;&gt;adorn your phone in a unique way&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As our phones become the center of our universe, it makes a lot of sense to treat security as a top priority. Hopefully Apple can do something to make our lock screens more secure from spoofing!&lt;/p&gt;
+
+&lt;h4 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h4&gt;
+&lt;p&gt;Please don’t use this app to steal someone’s passcode. That’s not cool.&lt;/p&gt;
+
+&lt;h4 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h4&gt;
+&lt;p&gt;I made this app solely as a proof of concept, and I had a lot of fun figuring out the solutions to some technical problems as outlined above. It was also fun trying to get the design of the app as close to the real lock screen as possible. I learned quite a bit about supporting some new iPhone X features and hopefully you’ve learned something from this article as well! Check out my &lt;a href=&quot;https://github.com/hungtruong/DeadRinger&quot;&gt;Github repo&lt;/a&gt; for more details and feel free to contribute if you’re able to tackle any of the TODOs listed above.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/static/deadringer_demo.gif&quot; alt=&quot;Deadringer Demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk. I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you have a 50% chance of having the same phone color as any other person. I was thinking that if I did mistake it as my phone and entered my passcode, I’d basically be transmitting the key to all of my personal data.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 03 Dec 2017 00:00:00 -0800</pubDate>
+        <link>http://www.hung-truong.com//blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</guid>
+        
+        
+        <category>iPhone</category>
+        
+        <category>Apple</category>
+        
+        <category>Iphone X</category>
+        
+        <category>Security</category>
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>2016: A Hung Truong Year in Review</title>
+        <description>&lt;p&gt;It’s been a while since I wrote a year-in-review on this blog, let alone any blog post. 2016 was a big year though, so here’s some stuff I did.&lt;/p&gt;
+
+&lt;p&gt;In January Emily and I moved from Ann Arbor, Michigan where we had been living for a few years (Emily since grad school and me since the last time I moved back from Chicago in like 2012) to Seattle, Washington. I’ve loved Seattle ever since I moved here in 2009 to go work for &lt;a href=&quot;http://www.hung-truong.com/blog/2008/11/30/trip-to-seattle-program-manager-interview-with-microsoft/&quot;&gt;Microsoft&lt;/a&gt;, and it’s great to be back! I’m working for a coffee company in Seattle called Starbucks (yes, I get free coffee). I get to work on their iOS app and make latte art in my spare time. Here are some highlights:
+&lt;!--more--&gt;&lt;/p&gt;
+&lt;center&gt;
+&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-captioned=&quot;&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/BOnIvQQgM-0/&quot; data-instgrm-version=&quot;8&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:8px;&quot;&gt; &lt;div style=&quot; background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;&quot;&gt; &lt;div style=&quot; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;p style=&quot; margin:8px 0 0 0; padding:0 4px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/BOnIvQQgM-0/&quot; style=&quot; color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;&quot; target=&quot;_blank&quot;&gt;Latte art: Betta Fish (using almond milk)&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;A post shared by &lt;a href=&quot;https://www.instagram.com/hungtruong/&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;&quot; target=&quot;_blank&quot;&gt; Hung Truong&lt;/a&gt; (@hungtruong) on &lt;time style=&quot; font-family:Arial,sans-serif; font-size:14px; line-height:17px;&quot; datetime=&quot;2016-12-29T18:42:30+00:00&quot;&gt;Dec 29, 2016 at 10:42am PST&lt;/time&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;//www.instagram.com/embed.js&quot;&gt;&lt;/script&gt;
+
+
+
+&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-captioned=&quot;&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/BM9h2KEA_-h/&quot; data-instgrm-version=&quot;8&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:8px;&quot;&gt; &lt;div style=&quot; background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;&quot;&gt; &lt;div style=&quot; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;p style=&quot; margin:8px 0 0 0; padding:0 4px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/BM9h2KEA_-h/&quot; style=&quot; color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;&quot; target=&quot;_blank&quot;&gt;Made a pumpkin latte art #latteart #meta #pumpkinlatte&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;A post shared by &lt;a href=&quot;https://www.instagram.com/hungtruong/&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;&quot; target=&quot;_blank&quot;&gt; Hung Truong&lt;/a&gt; (@hungtruong) on &lt;time style=&quot; font-family:Arial,sans-serif; font-size:14px; line-height:17px;&quot; datetime=&quot;2016-11-18T18:22:24+00:00&quot;&gt;Nov 18, 2016 at 10:22am PST&lt;/time&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;//www.instagram.com/embed.js&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;For the first year that we’ve been here, Emily and I have been exploring the sights in Seattle, including a bunch of parks like Discovery Park, Volunteer Park (which has lots of cute &lt;a href=&quot;https://www.youtube.com/watch?v=wW_y9rlvX28&quot;&gt;baby ducks&lt;/a&gt;) and Seward Park, among others. With all the free coffee I’m getting, I’m also experimenting with different brew methods including Aeropress, cold brew, and most recently with a &lt;a href=&quot;http://amzn.to/2hE8pJu&quot;&gt;Kalita Wave&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In June &lt;a href=&quot;http://www.hung-truong.com/blog/2016/06/28/wwdc-2016-recap/&quot;&gt;I went to WWDC for the first time&lt;/a&gt; as an attendee and got to meet lots of other cool developers. I got a photo with &lt;a href=&quot;/blog/wp-content/uploads/2016/06/hair-force-one.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;Craig with the good hair&lt;/a&gt; who does the funny parts of the Apple keynotes. Next year I’m going to be &lt;a href=&quot;http://www.codemobile.co.uk/&quot;&gt;attending a conference in the UK&lt;/a&gt; as a speaker, which I’m really excited about.&lt;/p&gt;
+
+&lt;p&gt;Last year I got a new digital camera which I started using quite a bit to capture our hikes and other interesting moments. This year I upgraded from the &lt;a href=&quot;http://amzn.to/2iQqvph&quot;&gt;Sony RX-100&lt;/a&gt; to the &lt;a href=&quot;http://amzn.to/2ipmuJK&quot;&gt;Fujifilm X-T1&lt;/a&gt;. It’s been really fun learning more about photography as a hobby and reading about lenses and techniques to get cool photo captures. Here’s a few shots that I like, taken from this year:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg?resize=500%2C348&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;348&quot; class=&quot;aligncenter size-medium wp-image-3036&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg?resize=500%2C348 500w, /blog/wp-content/uploads/2016/12/Koi.jpg?resize=768%2C534 768w, /blog/wp-content/uploads/2016/12/Koi.jpg?resize=1024%2C712 1024w, /blog/wp-content/uploads/2016/12/Koi.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/Koi.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg?resize=500%2C353&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;353&quot; class=&quot;aligncenter size-medium wp-image-3037&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg?resize=500%2C353 500w, /blog/wp-content/uploads/2016/12/SPL.jpg?resize=768%2C542 768w, /blog/wp-content/uploads/2016/12/SPL.jpg?resize=1024%2C723 1024w, /blog/wp-content/uploads/2016/12/SPL.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/SPL.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=500%2C333&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;333&quot; class=&quot;aligncenter size-medium wp-image-3038&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=500%2C333 500w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=768%2C512 768w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=1024%2C682 1024w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In September I bought a bunch of supplies and built a tiny &lt;a href=&quot;http://www.hung-truong.com/blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/&quot;&gt;solar powered charging system on my roof&lt;/a&gt;. It was a fun proof of concept and I’m using it to charge some of my lower power devices, including an electric bike that I bought for my commute (when it’s not rainy). I’m guessing that it wouldn’t have enough juice yet to power an electric car, but that’s on my to do list.&lt;/p&gt;
+
+&lt;p&gt;In October, Apple announced a new piece of hardware, so naturally &lt;a href=&quot;http://www.hung-truong.com/blog/2016/10/31/on-writing-successful-fart-apps/&quot;&gt;I wrote a fart app for it&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That’s basically the noteworthy stuff that happened to me this year. Moving and getting used to Seattle is basically a full-time job. I’m also keeping myself busy with updating the house and automating it as much as possible using a &lt;a href=&quot;http://amzn.to/2ijHS4Q&quot;&gt;Samsung SmartThings hub&lt;/a&gt; and various light switches, etc. Other random things I’ve been working on are experimenting with Instagram by using a copious number of tags in all of my posts, buying a pair of Snapchat Spectacles and experimenting with those, and cooking new recipes with the &lt;a href=&quot;http://amzn.to/2itx058&quot;&gt;pressure cooker&lt;/a&gt; I just purchased from Amazon.&lt;/p&gt;
+
+&lt;p&gt;I’m looking forward to doing more stuff in 2017 and hopefully blogging about it more often as well.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;It’s been a while since I wrote a year-in-review on this blog, let alone any blog post. 2016 was a big year though, so here’s some stuff I did.&lt;/p&gt;
+
+&lt;p&gt;In January Emily and I moved from Ann Arbor, Michigan where we had been living for a few years (Emily since grad school and me since the last time I moved back from Chicago in like 2012) to Seattle, Washington. I’ve loved Seattle ever since I moved here in 2009 to go work for &lt;a href=&quot;http://www.hung-truong.com/blog/2008/11/30/trip-to-seattle-program-manager-interview-with-microsoft/&quot;&gt;Microsoft&lt;/a&gt;, and it’s great to be back! I’m working for a coffee company in Seattle called Starbucks (yes, I get free coffee). I get to work on their iOS app and make latte art in my spare time. Here are some highlights:&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 31 Dec 2016 07:59:49 -0800</pubDate>
+        <link>http://www.hung-truong.com//blog/2016/12/31/2016-a-hung-truong-year-in-review/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/12/31/2016-a-hung-truong-year-in-review/</guid>
+        
+        
+        <category>Life</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>On Writing Successful Fart Apps</title>
+        <description>&lt;p&gt;&lt;img class=&quot;aligncenter wp-image-3021 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471&quot; alt=&quot;touch-bar-hero-large&quot; width=&quot;500&quot; height=&quot;471&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471 500w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=768%2C723 768w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=1024%2C964 1024w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?w=1085 1085w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last Thursday, Apple held an event where they announced a few things, including a refresh of the Macbook Pro line that killed all of the good ports and added a touch bar to replace the function key row. I was actually in a meeting during the announcement but I had heard of the touch bar through a story about a leak. Someone on Twitter &lt;a href=&quot;https://twitter.com/pgor/status/791697635061051392&quot;&gt;put a bounty of $5&lt;/a&gt; on the first fart app for the touch bar and a friend retweeted it to me.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;If you know me, you know that I like writing stupid apps and basically making a mockery of the Silicon Valley trope of “making the world a better place.” Specifically, the fart app genre appeals to me as a way to subvert the app ecosystem and make it a little more dumb and weird. The tech industry in particular takes itself way too seriously. In a way, I’m emulating my Computer Science hero &lt;a href=&quot;http://www.monzy.org/&quot;&gt;Monzy&lt;/a&gt;, who created projects like “&lt;a href=&quot;http://www.monzy.org/pantscam/&quot;&gt;Pantscam&lt;/a&gt;” and  a program that morphed people’s faces into butts (which I can’t find the archive of at the moment), all while being a successful &lt;a href=&quot;http://www.monzy.com/intro/drama_lyrics.html&quot;&gt;nerdcore rapper&lt;/a&gt;. While the things he made were somewhat stupid, you can’t deny that the technology was actually pretty cool.&lt;/p&gt;
+
+&lt;p&gt;Writing fart apps is also a great way to learn about a particular platform. If “hello world” is the simplest app that you can write in a language, a fart app is the simplest non-trivial app you can write, since it touches the UI, the file system and whatever mechanism there is for playing an audio file. In the past I wrote some fart apps for &lt;a href=&quot;https://www.youtube.com/watch?v=IT5gyTmss4A&quot;&gt;Google Glass&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hungtruong/WatchFart&quot;&gt;Apple Watch&lt;/a&gt;, which were small enough projects that I didn’t get bored and abandon them, plus I learned something in the process.&lt;/p&gt;
+
+&lt;p&gt;So anyway, on Thursday I got home from work and installed Xcode 8.1 on my computer. I ended up needing to get another update for macOS Sierra to get the simulated Touch Bar to show up as well. I looked at some sample code, figured out what I needed to do to write the app and finished in maybe an hour or two. It was a good exercise to get reacquainted with macOS development after I stalled on a project I started a few years ago. I pushed the repo to Github, made a &lt;a href=&quot;https://www.youtube.com/watch?v=R6HVyaZpTgM&quot;&gt;demo video&lt;/a&gt; and took a screenshot and sent some tweets to the Twitter user who requested the app. I also sent it to some other Twitter users who made similar requests, not expecting anyone to write a fart app less than 12 hours after the hardware for it was announced.&lt;/p&gt;
+
+&lt;p&gt;On Friday, I posted the Github repo to an iOS developer community on Slack. That’s pretty much all the “promotion” I did. At some point that day, someone posted the project on &lt;a href=&quot;https://www.producthunt.com/posts/touchfart&quot;&gt;Product Hunt&lt;/a&gt; (good call!) and it kinda just sat there. I went out of town during the weekend but I noticed someone had written a story about the project on &lt;a href=&quot;http://www.cultofmac.com/451661/pull-finger-someone-made-fart-app-touch-bar/&quot;&gt;Cult of Mac&lt;/a&gt;. I figured that would be the apex of my touch bar fart app’s story. At some point during the weekend though, I got a tweet that the Product Hunt entry hit 100 upvotes. Then a few more &lt;a href=&quot;http://thenextweb.com/shareables/2016/10/31/fart-app-macbook-pro-touch-bar/&quot;&gt;stories&lt;/a&gt; were written today and my project was even mentioned in &lt;a href=&quot;https://swiftnews.curated.co/issues/108&quot;&gt;NatashaTheRobot’s Swift newsletter&lt;/a&gt;. I’m guessing that today will be the real apex of this fart app and it’ll slowly be forgotten like my other fart apps before it.&lt;/p&gt;
+
+&lt;p&gt;So what have I learned from this and previous fart apps? One is that some people take themselves way too seriously to enjoy a good fart app. For example, this person:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-3017&quot; src=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=500%2C70&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;70&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=500%2C70 500w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=768%2C108 768w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=1024%2C144 1024w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;First, I’m not a kid. My job title has senior in it which must mean something! Also, I have a day job and writing fart apps (a.k.a. learning stuff) is my hobby. Finally, thanks to this &lt;a href=&quot;https://www.wired.com/2010/08/apple-fart-apps/all/1&quot;&gt;hard-hitting piece of journalism&lt;/a&gt;, we see that even fart app writers can eventually move on to greater ambitions.&lt;/p&gt;
+
+&lt;p&gt;There’s also this killjoy from Product Hunt:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-3018&quot; src=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=500%2C84&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;84&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=500%2C84 500w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=768%2C129 768w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=1024%2C172 1024w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?w=1574 1574w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;While I can understand the sentiment that there could be better tech things happening, I also don’t think it’s realistic to see a new Snapchat or Twitter released every single day. Friday was a slow day, so a fart app won! And is it just the subject matter that makes the project immature and pathetic? Like, would a British PM Soundboard be any more appropriate?&lt;/p&gt;
+
+&lt;p&gt;Bottom line is that this project only took a couple hours out of my free time, which I would’ve probably spent playing a JSRPG anyway. I suppose you could argue that the nonexistence of my app would’ve caused fewer people to waste time discussing it, but I can’t really control how other people spend their time.&lt;/p&gt;
+
+&lt;p&gt;One cool thing that’s come out of this project is that someone has already &lt;a href=&quot;https://github.com/SuperOkazaki/SoundBar&quot;&gt;forked it and made a soundboard project out of it&lt;/a&gt;. This is sort of the whole point of writing an open source fart app: establish a codebase that people can check out, learn from, and maybe even extend into their own thing. I knew from the start that my app wasn’t going to make it into an App Store. I do believe that the Github repo was the first (public at least) to reference the NSTouchBar class.&lt;/p&gt;
+
+&lt;p&gt;Finally, if you are reading this blog post thinking: “hey, I’d like to be known for making a fart app instead of one of many other useful contributions I’ve made to this planet!” then here are some tips! First off, you need to actually be the first to market on the fart app scene as interest will surely wane as the second, third, fourth, etc fart apps written for the technology are released. Unless you add something really cool, like actual fart smells in addition to sounds, then you probably wanna rush your fart app to market. Second, you’ll need to market your app with some kind of video. When building for cutting edge hardware like the touch bar (which no one has yet) or Google Glass (which literally no one bought),  you can assume that no one will have the hardware or be interested in installing your app, so just make a video! In my experience it helps if you mumble a lot. Finally, share your code by making it available on Github and attach a generous license to it. I used the MIT license but put the wrong year because I copy-pasted it from another app. But I guess &lt;a href=&quot;https://github.com/hungtruong/TouchFart/commit/714ac1baae92b1ff42d00c82834094b709f21ffb&quot;&gt;my mistake was relatable&lt;/a&gt; because more than one person commented on that commit! Your app won’t be worth anything anyway, so you might as well share it.&lt;/p&gt;
+
+&lt;p&gt;I hope this post has helped explain my motivations for making a touch bar fart app. Partly it’s to prove that I could, and partly make a cool &lt;a href=&quot;http://www.hung-truong.com/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.42.52-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;$0.03&lt;/a&gt; on the video ads.&lt;/p&gt;
+
+&lt;p&gt;P.S. Apple, if you are reading this, please do not ban me from WWDC over this. I promise to write some software using one of your new frameworks for non-fart applications!&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;img class=&quot;aligncenter wp-image-3021 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471&quot; alt=&quot;touch-bar-hero-large&quot; width=&quot;500&quot; height=&quot;471&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471 500w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=768%2C723 768w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=1024%2C964 1024w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?w=1085 1085w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last Thursday, Apple held an event where they announced a few things, including a refresh of the Macbook Pro line that killed all of the good ports and added a touch bar to replace the function key row. I was actually in a meeting during the announcement but I had heard of the touch bar through a story about a leak. Someone on Twitter &lt;a href=&quot;https://twitter.com/pgor/status/791697635061051392&quot;&gt;put a bounty of $5&lt;/a&gt; on the first fart app for the touch bar and a friend retweeted it to me.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 31 Oct 2016 16:24:13 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2016/10/31/on-writing-successful-fart-apps/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/10/31/on-writing-successful-fart-apps/</guid>
+        
+        <category>Apple</category>
+        
+        <category>Fart App</category>
+        
+        <category>macOS</category>
+        
+        <category>Programming</category>
+        
+        
+        <category>Software</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Building a DIY Off-Grid Solar Bank on my Roof</title>
+        <description>&lt;p&gt;I’ve been fascinated with solar energy ever since I was a kid and my brother had a toy with a motor attached to a mini solar panel that you could run under a strong light. In recent years, solar panels have come down in price and now seemed like a good a time as any for me to experiment with it a bit. I took a week long staycation from work a few weeks ago, and in preparation, I did a bunch of research and bought a ton of components to set up an off grid solar thing.
+&lt;!--more--&gt;
+I chose to go off-grid because I didn’t want to deal with actually putting the power back into the grid and all the bureaucracy involved (I’m not sure if my power company even buys power back), and the scale I’m working at is super small anyway. Here are the components I used, and why I decided to go with them. They might not be the best choice, because I have no idea what I’m doing, but even so, I learned a lot in the process.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-battery&quot;&gt;The Battery&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B01BKY07WA//ref=as_li_ss_il?th=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=b92403024fa0781096c3b837277a939a&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B01BKY07WA&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As I was building an off-grid solar charging system,  I needed something to store the energy gathered by the panel. My initial goal with the project was to charge the battery on my electric bike. The bike is something like 12Ah at 48v, so overall the capacity is about 580 watt hours. I only let the bike battery drain to about 80% at most, so I wanted to charge about 100 watt hours at a time.&lt;/p&gt;
+
+&lt;p&gt;The type of battery I got was a lead acid sealed AGM battery, which is apparently pretty safe and commonly used in this sort of application. After doing some research about these batteries, it sounds like they also last longer if you only let them discharge to about 60-80% of their capacity, so I got a battery that holds 660 watt hours (12v * 55 Ah). I could probably have gone with a bigger battery but this one only cost about $100.&lt;/p&gt;
+
+&lt;p&gt;I had no idea what sort of connector this battery used when I bought it, but it turns out that it’s a pretty common connector that uses a bolt. The inverter I ended up buying worked out of the box with it and I ended up buying a box of additional eyelet adaptors to make my own wires.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solar-panel&quot;&gt;The Solar Panel&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B00DCCOSV0/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=e270dcd63cd98af5532650ff595f2b93&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B00DCCOSV0&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted a panel that would be able to charge up my battery to a decent level each day. I ended up getting probably more capacity than needed, but I can always expand my project later. I bought a 100W polycrystalline (because it was cheaper than mono) panel by Renology because it had good ratings and a good price to watt ratio. The connectors on the panel are MC4 so I ended up buying &lt;a href=&quot;http://amzn.to/2dwFzt4&quot;&gt;some additional cable&lt;/a&gt; so I could connect the panel to a charge controller.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-charge-controller&quot;&gt;The Charge Controller&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B01K4H1O9O/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li2&amp;amp;tag=hungtruong-20&amp;amp;linkId=91b1ec3b032b6715709716acc253da31&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B01K4H1O9O&amp;amp;Format=_SL160_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I ended up getting a cheap charge controller that came at a discount in exchange for me writing a review. I was going to buy one that looked similar anyway, though I’m not sure if it’s the same manufacturer or just a knock off of the one I was going to buy. Either way it is the perfect size for my project at 10A and shows info like the current voltage level of the battery and the amperage going into the battery as well as the load coming out of the usb ports and the load out connectors.&lt;/p&gt;
+
+&lt;p&gt;I assumed you were supposed to connect the load out directly to an inverter but I read a few posts about how that would be a bad idea. I’m guessing too much load would fry your charge controller.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-inverter&quot;&gt;The Inverter&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B019PXILXK/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=5b85a03ef46bf2a43df1465e9a48731a&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B019PXILXK&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I was looking for a pure sine wave inverter, which is supposed to be more efficient and nice to your electronic devices, but I couldn’t find one under $100 so I ended up getting an 800W inverter that seemed pretty solid. As I mentioned earlier, the connectors just worked for the battery, which was nice. I only use one outlet at a time, so I haven’t tested if this thing can actually throw out 800W, but it’s probably a good rule of thumb to get an inverter with more capacity than you’ll need on average anyway. My bike battery charger uses about 140W and a Macbook charger will use 80W. I’m not sure how many watts that is after efficiency lost with the inverter but it’s probably not too terrible.&lt;/p&gt;
+
+&lt;h2 id=&quot;putting-it-all-together&quot;&gt;Putting it all together&lt;/h2&gt;
+
+&lt;p&gt;After getting all of the parts I realized that I was missing the connection from the charge controller to the battery. I ended up buying some ringlet adapters that would fit the battery and cut off part of the long wire I bought to make a new wire. This worked better than I thought it would. After that, I was able to connect the panel and battery to the charge controller. I was able to read that the panel was giving something like 3 amps to the battery, which was amazing to me at the time.&lt;/p&gt;
+
+&lt;p&gt;I also connected the inverter to the battery and was able to run my bike charger. I attached my Smart Things outlet in between the outlet and the charger so I could monitor how much voltage the battery used. It’s interesting because once the battery reaches a certain charge, the charger tapers down its power usage slowly. Finally, I placed the panel on the roof, which was kind of difficult considering how tall the roof is and how short my ladder apparently is, plus how heavy the panel was and how much I’m able to lift above my head while also balancing on top of a ladder…&lt;/p&gt;
+
+&lt;p&gt;Here’s some photos of the system running just inside the door to the roof. I’ll probably set up a plank or something to drill the charge controller and inverter onto, since right now it’s a little janky.&lt;figure id=&quot;attachment_3005&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;size-medium wp-image-3005&quot; src=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=500%2C375&quot; alt=&quot;This is the charge controller, battery and inverter charging my bike battery and an iPhone.&quot; width=&quot;500&quot; height=&quot;375&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=500%2C375 500w, /blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=768%2C576 768w, /blog/wp-content/uploads/2016/10/IMG_1498.jpg?w=1000 1000w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;This is the charge controller, battery and inverter charging my bike battery and an iPhone.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt; &lt;figure id=&quot;attachment_3006&quot; style=&quot;max-width: 450px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;size-medium wp-image-3006&quot; src=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=450%2C600&quot; alt=&quot;The highest amperage I've seen is about 6, where I suppose the most the panel can give is 8.3 if it was on the surface of the sun.&quot; width=&quot;450&quot; height=&quot;600&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=450%2C600 450w, /blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=768%2C1024 768w, /blog/wp-content/uploads/2016/10/IMG_3680.jpg?w=800 800w&quot; sizes=&quot;(max-width: 450px) 100vw, 450px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;The highest amperage I’ve seen is about 6, where I suppose the most the panel can give is 8.3 if it was on the surface of the sun.&amp;lt;/figcaption&amp;gt;&lt;/figure&gt; &lt;figure id=&quot;attachment_3003&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;wp-image-3003 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg?resize=500%2C303&quot; alt=&quot;Solar Panel&quot; width=&quot;500&quot; height=&quot;303&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg?resize=500%2C303 500w, /blog/wp-content/uploads/2016/10/DSCF2276.jpg?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;This is the solar panel before I got it on top of the roof&amp;lt;/figcaption&amp;gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Hopefully you found this interesting and are already planning an off grid solar system of your own. I’m happy to say that my ebike is now powered 100% by my project, as well as a bunch of electronics in my house. Also, my house has become a lot more valuable in the case of a zombie apocalypse.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;I’ve been fascinated with solar energy ever since I was a kid and my brother had a toy with a motor attached to a mini solar panel that you could run under a strong light. In recent years, solar panels have come down in price and now seemed like a good a time as any for me to experiment with it a bit. I took a week long staycation from work a few weeks ago, and in preparation, I did a bunch of research and bought a ton of components to set up an off grid solar thing.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 07 Oct 2016 12:22:32 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</guid>
+        
+        
+        <category>Nerd</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Strange Copy Pasta in Developer Resumes</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-6.33.32-PM.png&quot; alt=&quot;A sample of some UIViews&quot; /&gt;
+	&lt;figcaption&gt;A sample of some UIViews that are basic &quot;functionalities&quot; in a &quot;Multi-view Application&quot;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So for the past few weeks we’ve been trying to hire for a contractor position to work on our iOS app. Along with the rest of the team, I’ve been reviewing resumes on a really corporate looking website that have been submitted by recruiters on behalf of candidates. It’s an interesting exercise because the resumes are almost all in the same exact format and after a while, they really start to look the same. In some cases, this is because a candidate has been rejected and resubmitted accidentally.&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;p&gt;While scanning through a bunch of resumes, my coworker Will noticed a bullet point that actually appeared in more than one person’s resume:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Experienced in creating and custom UIViews, Table Views, Tab Bars and Navigation Bar, which are some basic functionalities in a Multi-view Application.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;There are a few things that stand out about this. The sentence itself runs on and on, and the grammar used is pretty dubious. Also, the inclusion of this into an iOS developer’s resume tells you nothing because every iOS developer should have experience with these elementary UI elements, and the sentence even sort of explains that at the end. The fact that it appears in more than one resume is surprising, since it’s such a stupid thing to include in your resume to begin with.&lt;/p&gt;
+
+&lt;p&gt;I was curious about this bullet point, so I suggested that Will paste the phrase into Google. Here’s an interesting slice of the results:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png&quot; rel=&quot;lightbox[2991]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2993&quot; src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=475%2C600&quot; alt=&quot;&quot; width=&quot;475&quot; height=&quot;600&quot; srcset=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=475%2C600 475w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=768%2C970 768w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=811%2C1024 811w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?w=1316 1316w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 475px) 100vw, 475px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;While there’s not a direct match, there are links to resumes which have slightly altered versions of the same phrase. The part that is mostly shared is the “…which are some basic functionality in a Multi view Application.” If you google for that, you will find pages and pages of resumes with a bullet point similar to the original. Will even started a tally of “mutations” of the phrase with added embellishments at the end, or with slightly better grammar.&lt;/p&gt;
+
+&lt;p&gt;I was curious which other phrases in these resumes were common, so I tried googling some of them. Some that I found that had become memes were:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Strong Knowledge of Software Development Life Cycle (SDLC) with strategically designing and implementing the software, debugging, fixing and maintaining the software.&lt;/li&gt;
+  &lt;li&gt;Developed apps using various iOS design patterns (MVC, Delegation, Target-action and Slide-out Navigation).&lt;/li&gt;
+  &lt;li&gt;Proficient in Memory Management: Automatic Reference Counting (ARC) and Manual Reference Counting (MRC).&lt;/li&gt;
+  &lt;li&gt;Mobile Application Development (iPhone/iPad) using objective-C, UIKit, Core Location, MapKit, Cocoa Touch and Cocoa Service Frameworks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I have a few guesses as to why these are in so many resumes verbatim. It could be that the candidate simply copied and pasted the bullet points from a friend’s resume and hopefully actually has those skills. Another could be that the recruiting firm offered to touch up their resume for them and did so lazily. While it’s easy to attribute this to malice, it’s probably just good old fashioned laziness. After all, if it works for so many developers, it should work for you! Either way it looks terrible for the candidate and it’s frustrating for people doing the hiring to see such a lack of originality. I already have to go through more than 30 resumes; I don’t want to think I’m going crazy with all the feelings of Deja Vu.&lt;/p&gt;
+
+&lt;p&gt;My recommendation to developers would be to write, in your own words, what you’ve actually accomplished. Resume writing is annoying, and no one likes doing it, but the downside to plagiarism is that I toss your resume out and assume you’re a terrible person. Also, I’m secretly hoping that this blog post becomes the top Google result for all of these copied bullet points so any curious resume-reviewers realize they’re not going insane. Also, feel free to nitpick my own outdated resume which you can find &lt;a href=&quot;http://www.hung-truong.com/portfolioresources/Hung%20Web%20Resume.pdf&quot;&gt;here&lt;/a&gt; on my (way outdated) &lt;a href=&quot;http://www.hung-truong.com/&quot;&gt;portfolio site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I haven’t gone in depth at all to discover more of these copied phrases, but I’m willing to bet that a big percentage of bullet points in resumes are simply ripped off from other resumes.&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-6.33.32-PM.png&quot; alt=&quot;A sample of some UIViews&quot; /&gt;
+	&lt;figcaption&gt;A sample of some UIViews that are basic &quot;functionalities&quot; in a &quot;Multi-view Application&quot;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So for the past few weeks we’ve been trying to hire for a contractor position to work on our iOS app. Along with the rest of the team, I’ve been reviewing resumes on a really corporate looking website that have been submitted by recruiters on behalf of candidates. It’s an interesting exercise because the resumes are almost all in the same exact format and after a while, they really start to look the same. In some cases, this is because a candidate has been rejected and resubmitted accidentally.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 06 Sep 2016 10:07:22 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2016/09/06/strange-copy-pasta-in-developer-resumes/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/09/06/strange-copy-pasta-in-developer-resumes/</guid>
+        
+        
+        <category>Job</category>
+        
+        <category>Nerd</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>WWDC 2016 Recap</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg&quot; rel=&quot;lightbox[2969]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2975&quot; src=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg?resize=500%2C500&quot; alt=&quot;wwdc badge&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2016/06/iflet.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2016/06/iflet.jpg?w=700 700w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As a beginning iOS developer, I remember learning a lot of the craft by trial and error, paired with many of the WWDC videos of years’ past. I was very lucky this year to 1) get chosen for the WWDC lottery and 2) work for a company that would support my trip to San Francisco. The week flew by and I went to some really interesting sessions. Here’s the things I found most interesting.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;accessibility&quot;&gt;Accessibility&lt;/h2&gt;
+
+&lt;p&gt;I’ve been developing some accessibility features since starting at Starbucks, and so I went to the &lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/202/&quot;&gt;What’s New in Accessibility&lt;/a&gt; session. The most interesting developer facing features are the improved Accessibility Inspector (which lets you quickly run accessibility audits, even in the simulator) and custom rotors for secondary actions. I’m still pretty new to accessibility but I imagine enabling custom rotors will be nice since I just used a hack with the headers rotor to enable skipping between content.&lt;/p&gt;
+
+&lt;h2 id=&quot;swift-apis&quot;&gt;Swift APIs&lt;/h2&gt;
+
+&lt;p&gt;Although I haven’t been writing much Swift at work (we’re just starting to adopt it), I went to the &lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/403/&quot;&gt;Swift API Design Guidelines&lt;/a&gt; session. It was interesting to note the conscious decisions to make Swift read grammatically, and how developers are reconciling that with the ways that Swift needs to be compatible with Objective-c APIs. The talk itself was really interesting and worth watching in full, because I’m not going to try to summarize it here!&lt;/p&gt;
+
+&lt;h2 id=&quot;watchos-3&quot;&gt;WatchOS 3&lt;/h2&gt;
+
+&lt;div style=&quot;position: relative; padding-bottom: calc(100% / 0.78);&quot;&gt;
+&lt;/div&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;As a person who actually bought an Apple Watch and still wears it every day, I would really like developers to take advantage of the performance gains in &lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/208/&quot;&gt;WatchOS 3&lt;/a&gt;, least of which is leaving apps in memory so they can load much faster! I was also really mesmerized by the power of rich notifications on the watch using SpriteKit and/or SceneKit. I’m worried that the watch is in a catch-22 right now where it’s not really worth the work to develop for it because there aren’t enough users, which aren’t using the watch because of the lack of good apps. Or it could be that the watch really just needs a good weather app and that’s it. Oh well.&lt;/p&gt;
+
+&lt;h2 id=&quot;search-apis&quot;&gt;Search APIs&lt;/h2&gt;
+
+&lt;p&gt;I also went to a session about using &lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/223/&quot;&gt;search APIs&lt;/a&gt; like NSUserActivity and CoreSpotlight. I largely ignored these features in the past, but it would be pretty interesting to hook into the system in order to provide phone numbers or addresses to hand off to maps or some other apps that the user is switching to.&lt;/p&gt;
+
+&lt;h2 id=&quot;other-stuff&quot;&gt;Other Stuff&lt;/h2&gt;
+
+&lt;p&gt;I went to quite a few other sessions on things like &lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/501/&quot;&gt;iOS Photography&lt;/a&gt; (which I sort of just went to accidentally and stayed for) and iMessage integration and On-Demand Resources. Overall, the sessions were really great and I found it really nice to be able to attend a talk in person and absorb the knowledge without distractions. It’s true that the sessions are all available either streaming or online shortly after happening, but too often I’m watching a video while also working against some work deadline or only paying half attention. It’s also pretty neat to be among other iOS developers, and it’s kind of hard to believe that companies have a hard time hiring when you can see so many developers in one room!&lt;/p&gt;
+
+&lt;h2 id=&quot;hair-force-one&quot;&gt;Hair Force One&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/06/hair-force-one.jpg&quot; rel=&quot;lightbox[2969]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2980&quot; src=&quot;/blog/wp-content/uploads/2016/06/hair-force-one.jpg?resize=500%2C375&quot; alt=&quot;hair force one&quot; width=&quot;500&quot; height=&quot;375&quot; srcset=&quot;/blog/wp-content/uploads/2016/06/hair-force-one.jpg?resize=500%2C375 500w, /blog/wp-content/uploads/2016/06/hair-force-one.jpg?resize=768%2C576 768w, /blog/wp-content/uploads/2016/06/hair-force-one.jpg?w=800 800w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.apple.com/pr/bios/craig-federighi.html&quot;&gt;Craig Federighi&lt;/a&gt; has become one of the best parts of Apple Keynotes as he’s equal parts funny and informative. Whenever he showed up in the conference center, huge lines of people would gather to take a photo with him. He’s a really tall dude and it’s really nice of him to put up with random iOS developer who want to take a photo with him.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-jacket&quot;&gt;The Jacket&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/06/the-jacket.jpg&quot; rel=&quot;lightbox[2969]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2981&quot; src=&quot;/blog/wp-content/uploads/2016/06/the-jacket.jpg?resize=450%2C600&quot; alt=&quot;wwdc jacket&quot; width=&quot;450&quot; height=&quot;600&quot; srcset=&quot;/blog/wp-content/uploads/2016/06/the-jacket.jpg?resize=450%2C600 450w, /blog/wp-content/uploads/2016/06/the-jacket.jpg?w=600 600w&quot; sizes=&quot;(max-width: 450px) 100vw, 450px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I received what is apparently a tradition at WWDC; a jacket with the year on it. I immediately felt weird about getting a nice jacket that basically screams “I am the most elite of the elite, because either I or my company can pay $1600 for me to go to a developer conference!” I spotted a few jackets from earlier years in the conference center, as though it’s a way to show that you’ve been in this game for longer and you’re much cooler than people who just got their first jacket this year. I am in the process of de-labeling my jacket with nail polish remover (ask me about it if you’re interested!) and I’ll hopefully get to wear the jacket embarrassment free once the weather gets cooler (it’s a really nice jacket!). I am hoping that Apple stops giving these jackets out at some point and does something like, I dunno, plants a tree for each attendee? Then again, we are talking about a company that makes objects that people literally worship.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-company-store&quot;&gt;The Company Store&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/06/the-company-store.jpg&quot; rel=&quot;lightbox[2969]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2982&quot; src=&quot;/blog/wp-content/uploads/2016/06/the-company-store.jpg?resize=500%2C500&quot; alt=&quot;the company store&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2016/06/the-company-store.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2016/06/the-company-store.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2016/06/the-company-store.jpg?resize=768%2C768 768w, /blog/wp-content/uploads/2016/06/the-company-store.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2016/06/the-company-store.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Speaking of products, there’s a company store set up in the conference center where you can buy shirts and baby stuff and hats with Apple logos on them. I was going to buy something but I realized that you’re literally paying $40 for the logo as the shirt itself is a fairly standard bella canvas tee. Plus I already have a WWDC jacket that asserts my dominance as an iOS developer!&lt;/p&gt;
+
+&lt;h2 id=&quot;in-closing&quot;&gt;In Closing&lt;/h2&gt;
+
+&lt;p&gt;Again, I feel incredibly lucky to have been able to go to WWDC this year, for the first time ever. The keynote and sessions were really great and I got at least 3 ideas for future apps, which is a lot more than I’ve had in the past year or two. Hopefully I can go next year do it all over again.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg&quot; rel=&quot;lightbox[2969]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2975&quot; src=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg?resize=500%2C500&quot; alt=&quot;wwdc badge&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2016/06/iflet.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2016/06/iflet.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2016/06/iflet.jpg?w=700 700w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As a beginning iOS developer, I remember learning a lot of the craft by trial and error, paired with many of the WWDC videos of years’ past. I was very lucky this year to 1) get chosen for the WWDC lottery and 2) work for a company that would support my trip to San Francisco. The week flew by and I went to some really interesting sessions. Here’s the things I found most interesting.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 28 Jun 2016 03:47:39 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2016/06/28/wwdc-2016-recap/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/06/28/wwdc-2016-recap/</guid>
+        
+        <category>Apple</category>
+        
+        <category>iOS</category>
+        
+        
+        <category>Code</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Collecting Wedding Photos with Twilio MMS</title>
+        <description>&lt;p&gt;Last Saturday I got married to my longtime pal &lt;a href=&quot;http://www.emilyhamstra.com/&quot;&gt;Emily&lt;/a&gt;. Emily handled a lot of the wedding planning and she did a really great job. I wanted to do some fun things for the wedding and reception and thought it would be fun to make a way for friends to share their photos of our day with us.&lt;/p&gt;
+
+&lt;p&gt;I was thinking that it would be easy enough to give people an Instagram hashtag and be done with it, but I wanted to make sure all (or at least most) of our guests would be able to participate. I figured that &lt;a href=&quot;https://www.twilio.com/mms&quot;&gt;Twilio’s MMS&lt;/a&gt; would be a pretty straightforward way for our guests to share photos throughout the day without having to remember a hashtag or use a specific app.
+&lt;!--more--&gt;
+I set up a Twilio phone number to receive and send text messages. Actually, I just re-used &lt;a href=&quot;https://www.twilio.com/blog/2012/05/weathergram-takes-top-prize-in-the-weatherapi-twilio-developer-contest.html&quot;&gt;an old one&lt;/a&gt; that I still had enabled since I used it for voice only. Because I wanted to write as little boilerplate as possible, I decided on using the &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; web framework which I’m already really familiar with. The Django admin panel was incredibly useful for debugging and made it dead simple to view photos that were sent. I used the &lt;a href=&quot;https://github.com/rdegges/django-twilio&quot;&gt;django-twilio&lt;/a&gt; library which also uses the &lt;a href=&quot;https://github.com/twilio/twilio-python&quot;&gt;twilio-python&lt;/a&gt; library. I’ve been on a Heroku app hosting streak lately so I made sure the app could be easily deployable on Heroku for free.&lt;/p&gt;
+
+&lt;p&gt;Since I didn’t have a whole lot of time to build this app (wedding planning takes a lot of attention), I limited my scope to a few goals:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Be able to broadcast messages to guests throughout the day.&lt;/li&gt;
+  &lt;li&gt;Accept messages that contain MMS images (one or more) and save them to a database.&lt;/li&gt;
+  &lt;li&gt;Allow guests to “unsubscribe” to messages in case they didn’t want them.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I ended up using &lt;a href=&quot;https://ngrok.com/&quot;&gt;Ngrok&lt;/a&gt; to test the app locally, then threw &lt;a href=&quot;https://www.runscope.com/&quot;&gt;Runscope&lt;/a&gt; in front of it for good measure (yo dawg, I heard you like proxies). Runscope was pretty useful in that I didn’t have to keep sending test SMS and MMS messages to my app; I could just replay ones that I had sent previously. It probably saved me ~$1 in fees!&lt;/p&gt;
+
+&lt;p&gt;It was pretty straightforward to implement all three of these using the Django library I mentioned earlier. Because all Twilio text messages hit just one endpoint, I had to design around different use cases which made my code a bit messy. It was fine for an app I’m only going to use once, though. The code is gross but it worked and I’m glad I didn’t make it more complicated than it needed to be. I was originally going to use the broadcasting feature more than I ended up using it (I wanted to do something like &lt;a href=&quot;http://i.imgur.com/rsQ93.png&quot; rel=&quot;lightbox[2956]&quot;&gt;cat facts&lt;/a&gt;) which added a bit to the codebase.&lt;/p&gt;
+
+&lt;p&gt;As far as final statistics, I received 70 images from guests during and after the event. Some of them are pretty awesome. In case anyone is interested in how the app works/worked, I posted the source code with my hardcoded phone numbers removed and turned into environmental variables. You can &lt;a href=&quot;https://github.com/hungtruong/weddingnsnap&quot;&gt;check it out here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I am not posting any photos that my guests sent here since they were meant to be private, but here’s a photo I took with my selfie stick of us and the cake!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg&quot; rel=&quot;lightbox[2956]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2957&quot; src=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=500%2C375&quot; alt=&quot;Cake Selfie&quot; width=&quot;500&quot; height=&quot;375&quot; srcset=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=500%2C375 500w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=1024%2C768 1024w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?w=1280 1280w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;Last Saturday I got married to my longtime pal &lt;a href=&quot;http://www.emilyhamstra.com/&quot;&gt;Emily&lt;/a&gt;. Emily handled a lot of the wedding planning and she did a really great job. I wanted to do some fun things for the wedding and reception and thought it would be fun to make a way for friends to share their photos of our day with us.&lt;/p&gt;
+
+&lt;p&gt;I was thinking that it would be easy enough to give people an Instagram hashtag and be done with it, but I wanted to make sure all (or at least most) of our guests would be able to participate. I figured that &lt;a href=&quot;https://www.twilio.com/mms&quot;&gt;Twilio’s MMS&lt;/a&gt; would be a pretty straightforward way for our guests to share photos throughout the day without having to remember a hashtag or use a specific app.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 18 Jun 2015 15:30:32 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2015/06/18/collecting-wedding-photos-with-twilio-mms/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/06/18/collecting-wedding-photos-with-twilio-mms/</guid>
+        
+        <category>Wedding</category>
+        
+        
+        <category>Code</category>
+        
+        <category>Life</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>List of Possible Apple Watch &amp;#8220;Gates&amp;#8221;</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg&quot; rel=&quot;lightbox[2949]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2950&quot; src=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;286&quot; srcset=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286 500w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=1024%2C585 1024w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?w=1200 1200w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Everyone I know loves a good Apple product-based trivial controversy. There was Antenna-gate, and Bend-gate which happened just last year. Back when the first iPhone came out, Apple dropped the price a few months after release and early adopters were pissed. No one can say if there will be a real issue with the watch, butI figure it would be fun to make a list of potential ones.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Battery-gate (the battery doesn’t last long enough! I can’t wear it to bed!)&lt;/li&gt;
+  &lt;li&gt;Bend-gate 2 (the wristband bends too much! It doesn’t bend enough!)&lt;/li&gt;
+  &lt;li&gt;Snap-gate (the wristband cracks and snaps! WTF is fluoroelastomer anyway?)&lt;/li&gt;
+  &lt;li&gt;Crown-gate (the digital crown breaks off! It spins too fast!)&lt;/li&gt;
+  &lt;li&gt;Siri-gate (random people shouting “Hey Siri!” can control my watch!)&lt;/li&gt;
+  &lt;li&gt;Shave-gate (The Milanese Loop is shaving my wrist hair off!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Edit: Thought of a couple more this morning:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Left-handed-gate (can’t wear watch on right hand, digital crown doesn’t spin right!)&lt;/li&gt;
+  &lt;li&gt;Sunglass-gate (can’t see the screen while wearing polarized sunglasses at a certain angle!)&lt;/li&gt;
+  &lt;li&gt;White-band-gate (white sport band gets dirty too easily!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I doubt any of these will happen, though Battery-gate seems most likely. Maybe something completely trivial and impossible to predict will ruin the watch launch. What sort of non-issue do you think will fill up the news cycles?&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg&quot; rel=&quot;lightbox[2949]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2950&quot; src=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;286&quot; srcset=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286 500w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=1024%2C585 1024w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?w=1200 1200w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Everyone I know loves a good Apple product-based trivial controversy. There was Antenna-gate, and Bend-gate which happened just last year. Back when the first iPhone came out, Apple dropped the price a few months after release and early adopters were pissed. No one can say if there will be a real issue with the watch, butI figure it would be fun to make a list of potential ones.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Battery-gate (the battery doesn’t last long enough! I can’t wear it to bed!)&lt;/li&gt;
+  &lt;li&gt;Bend-gate 2 (the wristband bends too much! It doesn’t bend enough!)&lt;/li&gt;
+  &lt;li&gt;Snap-gate (the wristband cracks and snaps! WTF is fluoroelastomer anyway?)&lt;/li&gt;
+  &lt;li&gt;Crown-gate (the digital crown breaks off! It spins too fast!)&lt;/li&gt;
+  &lt;li&gt;Siri-gate (random people shouting “Hey Siri!” can control my watch!)&lt;/li&gt;
+  &lt;li&gt;Shave-gate (The Milanese Loop is shaving my wrist hair off!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Edit: Thought of a couple more this morning:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Left-handed-gate (can’t wear watch on right hand, digital crown doesn’t spin right!)&lt;/li&gt;
+  &lt;li&gt;Sunglass-gate (can’t see the screen while wearing polarized sunglasses at a certain angle!)&lt;/li&gt;
+  &lt;li&gt;White-band-gate (white sport band gets dirty too easily!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I doubt any of these will happen, though Battery-gate seems most likely. Maybe something completely trivial and impossible to predict will ruin the watch launch. What sort of non-issue do you think will fill up the news cycles?&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 23 Apr 2015 15:58:21 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2015/04/23/list-of-possible-apple-watch-gates/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/04/23/list-of-possible-apple-watch-gates/</guid>
+        
+        <category>Apple</category>
+        
+        
+        <category>Nerd</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Side Project: Audubon</title>
+        <description>&lt;h2 id=&quot;the-idea&quot;&gt;The Idea&lt;/h2&gt;
+
+&lt;p&gt;A few weeks ago, I noticed a &lt;a href=&quot;https://twitter.com/johnsheehan/status/569619743109304320&quot;&gt;tweet&lt;/a&gt; from John Sheehan asking if there was an automated tweet -&amp;gt; screenshot tool:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/tweet.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2931&quot; src=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297&quot; alt=&quot;Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?&quot; width=&quot;500&quot; height=&quot;297&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297 500w, /blog/wp-content/uploads/2015/03/tweet.png?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After &lt;a href=&quot;http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/&quot;&gt;playing around with Ghost Inspector&lt;/a&gt;, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.
+&lt;!--more--&gt;&lt;/p&gt;
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;I played around with &lt;a href=&quot;http://casperjs.org/&quot;&gt;CasperJS&lt;/a&gt; before finding a &lt;a href=&quot;http://stackoverflow.com/questions/18657615/how-to-render-an-html-element-using-phantomjs&quot;&gt;StackOverflow post&lt;/a&gt; that described that I could do all that I wanted in &lt;a href=&quot;http://phantomjs.org/&quot;&gt;PhantomJS&lt;/a&gt;, which CasperJS is built on. I wrote a script that would take a url as an input and spit a png out to stdout. Then I wrote a node web app in &lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt; that could take the url as a parameter and run the script through the &lt;a href=&quot;https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options&quot;&gt;child_process.spawn&lt;/a&gt; command. I had the express app write the stdout of the child process to a buffer and send it once the script was finished. Done!&lt;/p&gt;
+
+&lt;h2 id=&quot;heroku&quot;&gt;Heroku&lt;/h2&gt;
+
+&lt;p&gt;I ran into a problem when I wanted to host my app on Heroku. Heroku apparently does not support writing to /dev/stdout, and I only found out about this when my images were being sent as empty files. I looked at some solutions that involved writing to an Amazon S3 bucket, but I didn’t want to incur that much of an operations overhead for something so lightweight.&lt;/p&gt;
+
+&lt;p&gt;As a workaround, I found that Heroku does allow writing to /tmp, though any files you throw in there are not guaranteed to remain there after the request is over. For me that’s perfect, since the file only needs to exist as long as the request lasts.&lt;/p&gt;
+
+&lt;p&gt;Finally, I threw together an index view with a form and a button that takes a Twitter URL and loads the image into the same view when you click on “OK.” I got a nice theme from &lt;a href=&quot;http://bootstrapzero.com/bootstrap-template/landing-page&quot;&gt;here&lt;/a&gt; and hardly customized it.&lt;figure id=&quot;attachment_2936&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2936&quot; src=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473&quot; alt=&quot;Screenshot in a screenshot inception.&quot; width=&quot;500&quot; height=&quot;473&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473 500w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=1024%2C968 1024w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;Screenshot in a screenshot inception.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;I also figured out how to use the “Deploy to Heroku” feature by adding an app.json file to my git project.&lt;/p&gt;
+
+&lt;p&gt;There were a couple of other issues I ran into that I didn’t describe yet, mostly getting PhantomJS 2.0 to run on Heroku (because previous versions don’t render webfonts correctly) and setting up the multiple buildpacks on Heroku. You can see what I ended up using by inspecting the Github project &lt;a href=&quot;https://github.com/hungtruong/Audubon&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I called the project Audubon after the &lt;a href=&quot;http://www.audubon.org/&quot;&gt;Audubon Society&lt;/a&gt; which is really into birds (get it? birds, tweets?). You can deploy it yourself with this button:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://heroku.com/deploy?template=https://github.com/hungtruong/Audubon&quot;&gt;&lt;img style=&quot;max-width: 100%;&quot; src=&quot;https://camo.githubusercontent.com/83b0e95b38892b49184e07ad572c94c8038323fb/68747470733a2f2f7777772e6865726f6b7563646e2e636f6d2f6465706c6f792f627574746f6e2e737667&quot; alt=&quot;Deploy&quot; data-canonical-src=&quot;https://www.herokucdn.com/deploy/button.svg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;todo&quot;&gt;TODO&lt;/h2&gt;
+
+&lt;p&gt;There’s a couple of things I need to wrap up in this project. If anyone wants to they could also fork the project and throw a pull request at me, but I’m planning on doing these eventually:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make the command line tool better for generating images (right now it just writes to /tmp so I should make that configurable).&lt;/li&gt;
+  &lt;li&gt;&lt;del&gt;Make a bookmarklet so it’s easy to create images from the Twitter website.&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;Make the web index page look a little nicer&lt;/li&gt;
+  &lt;li&gt;Maybe provide image format and quality options&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Overall I think this was a really good side project in terms of scope and complete-ability. I learned a lot about Node.js, ExpressJS and PhantomJS. I’ve been meaning to level up my Javascript web game, and this project has been a useful exercise.&lt;/p&gt;
+</description>
+        
+          <description>&lt;h2 id=&quot;the-idea&quot;&gt;The Idea&lt;/h2&gt;
+
+&lt;p&gt;A few weeks ago, I noticed a &lt;a href=&quot;https://twitter.com/johnsheehan/status/569619743109304320&quot;&gt;tweet&lt;/a&gt; from John Sheehan asking if there was an automated tweet -&amp;gt; screenshot tool:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/tweet.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2931&quot; src=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297&quot; alt=&quot;Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?&quot; width=&quot;500&quot; height=&quot;297&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297 500w, /blog/wp-content/uploads/2015/03/tweet.png?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After &lt;a href=&quot;http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/&quot;&gt;playing around with Ghost Inspector&lt;/a&gt;, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 10 Mar 2015 07:47:25 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2015/03/10/side-project-audubon/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/03/10/side-project-audubon/</guid>
+        
+        <category>ExpressJS</category>
+        
+        <category>Node.js</category>
+        
+        <category>PhantomJS</category>
+        
+        <category>twitter</category>
+        
+        
+        <category>Code</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>How Ghost Inspector Helped Me Furnish My House</title>
+        <description>&lt;h2 id=&quot;act-1&quot;&gt;Act 1&lt;/h2&gt;
+
+&lt;p&gt;Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best. When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it. The problem was that it never seemed to be in stock.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;a href=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2912&quot; src=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500&quot; alt=&quot;Behold the majesty.&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1208 1208w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1812 1812w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;
+  &lt;figcaption&gt;Behold the majesty.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I must have waited for months, maybe even a year, to see if the unit was available in my Ikea store, but apparently there were production issues. The Ikea phone support was never useful and just told me to check again later. I was stuck waiting it out while my current Ikea (non-Stockholm) tv stand bowed under the weight of my 60″ television.&lt;/p&gt;
+
+&lt;p&gt;On a random visit in December, though, my interest was piqued. The “buy” button was actually there on the page! I tried faking an order and got a preliminary ship date! For whatever stupid reason, I thought this meant that the supply issues had been fixed. I delayed. I wanted to make sure the thing would fit in my living room. I missed out. Later that week, when I checked the site, the unit was gone.&lt;/p&gt;
+
+&lt;h2 id=&quot;act-2&quot;&gt;Act 2&lt;/h2&gt;
+
+&lt;p&gt;I noticed that the website did something weird when I tried buying the tv unit. The “buy” button was still working. The item was added to my cart. But when I tried to enter my address, I would get an error in my cart saying the unit wasn’t available. There must’ve been some issue with their inventory system.&lt;/p&gt;
+
+&lt;p&gt;Instead of checking manually every day to see if Ikea had any real stock, I decided to automate the process using a tool called Ghost Inspector.&lt;/p&gt;
+
+&lt;p&gt;Ghost Inspector is a service that lets you define actions for a headless (ghostly) web browser to run for you. It’s mostly intended for running tests on parts of your website (like verifying that a user can log in, get some data, not get an error, etc). If you end up changing a part of your website and it breaks another, Ghost Inspector can automate the process of discovering that regression.&lt;/p&gt;
+
+&lt;p&gt;As the title of my blog post implies, Ghost Inspector can also tell you when that piece of furniture you want goes back in stock.&lt;/p&gt;
+
+&lt;p&gt;To get started, I created a free account on &lt;a href=&quot;https://ghostinspector.com/&quot;&gt;ghostinspector.com&lt;/a&gt;. The free tier allows you to run 100 automated tests per month. This was more than enough for me to check Ikea once every day. To create a “test,” you can either download a Chrome extension that assists you in recording a test, or enter steps into the site itself using actions and CSS selectors (you can also use the extension to record a rough version of a test and edit it later, as I did).&lt;/p&gt;
+
+&lt;p&gt;This is what my first test run looked like after I recorded the process of adding the item to the cart, entering my address info and trying to check out:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/testfail.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2916&quot; src=&quot;/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;310&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310 500w, /blog/wp-content/uploads/2015/01/testfail.png?resize=1024%2C634 1024w, /blog/wp-content/uploads/2015/01/testfail.png?w=1596 1596w, /blog/wp-content/uploads/2015/01/testfail.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;As you can see, the test failed, which is bad, because I was testing to see if the item was out of stock (which I knew was true). The Ghost Inspector recorder picked up that I clicked on a button with a “pressed” state active. Unfortunately, the headless browser doesn’t hover over a button when clicking it, so it didn’t actually see this element and couldn’t click it. I fixed this by selecting the ‘a’ tag with the specific id that I knew would actually add the item to my cart (I also made the browser pause in case something needed to finish loading before hitting the button):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/success.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2917&quot; src=&quot;/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;263&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263 500w, /blog/wp-content/uploads/2015/01/success.png?resize=1024%2C539 1024w, /blog/wp-content/uploads/2015/01/success.png?w=1566 1566w, /blog/wp-content/uploads/2015/01/success.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;Here’s the screenshot of my successful (empty cart) test:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2918&quot; src=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;470&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470 500w, /blog/wp-content/uploads/2015/01/ikeaempty.png?resize=1024%2C963 1024w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1280 1280w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;At the end of the test, I created an assertion that an element with class “#cartTableError” exists, which shouldn’t happen if your cart is full of Stockholm awesomeness and ready to be shipped. With the test running automatically every day, all that was left for me to do was wait until Ghost Inspector emailed me to notify me of the test “failure,” which meant the item was in stock.&lt;/p&gt;
+
+&lt;h2 id=&quot;act-3&quot;&gt;Act 3&lt;/h2&gt;
+
+&lt;p&gt;The fateful day. I got an email from Ghost Inspector that my test failed. I hurriedly typed “ikea.com” into my browser. The product page slowly revealed itself and I girded my loins for the moment I could click “buy.” But the buy button wasn’t there! The test failed because the website now correctly showed that the item was not for sale. Boo!&lt;figure id=&quot;attachment_2926&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2926&quot; src=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261&quot; alt=&quot;Test failed, but not the way I wanted&quot; width=&quot;500&quot; height=&quot;261&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261 500w, /blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?w=792 792w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;Test failed, but not the way I wanted&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;I had to write another test. But unfortunately, I couldn’t assert the non-existence of an object. Instead, I faked clicking the buy button (which apparently worked fine) and then tested whether the cart was empty when I clicked to it. The test looked like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/emptcart.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2921&quot; src=&quot;/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;173&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173 500w, /blog/wp-content/uploads/2015/01/emptcart.png?resize=1024%2C353 1024w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1576 1576w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Apparently this is a stupid test because it is actually still passing. But Ghost Inspector has a feature where it takes a screenshot after every passed test and compares it to the next test. In this case, the screenshot diff test failed and I was notified  a few days ago. And it turns out that the tv stand is actually in stock!&lt;figure id=&quot;attachment_2922&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2922&quot; src=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262&quot; alt=&quot;A comparison of screenshots.&quot; width=&quot;500&quot; height=&quot;262&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262 500w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=1024%2C537 1024w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;A comparison of screenshots.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
+
+&lt;p&gt;I’ve ordered the tv stand and it should be on its way by the end of the month. Many thanks to Ghost Inspector for creating a free tier for this service so that furniture aficionados like me can automate their obsessive compulsive shopping. But in future versions, please support:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;More specific selection of css selectors when using the Chrome recording tool&lt;/li&gt;
+  &lt;li&gt;Negative assertions that check when an element doesn’t exist. (I can probably do this by evaluating Javascript but tests take so long to run that it’s hard to debug)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you’re interested in creating automated tests for your website (or in getting notifications for furniture availability), definitely give &lt;a href=&quot;https://ghostinspector.com/&quot;&gt;Ghost Inspector&lt;/a&gt; a shot.&lt;/p&gt;
+</description>
+        
+          <description>&lt;h2 id=&quot;act-1&quot;&gt;Act 1&lt;/h2&gt;
+
+&lt;p&gt;Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best. When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it. The problem was that it never seemed to be in stock.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;a href=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg&quot; rel=&quot;lightbox[2911]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2912&quot; src=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500&quot; alt=&quot;Behold the majesty.&quot; width=&quot;500&quot; height=&quot;500&quot; srcset=&quot;/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1208 1208w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1812 1812w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;
+  &lt;figcaption&gt;Behold the majesty.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</description>
+        
+        <pubDate>Tue, 20 Jan 2015 06:43:15 -0800</pubDate>
+        <link>http://www.hung-truong.com//blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/</guid>
+        
+        <category>Furniture</category>
+        
+        <category>Ikea</category>
+        
+        
+        <category>Code</category>
+        
+      </item>
+      
+    
+  </channel>
+</rss>
