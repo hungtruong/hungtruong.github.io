@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 07 Apr 2018 18:48:36 -0700</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 18:48:36 -0700</lastBuildDate>
+    <pubDate>Sat, 07 Apr 2018 18:53:25 -0700</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 18:53:25 -0700</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       
@@ -23,7 +23,7 @@
 
 &lt;p&gt;I looked at some options such as &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; or &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt; but it seemed like &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; was the most mature static blog platform, so I went with that. I used a plugin that would generate the Markdown files that I’d need to regenerate my blog. It also ended up transferring my image files, etc, which made it pretty easy to get started.&lt;/p&gt;
 
-&lt;p&gt;I found a cool looking theme called &lt;a href=&quot;http://brianmaierjr.com/long-haul/&quot;&gt;Long Haul&lt;/a&gt; that I ended up modifying quite a bit. I updated the header image, changed up some colors and added an archives page and support for post excepts. What’s currently missing is a site search and category/tag support, but I can live with that. I’m happy with the speed that the site loads as it’s all static and hosted on Github pages.&lt;/p&gt;
+&lt;p&gt;I found a cool looking theme called &lt;a href=&quot;http://brianmaierjr.com/long-haul/&quot;&gt;Long Haul&lt;/a&gt; that I ended up modifying quite a bit. I updated the header image, changed up some colors and added an archives page and support for post excepts. What’s currently missing is a site search and category/tag support, but I can live with that. Comments are also gone but you should never read the comments anyway so that’s fine. I’m happy with the speed that the site loads as it’s all static and hosted on Github pages.&lt;/p&gt;
 
 &lt;p&gt;I wouldn’t necessarily recommend Jekyll to everyone who wants to convert their blog. It’s clearly written by developers for developers as it’s insanely un-user friendly. Don’t get me wrong, the documentation is great, but it’s surprising to me that something resembling a blogging platform has been around this long without anyone setting up a WYSIWYG type of editor like the kind that Wordpress has. I ran into quite a few issues and a pretty steep learning curve while converting my blog. Now that I’m past that, hopefully I can start blogging more often again!&lt;/p&gt;
 
