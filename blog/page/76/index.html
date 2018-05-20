@@ -116,6 +116,35 @@ ga('send', 'pageview');
     
       <li>
         <span class="date">April 08, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/04/08/craigslist-and-google-maps-mashup-thingy-day-4/">Craigslist and Google Maps Mashup Thingy: Day 4</a></h3>
+        <p><center>
+  <img src="/blog/wp-content/uploads/2007/04/google-map-3.gif?w=604" alt="google-map-3.gif" data-recalc-dims="1" />
+</center>
+
+<p>Today I made a bit more progress with my Craigslist Google Maps mashup thing. I setup the database table that handled the pictures for the listings, and added the images to the view as well. After that, I setup a new parser to parse the listings that can be found at the <a href="http://www.offcampus.housing.umich.edu/lt/housing_listings.cfm">Michigan off-campus housing listings page</a>. I’m not sure if I should make a separate page for these, or include them in the Craigslist listings…</p>
+
+<p>I also came across a weird bug. When I ran the new Michigan parsing script by going to the page from a web browser, the thing would run fine, but after I uploaded to the server and ran it from the command line, it would flip out. It took me a really long time to figure out, but it turns out that I was calling a separate function by passing a value and not a reference.</p>
+
+<p>I actually thought this might be a problem when writing the function, but when it worked, I forgot about the issue momentarily. The weird part is that the function works fine when you hit the .php file from a browser, and not when you run it from the command line. It must be some setting in the environment…</p>
+
+<p>Besides that minor problem, everything seems to be going along smoothly. PHP has a lot of nice built in functionality for doing string manipulation, which this project has a lot of. It’s also got really nice networking and file reading capability. I guess that makes sense, since it originally came about as a tool for creating websites.</p>
+
+<p>Tomorrow I’ll try to get the mashup site setup with actual options and navigation. Right now it’s just set on Ann Arbor. I’ll have to do some routing to get the many different options that people might want set up.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
+        <span class="date">April 08, 2007</span>
         <h3><a class="post-link" href="/blog/2007/04/08/craigslist-and-google-maps-mashup-thingy-day-3/">Craigslist and Google Maps Mashup Thingy: Day 3</a></h3>
         <p><center>
   <img src="/blog/wp-content/uploads/2007/04/google-map-2.gif?w=604" alt="google-map-2.gif" data-recalc-dims="1" />
@@ -205,29 +234,6 @@ ga('send', 'pageview');
 <p>The only thing is, it seems like the puzzle is too easy. What if they use this puzzle as some kind of red herring to capture lazy programmers in order to blacklist them? Or maybe there’s a way to be clever that I didn’t think of? I’ll probably send it anyway. It only took me like an hour. It’s probably mostly just to see what peoples’ programming styles are like (OOP, functional, etc.).</p>
 
 <p>What’s the point of my post? I dunno, but Facebook seems like a pretty fun place to work for if they just randomly post programming puzzles for people to solve.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">March 30, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/03/30/university-of-michigan-more-news-good-news/">University of Michigan: More News (Good News!)</a></h3>
-        <p><p>I wrote this over on my grad school blog, since it has to do with grad school.</p>
-
-<p>I got an offer to be a University Library Associate. This is a pretty big deal, so read about it <a href="http://www.hung-truong.com/gradschool/2007/03/30/scholarships-assistantships/university-of-michigan-si-ula-position-get/">here</a>!</p>
-
-<p>Basically, tuition and money to go to school are no longer a concern, and I’ll be sending my acceptance to Michigan very soon.</p>
-
-<p>After being rejected by Google, this is really just what I needed to get out of my semi-depressed slump of saditude. Now I’m super happy!</p>
 
 
           

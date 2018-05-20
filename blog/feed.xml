@@ -5,9 +5,241 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 07 Apr 2018 18:53:25 -0700</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 18:53:25 -0700</lastBuildDate>
+    <pubDate>Sun, 20 May 2018 10:59:14 -0700</pubDate>
+    <lastBuildDate>Sun, 20 May 2018 10:59:14 -0700</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      
+      <item>
+        <title>Five Simple Steps to Becoming an International™ Conference Speaker!</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/static/ioscon-london.jpg&quot; /&gt;
+	&lt;figcaption&gt;Me speaking at iOSCon London 2018. Image copyright &lt;a href=&quot;http://www.edtelling.com&quot;&gt;Ed
+Telling&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;A few years ago, I made a goal for myself that I would start speaking at
+conferences. In the past I had gone to quite a few awesome conferences and I
+really admired the folks who could get on a stage, share a bunch of knowledge
+and inspire an audience to do cool stuff. While I had a bit of experience with
+public speaking (I spoke at some local iOS/Android meetups and moderated two
+panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference
+spot.&lt;/p&gt;
+
+&lt;p&gt;I think the conference that convinced me to start applying was Swift Summit,
+which I attended in 2015. There were a number of really inspiring talks, and the
+community felt really fresh and welcoming. One interesting aside: I learned
+after joining Lyft that no fewer than three of my current coworkers on iOS spoke
+at that conference (&lt;a href=&quot;https://www.youtube.com/watch?v=FmT3A_tm9_4&quot;&gt;Keith&lt;/a&gt;,
+&lt;a href=&quot;https://www.youtube.com/watch?v=P0HD5bODhZM&quot;&gt;Sam&lt;/a&gt; and
+&lt;a href=&quot;https://www.youtube.com/watch?v=kz6d-ES7WtE&quot;&gt;JP&lt;/a&gt;, though only Keith was working
+at Lyft at the time) and a few others attended that year. I’m not sure if that’s
+correlation or causation at work.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;step-1-applying-to-speak&quot;&gt;Step 1: Applying to speak&lt;/h3&gt;
+
+&lt;p&gt;According to my Google Doc which keeps track of my CFP applications, I started
+applying heavily in 2016. There was a gap between when I wanted to apply and
+when I started to apply simply because I felt I didn’t have much to talk about.
+Once I had some interesting experience with iMessage and accessibility while
+working at Starbucks, I figured people might want to know about those things,
+too. In retrospect I think I probably waited too long. If you are passionate
+about something, don’t wait until you feel you’re an expert on the subject. That
+day probably (at least for me) will never come, and you can always do research
+about your topic once it’s been accepted!&lt;/p&gt;
+
+&lt;p&gt;In all of my CFPs I use a template which I learned about during my time in the
+&lt;a href=&quot;https://www.twilio.com/blog/2014/01/introducing-the-twilio-heroes-nt.html&quot;&gt;Twilio
+Heroes&lt;/a&gt;
+program. Essentially, you need to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;State a problem or challenge&lt;/li&gt;
+  &lt;li&gt;Give some general solutions (set up a straw man)&lt;/li&gt;
+  &lt;li&gt;Give your specific solution that is better than #2, because you are awesome.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here’s an example of my iMessage talk, which used that template:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;(1) Messaging apps are huge and getting huger. With WhatsApp, WeChat and
+Facebook Messenger users in the millions or billions, it’s clear that messaging
+is not a fad. So how can a developer take advantage of this growth? (2) Starting
+a new messaging app is probably out of the question. (3) Thankfully, Apple has
+introduced iMessage app extensions in iOS 10. Learn how to use iMessage to let
+your users send rich, interactive messages, and learn how to take advantage of
+the network effects that iMessage app extensions allow, including updates
+introduced in iOS 11 like Live Message Layouts and the Direct Send API.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;step-2-getting-rejected&quot;&gt;Step 2: Getting rejected&lt;/h3&gt;
+
+&lt;p&gt;After using this template for talks and applying to pretty much every iOS
+related conference in 2016, I ended up getting a ton of rejections. This is
+totally fine and to be expected since I think most conferences get way more talk
+proposals than they have spots. I also noticed that conferences tend to invite
+speakers who have spoken before, which is a form of risk management but also
+kind of unfair for people who have never spoken.&lt;/p&gt;
+
+&lt;p&gt;The best way to beat this sort of chicken and egg situation is probably to aim
+at local meetups which are always looking for people to give talks! Another
+benefit of this is that you get to practice your talk and refine it before
+taking it to a bigger stage and audience (which is exactly what I did for my
+accessibility talk that I gave at iOSCon in London this year). Because I had
+given my talk at an Xcoders meeting two weeks before the conference, I was able
+to time my talk, practice it in front of people, get their questions to
+incorporate back into the talk, and feel like I was ready once I spoke in front
+of a larger crowd.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-3-getting-accepted&quot;&gt;Step 3: Getting accepted&lt;/h3&gt;
+
+&lt;p&gt;The first year I really started getting serious about applying to conferences,
+my acceptance rate was 1 of 7&lt;a href=&quot;#footnote1&quot;&gt;¹&lt;/a&gt;. Success! I attended the first
+&lt;a href=&quot;http://www.codemobile.co.uk&quot;&gt;CodeMobile&lt;/a&gt; conference in Chester, UK and talked
+about iMessage apps. The experience of going on stage, sharing something I
+thought was interesting, and then getting feedback that it actually was
+interesting to people was great! The attendees were all amazing and I finally
+got to travel outside of North America for the first time in my life. I had
+reached my goals and become an International™ Speaker as well as generally
+becoming an iOS Conference Speaker all in one go.&lt;/p&gt;
+
+&lt;h3 id=&quot;step-4-preparation&quot;&gt;Step 4: Preparation&lt;/h3&gt;
+
+&lt;p&gt;The thing that most people don’t tell you, and the thing that you quickly find
+out when preparing a conference talk is how much work it is to prepare! As an
+audience member to some great talks, I always assumed that the talk took maybe a
+handful of hours to prepare and format.&lt;/p&gt;
+
+&lt;p&gt;In practice, a talk can take something like 40–50 hours for a 45 minute session.
+That includes coming up with the proposal, learning about the subject (often
+this happens after the proposal has been accepted!), coming up with a format
+that will educate and inspire (and hopefully entertain) your audience, and
+practicing the delivery of the material. You probably also want to tailor your
+presentation for the audience you’re speaking to; are they mostly students? What
+skill level would be most appropriate to present to? What kinds of jokes might
+work well with your audience?&lt;/p&gt;
+
+&lt;p&gt;A good amount of the time that I put into preparing talks is practicing. It’s
+really up to you how polished you want the talk to be, and how comfortable you
+will be presenting with the amount of practice you’ve put into it. As I
+mentioned before, presenting early to a smaller group can really help by
+creating a deadline that is sooner than the actual talk and providing a method
+of gathering feedback to tweak your talk to make it even better.&lt;/p&gt;
+
+&lt;p&gt;One thing that’s great about having a conference talk lined up is that you can
+do some pretty productive stuff while procrastinating. In order to avoid
+preparing my iOSCon talk, I applied to speak at a conference in New York called
+!!Con. That application ended up getting accepted, so I started down a pretty
+vicious cycle of speaking at more conferences!&lt;/p&gt;
+
+&lt;p&gt;I recently came across this Twitter thread of many speakers sharing their
+process and how much time they put into their talks:&lt;/p&gt;
+
+&lt;h3 id=&quot;step-5-actually-presenting&quot;&gt;Step 5: Actually presenting&lt;/h3&gt;
+
+&lt;p&gt;Giving the actual talk is kind of a weird experience. After putting a ton of
+time into a talk upfront, I’ve found that the actual talk goes by faster than I
+think it will. Once I get up and start talking, I’m more or less on autopilot,
+and it’s almost like having an out of body experience. It might be because I put
+all of my brain power into giving the talk, but I can’t even really remember how
+I did once it’s done. Then at the end everyone claps and hopefully people ask
+insightful questions and no one asks a question that’s really just a statement
+that they’re trying to use to prove that they know something.&lt;/p&gt;
+
+&lt;p&gt;Once I’ve given the talk, I can actually enjoy the conference. I’ve been lucky
+that the first few conferences I’ve spoken at, I was the first speaker after the
+keynote speaker on the first day. Going earlier is also nice because then people
+have seen you talk and they’re usually more open about chatting with you in the
+hallway.&lt;/p&gt;
+
+&lt;h3 id=&quot;presenting-some-more&quot;&gt;Presenting some more&lt;/h3&gt;
+
+&lt;p&gt;After speaking at &lt;a href=&quot;https://youtu.be/zXQOTEwxv-U&quot;&gt;CodeMobile&lt;/a&gt; in Chester, UK, I
+didn’t get any talks accepted for about a year. I ended up speaking again in the
+UK, this time in London for
+&lt;a href=&quot;https://skillsmatter.com/skillscasts/11320-designing-and-building-with-accessibility-in-mind&quot;&gt;iOSCon&lt;/a&gt;
+in March of 2018. Then I most recently spoke at &lt;a href=&quot;http://bangbangcon.com&quot;&gt;!!Con&lt;/a&gt;
+in New York in May. I’ll be giving an updated version of my iOS accessibility
+talk in Boston next month for SwiftFest.&lt;/p&gt;
+
+&lt;p&gt;This time around my acceptance rate was 3/6, which is much better. I would
+mostly chalk this up to the fact that I gave a talk at CodeMobile last year. I
+also applied to some more diverse types of tech conferences since there were
+fewer iOS specific ones (I think a few that I applied to didn’t actually
+happen).&lt;/p&gt;
+
+&lt;p&gt;In the future, I hope I can speak again but with the three consecutive talks I’m
+doing in March/May/June this year, I’m ready for a little break before I get
+back on the conference speaking circuit. I’m really happy that I’ve been given
+the opportunity to share some of my experiences and the conferences I’ve been to
+have been really enjoyable so far.&lt;/p&gt;
+
+&lt;h3 id=&quot;you-should-talk-too&quot;&gt;You should talk, too!&lt;/h3&gt;
+
+&lt;p&gt;When I first set my personal goal to talk at some conferences, I really wasn’t
+sure if I had what it would take to succeed. I don’t consider myself a great
+public speaker, nor would I consider myself to be an exceptional software
+engineer. The secret is that neither is really a requirement to share cool stuff
+with people. You just need to have some passion for something and effectively
+communicate that passion by telling your story.&lt;/p&gt;
+
+&lt;p&gt;If you’re looking for iOS conferences to apply to, there’s a well maintained
+list along with CFP deadlines
+&lt;a href=&quot;https://github.com/Lascorbe/CocoaConferences&quot;&gt;here&lt;/a&gt;. Good luck!&lt;/p&gt;
+
+&lt;p&gt;Finally, if you see me at a conference, say hi! I’m always happy to chat with
+people, even if I look like I’m busy or focused on other stuff.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span id=&quot;footnote1&quot;&gt;&lt;/span&gt;¹Actually I ended up getting another talk accepted but the conference was not
+interested in reimbursing me for any travel expenses so I politely declined.
+Given the amount of time it takes to prepare a good presentation, a conference
+should absolutely reimburse you for speaking.&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/static/ioscon-london.jpg&quot; /&gt;
+	&lt;figcaption&gt;Me speaking at iOSCon London 2018. Image copyright &lt;a href=&quot;http://www.edtelling.com&quot;&gt;Ed
+Telling&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;A few years ago, I made a goal for myself that I would start speaking at
+conferences. In the past I had gone to quite a few awesome conferences and I
+really admired the folks who could get on a stage, share a bunch of knowledge
+and inspire an audience to do cool stuff. While I had a bit of experience with
+public speaking (I spoke at some local iOS/Android meetups and moderated two
+panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference
+spot.&lt;/p&gt;
+
+&lt;p&gt;I think the conference that convinced me to start applying was Swift Summit,
+which I attended in 2015. There were a number of really inspiring talks, and the
+community felt really fresh and welcoming. One interesting aside: I learned
+after joining Lyft that no fewer than three of my current coworkers on iOS spoke
+at that conference (&lt;a href=&quot;https://www.youtube.com/watch?v=FmT3A_tm9_4&quot;&gt;Keith&lt;/a&gt;,
+&lt;a href=&quot;https://www.youtube.com/watch?v=P0HD5bODhZM&quot;&gt;Sam&lt;/a&gt; and
+&lt;a href=&quot;https://www.youtube.com/watch?v=kz6d-ES7WtE&quot;&gt;JP&lt;/a&gt;, though only Keith was working
+at Lyft at the time) and a few others attended that year. I’m not sure if that’s
+correlation or causation at work.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 20 May 2018 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</guid>
+        
+        
+        <category>Public Speaking</category>
+        
+        <category>Conferences</category>
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -568,77 +800,6 @@ I set up a Twilio phone number to receive and send text messages. Actually, I ju
         
         
         <category>Nerd</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Side Project: Audubon</title>
-        <description>&lt;h2 id=&quot;the-idea&quot;&gt;The Idea&lt;/h2&gt;
-
-&lt;p&gt;A few weeks ago, I noticed a &lt;a href=&quot;https://twitter.com/johnsheehan/status/569619743109304320&quot;&gt;tweet&lt;/a&gt; from John Sheehan asking if there was an automated tweet -&amp;gt; screenshot tool:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/tweet.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2931&quot; src=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297&quot; alt=&quot;Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?&quot; width=&quot;500&quot; height=&quot;297&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297 500w, /blog/wp-content/uploads/2015/03/tweet.png?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After &lt;a href=&quot;http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/&quot;&gt;playing around with Ghost Inspector&lt;/a&gt;, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.
-&lt;!--more--&gt;&lt;/p&gt;
-&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
-
-&lt;p&gt;I played around with &lt;a href=&quot;http://casperjs.org/&quot;&gt;CasperJS&lt;/a&gt; before finding a &lt;a href=&quot;http://stackoverflow.com/questions/18657615/how-to-render-an-html-element-using-phantomjs&quot;&gt;StackOverflow post&lt;/a&gt; that described that I could do all that I wanted in &lt;a href=&quot;http://phantomjs.org/&quot;&gt;PhantomJS&lt;/a&gt;, which CasperJS is built on. I wrote a script that would take a url as an input and spit a png out to stdout. Then I wrote a node web app in &lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt; that could take the url as a parameter and run the script through the &lt;a href=&quot;https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options&quot;&gt;child_process.spawn&lt;/a&gt; command. I had the express app write the stdout of the child process to a buffer and send it once the script was finished. Done!&lt;/p&gt;
-
-&lt;h2 id=&quot;heroku&quot;&gt;Heroku&lt;/h2&gt;
-
-&lt;p&gt;I ran into a problem when I wanted to host my app on Heroku. Heroku apparently does not support writing to /dev/stdout, and I only found out about this when my images were being sent as empty files. I looked at some solutions that involved writing to an Amazon S3 bucket, but I didn’t want to incur that much of an operations overhead for something so lightweight.&lt;/p&gt;
-
-&lt;p&gt;As a workaround, I found that Heroku does allow writing to /tmp, though any files you throw in there are not guaranteed to remain there after the request is over. For me that’s perfect, since the file only needs to exist as long as the request lasts.&lt;/p&gt;
-
-&lt;p&gt;Finally, I threw together an index view with a form and a button that takes a Twitter URL and loads the image into the same view when you click on “OK.” I got a nice theme from &lt;a href=&quot;http://bootstrapzero.com/bootstrap-template/landing-page&quot;&gt;here&lt;/a&gt; and hardly customized it.&lt;figure id=&quot;attachment_2936&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;size-medium wp-image-2936&quot; src=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473&quot; alt=&quot;Screenshot in a screenshot inception.&quot; width=&quot;500&quot; height=&quot;473&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473 500w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=1024%2C968 1024w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;Screenshot in a screenshot inception.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt;&lt;/p&gt;
-
-&lt;p&gt;I also figured out how to use the “Deploy to Heroku” feature by adding an app.json file to my git project.&lt;/p&gt;
-
-&lt;p&gt;There were a couple of other issues I ran into that I didn’t describe yet, mostly getting PhantomJS 2.0 to run on Heroku (because previous versions don’t render webfonts correctly) and setting up the multiple buildpacks on Heroku. You can see what I ended up using by inspecting the Github project &lt;a href=&quot;https://github.com/hungtruong/Audubon&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I called the project Audubon after the &lt;a href=&quot;http://www.audubon.org/&quot;&gt;Audubon Society&lt;/a&gt; which is really into birds (get it? birds, tweets?). You can deploy it yourself with this button:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://heroku.com/deploy?template=https://github.com/hungtruong/Audubon&quot;&gt;&lt;img style=&quot;max-width: 100%;&quot; src=&quot;https://camo.githubusercontent.com/83b0e95b38892b49184e07ad572c94c8038323fb/68747470733a2f2f7777772e6865726f6b7563646e2e636f6d2f6465706c6f792f627574746f6e2e737667&quot; alt=&quot;Deploy&quot; data-canonical-src=&quot;https://www.herokucdn.com/deploy/button.svg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;todo&quot;&gt;TODO&lt;/h2&gt;
-
-&lt;p&gt;There’s a couple of things I need to wrap up in this project. If anyone wants to they could also fork the project and throw a pull request at me, but I’m planning on doing these eventually:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Make the command line tool better for generating images (right now it just writes to /tmp so I should make that configurable).&lt;/li&gt;
-  &lt;li&gt;&lt;del&gt;Make a bookmarklet so it’s easy to create images from the Twitter website.&lt;/del&gt;&lt;/li&gt;
-  &lt;li&gt;Make the web index page look a little nicer&lt;/li&gt;
-  &lt;li&gt;Maybe provide image format and quality options&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Overall I think this was a really good side project in terms of scope and complete-ability. I learned a lot about Node.js, ExpressJS and PhantomJS. I’ve been meaning to level up my Javascript web game, and this project has been a useful exercise.&lt;/p&gt;
-</description>
-        
-          <description>&lt;h2 id=&quot;the-idea&quot;&gt;The Idea&lt;/h2&gt;
-
-&lt;p&gt;A few weeks ago, I noticed a &lt;a href=&quot;https://twitter.com/johnsheehan/status/569619743109304320&quot;&gt;tweet&lt;/a&gt; from John Sheehan asking if there was an automated tweet -&amp;gt; screenshot tool:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/03/tweet.png&quot; rel=&quot;lightbox[2930]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2931&quot; src=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297&quot; alt=&quot;Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?&quot; width=&quot;500&quot; height=&quot;297&quot; srcset=&quot;/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297 500w, /blog/wp-content/uploads/2015/03/tweet.png?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After &lt;a href=&quot;http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/&quot;&gt;playing around with Ghost Inspector&lt;/a&gt;, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Tue, 10 Mar 2015 07:47:25 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2015/03/10/side-project-audubon/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/03/10/side-project-audubon/</guid>
-        
-        <category>ExpressJS</category>
-        
-        <category>Node.js</category>
-        
-        <category>PhantomJS</category>
-        
-        <category>twitter</category>
-        
-        
-        <category>Code</category>
         
       </item>
       
