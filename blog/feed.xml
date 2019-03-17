@@ -5,9 +5,169 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Jun 2018 16:37:50 -0700</pubDate>
-    <lastBuildDate>Sun, 24 Jun 2018 16:37:50 -0700</lastBuildDate>
-    <generator>Jekyll v3.7.3</generator>
+    <pubDate>Sun, 17 Mar 2019 12:13:13 -0700</pubDate>
+    <lastBuildDate>Sun, 17 Mar 2019 12:13:13 -0700</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      
+      <item>
+        <title>Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth</title>
+        <description>&lt;p&gt;It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.&lt;/p&gt;
+
+&lt;p&gt;I recently purchased an exercise bike called the &lt;a href=&quot;https://shop.concept2.com/bikeerg/601-bikeerg.html&quot;&gt;BikeErg&lt;/a&gt; (I think the name has something to do with the rowing machines that the manufacturer also makes). The bike has a built-in computer that keeps track of things like watts (apparently cycling is a sport that has really good analytics since it’s easy to track raw power), calories burned, cadence and other stuff. You can view the data on the monitor or use an app like &lt;a href=&quot;https://zwift.com&quot;&gt;Zwift&lt;/a&gt; to do workouts.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/bikeerg.jpg&quot; /&gt;
+	&lt;figcaption&gt;The BikeErg comes with the PM5: the most advanced PM thing ever.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;I’ve been using the BikeErg to exercise pretty regularly now, and I tried a bunch of different apps that can connect to it. Zwift is pretty much the gold standard as it has many features like 3D avatars and environments, a rich community, and lots of different workout plans for you to try. Zwift integrates with apps like MyFitnessPal and Strava, too, so I can trick people into thinking that I’ve ridden in Central Park one day and London the next.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwift.jpeg&quot; /&gt;
+	&lt;figcaption&gt;Studies have shown that riding a bike in a completely white room really builds your FTP&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;While I think the feature set of Zwift is really compelling, I’m more of an old school app user. I don’t really care about the online community. I don’t really need to look at my avatar riding his bike around a futuristic city or an exploding volcano. I just want to do some directed workouts and maybe track my heart rate and my calories burned. The price of $15 a month is probably fine for people who use all of those features and get the value out of it, but I feel like I do not. &lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwift_screenshot.jpeg&quot; /&gt;
+	&lt;figcaption&gt;It’s my virtual dude riding through a virtual New York with all his virtual pals&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Just to be clear here, I do think app developers deserve to be paid for their work and it’s definitely within reason for Zwift to charge this subscription given the sheer amount of support they need to provide to all of their users’ varying setups. After just implementing a small proof of concept, I have some mad respect for their dev team.&lt;/p&gt;
+
+&lt;p&gt;However, I am cheap and I’m an iOS developer so I figured, “maybe I can roll my own fake Zwift!”&lt;/p&gt;
+
+&lt;h3 id=&quot;enter-corebluetooth&quot;&gt;Enter CoreBluetooth&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/core_bluetooth.png&quot; /&gt;
+	&lt;figcaption&gt;The more I stare at this image the less sense it makes&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I’ve been interested in Bluetooth development ever since CoreBluetooth was added to the iOS 5.0 SDK (I think the first supported device was the iPhone 4s). But every time I tried to sit down and read the documentation I got discouraged by the complexity and ended up getting distracted by some other new shiny API. Since I had a desired use case here: Make a Zwift alternative for myself, I was able to focus up some more and get something working.&lt;/p&gt;
+
+&lt;p&gt;While the Bluetooth protocol is incredibly flexible, that flexibility also makes it incredibly complicated to get even a simple proof of concept working. If you don’t know what the special Bluetooth jargon means, it can seem really confusing. I still don’t really understand all of it but I’ve managed to hack something together that will serve as a basis for my fake Zwift app.&lt;/p&gt;
+
+&lt;p&gt;Rather than bore you with the technical jargon and steps required to make this app, I’d rather just go through my process of figuring it out, which may be slightly more interesting.&lt;/p&gt;
+
+&lt;h3 id=&quot;of-course-its-called-a-manager&quot;&gt;Of course it’s called a “Manager”&lt;/h3&gt;
+
+&lt;p&gt;So the first thing I did was go to &lt;a href=&quot;https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/AboutCoreBluetooth/Introduction.html#//apple_ref/doc/uid/TP40013257&quot;&gt;this document&lt;/a&gt; (which I guess is deprecated now but I didn’t notice that message when I was reading it) which goes over the Core Bluetooth framework.&lt;/p&gt;
+
+&lt;p&gt;I found out that I needed to create a CBCentralManager, so I did that and then I tried to scan for some Bluetooth devices:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;let centralManager = CBCentralManager()&lt;br /&gt;
+self.centralManager.scanForPeripherals(withServices: nil, options: nil)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I immediately got an error that I couldn’t do that since the centralManager wasn’t powered on yet. Oops! I then set the delegate of the centralManager and waited for the method “centralManagerDidUpdateState” to check that it was powered on before scanning.&lt;/p&gt;
+
+&lt;p&gt;I soon started getting a bunch of peripherals in my next delegate method, “centralManager(_:didDiscover:advertisementData:rssi:)”&lt;/p&gt;
+
+&lt;p&gt;Among the things I found were my laptop (over and over again even though the scan was set to not allow duplicates…), someone’s Bluetooth headset and various other things I couldn’t identify. Success! &lt;/p&gt;
+
+&lt;p&gt;Once I filtered out the peripherals that kept on repeating, I was able to turn on the bike (by cycling a bit) and I got this message in my logs:&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/peripherals.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I successfully found my PM5. Now to connect to it and get the data. I ended up connecting to the PM5 based on the name. (After doing some reading it looks like I could connect based on the last service UUID of “CE060000-43E5-11E4-916C-0800200C9A66”). &lt;/p&gt;
+
+&lt;p&gt;I called the “connect” function of the centralManager and later got an error because the peripheral wasn’t retained (I guess the Central doesn’t keep a strong reference, which makes sense). I tried again, this time keeping a reference to the peripheral in an array.&lt;/p&gt;
+
+&lt;h3 id=&quot;peripherals-services-and-characteristics&quot;&gt;Peripherals, Services and Characteristics&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/central_manager.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Once I connected, I had to discover the peripheral’s services. And once that succeeded I had to discover each service’s characteristics. Once you discover those characteristics you can set the peripheral’s services’ characteristics to “notify” you when the characteristic changes. In more depth:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Connect to peripheral using the central’s “connect(_:options:)” method and retain it&lt;/li&gt;
+  &lt;li&gt;Handle the “&lt;em&gt;centralManager(_:didConnect:)&lt;/em&gt;” delegate method where you set the peripheral’s delegate and call its “discoverServices(_:)” method&lt;/li&gt;
+  &lt;li&gt;Handle the “peripheral(_:didDiscoverServices:)” delegate method and call the peripheral’s “discoverCharacteristics(_:for:)” for each service you want to discover characteristics for (why not all of them at this point?)&lt;/li&gt;
+  &lt;li&gt;Handle the “peripheral(_:didDiscoverCharacteristicsFor:error:)” delegate method for each service’s characteristics you wanted to discover by calling the peripheral’s “setNotifyValue(_:for:)” method on each service’s characteristic that you want notifications for.&lt;/li&gt;
+  &lt;li&gt;Optionally handle the “peripheral(_:didUpdateNotificationStateFor:error:)” method to see if you were able to successfully update the notification state for each peripheral’s service’s characteristic. In some cases I wasn’t able to ask for updates, perhaps those characteristics are just static data?&lt;/li&gt;
+  &lt;li&gt;Handle the “peripheral(_:didUpdateValueFor:error:)” method to get the updated value for each characteristic that you wanted notifications for.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This all seems really convoluted to me and it was probably part of the reason that I always gave up on implementing Bluetooth in the past, but I think that’s more of a symptom of the complexity of the Bluetooth protocol than the CoreBluetooth API.&lt;/p&gt;
+
+&lt;p&gt;Now all I needed to do was generate some data by cycling on the bike for a few seconds. I wasn’t quite finished yet, though. When the characteristics are updated and you start getting notified, you can inspect the new values, but those values are just &lt;a href=&quot;https://developer.apple.com/documentation/corebluetooth/cbcharacteristic/1518878-value&quot;&gt;Data objects&lt;/a&gt;. Each characteristic can hold a number of values based on how the data is structured, and that is up to whoever is implementing the Bluetooth protocol. &lt;/p&gt;
+
+&lt;p&gt;I did some research and found &lt;a href=&quot;https://www.concept2.com/files/pdf/us/monitors/PM5_BluetoothSmartInterfaceDefinition.pdf&quot;&gt;this document&lt;/a&gt; that describes the Bluetooth specifications for the PM5 device.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/attribute_table.png&quot; /&gt;
+	&lt;figcaption&gt;Just some really interesting light reading&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In that document were some tables including the one above which describes the UUID for a characteristic that includes things like elapsed time, calories, and most importantly, watts. I discovered that the data was being encoded into bytes, so I took the raw Data object and split it into an array of 8-bit Integers. Once I started printing those arrays I saw something like this:&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/characteristics.png&quot; /&gt;
+	&lt;figcaption&gt;I originally printed out the Base 64 string representation of the Data before reading the doc, which was a lot less useful&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Because the PM5 was originally set up for rowing machines, the documentation is a bit confusing. It refers to “strokes” which might line up with rpms on a bike? I was mainly interested in watts for my proof of concept so I found a few values in the document that mentioned watts. The table in the spec mentions “Stroke Power Lo (watts)” and has a “Stroke Power Hi” (what’s the difference?). I cobbled an interface together to test out my guess about the first value and here’s the video result:&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/bikeerg_gif.gif&quot; /&gt;
+	&lt;figcaption&gt;I took this video with an iPad and for once I’m not ashamed of that. Also it’s shaky cause I was cycling.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Success! I’m now able to connect my phone to my bike with my app. I have only gotten the wattage data from the bike so far, but reading through the spec it seems like there is a lot more I can pull via Bluetooth. I already know from using Zwift that I can get cadence from the bike, for example, and I saw a few other interesting things like calories, pace and distance traveled.&lt;/p&gt;
+
+&lt;h3 id=&quot;every-journey-begins-with-a-single-corebluetooth-implementation&quot;&gt;Every Journey Begins With a Single CoreBluetooth Implementation&lt;/h3&gt;
+
+&lt;p&gt;I titled this blog post “Part 1” in a series but I don’t know when the next step will be. My wishlist is:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I want to eventually set up directed workouts in a similar fashion as Zwift&lt;/li&gt;
+  &lt;li&gt;I also want to be able to track my heart rate which I can do by writing an Apple Watch app for my existing app&lt;/li&gt;
+  &lt;li&gt;I want to be able to store my workout data and integrate with Apple Health&lt;/li&gt;
+  &lt;li&gt;I want to import workouts or at least create them inside of the app&lt;/li&gt;
+  &lt;li&gt;I want to chart the actual wattage of the bike against the guided wattage, and also show heart rate, and show histograms&lt;/li&gt;
+  &lt;li&gt;I want to avoid feature creep&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I haven’t figured out which order to do these things in but for now I’ll continue to use Zwift since I already paid for the membership. My next step is probably to break out the code for connecting to the PM5 into its own project and make all of the data from it available in an easy to consume form. I’m kinda torn between that and just making the MVP for doing workouts.&lt;/p&gt;
+
+&lt;p&gt;If I had to estimate, I probably spent more than 3 hours working on this project so far and more on writing this blog post. If I was to value my time based on what my contracting rate would be I’d probably be able to pay for more than a year of Zwift with it! So this project is really more about learning different iOS technologies than it is about saving money at this point.&lt;/p&gt;
+
+&lt;p&gt;If you found this blog post interesting let me know! I wanted to write down my process so I could remember it, but hopefully it’s useful to anyone trying to implement CoreBluetooth. I found a bunch of sample code that connects to heart rate monitors but I didn’t find any that go through the process of writing code to a spec document. If you want to try to run this app yourself (and you happen to have the same exact bike as me), &lt;a href=&quot;https://github.com/hungtruong/Zswift/tree/blog_part_1&quot;&gt;check out the source code here&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;p&gt;It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.&lt;/p&gt;
+
+&lt;p&gt;I recently purchased an exercise bike called the &lt;a href=&quot;https://shop.concept2.com/bikeerg/601-bikeerg.html&quot;&gt;BikeErg&lt;/a&gt; (I think the name has something to do with the rowing machines that the manufacturer also makes). The bike has a built-in computer that keeps track of things like watts (apparently cycling is a sport that has really good analytics since it’s easy to track raw power), calories burned, cadence and other stuff. You can view the data on the monitor or use an app like &lt;a href=&quot;https://zwift.com&quot;&gt;Zwift&lt;/a&gt; to do workouts.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/bikeerg.jpg&quot; /&gt;
+	&lt;figcaption&gt;The BikeErg comes with the PM5: the most advanced PM thing ever.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</description>
+        
+        <pubDate>Sun, 17 Mar 2019 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-1/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-1/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -741,69 +901,6 @@ I set up a Twilio phone number to receive and send text messages. Actually, I ju
         <category>Code</category>
         
         <category>Life</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>List of Possible Apple Watch &amp;#8220;Gates&amp;#8221;</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg&quot; rel=&quot;lightbox[2949]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2950&quot; src=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;286&quot; srcset=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286 500w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=1024%2C585 1024w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?w=1200 1200w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Everyone I know loves a good Apple product-based trivial controversy. There was Antenna-gate, and Bend-gate which happened just last year. Back when the first iPhone came out, Apple dropped the price a few months after release and early adopters were pissed. No one can say if there will be a real issue with the watch, butI figure it would be fun to make a list of potential ones.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Battery-gate (the battery doesn’t last long enough! I can’t wear it to bed!)&lt;/li&gt;
-  &lt;li&gt;Bend-gate 2 (the wristband bends too much! It doesn’t bend enough!)&lt;/li&gt;
-  &lt;li&gt;Snap-gate (the wristband cracks and snaps! WTF is fluoroelastomer anyway?)&lt;/li&gt;
-  &lt;li&gt;Crown-gate (the digital crown breaks off! It spins too fast!)&lt;/li&gt;
-  &lt;li&gt;Siri-gate (random people shouting “Hey Siri!” can control my watch!)&lt;/li&gt;
-  &lt;li&gt;Shave-gate (The Milanese Loop is shaving my wrist hair off!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Edit: Thought of a couple more this morning:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Left-handed-gate (can’t wear watch on right hand, digital crown doesn’t spin right!)&lt;/li&gt;
-  &lt;li&gt;Sunglass-gate (can’t see the screen while wearing polarized sunglasses at a certain angle!)&lt;/li&gt;
-  &lt;li&gt;White-band-gate (white sport band gets dirty too easily!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I doubt any of these will happen, though Battery-gate seems most likely. Maybe something completely trivial and impossible to predict will ruin the watch launch. What sort of non-issue do you think will fill up the news cycles?&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg&quot; rel=&quot;lightbox[2949]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2950&quot; src=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;286&quot; srcset=&quot;/blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=500%2C286 500w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?resize=1024%2C585 1024w, /blog/wp-content/uploads/2015/04/apple-watch-selling-points.jpg?w=1200 1200w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Everyone I know loves a good Apple product-based trivial controversy. There was Antenna-gate, and Bend-gate which happened just last year. Back when the first iPhone came out, Apple dropped the price a few months after release and early adopters were pissed. No one can say if there will be a real issue with the watch, butI figure it would be fun to make a list of potential ones.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Battery-gate (the battery doesn’t last long enough! I can’t wear it to bed!)&lt;/li&gt;
-  &lt;li&gt;Bend-gate 2 (the wristband bends too much! It doesn’t bend enough!)&lt;/li&gt;
-  &lt;li&gt;Snap-gate (the wristband cracks and snaps! WTF is fluoroelastomer anyway?)&lt;/li&gt;
-  &lt;li&gt;Crown-gate (the digital crown breaks off! It spins too fast!)&lt;/li&gt;
-  &lt;li&gt;Siri-gate (random people shouting “Hey Siri!” can control my watch!)&lt;/li&gt;
-  &lt;li&gt;Shave-gate (The Milanese Loop is shaving my wrist hair off!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Edit: Thought of a couple more this morning:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Left-handed-gate (can’t wear watch on right hand, digital crown doesn’t spin right!)&lt;/li&gt;
-  &lt;li&gt;Sunglass-gate (can’t see the screen while wearing polarized sunglasses at a certain angle!)&lt;/li&gt;
-  &lt;li&gt;White-band-gate (white sport band gets dirty too easily!)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I doubt any of these will happen, though Battery-gate seems most likely. Maybe something completely trivial and impossible to predict will ruin the watch launch. What sort of non-issue do you think will fill up the news cycles?&lt;/p&gt;
-</description>
-        
-        <pubDate>Thu, 23 Apr 2015 15:58:21 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2015/04/23/list-of-possible-apple-watch-gates/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/04/23/list-of-possible-apple-watch-gates/</guid>
-        
-        <category>Apple</category>
-        
-        
-        <category>Nerd</category>
         
       </item>
       

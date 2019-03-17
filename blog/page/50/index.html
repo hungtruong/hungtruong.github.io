@@ -119,6 +119,29 @@ ga('send', 'pageview');
   <ul class="posts noList">
     
       <li>
+        <span class="date">June 28, 2008</span>
+        <h3><a class="post-link" href="/blog/2008/06/29/the-land-before-time-it-goes-to-xiii/">The Land Before Time &#8211; It Goes To XIII!</a></h3>
+        <p><p>So while I was checking out IMDB and getting lost in cross-references, I came across the <a href="http://www.imdb.com/name/nm0667326/">Rob Paulsen</a> guy’s filmography. Rob Paulsen is the guy who does Yakko from Animaniacs and is pretty much in anything that requires voice acting.</p>
+
+<p>Anyway, I saw one of his recent jobs was on The Land Before Time XIII: The Wisdom of Friends. Read that again.</p>
+
+<p>Yes. There are 13 fucking Land Before Time movies!</p>
+
+<p>I think all of them besides the first one were direct to video affairs, but still. Gosh damn! 12 sequels! I guess they must still be profitable if they can still churn them out as much as they are.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">June 27, 2008</span>
         <h3><a class="post-link" href="/blog/2008/06/28/baldurs-gate-ii-like-crack-but-a-computer-game-version/">Baldur&#8217;s Gate II: Like Crack, But A Computer Game Version</a></h3>
         <p><p style="text-align: center;">
@@ -232,49 +255,6 @@ ga('send', 'pageview');
         </p>
       </li>
     
-      <li>
-        <span class="date">June 08, 2008</span>
-        <h3><a class="post-link" href="/blog/2008/06/08/setting-the-crontab-environment-for-your-ruby-on-rails-jobs/">Setting The Crontab Environment For Your Ruby on Rails Jobs</a></h3>
-        <p><p style="text-align: center;">
-  <img class="alignnone size-medium wp-image-769 aligncenter" title="rails" src="/blog/wp-content/uploads/2008/06/rails.png?resize=87%2C112" alt="" width="87" height="112" data-recalc-dims="1" />
-</p>
-
-<p>So today is my birthday. In honor of my birthday, I’ve been migrating some websites from my old server to a new one. Okay, it’s not really in honor of my birthday; I’m just doing it because I have some free time today.</p>
-
-<p>Anyway, one of the things that Anime Nano needs to do is run a crontab of a function from a Rails model using a crontab. If that made no sense to you, don’t worry. Just enjoy the pretty picture of the rails logo above. If that made sense to you, wow, you’re pretty hardcore.</p>
-
-<p>This is something that I remember spending time getting to work the last time I set up my server. But unfortunately I didn’t write about how I did it, so I had to spend an hour or so figuring it out again. Apparently, crontab runs in a different environment than the root user. If you try to run a script for Ruby using “ruby script/runner” you’ll just get nothing. No error message, just nothing. I did something on the previous server that set the crontab environment, but I have no idea what I did. I searched. I didn’t find the answer.</p>
-
-<p>So what I ended up doing (this is for future Hung when he has to eventually move his sites to an even newer server) is sticking some lines for my environment into the crontab itself. I just ran ‘env’ and got a bunch of stuff. Comparing the ‘env’ command run from the crontab itself (I just piped the output to a random text file) and running in my shell, I saw a few differences. Most notably these ones:</p>
-
-<blockquote>
-  <p>GEM_HOME=/usr/local/rubygems/gems</p>
-</blockquote>
-
-<blockquote>
-  <p>GEM_PATH=/usr/local/rubygems/gems</p>
-</blockquote>
-
-<blockquote>
-  <p>RUBYLIB=/usr/local/rubygems/lib/ruby/site_ruby/1.8</p>
-</blockquote>
-
-<p>And voila, my crontabbed rails script/runner model script thing ran. Hopefully writing this post will save me some time in the future.</p>
-
-<p>Oh, and happy birthday to me.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -292,7 +272,7 @@ ga('send', 'pageview');
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2018 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2019 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">
