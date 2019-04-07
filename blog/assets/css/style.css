@@ -4,6 +4,9 @@
     background-color: transparent;
 }
 
+body .gist .gist-meta {
+    display: none;
+}
 tr {
     border-bottom: none; 
 }

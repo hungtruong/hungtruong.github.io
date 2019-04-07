@@ -5,9 +5,173 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Mar 2019 12:13:13 -0700</pubDate>
-    <lastBuildDate>Sun, 17 Mar 2019 12:13:13 -0700</lastBuildDate>
+    <pubDate>Sun, 07 Apr 2019 11:09:26 -0700</pubDate>
+    <lastBuildDate>Sun, 07 Apr 2019 11:09:26 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      
+      <item>
+        <title>Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwiftworkoutheader.png&quot; /&gt;
+	&lt;figcaption&gt;A very colorful Zwift Workout&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
+&lt;a href=&quot;http://127.0.0.1:4000/blog/2019/03/17/making-a-zwift-clone-part-1/&quot;&gt;learning Core Bluetooth to connect to my exercise bike and get data streaming
+directly to my
+app&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since writing that article, I cleaned up the implementation of the Core
+Bluetooth service a bit and started supporting some additional data like
+distance, calories burned and cycling cadence.&lt;/p&gt;
+
+&lt;p&gt;While cycling on my exercise bike and staring at these numbers is fun, the
+built-in screen on my bike already shows these numbers, so I essentially
+recreated a subset of the official
+&lt;a href=&quot;https://www.concept2.com/service/software/ergdata&quot;&gt;ergData&lt;/a&gt; app so far.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/ergdata.jpg&quot; /&gt;
+	&lt;figcaption&gt;The ergData app is functional but ugly af&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I realized the next challenge would be to start a guided workout in my app and
+show the target wattage alongside my actual wattage on the bike.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;enter-the-workout&quot;&gt;Enter the Workout&lt;/h3&gt;
+
+&lt;p&gt;Zwift workouts seem pretty simple to begin with. You can set up a number of
+workout segments to guide your workout. There are warmups, steady states,
+intervals, free ride sections and cool-downs. At any given point in your
+workout, Zwift will tell you to put in a certain amount of effort. You just try
+to get your watt number to match what Zwift wants you to do.&lt;/p&gt;
+
+&lt;p&gt;At first I figured I could come up with my own way of representing workouts, but
+that would also require me to re-create all of the workouts I usually use on
+Zwift. Zwift also has a nice workout editor that can use to edit preset workouts
+or create completely new ones on your own.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwiftworkoutedit.png&quot; /&gt;
+	&lt;figcaption&gt;Zwift’s built-in workout editor is pretty nice!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I discovered that if you copy an existing workout to edit it, the workout will
+be saved as user data and will be synced between all devices. How is the workout
+data saved, you ask? No, not as JSON as a sane developer would use. It’s XML.
+Okay, so technically it’s a .zwo file but I know what XML looks like! Here’s a
+sample of an exported workout file:&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwofile.png&quot; /&gt;
+	&lt;figcaption&gt;Hello darkness, my old friend&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So I went ahead and implemented an XMLParser in Swift to turn .zwo files into my
+own Workout struct. I won’t bore you with the implementation details but it was
+kind of a walk down memory lane dealing with the delegation-based API of
+XMLParser. I’m surprised there isn’t a more modern solution in Foundation but
+I’m guessing it’s because most people have moved on from XML.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-reverse-engineering&quot;&gt;Let’s Reverse Engineering&lt;/h3&gt;
+
+&lt;p&gt;By reading the .zwo files, I was able to figure out how Zwift represents their
+workouts and basically reverse engineer the structure of a workout:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Warmups have a duration, a low and high power (which is a percentage of
+&lt;a href=&quot;https://zwift.com/news/4100-zwift-how-to-understanding-finding-your-ftp&quot;&gt;FTP&lt;/a&gt;).
+The warmup begins at the low power and steadily ramps up to the high power by
+the end of the segment.&lt;/li&gt;
+  &lt;li&gt;SteadyStates are the simplest, with just a duration and power.&lt;/li&gt;
+  &lt;li&gt;Intervals are the most complicated, with a repeat number, onDuration,
+offDuration, onPower and offPower. The intervals segment goes between the high
+and low power levels, and repeats a certain number of times. I didn’t want to
+deal with the extra complexity of this type so I just wrote some code to expand
+them out into SteadyStates.&lt;/li&gt;
+  &lt;li&gt;Cooldowns are like warmups but in reverse.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are also some other things like text captions that appear during a
+workout, free ride segments and cadence settings that I didn’t bother to
+implement because I don’t use them. The cadence stuff makes sense if you’re
+using a smart trainer but my bike doesn’t support automatically changing
+resistance anyway.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/55e92115f993221693f9040431ee39fe.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;I decided to represent the WorkoutSegment as a Swift enum since it needs to
+support a bunch of different formats with varying levels of complexity. I’m
+actually kinda curious how the Zwift team ended up representing these and if
+they did something similar.&lt;/p&gt;
+
+&lt;p&gt;From here it’s pretty simple to get stuff like the total duration or the target
+wattage for a particular time offset, whether I need to calculate that (in the
+case of a warmup or cooldown) or if I just return the constant value.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/718f50f48c32b324a2f25a80c78ae46b.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Aside from representing the workout segments, the actual workout object will
+consist of things like the name, description, FTP and other information that
+pertains to the state of the workout like time elapsed. I wrote a function that
+takes the current time elapsed in the workout, loops through and finds the
+corresponding segment and returns the desired wattage. There might be a more
+efficient way to do that but for now it works.&lt;/p&gt;
+
+&lt;p&gt;I also added some things to my project for displaying and choosing workouts from
+a list, and actually displaying the target wattage alongside actual wattage. I
+want to improve the interface now since it’s terrible, but I’ll save that for
+another blog post. If you want to check out the project, &lt;a href=&quot;https://github.com/hungtruong/Zswift&quot;&gt;it’s all here on
+Github&lt;/a&gt;, including the playgrounds I used
+to test out the workout segment logic before adding it to the Xcode project.&lt;/p&gt;
+
+&lt;p&gt;Next on my list of tasks is to make the workout interface a lot prettier/usable,
+and to add heart rate information from my Apple Watch.&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwiftworkoutheader.png&quot; /&gt;
+	&lt;figcaption&gt;A very colorful Zwift Workout&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
+&lt;a href=&quot;http://127.0.0.1:4000/blog/2019/03/17/making-a-zwift-clone-part-1/&quot;&gt;learning Core Bluetooth to connect to my exercise bike and get data streaming
+directly to my
+app&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since writing that article, I cleaned up the implementation of the Core
+Bluetooth service a bit and started supporting some additional data like
+distance, calories burned and cycling cadence.&lt;/p&gt;
+
+&lt;p&gt;While cycling on my exercise bike and staring at these numbers is fun, the
+built-in screen on my bike already shows these numbers, so I essentially
+recreated a subset of the official
+&lt;a href=&quot;https://www.concept2.com/service/software/ergdata&quot;&gt;ergData&lt;/a&gt; app so far.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/ergdata.jpg&quot; /&gt;
+	&lt;figcaption&gt;The ergData app is functional but ugly af&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I realized the next challenge would be to start a guided workout in my app and
+show the target wattage alongside my actual wattage on the bike.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 07 Apr 2019 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-2/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-2/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -143,7 +307,6 @@ self.centralManager.scanForPeripherals(withServices: nil, options: nil)&lt;/p&gt
 &lt;p&gt;If I had to estimate, I probably spent more than 3 hours working on this project so far and more on writing this blog post. If I was to value my time based on what my contracting rate would be I’d probably be able to pay for more than a year of Zwift with it! So this project is really more about learning different iOS technologies than it is about saving money at this point.&lt;/p&gt;
 
 &lt;p&gt;If you found this blog post interesting let me know! I wanted to write down my process so I could remember it, but hopefully it’s useful to anyone trying to implement CoreBluetooth. I found a bunch of sample code that connects to heart rate monitors but I didn’t find any that go through the process of writing code to a spec document. If you want to try to run this app yourself (and you happen to have the same exact bike as me), &lt;a href=&quot;https://github.com/hungtruong/Zswift/tree/blog_part_1&quot;&gt;check out the source code here&lt;/a&gt;.&lt;/p&gt;
-
 </description>
         
           <description>&lt;p&gt;It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.&lt;/p&gt;
@@ -851,56 +1014,6 @@ I chose to go off-grid because I didn’t want to deal with actually putting the
         
         
         <category>Code</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Collecting Wedding Photos with Twilio MMS</title>
-        <description>&lt;p&gt;Last Saturday I got married to my longtime pal &lt;a href=&quot;http://www.emilyhamstra.com/&quot;&gt;Emily&lt;/a&gt;. Emily handled a lot of the wedding planning and she did a really great job. I wanted to do some fun things for the wedding and reception and thought it would be fun to make a way for friends to share their photos of our day with us.&lt;/p&gt;
-
-&lt;p&gt;I was thinking that it would be easy enough to give people an Instagram hashtag and be done with it, but I wanted to make sure all (or at least most) of our guests would be able to participate. I figured that &lt;a href=&quot;https://www.twilio.com/mms&quot;&gt;Twilio’s MMS&lt;/a&gt; would be a pretty straightforward way for our guests to share photos throughout the day without having to remember a hashtag or use a specific app.
-&lt;!--more--&gt;
-I set up a Twilio phone number to receive and send text messages. Actually, I just re-used &lt;a href=&quot;https://www.twilio.com/blog/2012/05/weathergram-takes-top-prize-in-the-weatherapi-twilio-developer-contest.html&quot;&gt;an old one&lt;/a&gt; that I still had enabled since I used it for voice only. Because I wanted to write as little boilerplate as possible, I decided on using the &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; web framework which I’m already really familiar with. The Django admin panel was incredibly useful for debugging and made it dead simple to view photos that were sent. I used the &lt;a href=&quot;https://github.com/rdegges/django-twilio&quot;&gt;django-twilio&lt;/a&gt; library which also uses the &lt;a href=&quot;https://github.com/twilio/twilio-python&quot;&gt;twilio-python&lt;/a&gt; library. I’ve been on a Heroku app hosting streak lately so I made sure the app could be easily deployable on Heroku for free.&lt;/p&gt;
-
-&lt;p&gt;Since I didn’t have a whole lot of time to build this app (wedding planning takes a lot of attention), I limited my scope to a few goals:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Be able to broadcast messages to guests throughout the day.&lt;/li&gt;
-  &lt;li&gt;Accept messages that contain MMS images (one or more) and save them to a database.&lt;/li&gt;
-  &lt;li&gt;Allow guests to “unsubscribe” to messages in case they didn’t want them.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I ended up using &lt;a href=&quot;https://ngrok.com/&quot;&gt;Ngrok&lt;/a&gt; to test the app locally, then threw &lt;a href=&quot;https://www.runscope.com/&quot;&gt;Runscope&lt;/a&gt; in front of it for good measure (yo dawg, I heard you like proxies). Runscope was pretty useful in that I didn’t have to keep sending test SMS and MMS messages to my app; I could just replay ones that I had sent previously. It probably saved me ~$1 in fees!&lt;/p&gt;
-
-&lt;p&gt;It was pretty straightforward to implement all three of these using the Django library I mentioned earlier. Because all Twilio text messages hit just one endpoint, I had to design around different use cases which made my code a bit messy. It was fine for an app I’m only going to use once, though. The code is gross but it worked and I’m glad I didn’t make it more complicated than it needed to be. I was originally going to use the broadcasting feature more than I ended up using it (I wanted to do something like &lt;a href=&quot;http://i.imgur.com/rsQ93.png&quot; rel=&quot;lightbox[2956]&quot;&gt;cat facts&lt;/a&gt;) which added a bit to the codebase.&lt;/p&gt;
-
-&lt;p&gt;As far as final statistics, I received 70 images from guests during and after the event. Some of them are pretty awesome. In case anyone is interested in how the app works/worked, I posted the source code with my hardcoded phone numbers removed and turned into environmental variables. You can &lt;a href=&quot;https://github.com/hungtruong/weddingnsnap&quot;&gt;check it out here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I am not posting any photos that my guests sent here since they were meant to be private, but here’s a photo I took with my selfie stick of us and the cake!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg&quot; rel=&quot;lightbox[2956]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2957&quot; src=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=500%2C375&quot; alt=&quot;Cake Selfie&quot; width=&quot;500&quot; height=&quot;375&quot; srcset=&quot;/blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=500%2C375 500w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?resize=1024%2C768 1024w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?w=1280 1280w, /blog/wp-content/uploads/2015/06/IMG_0071.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;Last Saturday I got married to my longtime pal &lt;a href=&quot;http://www.emilyhamstra.com/&quot;&gt;Emily&lt;/a&gt;. Emily handled a lot of the wedding planning and she did a really great job. I wanted to do some fun things for the wedding and reception and thought it would be fun to make a way for friends to share their photos of our day with us.&lt;/p&gt;
-
-&lt;p&gt;I was thinking that it would be easy enough to give people an Instagram hashtag and be done with it, but I wanted to make sure all (or at least most) of our guests would be able to participate. I figured that &lt;a href=&quot;https://www.twilio.com/mms&quot;&gt;Twilio’s MMS&lt;/a&gt; would be a pretty straightforward way for our guests to share photos throughout the day without having to remember a hashtag or use a specific app.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Thu, 18 Jun 2015 15:30:32 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2015/06/18/collecting-wedding-photos-with-twilio-mms/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2015/06/18/collecting-wedding-photos-with-twilio-mms/</guid>
-        
-        <category>Wedding</category>
-        
-        
-        <category>Code</category>
-        
-        <category>Life</category>
         
       </item>
       

@@ -119,6 +119,33 @@ ga('send', 'pageview');
   <ul class="posts noList">
     
       <li>
+        <span class="date">April 08, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/04/08/mapskrieg-iphoneipad-app-launch/">Mapskrieg iPhone/iPad App Launch!</a></h3>
+        <p><p><a href="/blog/wp-content/uploads/2011/04/iPadandiPhoneMapskrieg.png" rel="lightbox[2403]"><img src="/blog/wp-content/uploads/2011/04/iPadandiPhoneMapskrieg.png?resize=500%2C340" alt="" title="iPadandiPhoneMapskrieg" width="500" height="340" class="aligncenter size-medium wp-image-2420" srcset="/blog/wp-content/uploads/2011/04/iPadandiPhoneMapskrieg.png?resize=500%2C340 500w, /blog/wp-content/uploads/2011/04/iPadandiPhoneMapskrieg.png?w=799 799w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+
+<p>It’s been about 4 years since <a href="http://www.hung-truong.com/blog/2007/05/06/mapskrieg-craigslist-google-maps-mashup-launch/">I announced the launch of Mapskrieg</a>, my Google Maps and craigslist mashup web app. Since then, I’ve gone to school (again), worked for Microsoft and quit, and made a few apps. Today, I’m happy to announce the launch of my newest app, <a href="http://itunes.apple.com/us/app/mapskrieg-apartment-search/id429360989?mt=8&amp;ls=1">Mapskrieg for iOS</a>!</p>
+
+<p>I’ve been working on this app for a few weeks, and I think it’s ready for public consumption. It’s basically <a href="http://www.mapskrieg.com/">Mapskrieg</a>, but developed natively for the iPhone and iPad. In the past, I’ve taken a sort of iterative approach of releasing fairly minimal apps and improving on them. For example, I released Threadless as an iPhone only app and later added the iPad support. I wanted to release Mapskrieg on both platforms so the launch would have a little more bang. Plus I think the iPad app is the better of the two, and I really wanted that one to stand out for the release. I’ve been getting much more comfortable with mobile development, and I’m very happy with the rate at which I was able to conceive and release this app.</p>
+
+<p>That’s not to say I didn’t struggle or learn anything new with it. While a lot of the concepts are borrowed from my Threadless iPad app, I had to do a lot of stuff I hadn’t done before. For example, since Mapskrieg is going to rely on iAds to make money, I decided that both the iPad and iPhone versions would support iAd. Apple, in their infinite wisdom, made the split view controller a very useful and now, standard, design paradigm. Unfortunately, they don’t provide any support for using it with iAd at all. What the fucking fuck, Apple!? So I had to basically recreate the Split View (well, the landscape mode at least) in order to support iAds. It’ll be well worth it if I can rake in some iAd dough, though!</p>
+
+<p>This post also comes almost 1 year after I quit my job at Microsoft. That milestone probably deserves its own post, but I’ll just say that I have not yet regretted my decision in the very least so far. This is as fun as it gets, folks!</p>
+
+<p>Edit: Oh, I forgot to link to a demo video that I recorded for a contest. Check it out in case you don’t have an iOS device:</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">April 06, 2011</span>
         <h3><a class="post-link" href="/blog/2011/04/06/google-bing-and-serp-copying-additional-evidence/">Google, Bing, and SERP Copying: Additional Evidence?</a></h3>
         <p><p>In the beginning of February this year there was some mild uproar about Google setting up an elaborate sting operation against Bing to prove that Bing was copying search results pages directly from Google using the Bing Toolbar. I personally thought it was a bit childish of Google to do this. All’s fair in gathering user-generated data, right?</p>
@@ -243,37 +270,6 @@ ga('send', 'pageview');
 <p>One funny thing I noticed was the pricing plan for App Engine. I’m currently pruning listings from the database when they get too old or move past the limit of listings per listing type (because I’ll never show them). This is actually older behavior from when I had listing info in MySQL. Back then, the size of the database would affect the performance of selecting rows. Google’s datastore apparently does not get slower with respect to size. This is actually pretty awesome.</p>
 
 <p>The weird thing is that adding and removing datastore objects costs quite a lot in CPU time. Additional CPU time past 6.5 hours is $.10 an hour. Storage, on the other hand, is .$01 per 2 gigabytes per day. From my usage, I am predicting that the CPU cycles that I would use to trim the datastore listings would actually cost more than just leaving them in the datastore and paying for storage. Is that insane or what? I still have to test some things out, but it kind of surprises me that storage would be that much cheaper than the CPU cycles to remove something.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 16, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/02/16/greplin-programming-challenge/">Greplin Programming Challenge</a></h3>
-        <p><p><a href="/blog/wp-content/uploads/2011/02/greplin.png" rel="lightbox[2375]"><img src="/blog/wp-content/uploads/2011/02/greplin.png?resize=442%2C136" alt="" title="greplin" width="442" height="136" class="aligncenter size-full wp-image-2377" data-recalc-dims="1" /></a></p>
-
-<p>I had some spare time on Monday and just read about Greplin getting some funding (and I guess they just went out of private beta today), so I did the <a href="http://challenge.greplin.com/">Greplin Programming Challenge</a>.</p>
-
-<p>Unlike many programming challenges, the problems in this one were pretty easy to solve. I think a lot of people on Hacker News complained that you could basically brute force them into submission. For example, one question is finding a prime Fibonacci number. I’m sure there’s super smart ways to do it but I just iterated through Fibs and then ran a really slow primeness function on each one. It worked eventually!</p>
-
-<p>I finished the challenge and sent an email to the Greplin guys, since the challenge instructed me to do so. After reading through some of their site, the challenge actually started to make more sense to me. From their <a href="https://www.greplin.com/jobs">jobs page</a>:</p>
-
-<blockquote>
-  <p>You should know the fastest way to do something – which sometimes means the least CPU cycles and sometimes means the least programmer cycles.</p>
-</blockquote>
-
-<p>Basically, you could figure out the most efficient way to do the challenges (from a computational perspective) at a cost to programming time. Or you could recognize that N was trivially large for all of the challenge cases and just code something really simple up and get the answer. I picked the latter. Greplin is probably looking for both types, so I think they did a good job designing the challenge.</p>
-
-<p>In other news, I signed up for their service and tried it out. It seems like a really cool concept and I like it so far. I kind of wish there was a roll your own version though. I dunno if I can trust Greplin with all of my innermost secrets… It’s bad enough that Google has all of your email; Greplin can have that plus your tweets and Facebook stuff too!</p>
 
 
           

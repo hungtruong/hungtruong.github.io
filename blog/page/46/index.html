@@ -119,6 +119,29 @@ ga('send', 'pageview');
   <ul class="posts noList">
     
       <li>
+        <span class="date">October 06, 2008</span>
+        <h3><a class="post-link" href="/blog/2008/10/07/dom-vs-sax-only-one-will-survive/">DOM Vs. SAX: Only One Will Survive</a></h3>
+        <p><p>So while working on iPhone stuff, we used a <a href="http://en.wikipedia.org/wiki/Simple_API_for_XML">SAX</a> parser to handle xml. I thought this was a wacky way of parsing stuff, and I prefer <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> since it is much easier to understand as it’s conveniently in tree form.</p>
+
+<p>Today, I tried parsing a 39mb xml file with Python’s minidom. Bad idea. It’s currently making my MacBook choke and it also made my desktop PC cry for memory. Apparently SAX is 1337 when it comes to memory efficiency while DOM is incredibly inefficient. Seriously, Python was taking more than 1gb of memory to parse a 39mb file! Perhaps my actual use of the minidom stuff was incorrect, but either way, I’ll probably try doing stuff in SAX if the file happens to be even remotely big.</p>
+
+<p>Lesson learned!</p>
+
+<p><strong>Update:</strong> SAX totally pwned those large files. All 8 of them! And in less than a minute!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">September 28, 2008</span>
         <h3><a class="post-link" href="/blog/2008/09/28/googles-10100-contest/">Google&#8217;s 10^100 &#8220;Contest&#8221;</a></h3>
         <p><p><img class="alignnone size-medium wp-image-860" title="10to100" src="/blog/wp-content/uploads/2008/09/10to100.gif?resize=370%2C64" alt="" width="370" height="64" data-recalc-dims="1" /></p>
@@ -212,27 +235,6 @@ ga('send', 'pageview');
 <p>Besides a few supported feeds, Sweetcron kinda just imports RSS generically. Like my delicious bookmarks don’t have anything special. Just the text and a link to the bookmark. At the very least, Sweetcron should have support for all of the things that FriendFeed does. And by support, I mean it should intelligently handle any categorization and formatting of the content.</p>
 
 <p>I guess Sweetcron is strictly for the hardcore such as myself, but I was hoping it’d have a little more going for it upon its first release.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">August 26, 2008</span>
-        <h3><a class="post-link" href="/blog/2008/08/26/vote-for-sxsw-panels-by-friday-august-29th/">Vote for SXSW Panels By Friday, August 29th!</a></h3>
-        <p><p style="text-align: center;">
-  <a href="http://panelpicker.sxsw.com/ideas/view/997"><img class="size-medium wp-image-842 aligncenter" title="panel_picker_pickme" src="/blog/wp-content/uploads/2008/08/panel_picker_pickme.gif?resize=125%2C125" alt="" width="125" height="125" data-recalc-dims="1" /></a>
-</p>
-
-<p>This Friday is the last day to vote for SXSW panels, so if you haven’t yet, go check out the <a href="http://panelpicker.sxsw.com/">panel picker</a> (and check out <a href="http://panelpicker.sxsw.com/ideas/view/997">my presentation submission, too</a>)! SXSW provided people with badges, so I figured I’d use one (see above). Yep, I think that’s about it.</p>
 
 
           

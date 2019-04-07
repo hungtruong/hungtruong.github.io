@@ -120,6 +120,31 @@ ga('send', 'pageview');
     
       <li>
         <span class="date">April 21, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/04/21/craigslist-and-google-maps-mashup-thingy-day-7-asynchronous-javascript-and-xml/">Craigslist and Google Maps Mashup Thingy: Day 7 &#8211; Asynchronous JavaScript and XML!</a></h3>
+        <p><p>I haven’t really been working on the Google Maps and Craigslist mashup very much recently. I blame it on a combination of going to Denver for a wedding, having a huge anime and manga backlog, getting Command and Conquer: Kane Edition, and general laziness. I think that’s a pretty good reason.</p>
+
+<p>Anyway, today I sorta got back into it. As the mashup worked on day 6, the Google map would preload all the stuff within the tabs for the markers. This meant it would poll Craigslist like a billion times in one second to get all of the images preloaded. Guess what? Craigslist doesn’t like that. They put a ban on me (and anyone else who would use the badly implemented map) after loading one page. Luckily it was only a temporary ban.</p>
+
+<p>My solution was to use AJAX to load the tabbed info windows for the markers on demand. So no pictures or anything get loaded until you request them. It’s much nicer to Craigslist, though I don’t know if it’s friendlier to my server, since there’ll be more requests. That’s okay, though.</p>
+
+<p>It was kind of a pain to learn how to grab the xml files and parse them, but I finally got it working. Now all I have to do is generate the xml files for each listing (shouldn’t be hard at all). I’ve already got experience generating xml from the RSS feeds that I make for <a href="http://www.notecentric.com/">Notecentric</a> and <a href="http://www.animenano.com/">Anime Nano</a>.</p>
+
+<p>Plus, I get some street cred (maybe) for including AJAX in the site! It’s a requirement of Web 2.0, so I figure I should fulfill it.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
+        <span class="date">April 21, 2007</span>
         <h3><a class="post-link" href="/blog/2007/04/21/facebook-vs-orkut-what-do-googlers-think/">Facebook Vs. Orkut: What Do Googlers Think?</a></h3>
         <p><p>So I was browsing the various <a href="http://www.facebook.com/networks/">Facebook networks</a> that exist for things like regions, universities, and workplaces. Being a fan of Google, I checked to see how many Googlers (Google employees) are on Facebook. The count as of right now? 2,041.</p>
 
@@ -243,27 +268,6 @@ ga('send', 'pageview');
 </center>
 
 <p>Also, Rest in Peace, Mark Zuckerberg. You’ll be sorely missed.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 10, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/10/askcom-on-google/">Ask.com on Google?</a></h3>
-        <p><p><img src="/blog/wp-content/uploads/2007/04/askgoogle.gif?w=604" alt="askgoogle.gif" data-recalc-dims="1" /></p>
-
-<p>When I searched for ‘prime numbers’ just now on Google, the first hit was a sponsored link for Ask.com. You would think it’s a conflict of interest for Google to be suggesting a competitor to its users. When you think about it, though, Google is also taking money from Ask.com, literally!</p>
-
-<p>It’s especially strange seeing Ask.com advertising on Google so soon after being criticized for launching a <a href="http://valleywag.com/tech/ask/attacking-google-249920.php">guerrilla negative ad campaign</a> against them…</p>
 
 
           

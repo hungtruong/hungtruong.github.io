@@ -11,12 +11,12 @@
     <meta name="description" content="">
     <meta name="referrer" content="origin">
 
-    <title>Hung Truong: The Blog!</title>
+    <title>Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout</title>
 
     <!-- Open Graph Meta -->
     <meta content="Hung Truong: The Blog!" property="og:site_name">
     
-      <meta content="Hung Truong: The Blog!" property="og:title">
+      <meta content="Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout" property="og:title">
     
     
       <meta content="article" property="og:type">
@@ -25,8 +25,11 @@
       <meta content="I say potato, you say potato..." property="og:description">
     
     
-      <meta content="http://www.hung-truong.com//blog/page/124/" property="og:url">
+      <meta content="http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-2/" property="og:url">
     
+    
+      <meta content="2019-04-07T00:00:00-07:00" property="article:published_time">
+      <meta content="http://www.hung-truong.com//blog/about/" property="article:author">
     
     
       <meta content="http://www.hung-truong.com//blog/assets/img/danbo.jpg" property="og:image">
@@ -37,10 +40,10 @@
     <meta name="twitter:site" content="@hungtruong">
     <meta name="twitter:creator" content="@hungtruong">
     
-      <meta name="twitter:title" content="Hung Truong: The Blog!">
+      <meta name="twitter:title" content="Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout">
     
     
-      <meta name="twitter:url" content="http://www.hung-truong.com//blog/page/124/">
+      <meta name="twitter:url" content="http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-2/">
     
     
       <meta name="twitter:description" content="I say potato, you say potato...">
@@ -59,7 +62,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/blog/assets/css/style.css">
     <!--[if IE 8]><link rel="stylesheet" href="/blog/assets/css/ie.css"><![endif]-->
-    <link rel="canonical" href="http://www.hung-truong.com//blog/page/124/">
+    <link rel="canonical" href="http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-2/">
 
     <!-- Modernizr -->
     <script src="/blog/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
@@ -115,109 +118,139 @@ ga('send', 'pageview');
 
    <div class="content">
       <div class="container">
-         <div class="home" id="home">
-  <ul class="posts noList">
-    
-      <li>
-        <span class="date">November 20, 2002</span>
-        <h3><a class="post-link" href="/blog/2002/11/20/dyquil/">Dyquil?</a></h3>
-        <p><p>Ok, hear me out here.</p>
+         <div class="post">
+  
+  <h1 class="postTitle">Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout</h1>
+  <p class="meta">April 07, 2019 | <span class="time">4</span> Minute Read</p>
+  
+  <figure>
+	<img src="/blog/wp-content/uploads/2019/zwiftworkoutheader.png" />
+	<figcaption>A very colorful Zwift Workout</figcaption>
+</figure>
 
-<p>Nyquil is Nyquil, not “Nightquil,” so why is it called Dayquil instead of “Dyquil?” It would fit so much better if you could have Nyquil and Dyquil. How cool would that be huh!? Either that or change Nyquil to Nightquil, which wouldn’t be so cool. What do you say people, should we get an angry mob together or what!?</p>
+<p>Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
+<a href="http://127.0.0.1:4000/blog/2019/03/17/making-a-zwift-clone-part-1/">learning Core Bluetooth to connect to my exercise bike and get data streaming
+directly to my
+app</a>.</p>
+
+<p>Since writing that article, I cleaned up the implementation of the Core
+Bluetooth service a bit and started supporting some additional data like
+distance, calories burned and cycling cadence.</p>
+
+<p>While cycling on my exercise bike and staring at these numbers is fun, the
+built-in screen on my bike already shows these numbers, so I essentially
+recreated a subset of the official
+<a href="https://www.concept2.com/service/software/ergdata">ergData</a> app so far.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/ergdata.jpg" />
+	<figcaption>The ergData app is functional but ugly af</figcaption>
+</figure>
+
+<p>I realized the next challenge would be to start a guided workout in my app and
+show the target wattage alongside my actual wattage on the bike.</p>
+
+<!--more-->
+
+<h3 id="enter-the-workout">Enter the Workout</h3>
+
+<p>Zwift workouts seem pretty simple to begin with. You can set up a number of
+workout segments to guide your workout. There are warmups, steady states,
+intervals, free ride sections and cool-downs. At any given point in your
+workout, Zwift will tell you to put in a certain amount of effort. You just try
+to get your watt number to match what Zwift wants you to do.</p>
+
+<p>At first I figured I could come up with my own way of representing workouts, but
+that would also require me to re-create all of the workouts I usually use on
+Zwift. Zwift also has a nice workout editor that can use to edit preset workouts
+or create completely new ones on your own.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/zwiftworkoutedit.png" />
+	<figcaption>Zwift’s built-in workout editor is pretty nice!</figcaption>
+</figure>
+
+<p>I discovered that if you copy an existing workout to edit it, the workout will
+be saved as user data and will be synced between all devices. How is the workout
+data saved, you ask? No, not as JSON as a sane developer would use. It’s XML.
+Okay, so technically it’s a .zwo file but I know what XML looks like! Here’s a
+sample of an exported workout file:</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/zwofile.png" />
+	<figcaption>Hello darkness, my old friend</figcaption>
+</figure>
+
+<p>So I went ahead and implemented an XMLParser in Swift to turn .zwo files into my
+own Workout struct. I won’t bore you with the implementation details but it was
+kind of a walk down memory lane dealing with the delegation-based API of
+XMLParser. I’m surprised there isn’t a more modern solution in Foundation but
+I’m guessing it’s because most people have moved on from XML.</p>
+
+<h3 id="lets-reverse-engineering">Let’s Reverse Engineering</h3>
+
+<p>By reading the .zwo files, I was able to figure out how Zwift represents their
+workouts and basically reverse engineer the structure of a workout:</p>
+
+<ul>
+  <li>Warmups have a duration, a low and high power (which is a percentage of
+<a href="https://zwift.com/news/4100-zwift-how-to-understanding-finding-your-ftp">FTP</a>).
+The warmup begins at the low power and steadily ramps up to the high power by
+the end of the segment.</li>
+  <li>SteadyStates are the simplest, with just a duration and power.</li>
+  <li>Intervals are the most complicated, with a repeat number, onDuration,
+offDuration, onPower and offPower. The intervals segment goes between the high
+and low power levels, and repeats a certain number of times. I didn’t want to
+deal with the extra complexity of this type so I just wrote some code to expand
+them out into SteadyStates.</li>
+  <li>Cooldowns are like warmups but in reverse.</li>
+</ul>
+
+<p>There are also some other things like text captions that appear during a
+workout, free ride segments and cadence settings that I didn’t bother to
+implement because I don’t use them. The cadence stuff makes sense if you’re
+using a smart trainer but my bike doesn’t support automatically changing
+resistance anyway.</p>
+
+<script src="https://gist.github.com/hungtruong/55e92115f993221693f9040431ee39fe.js"></script>
+
+<p>I decided to represent the WorkoutSegment as a Swift enum since it needs to
+support a bunch of different formats with varying levels of complexity. I’m
+actually kinda curious how the Zwift team ended up representing these and if
+they did something similar.</p>
+
+<p>From here it’s pretty simple to get stuff like the total duration or the target
+wattage for a particular time offset, whether I need to calculate that (in the
+case of a warmup or cooldown) or if I just return the constant value.</p>
+
+<script src="https://gist.github.com/hungtruong/718f50f48c32b324a2f25a80c78ae46b.js"></script>
+
+<p>Aside from representing the workout segments, the actual workout object will
+consist of things like the name, description, FTP and other information that
+pertains to the state of the workout like time elapsed. I wrote a function that
+takes the current time elapsed in the workout, loops through and finds the
+corresponding segment and returns the desired wattage. There might be a more
+efficient way to do that but for now it works.</p>
+
+<p>I also added some things to my project for displaying and choosing workouts from
+a list, and actually displaying the target wattage alongside actual wattage. I
+want to improve the interface now since it’s terrible, but I’ll save that for
+another blog post. If you want to check out the project, <a href="https://github.com/hungtruong/Zswift">it’s all here on
+Github</a>, including the playgrounds I used
+to test out the workout segment logic before adding it to the Xcode project.</p>
+
+<p>Next on my list of tasks is to make the workout interface a lot prettier/usable,
+and to add heart rate information from my Apple Watch.</p>
 
 
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">November 11, 2002</span>
-        <h3><a class="post-link" href="/blog/2002/11/12/new-keyboard-awesome-keys/">New Keyboard = Awesome Keys</a></h3>
-        <p><p>Hey, I got a new keyboard that has a working V key! It also has some weird keys such as “Turbo” and “Key Lock.” Isnt’ that awesome!? Some of the keys are weird though, like the backspace is small, unlike my original backspace, and also the delete key is like, right above the arrow buttons, so it’s all weird. I think once I get used to it, this keyboard and I will get along just fine!</p>
-
-<p>-Hung</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">November 02, 2002</span>
-        <h3><a class="post-link" href="/blog/2002/11/02/how-can-i-sing-like-a-girl/">How Can I Sing Like A Girl?</a></h3>
-        <p><p>Does anyone else think that Chet Baker sings like a girl?</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">October 30, 2002</span>
-        <h3><a class="post-link" href="/blog/2002/10/30/ghosts-latin-and-ghosts-learning-latin/">Ghosts, Latin, and Ghosts Learning Latin?</a></h3>
-        <p><p>What’s with ghosts speaking latin? Once you die, do they just put you through a crash course on latin, or are you just instantly good at it? What if you studied latin in high school, but the pronunciations were incorrect? What if you originally spoke latin, and when you died, they made you speak a different dialect of it? Can someone wise me up on this stuff?</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">October 29, 2002</span>
-        <h3><a class="post-link" href="/blog/2002/10/30/broken-v-not-the-new-mighty-ducks-movie/">Broken &#8216;V&#8217; &#8211; Not The New Mighty Ducks Movie</a></h3>
-        <p><p>People,</p>
-
-<p>My “v” key is broken. Now I know what you’re going to say, you’re going to say, “Hung, if your ‘v’ key is broken, how can you type ‘v?’” Well, it’s simple, sometimes the key works, and sometimes it doesn’t. It is slowly driving me insane, so I think i better get a new keyboard stat. Just thought you’d all like to know. All of you who read my blog that is. And by all of you who read my blog, I mean the occasional stalker or two that I have. anyway, That’s all.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-  </ul>
-  <!-- Pagination links -->
-  <div class="pagination">
-    
-      <a href="/blog/page/123/" class="previous button__outline">Newer Posts</a>
-    
-    
-      <a href="/blog/page/125/" class="next button__outline">Older Posts</a>
-    
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+     
+      <a class="prev" href="/blog/2019/03/17/making-a-zwift-clone-part-1/"><span>&laquo;&nbsp;Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth</span>
+      
+    </a>
+      
+     
   </div>
 </div>
 

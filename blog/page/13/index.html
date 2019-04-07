@@ -119,6 +119,37 @@ ga('send', 'pageview');
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 16, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/02/16/greplin-programming-challenge/">Greplin Programming Challenge</a></h3>
+        <p><p><a href="/blog/wp-content/uploads/2011/02/greplin.png" rel="lightbox[2375]"><img src="/blog/wp-content/uploads/2011/02/greplin.png?resize=442%2C136" alt="" title="greplin" width="442" height="136" class="aligncenter size-full wp-image-2377" data-recalc-dims="1" /></a></p>
+
+<p>I had some spare time on Monday and just read about Greplin getting some funding (and I guess they just went out of private beta today), so I did the <a href="http://challenge.greplin.com/">Greplin Programming Challenge</a>.</p>
+
+<p>Unlike many programming challenges, the problems in this one were pretty easy to solve. I think a lot of people on Hacker News complained that you could basically brute force them into submission. For example, one question is finding a prime Fibonacci number. I’m sure there’s super smart ways to do it but I just iterated through Fibs and then ran a really slow primeness function on each one. It worked eventually!</p>
+
+<p>I finished the challenge and sent an email to the Greplin guys, since the challenge instructed me to do so. After reading through some of their site, the challenge actually started to make more sense to me. From their <a href="https://www.greplin.com/jobs">jobs page</a>:</p>
+
+<blockquote>
+  <p>You should know the fastest way to do something – which sometimes means the least CPU cycles and sometimes means the least programmer cycles.</p>
+</blockquote>
+
+<p>Basically, you could figure out the most efficient way to do the challenges (from a computational perspective) at a cost to programming time. Or you could recognize that N was trivially large for all of the challenge cases and just code something really simple up and get the answer. I picked the latter. Greplin is probably looking for both types, so I think they did a good job designing the challenge.</p>
+
+<p>In other news, I signed up for their service and tried it out. It seems like a really cool concept and I like it so far. I kind of wish there was a roll your own version though. I dunno if I can trust Greplin with all of my innermost secrets… It’s bad enough that Google has all of your email; Greplin can have that plus your tweets and Facebook stuff too!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 07, 2011</span>
         <h3><a class="post-link" href="/blog/2011/02/07/threadless-shirt-tweet/">Threadless Shirt &#8211; Tweet</a></h3>
         <p><p><a href="http://www.threadless.com/product/2716/Tweet?streetteam=notoupee"><img src="/blog/wp-content/uploads/2011/02/Threadless-Tweet.jpg?resize=500%2C361" alt="" title="Threadless-Tweet" width="500" height="361" class="aligncenter size-medium wp-image-2368" srcset="/blog/wp-content/uploads/2011/02/Threadless-Tweet.jpg?resize=500%2C361 500w, /blog/wp-content/uploads/2011/02/Threadless-Tweet.jpg?w=636 636w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
@@ -217,29 +248,6 @@ ga('send', 'pageview');
 <p>There are also a few methods described to try to ward against anchoring and priming. One is to immediately set up an argument. If someone says “do you think this book is worth 26.99?” and you say “yes,” then immediately think of reasons why it might be worth less than that. This is also why you should always take a friend with you to the car dealership to argue with.</p>
 
 <p>Overall I thought the book was really interesting. If you can get past all of the cognitive science at the beginning (I might’ve found it boring because I had heard about most of it before), the second half of the book is a really quick and interesting read.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 01, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/02/02/automatic-checkins-in-google-latitude/">Automatic Checkins in Google Latitude</a></h3>
-        <p><p>It looks like Google has updated their Latitude app with checkins, including automatic notifications and checkins (and checkouts).</p>
-
-<p>When I developed <a href="http://www.checkinmate.com">Checkmate</a>, there wasn’t really a standard design for the auto-checkin behavior. Some users have mentioned that the app might work better by sending notification to check in, more like reminders. I’ve leaned towards fully automated checkins, myself.</p>
-
-<p>Google seems to be taking a hybrid approach, which is pretty interesting. You get a notification the first time you arrive somewhere (probably only for places you’ve checked into before), and then an option to automatically check in after that.</p>
-
-<p>I might end up building some kind of hybrid (or a simple option in settings) system in Checkmate to see if that works better in general. I wonder how Google is mitigating the cost of GPS usage in its Latitude app. I always figured that the thing keeping auto-checkin out of official apps is the fact that they run the battery down pretty hard.</p>
 
 
           
