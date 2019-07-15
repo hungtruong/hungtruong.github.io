@@ -5,9 +5,107 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 03 May 2019 17:01:59 -0700</pubDate>
-    <lastBuildDate>Fri, 03 May 2019 17:01:59 -0700</lastBuildDate>
+    <pubDate>Sun, 14 Jul 2019 17:25:31 -0700</pubDate>
+    <lastBuildDate>Sun, 14 Jul 2019 17:25:31 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      
+      <item>
+        <title>Introducing BarkMode: Bark Detection + Dark Mode</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/barkmode.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was in California about a month ago for work and I was able to attend a few events during WWDC week. I read a lot about the new features and APIs but didn’t really have a lot of time to mess with stuff like SwiftUI, etc. I got a stupid idea for a project but I didn’t really take the time to work on it until this weekend. Now I’d like to introduce you to my latest app: Bark Mode!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;wtf-is-bark-mode&quot;&gt;WTF is Bark Mode?&lt;/h3&gt;
+
+&lt;p&gt;Right after the new APIs were announced at WWDC, I scanned them for anything that might be interesting. I really like being one of the first to try out a new technology, but I figured that everyone would be all over &lt;a href=&quot;https://developer.apple.com/xcode/swiftui/&quot;&gt;SwiftUI&lt;/a&gt;, and I was right. I found a somewhat obscure new feature as part of CreateML that allowed users to generate a ML model that could classify sounds.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;This SoundAnalysis API in particular seems relevant to my typically immature interests. 💨 &lt;a href=&quot;https://twitter.com/hashtag/WWDC19?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#WWDC19&lt;/a&gt; &lt;a href=&quot;https://t.co/0Aipwa99Lu&quot;&gt;https://t.co/0Aipwa99Lu&lt;/a&gt;&lt;/p&gt;&amp;mdash; Hung Truong (@hungtruong) &lt;a href=&quot;https://twitter.com/hungtruong/status/1135947285035020290?ref_src=twsrc%5Etfw&quot;&gt;June 4, 2019&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt; 
+&lt;/center&gt;
+
+&lt;p&gt;Of course the first thing I thought of was to make an app that could detect farts. I could even make it so that a fart would toggle dark mode off/on. Though I wanted to start experimenting right away, I discovered that you actually needed to have the newest version of macOS Catalina installed in addition to the newest Xcode to use Create ML, and I didn’t have my personal computer handy and couldn’t install a beta OS on my work computer, so I ended up not building it.&lt;/p&gt;
+
+&lt;p&gt;Fast forward to this weekend, and I eventually got Catalina and all the other prerequisites I needed to get started. Instead of “FarkMode” which doesn’t really make sense, I decided to switch it up this time and detect dogs barking, since “Bark” rhymes better with “Dark” than “Fart.” Plus everybody loves dogs! Perhaps I’m finally maturing in my old age (probably not).&lt;/p&gt;
+
+&lt;p&gt;Anyway, here’s the steps I needed to take to make my BarkMode app.&lt;/p&gt;
+
+&lt;h3 id=&quot;creating-the-model&quot;&gt;Creating the model&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/Create ML.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I had seen some videos of people making image classifiers using &lt;a href=&quot;https://developer.apple.com/documentation/createml&quot;&gt;CreateML&lt;/a&gt; in the past. It seemed as easy as creating a few folders with different labels and images of those things. You would have to create one batch for training images, and another for optionally testing the models once they were created.&lt;/p&gt;
+
+&lt;p&gt;The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images. I started by finding a bunch of stock sound effects of dogs barking. I also found a bunch of random stock sound affects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.” I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.&lt;/p&gt;
+
+&lt;p&gt;At first I took larger sound files and chopped them up into really short ones. This way I had a bunch of training data that I can use both to train and test my classifier.&lt;/p&gt;
+
+&lt;p&gt;However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted. I saw that the app thought I only had 3 files when I had created a bunch more. I believe that Create ML is unable to train with really short audio files. I ended up inserting the full sound files instead of the short ones. At this point I think I had about 8 or 9 files for either barking or not barking.&lt;/p&gt;
+
+&lt;p&gt;The model was created but it had a really terrible accuracy. I decided to just add a bunch more files both of dogs barking and things that weren’t dogs barking. The more examples I added the “better” the model became.&lt;/p&gt;
+
+&lt;h3 id=&quot;polishing-the-model&quot;&gt;Polishing the model&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/barktest.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Create ML has a feature where you can test your audio classifier with audio data coming from your own microphone. When I did this I noticed that the model was too biased towards no sound being barking. I’m not sure why but maybe white noise sounds more like barking than an old timey car horn?&lt;/p&gt;
+
+&lt;p&gt;I ended up adding a bunch of white noise and recorded some nothing to add to the model. This helped quite a bit. The last thing I did was also record some audio of myself talking so that the model would not recognize me talking as barking. This was useful so I wouldn’t get false positives during my demo video (which I ended up getting anyway in a bunch of outtakes).&lt;/p&gt;
+
+&lt;h3 id=&quot;integrating-the-model-in-the-app&quot;&gt;Integrating the model in the app&lt;/h3&gt;
+
+&lt;p&gt;I created a new app and promptly enabled “Use SwiftUI.” Then I promptly made a new project because I couldn’t figure out where my ViewController class was! I’ll take a look at SwiftUI later but for now I’ll focus on getting my BarkMode app actually working.&lt;/p&gt;
+
+&lt;p&gt;The Create ML app made a model that I could then copy into my app. It was really as simple as dragging it from one place to another.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/mlmodel.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Looking at the model in Xcode, it describes an interface with an input of “audioSamples” that takes a MultiArray of (Float32 15600). I assumed this had something to do with the number of samples per second and the bitrate of the audio. I fiddled around with the AudioToolbox framework and a few other lower level audio APIs until I discovered Apple’s documentation on the &lt;a href=&quot;https://developer.apple.com/documentation/soundanalysis&quot;&gt;SoundAnalysis&lt;/a&gt; framework which provides a much, much easier method of feeding audio to the model.&lt;/p&gt;
+
+&lt;p&gt;I implemented the steps described and extended my ViewController to conform to the SNResultsObserving protocol. Then it was a few simple steps to write some logic to handle the app detecting no barking to barking and back to no barking, and toggling the dark mode off and on.&lt;/p&gt;
+
+&lt;p&gt;Finally, I added a label and an image view that takes an image with different assets for the light and dark modes, which changes automatically based on the current setting.&lt;/p&gt;
+
+&lt;p&gt;The model runs pretty quickly. Here’s a gif of the terminal output from the logging whenever some sound data comes in:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/barknobark.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to see the app in action, I created this video to demonstrate:&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/0XRxA1cEHio&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;As it is, this app isn’t very useful for much of anything, but I could see a few potential uses for the model I trained:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Write an app that detects your dog is unhappy when it’s at home and triggers a home automation action like playing music or shooting a treat at your dog&lt;/li&gt;
+  &lt;li&gt;Detect if suspicious sound at your house is a robber or just a dog&lt;/li&gt;
+  &lt;li&gt;Classify different types of barks and make a dog barking translation app&lt;/li&gt;
+  &lt;li&gt;For people who are allergic to dogs, advance warning of incoming dog&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I’ve posted the full project to &lt;a href=&quot;https://github.com/hungtruong/BarkMode&quot;&gt;Github&lt;/a&gt; in case you’re curious about how I implemented the app. I didn’t upload the Create ML project but it just has a bunch of sound effect files and files of me saying gibberish. The model included in the Github repo should work fine anyway.&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/barkmode.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I was in California about a month ago for work and I was able to attend a few events during WWDC week. I read a lot about the new features and APIs but didn’t really have a lot of time to mess with stuff like SwiftUI, etc. I got a stupid idea for a project but I didn’t really take the time to work on it until this weekend. Now I’d like to introduce you to my latest app: Bark Mode!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 14 Jul 2019 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1060,68 +1158,6 @@ I chose to go off-grid because I didn’t want to deal with actually putting the
         <link>http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</link>
         <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</guid>
         
-        
-        <category>Nerd</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Strange Copy Pasta in Developer Resumes</title>
-        <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-6.33.32-PM.png&quot; alt=&quot;A sample of some UIViews&quot; /&gt;
-	&lt;figcaption&gt;A sample of some UIViews that are basic &quot;functionalities&quot; in a &quot;Multi-view Application&quot;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;So for the past few weeks we’ve been trying to hire for a contractor position to work on our iOS app. Along with the rest of the team, I’ve been reviewing resumes on a really corporate looking website that have been submitted by recruiters on behalf of candidates. It’s an interesting exercise because the resumes are almost all in the same exact format and after a while, they really start to look the same. In some cases, this is because a candidate has been rejected and resubmitted accidentally.&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;p&gt;While scanning through a bunch of resumes, my coworker Will noticed a bullet point that actually appeared in more than one person’s resume:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Experienced in creating and custom UIViews, Table Views, Tab Bars and Navigation Bar, which are some basic functionalities in a Multi-view Application.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;There are a few things that stand out about this. The sentence itself runs on and on, and the grammar used is pretty dubious. Also, the inclusion of this into an iOS developer’s resume tells you nothing because every iOS developer should have experience with these elementary UI elements, and the sentence even sort of explains that at the end. The fact that it appears in more than one resume is surprising, since it’s such a stupid thing to include in your resume to begin with.&lt;/p&gt;
-
-&lt;p&gt;I was curious about this bullet point, so I suggested that Will paste the phrase into Google. Here’s an interesting slice of the results:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png&quot; rel=&quot;lightbox[2991]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-2993&quot; src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=475%2C600&quot; alt=&quot;&quot; width=&quot;475&quot; height=&quot;600&quot; srcset=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=475%2C600 475w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=768%2C970 768w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?resize=811%2C1024 811w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?w=1316 1316w, /blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-11.02.03-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 475px) 100vw, 475px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;While there’s not a direct match, there are links to resumes which have slightly altered versions of the same phrase. The part that is mostly shared is the “…which are some basic functionality in a Multi view Application.” If you google for that, you will find pages and pages of resumes with a bullet point similar to the original. Will even started a tally of “mutations” of the phrase with added embellishments at the end, or with slightly better grammar.&lt;/p&gt;
-
-&lt;p&gt;I was curious which other phrases in these resumes were common, so I tried googling some of them. Some that I found that had become memes were:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Strong Knowledge of Software Development Life Cycle (SDLC) with strategically designing and implementing the software, debugging, fixing and maintaining the software.&lt;/li&gt;
-  &lt;li&gt;Developed apps using various iOS design patterns (MVC, Delegation, Target-action and Slide-out Navigation).&lt;/li&gt;
-  &lt;li&gt;Proficient in Memory Management: Automatic Reference Counting (ARC) and Manual Reference Counting (MRC).&lt;/li&gt;
-  &lt;li&gt;Mobile Application Development (iPhone/iPad) using objective-C, UIKit, Core Location, MapKit, Cocoa Touch and Cocoa Service Frameworks.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I have a few guesses as to why these are in so many resumes verbatim. It could be that the candidate simply copied and pasted the bullet points from a friend’s resume and hopefully actually has those skills. Another could be that the recruiting firm offered to touch up their resume for them and did so lazily. While it’s easy to attribute this to malice, it’s probably just good old fashioned laziness. After all, if it works for so many developers, it should work for you! Either way it looks terrible for the candidate and it’s frustrating for people doing the hiring to see such a lack of originality. I already have to go through more than 30 resumes; I don’t want to think I’m going crazy with all the feelings of Deja Vu.&lt;/p&gt;
-
-&lt;p&gt;My recommendation to developers would be to write, in your own words, what you’ve actually accomplished. Resume writing is annoying, and no one likes doing it, but the downside to plagiarism is that I toss your resume out and assume you’re a terrible person. Also, I’m secretly hoping that this blog post becomes the top Google result for all of these copied bullet points so any curious resume-reviewers realize they’re not going insane. Also, feel free to nitpick my own outdated resume which you can find &lt;a href=&quot;http://www.hung-truong.com/portfolioresources/Hung%20Web%20Resume.pdf&quot;&gt;here&lt;/a&gt; on my (way outdated) &lt;a href=&quot;http://www.hung-truong.com/&quot;&gt;portfolio site&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I haven’t gone in depth at all to discover more of these copied phrases, but I’m willing to bet that a big percentage of bullet points in resumes are simply ripped off from other resumes.&lt;/p&gt;
-</description>
-        
-          <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2016/09/Screen-Shot-2016-09-03-at-6.33.32-PM.png&quot; alt=&quot;A sample of some UIViews&quot; /&gt;
-	&lt;figcaption&gt;A sample of some UIViews that are basic &quot;functionalities&quot; in a &quot;Multi-view Application&quot;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;So for the past few weeks we’ve been trying to hire for a contractor position to work on our iOS app. Along with the rest of the team, I’ve been reviewing resumes on a really corporate looking website that have been submitted by recruiters on behalf of candidates. It’s an interesting exercise because the resumes are almost all in the same exact format and after a while, they really start to look the same. In some cases, this is because a candidate has been rejected and resubmitted accidentally.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Tue, 06 Sep 2016 10:07:22 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2016/09/06/strange-copy-pasta-in-developer-resumes/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/09/06/strange-copy-pasta-in-developer-resumes/</guid>
-        
-        
-        <category>Job</category>
         
         <category>Nerd</category>
         
