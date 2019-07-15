@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 14 Jul 2019 17:25:31 -0700</pubDate>
-    <lastBuildDate>Sun, 14 Jul 2019 17:25:31 -0700</lastBuildDate>
+    <pubDate>Sun, 14 Jul 2019 17:37:06 -0700</pubDate>
+    <lastBuildDate>Sun, 14 Jul 2019 17:37:06 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       
@@ -38,11 +38,11 @@
 
 &lt;p&gt;I had seen some videos of people making image classifiers using &lt;a href=&quot;https://developer.apple.com/documentation/createml&quot;&gt;CreateML&lt;/a&gt; in the past. It seemed as easy as creating a few folders with different labels and images of those things. You would have to create one batch for training images, and another for optionally testing the models once they were created.&lt;/p&gt;
 
-&lt;p&gt;The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images. I started by finding a bunch of stock sound effects of dogs barking. I also found a bunch of random stock sound affects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.” I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.&lt;/p&gt;
+&lt;p&gt;The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images. I started by finding a bunch of stock sound effects of dogs barking. I also found a bunch of random stock sound effects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.” I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.&lt;/p&gt;
 
 &lt;p&gt;At first I took larger sound files and chopped them up into really short ones. This way I had a bunch of training data that I can use both to train and test my classifier.&lt;/p&gt;
 
-&lt;p&gt;However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted. I saw that the app thought I only had 3 files when I had created a bunch more. I believe that Create ML is unable to train with really short audio files. I ended up inserting the full sound files instead of the short ones. At this point I think I had about 8 or 9 files for either barking or not barking.&lt;/p&gt;
+&lt;p&gt;However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted. I saw that the app thought I only had 3 files when I had created a bunch more. I believe that Create ML is unable to train with really short audio files (less than a second). I ended up inserting the full sound files instead of the short ones. At this point I think I had about 8 or 9 files for either barking or not barking.&lt;/p&gt;
 
 &lt;p&gt;The model was created but it had a really terrible accuracy. I decided to just add a bunch more files both of dogs barking and things that weren’t dogs barking. The more examples I added the “better” the model became.&lt;/p&gt;
 
@@ -87,6 +87,8 @@
 &lt;/ol&gt;
 
 &lt;p&gt;I’ve posted the full project to &lt;a href=&quot;https://github.com/hungtruong/BarkMode&quot;&gt;Github&lt;/a&gt; in case you’re curious about how I implemented the app. I didn’t upload the Create ML project but it just has a bunch of sound effect files and files of me saying gibberish. The model included in the Github repo should work fine anyway.&lt;/p&gt;
+
+&lt;p&gt;I’m pretty happy with my end result. It’s fun to play around with new APIs and now I can say that I’ve trained an ML model to classify sounds, in addition to implementing Dark Mode! Hopefully I’ll have some time to play with other APIs that were introduced to iOS soon.&lt;/p&gt;
 </description>
         
           <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/barkmode.png&quot; /&gt;&lt;/p&gt;

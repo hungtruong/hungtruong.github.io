@@ -119,7 +119,7 @@
          <div class="post">
   
   <h1 class="postTitle">Introducing BarkMode: Bark Detection + Dark Mode</h1>
-  <p class="meta">July 14, 2019 | <span class="time">6</span> Minute Read</p>
+  <p class="meta">July 14, 2019 | <span class="time">7</span> Minute Read</p>
   
   <p><img src="/blog/wp-content/uploads/2019/barkmode.png" /></p>
 
@@ -147,11 +147,11 @@
 
 <p>I had seen some videos of people making image classifiers using <a href="https://developer.apple.com/documentation/createml">CreateML</a> in the past. It seemed as easy as creating a few folders with different labels and images of those things. You would have to create one batch for training images, and another for optionally testing the models once they were created.</p>
 
-<p>The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images. I started by finding a bunch of stock sound effects of dogs barking. I also found a bunch of random stock sound affects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.” I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.</p>
+<p>The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images. I started by finding a bunch of stock sound effects of dogs barking. I also found a bunch of random stock sound effects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.” I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.</p>
 
 <p>At first I took larger sound files and chopped them up into really short ones. This way I had a bunch of training data that I can use both to train and test my classifier.</p>
 
-<p>However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted. I saw that the app thought I only had 3 files when I had created a bunch more. I believe that Create ML is unable to train with really short audio files. I ended up inserting the full sound files instead of the short ones. At this point I think I had about 8 or 9 files for either barking or not barking.</p>
+<p>However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted. I saw that the app thought I only had 3 files when I had created a bunch more. I believe that Create ML is unable to train with really short audio files (less than a second). I ended up inserting the full sound files instead of the short ones. At this point I think I had about 8 or 9 files for either barking or not barking.</p>
 
 <p>The model was created but it had a really terrible accuracy. I decided to just add a bunch more files both of dogs barking and things that weren’t dogs barking. The more examples I added the “better” the model became.</p>
 
@@ -196,6 +196,8 @@
 </ol>
 
 <p>I’ve posted the full project to <a href="https://github.com/hungtruong/BarkMode">Github</a> in case you’re curious about how I implemented the app. I didn’t upload the Create ML project but it just has a bunch of sound effect files and files of me saying gibberish. The model included in the Github repo should work fine anyway.</p>
+
+<p>I’m pretty happy with my end result. It’s fun to play around with new APIs and now I can say that I’ve trained an ML model to classify sounds, in addition to implementing Dark Mode! Hopefully I’ll have some time to play with other APIs that were introduced to iOS soon.</p>
 
 
   <!-- POST NAVIGATION -->
