@@ -5,9 +5,98 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 14 Jul 2019 17:37:06 -0700</pubDate>
-    <lastBuildDate>Sun, 14 Jul 2019 17:37:06 -0700</lastBuildDate>
+    <pubDate>Sun, 29 Sep 2019 13:56:16 -0700</pubDate>
+    <lastBuildDate>Sun, 29 Sep 2019 13:56:16 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      
+      <item>
+        <title>Cloning Zwift on iOS Part 4: Workout View</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/workoutview.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I haven’t been working as much on my workout app since it’s been good enough for me to use as a replacement for Zwift with the most recent changes I wrote about.&lt;/p&gt;
+
+&lt;p&gt;I got a new iPhone so I had to build and install the app on my phone again, and after firing up Xcode I decided to go ahead and add a few more things that I was meaning to add to the app. The app hasn’t had a good visualization of workouts so I ended up creating an interface for that.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;taking-cues-from-zwift&quot;&gt;Taking cues from Zwift&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2019/emilysshortmix.jpg&quot; /&gt;
+	&lt;figcaption&gt;Emily's Short Mix, as seen in Zwift&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I didn’t want to reinvent the wheel here, so I decided to just copy how Zwift shows workouts, because it works pretty well. Not that I’m trying to write a whole 3d cycling MMORPG, but it helps to know where I am in a workout besides time elapsed and time remaining.&lt;/p&gt;
+
+&lt;p&gt;The general idea is to code each segment with its color based on the difficulty zone, and its height based on the target wattage of that segment.&lt;/p&gt;
+
+&lt;p&gt;I previously noted that the target wattage of a segment is based on the product of your own FTP and a multiplier. I did some reverse engineering and found that the color coded “zones” are based on this formula:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;0-60% = zone 1&lt;/li&gt;
+  &lt;li&gt;61-75% = zone 2&lt;/li&gt;
+  &lt;li&gt;76-89% = zone 3&lt;/li&gt;
+  &lt;li&gt;89-104% = zone 4&lt;/li&gt;
+  &lt;li&gt;105-118% = zone 5&lt;/li&gt;
+  &lt;li&gt;119%+ = zone 6&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I then just mapped the zones with the same colors, with zone 1 being gray, 2 being blue, etc. For the warmup and cooldown segments I just take the high power of those segments.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/5a3c38401b0f8a5dffbaf543bdd67e31.js&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;creating-a-view&quot;&gt;Creating a View&lt;/h3&gt;
+
+&lt;p&gt;Creating custom views from scratch is really not my strong point, but I know enough about autolayout and UIKit to implement whatever views a designer throws at me. Unfortunately I don’t have designer to throw designs at me so I had to come up with something on my own.&lt;/p&gt;
+
+&lt;p&gt;I was originally going to use a .xib file and set things up programmatically, but I realized that I really didn’t need a .xib and could do everything programmatically. I usually go with a hybrid approach to make the complicated parts easier, but in this case doing stuff in code is actually less complicated.&lt;/p&gt;
+
+&lt;p&gt;I ended up going with a stack view based layout, where I inserted the views into a horizontal stack view. The view itself has a width anchor based on the percentage of time it takes (if it’s a 10 minute segment in a 30 minute workout then its width would be 33.3% of the container), and then a subview which has a height anchor based on the relative intensity of the segment. It works out pretty well.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/1166ad11e921cb21470feed64ffb9e3f.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;I threw the view into a UITableViewCell so I could visually get a clue what the workout I was selecting looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/workoutslist.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;finally-some-progress&quot;&gt;Finally Some Progress&lt;/h3&gt;
+
+&lt;p&gt;I was pretty happy with the stack view representation of the workouts and left it that way for a few months. Today I was refactoring some stuff and implemented something that was really bothering me for a while. In Zwift you get a really nice view of the upcoming segments, and where you are in your current segment. My app is not really good at this, and there was a bug where it not correctly display the upcoming segment sometimes because of the way it handled workout segment equality. Essentially it was looking for the index of a segment but if there were two exact same segments it would assume the first one was the correct one.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I fixed that bug by just tracking the actual index of the segment I was on.&lt;/p&gt;
+
+&lt;p&gt;The other thing I wanted to add was a progress view, so I broke the Workout view into its own class and added a “progress” indicator, which is just a horizontal slider that slides over as you’re working out.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/c5963ec63481f39877e562da3c93a13a.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;This is what it looks like, if I was working out at 10x the regular speed (which would be easier I guess).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/ZSwiftWorkoutView.gif&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s about it for now! I think this makes my app pretty usable and until I find another thing I need to add to it, I feel like this is a good replacement for Zwift. If you happen to need the exact same thing that I do and also happen to have the same exact exercise bike, feel free to clone the &lt;a href=&quot;https://github.com/hungtruong/Zswift&quot;&gt;Github&lt;/a&gt; repo and use the app!&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/workoutview.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I haven’t been working as much on my workout app since it’s been good enough for me to use as a replacement for Zwift with the most recent changes I wrote about.&lt;/p&gt;
+
+&lt;p&gt;I got a new iPhone so I had to build and install the app on my phone again, and after firing up Xcode I decided to go ahead and add a few more things that I was meaning to add to the app. The app hasn’t had a good visualization of workouts so I ended up creating an interface for that.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 29 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1098,70 +1187,6 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
         
         
         <category>Software</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Building a DIY Off-Grid Solar Bank on my Roof</title>
-        <description>&lt;p&gt;I’ve been fascinated with solar energy ever since I was a kid and my brother had a toy with a motor attached to a mini solar panel that you could run under a strong light. In recent years, solar panels have come down in price and now seemed like a good a time as any for me to experiment with it a bit. I took a week long staycation from work a few weeks ago, and in preparation, I did a bunch of research and bought a ton of components to set up an off grid solar thing.
-&lt;!--more--&gt;
-I chose to go off-grid because I didn’t want to deal with actually putting the power back into the grid and all the bureaucracy involved (I’m not sure if my power company even buys power back), and the scale I’m working at is super small anyway. Here are the components I used, and why I decided to go with them. They might not be the best choice, because I have no idea what I’m doing, but even so, I learned a lot in the process.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-battery&quot;&gt;The Battery&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B01BKY07WA//ref=as_li_ss_il?th=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=b92403024fa0781096c3b837277a939a&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B01BKY07WA&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As I was building an off-grid solar charging system,  I needed something to store the energy gathered by the panel. My initial goal with the project was to charge the battery on my electric bike. The bike is something like 12Ah at 48v, so overall the capacity is about 580 watt hours. I only let the bike battery drain to about 80% at most, so I wanted to charge about 100 watt hours at a time.&lt;/p&gt;
-
-&lt;p&gt;The type of battery I got was a lead acid sealed AGM battery, which is apparently pretty safe and commonly used in this sort of application. After doing some research about these batteries, it sounds like they also last longer if you only let them discharge to about 60-80% of their capacity, so I got a battery that holds 660 watt hours (12v * 55 Ah). I could probably have gone with a bigger battery but this one only cost about $100.&lt;/p&gt;
-
-&lt;p&gt;I had no idea what sort of connector this battery used when I bought it, but it turns out that it’s a pretty common connector that uses a bolt. The inverter I ended up buying worked out of the box with it and I ended up buying a box of additional eyelet adaptors to make my own wires.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-solar-panel&quot;&gt;The Solar Panel&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B00DCCOSV0/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=e270dcd63cd98af5532650ff595f2b93&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B00DCCOSV0&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I wanted a panel that would be able to charge up my battery to a decent level each day. I ended up getting probably more capacity than needed, but I can always expand my project later. I bought a 100W polycrystalline (because it was cheaper than mono) panel by Renology because it had good ratings and a good price to watt ratio. The connectors on the panel are MC4 so I ended up buying &lt;a href=&quot;http://amzn.to/2dwFzt4&quot;&gt;some additional cable&lt;/a&gt; so I could connect the panel to a charge controller.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-charge-controller&quot;&gt;The Charge Controller&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B01K4H1O9O/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li2&amp;amp;tag=hungtruong-20&amp;amp;linkId=91b1ec3b032b6715709716acc253da31&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B01K4H1O9O&amp;amp;Format=_SL160_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I ended up getting a cheap charge controller that came at a discount in exchange for me writing a review. I was going to buy one that looked similar anyway, though I’m not sure if it’s the same manufacturer or just a knock off of the one I was going to buy. Either way it is the perfect size for my project at 10A and shows info like the current voltage level of the battery and the amperage going into the battery as well as the load coming out of the usb ports and the load out connectors.&lt;/p&gt;
-
-&lt;p&gt;I assumed you were supposed to connect the load out directly to an inverter but I read a few posts about how that would be a bad idea. I’m guessing too much load would fry your charge controller.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-inverter&quot;&gt;The Inverter&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/B019PXILXK/ref=as_li_ss_il?ie=UTF8&amp;amp;psc=1&amp;amp;linkCode=li3&amp;amp;tag=hungtruong-20&amp;amp;linkId=5b85a03ef46bf2a43df1465e9a48731a&quot; target=&quot;_blank&quot;&gt;&lt;img class=&quot;aligncenter&quot; src=&quot;//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;amp;ASIN=B019PXILXK&amp;amp;Format=_SL250_&amp;amp;ID=AsinImage&amp;amp;MarketPlace=US&amp;amp;ServiceVersion=20070822&amp;amp;WS=1&amp;amp;tag=hungtruong-20&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I was looking for a pure sine wave inverter, which is supposed to be more efficient and nice to your electronic devices, but I couldn’t find one under $100 so I ended up getting an 800W inverter that seemed pretty solid. As I mentioned earlier, the connectors just worked for the battery, which was nice. I only use one outlet at a time, so I haven’t tested if this thing can actually throw out 800W, but it’s probably a good rule of thumb to get an inverter with more capacity than you’ll need on average anyway. My bike battery charger uses about 140W and a Macbook charger will use 80W. I’m not sure how many watts that is after efficiency lost with the inverter but it’s probably not too terrible.&lt;/p&gt;
-
-&lt;h2 id=&quot;putting-it-all-together&quot;&gt;Putting it all together&lt;/h2&gt;
-
-&lt;p&gt;After getting all of the parts I realized that I was missing the connection from the charge controller to the battery. I ended up buying some ringlet adapters that would fit the battery and cut off part of the long wire I bought to make a new wire. This worked better than I thought it would. After that, I was able to connect the panel and battery to the charge controller. I was able to read that the panel was giving something like 3 amps to the battery, which was amazing to me at the time.&lt;/p&gt;
-
-&lt;p&gt;I also connected the inverter to the battery and was able to run my bike charger. I attached my Smart Things outlet in between the outlet and the charger so I could monitor how much voltage the battery used. It’s interesting because once the battery reaches a certain charge, the charger tapers down its power usage slowly. Finally, I placed the panel on the roof, which was kind of difficult considering how tall the roof is and how short my ladder apparently is, plus how heavy the panel was and how much I’m able to lift above my head while also balancing on top of a ladder…&lt;/p&gt;
-
-&lt;p&gt;Here’s some photos of the system running just inside the door to the roof. I’ll probably set up a plank or something to drill the charge controller and inverter onto, since right now it’s a little janky.&lt;figure id=&quot;attachment_3005&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;/figure&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;size-medium wp-image-3005&quot; src=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=500%2C375&quot; alt=&quot;This is the charge controller, battery and inverter charging my bike battery and an iPhone.&quot; width=&quot;500&quot; height=&quot;375&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=500%2C375 500w, /blog/wp-content/uploads/2016/10/IMG_1498.jpg?resize=768%2C576 768w, /blog/wp-content/uploads/2016/10/IMG_1498.jpg?w=1000 1000w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;This is the charge controller, battery and inverter charging my bike battery and an iPhone.&amp;lt;/figcaption&amp;gt;&amp;lt;/figure&amp;gt; &lt;figure id=&quot;attachment_3006&quot; style=&quot;max-width: 450px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;size-medium wp-image-3006&quot; src=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=450%2C600&quot; alt=&quot;The highest amperage I've seen is about 6, where I suppose the most the panel can give is 8.3 if it was on the surface of the sun.&quot; width=&quot;450&quot; height=&quot;600&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=450%2C600 450w, /blog/wp-content/uploads/2016/10/IMG_3680.jpg?resize=768%2C1024 768w, /blog/wp-content/uploads/2016/10/IMG_3680.jpg?w=800 800w&quot; sizes=&quot;(max-width: 450px) 100vw, 450px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;The highest amperage I’ve seen is about 6, where I suppose the most the panel can give is 8.3 if it was on the surface of the sun.&amp;lt;/figcaption&amp;gt;&lt;/figure&gt; &lt;figure id=&quot;attachment_3003&quot; style=&quot;max-width: 500px&quot; class=&quot;wp-caption aligncenter&quot;&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg&quot; rel=&quot;lightbox[3001]&quot;&gt;&lt;img class=&quot;wp-image-3003 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg?resize=500%2C303&quot; alt=&quot;Solar Panel&quot; width=&quot;500&quot; height=&quot;303&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/DSCF2276.jpg?resize=500%2C303 500w, /blog/wp-content/uploads/2016/10/DSCF2276.jpg?w=640 640w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&amp;lt;figcaption class=&quot;wp-caption-text&quot;&amp;gt;This is the solar panel before I got it on top of the roof&amp;lt;/figcaption&amp;gt;&lt;/figure&gt;&lt;/p&gt;
-
-&lt;p&gt;Hopefully you found this interesting and are already planning an off grid solar system of your own. I’m happy to say that my ebike is now powered 100% by my project, as well as a bunch of electronics in my house. Also, my house has become a lot more valuable in the case of a zombie apocalypse.&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;I’ve been fascinated with solar energy ever since I was a kid and my brother had a toy with a motor attached to a mini solar panel that you could run under a strong light. In recent years, solar panels have come down in price and now seemed like a good a time as any for me to experiment with it a bit. I took a week long staycation from work a few weeks ago, and in preparation, I did a bunch of research and bought a ton of components to set up an off grid solar thing.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Fri, 07 Oct 2016 12:22:32 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/</guid>
-        
-        
-        <category>Nerd</category>
         
       </item>
       
