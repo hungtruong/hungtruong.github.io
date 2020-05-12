@@ -3,10 +3,10 @@
   <channel>
     <title>Hung Truong: The Blog!</title>
     <description>I say potato, you say potato...</description>
-    <link>http://www.hung-truong.com//blog/</link>
-    <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 12 May 2020 09:43:52 -0700</pubDate>
-    <lastBuildDate>Tue, 12 May 2020 09:43:52 -0700</lastBuildDate>
+    <link>https://www.hung-truong.com/blog/</link>
+    <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 12 May 2020 13:25:03 -0700</pubDate>
+    <lastBuildDate>Tue, 12 May 2020 13:25:03 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       
@@ -127,8 +127,8 @@
 </description>
         
         <pubDate>Tue, 12 May 2020 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2020/05/12/reverse-engineering-quibi/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2020/05/12/reverse-engineering-quibi/</guid>
+        <link>https://www.hung-truong.com/blog/2020/05/12/reverse-engineering-quibi/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2020/05/12/reverse-engineering-quibi/</guid>
         
         
         <category>iOS</category>
@@ -216,8 +216,8 @@
 </description>
         
         <pubDate>Sun, 29 Sep 2019 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</guid>
+        <link>https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/</guid>
         
         
         <category>iOS</category>
@@ -316,8 +316,8 @@
 </description>
         
         <pubDate>Sun, 14 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</guid>
+        <link>https://www.hung-truong.com/blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</guid>
         
         
         <category>iOS</category>
@@ -502,8 +502,8 @@ slowly working on them in between working on my fitness.&lt;/p&gt;
 </description>
         
         <pubDate>Fri, 03 May 2019 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-3/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/05/03/making-a-zwift-clone-part-3/</guid>
+        <link>https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-3/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-3/</guid>
         
         
         <category>iOS</category>
@@ -666,8 +666,8 @@ show the target wattage alongside my actual wattage on the bike.&lt;/p&gt;
 </description>
         
         <pubDate>Sun, 07 Apr 2019 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2019/04/07/making-a-zwift-clone-part-2/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/04/07/making-a-zwift-clone-part-2/</guid>
+        <link>https://www.hung-truong.com/blog/2019/04/07/making-a-zwift-clone-part-2/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/04/07/making-a-zwift-clone-part-2/</guid>
         
         
         <category>iOS</category>
@@ -825,8 +825,8 @@ self.centralManager.scanForPeripherals(withServices: nil, options: nil)&lt;/p&gt
 </description>
         
         <pubDate>Sun, 17 Mar 2019 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-1/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2019/03/17/making-a-zwift-clone-part-1/</guid>
+        <link>https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/</guid>
         
         
         <category>iOS</category>
@@ -1057,8 +1057,8 @@ correlation or causation at work.&lt;/p&gt;
 </description>
         
         <pubDate>Sun, 20 May 2018 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</guid>
+        <link>https://www.hung-truong.com/blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</guid>
         
         
         <category>Public Speaking</category>
@@ -1103,8 +1103,8 @@ correlation or causation at work.&lt;/p&gt;
 </description>
         
         <pubDate>Sat, 07 Apr 2018 00:00:00 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2018/04/07/updating-my-blog-and-killing-wordpress/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2018/04/07/updating-my-blog-and-killing-wordpress/</guid>
+        <link>https://www.hung-truong.com/blog/2018/04/07/updating-my-blog-and-killing-wordpress/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2018/04/07/updating-my-blog-and-killing-wordpress/</guid>
         
         
       </item>
@@ -1186,8 +1186,8 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
 </description>
         
         <pubDate>Sun, 03 Dec 2017 00:00:00 -0800</pubDate>
-        <link>http://www.hung-truong.com//blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</guid>
+        <link>https://www.hung-truong.com/blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/</guid>
         
         
         <category>iPhone</category>
@@ -1248,8 +1248,8 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
 </description>
         
         <pubDate>Sat, 31 Dec 2016 07:59:49 -0800</pubDate>
-        <link>http://www.hung-truong.com//blog/2016/12/31/2016-a-hung-truong-year-in-review/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/12/31/2016-a-hung-truong-year-in-review/</guid>
+        <link>https://www.hung-truong.com/blog/2016/12/31/2016-a-hung-truong-year-in-review/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2016/12/31/2016-a-hung-truong-year-in-review/</guid>
         
         
         <category>Life</category>
