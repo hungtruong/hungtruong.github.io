@@ -5,9 +5,138 @@
     <description>I say potato, you say potato...</description>
     <link>http://www.hung-truong.com//blog/</link>
     <atom:link href="http://www.hung-truong.com//blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 Sep 2019 13:56:16 -0700</pubDate>
-    <lastBuildDate>Sun, 29 Sep 2019 13:56:16 -0700</lastBuildDate>
+    <pubDate>Tue, 12 May 2020 09:36:10 -0700</pubDate>
+    <lastBuildDate>Tue, 12 May 2020 09:36:10 -0700</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      
+      <item>
+        <title>Reverse Engineering Quibi: Protocol Buffers and HLS Streaming</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/Quibi_Logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects. I really enjoy reverse engineering apps, so I decided to take a look at Quibi.&lt;/p&gt;
+
+&lt;p&gt;Quibi (short for “Quick Bites”) is a video streaming app/service that has a bunch of shows that are short. The idea is that you can sit on a bus ride and consume an episode or two, depending on how long your commute is. One of the constraints of the platform is that you can only watch these videos on a phone or tablet with the app installed.&lt;/p&gt;
+
+&lt;p&gt;Since everyone is stuck indoors for a while this constraint is kinda stupid and most people would probably like to watch their videos on their big tv rather than huddle around a phone, which is what Emily and I had to do to watch that stupid viral show about the &lt;a href=&quot;https://twitter.com/zachraffio/status/1250273191810875392&quot;&gt;terrible wife with the golden arm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I had an idea to write a tvOS app that would work with Quibi, so you could watch your terrible shows on your tv. Here’s what I learned trying to reverse engineer the Quibi app.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;setting-up-charles&quot;&gt;Setting up Charles&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2020/charlesproxy.jpg&quot; /&gt;
+	&lt;figcaption&gt;Get out of my head Charles!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The first rule of reverse engineering club is that you should probably install &lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles proxy&lt;/a&gt; on your computer, and point your phone to it. This lets you inspect network requests and figure out the API for an app. Depending on how stringent the app’s security settings are, you can either learn a lot, or very little from Charles.&lt;/p&gt;
+
+&lt;p&gt;The way Charles works is that you basically route all of your traffic from your iPhone to your computer. You need to install a certificate on your phone and trust it, so that your phone thinks that it’s going through a secure connection when it’s really getting owned. But since you’re self-owning, it’s generally okay. I’m not going to do a full tutorial on how to do this because you can just read the docs.&lt;/p&gt;
+
+&lt;p&gt;You can also buy a version of Charles that runs directly on your phone. I did this, but I also find it easier to work with on my computer, so I used the free version that stops working every 30 minutes. I should probably buy the full version.&lt;/p&gt;
+
+&lt;p&gt;Anyway, once you get the proxy working on your phone and add the proper domains to the allowed list, you should start seeing your network requests and responses pop up in Charles after firing up the app and doing stuff.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/charlesinaction.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It turns out (luckily for me) that Quibi doesn’t utilize certificate pinning (at least at the time I’m writing this article). Cert pinning is a way to prevent snooping of network requests by embedding a certificate (or maybe a hash of it or a public key) to be trusted into the actual app binary. This means that adding the additional Charles certificate won’t work because the app won’t accept it. The process of pinning is kind of a pain in the ass, which is why a lot of companies don’t do it.&lt;/p&gt;
+
+&lt;p&gt;Because Quibi doesn’t use cert pinning, that means I can observe all of the requests and responses that the app sends and receives, which makes it a lot easier to reverse engineer!&lt;/p&gt;
+
+&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;/h3&gt;
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2020/quibi_oauth.png&quot; /&gt;
+	&lt;figcaption&gt;This is what the Quibi OAuth request/response look like with the private stuff removed&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I won’t go too much into the way that Quibi does authentication, as it appears to be a pretty basic implementation of OAuth 2.0, using auth0 as a service provider. It doesn’t appear to use a client secret key, as I’m able to just replay the request with my username, password, client id and other parameters and get a valid access token back. One interesting thing to note here is how short the token expiration is, just 2700 seconds, or 45 minutes.&lt;/p&gt;
+
+&lt;p&gt;Once authentication happens, the access token is used in subsequent requests as the authorization bearer header tokens.&lt;/p&gt;
+
+&lt;p&gt;I didn’t bother to set up a new app with authentication because I wanted to get to the meat of the app, and started taking a look at how the app’s requests and responses were structured, which brings us to…&lt;/p&gt;
+
+&lt;h3 id=&quot;protocol-buffers&quot;&gt;Protocol Buffers!&lt;/h3&gt;
+
+&lt;p&gt;I’ll be honest, I was initially pretty annoyed when I read the line,&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;content-type: application/protobuf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;in Charles. That’s because &lt;a href=&quot;https://developers.google.com/protocol-buffers&quot;&gt;protocol buffers&lt;/a&gt; are pretty annoying to work with unless you actually have access to the .proto files that were used to generate the schema for the response.&lt;/p&gt;
+
+&lt;p&gt;Luckily, I have experience working with protobufs (as the cool kids call them) because we started implementing them at Lyft last year. As a primer, protocol buffers basically define requests and responses, and their types, in a way that can be shared between servers, clients, etc. It does so in a way that reduces the amount of redundancy in the data. So instead of looking at a JSON file that labels each key/value pair for each item in an array, you just see the values, and the keys (and their types) are essentially encoded outside of the format itself. That’s probably a gross simplification of protobufs, but that’s basically how I understand their functionality in lay person terms.&lt;/p&gt;
+
+&lt;p&gt;So getting back to Quibi, I was seeing calls to endpoints like&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;https://qlient-api.quibi.com/quibi.qlient.api.home.Home/GetHomeCards&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;with a bunch of wacky characters, urls, and names and descriptions of tv shows. Looking at the raw text gave me an idea of what was being returned, but there was also a lot of data that I couldn’t see because it was encoded as a protobuf response.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_raw.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I found a tool written by someone named &lt;a href=&quot;https://github.com/mildsunrise&quot;&gt;Alba Mendez&lt;/a&gt; called &lt;a href=&quot;https://github.com/mildsunrise/protobuf-inspector&quot;&gt;protobuf-inspector&lt;/a&gt; which allows you to visualize the values in a protobuf response. Once I threw the response into this tool, it started to make a lot more sense.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_inspector.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, I could see that the home cards were displaying structured information for each of the cards in the app. The hierarchy seemed to be a card with series info, a mp4 preview link, and then info about that particular episode. There were also some values that didn’t really seem useful, like “&amp;lt;varint&amp;gt; = 1” which could’ve meant anything, like a bool value or episode number.&lt;/p&gt;
+
+&lt;p&gt;The tool has a way to set up object definitions, so that when you run it again, you see the key names and types that you defined. This is helpful if you’re trying to guess what something is and you want to compare it against a few different objects. Here’s what the response looked like once I tried defining some of the keys:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_inspector_labeled.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This makes the response look a bit more logical. I really guessed some of these, so if someone from Quibi actually reads this maybe you can confirm. I probably spent more time on this than I needed, because really all I want is to show a list of shows and maybe even start watching a show.&lt;/p&gt;
+
+&lt;p&gt;To waste even more time, I ended up defining this response in a .proto file, compiled it into Swift with swift-protobuf and got a Swift app to parse the response into real Swift structs! Here is the proto definition:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/hungtruong/ad4a62c9c1d86a2c187267bc353d8284.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;The generated proto code in Swift is pretty big, so I’ll leave it as an exercise to the reader to run it through swift-protobuf.&lt;/p&gt;
+
+&lt;p&gt;Here’s what it looks like running in the debugger in my app:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/proto_swift.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So with what I have written about so far, I could actually write a functioning Quibi client that supports logging in, making a request to get a list of tv show cards, and displays them, with a “live” preview, just like the real app. That doesn’t matter much unless you can actually watch the show, though.&lt;/p&gt;
+
+&lt;h3 id=&quot;hls-and-video-streaming&quot;&gt;HLS and Video Streaming&lt;/h3&gt;
+
+&lt;p&gt;I apologize for the anti-climactic finale of this blog post, but this is where I got stuck.&lt;/p&gt;
+
+&lt;p&gt;Before I tried reverse engineering this app, I pretty much knew nothing about video streaming. When looking at the chain of requests that the app makes, it appears that the app hits an endpoint called “GetPlaybackInfo” and sends a payload of series id, season #, and episode # along with a mystery UUID that I haven’t seen anywhere else in the app requests/responses, then receives a link to a “license” url, a few links to .m3u8 resources and some cookies for accessing those .m3u8 resources.&lt;/p&gt;
+
+&lt;p&gt;Then the app makes a request to the license url with some form encoded data and receives some other encoded data back. Finally, the app makes a request to one of the .m3u8 files and starts streaming the video.&lt;/p&gt;
+
+&lt;p&gt;I did &lt;a href=&quot;https://developer.apple.com/streaming/&quot;&gt;some research&lt;/a&gt; and it looks like a .m3u8 url basically provides the client with a way or ways to display the video to the user. It can include things like different video streams with varying quality, and it looks like it even has some subtitle file support.&lt;/p&gt;
+
+&lt;p&gt;I tried just replaying the call to the .m3u8 file with the same authentication cookie and it unfortunately didn’t work. I think that the license url provides the app with a way to decode the video, and without knowing what to send or how to decode it, I think I’m essentially stuck.&lt;/p&gt;
+
+&lt;p&gt;I sort of didn’t expect to be able to finish this app anyway, so I’m pretty happy with how far I got. I also figure that if I try to go any further with this, Quibi will probably try to sue me or something, so it probably isn’t worth it. In any case, I did learn a lot from this project, and hopefully you have too, from reading this post. If you have any ideas on how I would proceed or if you enjoyed this post, feel free to let me know!&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/Quibi_Logo.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects. I really enjoy reverse engineering apps, so I decided to take a look at Quibi.&lt;/p&gt;
+
+&lt;p&gt;Quibi (short for “Quick Bites”) is a video streaming app/service that has a bunch of shows that are short. The idea is that you can sit on a bus ride and consume an episode or two, depending on how long your commute is. One of the constraints of the platform is that you can only watch these videos on a phone or tablet with the app installed.&lt;/p&gt;
+
+&lt;p&gt;Since everyone is stuck indoors for a while this constraint is kinda stupid and most people would probably like to watch their videos on their big tv rather than huddle around a phone, which is what Emily and I had to do to watch that stupid viral show about the &lt;a href=&quot;https://twitter.com/zachraffio/status/1250273191810875392&quot;&gt;terrible wife with the golden arm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I had an idea to write a tvOS app that would work with Quibi, so you could watch your terrible shows on your tv. Here’s what I learned trying to reverse engineer the Quibi app.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 12 May 2020 00:00:00 -0700</pubDate>
+        <link>http://www.hung-truong.com//blog/2020/05/12/reverse-engineering-quibi/</link>
+        <guid isPermaLink="true">http://www.hung-truong.com//blog/2020/05/12/reverse-engineering-quibi/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1124,69 +1253,6 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
         
         
         <category>Life</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>On Writing Successful Fart Apps</title>
-        <description>&lt;p&gt;&lt;img class=&quot;aligncenter wp-image-3021 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471&quot; alt=&quot;touch-bar-hero-large&quot; width=&quot;500&quot; height=&quot;471&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471 500w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=768%2C723 768w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=1024%2C964 1024w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?w=1085 1085w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Last Thursday, Apple held an event where they announced a few things, including a refresh of the Macbook Pro line that killed all of the good ports and added a touch bar to replace the function key row. I was actually in a meeting during the announcement but I had heard of the touch bar through a story about a leak. Someone on Twitter &lt;a href=&quot;https://twitter.com/pgor/status/791697635061051392&quot;&gt;put a bounty of $5&lt;/a&gt; on the first fart app for the touch bar and a friend retweeted it to me.
-&lt;!--more--&gt;&lt;/p&gt;
-
-&lt;p&gt;If you know me, you know that I like writing stupid apps and basically making a mockery of the Silicon Valley trope of “making the world a better place.” Specifically, the fart app genre appeals to me as a way to subvert the app ecosystem and make it a little more dumb and weird. The tech industry in particular takes itself way too seriously. In a way, I’m emulating my Computer Science hero &lt;a href=&quot;http://www.monzy.org/&quot;&gt;Monzy&lt;/a&gt;, who created projects like “&lt;a href=&quot;http://www.monzy.org/pantscam/&quot;&gt;Pantscam&lt;/a&gt;” and  a program that morphed people’s faces into butts (which I can’t find the archive of at the moment), all while being a successful &lt;a href=&quot;http://www.monzy.com/intro/drama_lyrics.html&quot;&gt;nerdcore rapper&lt;/a&gt;. While the things he made were somewhat stupid, you can’t deny that the technology was actually pretty cool.&lt;/p&gt;
-
-&lt;p&gt;Writing fart apps is also a great way to learn about a particular platform. If “hello world” is the simplest app that you can write in a language, a fart app is the simplest non-trivial app you can write, since it touches the UI, the file system and whatever mechanism there is for playing an audio file. In the past I wrote some fart apps for &lt;a href=&quot;https://www.youtube.com/watch?v=IT5gyTmss4A&quot;&gt;Google Glass&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hungtruong/WatchFart&quot;&gt;Apple Watch&lt;/a&gt;, which were small enough projects that I didn’t get bored and abandon them, plus I learned something in the process.&lt;/p&gt;
-
-&lt;p&gt;So anyway, on Thursday I got home from work and installed Xcode 8.1 on my computer. I ended up needing to get another update for macOS Sierra to get the simulated Touch Bar to show up as well. I looked at some sample code, figured out what I needed to do to write the app and finished in maybe an hour or two. It was a good exercise to get reacquainted with macOS development after I stalled on a project I started a few years ago. I pushed the repo to Github, made a &lt;a href=&quot;https://www.youtube.com/watch?v=R6HVyaZpTgM&quot;&gt;demo video&lt;/a&gt; and took a screenshot and sent some tweets to the Twitter user who requested the app. I also sent it to some other Twitter users who made similar requests, not expecting anyone to write a fart app less than 12 hours after the hardware for it was announced.&lt;/p&gt;
-
-&lt;p&gt;On Friday, I posted the Github repo to an iOS developer community on Slack. That’s pretty much all the “promotion” I did. At some point that day, someone posted the project on &lt;a href=&quot;https://www.producthunt.com/posts/touchfart&quot;&gt;Product Hunt&lt;/a&gt; (good call!) and it kinda just sat there. I went out of town during the weekend but I noticed someone had written a story about the project on &lt;a href=&quot;http://www.cultofmac.com/451661/pull-finger-someone-made-fart-app-touch-bar/&quot;&gt;Cult of Mac&lt;/a&gt;. I figured that would be the apex of my touch bar fart app’s story. At some point during the weekend though, I got a tweet that the Product Hunt entry hit 100 upvotes. Then a few more &lt;a href=&quot;http://thenextweb.com/shareables/2016/10/31/fart-app-macbook-pro-touch-bar/&quot;&gt;stories&lt;/a&gt; were written today and my project was even mentioned in &lt;a href=&quot;https://swiftnews.curated.co/issues/108&quot;&gt;NatashaTheRobot’s Swift newsletter&lt;/a&gt;. I’m guessing that today will be the real apex of this fart app and it’ll slowly be forgotten like my other fart apps before it.&lt;/p&gt;
-
-&lt;p&gt;So what have I learned from this and previous fart apps? One is that some people take themselves way too seriously to enjoy a good fart app. For example, this person:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-3017&quot; src=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=500%2C70&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;70&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=500%2C70 500w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=768%2C108 768w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?resize=1024%2C144 1024w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-6.53.40-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;First, I’m not a kid. My job title has senior in it which must mean something! Also, I have a day job and writing fart apps (a.k.a. learning stuff) is my hobby. Finally, thanks to this &lt;a href=&quot;https://www.wired.com/2010/08/apple-fart-apps/all/1&quot;&gt;hard-hitting piece of journalism&lt;/a&gt;, we see that even fart app writers can eventually move on to greater ambitions.&lt;/p&gt;
-
-&lt;p&gt;There’s also this killjoy from Product Hunt:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;&lt;img class=&quot;aligncenter size-medium wp-image-3018&quot; src=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=500%2C84&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;84&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=500%2C84 500w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=768%2C129 768w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?resize=1024%2C172 1024w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?w=1574 1574w, /blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.00.27-PM.png?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;While I can understand the sentiment that there could be better tech things happening, I also don’t think it’s realistic to see a new Snapchat or Twitter released every single day. Friday was a slow day, so a fart app won! And is it just the subject matter that makes the project immature and pathetic? Like, would a British PM Soundboard be any more appropriate?&lt;/p&gt;
-
-&lt;p&gt;Bottom line is that this project only took a couple hours out of my free time, which I would’ve probably spent playing a JSRPG anyway. I suppose you could argue that the nonexistence of my app would’ve caused fewer people to waste time discussing it, but I can’t really control how other people spend their time.&lt;/p&gt;
-
-&lt;p&gt;One cool thing that’s come out of this project is that someone has already &lt;a href=&quot;https://github.com/SuperOkazaki/SoundBar&quot;&gt;forked it and made a soundboard project out of it&lt;/a&gt;. This is sort of the whole point of writing an open source fart app: establish a codebase that people can check out, learn from, and maybe even extend into their own thing. I knew from the start that my app wasn’t going to make it into an App Store. I do believe that the Github repo was the first (public at least) to reference the NSTouchBar class.&lt;/p&gt;
-
-&lt;p&gt;Finally, if you are reading this blog post thinking: “hey, I’d like to be known for making a fart app instead of one of many other useful contributions I’ve made to this planet!” then here are some tips! First off, you need to actually be the first to market on the fart app scene as interest will surely wane as the second, third, fourth, etc fart apps written for the technology are released. Unless you add something really cool, like actual fart smells in addition to sounds, then you probably wanna rush your fart app to market. Second, you’ll need to market your app with some kind of video. When building for cutting edge hardware like the touch bar (which no one has yet) or Google Glass (which literally no one bought),  you can assume that no one will have the hardware or be interested in installing your app, so just make a video! In my experience it helps if you mumble a lot. Finally, share your code by making it available on Github and attach a generous license to it. I used the MIT license but put the wrong year because I copy-pasted it from another app. But I guess &lt;a href=&quot;https://github.com/hungtruong/TouchFart/commit/714ac1baae92b1ff42d00c82834094b709f21ffb&quot;&gt;my mistake was relatable&lt;/a&gt; because more than one person commented on that commit! Your app won’t be worth anything anyway, so you might as well share it.&lt;/p&gt;
-
-&lt;p&gt;I hope this post has helped explain my motivations for making a touch bar fart app. Partly it’s to prove that I could, and partly make a cool &lt;a href=&quot;http://www.hung-truong.com/blog/wp-content/uploads/2016/10/Screen-Shot-2016-10-31-at-7.42.52-PM.png&quot; rel=&quot;lightbox[3014]&quot;&gt;$0.03&lt;/a&gt; on the video ads.&lt;/p&gt;
-
-&lt;p&gt;P.S. Apple, if you are reading this, please do not ban me from WWDC over this. I promise to write some software using one of your new frameworks for non-fart applications!&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;&lt;img class=&quot;aligncenter wp-image-3021 size-medium&quot; src=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471&quot; alt=&quot;touch-bar-hero-large&quot; width=&quot;500&quot; height=&quot;471&quot; srcset=&quot;/blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=500%2C471 500w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=768%2C723 768w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?resize=1024%2C964 1024w, /blog/wp-content/uploads/2016/10/touch-bar-hero-large.jpg?w=1085 1085w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Last Thursday, Apple held an event where they announced a few things, including a refresh of the Macbook Pro line that killed all of the good ports and added a touch bar to replace the function key row. I was actually in a meeting during the announcement but I had heard of the touch bar through a story about a leak. Someone on Twitter &lt;a href=&quot;https://twitter.com/pgor/status/791697635061051392&quot;&gt;put a bounty of $5&lt;/a&gt; on the first fart app for the touch bar and a friend retweeted it to me.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Mon, 31 Oct 2016 16:24:13 -0700</pubDate>
-        <link>http://www.hung-truong.com//blog/2016/10/31/on-writing-successful-fart-apps/</link>
-        <guid isPermaLink="true">http://www.hung-truong.com//blog/2016/10/31/on-writing-successful-fart-apps/</guid>
-        
-        <category>Apple</category>
-        
-        <category>Fart App</category>
-        
-        <category>macOS</category>
-        
-        <category>Programming</category>
-        
-        
-        <category>Software</category>
         
       </item>
       
