@@ -5,9 +5,104 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 May 2020 12:57:47 -0700</pubDate>
-    <lastBuildDate>Mon, 25 May 2020 12:57:47 -0700</lastBuildDate>
-    <generator>Jekyll v3.8.5</generator>
+    <pubDate>Sun, 02 May 2021 17:46:38 -0700</pubDate>
+    <lastBuildDate>Sun, 02 May 2021 17:46:38 -0700</lastBuildDate>
+    <generator>Jekyll v4.0.1</generator>
+    
+      
+      <item>
+        <title>Cloning Zwift on iOS Part 5: SwiftUI and Combine</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
+
+&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;moving-to-combine&quot;&gt;Moving to Combine&lt;/h3&gt;
+
+&lt;p&gt;When I originally wrote the Zswift app, I didn’t really spend too much time on making sure the data model or architecture was the cleanest or anything. It’s really more of a hodgepodge of explorations and trying to get stuff to just work. Because of this, I probably violated a bunch of best practices. I had a “Workout” object that stored all of the different information that is needed to model a workout, but I also threw a bunch of logic and functions in there that probably didn’t make sense.&lt;/p&gt;
+
+&lt;p&gt;For example, the Workout had info on each segment of the workout, along with the duration and amount of power for the segment. As the workout progressed, I would store the elapsed time as well as a bunch of other state variables like the current segment and other variables like time in current segment that I used to drive the UI. Since I kept a bunch of variables to keep track of state, it’s possible that some of them would get out of sync with each other, and that would cause bugs. I think I had a bunch of off-by-one errors where I would reach the end of an index and crash or the time within a segment would be off by 1 so I’d be at 2:01/2:00 as far as progress went. Those kind of bugs.&lt;/p&gt;
+
+&lt;p&gt;In moving to Combine, my goal was to have the state of the workout flow from the one thing about the workout that actually changes: the elapsed time.&lt;/p&gt;
+
+&lt;p&gt;The elapsed time literally decides which segment I’m in, how long I’ve been working out (duh), how long I’ve been in the current segment, how hard I should be pedaling, etc. I ended up creating a separate class to keep track of the state of the workout, and just use the workout as a static definition of the workout. I could’ve done this before migrating to use Combine, but like I said, it was working and I didn’t feel the need to refactor.&lt;/p&gt;
+
+&lt;p&gt;In my current setup, the WorkoutManager has a @Published variable that keeps track of the elapsed time, and then I create a bunch of other publishers based on that one. I also have publishers that combine (imagine that) with other publishers. For example, I have a publisher called “timeInCurrentSegmentPublisher” that publishes the amount of time that I’ve been in the current segment. I combine this publisher with the “currentSegmentPublisher” which gives me the current segment, and use this to calculate the percentage progress for the current segment. I have to combine the two because each publisher only gives me one thing.&lt;/p&gt;
+
+&lt;p&gt;I weighed the benefits of creating publishers with multiple tuples of values, but in most cases it didn’t make sense, and I think it goes against the concept of making the streams composable, but I did end up making one for currentSegmentPublisher since it calculates the current segment and the current segment’s index at the same time anyway. Even as I’m writing about it now, I’m not sure if the better way is to create two different publishers since it’s kinda clunky to grab the desired value from the tuple.&lt;/p&gt;
+
+&lt;p&gt;Anyway, the result here is that my Workout object doesn’t have any more state at all. I could make it a struct but there’s some SwiftUI requirement for my Workout to be a class if I want to use it in a Modal view (which the workout detail is set up as) so for now I’ll just leave it as-is. I could also create a view model if I really wanted the Workout object to be a struct.&lt;/p&gt;
+
+&lt;p&gt;I’m sure I could optimize the Combine publishers even more but since they’re working now I’ll just leave them.&lt;/p&gt;
+
+&lt;h3 id=&quot;swiftui&quot;&gt;SwiftUI&lt;/h3&gt;
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2021/xcode_swiftui_previews.png&quot; /&gt;
+	&lt;figcaption&gt;An example of the live SwiftUI previews that update automatically&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The general opinion that I see from others about SwiftUI is that the more people use it, the more they like it, and that it really forces you to rethink how you define interfaces. I heard this a million times but until you actually play around with it in a non-trivial example I feel like it’s hard to really understand it.&lt;/p&gt;
+
+&lt;p&gt;The gist is that SwiftUI is a declarative way to define your UIs instead of an Imperative way. The difference can seem subtle until you start doing stuff. What it means is that instead of telling the computer how to do something, you just tell it what you want. If that’s confusing then yeah, actually it is confusing.&lt;/p&gt;
+
+&lt;p&gt;I guess to put it another way, in UIKit you can define views as objects, give them properties, add them to a parent view and then set some constraints on them. In this imperative example, it’s up to you to define every step to the computer to tell it what to do, and hope that your interface matches what you were thinking.&lt;/p&gt;
+
+&lt;p&gt;In a declarative syntax, you can describe what you want, and add some modifiers to it if you need to have more control over the actual output. From there, you also define state variables or observed objects that the SwiftUI view will use to actually come up with the completed interface.&lt;/p&gt;
+
+&lt;p&gt;Imagine that you want to show a list of dog breeds. In an imperative system you need to set up the collection view controller, fill out your functions for “cellAtIndex” and “didSelectCellAtIndex” etc, and supply the cells. In a declarative system you can say “I want a list of ‘DogViews’ that use the ‘Dog’ model” and define a “NavigationLink” to define what happens when you tap on the cell.&lt;/p&gt;
+
+&lt;p&gt;The interesting part to me was that the SwiftUI view is an immutable struct, so you can’t modify the view as you would a UIView when states change. Of course your view can respond to changes in the data model, but all of those states need to be determined at compile time rather than runtime.&lt;/p&gt;
+
+&lt;p&gt;One of the best parts about SwiftUI is how the “live” previews work. They aren’t exactly real time, but fast enough that the feedback loop between writing UI code and seeing the result is very tight. In the past I’ve had to write code to update a UI (or use Interface Builder), then build and run, and go to the part of the app where the UI I changed was. This could mean it would be a few seconds or minutes before I saw whether the change I just wrote actually worked. In SwiftUI you make a change and once you’re done writing it, the preview window will show it. The system isn’t perfect, of course, as sometimes it can’t compile and you need to reenable the live preview. But it’s really the best tradeoff between the WYSIWYG style of Interface Builder and the readability of programmatic view code. I’m sure the tools will improve in the future, and I’m quite certain that this ease of previewing code will be one of the factors that will motivate people to switch to SwiftUI.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-workout-view&quot;&gt;The Workout View&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/workout_view.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I modeled my original interface after the Zwift app. In the Zwift app, you can see the workout represented as a bunch of rectangles representing segments that get taller when the target power is higher. The width is determined by the length of the segment.&lt;/p&gt;
+
+&lt;p&gt;I basically copied this and implemented it with a UIStackView and percentage constraints. I thought it was pretty cool but one thing that bothered me is the warmup and cooldown segments. Those have a starting value and ending value that are different (warmups start lower and end higher). I didn’t want to spend too much time drawing the start of the rectangle to be lower than the end (plus it wouldn’t technically be a rectangle at that point) so I just used the “lower” value and set them as flat rectangles.&lt;/p&gt;
+
+&lt;p&gt;I decided to practice some custom drawing in SwiftUi to properly draw the warmup and cooldown segments and I’m pretty happy with the result. The view is drawn by taking the desired start and end heights and width, and drawing a path with it. I used “path.addArc” to get a nice rounded corner effect, though it isn’t perfect. I also draw a 1px wide vertical line to show where I am in the workout by offsetting it from the left by a percentage of the view’s width.&lt;/p&gt;
+
+&lt;p&gt;I also went ahead and stole the color scheme from the Zwift app which makes it look a bit more polished.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-workout-detail&quot;&gt;The Workout Detail&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/side_by_side.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In addition to updating the workout representation view, I also decided to just overhaul the entire workout detail view (the view I see when I’m in a workout). The old interface was pretty basic with a bunch of grids and text boxes that didn’t really have any visual separation from each other, aside from the size and distribution of the labels.&lt;/p&gt;
+
+&lt;p&gt;I ended up experimenting with the “GroupBox” component of SwiftUI which is pretty simple but makes a big difference just in terms of separating out the different interface elements. I also added some accent colors and icons to some of the text labels, and I added progress indicators to the segment time and elapsed time sections just to make them stand out more. Overall I really like the new workout detail view which is good since I’m literally the only person who uses this app.&lt;/p&gt;
+
+&lt;p&gt;I have some more ideas for enhancements, like recreating the Apple Watch heart rate animation which shows a heart pulsing at your actual heart rate. The animation seamlessly updates when your heart rate changes, which is pretty cool.&lt;/p&gt;
+
+&lt;p&gt;I also want to add some more tracking informtion, like a histogram (maybe with candlestick charts or sparklines) of the wattage and heart rate info. This would be nice to have but the HealthKit integration already includes the heart rate chart. And I don’t know if I care too much about the wattage graph.&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
+
+&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 02 May 2021 00:00:00 -0700</pubDate>
+        <link>https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1182,7 +1277,6 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
           <description>&lt;p&gt;&lt;img src=&quot;/blog/static/deadringer_demo.gif&quot; alt=&quot;Deadringer Demo&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk. I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you have a 50% chance of having the same phone color as any other person. I was thinking that if I did mistake it as my phone and entered my passcode, I’d basically be transmitting the key to all of my personal data.&lt;/p&gt;
-
 </description>
         
         <pubDate>Sun, 03 Dec 2017 00:00:00 -0800</pubDate>
@@ -1201,58 +1295,6 @@ Oh also I just decided to call it “DeadRinger” because I was inspired by sec
         <category>iOS</category>
         
         <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>2016: A Hung Truong Year in Review</title>
-        <description>&lt;p&gt;It’s been a while since I wrote a year-in-review on this blog, let alone any blog post. 2016 was a big year though, so here’s some stuff I did.&lt;/p&gt;
-
-&lt;p&gt;In January Emily and I moved from Ann Arbor, Michigan where we had been living for a few years (Emily since grad school and me since the last time I moved back from Chicago in like 2012) to Seattle, Washington. I’ve loved Seattle ever since I moved here in 2009 to go work for &lt;a href=&quot;http://www.hung-truong.com/blog/2008/11/30/trip-to-seattle-program-manager-interview-with-microsoft/&quot;&gt;Microsoft&lt;/a&gt;, and it’s great to be back! I’m working for a coffee company in Seattle called Starbucks (yes, I get free coffee). I get to work on their iOS app and make latte art in my spare time. Here are some highlights:
-&lt;!--more--&gt;&lt;/p&gt;
-&lt;center&gt;
-&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-captioned=&quot;&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/BOnIvQQgM-0/&quot; data-instgrm-version=&quot;8&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:8px;&quot;&gt; &lt;div style=&quot; background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;&quot;&gt; &lt;div style=&quot; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;p style=&quot; margin:8px 0 0 0; padding:0 4px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/BOnIvQQgM-0/&quot; style=&quot; color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;&quot; target=&quot;_blank&quot;&gt;Latte art: Betta Fish (using almond milk)&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;A post shared by &lt;a href=&quot;https://www.instagram.com/hungtruong/&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;&quot; target=&quot;_blank&quot;&gt; Hung Truong&lt;/a&gt; (@hungtruong) on &lt;time style=&quot; font-family:Arial,sans-serif; font-size:14px; line-height:17px;&quot; datetime=&quot;2016-12-29T18:42:30+00:00&quot;&gt;Dec 29, 2016 at 10:42am PST&lt;/time&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;//www.instagram.com/embed.js&quot;&gt;&lt;/script&gt;
-
-
-
-&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-captioned=&quot;&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/BM9h2KEA_-h/&quot; data-instgrm-version=&quot;8&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:658px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:8px;&quot;&gt; &lt;div style=&quot; background:#F8F8F8; line-height:0; margin-top:40px; padding:50.0% 0; text-align:center; width:100%;&quot;&gt; &lt;div style=&quot; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAMUExURczMzPf399fX1+bm5mzY9AMAAADiSURBVDjLvZXbEsMgCES5/P8/t9FuRVCRmU73JWlzosgSIIZURCjo/ad+EQJJB4Hv8BFt+IDpQoCx1wjOSBFhh2XssxEIYn3ulI/6MNReE07UIWJEv8UEOWDS88LY97kqyTliJKKtuYBbruAyVh5wOHiXmpi5we58Ek028czwyuQdLKPG1Bkb4NnM+VeAnfHqn1k4+GPT6uGQcvu2h2OVuIf/gWUFyy8OWEpdyZSa3aVCqpVoVvzZZ2VTnn2wU8qzVjDDetO90GSy9mVLqtgYSy231MxrY6I2gGqjrTY0L8fxCxfCBbhWrsYYAAAAAElFTkSuQmCC); display:block; height:44px; margin:0 auto -44px; position:relative; top:-22px; width:44px;&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;p style=&quot; margin:8px 0 0 0; padding:0 4px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/BM9h2KEA_-h/&quot; style=&quot; color:#000; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none; word-wrap:break-word;&quot; target=&quot;_blank&quot;&gt;Made a pumpkin latte art #latteart #meta #pumpkinlatte&lt;/a&gt;&lt;/p&gt; &lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;A post shared by &lt;a href=&quot;https://www.instagram.com/hungtruong/&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;&quot; target=&quot;_blank&quot;&gt; Hung Truong&lt;/a&gt; (@hungtruong) on &lt;time style=&quot; font-family:Arial,sans-serif; font-size:14px; line-height:17px;&quot; datetime=&quot;2016-11-18T18:22:24+00:00&quot;&gt;Nov 18, 2016 at 10:22am PST&lt;/time&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;//www.instagram.com/embed.js&quot;&gt;&lt;/script&gt;
-&lt;/center&gt;
-
-&lt;p&gt;For the first year that we’ve been here, Emily and I have been exploring the sights in Seattle, including a bunch of parks like Discovery Park, Volunteer Park (which has lots of cute &lt;a href=&quot;https://www.youtube.com/watch?v=wW_y9rlvX28&quot;&gt;baby ducks&lt;/a&gt;) and Seward Park, among others. With all the free coffee I’m getting, I’m also experimenting with different brew methods including Aeropress, cold brew, and most recently with a &lt;a href=&quot;http://amzn.to/2hE8pJu&quot;&gt;Kalita Wave&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In June &lt;a href=&quot;http://www.hung-truong.com/blog/2016/06/28/wwdc-2016-recap/&quot;&gt;I went to WWDC for the first time&lt;/a&gt; as an attendee and got to meet lots of other cool developers. I got a photo with &lt;a href=&quot;/blog/wp-content/uploads/2016/06/hair-force-one.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;Craig with the good hair&lt;/a&gt; who does the funny parts of the Apple keynotes. Next year I’m going to be &lt;a href=&quot;http://www.codemobile.co.uk/&quot;&gt;attending a conference in the UK&lt;/a&gt; as a speaker, which I’m really excited about.&lt;/p&gt;
-
-&lt;p&gt;Last year I got a new digital camera which I started using quite a bit to capture our hikes and other interesting moments. This year I upgraded from the &lt;a href=&quot;http://amzn.to/2iQqvph&quot;&gt;Sony RX-100&lt;/a&gt; to the &lt;a href=&quot;http://amzn.to/2ipmuJK&quot;&gt;Fujifilm X-T1&lt;/a&gt;. It’s been really fun learning more about photography as a hobby and reading about lenses and techniques to get cool photo captures. Here’s a few shots that I like, taken from this year:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg?resize=500%2C348&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;348&quot; class=&quot;aligncenter size-medium wp-image-3036&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/Koi.jpg?resize=500%2C348 500w, /blog/wp-content/uploads/2016/12/Koi.jpg?resize=768%2C534 768w, /blog/wp-content/uploads/2016/12/Koi.jpg?resize=1024%2C712 1024w, /blog/wp-content/uploads/2016/12/Koi.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/Koi.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg?resize=500%2C353&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;353&quot; class=&quot;aligncenter size-medium wp-image-3037&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/SPL.jpg?resize=500%2C353 500w, /blog/wp-content/uploads/2016/12/SPL.jpg?resize=768%2C542 768w, /blog/wp-content/uploads/2016/12/SPL.jpg?resize=1024%2C723 1024w, /blog/wp-content/uploads/2016/12/SPL.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/SPL.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg&quot; rel=&quot;lightbox[3032]&quot;&gt;&lt;img src=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=500%2C333&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;333&quot; class=&quot;aligncenter size-medium wp-image-3038&quot; srcset=&quot;/blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=500%2C333 500w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=768%2C512 768w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?resize=1024%2C682 1024w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?w=1280 1280w, /blog/wp-content/uploads/2016/12/DSCF2106.jpg?w=1208 1208w&quot; sizes=&quot;(max-width: 500px) 100vw, 500px&quot; data-recalc-dims=&quot;1&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In September I bought a bunch of supplies and built a tiny &lt;a href=&quot;http://www.hung-truong.com/blog/2016/10/07/building-a-diy-off-grid-solar-bank-on-my-roof/&quot;&gt;solar powered charging system on my roof&lt;/a&gt;. It was a fun proof of concept and I’m using it to charge some of my lower power devices, including an electric bike that I bought for my commute (when it’s not rainy). I’m guessing that it wouldn’t have enough juice yet to power an electric car, but that’s on my to do list.&lt;/p&gt;
-
-&lt;p&gt;In October, Apple announced a new piece of hardware, so naturally &lt;a href=&quot;http://www.hung-truong.com/blog/2016/10/31/on-writing-successful-fart-apps/&quot;&gt;I wrote a fart app for it&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;That’s basically the noteworthy stuff that happened to me this year. Moving and getting used to Seattle is basically a full-time job. I’m also keeping myself busy with updating the house and automating it as much as possible using a &lt;a href=&quot;http://amzn.to/2ijHS4Q&quot;&gt;Samsung SmartThings hub&lt;/a&gt; and various light switches, etc. Other random things I’ve been working on are experimenting with Instagram by using a copious number of tags in all of my posts, buying a pair of Snapchat Spectacles and experimenting with those, and cooking new recipes with the &lt;a href=&quot;http://amzn.to/2itx058&quot;&gt;pressure cooker&lt;/a&gt; I just purchased from Amazon.&lt;/p&gt;
-
-&lt;p&gt;I’m looking forward to doing more stuff in 2017 and hopefully blogging about it more often as well.&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;It’s been a while since I wrote a year-in-review on this blog, let alone any blog post. 2016 was a big year though, so here’s some stuff I did.&lt;/p&gt;
-
-&lt;p&gt;In January Emily and I moved from Ann Arbor, Michigan where we had been living for a few years (Emily since grad school and me since the last time I moved back from Chicago in like 2012) to Seattle, Washington. I’ve loved Seattle ever since I moved here in 2009 to go work for &lt;a href=&quot;http://www.hung-truong.com/blog/2008/11/30/trip-to-seattle-program-manager-interview-with-microsoft/&quot;&gt;Microsoft&lt;/a&gt;, and it’s great to be back! I’m working for a coffee company in Seattle called Starbucks (yes, I get free coffee). I get to work on their iOS app and make latte art in my spare time. Here are some highlights:&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sat, 31 Dec 2016 07:59:49 -0800</pubDate>
-        <link>https://www.hung-truong.com/blog/2016/12/31/2016-a-hung-truong-year-in-review/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2016/12/31/2016-a-hung-truong-year-in-review/</guid>
-        
-        
-        <category>Life</category>
         
       </item>
       
