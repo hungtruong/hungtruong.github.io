@@ -117,6 +117,33 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">August 04, 2013</span>
+        <h3><a class="post-link" href="/blog/2013/08/04/getting-back-into-video-games/">Getting Back Into Video Games</a></h3>
+        <p><p><a href="/blog/wp-content/uploads/2013/08/gloriouspmr13.jpg" rel="lightbox[2702]"><img class="aligncenter size-medium wp-image-2703" alt="Glorious PC Master Race" src="/blog/wp-content/uploads/2013/08/gloriouspmr13.jpg?resize=500%2C281" width="500" height="281" srcset="/blog/wp-content/uploads/2013/08/gloriouspmr13.jpg?resize=500%2C281 500w, /blog/wp-content/uploads/2013/08/gloriouspmr13.jpg?w=640 640w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+
+<p>In terms of gaming I feel like I’m pretty inconsistent. There are times that I only played the big name games (like Grand Theft Auto and Skyrim) and basically ignored all the other smaller games. My interest in gaming ebbs and flows.</p>
+
+<p>I think that a few recent events have gotten me back into gaming fairly regularly. About a year ago I subscribed to PS Plus, which provides monthly installments of games for your PS3 and PS Vita/PSP if you have them. I was introduced to a bunch of cool games that I probably wouldn’t have bought otherwise like Saint’s Row 2, Borderlands. As a result, I ended up buying Saint’s Row 3 and Borderlands 2.</p>
+
+<p>It was also about a year ago that I built a PC for gaming. It’s kind of ridiculous how much cheaper it is to play games on a PC than to buy them for consoles. Plus, my PC has the added benefit of a better graphics card and more RAM (how the heck can the PS3 only have 256MB of RAM in the first place?).</p>
+
+<p>During the 2013 Steam Summer sale I went a little crazy and bought more games than I can possibly play. It’s just way too easy to buy them when they cost $5 or less and provide a lot of entertainment, even if they’re kinda old. I ended up buying Fallout New Vegas (the ultimate edition or whatever) even though I originally bought it for PS3. Luckily, it’s a lot faster and less buggy now.</p>
+
+<p>I’ve been playing a lot of video games in my free time for the past few months. While I sort of feel guilty that I should be working on web stuff or mobile stuff like side projects, I think it’s sort of necessary to avoid burnout. Plus I naturally tend to lose interest in games once I find a new piece of technology that I’m interested in learning.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">June 05, 2013</span>
         <h3><a class="post-link" href="/blog/2013/06/05/open-sourcing-stuff-on-github/">Open Sourcing Stuff on Github</a></h3>
         <p><p><a href="/blog/wp-content/uploads/2013/06/gangnamtocat.png" rel="lightbox[2695]"><img class="aligncenter size-medium wp-image-2697" alt="" src="/blog/wp-content/uploads/2013/06/gangnamtocat.png?resize=500%2C500" width="500" height="500" srcset="/blog/wp-content/uploads/2013/06/gangnamtocat.png?resize=500%2C500 500w, /blog/wp-content/uploads/2013/06/gangnamtocat.png?resize=150%2C150 150w, /blog/wp-content/uploads/2013/06/gangnamtocat.png?resize=300%2C300 300w, /blog/wp-content/uploads/2013/06/gangnamtocat.png?w=896 896w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
@@ -221,49 +248,6 @@
         </p>
       </li>
     
-      <li>
-        <span class="date">January 13, 2013</span>
-        <h3><a class="post-link" href="/blog/2013/01/13/pharma-hack-update-finally-gone/">Pharma Hack Update: Finally Gone</a></h3>
-        <p><p>A good while ago, I wrote a blog post about how my blog was <a href="http://www.hung-truong.com/blog/2012/06/21/pharma-hacked/">pharma hacked</a>, and I thought I had gotten rid of it. I was actually extremely wrong, and it’s taken about half a year of off/on again fiddling to get rid of the infection for good. I thought I’d write up what I did in case anyone else has issues with this hack.</p>
-
-<p>In order to remove it, I tried searching for solutions from other bloggers. They got me to a certain point, but after following the directions and letting my blog sit for a week or so, I’d use the Google Webmasters feature to “fetch as Googlebot” and find that my site was reinfected.</p>
-
-<p>Here’s a step by step summary of what I had to do to finally get rid of the nasty pharma hack.</p>
-
-<p>I downloaded the latest tar.gz from WordPress <a href="http://wordpress.org/download/">here</a> and extracted it to my root web directory. My blog lives in the subfolder “/blog/” so I just moved the wp-config.php file from /blog/ to the /wordpress directory, then I renamed the blog folder to something else and renamed wordpress to blog. I found that I’d also have to re-set the permalink settings to get pages besides my home page to show up correctly.</p>
-
-<p>My main mistake was copying the wp-contents subfolders back to the /blog/ directory. I assumed that the main infected file (wp-loads.php) was the only culprit. It turned out that I also had multiple php backdoors in my wp-contents directories, in /plugins, /themes, and even /uploads.</p>
-
-<p>I basically had to re-download anything in plugins and themes so that I knew those directories would be fresh. I ran a command to delete anything in /uploads that was a .php file, as that was how the backdoor worked. I believe it was something like</p>
-
-<p><code class="highlighter-rouge">find /path/to/uploads -name "*.php" | xargs rm</code></p>
-
-<p>but you probably want to double check that before running it on your server.</p>
-
-<p>I also noticed that some backdoors existed in the root of my web directory, where I keep my portfolio. If you have other directories besides your blog in your web root, it’s probably worthwhile to check those out.</p>
-
-<p>At this point I was pretty close to having a clean WordPress install. But for some reason my site would still eventually fall to the pharma hack. I checked my server logs and it looked like someone was modifying header.php in my theme directory from the admin panel. This was pretty surprising because I thought I had my password locked down pretty tight. I am actually still not sure whether the password was compromised, or some other feature in php (or a cookie) allowed the hacker to access the admin theme editor. Either way I’m pretty sure the header.php was hacked to write a new backdoor file which would then create other backdoors. Pretty smart!</p>
-
-<p>To fix this, I put another layer of security on my wp-admin directory with a .htaccess and .htpasswd file. I also updated my password to a 40 character random string that even I can’t remember. Finally, I just erased the file that does theme editing in the admin interface since I never use it and it seems like a really weak vulnerability.</p>
-
-<p>So far, the pharma hack hasn’t resurfaced and it’s been about two weeks. I’m going to say that I’m slightly confident it won’t return (unless there’s another vulnerability in WordPress that pops up).</p>
-
-<p>I feel like I learned quite a bit about security while playing whack-a-mole with this hack. I got to look at the backdoor files and figure out how they were hidden and obfuscated, and eventually found what I think was the root of the problem in the WordPress theme editor. I also hacked together some scripts to show recently modified files (hacked together from stuff I found doing some searches). If I end up getting hacked like this again, I’ll probably be able to remove it faster.</p>
-
-<p>For a while, I was considering moving to Jekyll for my blog. But that seemed like a bit too much work moving posts and comments, and learning a new blogging system, especially for how infrequently I blog nowadays. For now, I will stick with WordPress with all of its vulnerabilities, which have hopefully been mitigated with the few extra precautions I’ve added.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -281,7 +265,7 @@
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2021 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2022 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">

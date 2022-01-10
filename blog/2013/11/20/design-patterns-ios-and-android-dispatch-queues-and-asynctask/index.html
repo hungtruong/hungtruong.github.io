@@ -124,7 +124,7 @@
 
 <p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.
 <!--more-->
-In iOS, you can use the <code class="highlighter-rouge">dispatch_async</code> call to run code on a background <a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1">dispatch queue</a>. Say we get an NSArray of JSON objects and want to save them to a Core Data store. We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:</p>
+In iOS, you can use the <code class="language-plaintext highlighter-rouge">dispatch_async</code> call to run code on a background <a href="https://developer.apple.com/library/mac/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1">dispatch queue</a>. Say we get an NSArray of JSON objects and want to save them to a Core Data store. We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:</p>
 
 <pre lang="objc">NSArray *stuff = [NSJSONSerialization JSONObjectWithData:responseData ...];
 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -206,7 +206,7 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2021 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2022 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">

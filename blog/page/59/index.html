@@ -117,6 +117,33 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 27, 2008</span>
+        <h3><a class="post-link" href="/blog/2008/02/27/fun-with-rails-and-high-performance-caching-mechanisms-memcached/">Fun With Rails and High-Performance Caching Mechanisms (Memcached)</a></h3>
+        <p><p>Since it’s Spring break for University of Michiganers, I’ve had some free time to mess around with learning stuff I don’t have time for when school is in session. Something I’ve been meaning to try out is memcached, which is an uber-efficient way to cache stuff in memory so you don’t end up hitting the database a lot for redundant queries.</p>
+
+<p>I installed memcached on my mediatemple machine using some directions I found online specifically for centos. I don’t have yum or rpm or whatever people use for putting new stuff onto their linux boxes. I just wget, untar, and make/make install. I had to make a symbolic link for the libevent thing that I installed as well since the path wasn’t set up correctly. I’m still trying to get memcached to run automatically as a daemon when I boot up. I tried sticking a line in the /etc/init.d/ or something rc.local but it hasn’t really worked. Oh well.</p>
+
+<p>I’m using memcached right now along with a rails gem called “Cached Model” that does a pretty good job of automating the caching process. What’s important to know is that the gem only caches Active Records that are found via a simple find on id. It won’t cache more complex queries. Right now I have it running on my Animenano site caching a bunch of objects. I’ve seen a small though noticeable difference.</p>
+
+<p>Memcached isn’t without its caveats, however. For one thing, your initial db hit is going to take longer than normal since you’re going to be checking memcached, then grabbing the data from the db, then saving the data into memory. From reading the logs, this doesn’t really take that much extra time. The time saved is likely more worthwhile.</p>
+
+<p>I’m always trying to squeeze more performance out of my sites. Periodically I’ll go check out my log files and see if there’s anything taking an insane amount of time to render (like, .1 seconds or so). I’ve caught a few bad algorithm decisions that I had made in the past, and I think for the most part my sites run pretty efficiently. Memcached is a pretty fun way to slice some time off of the page rendering times for Anime Nano.</p>
+
+<p>If you have a few spare hours to kill and a rails app that seems to be a little slow, it might be worthwhile to install memcached and see if caching your Active Record objects will speed things up. I’m seeing a speedup of maybe 1/2 (it takes half as long to load a page) vs running without memcached. That’s totally non-empirical observation, though.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 24, 2008</span>
         <h3><a class="post-link" href="/blog/2008/02/24/apple-internship-phone-interview-verdict/">Apple Internship Phone Interview + Verdict!</a></h3>
         <p><p>I had my Apple phone interview on Friday. It went well, except for all of the questions I couldn’t answer! orz.</p>
@@ -202,29 +229,6 @@
         </p>
       </li>
     
-      <li>
-        <span class="date">February 05, 2008</span>
-        <h3><a class="post-link" href="/blog/2008/02/05/there-is-free-lunch/">There IS Free Lunch!</a></h3>
-        <p><p>So one of the things that has surprised me about grad school in comparison to my undergrad is the large amounts of free food being offered every day. I think it has to do with the fact that UNM was a pretty small school and Michigan is a behemoth of schools. I’m always getting emails just from my own school within the U (School of Information) about events with pizza and pop (soda!) included.</p>
-
-<p>There’s almost always free food for me to eat on Thursdays. Fridays are good too. I actually end up spending quite a bit of time planning where my next free meal will come from. For example, there’s a Teach For America thing going on tomorrow at the Union that will have food from Zingerman’s. Thursday there’s a company info session and Friday there’s a panel/session, both of which will offer free food. That’s already like, $20 in food savings for me (if I had eaten out at some place near campus, which would be the most likely scenario)!</p>
-
-<p>At one point I pondered whether I could run an experment: to eat only free food for the entire semester! I decided that I would probably end up starving or getting really weak while begging for food.</p>
-
-<p>I found a site called “<a href="http://hungryhungrycoeds.com/">Hungry Hungry Coeds</a>” that lists free food events at some select campuses. Luckily it seems that the creators of the site went to Michigan, or at least the main contributor goes here. I’ll be checking it routinely to see if I can maximize my free food intake. Maybe I should also keep a log of all the free food I eat per week. Could end up being another blog…</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -242,7 +246,7 @@
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2021 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2022 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">

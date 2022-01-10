@@ -117,6 +117,37 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 23, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/02/23/porting-mapskrieg-to-app-engine/">Porting Mapskrieg to App Engine</a></h3>
+        <p><p><a href="/blog/wp-content/uploads/2011/02/appengine_lowres.gif" rel="lightbox[2380]"><img src="/blog/wp-content/uploads/2011/02/appengine_lowres.gif?resize=142%2C109" alt="" title="appengine_lowres" width="142" height="109" class="aligncenter size-full wp-image-2381" data-recalc-dims="1" /></a></p>
+
+<p>Lately I’ve been playing around a lot with Google App Engine. I think it’s finally at a point where it makes sense to develop for it, and it can be fun and profitable to do so. For example, I wrote Instascriber on App Engine, and so far it has cost me a few pennies in CPU cycles (and like $2 for a domain name or something).</p>
+
+<p>Playing around with memcaching and stuff with Instascriber has led me to become a little obsessed with efficiency (not that I wasn’t already). I took a look at <a href="http://www.mapskrieg.com/">Mapskrieg</a> and found that it was performing pretty slowly. My Google Webmaster Tools thing was saying it took on average 6-8 seconds to load! I wanted to decrease that number, and I figured I could make it work on App Engine, so I started working on it last week.</p>
+
+<p>I modified the parser I use to grab craigslist listings to also send them to Mapskrieg. Then I basically rewrote all of the logic that existed in PHP and ported it over to App Engine. This took a little while but it wasn’t too difficult since Mapskrieg is a pretty simple web app. I hardly changed any code in the Maps API implementation, though I’m thinking of moving to v3 (which is apparently supposed to be faster).</p>
+
+<p>I just switched out the hosting from my MediaTemple PHP based host to the Google App Engine based one. So far the results look good. I think Mapskrieg is faster in terms of response time and the caching is definitely smarter than it was before (a memcache that only gets cleared when the content in it changes versus a time based cache expiration).</p>
+
+<p>I’m going to watch closely to make sure nothing got borked in the transition, but so far so good. If I can keep Mapskrieg on App Engine, I might downgrade the MediaTemple server to save some money and maybe eventually move other services to App Engine as well.</p>
+
+<p>One funny thing I noticed was the pricing plan for App Engine. I’m currently pruning listings from the database when they get too old or move past the limit of listings per listing type (because I’ll never show them). This is actually older behavior from when I had listing info in MySQL. Back then, the size of the database would affect the performance of selecting rows. Google’s datastore apparently does not get slower with respect to size. This is actually pretty awesome.</p>
+
+<p>The weird thing is that adding and removing datastore objects costs quite a lot in CPU time. Additional CPU time past 6.5 hours is $.10 an hour. Storage, on the other hand, is .$01 per 2 gigabytes per day. From my usage, I am predicting that the CPU cycles that I would use to trim the datastore listings would actually cost more than just leaving them in the datastore and paying for storage. Is that insane or what? I still have to test some things out, but it kind of surprises me that storage would be that much cheaper than the CPU cycles to remove something.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 16, 2011</span>
         <h3><a class="post-link" href="/blog/2011/02/16/greplin-programming-challenge/">Greplin Programming Challenge</a></h3>
         <p><p><a href="/blog/wp-content/uploads/2011/02/greplin.png" rel="lightbox[2375]"><img src="/blog/wp-content/uploads/2011/02/greplin.png?resize=442%2C136" alt="" title="greplin" width="442" height="136" class="aligncenter size-full wp-image-2377" data-recalc-dims="1" /></a></p>
@@ -228,37 +259,6 @@
         </p>
       </li>
     
-      <li>
-        <span class="date">February 02, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/02/02/priceless-the-myth-of-fair-value-book-review/">Priceless: The Myth of Fair Value &#8211; Book Review</a></h3>
-        <p><p><a href="http://www.amazon.com/gp/product/0809078813?ie=UTF8&amp;tag=hungtruong-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0809078813"><img src="/blog/wp-content/uploads/2011/02/Priceless-The-Myth-of-Fair-Value.jpg?resize=335%2C500" alt="" title="Priceless The Myth of Fair Value" width="335" height="500" class="aligncenter size-full wp-image-2326" data-recalc-dims="1" /></a></p>
-
-<p>I just recently finished reading a book, so I better write up a review so I can collect my free <a href="http://www.bookitprogram.com/">Pizza Hut Personal Pan Pizza</a>! I read about <a href="http://www.amazon.com/gp/product/0809078813?ie=UTF8&amp;tag=hungtruong-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0809078813">Priceless: The Myth of Fair Value</a> on <a href="http://www.aaronsw.com/weblog/books2010">Aaron Swartz’s 2010 Book Review</a> (I’m trying to read as much as that dude does). Pricing has always been pretty interesting to me, so I figured a book about pricing would be a good, quick non-fiction read. Ironically, I opted to pay zero price for the book, borrowing it from the library instead of buying it.</p>
-
-<p>Previously, I read <a href="http://www.hung-truong.com/blog/2010/03/02/cheap-the-high-cost-of-discount-culture-book-review/">Cheap: The High Cost of Discount Culture</a>, which also concerned pricing, but mostly in the super cheap range. Priceless takes more of a psychological stab at human behavior. There are a few experiments that both books alluded to, like the Hershey’s kiss experiment. Having read these two books (and the <a href="http://www.amazon.com/gp/product/0060731338?ie=UTF8&amp;tag=basugasubakuhatsu-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060731338">Freakonomics</a> ones), I kind of think I should’ve been an economist.</p>
-
-<p>Priceless starts out a bit slow by giving you a crash course in human psychology. <a href="http://en.wikipedia.org/wiki/Homo_economicus">Homo Economicus</a> is described as a human who makes only rational decisions, and only the most rational. As a model, HomoEco is probably only useful in lab situations. As the book describes, human behavior is not only often irrational, but also very easy to manipulate. Priming and Anchoring are ways to change a person’s opinion on something before they’ve even seen it.</p>
-
-<p>The book gives this example. Research subjects were asked which percentage of the UN is comprised of African nations. Before that question, they were asked to give an over/under on a percentage. The percentage given was either really low (10%) or somewhat average (60%). The difference in that first question, is the percentage of African nations in the UN above or below (10/60%) affected their guess of what it actually was. The scary thing is that this works with many things, including pricing. Another experiment involved real estate and a differing list prices. Subjects (both normal people and real estate agents) were given list prices of a home and were asked to give a reasonable bid. Even the real estate professionals were susceptible to the anchoring effect of the suggested prices, though to a lesser degree.</p>
-
-<p>After giving a solid scientific basis for human irrationality (specifically regarding pricing), the book goes through many short examples where the these effects were either exploited or tested in slightly different contexts. It’s all pretty interesting stuff, especially to someone who feels they are above Jedi price tricks like me though I am probably not).</p>
-
-<p>There are also a few methods described to try to ward against anchoring and priming. One is to immediately set up an argument. If someone says “do you think this book is worth 26.99?” and you say “yes,” then immediately think of reasons why it might be worth less than that. This is also why you should always take a friend with you to the car dealership to argue with.</p>
-
-<p>Overall I thought the book was really interesting. If you can get past all of the cognitive science at the beginning (I might’ve found it boring because I had heard about most of it before), the second half of the book is a really quick and interesting read.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -276,7 +276,7 @@
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2021 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2022 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">
