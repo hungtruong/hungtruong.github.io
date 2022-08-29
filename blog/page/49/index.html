@@ -117,6 +117,27 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">August 04, 2008</span>
+        <h3><a class="post-link" href="/blog/2008/08/04/wii-fit-update-2-months-later/">Wii Fit Update: 2+ Months Later</a></h3>
+        <p><p>My weight loss is still going pretty well with Wii Fit though the numbers seem to fit better to a power law than a linear function. But luckily the alpha is still pretty forgiving, so I’m still losing weight.</p>
+
+<p>Today I reached a sort of achievement (personal, not xbox live style) by doing the 10 reps of push-ups and side plank without collapsing or “dropping my hips” as my trainer likes to say. Although she asked even though I didn’t. Oh well. At least I know I accomplished this task.</p>
+
+<p>Also, the lunges are freakin’ hard. I wonder if I’m doing them correctly. They make the leg that I step back with feel like they’re going to explode around the 9th or so rep. Lunges are probably the only exercise that hasn’t gotten easier since starting Wii Fit. I wonder why…</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">July 27, 2008</span>
         <h3><a class="post-link" href="/blog/2008/07/27/after-life/">After Life</a></h3>
         <p><p style="text-align: center;">
@@ -221,37 +242,6 @@
 <p>When I went to see Wall-e a few weeks ago (or maybe it was just last week), I had no idea what the movie was about. Okay, so I knew it had a robot in it. And that was about it. I ended up enjoying it a lot! I think we, as viewers, should just let the damn story tell itself. No spoilers, no trailers, maybe just a title.</p>
 
 <p>Knowing as little as possible about a movie going into it probably gives the best chance for me to enjoy it.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">July 15, 2008</span>
-        <h3><a class="post-link" href="/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/">Hardcore Rails/Server Troubleshooting Session!</a></h3>
-        <p><p>So early last night, I noticed that one of my sites, Anime Nano, was flipping out and throwing 502 proxy errors. I tried to do some simple troubleshooting but it seems as though the problem came very suddenly, and I figured it might go away very suddenly as well. The thing about this particular problem was that I had made no changes to the server. So the problem should fix itself! Unfortunately, life is not so simple.</p>
-
-<p>When I woke up in the morning, not only was the site still throwing errors, it was also affecting my other websites as well. MapsKrieg, Notecentric, Basugasubakuhatsu, etc. So I figured I should find out what is going on. I sent a support request to MediaTemple, my host, in case it might’ve been something on their end. It took a while for them to reply, but they eventually just told me it was something taking up all the memory and that I should try to optimize the site. Not too helpful. But I don’t really expect MediaTemple to provide this kind of support anyway. And it turned out it wasn’t their fault.</p>
-
-<p>Upon closer inspection, the site was really behaving weird. I could tell by the logs that the site was actually rendering things, but it always took about 189 seconds. This was odd. I’ve had experiences before where the rendering took less than a second but the page still took more than 3 seconds to load. But 189 seconds! That was a bit too much.</p>
-
-<p>I had suspected it was something to do with the mongrel cluster that I had set the site up to run on. Basically, I followed the script that MediaTemple provided and I still don’t have a great understanding of how mongrel cluster works. That’s definitely bad.</p>
-
-<p>I tried stripping the view of everything but the content for layout. I got rid of before_filters and tried running the site on the mongrel clusters as well as the webrick server on port 3000. The same thing happened. It took way too long for the site to load. Thinking it might be easier to test on my local machine, I got the site and database from svn and mysql and, strangely, it worked fine on my PC.</p>
-
-<p>Now things were slowly fitting together. I was reminded of a post that someone made on Anime Nano about how their feed wasn’t being aggregated into the site. Apparently their feed was unreachable from my server. I had previously chalked this up to weirdness on their server, but I wondered if it wasn’t a problem on my server. The thing about each pageload taking almost exactly 189 seconds pointed to a timeout issue. Then I realized there was a piece of code in Anime Nano that I hadn’t written. It was a plugin for Text Link Ads that I used for some ads on the bottom of the site. That plugin was grabbing a feed of ads and parsing it to show links automatically on the site.</p>
-
-<p>If their site was unreachable, it’s possible that Anime Nano was just waiting on grabbing that snippet of code and timing out. And that’s exactly what happened. I commented out the text for the ads and the site immediately started working again. I’ll have to look into how I can prevent this from happening again before reinstating the ads.</p>
-
-<p>So what did I learn from this whole experience? You should probably understand how code works before randomly integrating it into your site (I added that code a long, long time ago and forgot about it). Also, relying on a third party to provide some information before loading your site is just plain stupid. I can’t believe how badly thought out I had made the organization of the site.</p>
 
 
           
