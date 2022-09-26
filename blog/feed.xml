@@ -5,9 +5,109 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Aug 2022 17:28:23 -0700</pubDate>
-    <lastBuildDate>Sun, 28 Aug 2022 17:28:23 -0700</lastBuildDate>
+    <pubDate>Mon, 26 Sep 2022 12:34:00 -0700</pubDate>
+    <lastBuildDate>Mon, 26 Sep 2022 12:34:00 -0700</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
+    
+      
+      <item>
+        <title>Making a Trombone Champ Controller From a Trombone!</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;why-a-trombone-controller&quot;&gt;Why a Trombone Controller?&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp-screen1.jpg&quot; /&gt;
+	&lt;figcaption&gt;A screenshot of the game&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;After I got the game, I played all the levels and had a lot of fun, but I felt like something was missing. I think that driving games are more fun when you use a steering wheel, and flight simulators are more fun when you use a flight stick. Can you imagine how boring Duck Hunt would be if you had to use the regular NES controller to play it? So I decided to make a trombone controller for Trombone Champ.&lt;/p&gt;
+
+&lt;p&gt;Luckily, I have a love of novelty instruments, and I never throw anything away, so I just happened to have a &lt;a href=&quot;https://www.wwbw.com/Jupiter-314L-Soprano-Trombone-Slide-Trumpet-460203.wwbw&quot;&gt;Jupiter soprano trombone in my closet&lt;/a&gt;. I think I origially bought it because it would be funny to use during basketball games (I used to play in the band in college).&lt;/p&gt;
+
+&lt;h3 id=&quot;making-a-fake-mouse&quot;&gt;Making a Fake Mouse&lt;/h3&gt;
+
+&lt;p&gt;So since I have an actual trombone, all I need now is to connect my trombone to the computer, so I can play the game with it. I did some searching and found &lt;a href=&quot;https://github.com/T-vK/ESP32-BLE-Mouse&quot;&gt;a library that can turn a esp32 microcontroller into a bluetooth mouse&lt;/a&gt;. This is perfect because then all I need to is connect some sensors to my trombone and have those move the mouse and click its buttons. Then I can connect the mouse to my computer and play the game.&lt;/p&gt;
+
+&lt;p&gt;I decided to use a &lt;a href=&quot;https://www.dfrobot.com/product-1590.html&quot;&gt;Firebeetle ESP32 microcontroller&lt;/a&gt; because I had one lying around from a previous project, and because it comes with a connector to plug in a lithium ion battery. This is nice because I’ll be able to play the game completely wirelessly instead of needing to plug in to usb for power.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-sensors&quot;&gt;Adding Sensors&lt;/h3&gt;
+
+&lt;p&gt;So now I have two different problems to solve. I’ll call these the “blow problem” and the “slide problem.” Let’s start with the blow problem.&lt;/p&gt;
+
+&lt;p&gt;I didn’t want to just add a button to my trombone to play a sound, because that’s not how wind instruments work. I want to actually blow into something. So I looked for different ways to &lt;a href=&quot;https://www.mouser.com/c/sensors/flow-sensors/?for%20use%20with=Air&quot;&gt;measure air flow&lt;/a&gt;, and it turns out these types of sensors are really expensive and didn’t make sense for my project. I ended up finding this neat &lt;a href=&quot;https://www.sparkfun.com/products/16476&quot;&gt;air pressure sensor&lt;/a&gt; that also has a port in it to attach a tube. My idea was that I could attach a tube to the trombone mouthpiece and measure the air pressure difference when I blew into it, directly into the sensor.&lt;/p&gt;
+
+&lt;p&gt;This was actually a terrible idea though, because the tubing would need to go through the entire trombone and then come out of the bell, and it would really impede the movement of the slide.&lt;/p&gt;
+
+&lt;p&gt;I ended up putting the whole sensor in the bell and then sealing the entire instrument with some saran wrap. When it’s on it has a red LED which I think gives it a pretty nice cyberpunk feel. Then I measured the ambient air pressure inside the trombone. In in my room it happens to be around 1011 hPa. When I blow into the horn, it causes the air pressure to go up, and I can register a click. When the air pressure goes back down, I can release it.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_air_sensor.jpg&quot; /&gt;
+	&lt;figcaption&gt;The air sensor in my trombone&apos;s bell&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So with my blow problem a thing of the past, let’s move on to the slide problem. In the game, you’re supposed to use a mouse to simulate the slide of a trombone. But there are a lot of problems with this. The slide on a trombone is fixed, so if you go to first position, you hit the end of the trombone. You can’t go to negative positions, but your mouse doesn’t just stop when you hit the end of the screen. Plus on the instrument you can use muscle memory and look at the bell to figure out what note you’re gonna hit.&lt;/p&gt;
+
+&lt;p&gt;I looked at a bunch of different ways to solve the problem of using the actual trombone slide as a controller for the game’s slide. There are various distance sensors: lidar, sonar, time of flight, you could also probably use a gyroscope and accelerometer to figure out what direction the slide is going. I think I saw someone use a wiimote’s accelerometer to make a 3d air mouse once.&lt;/p&gt;
+
+&lt;p&gt;To be honest, I just wanted to get started on this project quickly, so I ordered the &lt;a href=&quot;https://amzn.to/3dNOUOD&quot;&gt;cheapest time of flight sensor on Amazon that had next day shipping&lt;/a&gt;. I attached it to the bell of the trombone and put a piece of cardboard on it that it can use to bounce a laser on to detect how far the laser is away from the initial position.&lt;/p&gt;
+
+&lt;p&gt;When I actually hooked this up to my microcontroller, it ended up giving some pretty inaccurate readings but I figured I could hook it up to my mouse software and see what happens.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_distance_sensor.jpg&quot; /&gt;
+	&lt;figcaption&gt;The distance sensor attached to the bell&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+&lt;center&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;This weekend I made a Trombone Champ controller out of a real (soprano) trombone! I&amp;#39;ll have a video out shortly about the process, but for now, enjoy this video of me absolutely failing our national anthem with my new device! cc &lt;a href=&quot;https://twitter.com/HolyWowStudios?ref_src=twsrc%5Etfw&quot;&gt;@HolyWowStudios&lt;/a&gt; &lt;a href=&quot;https://t.co/SvPoxfk6GV&quot;&gt;pic.twitter.com/SvPoxfk6GV&lt;/a&gt;&lt;/p&gt;&amp;mdash; Hung Truong (@hungtruong) &lt;a href=&quot;https://twitter.com/hungtruong/status/1573854148923359232?ref_src=twsrc%5Etfw&quot;&gt;September 25, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I’ve linked my tweet of an attempt at the Star Spangled Banner above, but if you don’t want to watch a video, I’ll tell you that it did not work well! I think the time-of-flight sensor I got was faulty, as it didn’t go past 100mm with any degree of accuracy, but is rated for 2000mm.&lt;/p&gt;
+
+&lt;p&gt;But to be honest, I’m really happy with the way this project turned out. The blow sensor works a lot better than I expected it to, as I was initially worried it wouldn’t be able to register the notes quickly enough. I also learned a lot about simulating a bluetooth mouse which I could probably use in future projects. I’m happy to share this project even though it isn’t perfect yet because this kind of prototyping is really an iterative process anyway.&lt;/p&gt;
+
+&lt;p&gt;I also thought it was interesting how the slightly air tight seal on the trombone bell works. When you normally play an instrument, you have some back pressure, but air is also going through. I would say that I probably use more air blowing into the trombone without making any noise than I do when I’m actually playing it.  This could lead to me getting tired pretty quickly, so I might adjust the seal on the horn a bit more so I don’t have to blow as hard.&lt;/p&gt;
+
+&lt;p&gt;As far as next steps go, I’ve already purchased a few new sensors to try out, one is an &lt;a href=&quot;https://amzn.to/3RdPcMs&quot;&gt;acoustic distance detector&lt;/a&gt;, and the other is a &lt;a href=&quot;https://amzn.to/3xTDXSe&quot;&gt;more expensive time of flight sensor from adafruit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ll probably update this blog post when I try the new sensors, so look for an update below at some point!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 26 Sep 2022 00:00:00 -0700</pubDate>
+        <link>https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</guid>
+        
+        
+        <category>Tech</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1134,242 +1234,6 @@ self.centralManager.scanForPeripherals(withServices: nil, options: nil)&lt;/p&gt
         <link>https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/</guid>
         
-        
-        <category>iOS</category>
-        
-        <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Five Simple Steps to Becoming an International™ Conference Speaker!</title>
-        <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2018/ioscon-london.jpg&quot; /&gt;
-	&lt;figcaption&gt;Me speaking at iOSCon London 2018. Image copyright &lt;a href=&quot;http://www.edtelling.com&quot;&gt;Ed
-Telling&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;A few years ago, I made a goal for myself that I would start speaking at
-conferences. In the past I had gone to quite a few awesome conferences and I
-really admired the folks who could get on a stage, share a bunch of knowledge
-and inspire an audience to do cool stuff. While I had a bit of experience with
-public speaking (I spoke at some local iOS/Android meetups and moderated two
-panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference
-spot.&lt;/p&gt;
-
-&lt;p&gt;I think the conference that convinced me to start applying was Swift Summit,
-which I attended in 2015. There were a number of really inspiring talks, and the
-community felt really fresh and welcoming. One interesting aside: I learned
-after joining Lyft that no fewer than three of my current coworkers on iOS spoke
-at that conference (&lt;a href=&quot;https://www.youtube.com/watch?v=FmT3A_tm9_4&quot;&gt;Keith&lt;/a&gt;,
-&lt;a href=&quot;https://www.youtube.com/watch?v=P0HD5bODhZM&quot;&gt;Sam&lt;/a&gt; and
-&lt;a href=&quot;https://www.youtube.com/watch?v=kz6d-ES7WtE&quot;&gt;JP&lt;/a&gt;, though only Keith was working
-at Lyft at the time) and a few others attended that year. I’m not sure if that’s
-correlation or causation at work.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;step-1-applying-to-speak&quot;&gt;Step 1: Applying to speak&lt;/h3&gt;
-
-&lt;p&gt;According to my Google Doc which keeps track of my CFP applications, I started
-applying heavily in 2016. There was a gap between when I wanted to apply and
-when I started to apply simply because I felt I didn’t have much to talk about.
-Once I had some interesting experience with iMessage and accessibility while
-working at Starbucks, I figured people might want to know about those things,
-too. In retrospect I think I probably waited too long. If you are passionate
-about something, don’t wait until you feel you’re an expert on the subject. That
-day probably (at least for me) will never come, and you can always do research
-about your topic once it’s been accepted!&lt;/p&gt;
-
-&lt;p&gt;In all of my CFPs I use a template which I learned about during my time in the
-&lt;a href=&quot;https://www.twilio.com/blog/2014/01/introducing-the-twilio-heroes-nt.html&quot;&gt;Twilio
-Heroes&lt;/a&gt;
-program. Essentially, you need to:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;State a problem or challenge&lt;/li&gt;
-  &lt;li&gt;Give some general solutions (set up a straw man)&lt;/li&gt;
-  &lt;li&gt;Give your specific solution that is better than #2, because you are awesome.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Here’s an example of my iMessage talk, which used that template:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;(1) Messaging apps are huge and getting huger. With WhatsApp, WeChat and
-Facebook Messenger users in the millions or billions, it’s clear that messaging
-is not a fad. So how can a developer take advantage of this growth? (2) Starting
-a new messaging app is probably out of the question. (3) Thankfully, Apple has
-introduced iMessage app extensions in iOS 10. Learn how to use iMessage to let
-your users send rich, interactive messages, and learn how to take advantage of
-the network effects that iMessage app extensions allow, including updates
-introduced in iOS 11 like Live Message Layouts and the Direct Send API.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;step-2-getting-rejected&quot;&gt;Step 2: Getting rejected&lt;/h3&gt;
-
-&lt;p&gt;After using this template for talks and applying to pretty much every iOS
-related conference in 2016, I ended up getting a ton of rejections. This is
-totally fine and to be expected since I think most conferences get way more talk
-proposals than they have spots. I also noticed that conferences tend to invite
-speakers who have spoken before, which is a form of risk management but also
-kind of unfair for people who have never spoken.&lt;/p&gt;
-
-&lt;p&gt;The best way to beat this sort of chicken and egg situation is probably to aim
-at local meetups which are always looking for people to give talks! Another
-benefit of this is that you get to practice your talk and refine it before
-taking it to a bigger stage and audience (which is exactly what I did for my
-accessibility talk that I gave at iOSCon in London this year). Because I had
-given my talk at an Xcoders meeting two weeks before the conference, I was able
-to time my talk, practice it in front of people, get their questions to
-incorporate back into the talk, and feel like I was ready once I spoke in front
-of a larger crowd.&lt;/p&gt;
-
-&lt;h3 id=&quot;step-3-getting-accepted&quot;&gt;Step 3: Getting accepted&lt;/h3&gt;
-
-&lt;p&gt;The first year I really started getting serious about applying to conferences,
-my acceptance rate was 1 of 7&lt;a href=&quot;#footnote1&quot;&gt;¹&lt;/a&gt;. Success! I attended the first
-&lt;a href=&quot;http://www.codemobile.co.uk&quot;&gt;CodeMobile&lt;/a&gt; conference in Chester, UK and talked
-about iMessage apps. The experience of going on stage, sharing something I
-thought was interesting, and then getting feedback that it actually was
-interesting to people was great! The attendees were all amazing and I finally
-got to travel outside of North America for the first time in my life. I had
-reached my goals and become an International™ Speaker as well as generally
-becoming an iOS Conference Speaker all in one go.&lt;/p&gt;
-
-&lt;h3 id=&quot;step-4-preparation&quot;&gt;Step 4: Preparation&lt;/h3&gt;
-
-&lt;p&gt;The thing that most people don’t tell you, and the thing that you quickly find
-out when preparing a conference talk is how much work it is to prepare! As an
-audience member to some great talks, I always assumed that the talk took maybe a
-handful of hours to prepare and format.&lt;/p&gt;
-
-&lt;p&gt;In practice, a talk can take something like 40–50 hours for a 45 minute session.
-That includes coming up with the proposal, learning about the subject (often
-this happens after the proposal has been accepted!), coming up with a format
-that will educate and inspire (and hopefully entertain) your audience, and
-practicing the delivery of the material. You probably also want to tailor your
-presentation for the audience you’re speaking to; are they mostly students? What
-skill level would be most appropriate to present to? What kinds of jokes might
-work well with your audience?&lt;/p&gt;
-
-&lt;p&gt;A good amount of the time that I put into preparing talks is practicing. It’s
-really up to you how polished you want the talk to be, and how comfortable you
-will be presenting with the amount of practice you’ve put into it. As I
-mentioned before, presenting early to a smaller group can really help by
-creating a deadline that is sooner than the actual talk and providing a method
-of gathering feedback to tweak your talk to make it even better.&lt;/p&gt;
-
-&lt;p&gt;One thing that’s great about having a conference talk lined up is that you can
-do some pretty productive stuff while procrastinating. In order to avoid
-preparing my iOSCon talk, I applied to speak at a conference in New York called
-!!Con. That application ended up getting accepted, so I started down a pretty
-vicious cycle of speaking at more conferences!&lt;/p&gt;
-
-&lt;p&gt;I recently came across this Twitter thread of many speakers sharing their
-process and how much time they put into their talks:&lt;/p&gt;
-&lt;center&gt;
-&lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Hey, people who talk at things:&lt;br /&gt;&lt;br /&gt;How long does it take you to put a new talk together? I need like 50 hours over at least a couple of months to make something I don&amp;#39;t hate. I&amp;#39;m trying to get that down (maybe by not doing pictures?) but wondering what&amp;#39;s normal for everyone else.&lt;/p&gt;&amp;mdash; Tanya Reilly (@whereistanya) &lt;a href=&quot;https://twitter.com/whereistanya/status/995653828933496832?ref_src=twsrc%5Etfw&quot;&gt;May 13, 2018&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;/center&gt;
-
-&lt;h3 id=&quot;step-5-actually-presenting&quot;&gt;Step 5: Actually presenting&lt;/h3&gt;
-
-&lt;p&gt;Giving the actual talk is kind of a weird experience. After putting a ton of
-time into a talk upfront, I’ve found that the actual talk goes by faster than I
-think it will. Once I get up and start talking, I’m more or less on autopilot,
-and it’s almost like having an out of body experience. It might be because I put
-all of my brain power into giving the talk, but I can’t even really remember how
-I did once it’s done. Then at the end everyone claps and hopefully people ask
-insightful questions and no one asks a question that’s really just a statement
-that they’re trying to use to prove that they know something.&lt;/p&gt;
-
-&lt;p&gt;Once I’ve given the talk, I can actually enjoy the conference. I’ve been lucky
-that the first few conferences I’ve spoken at, I was the first speaker after the
-keynote speaker on the first day. Going earlier is also nice because then people
-have seen you talk and they’re usually more open about chatting with you in the
-hallway.&lt;/p&gt;
-
-&lt;h3 id=&quot;presenting-some-more&quot;&gt;Presenting some more&lt;/h3&gt;
-
-&lt;p&gt;After speaking at &lt;a href=&quot;https://youtu.be/zXQOTEwxv-U&quot;&gt;CodeMobile&lt;/a&gt; in Chester, UK, I
-didn’t get any talks accepted for about a year. I ended up speaking again in the
-UK, this time in London for
-&lt;a href=&quot;https://skillsmatter.com/skillscasts/11320-designing-and-building-with-accessibility-in-mind&quot;&gt;iOSCon&lt;/a&gt;
-in March of 2018. Then I most recently spoke at &lt;a href=&quot;http://bangbangcon.com&quot;&gt;!!Con&lt;/a&gt;
-in New York in May. I’ll be giving an updated version of my iOS accessibility
-talk in Boston next month for SwiftFest.&lt;/p&gt;
-
-&lt;p&gt;This time around my acceptance rate was 3/6, which is much better. I would
-mostly chalk this up to the fact that I gave a talk at CodeMobile last year. I
-also applied to some more diverse types of tech conferences since there were
-fewer iOS specific ones (I think a few that I applied to didn’t actually
-happen).&lt;/p&gt;
-
-&lt;p&gt;In the future, I hope I can speak again but with the three consecutive talks I’m
-doing in March/May/June this year, I’m ready for a little break before I get
-back on the conference speaking circuit. I’m really happy that I’ve been given
-the opportunity to share some of my experiences and the conferences I’ve been to
-have been really enjoyable so far.&lt;/p&gt;
-
-&lt;h3 id=&quot;you-should-talk-too&quot;&gt;You should talk, too!&lt;/h3&gt;
-
-&lt;p&gt;When I first set my personal goal to talk at some conferences, I really wasn’t
-sure if I had what it would take to succeed. I don’t consider myself a great
-public speaker, nor would I consider myself to be an exceptional software
-engineer. The secret is that neither is really a requirement to share cool stuff
-with people. You just need to have some passion for something and effectively
-communicate that passion by telling your story.&lt;/p&gt;
-
-&lt;p&gt;If you’re looking for iOS conferences to apply to, there’s a well maintained
-list along with CFP deadlines
-&lt;a href=&quot;https://github.com/Lascorbe/CocoaConferences&quot;&gt;here&lt;/a&gt;. Good luck!&lt;/p&gt;
-
-&lt;p&gt;Finally, if you see me at a conference, say hi! I’m always happy to chat with
-people, even if I look like I’m busy or focused on other stuff.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span id=&quot;footnote1&quot;&gt;&lt;/span&gt;¹Actually I ended up getting another talk accepted but the conference was not
-interested in reimbursing me for any travel expenses so I politely declined.
-Given the amount of time it takes to prepare a good presentation, a conference
-should absolutely reimburse you for speaking.&lt;/p&gt;
-
-</description>
-        
-          <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2018/ioscon-london.jpg&quot; /&gt;
-	&lt;figcaption&gt;Me speaking at iOSCon London 2018. Image copyright &lt;a href=&quot;http://www.edtelling.com&quot;&gt;Ed
-Telling&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;A few years ago, I made a goal for myself that I would start speaking at
-conferences. In the past I had gone to quite a few awesome conferences and I
-really admired the folks who could get on a stage, share a bunch of knowledge
-and inspire an audience to do cool stuff. While I had a bit of experience with
-public speaking (I spoke at some local iOS/Android meetups and moderated two
-panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference
-spot.&lt;/p&gt;
-
-&lt;p&gt;I think the conference that convinced me to start applying was Swift Summit,
-which I attended in 2015. There were a number of really inspiring talks, and the
-community felt really fresh and welcoming. One interesting aside: I learned
-after joining Lyft that no fewer than three of my current coworkers on iOS spoke
-at that conference (&lt;a href=&quot;https://www.youtube.com/watch?v=FmT3A_tm9_4&quot;&gt;Keith&lt;/a&gt;,
-&lt;a href=&quot;https://www.youtube.com/watch?v=P0HD5bODhZM&quot;&gt;Sam&lt;/a&gt; and
-&lt;a href=&quot;https://www.youtube.com/watch?v=kz6d-ES7WtE&quot;&gt;JP&lt;/a&gt;, though only Keith was working
-at Lyft at the time) and a few others attended that year. I’m not sure if that’s
-correlation or causation at work.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 20 May 2018 00:00:00 -0700</pubDate>
-        <link>https://www.hung-truong.com/blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/</guid>
-        
-        
-        <category>Public Speaking</category>
-        
-        <category>Conferences</category>
         
         <category>iOS</category>
         
