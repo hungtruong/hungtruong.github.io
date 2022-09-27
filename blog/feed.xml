@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 26 Sep 2022 12:34:00 -0700</pubDate>
-    <lastBuildDate>Mon, 26 Sep 2022 12:34:00 -0700</lastBuildDate>
+    <pubDate>Tue, 27 Sep 2022 13:04:17 -0700</pubDate>
+    <lastBuildDate>Tue, 27 Sep 2022 13:04:17 -0700</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       
@@ -84,6 +84,26 @@
 &lt;p&gt;As far as next steps go, I’ve already purchased a few new sensors to try out, one is an &lt;a href=&quot;https://amzn.to/3RdPcMs&quot;&gt;acoustic distance detector&lt;/a&gt;, and the other is a &lt;a href=&quot;https://amzn.to/3xTDXSe&quot;&gt;more expensive time of flight sensor from adafruit&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I’ll probably update this blog post when I try the new sensors, so look for an update below at some point!&lt;/p&gt;
+
+&lt;h3 id=&quot;update-september-27-2022&quot;&gt;Update September 27, 2022&lt;/h3&gt;
+
+&lt;p&gt;So I ended up getting the new distance sensors! I had a problem getting the acoustic sensor working (it looks like it doesn’t play well with other i2c devices at the same time) but the time-of-flight sensor from Adafruit is working a lot better. Here’s a video where I actually get a C in Oh Canada.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/u0Msn00sflU&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;Some quick impressions on the current state of Trombone Champ Controller v2: I am going to need to seal the bell a bit better than with the current plastic wrap solution I have now. There’s quite a bit of air leak (as I had predicted before). Playing a 1 minute song is pretty easy but playing the longer ones leaves me pretty lightheaded by the end. When playing a regular trumpet, I don’t really use that much air, so getting too much oxygen is not an issue. But I am probably setting myself up for hyperventilation side effects if I don’t make another adjustment.&lt;/p&gt;
+
+&lt;p&gt;Aside from that I am not sure if the game audio is a bit laggy or if it’s due to my screen recording software but I felt like I needed to preemptively blow a bit early for the controls to actually hit accurately. I did see that the developer made an update around audio latency so maybe that’ll fix it!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;ALSO, we just pushed a very very small update (&amp;lt;5mb) to v1.04 which may make overall audio latency slightly better! Between this and the improved multi-key keyboard stuff, serious rhythm game people may be *slightly* happier with Trombone Champ starting from tonight🙏&lt;/p&gt;&amp;mdash; Holy Wow (🎺TROMBONE CHAMP IS OUT!) (@HolyWowStudios) &lt;a href=&quot;https://twitter.com/HolyWowStudios/status/1574587033825071105?ref_src=twsrc%5Etfw&quot;&gt;September 27, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I think I can also probably improve the slide accuracy by using something a bit more sturdy than a crappy piece of cardboard taped to the slide… Maybe something 3d printed?&lt;/p&gt;
+
+&lt;p&gt;I’ll update this blog post as I make more improvements.&lt;/p&gt;
 </description>
         
           <description>&lt;figure&gt;
