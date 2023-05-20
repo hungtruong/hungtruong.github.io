@@ -117,6 +117,34 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">May 02, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/05/02/craigslist-and-google-maps-mashup-thingy-day-14-getting-jquery-and-prototype-to-work-together/">Craigslist and Google Maps Mashup Thingy: Day 14 &#8211; Getting Jquery and Prototype to Work Together</a></h3>
+        <p><p>Whoa, that’s a doozy of a title! Anyway, today I was working on making the mashup look prettier and actually somewhat usable for human consumption. I was using thickbox to get some pretty snazzy ajax stuff going on for displaying the about page and whatnot. Today, I included prototype for some even more snazzy ajax stuff. But apparently they clash.</p>
+
+<p>I guess both of them like using the ‘$’ character as a shortcut to make the code easier to read. Which means they have crazy namespace conflicts. Bad developers! Anyway, here’s how I got it to work. Right after the import of the jquery library, I set the ‘$’ thing to be ‘$j’ instead. Then I refactored thickbox to use the ‘$j’ name instead. It worked. Here’s what the head looks like:</p>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;br /&gt;
+...&lt;br /&gt;
+&lt;script type="text/javascript" src="/js/jquery-latest.pack.js"&gt;&lt;/script&gt;&lt;br /&gt;
+&lt;script&gt;var $j = jQuery.noConflict();&lt;/script&gt;&lt;br /&gt;
+&lt;script type="text/javascript" src="/js/thickbox.js"&gt;&lt;/script&gt;&lt;br /&gt;
+&lt;script type="text/javascript" src="/js/prototype.js"&gt;&lt;/script&gt;&lt;br /&gt;
+...&lt;br /&gt;
+</code></p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">May 01, 2007</span>
         <h3><a class="post-link" href="/blog/2007/05/01/craigslist-and-google-maps-mashup-thingy-day-1213-dot-com-and-cities/">Craigslist and Google Maps Mashup Thingy: Day 12+13 &#8211; Dot Com and Cities</a></h3>
         <p><p>So I worked on the mashup quite a bit yesterday. So much that when I was done, I was too tired to write a blog entry about it. I mostly spent yesterday buying the domain name, upgrading my server, and getting the project to work on my “production” server. It wasn’t too difficult; I just needed to move the database, change some names, and make sure there weren’t any old names being used. I also started adding all of the cities on CraigsList to the database. At least, the US ones.</p>
@@ -212,29 +240,6 @@
         </p>
       </li>
     
-      <li>
-        <span class="date">April 27, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/27/whos-says-myspaces-ui-isnt-good/">Whos Says Myspace&#8217;s UI Isn&#8217;t Good?</a></h3>
-        <p><p><img src="/blog/wp-content/uploads/2007/04/myspace-user-interface-improvement.jpg?w=604" alt="myspace-user-interface-improvement.jpg" data-recalc-dims="1" /></p>
-
-<p>I have a Myspace account, mainly to keep in touch with people who don’t have Facebook accounts. It’s sort of like making a deal with the devil, but hey, people use it.</p>
-
-<p>Anyway, I was reading some stupid “bulletin” that one of my “friends” posted. It was just some lame spam. Then I noticed that Myspace actually does keep the user in mind in some cases. See the above screencap? Whoa, there’s a “Delete From Friends” button! Genius. It saved me like 10 clicks to do it the hard way. Sorry Slevin, it’s time we went our separate ways.</p>
-
-<p>Maybe this means that Myspace really isn’t all about the $$$. Okay, probably not.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -252,7 +257,7 @@
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2022 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2023 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">
