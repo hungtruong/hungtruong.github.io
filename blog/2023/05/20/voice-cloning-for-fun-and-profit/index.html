@@ -145,9 +145,9 @@
 
 <h3 id="blue-skies-and-golden-sunshine">Blue Skies and Golden Sunshine</h3>
 
-<p>The first voice that I wanted to try to clone was David Lynch’s. You might not think that his voice would be my first choice, so let me explain. Maybe a year ago, I started watching these David Lynch weather reports that he was doing daily. I think the joke is that the weather in L.A. is pretty much the same all the time. But I would watch it every day, and it was pretty soothing in a pandemic world to have something that was consistent.</p>
+<p>The first voice that I wanted to try to clone was David Lynch’s. You might not think that his voice would be my first choice, so let me explain. Maybe a year ago, I started watching these <a href="https://www.youtube.com/@DAVIDLYNCHTHEATER">David Lynch weather reports</a> that he was doing daily. I think the joke is that the weather in L.A. is pretty much the same all the time. But I would watch it every day, and it was pretty soothing in a pandemic world to have something that was consistent.</p>
 
-<p>I had some ideas on automating his weather report, which would either take pieces of his other reports, and stitch them together to make a new one (based on the actual weather of the day, of course). I looked at some AI libraries that could find someone’s face and make their lips move with an audio file. The results were actually pretty creepy, which is appropriate for David Lynch.</p>
+<p>I had some ideas on automating his weather report, which would either take pieces of his other reports, and stitch them together to make a new one (based on the actual weather of the day, of course). I looked at some AI libraries that could find someone’s face and <a href="https://github.com/Rudrabha/Wav2Lip">make their lips move with an audio file</a>. The results were actually pretty creepy, which is appropriate for David Lynch.</p>
 
 <p>But I figured he might get mad at me and I don’t want David Lynch to be mad at me. Plus I kind of got sidetracked and busy and I didn’t have time to finish that project.</p>
 
@@ -158,16 +158,18 @@
 <p>Anyway, I trained a voice clone model of David Lynch using the audio from his weather reports. I used a library called <a href="https://github.com/voicepaw/so-vits-svc-fork">“so-vits-svc-fork”</a> to do this, and I trained it on <a href="https://www.kaggle.com/">Kaggle</a> since I don’t have a GPU at the moment.</p>
 
 <p>When I tried to actually infer my voice to the David Lynch voice model, it sounded really funny. I ended up <a href="https://youtu.be/-f86ZqMD9_o">posting a video of it anyway though</a>, and I shared it in the David Lynch subreddit. The folks there thought it was a pretty convincing impression, but I was still not happy with the results.</p>
+
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-f86ZqMD9_o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
 </center>
+
 <p>Eventually, while playing with the settings, I figured out that I wanted to manually transpose and set the “–no-auto-predict-f0” flag. I also experimented with some other f0 prediction methods which made the synthesized voice sound better. I still haven’t made another weather report but I’m pretty sure I could nail it with the updated settings. I also understand now why David Lynch stopped, because it’s kind of a lot of work and I can’t imagine doing it every day.</p>
 
 <h3 id="i-think-im-a-clone-now">I Think I’m a Clone Now</h3>
 
 <p>So after the success of the David Lynch voice model, I figured I would clone my own voice. Because sometimes I wonder how it would sound if I could actually sing “My Heart Will Go On” exactly like Celine Dion (currently I’m at about 90%).</p>
 
-<p>I took a bunch of audio from my previous YouTube video on Trombone Champ, which was about 10 minutes. Coincidentally, 10 minutes is around the suggested amount of audio to use for voice cloning.</p>
+<p>I took a bunch of audio from my <a href="https://youtu.be/fxVCrGzEP_k">previous YouTube video on Trombone Champ</a>, which was about 10 minutes. Coincidentally, 10 minutes is around the suggested amount of audio to use for voice cloning.</p>
 
 <p>I trained a model on just me speaking, but the model ended up underperforming when it came to singing. There were some weird glitches when moving between notes, which were probably just pitches that weren’t included in the sample data.</p>
 
