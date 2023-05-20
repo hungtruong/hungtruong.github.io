@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 20 May 2023 14:47:53 -0700</pubDate>
-    <lastBuildDate>Sat, 20 May 2023 14:47:53 -0700</lastBuildDate>
+    <pubDate>Sat, 20 May 2023 15:03:26 -0700</pubDate>
+    <lastBuildDate>Sat, 20 May 2023 15:03:26 -0700</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       
@@ -115,7 +115,7 @@ Your browser does not support the audio element.
 
 &lt;p&gt;It was really fun to explore the possibilities of voice cloning, and it’s just another tool to think about as generative AI tools become more popular in different aspects of our lives. Not only do we have text generation and image generation, we also have speech, both from text to speech systems as well as these new speech to speech systems.&lt;/p&gt;
 
-&lt;p&gt;I’ve also been interested in text to music generation, like the one from Google that was made available recently, called &lt;a href=&quot;https://aitestkitchen.withgoogle.com/experiments/music-lm&quot;&gt;MusicLM&lt;/a&gt;MusicLM. I might try using that to make something new as well.&lt;/p&gt;
+&lt;p&gt;I’ve also been interested in text to music generation, like the one from Google that was made available recently, called &lt;a href=&quot;https://aitestkitchen.withgoogle.com/experiments/music-lm&quot;&gt;MusicLM&lt;/a&gt;. I might try using that to make something new as well.&lt;/p&gt;
 
 &lt;p&gt;In the meantime, it’s taking a lot of effort just to stay on top of all these things!&lt;/p&gt;
 </description>
