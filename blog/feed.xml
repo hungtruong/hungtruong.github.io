@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 20 May 2023 14:25:58 -0700</pubDate>
-    <lastBuildDate>Sat, 20 May 2023 14:25:58 -0700</lastBuildDate>
+    <pubDate>Sat, 20 May 2023 14:29:52 -0700</pubDate>
+    <lastBuildDate>Sat, 20 May 2023 14:29:52 -0700</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       
@@ -32,6 +32,8 @@
 &lt;p&gt;The quality really varied. Some of the songs were unlistenable due to weird glitches in the voice. But some sounded pretty convincing. The good ones still didn’t really pass as real, but I think that with some post-processing and maybe an actual sound engineer on the case, they could be great.&lt;/p&gt;
 
 &lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;h3 id=&quot;blue-skies-and-golden-sunshine&quot;&gt;Blue Skies and Golden Sunshine&lt;/h3&gt;
 
@@ -137,87 +139,6 @@ Your browser does not support the audio element.
 
 &lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
 
-&lt;h3 id=&quot;blue-skies-and-golden-sunshine&quot;&gt;Blue Skies and Golden Sunshine&lt;/h3&gt;
-
-&lt;p&gt;The first voice that I wanted to try to clone was David Lynch’s. You might not think that his voice would be my first choice, so let me explain. Maybe a year ago, I started watching these David Lynch weather reports that he was doing daily. I think the joke is that the weather in L.A. is pretty much the same all the time. But I would watch it every day, and it was pretty soothing in a pandemic world to have something that was consistent.&lt;/p&gt;
-
-&lt;p&gt;I had some ideas on automating his weather report, which would either take pieces of his other reports, and stitch them together to make a new one (based on the actual weather of the day, of course). I looked at some AI libraries that could find someone’s face and make their lips move with an audio file. The results were actually pretty creepy, which is appropriate for David Lynch.&lt;/p&gt;
-
-&lt;p&gt;But I figured he might get mad at me and I don’t want David Lynch to be mad at me. Plus I kind of got sidetracked and busy and I didn’t have time to finish that project.&lt;/p&gt;
-
-&lt;p&gt;David Lynch stopped his weather reports abruptly some time in December, and I started missing them. One of the reasons I liked listening to his reports is that he has a really funny way of talking. He talks like an old timey newsreel, and pronounces words a certain way. Like for “day” he says it like “dee.”&lt;/p&gt;
-
-&lt;p&gt;I figured that if I could clone his voice, I could do my own version of his weather report. And if I could get the pronunciations correct, then it could seem like he was back doing them (in an Asian person’s body). I was also thinking about integrating deepfake technology into my version of the weather reports, but I haven’t figured that part out yet.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I trained a voice clone model of David Lynch using the audio from his weather reports. I used a library called &lt;a href=&quot;https://github.com/voicepaw/so-vits-svc-fork&quot;&gt;“so-vits-svc-fork”&lt;/a&gt; to do this, and I trained it on &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; since I don’t have a GPU at the moment.&lt;/p&gt;
-
-&lt;p&gt;When I tried to actually infer my voice to the David Lynch voice model, it sounded really funny. I ended up &lt;a href=&quot;https://youtu.be/-f86ZqMD9_o&quot;&gt;posting a video of it anyway though&lt;/a&gt;, and I shared it in the David Lynch subreddit. The folks there thought it was a pretty convincing impression, but I was still not happy with the results.&lt;/p&gt;
-&lt;center&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/-f86ZqMD9_o&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-&lt;p&gt;Eventually, while playing with the settings, I figured out that I wanted to manually transpose and set the “–no-auto-predict-f0” flag. I also experimented with some other f0 prediction methods which made the synthesized voice sound better. I still haven’t made another weather report but I’m pretty sure I could nail it with the updated settings. I also understand now why David Lynch stopped, because it’s kind of a lot of work and I can’t imagine doing it every day.&lt;/p&gt;
-
-&lt;h3 id=&quot;i-think-im-a-clone-now&quot;&gt;I Think I’m a Clone Now&lt;/h3&gt;
-
-&lt;p&gt;So after the success of the David Lynch voice model, I figured I would clone my own voice. Because sometimes I wonder how it would sound if I could actually sing “My Heart Will Go On” exactly like Celine Dion (currently I’m at about 90%).&lt;/p&gt;
-
-&lt;p&gt;I took a bunch of audio from my previous YouTube video on Trombone Champ, which was about 10 minutes. Coincidentally, 10 minutes is around the suggested amount of audio to use for voice cloning.&lt;/p&gt;
-
-&lt;p&gt;I trained a model on just me speaking, but the model ended up underperforming when it came to singing. There were some weird glitches when moving between notes, which were probably just pitches that weren’t included in the sample data.&lt;/p&gt;
-
-&lt;p&gt;I ended up recording about 6 minutes of myself singing some various hits from the 80s and 90s, and added that to the audio data for training. The resulting model sings pretty well. Here are some audio samples in case you are interested.&lt;/p&gt;
-
-&lt;p&gt;My Heart Will Go On:&lt;/p&gt;
-&lt;audio controls=&quot;&quot;&gt;
-	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - My Heart Will Go On.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
-Your browser does not support the audio element.
-&lt;/audio&gt;
-
-&lt;p&gt;I Believe I Can Fly&lt;/p&gt;
-&lt;audio controls=&quot;&quot;&gt;
-	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - I Believe I Can Fly.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
-Your browser does not support the audio element.
-&lt;/audio&gt;
-
-&lt;p&gt;After trying it out for myself, I’m convinced that AI voice cloning will be a pretty big deal, not just for these novelty use cases, but also for actual music production. Sure, the results aren’t perfect right now, but you can believe that as technology gets better and better, artists are going to want to use this to gain a competitive edge, just like autotune or any other kind of technology that was introduced in the past.&lt;/p&gt;
-
-&lt;p&gt;I thought up a few use cases where this technology can be used, but I’m sure there are others:&lt;/p&gt;
-
-&lt;h3 id=&quot;multi-lingual-media&quot;&gt;Multi-Lingual Media&lt;/h3&gt;
-
-&lt;p&gt;Currently, the only artists who can have hits in multiple languages are the ones who are bilingual. For exmample, Shakira has version of “Hips Don’t Lie” in Spanish and English because she knows both.&lt;/p&gt;
-
-&lt;p&gt;But if I was an American artist who wanted greater reach in Japan, I could have a voice double singing with Japanese lyrics to one of my songs, then clone my voice into the Japanese track. It would then sound like I’m singing in Japanese. If artists can reach more fans, that’s probably a positive for them. Music is universal, and artists like Bad Bunny are proving that you don’t need to speak a language to be popular to the native speakers, but it certainly helps if you understand what the person is actually singing about.&lt;/p&gt;
-
-&lt;h3 id=&quot;enhanced-accessibility&quot;&gt;Enhanced Accessibility&lt;/h3&gt;
-
-&lt;p&gt;I’ve been making more YouTube videos lately, and when I do, I always try to make them accessible by adding captions. This helps people who have hearing disabilities enjoy my videos. I usually only caption in English, but those captions can then be auto-translated by Google, which also expands my viewership to people who don’t speak English.&lt;/p&gt;
-
-&lt;p&gt;To make my videos even more accessible, I could translate the captions, then produce audio using TTS. This would result in a voice that is speaking the captions of my video in the other langauge. Finally, I can apply my voice clone to the TTS audio to make it sound like I’m speaking the other language. I tried this in my voice clone video, but I had to slow down the actual video because I talk fast, and I guess German just uses more/longer words.&lt;/p&gt;
-
-&lt;h3 id=&quot;voice-clone-collabs&quot;&gt;Voice Clone Collabs&lt;/h3&gt;
-
-&lt;p&gt;Right now these voice clone AI covers are just working in some murky legal territory, because it’s a bunch of enthusiasts having fun and creating things. At some point, the ones who are good at this will probably end up collaborating with artists to make music together. Not all artists will do this, but &lt;a href=&quot;https://twitter.com/Grimezsz&quot;&gt;Grimes has already stated that she’ll split earnings if anyone uses her voice&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;selling-voice-rights&quot;&gt;Selling Voice Rights&lt;/h3&gt;
-
-&lt;p&gt;Bob Dylan recently sold his entire music catalog for a pretty big sum. As artists are getting older and ready to retire, I could see them offering rights to use their voice as well. I mean, if they’re not going to use it, they might as well let someone else! Imagine how much the rights to use Michael Jackson’s voice would be worth. Especially in the right hands and with a professional producer. I’m not saying that I’d rather listen to AI MJ than a real person at this point, but there’s probably going to be a market for it, whether most people want it or not.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-dark-side-of-cloning&quot;&gt;The Dark Side of Cloning&lt;/h3&gt;
-
-&lt;p&gt;Unfortunately, not all use cases for voice cloning technology are positive or legal. Scammers have used voice cloning to convince parents that their teens were kidnapped, and others have sold fake “leaked” tracks by famous artists to collectors.&lt;/p&gt;
-
-&lt;p&gt;For some reason my bank wants “voice authorization” to be a thing, even though it’s the stupidest, insecure thing I could imagine. As if someone couldn’t get a recording of my voice. Now they could actually clone it.&lt;/p&gt;
-
-&lt;p&gt;I’m sure there’s plenty of other bad things you can do with voice cloning, just like with image generation, and tools like Photoshop. A tool is just a tool, and people will use them for good stuff and bad stuff.&lt;/p&gt;
-
-&lt;h3 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h3&gt;
-
-&lt;p&gt;It was really fun to explore the possibilities of voice cloning, and it’s just another tool to think about as generative AI tools become more popular in different aspects of our lives. Not only do we have text generation and image generation, we also have speech, both from text to speech systems as well as these new speech to speech systems.&lt;/p&gt;
-
-&lt;p&gt;I’ve also been interested in text to music generation, like the one from Google that was made available recently, called &lt;a href=&quot;https://aitestkitchen.withgoogle.com/experiments/music-lm&quot;&gt;MusicLM&lt;/a&gt;MusicLM. I might try using that to make something new as well.&lt;/p&gt;
-
-&lt;p&gt;In the meantime, it’s taking a lot of effort just to stay on top of all these things!&lt;/p&gt;
 </description>
         
         <pubDate>Sat, 20 May 2023 00:00:00 -0700</pubDate>
