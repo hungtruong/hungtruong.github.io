@@ -117,6 +117,54 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">January 30, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/01/30/ruby-on-rails-on-media-temples-dv-on-plesk-on/">Ruby on Rails on Media Temple&#8217;s (dv) on Plesk on&#8230;</a></h3>
+        <p><p style="text-align: center">
+  <img src="/blog/wp-content/uploads/2007/01/rails.png?w=604" alt="rails.png" data-recalc-dims="1" />
+</p>
+
+<p>So I’ve been fiddling around with trying to get my rails applications installed on Media Temple’s (dv) 3 server. It’s a pretty nice setup; basically a dedicated server (though virtual) that you can play around with to your heart’s content.</p>
+
+<p>While they “support” Plesk 8.1 which in turn supports ruby on rails, they do not offer support for ruby on rails installation. Since I’m a pretty hardcore CS guy, I don’t mind learning stuff. It is easier when there’s support people to help you though.</p>
+
+<p>At first I had tried using rails with fastcgi, but that’s apparently a bad idea. The dv supports fcgid anyway. Media Temple’s support told me it was already installed, but guess what? It wasn’t. I had to go into plesk and get the updater to install it.</p>
+
+<p>I’ve been trying to get my apps to run for more than a week now. I’ve been working on it in my free time, and I finally got one of them to actually start doing something. There were a bunch of hurdles I had to jump over just to get it to work.</p>
+
+<p>Here’s the last thing I needed to do:</p>
+
+<p>I was getting some “Application error: Rails application failed to start properly” errors. The rails log wasn’t too helpful. The httpd one wasn’t either. I looked in the /var/log/httpd/suexec_log file and it said stuff like:</p>
+
+<blockquote>
+</blockquote>
+
+<p align="left">
+  I thought, &#8220;well okay, it&#8217;s just a warning.&#8221; Who cares if it&#8217;s group writable? After doing some other random stuff, and changing the permissions accidentally, I got this:
+</p>
+
+<blockquote>
+  <p align="left">
+  [2007-01-30 15:32:30]: file has no execute permission: (/var/www/&#8230;/public/dispatch.fcgi)
+</p>
+</blockquote>
+
+<p>Okay, so now it’s complaining that it has no execute permission. Whoops. I chmodded it to something like 775 and I get the “file is writable by others” thing again, along with the application error. So I thought, “what the heck” and chmodded the file to a safer 755. It seems that did the job, so now I can execute the app!</p>
+
+<p>I never knew that apache (or suexec or fcgid or whatever the heck is running dispatch.fcgi) really cared so much about permissions. I’ll have to be more thoughtful of logfiles from now on…</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">January 29, 2007</span>
         <h3><a class="post-link" href="/blog/2007/01/29/wii-sports-baseball/">Wii Sports &#8211; Baseball</a></h3>
         <p><p style="text-align: center">
@@ -241,38 +289,6 @@
             
             
 
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">January 16, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/01/16/giant-steps-reunion-ska-lives-maybe/">Giant Steps Reunion! Ska Lives! Maybe&#8230;</a></h3>
-        <p><p>So last month, this band called <a href="http://www.myspace.com/giantstepska">Giant Steps</a> had some kind of reunion going on. I was a dummy and didn’t go. But The band played on anyway and Tom Siegel, trumpet player, sent me a link to some videos of the event. I didn’t wanna kill their bandwidth, so I’m putting up the clips on my own site.</p>
-
-<p>Giant Steps was a local (Albuquerque) ska band that was pretty popular during the “third wave” of ska. I’d pin that era somewhere around 1996 to uh, 2000 or so. At least, that’s when the third wave was most popular. As far as I know, Reel Big Fish is still doing their thing.</p>
-
-<p>Anyway, Giant Steps was fairly well known to me, because two of my high school teachers were in it! My high school band teacher, Paul Blakey, played baritone sax, and Mr. Siegel, I mean… Tom played trumpet. How cool is that? I actually didn’t end up going to many of their gigs, but I did hear them live a few times.</p>
-
-<p>One thing that Tom told me is that you can now buy <a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewArtist?id=210447300">Giant Step’s CDs on iTunes</a>! How cool is that? I’d still rather have the hard copy though, for nostalgia purposes and whatnot.</p>
-
-<p>Ooh. Also, I remember hearing that “Feel the Thunder” was written about Paul Blakey’s snoring. I’m not if this is true, but why would anyone lie about that?</p>
-
-<p>On to the videos:</p>
-
-<p>Boom Ska:<flv href="/blog/video/Giant Steps - Boom Ska.flv" width="320" height="240" autostart="false"></flv></p>
-
-
-
-          
-            
-            
-            
-
-            
-              <a href="/blog/2007/01/16/giant-steps-reunion-ska-lives-maybe/">More &hellip;</a>
             
           
           

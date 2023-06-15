@@ -117,6 +117,53 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">October 17, 2010</span>
+        <h3><a class="post-link" href="/blog/2010/10/17/facebook-information-download-report-card/">Facebook Information Download: Report Card</a></h3>
+        <p><p><img src="/blog/wp-content/uploads/2010/10/Facebook-Download-Information.png?resize=212%2C206" alt="" title="Facebook Download Information" width="212" height="206" class="aligncenter size-full wp-image-2067" data-recalc-dims="1" /></p>
+
+<p>Ever since I signed up for Facebook, I’ve wanted a clean and easy way to export the content that my friends and I create on it. See <a href="http://www.hung-truong.com/blog/2010/04/21/questions-about-facebook-and-data-portability/">this post</a> for background. Facebook has never really made it easy to do so for end users, though they have an API that could theoretically be used for data export. Just recently, they announced a new feature that allows you to <a href="http://blog.facebook.com/blog.php?post=434691727130">download your information</a>. I gave the feature a test drive and took a look at what you actually get.</p>
+
+<p>The process for grabbing your information is pretty simple. You go to <a href="https://register.facebook.com/editaccount.php">Account Settings</a> -&gt; Download Your Information and then request your data. Facebook sends you an email when the zip file containing your stuff is ready.</p>
+
+<p>The zip file contains a few files and directories: html, photos and videos. Photos contains the photos you’ve uploaded, videos contains the videos, and html contains things like a list of your friends, messages, notes, wall posts and events. These are all stored in html files, which makes it easy for normal users to view them.</p>
+
+<p>From a data portability standpoint, it’s great that you can get all of your photos, videos and messages, etc. I like the fact that they’re in html that’s easy for anyone to browse. Since it works in its own self-contained directory structure, you could theoretically upload the contents to your own web server and host your albums yourself! For most users, the data download feature is really great.</p>
+
+<p>From a programmer/hardcore archivist’s point of view, the data download is still lacking. For example, the friend’s list gives you a list of your friends’ names. It does not, however, provide you with the unique identifier for your friends (e.g. their Facebook profile name or id number). This might be useful if you have a friend named “John Smith” and you’d like to know exactly which John it is. Generally, the files just don’t contain enough metadata to keep good records.</p>
+
+<p>Let’s say that in the distant future, Facebook has been abandoned. What we have left are the .zip files that people used to download their information. How would we go about reconstructing network ties? With the files as they are today, we can only make assumptions using names, which aren’t unique identifiers. While some people would say that including those would be overkill, they could be pretty easily added via meta tags within the html (or in a separate xml file for hardcore nerds like me).</p>
+
+<p>In addition to this lack of metadata, my other complaint is that Facebook only gives you half of your information. You can download a pretty ego-centric payload of data; stuff that friends wrote on your wall and photos you uploaded. You cannot, however, download things that you posted on your friends’ walls. This is especially important because Facebook’s early messaging model was based on wall-to-wall posts. My oldest wall posts come without any sort of context at all.</p>
+
+<p>Finally, it seems that Facebook did the unthinkable in deleting user data until around early 2006. I signed up for Facebook in January of 2005, yet my first wall post that shows up in my downloaded info is from February 2006. So there’s a whole year’s worth of wall messages that are missing. I suppose there’s no way for Facebook to retrieve this info anymore (unless they’re just witholding it because it’s hard to get to).</p>
+
+<p>If you found this tl;dr, here’s a summary:</p>
+
+<p><strong>The Good:</strong></p>
+
+<p>Facebook information download makes it easy for anyone to download their data in a nicely organized and self-contained package. Everyone should go to their account settings right now and download their data, even if they don’t plan on using for anything in the near future. The download provides a lot of information and is a good faith attempt at letting users “own” their data. There’s still work to be done, howerver.</p>
+
+<p><strong>The Bad:</strong></p>
+
+<p>The data that’s downloaded lacks enough meaningful metadata. Specifically, the data regarding connections between you and your friends is too general. Unique identifiers for friend connections would be a good first step. Facebook also omits an important side of your data: the stuff you’ve posted to others’ walls. Finally, Facebook’s data download only goes back to early 2006 (for me).</p>
+
+<p><strong>What Facebook Should Do Next:</strong></p>
+
+<p>I think Facebook’s done a really great job so far for this first iteration of data download. Now they should add more metadata and provide data in a cleaner xml or json format. After that, they should enable download of photos and video in their original format (I have a feeling Facebook keeps the original size photos before they resize them). I think that providing users with an easy way to download all of their data will lead to a better relationship and more trust, which is something Facebook could really use.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">October 14, 2010</span>
         <h3><a class="post-link" href="/blog/2010/10/14/letterpress-coasters-giraffe/">Letterpress Coasters &#8211; Giraffe!</a></h3>
         <p><p>I finally got the rollers for my letterpress machine yesterday, so I tried printing something.</p>
@@ -228,37 +275,6 @@
 <p>By introducing developer ads, I think Apple has tried to appease publishers at the cost of the perceived premium value of iAds. Sure, the developer ads aren’t as flashy as the premium advertisers’, but $.25 versus $2 a click for the same piece of real estate is quite a difference. Add the perception that <a href="http://www.crossforward.com/2010/08/25/iad-for-developers/">iAds for developers are not cost-effective</a> and you could come to the conclusion that Apple is doing it wrong. It doesn’t help that the premium brand advertisers seem to be <a href="http://online.wsj.com/article/SB10001424052748703321004575427892781417642.html">frustrated with the process of dealing with Apple as a gatekeeper</a>.</p>
 
 <p>So what can Apple do to fix this? They should go back to their specialization: doing one or a few things really well. They should focus on iAd as a brand advertising platform. They should work on getting as many large partners onto iAd as quickly as possible. This will alleviate the growing pains that publishers (including me) are feeling with fill rates. Right now it seems like Apple is reacting rather than acting; following rather than leading. They need to show that they’re serious about carving their own niche in the mobile advertising space.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">September 13, 2010</span>
-        <h3><a class="post-link" href="/blog/2010/09/13/quora/">Quora</a></h3>
-        <p><p><a href="/blog/wp-content/uploads/2010/09/quora-logo.jpg" rel="lightbox[2032]"><img src="/blog/wp-content/uploads/2010/09/quora-logo.jpg?resize=500%2C216" alt="" title="quora-logo" width="500" height="216" class="aligncenter size-medium wp-image-2033" srcset="/blog/wp-content/uploads/2010/09/quora-logo.jpg?resize=500%2C216 500w, /blog/wp-content/uploads/2010/09/quora-logo.jpg?w=501 501w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
-
-<p>I finally heard about <a href="http://www.quora.com/">Quora</a> enough times (I suppose I reached my contagion threshold) to make a profile for it a week or so ago, and I ended up exploring it in depth today.</p>
-
-<p>Quora is basically a site that lets you ask questions and answer other people’s questions. Facebook also just recently released a feature called Questions that seems sort of similar. While Quora hasn’t put limits on what kinds of questions you can ask, the bulk seem to be about technology and startups, probably because of the types of early adopters who are using the site.</p>
-
-<p>Quora is interesting to me because it’s basically enabling people to share knowledge. In a way, it’s like Wikipedia, but with a seemingly smaller barrier to entry. While Wikipedia has some harsh rules on how to edit an article, Quora is centered around questions and answers on various topics. You can literally sign up and answer questions within a few minutes.</p>
-
-<p>As with any great piece of social software, Quora seems to work because it makes the right things visible, which gives incentives for people to keep contributing. Personally, I see it as a way to build up my online reputation as an expert on a number of subjects. It’s interesting because the incentives to use the site are baked into the site itself. It’s easy to see who has answered many questions, who has a lot of followers, who has been “endorsed” by others, etc. With this system, pretty much everyone wins. The question askers have their questions answered, the answerers get the glory of answering a question well, and even users who do neither can still benefit from reading good answers to good questions.</p>
-
-<p>Another neat aspect of the site is that there are many users who could be considered “internet celebrities” or important in some other right. There are many founders of companies and other execs who go to the trouble of answering questions about the companies they founded. This is cool because users are all sort of on the same level (or at least have the potential to be). Think of the opportunities if you were one of the first 1000 people on Twitter and could have great conversations with the other early adopters.</p>
-
-<p>From playing around with it a bit today, I’m very impressed and excited about Quora. By comparison, I just goofed off on Facebook Questions and unlocked the Rickroll Easter Egg (ask “How is babby formed?”). Quora still has a few things it could do better (like make it easier to find really great answers to really great questions, perhaps older ones) but even now it seems like a great tool. With the right attention to detail and community, I feel like it could be the next Wikipedia in terms of social computing success stories.</p>
-
-<p>Oh, and here’s an example of a really good answer to a question: <a href="http://www.quora.com/Why-is-Facebook-creating-a-Q-A-product-to-compete-against-Quora">Why is Facebook creating a Q&amp;A product to compete against Quora?</a></p>
 
 
           
