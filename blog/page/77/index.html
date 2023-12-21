@@ -117,6 +117,27 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">April 22, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/04/22/craigslist-and-google-maps-mashup-thingy-day-8-cakephp-routing-and-caching/">Craigslist and Google Maps Mashup Thingy: Day 8 &#8211; CakePHP Routing and Caching</a></h3>
+        <p><p>I spent a whole lotta time today trying to get caching working with CakePHP. Apparently, CakePHP doesn’t do caching quite as gracefully as Rails when it comes to custom routing, especially in the application root. Yeah, there’s a bug. I thought I was doing something wrong though, so it took me forever to find out it was actually a bug (or is it a “feature?”).</p>
+
+<p>Besides that, I got the interface to what it was previously, except with AJAX so that the Craigslist images are only downloaded when you click on a map marker. I also found that it takes a long time to put a week’s worth of listings (from Ann Arbor, at least) onto the map at once. I’m guessing there were at least 400 on there. I made a hard limit to the number of listings that show up, and it loads a lot faster now.</p>
+
+<p>I’m sort of back into the mood for working on this project again. I finally beat the Scrin campaign (it was really short) in Command and Conquer 3, so I’ll definitely be more focused now. I think.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">April 21, 2007</span>
         <h3><a class="post-link" href="/blog/2007/04/21/craigslist-and-google-maps-mashup-thingy-day-7-asynchronous-javascript-and-xml/">Craigslist and Google Maps Mashup Thingy: Day 7 &#8211; Asynchronous JavaScript and XML!</a></h3>
         <p><p>I haven’t really been working on the Google Maps and Craigslist mashup very much recently. I blame it on a combination of going to Denver for a wedding, having a huge anime and manga backlog, getting Command and Conquer: Kane Edition, and general laziness. I think that’s a pretty good reason.</p>
@@ -227,45 +248,6 @@
 <p>I also learned some more MySQL syntax stuff. Previously, I had worked with Rails, which sort of handles the query making itself. Since I wrote a custom listing parser, I had to do some MySQL magic with JOINs and whatnot.</p>
 
 <p>I also worked a lot on the Facebook puzzle that I wrote about earlier today. I came up with an approach that was better than the last one I came up with, but only slightly. It’s still in the range of O(n), so I’ll have to figure out the last “clever” thing before I’ve got it finished. It’s actually a lot more interesting now due to the efficiency constraints.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 12, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/12/facebook-programming-puzzles-prime-bits-revisited/">Facebook Programming Puzzles &#8211; Prime Bits Revisited</a></h3>
-        <p><p>So I got a comment on my original post about the <a href="http://www.hung-truong.com/blog/2007/03/30/facebook-programming-puzzles-a-boatload-of-fun/">Facebook Programming Puzzle called “Prime Bits”</a> that asked:</p>
-
-<blockquote>
-  <p>did you get this part ?</p>
-
-  <p>Your implementation should have a running time faster than O(n), where n is b – a.</p>
-
-  <p>id like to see how you solved it.</p>
-</blockquote>
-
-<p>I felt really stupid for not catching that part until I checked the Google cache of the page. Apparently Facebook added that requirement some time after April 2nd and, presumably, getting a lot of inefficient entries (mine included).</p>
-
-<p>It’s also funny to note that if you look at the actual html, there’s a fun message hidden in comments that reads “with ‘efficient’ meaning whatever you think it ought to mean.” TouchÃ©, facebook, touchÃ©.</p>
-
-<p>Off the top of my head, I can think of a way using dynamic programming to make the problem a lot more efficient. I’m not sure whether or not it’s just an amortization hack, or an actual better than O(n) implementation, technically.</p>
-
-<p>Okay, so I went ahead and coded up the dynamic programming version. The running time actually does increase at a less than O(n) rate, so I think it counts. Maybe I’ll plot out the running time growth for good measure. I believe it’s in the neighborhood of log(n). I guess I’ll send this new version along with my resume again, and see if they’ll respond this time 🙂</p>
-
-<center>
-  <img src="/blog/wp-content/uploads/2007/04/mark-zuckerberg.png?w=604" alt="mark-zuckerberg.png" data-recalc-dims="1" />
-</center>
-
-<p>Also, Rest in Peace, Mark Zuckerberg. You’ll be sorely missed.</p>
 
 
           

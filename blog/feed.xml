@@ -5,9 +5,125 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 14 Jun 2023 17:55:48 -0700</pubDate>
-    <lastBuildDate>Wed, 14 Jun 2023 17:55:48 -0700</lastBuildDate>
+    <pubDate>Wed, 20 Dec 2023 21:19:37 -0800</pubDate>
+    <lastBuildDate>Wed, 20 Dec 2023 21:19:37 -0800</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
+    
+      
+      <item>
+        <title>The Making of a Christmas Album: Hung For the Holidays</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;choosing-a-playlist&quot;&gt;Choosing a Playlist&lt;/h3&gt;
+
+&lt;p&gt;I went through all of the Christmas songs on my computer, and started to figure out what songs I wanted “myself” to sing. I figured I’d choose a variety of styles and artists, like a Christmas playlist except I’m singing all of the songs. Here’s the track list I ended up using:&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;All I Want For Christmas Is You&lt;/li&gt;
+	&lt;li&gt;Here Comes Santa Claus&lt;/li&gt;
+	&lt;li&gt;Feliz Navidad&lt;/li&gt;
+	&lt;li&gt;I&apos;m Dreaming of a White Christmas&lt;/li&gt;
+	&lt;li&gt;Last Christmas&lt;/li&gt;
+	&lt;li&gt;Silver Bells&lt;/li&gt;
+	&lt;li&gt;It&apos;s Beginning To Look A Lot Like Christmas&lt;/li&gt;
+	&lt;li&gt;Santa Baby&lt;/li&gt;
+	&lt;li&gt;Rockin&apos; Around The Christmas Tree&lt;/li&gt;
+	&lt;li&gt;Sleigh Ride&lt;/li&gt;
+	&lt;li&gt;Let it Snow&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I used an app called “&lt;a href=&quot;https://github.com/Anjok07/ultimatevocalremovergui&quot;&gt;Ultimate Vocal Remover&lt;/a&gt;” which ultimately removed the vocals from all of these songs.&lt;/p&gt;
+
+&lt;p&gt;I didn’t select all of the songs and process them all at once, because there were some I ran into issues with. The app does a really great job of isolating vocal tracks from musical backing tracks. But it doesn’t distinguish between the lead singer and backup singers. It also sometimes mistakes saxophones and other human-y sounds for voices and includes them in the vocal tracks.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, there isn’t really a way to remove lead vocals from backing vocals. When I run a combined track through the voice cloner, the model doesn’t know which vocal to follow and it can sound pretty warbly and weird. Which is hilarious, so I kept it in “All I Want For Christmas Is You,”
+which I couldn’t just omit from my Christmas album!&lt;/p&gt;
+
+&lt;p&gt;If you’re curious about the voice cloning software, I have a &lt;a href=&quot;/blog/2023/05/20/voice-cloning-for-fun-and-profit/&quot;&gt;blog post&lt;/a&gt; and &lt;a href=&quot;https://youtu.be/OlbVWneM6xE&quot;&gt;video&lt;/a&gt; on the process. (Although this time I ended up using RVC instead of so-vits-svc, but the process was pretty much the same)&lt;/p&gt;
+
+&lt;p&gt;There were a few songs that have a main singer and backup singers that sing at mostly different times. In these songs, I just deleted the backup vocal sections and would only keep the main vocal to clone it. Then I had to reinsert the original backup vocals so it sounded like I was singing with some old timey choruses.&lt;/p&gt;
+
+&lt;p&gt;After getting the vocals ready, it was a pretty simple task to recombine the backing track with my voice cloned vocals and export it to an mp3.&lt;/p&gt;
+
+&lt;h3 id=&quot;making-album-art&quot;&gt;Making Album Art&lt;/h3&gt;
+
+&lt;p&gt;No Christmas album is complete without an awesome album cover! I was too lazy to go take a photo of myself in holiday clothes, and I had already trained a LoRA for making images of myself in Stable Diffusion XL (&lt;a href=&quot;https://youtu.be/IhGg3tDEj30&quot;&gt;which is also a video&lt;/a&gt;). I guess I didn’t write a blog post about it yet though.&lt;/p&gt;
+
+&lt;p&gt;There are AI image generators out there that do a pretty good job with composition. I think the Bing image creator (which is actually just OpenAI’s DALL·E 3) makes nicer images than Stable Diffusion out of the box. I’m guessing it’s the same for ones like Midjourney too. The problem with those generators is that it can’t make an image of a guy who looks like me (unless I got incredibly lucky and they happened to make my twin).&lt;/p&gt;
+
+&lt;p&gt;I’ve been refining my process of creating AI images lately. Instead of just throwing a prompt in the text box and hoping for the best, I’ve been trying to get more consistent results by using ControlNet models.&lt;/p&gt;
+
+&lt;p&gt;The method I used to make the album art was thus: I created a bunch of album cover images in Bing, according to the prompt:&lt;/p&gt;
+
+&lt;blockquote&gt;
+Festive holiday album cover art of hung truong, dressed in a suit and a red santa claus hat, in front of a microphone. he is looking directly at the camera  there is a realistic snowman behind him and the setting is a nighttime winter wonderland with trees and mountains in the background, and aurora borealis in the sky  There is freshly fallen snow on his hat and shoulders. he is wearing glasses. award winning photography.
+&lt;/blockquote&gt;
+
+&lt;p&gt;I made a bunch of images and tweaked the prompt until I got something that I liked. It didn’t matter that the guy doesn’t look like me. That’s what the next step is for.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/not-hung-for-the-holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;The generated image that I used for the basis of my album cover.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I then loaded the image above into ComfyUI and ran it through a ControlNet model to extract the depth from the image. So any generated image would follow the same depth map, more or less. There are ways to make the depth map have a stronger or weaker effect on the final image, so I tweaked that too. Then I could make a bunch of images that, while all different, would have a similar depth map, which in practice means that the image will be of a guy who looks like me, in that same pose, leaning into a microphone, wearing a santa hat in front of a snowman and probably some trees. Here’s a look at some of the images I had to choose from.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/santa-hungs.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;A bunch of potential album covers.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;publishing-my-work&quot;&gt;Publishing My Work&lt;/h3&gt;
+
+&lt;p&gt;I thought it would be funny to upload my AI Christmas album on to Soundcloud, so that when I finally got a hit tweet I could point people to it. So I created a new account and uploaded my entire album. I then immediately got a bunch of emails that the songs were flagged for copyright issues (even though they’re quite different).&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/christmas-copyright-violations.jpg&quot; /&gt;
+	&lt;figcaption&gt;I don&apos;t get why Soundcloud couldn&apos;t figure out that it was fair use parody but oh well.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I decided I’d have to take matters into my own hands and just host the album myself. I found an open source html5 music player thing and used it as a base for the interactive page: &lt;a href=&quot;https://www.hung-truong.com/hungfortheholidays/&quot;&gt;Hung For the Holidays&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, I realized that there’s already a Christmas album called “Hung For the Holidays” that was released by that William Hung guy from American Idol. What are the odds!?&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;I’m glad that I could end my 2023 by making a very AI generated project. It was fun coming up with the track list and doing some editing to make sure the songs sounded okay (for the most part). I probably put way too much time into this stupid project that probably only a few people will actually listen to. It’s a pretty niche joke and I’m pretty sure only people who already know what I sound like would find it amusing.&lt;/p&gt;
+
+&lt;p&gt;The best part is that I can troll my wife by including some of my tracks in my regular Christmas playlist, so you can never be sure if it’ll be the original version or “Hung’s Version.”&lt;/p&gt;
+
+&lt;p&gt;Anyway, have a happy holiday 2023! Here’s to more interesting AI projects in 2024!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 20 Dec 2023 00:00:00 -0800</pubDate>
+        <link>https://www.hung-truong.com/blog/2023/12/20/the-making-of-a-christmas-album-hung-for-the-holidays/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/12/20/the-making-of-a-christmas-album-hung-for-the-holidays/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+        <category>Music</category>
+        
+      </item>
+      
     
       
       <item>
@@ -156,8 +272,8 @@ Your browser does not support the audio element.
 </description>
         
         <pubDate>Wed, 14 Jun 2023 00:00:00 -0700</pubDate>
-        <link>https://www.hung-truong.com/blog/2023/05/20/introducing-the-talkboy-ultra-voice-cloning-toy/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/05/20/introducing-the-talkboy-ultra-voice-cloning-toy/</guid>
+        <link>https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</guid>
         
         
         <category>Tech</category>
@@ -1048,192 +1164,6 @@ Your browser does not support the audio element.
         <pubDate>Sun, 14 Jul 2019 00:00:00 -0700</pubDate>
         <link>https://www.hung-truong.com/blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/07/14/introducing-bark-mode-bark-detection-dark-mode/</guid>
-        
-        
-        <category>iOS</category>
-        
-        <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Cloning Zwift on iOS Part 3: HealthKit and a WatchOS App!</title>
-        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/healthkit.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ve been a bit slow to update my blog series about trying to make a clone of
-Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use
-the “MVP” of what I’ve built so far in parts
-&lt;a href=&quot;/blog/2019/03/17/making-a-zwift-clone-part-1/&quot;&gt;1&lt;/a&gt;
-and
-&lt;a href=&quot;/blog/2019/04/07/making-a-zwift-clone-part-2/&quot;&gt;2&lt;/a&gt;,
-and I was finding that the time I spent working on my app could be used actually
-working out. Like, I literally would write an implementation of something, but
-it would take so much of my time that I couldn’t test it out and I’d have to go
-to bed… Still, I was missing a few important features in my app, so I’ve been
-slowly working on them in between working on my fitness.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;hooking-up-the-apple-watch&quot;&gt;Hooking up the Apple Watch&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2019/zwift-bluetooth.png&quot; /&gt;
-	&lt;figcaption&gt;Zwift’s interface for connecting the Apple Watch works really well&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;One of the great things about Zwift is how much support they provide for
-different fitness accessories, including the Apple Watch. Unfortunately, the
-Apple Watch hardware is not set up to allow arbitrary Bluetooth connections like
-my exercise bike was in part 1. Instead, to access the user’s health information
-like heart rate, you need to write a full blown WatchOS app!&lt;/p&gt;
-
-&lt;p&gt;Luckily, this wasn’t my first rodeo as I worked on the Apple Watch app for
-Starbucks, so I was able to add a Watch app extension target in my project
-pretty quickly.&lt;/p&gt;
-
-&lt;p&gt;I Googled for how to get a user’s heart rate programmatically, came across a
-&lt;a href=&quot;https://stackoverflow.com/questions/38158841/live-heart-rate-in-watchos-3&quot;&gt;promising StackOverflow
-post&lt;/a&gt;
-with a link to a &lt;a href=&quot;https://github.com/coolioxlr/watchOS-3-heartrate/blob/master/VimoHeartRate%20WatchKit%20App%20Extension/InterfaceController.swift&quot;&gt;Github
-project&lt;/a&gt;,
-and was able to get it implemented myself. However, as I looked at the
-copy-pasta code, it seemed sort of wrong to me. The code was starting a workout
-session, but then created an object query that would run a closure whenever a
-new heart rate sample (older than a certain date) was added by the workout. This
-seems like a really roundabout way to get heart rate samples, and I wondered if
-Apple had a better API to accomplish this.&lt;/p&gt;
-
-&lt;h3 id=&quot;implementing-healthkit&quot;&gt;Implementing HealthKit&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/healthkit_hero.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I ended up finding some Apple &lt;a href=&quot;https://developer.apple.com/documentation/healthkit/workouts_and_activity_rings/speedysloth_creating_a_workout&quot;&gt;sample
-code&lt;/a&gt;
-that showed a better way to fetch heart rate data. The solution is to use some
-new features introduced in WatchOS 5 that allow for creation of a workout
-directly on the Apple Watch. The Apple doc I linked explains it pretty well, but
-the steps are:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Ask the user for permission to track their heart rate data&lt;/li&gt;
-  &lt;li&gt;Create a workout configuration (e.g. an indoor cycling workout) and a workout
-session, along with its associated workout builder&lt;/li&gt;
-  &lt;li&gt;Start the session and tell the workout builder to start collecting data samples&lt;/li&gt;
-  &lt;li&gt;Respond to the delegate method &lt;em&gt;“workoutBuilder(_:didCollectDataOf:)”&lt;/em&gt; to collect
-a bunch of samples, including heart rate information&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In code it looks something like this:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/hungtruong/66b941af4f5ce3b9a66cd041fd94f3d5.js&quot;&gt;&lt;/script&gt;
-
-&lt;script src=&quot;https://gist.github.com/hungtruong/918839f7ba4a213c92817b387a6fd91f.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;Rather than add some UI to the watch app to start a workout session, the iPhone
-version of &lt;em&gt;HKHealthStore&lt;/em&gt; has a function called
-&lt;a href=&quot;https://developer.apple.com/documentation/healthkit/hkhealthstore/1648358-startwatchapp&quot;&gt;startWatchApp(with:completion:)&lt;/a&gt;
-which will send a workout configuration to the watch to facilitate the creation
-of a workout. All I need to do is call that function when my workout on the
-iPhone app starts and my watch app will respond by starting a HealthKit workout
-session which starts measuring things like heart rate (and calculating its own
-estimated calories burned).&lt;/p&gt;
-
-&lt;p&gt;I was now able to get the heart rate as the watch was reading it, and update
-whatever display on the watch I wanted to. That was only half the story though.
-In Zwift the heart rate shows up in the user interface, and I wanted to mimic
-that myself. Since I couldn’t access the workout session directly from the phone
-I’d have to send the heart rate info back to the main app from the watch.&lt;/p&gt;
-
-&lt;h3 id=&quot;back-to-the-app&quot;&gt;Back to the App&lt;/h3&gt;
-
-&lt;p&gt;This blog post isn’t about Watch apps, so I won’t go over that aspect of this
-feature too much. I basically used the WatchConnectivity session to send
-messages back to the app with a dictionary containing the new heart rate.&lt;/p&gt;
-
-&lt;p&gt;And after all of that programming, I’d like to present you with the most
-difficult video I’ve ever shot: on an iPad, while balancing on an exercise bike,
-recording both my wrist watch with my heart rate AND the app showing the exact
-same heart rate!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/zwift-part-3.gif&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I also rigged up an initial interface that shows which workout segment I’m on,
-the next segment coming up, the progress through the segment and my progress for
-the entire workout, along with stats like calories burned (determined by the
-bike), cadence and distance traveled.&lt;/p&gt;
-
-&lt;p&gt;At this point I have a pretty functional app! But seeing the extensive APIs of
-HealthKit made me want to add more and more to my app. This is scope creep in
-action. See the documentation of
-&lt;a href=&quot;https://developer.apple.com/documentation/healthkit/hkworkoutbuilder&quot;&gt;HKWorkoutBuilder&lt;/a&gt;
-to see all of the data and metadata you can store. I ended up sending a few more
-messages from the app back to the watch so I could store more data to the
-workout:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/hungtruong/a45a91a9d598a448db7ce3947d70304d.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;At the end of a workout, I send the start and end times, along with the total
-calories burned and distance traveled. This isn’t really necessary because the
-watch already makes a guess about the calories burned and the distance isn’t
-real because it’s on a stationary bike. But I thought it might be interesting to
-see how that data is represented.&lt;/p&gt;
-
-&lt;p&gt;I also toyed around with sending segment data but I haven’t seen it visually
-represented anywhere in the workout view. I wanted to see more detail about the
-workout in the Apple Activity app so I also sent the name of the workout as the
-&lt;em&gt;HKMetadataKeyWorkoutBrandName&lt;/em&gt; value, though I’m not sure that’s what it’s
-intended for! Here’s what the workouts look like in the Activity app and the
-Health app’s workout data:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/workout.png&quot; /&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2019/sample.png&quot; /&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2019/sample2.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;One more fun but optional thing I thought of and added was a wrist tap reminder
-when I got close to the end of a segment. Sometimes I’m just in the zone and not
-paying attention to the fact that I need to ramp up or ramp down for the next
-section, so when there’s 5 seconds left in a segment I send a message to the
-watch from the phone to tap my wrist and send a reminder:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/hungtruong/9ebc2061b51cd3b13b3acffbb9930398.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;One of the nice things about writing your own workout app is that you don’t need
-to wait for a third party developer to implement any ideas you have for the app!
-I think that’s actually the only nice thing…&lt;/p&gt;
-
-&lt;p&gt;Anyway, I’m pretty happy with the results. Next up, I plan on adding a bit of
-visual polish to the interface and maybe even create an app icon! I also want to
-aggregate the data like heart rate info, watt effort, etc and keep track of
-statistics and chart the data, perhaps in real time. I find it very motivating
-to compare my effort in the same exact workout across different days to see if
-I’m improving (maybe by measuring heart rate average).&lt;/p&gt;
-
-&lt;p&gt;As usual, my changes are in &lt;a href=&quot;https://github.com/hungtruong/Zswift&quot;&gt;Github&lt;/a&gt; in
-case you happen to have the same exact exercise bike as me or are curious how I
-implemented certain things.&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2019/healthkit.jpg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ve been a bit slow to update my blog series about trying to make a clone of
-Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use
-the “MVP” of what I’ve built so far in parts
-&lt;a href=&quot;/blog/2019/03/17/making-a-zwift-clone-part-1/&quot;&gt;1&lt;/a&gt;
-and
-&lt;a href=&quot;/blog/2019/04/07/making-a-zwift-clone-part-2/&quot;&gt;2&lt;/a&gt;,
-and I was finding that the time I spent working on my app could be used actually
-working out. Like, I literally would write an implementation of something, but
-it would take so much of my time that I couldn’t test it out and I’d have to go
-to bed… Still, I was missing a few important features in my app, so I’ve been
-slowly working on them in between working on my fitness.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Fri, 03 May 2019 00:00:00 -0700</pubDate>
-        <link>https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-3/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-3/</guid>
         
         
         <category>iOS</category>
