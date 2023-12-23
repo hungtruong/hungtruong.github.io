@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 20 Dec 2023 21:19:37 -0800</pubDate>
-    <lastBuildDate>Wed, 20 Dec 2023 21:19:37 -0800</lastBuildDate>
+    <pubDate>Sat, 23 Dec 2023 08:20:55 -0800</pubDate>
+    <lastBuildDate>Sat, 23 Dec 2023 08:20:55 -0800</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       
@@ -14,7 +14,7 @@
         <title>The Making of a Christmas Album: Hung For the Holidays</title>
         <description>&lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+	&lt;figcaption&gt;It's not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
@@ -29,12 +29,12 @@
 	&lt;li&gt;All I Want For Christmas Is You&lt;/li&gt;
 	&lt;li&gt;Here Comes Santa Claus&lt;/li&gt;
 	&lt;li&gt;Feliz Navidad&lt;/li&gt;
-	&lt;li&gt;I&apos;m Dreaming of a White Christmas&lt;/li&gt;
+	&lt;li&gt;I'm Dreaming of a White Christmas&lt;/li&gt;
 	&lt;li&gt;Last Christmas&lt;/li&gt;
 	&lt;li&gt;Silver Bells&lt;/li&gt;
-	&lt;li&gt;It&apos;s Beginning To Look A Lot Like Christmas&lt;/li&gt;
+	&lt;li&gt;It's Beginning To Look A Lot Like Christmas&lt;/li&gt;
 	&lt;li&gt;Santa Baby&lt;/li&gt;
-	&lt;li&gt;Rockin&apos; Around The Christmas Tree&lt;/li&gt;
+	&lt;li&gt;Rockin' Around The Christmas Tree&lt;/li&gt;
 	&lt;li&gt;Sleigh Ride&lt;/li&gt;
 	&lt;li&gt;Let it Snow&lt;/li&gt;
 &lt;/ol&gt;
@@ -86,7 +86,7 @@ Festive holiday album cover art of hung truong, dressed in a suit and a red sant
 
 &lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2023/christmas-copyright-violations.jpg&quot; /&gt;
-	&lt;figcaption&gt;I don&apos;t get why Soundcloud couldn&apos;t figure out that it was fair use parody but oh well.&lt;/figcaption&gt;
+	&lt;figcaption&gt;I don't get why Soundcloud couldn't figure out that it was fair use parody but oh well.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;I decided I’d have to take matters into my own hands and just host the album myself. I found an open source html5 music player thing and used it as a base for the interactive page: &lt;a href=&quot;https://www.hung-truong.com/hungfortheholidays/&quot;&gt;Hung For the Holidays&lt;/a&gt;&lt;/p&gt;
@@ -104,7 +104,7 @@ Festive holiday album cover art of hung truong, dressed in a suit and a red sant
         
           <description>&lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+	&lt;figcaption&gt;It's not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
@@ -157,7 +157,7 @@ Festive holiday album cover art of hung truong, dressed in a suit and a red sant
 
 &lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2023/components.jpg&quot; /&gt;
-	&lt;figcaption&gt;The Talkboy Ultra&apos;s Guts (minus a few things).&lt;/figcaption&gt;
+	&lt;figcaption&gt;The Talkboy Ultra's Guts (minus a few things).&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;From this foundation, I added a few push buttons for the recording and playback controls. I also wanted the device to work without having to plug it in to a power source (for portability) so I added a 1000 mAh Lithium-ion battery pack and a &lt;a href=&quot;https://amzn.to/3Cr1hcd&quot;&gt;TP4056 Charging Module&lt;/a&gt; with micro usb input to charge the battery. I also added a &lt;a href=&quot;https://amzn.to/3Jawl3F&quot;&gt;MT3608 DC-DC Step Up Boost Power Converter&lt;/a&gt; so I could power the Raspberry Pi with it (since the voltage coming out of the battery is 3.7v).&lt;/p&gt;
@@ -166,7 +166,7 @@ Festive holiday album cover art of hung truong, dressed in a suit and a red sant
 
 &lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2023/talkboy3d.jpg&quot; /&gt;
-	&lt;figcaption&gt;A 3D render of the device&apos;s case.&lt;/figcaption&gt;
+	&lt;figcaption&gt;A 3D render of the device's case.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;I couldn’t just let the device sit in the cardboard box that I was using for prototyping, so I also designed and 3D printed a case for it. I started with a blocky box just to test how the components like the buttons could fit in the holes, then I refined the case to have some smooth, rounded edges. I also added a microphone enclosure thing and a handle so I could hold it with one hand, just like the original!&lt;/p&gt;
@@ -434,7 +434,7 @@ Your browser does not support the audio element.
         <title>Making a Trombone Champ Controller From a Trombone!</title>
         <description>&lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+	&lt;figcaption&gt;It's everyone's favorite new trombone music rythm game!&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
@@ -474,7 +474,7 @@ Your browser does not support the audio element.
 
 &lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_air_sensor.jpg&quot; /&gt;
-	&lt;figcaption&gt;The air sensor in my trombone&apos;s bell&lt;/figcaption&gt;
+	&lt;figcaption&gt;The air sensor in my trombone's bell&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;So with my blow problem a thing of the past, let’s move on to the slide problem. In the game, you’re supposed to use a mouse to simulate the slide of a trombone. But there are a lot of problems with this. The slide on a trombone is fixed, so if you go to first position, you hit the end of the trombone. You can’t go to negative positions, but your mouse doesn’t just stop when you hit the end of the screen. Plus on the instrument you can use muscle memory and look at the bell to figure out what note you’re gonna hit.&lt;/p&gt;
@@ -528,7 +528,7 @@ Your browser does not support the audio element.
         
           <description>&lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+	&lt;figcaption&gt;It's everyone's favorite new trombone music rythm game!&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
@@ -999,7 +999,7 @@ Your browser does not support the audio element.
 
 &lt;figure&gt;
 	&lt;img src=&quot;/blog/wp-content/uploads/2019/emilysshortmix.jpg&quot; /&gt;
-	&lt;figcaption&gt;Emily&apos;s Short Mix, as seen in Zwift&lt;/figcaption&gt;
+	&lt;figcaption&gt;Emily's Short Mix, as seen in Zwift&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;I didn’t want to reinvent the wheel here, so I decided to just copy how Zwift shows workouts, because it works pretty well. Not that I’m trying to write a whole 3d cycling MMORPG, but it helps to know where I am in a workout besides time elapsed and time remaining.&lt;/p&gt;
