@@ -117,6 +117,57 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 22, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/02/22/always-have-exact-change-with-only-10-coins/">Always Have Exact Change With Only 10 Coins!</a></h3>
+        <p><p>I hate having spare change. Change sucks because it usually just sits in your house and it’s a waste of money. I found a way to use the change you have and never get change back when purchasing with cash. With a set of just 10 coins, you can make change for any amount from 1 cent to 99.</p>
+
+<p>I’ve already read about the 10 coins somewhere else online. It’s not really interesting to have the answer given to you. Since I’m a nerdy computer scientist, I was trying to come up with an algorithm to produce this set of coins. I came up with an iterative solution that goes like this:</p>
+
+<blockquote>
+  <p>Start out with no coins.</p>
+
+  <p>From 1 to 99 cents:</p>
+
+  <p>If you can make exact change for the current amount, go to the next amount.</p>
+
+  <p>Otherwise, try adding the largest denomination coin to your set of coins (a quarter) that will allow you to pay the exact amount. If it’s too big, go to the next smallest until you hit a penny.</p>
+
+  <p>End Loop.</p>
+</blockquote>
+
+<p>I came up with this in the shower. When I got out and tried it, it actually worked! Here’s a portion of the trace through the loop:</p>
+
+<blockquote>
+  <p>No coins, I need to make change for 1 cent. Add a penny. Yay, I can make change for one cent!</p>
+
+  <p>…</p>
+
+  <p>4 pennies, need to make change for 5 cents. Add a nickel.</p>
+
+  <p>…</p>
+
+  <p>4 pennies 1 nickel, need to make change for 10 cents. Add a dime.</p>
+</blockquote>
+
+<p>And so on. I believe the algorithm works because it uses a greedy heuristic of choosing the largest denomination coin first before defaulting to the penny. Am I a nerd? Yes.</p>
+
+<p>Oh, I just realized I didn’t actually say which 10 coins were the ones you need. They’re 4 pennies, one nickel, two dimes, and three quarters. You can also do it with two nickels and one dime but that’s not what my algorithm came up with, plus two dimes are lighter than two nickels!</p>
+
+<p>Have fun getting rid of your change!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 21, 2007</span>
         <h3><a class="post-link" href="/blog/2007/02/21/toothpaste-for-dinner-awesome-webcomic/">Toothpaste For Dinner: Awesome Webcomic</a></h3>
         <p><center>
@@ -227,64 +278,6 @@
 <p>Later, I went to my across the street neighbor’s house. We had seen him with his pig earlier, so I guess we decided to check up on it. When we got there, he adamantly denied having any kind of pig. We knew he was lying because we saw him playing with the pig though his window from our house.</p>
 
 <p>Then the dream ended. It totally made no sense to me, but that’s how a lot of my dreams go. It’s probably worth noting that today is Chinese New Year, and yes, it’s the year of the pig!!! Maybe that somehow subconsciously seeped into my brain while I was dreaming last night… Also, my Chinese zodiac sign is the pig!!! Dun dun dunnnn!!!</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 13, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/02/13/each-day-is-valentines-day/">Each Day is Valentine&#8217;s Day</a></h3>
-        <p><p>So I thought it’d be fun to do a recording of My Funny Valentine, since it’s a pretty cool song and it’s also almost Valentine’s Day. Not that I particularly like the holiday, being single and all… I like the song because it’s got weird mixed signals. Like the lyrics are somewhat upbeat, but the music itself is so freakin’ sad!</p>
-
-<video controls="">
-  <source src="/blog/wp-content/uploads/2007/02/My Funny Valentine.mp4" type="video/mp4" />
-Your browser does not support the video tag.
-</video>
-
-<p>Anyway, here’s me playing My Funny Valentine along with a cool dude named Jamey Aebersold. I recorded it using the iSight from my Macbook, and the built in mic, so the sound quality isn’t the best. Also, I screwed up a few times, but hey, the song itself is about an ideal non-ideal valentine, so my solo doesn’t have to be perfect!</p>
-
-<p>And here’s the lyrics in case you don’t believe me:</p>
-
-<h2 id="my-funny-valentine">My Funny Valentine</h2>
-
-<blockquote>
-  <p>My funny valentine</p>
-
-  <p>Sweet comic valentine</p>
-
-  <p>You make me smile with my heart</p>
-
-  <p>Your looks are laughable</p>
-
-  <p>Unphotographable</p>
-
-  <p>Yet you’re my favorite work of art</p>
-
-  <p>Is your figure less than Greek?</p>
-
-  <p>Is you mouth a little weak?</p>
-
-  <p>When you open it to speak?</p>
-
-  <p>Are you smart?</p>
-
-  <p>But don’t change a hair for me</p>
-
-  <p>Not if you care for me</p>
-
-  <p>Stay, little valentine, stay</p>
-
-  <p>Each day is valentine’s day</p>
-</blockquote>
 
 
           
