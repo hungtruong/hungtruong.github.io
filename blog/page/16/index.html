@@ -117,6 +117,43 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 07, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/02/07/iad-vs-admob-clicks-fill-rate-impressions-ecpm-and-revenue/">iAd Vs. AdMob &#8211; Clicks, Fill Rate, Impressions, eCPM and Revenue</a></h3>
+        <p><p>About two weeks ago I updated one of my apps to use AdMob mobile ads when iAd fails to deliver (pretty damn often). Instead of swapping out iAd for AdMob, I use the iAd “didFailToReceiveAdWithError” delegate method to request an AdMob ad when iAd fails. This means that AdMob shouldn’t take any income away from iAd, but only supplement it. I thought I’d take a look at the stats and compare the performance of the two ad networks on my app.</p>
+
+<p>(The following numbers I’m referring to are from the time period from 1/25 to 2/7)</p>
+
+<p>For an idea of scale, my app, <a href="http://itunes.apple.com/us/app/anime-nano/id385697452?mt=8">Anime Nano</a>, gets about 600 iAd requests per day. My app analytics software (Flurry) is saying I’m getting about 600 sessions per day. The thing is that about 1/5 of those sessions are on the iPad (and I haven’t enabled iAd on the iPad yet), so I think that on average, the iPhone apps are making a little more than one iAd request per session.</p>
+
+<p><a href="/blog/wp-content/uploads/2011/02/iadstats.png" rel="lightbox[2350]"><img src="/blog/wp-content/uploads/2011/02/iadstats.png?resize=500%2C47" alt="" title="iAd Stats" width="500" height="47" class="aligncenter size-medium wp-image-2352" srcset="/blog/wp-content/uploads/2011/02/iadstats.png?resize=500%2C47 500w, /blog/wp-content/uploads/2011/02/iadstats.png?w=890 890w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+
+<p>Despite the fairly healthy rate of requests that I’m getting, iAds are only getting sent about 15% of the time. This percentage is what’s known as the “fill rate.” This is also what most developers complain about being too low. The clickthrough rate is actually pretty good at 0.81%.</p>
+
+<p><a href="/blog/wp-content/uploads/2011/02/admobstats.png" rel="lightbox[2350]"><img src="/blog/wp-content/uploads/2011/02/admobstats.png?resize=500%2C42" alt="" title="AdMob Stats" width="500" height="42" class="aligncenter size-medium wp-image-2354" srcset="/blog/wp-content/uploads/2011/02/admobstats.png?resize=500%2C42 500w, /blog/wp-content/uploads/2011/02/admobstats.png?w=948 948w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+
+<p>When iAd fails to deliver (85% of the time), I fall back to AdMob. The fill rate for AdMob is a high 88%, though the past few days it’s been closer to 99%. The CTR, however, is a fairly low 0.25%, which is less than half of iAd. This is partly due to the fact that AdMob ads refresh more often, so the number of impressions is higher.</p>
+
+<p>I’m going to describe my revenue in terms of percentages here since ad platforms typically don’t like it when publishers publish their income. Not sure if that’s changed lately, but whatever! In the time period from 1/25/2011 to 2/7/2011, I made 2.3x more with iAd than AdMob, even with the super low fill rate (and impressions) of iAd. This is pretty interesting since iAd only shows up 15% of the time. There were actually a few days where AdMob beat iAd, but there were a couple of days where iAd made a killing (relatively), probably from those super awesome interactive ads which I still haven’t experienced firsthand yet.</p>
+
+<p>For now, I’m content with the fill rate of AdMob, though it sort of pains me to see such a low click rate and revenue per click. Something tells me that if AdMob worked harder at increasing ad quality (like iAd), they’d be able to charge more and their advertisers would probably see a better return on investment. Most of the advertisers don’t even bother to use an image ad, which I assume would increase the clickthrough rate.</p>
+
+<p>I noticed something really strange when looking at ads on my app. There’s no way for advertisers to disable ads on devices that already have the app installed. I keep seeing Amazon Kindle ads on both my iPad and my iPhone that already have the application installed. As a developer, I know there’s a way to prevent those ads from showing by detecting whether the app is installed at runtime. I think this strange behavior happens on both iAd and AdMob. If anyone from either organization is reading this, <a href="http://www.hung-truong.com/blog/about/">contact me</a>!</p>
+
+<p>As far as the future of ads in mobile apps goes, I hope Apple will continue working on increasing the fill rate, and that AdMob tries to increase relevancy and ad quality. Right now it’s really frustrating to see my “inventory” not live up to its revenue potential.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 03, 2011</span>
         <h3><a class="post-link" href="/blog/2011/02/03/instapaper-friendly-wordpress-plugin/">Instapaper Friendly &#8211; WordPress Plugin</a></h3>
         <p><p>While I was testing <a href="http://www.instascriber.com">Instascriber</a> , I noticed that the way that Instapaper was grabbing the content of my blog was a little off. The <a href="http://www.instapaper.com/publishers">Instapaper for Publishers</a> page describes how you can give Instapaper a hint on what your actual content is. I looked for a WordPress plugin that does this but didn’t see anything, so I figured I’d do it myself.</p>
@@ -366,27 +403,6 @@
         </p>
       </li>
     
-      <li>
-        <span class="date">January 24, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/01/24/instascriber-automagically-add-content-to-instapaper/">Instascriber: Automagically Add Content to Instapaper</a></h3>
-        <p><p>I just “announced” a little web app that I’ve been developing off and on called “<a href="https://web.archive.org/web/20110131074346/http://www.instascriber.com/">Instascriber</a>.” It’s basically a tool to help you populate your <a href="http://www.instapaper.com">Instapaper</a> reading list with stuff using an RSS Feed subscription model. If you use Instapaper a lot and use it to keep track of your reading list, you might want to automatically add new items, say from the New York Times Book section, into your Instapaper reading list. If you already know you’d like to read the content on Instapaper, it’s a pain to manually add each thing you want to read.</p>
-
-<p>With Instascriber, you can just set the feed you’d like to subscribe to. Instascriber will periodically check the feed for new items and add it to your Instapaper reading list automatically in the background. That’s it. Boom!</p>
-
-<p>For now, I’m considering the web app to be in beta. So let me know if you find bugs or anything.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
   </ul>
   <!-- Pagination links -->
   <div class="pagination">
@@ -404,7 +420,7 @@
 
    <div class="footer">
    <div class="container">
-      <p class="copy">&copy; 2024 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+      <p class="copy">&copy; 2025 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
 
       <div class="footer-links">
          <ul class="noList">
