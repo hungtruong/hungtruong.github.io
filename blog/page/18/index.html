@@ -117,6 +117,29 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">January 01, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/01/02/prediction-for-2011-death-of-the-phone/">Prediction for 2011: Death of the Phone</a></h3>
+        <p><p>It’s January, which means it’s time for really misinformed predictions that will just look silly in hindsight! I’ve been <a href="http://www.hung-truong.com/blog/2009/07/16/to-google-voice-or-not-to-google-voice/">reluctant in the past to use Google Voice</a> because of integration issues, but I think 2011 is the year that I’ll start relying on it more, especially if I end up changing my real phone number (I’ll just give out my Google Voice # and forward calls).</p>
+
+<p>I recently bought an Android phone and was thinking of what I could use it for. With Google Voice and Skype, I could make “calls” and send text messages wherever I have an internet connection. If Google eventually enables making voice calls over wifi (like in Google Chat, and I predict they will some time this year), I think the big phone companies will start hurting, because people will want data-only plans so that they can call with Google.</p>
+
+<p>This “cable cutting” has already happened with landlines (my Mom has a dedicated phone device that does VoIP) and cable tv. So it makes sense that wireless phone providers will soon feel the effects as well. I’d really love to set up the HTC Hero that I ordered as a dedicated “landline” phone that I use with my internet connection at home.</p>
+
+<p>Of course, most people will still probably continue to use the standard bundled minutes + texts (+ data) phone plans, but I feel early adopters are just itching to pay one monthly data bill for all of their infrastructure needs. It’ll only be a matter of time before the mainstream begins to head in that direction. I think that the phone as we know it (how ridiculous is it to pay a phone plan based on the number of minutes in the plan?) will begin to die in 2011, with more emphasis on bandwidth as the infrastructure requirement.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">December 31, 2010</span>
         <h3><a class="post-link" href="/blog/2010/12/31/2010-a-hung-truong-year-in-review/">2010: A Hung Truong Year In Review</a></h3>
         <p><p>Looking back at 2010, this year has been one of change and growth for me. I’d like to take a post and look back at what I did this year.</p>
@@ -255,43 +278,6 @@ dostuffwith(content)
 </pre>
 
 <p>This handles my use case, which is doing work if the feed is new, and ignoring it if it hasn’t been modified. I could probably wrap this into a function that returned false if it the file hadn’t changed, and the content if it was new… Probably will do that next.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">November 28, 2010</span>
-        <h3><a class="post-link" href="/blog/2010/11/28/loves-threadless-iphone-app-launch/">♥s Threadless: iPhone App Launch!</a></h3>
-        <p><p>Today my newest app was approved for the App Store (and should be propagating quickly)! <a href="http://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=403917180">♥s Threadless</a> is what I’ve been working on mostly for the past few weeks or so. Hurry up and download and review it, then come back here for more info about the app.</p>
-
-<p><img src="/blog/wp-content/uploads/2010/11/Threadless-Shirt-list.png?resize=320%2C480" alt="" title="Threadless Shirt list" width="320" height="480" class="aligncenter size-full wp-image-2093" data-recalc-dims="1" /></p>
-
-<p>It’s no secret that I’ve been a huge fan of <a href="http://www.threadless.com?streetteam=notoupee">Threadless</a> since I discovered it back in 2005 (<a href="http://www.hung-truong.com/blog/tag/threadless/">see these blog posts for proof</a>). I really love the fact that the community provides designs and decides which ones will be printed. The company is really only there to provide the machinery to make shirts and fulfill orders! I wanted to contribute to the community by making an unofficial Threadless app (and maybe get a little store credit to feed my t-shirt needs).</p>
-
-<p>My main reasoning for writing a native Threadless app is that I found it pretty hard to browse shirts, even in a fully fledged web browser let alone an iPhone browser. The Threadless site is by no means bad, but it’s hard to see what designs look like when the images are small and on models. I prefer viewing the actual design. So I built an app that makes it easy to 1) browse and find cool shirts and 2) share them with your friends.</p>
-
-<p><img src="/blog/wp-content/uploads/2010/11/Threadless-Search.png?resize=320%2C480" alt="" title="Threadless Search" width="320" height="480" class="aligncenter size-full wp-image-2095" data-recalc-dims="1" /></p>
-
-<p>In order to do this, I needed to get a database of shirts on Threadless. It’s kind of unfortunate that Threadless doesn’t have an API. At all. Threadless does, however, has a few feeds of shirts: one for shirts that are in stock and another for the weekly additions. I parsed this list of shirts and saved them in an App Engine database along with some other metadata like image urls, category info, etc. I also figured out a way to get the list of all Threadless shirts, including the ones that aren’t currently in stock. What this means is that the â™¥s Threadless app will help you find more shirts than even the official website can. You can filter by category, color and run fulltext searches on the entire shirt database.</p>
-
-<p><img src="/blog/wp-content/uploads/2010/11/Threadless-Filter.png?resize=320%2C480" alt="" title="Threadless Filter" width="320" height="480" class="aligncenter size-full wp-image-2096" data-recalc-dims="1" /></p>
-
-<p>As far as the front end work went, I had to build a custom table view cell to scroll through shirts and a nested scrollview to view shirt images. The shirt view looks a lot like the native photo browser app for the iPhone. I also added features for sharing, including saving the image to your photo album, posting the design on Twitter and Facebook and emailing the shirt design as an attachment. I figure that covers most bases as far as sharing goes.</p>
-
-<p><img src="/blog/wp-content/uploads/2010/11/Threadless-Sharing.png?resize=320%2C480" alt="" title="Threadless Sharing" width="320" height="480" class="aligncenter size-full wp-image-2098" data-recalc-dims="1" /></p>
-
-<p>So far I’ve only designed and built the iPhone version. I think an iPad version would be neat, too, but I want to gauge the interest in the iPhone/iPod app before putting more time into this. If you like the app, <a href="http://twitter.com/threadlessapp/">let me know</a> and <a href="http://itunes.apple.com/us/app/id403917180?mt=8">write up a review for it</a>!</p>
-
-<p><img src="/blog/wp-content/uploads/2010/11/Threadless-Shirt-View.png?resize=320%2C480" alt="" title="Threadless Shirt View" width="320" height="480" class="aligncenter size-full wp-image-2102" data-recalc-dims="1" /></p>
 
 
           

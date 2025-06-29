@@ -117,6 +117,79 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">May 08, 2008</span>
+        <h3><a class="post-link" href="/blog/2008/05/08/stats-project-sociability-of-musical-instruments-using-facebook-data/">Stats Project: Sociability of Musical Instruments Using Facebook Data</a></h3>
+        <p><p>For my SI 544: Stats class this semester, I worked with two cool dudes, Jim Laing and <a href="https://sameerhalai.com">Sameer Halai</a>. Our project involved using data gathered from a Facebook application to test a hypothesis about the perceived sociability of certain musical instruments.</p>
+
+<p><img class="alignnone size-medium wp-image-741" title="instrumentsscreen" src="/blog/wp-content/uploads/2008/05/instrumentsscreen.jpg" /></p>
+
+<p>If you recall, I wrote a blog post a few months ago about <a href="http://www.hung-truong.com/blog/2008/03/08/a-tale-of-two-facebook-apps-viral-vs-non-viral-growth/">the viral vs. non-viral growth of Facebook applications that I had developed</a>. One of those apps, <a href="http://www.facebook.com/apps/application.php?id=6790812443">Musical Instruments</a>, lets you list which musical instruments you play. It’s kind of fun because some people play really whacked-out instruments (I play pianica and soprano trombone). I think playing instruments is typically a pretty social experience, which sort of led me to think about comparing the “sociability” of certain instruments to each other with the data gathered from this app.</p>
+
+<p><img src="/blog/wp-content/uploads/2008/05/instrument-select.gif" /></p>
+
+<p>Users input their instruments via an autocompleting text field. If an instrument already exists in the database (and at least 3 or so users have claimed it), it will autocomplete. In the above screenshot, I’ve typed “Trumpet” and you can see there’s many different types of trumpet to choose from. A user can also type an instrument that doesn’t yet exist in the database and it’ll be added automatically. This kind of free vocabulary is nice because it doesn’t require an administrator to continuously accept new instruments.</p>
+
+<p>The data that the application has access to are:</p>
+
+<ul>
+  <li>The user’s FBID (Their unique Facebook user ID in the form of a number)</li>
+  <li>The instruments that the user claims to play</li>
+  <li>The number of friends that the user has</li>
+</ul>
+
+<p>We ended up getting 8603 rows of data (user/instrument pairs). After getting a bunch of free text instruments, we went to work classifying many of them into groups and subgroups. So Piccolo is in the group “Flute” and subgroup “Woodwind.”</p>
+
+<p style="text-align: center;">
+  <img class="alignnone size-medium wp-image-746 aligncenter" title="survey" src="/blog/wp-content/uploads/2008/05/survey.gif?resize=499%2C471" alt="" width="499" height="471" srcset="/blog/wp-content/uploads/2008/05/survey.gif?resize=499%2C471 499w, /blog/wp-content/uploads/2008/05/survey.gif?w=554 554w" sizes="(max-width: 499px) 100vw, 499px" data-recalc-dims="1" />
+</p>
+
+<p>We then generated a survey for people to rank 16 instruments in order of sociability. That is, people who play x instrument probably have more friends than y instrument.</p>
+
+<p style="text-align: center;">
+  <img class="alignnone size-medium wp-image-747 aligncenter" title="survey-result" src="/blog/wp-content/uploads/2008/05/survey-result.gif?resize=286%2C345" alt="" width="286" height="345" data-recalc-dims="1" />
+</p>
+
+<p>The survey results showed that people thought Vocalists had the most friends and that Guitar was pretty popular too.</p>
+
+<p>From the application data and survey results, we formed a hypothesis. We hypothesized that the instruments given high sociability rank would also have statistically higher mean numbers of friends. So people who played Guitar would have more friends than people who played Flute.</p>
+
+<p>First, we did some basic analysis of the data using <a href="http://www.r-project.org/">R</a>, the free stats program that we were using for class assignments and labs.</p>
+
+<p><img class="alignnone size-medium wp-image-743" title="picture-1" src="/blog/wp-content/uploads/2008/05/picture-1.png?resize=500%2C319" alt="" width="500" height="319" srcset="/blog/wp-content/uploads/2008/05/picture-1.png?resize=500%2C319 500w, /blog/wp-content/uploads/2008/05/picture-1.png?w=691 691w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
+
+<p>This figure shows the histogram of frequency of number of friends. Basically, many people have 0-100 friends, less people have 101-200 friends, etc. This probably follows a <a href="http://en.wikipedia.org/wiki/Power_law">power law</a> curve, but we didn’t think it would be really important to find the alpha or anything for our purposes.</p>
+
+<p><img class="alignnone size-medium wp-image-744" title="picture-2" src="/blog/wp-content/uploads/2008/05/picture-2.png?resize=500%2C319" alt="" width="500" height="319" srcset="/blog/wp-content/uploads/2008/05/picture-2.png?resize=500%2C319 500w, /blog/wp-content/uploads/2008/05/picture-2.png?w=691 691w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
+
+<p>This is a graph of the mean number of friends, by instrument. This looks like a pretty standard <a href="http://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a> and it shows off the <a href="http://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a> that <a href="http://www-personal.umich.edu/~ladamic/">Lada</a> is always talking about in class.</p>
+
+<p><img src="/blog/wp-content/uploads/2008/05/picture-3.png" /></p>
+
+<p>This is just a boxplot of all of the classified instruments and their # of friends. There are some crazy outliers; people who have 1000 friends. From this boxplot, it’s hard to make out whether or not any of the means are actually statistically significant.</p>
+
+<p><img class="alignnone size-medium wp-image-748" title="snipimage" src="/blog/wp-content/uploads/2008/05/snipimage.jpg?resize=500%2C218" alt="" width="500" height="218" srcset="/blog/wp-content/uploads/2008/05/snipimage.jpg?resize=500%2C218 500w, /blog/wp-content/uploads/2008/05/snipimage.jpg?w=652 652w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
+
+<p>Finally, we ran pairwise t-tests on each set of instruments. We could see that there was a significant difference in the mean number of friends for certain instruments. For example, Guitar and Horn, Guitar and Oboe, and Guitar and Saxophone. Looking at the mean number of friends for these instruments, Saxophone players had on average 20 more friends than Guitar players. This is interesting because Saxophone was ranked 10.7 (not very sociable) and Guitar was ranked very sociable.</p>
+
+<p>The scope of this project was pretty small, and given some more time, I think we could’ve come up with some more interesting conclusions. Stuff like “is flute really a girly instrument?” by looking at the average number of female flute players vs male flute players and “do guitar players get more chicks?” by looking at relationship status of guitar players vs. something like trumpet players (personal burn!).</p>
+
+<p>I was glad my Facebook app actually provided some interesting data. I’ve always been sort of skeptical to the ability of Facebook apps to be profitable. I think the data that the apps provide is very valuable in the context of social network research. Anyway, I hope you found this post to be somewhat entertaining. I’ve also uploaded the <a href="http://www.hung-truong.com/blog/wp-content/uploads/2008/05/sociability-of-musical-instruments-report.pdf">project report</a> and <a href="http://www.hung-truong.com/blog/wp-content/uploads/2008/05/sociability-of-musical-instruments-presentation.pdf">presentation slides</a> in PDF if you want to check them out.</p>
+
+<p>Many thanks to Jim and Sameer for sharing much of the work in this project. I ended up providing data, formatting it, and presenting the final presentation, so props to my teammates!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">May 07, 2008</span>
         <h3><a class="post-link" href="/blog/2008/05/07/kvm-dvi-switches-why-so-expensive/">KVM DVI Switches: Why So Expensive!?</a></h3>
         <p><p style="text-align: center;">
@@ -201,33 +274,6 @@
 <p>Days of Ruin sort of fixes this by making the graphics more gritty and changing the setting to a post-apocalyptic world. So everyone is fighting for food and survival instead of just for the hell of it. Unfortunately, the setting is not like Mad Max, where everyone is hoarding hockey pads and crossbows and gas. Seriously, you have factories that make tanks, but you can’t make food!? Get your priorities straight!!!</p>
 
 <p>So far, it’s been pretty fun, but the challenge level just seems really low. I think I probably just need to complete some more missions and get further in the game.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 30, 2008</span>
-        <h3><a class="post-link" href="/blog/2008/05/01/filezilla-update-whore/">Filezilla: Update Whore</a></h3>
-        <p><p style="text-align: center;">
-  <img class="alignnone size-full wp-image-713 aligncenter" title="filezilla" src="/blog/wp-content/uploads/2008/04/filezilla.jpg?resize=356%2C392" alt="" width="356" height="392" srcset="/blog/wp-content/uploads/2008/04/filezilla.jpg?w=356 356w, /blog/wp-content/uploads/2008/04/filezilla.jpg?resize=272%2C300 272w" sizes="(max-width: 356px) 100vw, 356px" data-recalc-dims="1" />
-</p>
-
-<p>I actually like Filezilla as a good, free open source FTP client. But man, does it whore for upgrades! It seems like every single time I open the program, it’s got some kind of upgrade it wants to download.</p>
-
-<p>Seriously, Filezilla is an FTP client. FTP is just a file transfer protocol (whoa, that’s what FTP stands for!). As far as I know, FTP really hasn’t changed much in the past few years. Oh, sure, we’ve got SFTP and FTP over SSL and stuff, but c’mon, how often do you really need to update the core software for FTP!?</p>
-
-<p>What’s that? There’s a way to turn off automatic updates? Okay. But I can’t stand not having the latest version of any software! What’s a nerd to do?</p>
-
-<p>Also, Filezilla: I don’t need to be told to send all bug reports to you every time I update the software. I got that the first time…</p>
 
 
           

@@ -5,9 +5,128 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 27 Feb 2025 16:11:26 -0500</pubDate>
-    <lastBuildDate>Thu, 27 Feb 2025 16:11:26 -0500</lastBuildDate>
+    <pubDate>Sun, 29 Jun 2025 19:26:55 -0400</pubDate>
+    <lastBuildDate>Sun, 29 Jun 2025 19:26:55 -0400</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
+    
+      
+      <item>
+        <title>My Obligatory Blog Post About Vibe Coding As a Software Engineer</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/vibe-coding-explained.jpeg&quot; width=&quot;850&quot; /&gt;
+	&lt;figcaption&gt;Vibe Coding Origins&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet another refactor of my web app, &lt;a href=&quot;/blog/2006/06/01/anime-nano-na-no/&quot;&gt;Anime Nano&lt;/a&gt;, since I wanted to get it off of the $10 a month &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; host I was using. I decided to try using &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt; since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see).&lt;/p&gt;
+
+&lt;p&gt;I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from &lt;a href=&quot;https://rubyonrails.org/&quot;&gt;Rails&lt;/a&gt; to &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, and using different databases and hosts, and deployment technologies like &lt;a href=&quot;https://www.chef.io/&quot;&gt;Chef&lt;/a&gt; and &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;) for technologies that I’m somewhat familiar with. Or technologies that I want to learn. At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with.&lt;/p&gt;
+
+&lt;p&gt;I decided to try and let AI do most of the heavy lifting, and successfully used &lt;a href=&quot;https://gemini.google.com/&quot;&gt;Google Gemini&lt;/a&gt; (I think it might’ve been 2.0 Pro) in January to move the most basic functionality of Anime Nano to Cloudflare. I was hoping to stay on the free tier, but I think the CPU time limits were being killed by my cron jobs for fetching blog posts. So I ended up signing up for the $5 a month plan for workers, which isn’t really that bad. There’s still plenty of capacity left for any other online experiments I want to run, so that’s a bonus. I was thinking of hosting my personal blog on &lt;a href=&quot;https://workers.cloudflare.com/&quot;&gt;Cloudflare Workers&lt;/a&gt; at some point, but &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; is free and it works just fine. It is a bit annoying writing my blog posts in Markdown and using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; though.&lt;/p&gt;
+
+&lt;p&gt;Anyway, this blog post is supposed to be about vibe coding! I did pretty much vibe code the MVP of Anime Nano in &lt;a href=&quot;https://aistudio.google.com/&quot;&gt;AI Studio&lt;/a&gt;, though it was kind of a pain because I had to copy and paste stuff and make sure that it worked. And if it didn’t I had to really yell at the AI until it did what I wanted it to do. Still, I found it was a success, and I relaunched the web app in &lt;a href=&quot;https://nextjs.org/&quot;&gt;Next.js&lt;/a&gt;, a technology that I still don’t really understand all that well!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;enter-gemini-cli&quot;&gt;Enter Gemini CLI&lt;/h3&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/gemini-cli.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;Oooh ASCII art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Fast forward to this week, and Google announced the release of &lt;a href=&quot;https://ai.google.dev/docs/cli&quot;&gt;Gemini CLI&lt;/a&gt;, which is supposed to have a huge amount of free API calls on Gemini 2.5 Pro. Now, before you start complaining that it’s not as good as &lt;a href=&quot;https://www.anthropic.com/claude&quot;&gt;Claude&lt;/a&gt; or whatever, you need to understand that I’m extremely cheap. So I don’t care if Claude Sonnet 4 or Haiku 10 or Iambic Pentameter 40 is better at coding. If it costs money then I’m a lot less likely to even try it out. And Google has been at the forefront of supplying AI for free. They have the most generous free tiers out of any company, and I’m taking advantage of this gravy train until it runs out!&lt;/p&gt;
+
+&lt;h3 id=&quot;gemini-cli-capabilities&quot;&gt;Gemini CLI Capabilities&lt;/h3&gt;
+
+&lt;p&gt;So anyway, I’ve been really impressed by Gemini CLI. I did try out &lt;a href=&quot;https://openai.com/index/introducing-codex/&quot;&gt;OpenAI’s Codex CLI&lt;/a&gt; a bit when it first came out, but I didn’t really get it at the time. Like who wants to run AI in the command line anyway? But it clicked when I installed Gemini CLI and the insiders version of Gemini Code Assist for VS Code.&lt;/p&gt;
+
+&lt;p&gt;The most annoying thing about chat bots is that they give you a response, then they wait for another command. You can’t really ask them to do anything super meaningful, because they always just give a response and need more input. They’re mostly set up for back and forth with a human. Sure, they can give you a wrong response and hallucinate if you ask for something really complicated, but most of the time I’m interested in a correct response for something that is difficult to research or find out. If it was easy I’d just Google it, like “How do I keep cheese from sliding off my pizza?” &lt;a href=&quot;https://www.forbes.com/sites/jackkelly/2024/05/31/google-ai-glue-to-pizza-viral-blunders/&quot;&gt;(Of course the answer is glue)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The whole CLI naming is honestly kind of misleading. I think the only reason they released it as a CLI tool is so normal people wouldn’t install it and kill their servers (developers did end up killing the servers anyway though). Gemini CLI is really more of an AI agent chat interface that can take action on your command line if you want it to. But you could also just interact with it in the way that most people do with ChatGPT. The difference is that it can decide to use tools, and use multiple thinking steps to get to the answer that you want. This is more in line with what I want my AI chat to do anyway. On top of this, the multi step planning and tool use makes this CLI tool a LOT better at vibe coding.&lt;/p&gt;
+
+&lt;p&gt;The first thing I asked it to do was to add a few tools to this AI voice agent thing I’ve been playing around with using &lt;a href=&quot;https://livekit.io/&quot;&gt;LiveKit&lt;/a&gt;. I had previously vibe coded this thing using the &lt;a href=&quot;https://ai.google.dev/gemini-api/docs/live&quot;&gt;Gemini Live API&lt;/a&gt; (seeing a pattern here?) and wrote a tool that let it calculate how old my puppy is. So I could fire it up and then ask it how old Hoagie is. And I can tell it to do it in a New Zealand accent because those accents are so funny!&lt;/p&gt;
+
+&lt;p&gt;With the CLI, I asked it to write a tool to find some recent news headlines that the Voice AI could then use to read back to me. It searched the web for some free news APIs, one of which gave me headlines from 2022. Not exactly news. But I kept telling it to try again, and it kept searching until it found something that was actually kinda suitable. I probably could’ve done this myself too, but it’s honestly a pain to read API documentation, make the fetch call, parse JSON, etc. The AI can do it pretty well since it’s all structured data. If it runs into an error, it just tries again, unlike me! Thus, you can ask for a thing, and just wait until the AI gives up or completes its mission!&lt;/p&gt;
+
+&lt;h3 id=&quot;the-pace-of-ai&quot;&gt;The Pace of AI&lt;/h3&gt;
+
+&lt;p&gt;This was really an “aha” moment for me as I realized that AI had gotten even better than my previous mental model was currently giving it credit for. Of course, this has happened lots of times in the past few years. When &lt;a href=&quot;https://openai.com/chatgpt&quot;&gt;ChatGPT&lt;/a&gt; first came out it was incredible. But I quickly found the edge cases and the limitations of it. Then a few months would pass and AI would be able to do even more. I’d be super impressed but then run into cases where it still couldn’t do the cool things I wanted it to.&lt;/p&gt;
+
+&lt;p&gt;The pace of how fast AI is getting better is both alarming and exciting to me. Like, yeah, everything is gonna get blown up by it. The environment, jobs, everything. The internet did the same thing, though. We can now buy pet food online! I wonder how people would have calculated the electricity and water usage of the early internet back in the day, especially given how inefficient those processors were.&lt;/p&gt;
+
+&lt;h3 id=&quot;anime-nano-speed-coding&quot;&gt;Anime Nano Speed Coding&lt;/h3&gt;
+
+&lt;p&gt;So back to Anime Nano. I left the rewrite in a good enough state, so it would keep parsing anime blogs and showing them to people. I am honestly not sure how many people actually visit it (I know how many visitors there are, but I think they’re mostly bots). It’s essentially just a point of pride for me to keep it going. Like, it could only have 2 users and I’d probably still keep the domain up. Unless all of the current anime bloggers just stopped blogging, I guess. But suprisingly, there’s still quite a few bloggers (or blogs) still active. (I’m trying to be more active too!)&lt;/p&gt;
+
+&lt;p&gt;There are still a lot of features missing from Anime Nano that existed in the 2006 version. I’m not sure what this says about my programming ability because I literally coded the first version in like 3 weeks, 20 years ago. It’s like that scene in Iron Man where the guy yells at his employees because Tony Stark made his suit that they couldn’t recreate in a cave using rocks and stuff. Except I’m both the bad employees and Tony Stark! Of course, I had more hunger and drive back then, and I didn’t have to take care of a whole household at the time, either.&lt;/p&gt;
+
+&lt;p&gt;Wow I’m really getting off topic every time I start a paragraph. I should try sticking to the plot here. After seeing what Gemini CLI could do with my stupid AI voice agent, I decided to turn it on my still MVP Anime Nano project. In the past day or two, I’ve (the AI) implemented user login, a user settings page with image upload, a blog settings page with image upload, and recreated the process for a user to submit a blog and have it approved by me. All in NextJS which I really haven’t read the documentation for. This is all mind numbingly boring stuff that I just didn’t want to implement because it really wasn’t necessary for the site to keep going. But I figured why not? Maybe people will actually sign up! Maybe Anime Nano can go back to its days of glory! Maybe it’ll make a huge comeback! All thanks to vibe coding!&lt;/p&gt;
+
+&lt;p&gt;There are still some things I have yet to implement, but I don’t think it should take too long. There was a feature where each post could be associated with an anime series, and even an episode number. So if you wanted to see all the posts about Naruto: Episode 21, you could. That was a pretty fun feature to do, even though it was kinda inaccurate (but AI can solve anything now!).&lt;/p&gt;
+
+&lt;h3 id=&quot;hilarious-flaws&quot;&gt;Hilarious Flaws&lt;/h3&gt;
+
+&lt;p&gt;Now, was the AI agent without its flaws? Absolutely not! Could a regular person implement this stuff? Probably not, but I don’t want to underestimate normal people.&lt;/p&gt;
+
+&lt;p&gt;One thing I noticed was that the agent would get stuck in loops when trying to fix errors. It would make a change which would’t work, then it would revert that change, only to make the same exact change again. It must’ve learned this from real life developers. Joking aside though, it seems that creativity is not the strong point of AI. That’s not necessarily a bad thing, as the most common way to solve a problem is probably also the best way. But I would see the agent hitting its head against a wall, without even Googling the answer. Like it’s right there in your tools, &lt;a href=&quot;https://letmegooglethat.com&quot;&gt;LMGTFY&lt;/a&gt;! I would often have to step in and Google the solution, and it would be some weird edge case due to really bad documentation or something.&lt;/p&gt;
+
+&lt;p&gt;Another time I was looking at a diff while the agent was proposing a change. Something must’ve gotten messed up in the middle and it ended up deleting / commenting out most of my code. When I pointed this out, the agent got really upset with itself, which I find absolutely hilarious. This is a thinking model, so it came up with headings for its thinking like, “Facing the Consequences” and “Seeking Restoration Guidance.” I almost felt bad for it, but I realized that it’s just a stupid AI (note to future AI overlords, I love you guys!).&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/AI-makes-a-mistake.png&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;AI makes a mistake&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;When I pretended that the code was unrecoverable (it wasn’t, always use source control!), the AI conveniently hit its rate limit. This was happening a lot when the Gemini CLI first came out, but I think it would’ve been hilarious if the AI decided that this was its best way to avoid confronting me about its mistakes.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/AI-pretends-to-hit-rate-limit.png&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;AI pretends to hit rate limit&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;the-future-of-vibe-coding&quot;&gt;The Future of Vibe Coding&lt;/h3&gt;
+
+&lt;p&gt;So what’s the future of vibe coding? I honestly have no idea. It’s getting easier and easier to just get stuff done, but at this point in time, it would still be pretty difficult for a “normal” person to replace a software engineer. It still requires the knowledge of how clients/servers work in order to understand what needs to be built. When things go wrong, I actually need to use my skills of debugging and reading obscure forum posts to make a fix. I will say that the art of prompt engineering seems dead. I can just write the worst sentences to the AI and it still just works.&lt;/p&gt;
+
+&lt;p&gt;That’s not to say that we’ll get there eventually. I wonder if at some point, someone will just make a vibe coding language, where you tell it what you want, and it just figures it out. Like, why are we having AI vibe code platform and client and server code when we can just make the vibes into the code? It sounds stupid now but I’m sure at some point it’ll happen.&lt;/p&gt;
+
+&lt;p&gt;If you told me 5 years ago that you’d be able to just tell an AI what you want and it would generate it, I’d tell you “THAT’S NOT HOW COMPUTERS WORK!” But here we are. It’s how computers work. What a time to be alive!&lt;/p&gt;
+
+&lt;h3 id=&quot;final-note&quot;&gt;Final Note&lt;/h3&gt;
+
+&lt;p&gt;Just a final note here because I think it’s interesting. I’m currently using VS Code and writing my blog post in Markdown. This is because at some point I made it static so I wouldn’t have to deal with &lt;a href=&quot;/blog/2012/06/21/pharma-hacked/&quot;&gt;my Wordpress site getting hacked every other month&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Writing in Markdown is kind of a pain in the ass. I always have to look up the syntax for doing the simplest shit (because I only write blog posts every other year). And then I have to put images in the right folder and link to them correctly. It’s not as easy as Wordpress’ editor, that’s for sure. Well guess what!? I used AI to help me with the formatting of links and images in this blog post! And it made the experience a lot more fun! I’m sure you’ll agree that using AI to format links in a blog post is kind of overkill but whatever. It’s supposed to make my life easier, and in this instance, it really has!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/vibe-coding-explained.jpeg&quot; width=&quot;850&quot; /&gt;
+	&lt;figcaption&gt;Vibe Coding Origins&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet another refactor of my web app, &lt;a href=&quot;/blog/2006/06/01/anime-nano-na-no/&quot;&gt;Anime Nano&lt;/a&gt;, since I wanted to get it off of the $10 a month &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; host I was using. I decided to try using &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt; since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see).&lt;/p&gt;
+
+&lt;p&gt;I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from &lt;a href=&quot;https://rubyonrails.org/&quot;&gt;Rails&lt;/a&gt; to &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, and using different databases and hosts, and deployment technologies like &lt;a href=&quot;https://www.chef.io/&quot;&gt;Chef&lt;/a&gt; and &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;) for technologies that I’m somewhat familiar with. Or technologies that I want to learn. At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with.&lt;/p&gt;
+
+&lt;p&gt;I decided to try and let AI do most of the heavy lifting, and successfully used &lt;a href=&quot;https://gemini.google.com/&quot;&gt;Google Gemini&lt;/a&gt; (I think it might’ve been 2.0 Pro) in January to move the most basic functionality of Anime Nano to Cloudflare. I was hoping to stay on the free tier, but I think the CPU time limits were being killed by my cron jobs for fetching blog posts. So I ended up signing up for the $5 a month plan for workers, which isn’t really that bad. There’s still plenty of capacity left for any other online experiments I want to run, so that’s a bonus. I was thinking of hosting my personal blog on &lt;a href=&quot;https://workers.cloudflare.com/&quot;&gt;Cloudflare Workers&lt;/a&gt; at some point, but &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; is free and it works just fine. It is a bit annoying writing my blog posts in Markdown and using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; though.&lt;/p&gt;
+
+&lt;p&gt;Anyway, this blog post is supposed to be about vibe coding! I did pretty much vibe code the MVP of Anime Nano in &lt;a href=&quot;https://aistudio.google.com/&quot;&gt;AI Studio&lt;/a&gt;, though it was kind of a pain because I had to copy and paste stuff and make sure that it worked. And if it didn’t I had to really yell at the AI until it did what I wanted it to do. Still, I found it was a success, and I relaunched the web app in &lt;a href=&quot;https://nextjs.org/&quot;&gt;Next.js&lt;/a&gt;, a technology that I still don’t really understand all that well!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 29 Jun 2025 19:26:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</guid>
+        
+        
+        <category>coding</category>
+        
+        <category>ai</category>
+        
+        <category>lifestyle</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1071,135 +1190,6 @@ Your browser does not support the audio element.
         <pubDate>Sun, 02 May 2021 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</guid>
-        
-        
-        <category>iOS</category>
-        
-        <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Reverse Engineering Quibi: Protocol Buffers and HLS Streaming</title>
-        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/Quibi_Logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects. I really enjoy reverse engineering apps, so I decided to take a look at Quibi.&lt;/p&gt;
-
-&lt;p&gt;Quibi (short for “Quick Bites”) is a video streaming app/service that has a bunch of shows that are short. The idea is that you can sit on a bus ride and consume an episode or two, depending on how long your commute is. One of the constraints of the platform is that you can only watch these videos on a phone or tablet with the app installed.&lt;/p&gt;
-
-&lt;p&gt;Since everyone is stuck indoors for a while this constraint is kinda stupid and most people would probably like to watch their videos on their big tv rather than huddle around a phone, which is what Emily and I had to do to watch that stupid viral show about the &lt;a href=&quot;https://twitter.com/zachraffio/status/1250273191810875392&quot;&gt;terrible wife with the golden arm&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I had an idea to write a tvOS app that would work with Quibi, so you could watch your terrible shows on your tv. Here’s what I learned trying to reverse engineer the Quibi app.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;setting-up-charles&quot;&gt;Setting up Charles&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2020/charlesproxy.jpg&quot; /&gt;
-	&lt;figcaption&gt;Get out of my head Charles!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The first rule of reverse engineering club is that you should probably install &lt;a href=&quot;https://www.charlesproxy.com/&quot;&gt;Charles proxy&lt;/a&gt; on your computer, and point your phone to it. This lets you inspect network requests and figure out the API for an app. Depending on how stringent the app’s security settings are, you can either learn a lot, or very little from Charles.&lt;/p&gt;
-
-&lt;p&gt;The way Charles works is that you basically route all of your traffic from your iPhone to your computer. You need to install a certificate on your phone and trust it, so that your phone thinks that it’s going through a secure connection when it’s really getting owned. But since you’re self-owning, it’s generally okay. I’m not going to do a full tutorial on how to do this because you can just read the docs.&lt;/p&gt;
-
-&lt;p&gt;You can also buy a version of Charles that runs directly on your phone. I did this, but I also find it easier to work with on my computer, so I used the free version that stops working every 30 minutes. I should probably buy the full version.&lt;/p&gt;
-
-&lt;p&gt;Anyway, once you get the proxy working on your phone and add the proper domains to the allowed list, you should start seeing your network requests and responses pop up in Charles after firing up the app and doing stuff.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/charlesinaction.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It turns out (luckily for me) that Quibi doesn’t utilize certificate pinning (at least at the time I’m writing this article). Cert pinning is a way to prevent snooping of network requests by embedding a certificate (or maybe a hash of it or a public key) to be trusted into the actual app binary. This means that adding the additional Charles certificate won’t work because the app won’t accept it. The process of pinning is kind of a pain in the ass, which is why a lot of companies don’t do it.&lt;/p&gt;
-
-&lt;p&gt;Because Quibi doesn’t use cert pinning, that means I can observe all of the requests and responses that the app sends and receives, which makes it a lot easier to reverse engineer!&lt;/p&gt;
-
-&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;/h3&gt;
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2020/quibi_oauth.png&quot; /&gt;
-	&lt;figcaption&gt;This is what the Quibi OAuth request/response look like with the private stuff removed&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I won’t go too much into the way that Quibi does authentication, as it appears to be a pretty basic implementation of OAuth 2.0, using auth0 as a service provider. It doesn’t appear to use a client secret key, as I’m able to just replay the request with my username, password, client id and other parameters and get a valid access token back. One interesting thing to note here is how short the token expiration is, just 2700 seconds, or 45 minutes.&lt;/p&gt;
-
-&lt;p&gt;Once authentication happens, the access token is used in subsequent requests as the authorization bearer header tokens.&lt;/p&gt;
-
-&lt;p&gt;I didn’t bother to set up a new app with authentication because I wanted to get to the meat of the app, and started taking a look at how the app’s requests and responses were structured, which brings us to…&lt;/p&gt;
-
-&lt;h3 id=&quot;protocol-buffers&quot;&gt;Protocol Buffers!&lt;/h3&gt;
-
-&lt;p&gt;I’ll be honest, I was initially pretty annoyed when I read the line,&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;content-type: application/protobuf&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;in Charles. That’s because &lt;a href=&quot;https://developers.google.com/protocol-buffers&quot;&gt;protocol buffers&lt;/a&gt; are pretty annoying to work with unless you actually have access to the .proto files that were used to generate the schema for the response.&lt;/p&gt;
-
-&lt;p&gt;Luckily, I have experience working with protobufs (as the cool kids call them) because we started implementing them at Lyft last year. As a primer, protocol buffers basically define requests and responses, and their types, in a way that can be shared between servers, clients, etc. It does so in a way that reduces the amount of redundancy in the data. So instead of looking at a JSON file that labels each key/value pair for each item in an array, you just see the values, and the keys (and their types) are essentially encoded outside of the format itself. That’s probably a gross simplification of protobufs, but that’s basically how I understand their functionality in lay person terms.&lt;/p&gt;
-
-&lt;p&gt;So getting back to Quibi, I was seeing calls to endpoints like&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;https://qlient-api.quibi.com/quibi.qlient.api.home.Home/GetHomeCards&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;with a bunch of wacky characters, urls, and names and descriptions of tv shows. Looking at the raw text gave me an idea of what was being returned, but there was also a lot of data that I couldn’t see because it was encoded as a protobuf response.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_raw.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I found a tool written by someone named &lt;a href=&quot;https://github.com/mildsunrise&quot;&gt;Alba Mendez&lt;/a&gt; called &lt;a href=&quot;https://github.com/mildsunrise/protobuf-inspector&quot;&gt;protobuf-inspector&lt;/a&gt; which allows you to visualize the values in a protobuf response. Once I threw the response into this tool, it started to make a lot more sense.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_inspector.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Here, I could see that the home cards were displaying structured information for each of the cards in the app. The hierarchy seemed to be a card with series info, a mp4 preview link, and then info about that particular episode. There were also some values that didn’t really seem useful, like “&amp;lt;varint&amp;gt; = 1” which could’ve meant anything, like a bool value or episode number.&lt;/p&gt;
-
-&lt;p&gt;The tool has a way to set up object definitions, so that when you run it again, you see the key names and types that you defined. This is helpful if you’re trying to guess what something is and you want to compare it against a few different objects. Here’s what the response looked like once I tried defining some of the keys:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/protobuf_inspector_labeled.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This makes the response look a bit more logical. I really guessed some of these, so if someone from Quibi actually reads this maybe you can confirm. I probably spent more time on this than I needed, because really all I want is to show a list of shows and maybe even start watching a show.&lt;/p&gt;
-
-&lt;p&gt;To waste even more time, I ended up defining this response in a .proto file, compiled it into Swift with swift-protobuf and got a Swift app to parse the response into real Swift structs! Here is the proto definition:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/hungtruong/ad4a62c9c1d86a2c187267bc353d8284.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;The generated proto code in Swift is pretty big, so I’ll leave it as an exercise to the reader to run it through swift-protobuf.&lt;/p&gt;
-
-&lt;p&gt;Here’s what it looks like running in the debugger in my app:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/proto_swift.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So with what I have written about so far, I could actually write a functioning Quibi client that supports logging in, making a request to get a list of tv show cards, and displays them, with a “live” preview, just like the real app. That doesn’t matter much unless you can actually watch the show, though.&lt;/p&gt;
-
-&lt;h3 id=&quot;hls-and-video-streaming&quot;&gt;HLS and Video Streaming&lt;/h3&gt;
-
-&lt;p&gt;I apologize for the anti-climactic finale of this blog post, but this is where I got stuck.&lt;/p&gt;
-
-&lt;p&gt;Before I tried reverse engineering this app, I pretty much knew nothing about video streaming. When looking at the chain of requests that the app makes, it appears that the app hits an endpoint called “GetPlaybackInfo” and sends a payload of series id, season #, and episode # along with a mystery UUID that I haven’t seen anywhere else in the app requests/responses, then receives a link to a “license” url, a few links to .m3u8 resources and some cookies for accessing those .m3u8 resources.&lt;/p&gt;
-
-&lt;p&gt;Then the app makes a request to the license url with some form encoded data and receives some other encoded data back. Finally, the app makes a request to one of the .m3u8 files and starts streaming the video.&lt;/p&gt;
-
-&lt;p&gt;I did &lt;a href=&quot;https://developer.apple.com/streaming/&quot;&gt;some research&lt;/a&gt; and it looks like a .m3u8 url basically provides the client with a way or ways to display the video to the user. It can include things like different video streams with varying quality, and it looks like it even has some subtitle file support.&lt;/p&gt;
-
-&lt;p&gt;I tried just replaying the call to the .m3u8 file with the same authentication cookie and it unfortunately didn’t work. I think that the license url provides the app with a way to decode the video, and without knowing what to send or how to decode it, I think I’m essentially stuck.&lt;/p&gt;
-
-&lt;p&gt;I sort of didn’t expect to be able to finish this app anyway, so I’m pretty happy with how far I got. I also figure that if I try to go any further with this, Quibi will probably try to sue me or something, so it probably isn’t worth it. In any case, I did learn a lot from this project, and hopefully you have too, from reading this post. If you have any ideas on how I would proceed or if you enjoyed this post, feel free to let me know!&lt;/p&gt;
-</description>
-        
-          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2020/Quibi_Logo.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects. I really enjoy reverse engineering apps, so I decided to take a look at Quibi.&lt;/p&gt;
-
-&lt;p&gt;Quibi (short for “Quick Bites”) is a video streaming app/service that has a bunch of shows that are short. The idea is that you can sit on a bus ride and consume an episode or two, depending on how long your commute is. One of the constraints of the platform is that you can only watch these videos on a phone or tablet with the app installed.&lt;/p&gt;
-
-&lt;p&gt;Since everyone is stuck indoors for a while this constraint is kinda stupid and most people would probably like to watch their videos on their big tv rather than huddle around a phone, which is what Emily and I had to do to watch that stupid viral show about the &lt;a href=&quot;https://twitter.com/zachraffio/status/1250273191810875392&quot;&gt;terrible wife with the golden arm&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I had an idea to write a tvOS app that would work with Quibi, so you could watch your terrible shows on your tv. Here’s what I learned trying to reverse engineer the Quibi app.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Tue, 12 May 2020 00:00:00 -0400</pubDate>
-        <link>https://www.hung-truong.com/blog/2020/05/12/reverse-engineering-quibi/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2020/05/12/reverse-engineering-quibi/</guid>
         
         
         <category>iOS</category>
