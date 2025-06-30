@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 Jun 2025 19:26:55 -0400</pubDate>
-    <lastBuildDate>Sun, 29 Jun 2025 19:26:55 -0400</lastBuildDate>
+    <pubDate>Mon, 30 Jun 2025 07:45:28 -0400</pubDate>
+    <lastBuildDate>Mon, 30 Jun 2025 07:45:28 -0400</lastBuildDate>
     <generator>Jekyll v4.2.1</generator>
     
       
@@ -34,7 +34,7 @@
 	&lt;figcaption&gt;Oooh ASCII art!&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Fast forward to this week, and Google announced the release of &lt;a href=&quot;https://ai.google.dev/docs/cli&quot;&gt;Gemini CLI&lt;/a&gt;, which is supposed to have a huge amount of free API calls on Gemini 2.5 Pro. Now, before you start complaining that it’s not as good as &lt;a href=&quot;https://www.anthropic.com/claude&quot;&gt;Claude&lt;/a&gt; or whatever, you need to understand that I’m extremely cheap. So I don’t care if Claude Sonnet 4 or Haiku 10 or Iambic Pentameter 40 is better at coding. If it costs money then I’m a lot less likely to even try it out. And Google has been at the forefront of supplying AI for free. They have the most generous free tiers out of any company, and I’m taking advantage of this gravy train until it runs out!&lt;/p&gt;
+&lt;p&gt;Fast forward to this week, and Google announced the release of &lt;a href=&quot;https://ai.google.dev/docs/gemini_cli&quot;&gt;Gemini CLI&lt;/a&gt;, which is supposed to have a huge amount of free API calls on Gemini 2.5 Pro. Now, before you start complaining that it’s not as good as &lt;a href=&quot;https://www.anthropic.com/claude&quot;&gt;Claude&lt;/a&gt; or whatever, you need to understand that I’m extremely cheap. So I don’t care if Claude Sonnet 4 or Haiku 10 or Iambic Pentameter 40 is better at coding. If it costs money then I’m a lot less likely to even try it out. And Google has been at the forefront of supplying AI for free. They have the most generous free tiers out of any company, and I’m taking advantage of this gravy train until it runs out!&lt;/p&gt;
 
 &lt;h3 id=&quot;gemini-cli-capabilities&quot;&gt;Gemini CLI Capabilities&lt;/h3&gt;
 
