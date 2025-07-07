@@ -137,6 +137,40 @@
 <p>The weird thing is that adding and removing datastore objects costs quite a lot in CPU time. Additional CPU time past 6.5 hours is $.10 an hour. Storage, on the other hand, is .$01 per 2 gigabytes per day. From my usage, I am predicting that the CPU cycles that I would use to trim the datastore listings would actually cost more than just leaving them in the datastore and paying for storage. Is that insane or what? I still have to test some things out, but it kind of surprises me that storage would be that much cheaper than the CPU cycles to remove something.</p>
 
 
+  <!-- COMMENTS -->
+  
+
+  
+  <div class="comment-form">
+    <h3>Leave a Comment</h3>
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments">
+  <input name="options[redirect]" type="hidden" value="https://www.hung-truong.com/2011/02/23/porting-mapskrieg-to-app-engine/">
+  <input name="options[slug]" type="hidden" value="porting-mapskrieg-to-app-engine">
+  
+  <div class="form-group">
+    <label for="comment-name">Name *</label>
+    <input type="text" id="comment-name" name="fields[name]" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="comment-email">Email *</label>
+    <input type="email" id="comment-email" name="fields[email]" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="comment-url">Website</label>
+    <input type="url" id="comment-url" name="fields[url]">
+  </div>
+  
+  <div class="form-group">
+    <label for="comment-message">Comment *</label>
+    <textarea id="comment-message" name="fields[message]" rows="5" required></textarea>
+  </div>
+  
+  <button type="submit">Submit Comment</button>
+</form>
+  </div>
+
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
      
