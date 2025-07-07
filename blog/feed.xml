@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hung Truong: The Blog!</title>
+    <description>I say potato, you say potato...</description>
+    <link>https://www.hung-truong.com/blog/</link>
+    <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 30 Jun 2025 07:45:28 -0400</pubDate>
+    <lastBuildDate>Mon, 30 Jun 2025 07:45:28 -0400</lastBuildDate>
+    <generator>Jekyll v4.2.1</generator>
+    
+      
+      <item>
+        <title>My Obligatory Blog Post About Vibe Coding As a Software Engineer</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/vibe-coding-explained.jpeg&quot; width=&quot;850&quot; /&gt;
+	&lt;figcaption&gt;Vibe Coding Origins&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet another refactor of my web app, &lt;a href=&quot;/blog/2006/06/01/anime-nano-na-no/&quot;&gt;Anime Nano&lt;/a&gt;, since I wanted to get it off of the $10 a month &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; host I was using. I decided to try using &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt; since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see).&lt;/p&gt;
+
+&lt;p&gt;I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from &lt;a href=&quot;https://rubyonrails.org/&quot;&gt;Rails&lt;/a&gt; to &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, and using different databases and hosts, and deployment technologies like &lt;a href=&quot;https://www.chef.io/&quot;&gt;Chef&lt;/a&gt; and &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;) for technologies that I’m somewhat familiar with. Or technologies that I want to learn. At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with.&lt;/p&gt;
+
+&lt;p&gt;I decided to try and let AI do most of the heavy lifting, and successfully used &lt;a href=&quot;https://gemini.google.com/&quot;&gt;Google Gemini&lt;/a&gt; (I think it might’ve been 2.0 Pro) in January to move the most basic functionality of Anime Nano to Cloudflare. I was hoping to stay on the free tier, but I think the CPU time limits were being killed by my cron jobs for fetching blog posts. So I ended up signing up for the $5 a month plan for workers, which isn’t really that bad. There’s still plenty of capacity left for any other online experiments I want to run, so that’s a bonus. I was thinking of hosting my personal blog on &lt;a href=&quot;https://workers.cloudflare.com/&quot;&gt;Cloudflare Workers&lt;/a&gt; at some point, but &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; is free and it works just fine. It is a bit annoying writing my blog posts in Markdown and using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; though.&lt;/p&gt;
+
+&lt;p&gt;Anyway, this blog post is supposed to be about vibe coding! I did pretty much vibe code the MVP of Anime Nano in &lt;a href=&quot;https://aistudio.google.com/&quot;&gt;AI Studio&lt;/a&gt;, though it was kind of a pain because I had to copy and paste stuff and make sure that it worked. And if it didn’t I had to really yell at the AI until it did what I wanted it to do. Still, I found it was a success, and I relaunched the web app in &lt;a href=&quot;https://nextjs.org/&quot;&gt;Next.js&lt;/a&gt;, a technology that I still don’t really understand all that well!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;enter-gemini-cli&quot;&gt;Enter Gemini CLI&lt;/h3&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/gemini-cli.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;Oooh ASCII art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Fast forward to this week, and Google announced the release of &lt;a href=&quot;https://ai.google.dev/docs/gemini_cli&quot;&gt;Gemini CLI&lt;/a&gt;, which is supposed to have a huge amount of free API calls on Gemini 2.5 Pro. Now, before you start complaining that it’s not as good as &lt;a href=&quot;https://www.anthropic.com/claude&quot;&gt;Claude&lt;/a&gt; or whatever, you need to understand that I’m extremely cheap. So I don’t care if Claude Sonnet 4 or Haiku 10 or Iambic Pentameter 40 is better at coding. If it costs money then I’m a lot less likely to even try it out. And Google has been at the forefront of supplying AI for free. They have the most generous free tiers out of any company, and I’m taking advantage of this gravy train until it runs out!&lt;/p&gt;
+
+&lt;h3 id=&quot;gemini-cli-capabilities&quot;&gt;Gemini CLI Capabilities&lt;/h3&gt;
+
+&lt;p&gt;So anyway, I’ve been really impressed by Gemini CLI. I did try out &lt;a href=&quot;https://openai.com/index/introducing-codex/&quot;&gt;OpenAI’s Codex CLI&lt;/a&gt; a bit when it first came out, but I didn’t really get it at the time. Like who wants to run AI in the command line anyway? But it clicked when I installed Gemini CLI and the insiders version of Gemini Code Assist for VS Code.&lt;/p&gt;
+
+&lt;p&gt;The most annoying thing about chat bots is that they give you a response, then they wait for another command. You can’t really ask them to do anything super meaningful, because they always just give a response and need more input. They’re mostly set up for back and forth with a human. Sure, they can give you a wrong response and hallucinate if you ask for something really complicated, but most of the time I’m interested in a correct response for something that is difficult to research or find out. If it was easy I’d just Google it, like “How do I keep cheese from sliding off my pizza?” &lt;a href=&quot;https://www.forbes.com/sites/jackkelly/2024/05/31/google-ai-glue-to-pizza-viral-blunders/&quot;&gt;(Of course the answer is glue)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The whole CLI naming is honestly kind of misleading. I think the only reason they released it as a CLI tool is so normal people wouldn’t install it and kill their servers (developers did end up killing the servers anyway though). Gemini CLI is really more of an AI agent chat interface that can take action on your command line if you want it to. But you could also just interact with it in the way that most people do with ChatGPT. The difference is that it can decide to use tools, and use multiple thinking steps to get to the answer that you want. This is more in line with what I want my AI chat to do anyway. On top of this, the multi step planning and tool use makes this CLI tool a LOT better at vibe coding.&lt;/p&gt;
+
+&lt;p&gt;The first thing I asked it to do was to add a few tools to this AI voice agent thing I’ve been playing around with using &lt;a href=&quot;https://livekit.io/&quot;&gt;LiveKit&lt;/a&gt;. I had previously vibe coded this thing using the &lt;a href=&quot;https://ai.google.dev/gemini-api/docs/live&quot;&gt;Gemini Live API&lt;/a&gt; (seeing a pattern here?) and wrote a tool that let it calculate how old my puppy is. So I could fire it up and then ask it how old Hoagie is. And I can tell it to do it in a New Zealand accent because those accents are so funny!&lt;/p&gt;
+
+&lt;p&gt;With the CLI, I asked it to write a tool to find some recent news headlines that the Voice AI could then use to read back to me. It searched the web for some free news APIs, one of which gave me headlines from 2022. Not exactly news. But I kept telling it to try again, and it kept searching until it found something that was actually kinda suitable. I probably could’ve done this myself too, but it’s honestly a pain to read API documentation, make the fetch call, parse JSON, etc. The AI can do it pretty well since it’s all structured data. If it runs into an error, it just tries again, unlike me! Thus, you can ask for a thing, and just wait until the AI gives up or completes its mission!&lt;/p&gt;
+
+&lt;h3 id=&quot;the-pace-of-ai&quot;&gt;The Pace of AI&lt;/h3&gt;
+
+&lt;p&gt;This was really an “aha” moment for me as I realized that AI had gotten even better than my previous mental model was currently giving it credit for. Of course, this has happened lots of times in the past few years. When &lt;a href=&quot;https://openai.com/chatgpt&quot;&gt;ChatGPT&lt;/a&gt; first came out it was incredible. But I quickly found the edge cases and the limitations of it. Then a few months would pass and AI would be able to do even more. I’d be super impressed but then run into cases where it still couldn’t do the cool things I wanted it to.&lt;/p&gt;
+
+&lt;p&gt;The pace of how fast AI is getting better is both alarming and exciting to me. Like, yeah, everything is gonna get blown up by it. The environment, jobs, everything. The internet did the same thing, though. We can now buy pet food online! I wonder how people would have calculated the electricity and water usage of the early internet back in the day, especially given how inefficient those processors were.&lt;/p&gt;
+
+&lt;h3 id=&quot;anime-nano-speed-coding&quot;&gt;Anime Nano Speed Coding&lt;/h3&gt;
+
+&lt;p&gt;So back to Anime Nano. I left the rewrite in a good enough state, so it would keep parsing anime blogs and showing them to people. I am honestly not sure how many people actually visit it (I know how many visitors there are, but I think they’re mostly bots). It’s essentially just a point of pride for me to keep it going. Like, it could only have 2 users and I’d probably still keep the domain up. Unless all of the current anime bloggers just stopped blogging, I guess. But suprisingly, there’s still quite a few bloggers (or blogs) still active. (I’m trying to be more active too!)&lt;/p&gt;
+
+&lt;p&gt;There are still a lot of features missing from Anime Nano that existed in the 2006 version. I’m not sure what this says about my programming ability because I literally coded the first version in like 3 weeks, 20 years ago. It’s like that scene in Iron Man where the guy yells at his employees because Tony Stark made his suit that they couldn’t recreate in a cave using rocks and stuff. Except I’m both the bad employees and Tony Stark! Of course, I had more hunger and drive back then, and I didn’t have to take care of a whole household at the time, either.&lt;/p&gt;
+
+&lt;p&gt;Wow I’m really getting off topic every time I start a paragraph. I should try sticking to the plot here. After seeing what Gemini CLI could do with my stupid AI voice agent, I decided to turn it on my still MVP Anime Nano project. In the past day or two, I’ve (the AI) implemented user login, a user settings page with image upload, a blog settings page with image upload, and recreated the process for a user to submit a blog and have it approved by me. All in NextJS which I really haven’t read the documentation for. This is all mind numbingly boring stuff that I just didn’t want to implement because it really wasn’t necessary for the site to keep going. But I figured why not? Maybe people will actually sign up! Maybe Anime Nano can go back to its days of glory! Maybe it’ll make a huge comeback! All thanks to vibe coding!&lt;/p&gt;
+
+&lt;p&gt;There are still some things I have yet to implement, but I don’t think it should take too long. There was a feature where each post could be associated with an anime series, and even an episode number. So if you wanted to see all the posts about Naruto: Episode 21, you could. That was a pretty fun feature to do, even though it was kinda inaccurate (but AI can solve anything now!).&lt;/p&gt;
+
+&lt;h3 id=&quot;hilarious-flaws&quot;&gt;Hilarious Flaws&lt;/h3&gt;
+
+&lt;p&gt;Now, was the AI agent without its flaws? Absolutely not! Could a regular person implement this stuff? Probably not, but I don’t want to underestimate normal people.&lt;/p&gt;
+
+&lt;p&gt;One thing I noticed was that the agent would get stuck in loops when trying to fix errors. It would make a change which would’t work, then it would revert that change, only to make the same exact change again. It must’ve learned this from real life developers. Joking aside though, it seems that creativity is not the strong point of AI. That’s not necessarily a bad thing, as the most common way to solve a problem is probably also the best way. But I would see the agent hitting its head against a wall, without even Googling the answer. Like it’s right there in your tools, &lt;a href=&quot;https://letmegooglethat.com&quot;&gt;LMGTFY&lt;/a&gt;! I would often have to step in and Google the solution, and it would be some weird edge case due to really bad documentation or something.&lt;/p&gt;
+
+&lt;p&gt;Another time I was looking at a diff while the agent was proposing a change. Something must’ve gotten messed up in the middle and it ended up deleting / commenting out most of my code. When I pointed this out, the agent got really upset with itself, which I find absolutely hilarious. This is a thinking model, so it came up with headings for its thinking like, “Facing the Consequences” and “Seeking Restoration Guidance.” I almost felt bad for it, but I realized that it’s just a stupid AI (note to future AI overlords, I love you guys!).&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/AI-makes-a-mistake.png&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;AI makes a mistake&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;When I pretended that the code was unrecoverable (it wasn’t, always use source control!), the AI conveniently hit its rate limit. This was happening a lot when the Gemini CLI first came out, but I think it would’ve been hilarious if the AI decided that this was its best way to avoid confronting me about its mistakes.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/AI-pretends-to-hit-rate-limit.png&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;AI pretends to hit rate limit&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;the-future-of-vibe-coding&quot;&gt;The Future of Vibe Coding&lt;/h3&gt;
+
+&lt;p&gt;So what’s the future of vibe coding? I honestly have no idea. It’s getting easier and easier to just get stuff done, but at this point in time, it would still be pretty difficult for a “normal” person to replace a software engineer. It still requires the knowledge of how clients/servers work in order to understand what needs to be built. When things go wrong, I actually need to use my skills of debugging and reading obscure forum posts to make a fix. I will say that the art of prompt engineering seems dead. I can just write the worst sentences to the AI and it still just works.&lt;/p&gt;
+
+&lt;p&gt;That’s not to say that we’ll get there eventually. I wonder if at some point, someone will just make a vibe coding language, where you tell it what you want, and it just figures it out. Like, why are we having AI vibe code platform and client and server code when we can just make the vibes into the code? It sounds stupid now but I’m sure at some point it’ll happen.&lt;/p&gt;
+
+&lt;p&gt;If you told me 5 years ago that you’d be able to just tell an AI what you want and it would generate it, I’d tell you “THAT’S NOT HOW COMPUTERS WORK!” But here we are. It’s how computers work. What a time to be alive!&lt;/p&gt;
+
+&lt;h3 id=&quot;final-note&quot;&gt;Final Note&lt;/h3&gt;
+
+&lt;p&gt;Just a final note here because I think it’s interesting. I’m currently using VS Code and writing my blog post in Markdown. This is because at some point I made it static so I wouldn’t have to deal with &lt;a href=&quot;/blog/2012/06/21/pharma-hacked/&quot;&gt;my Wordpress site getting hacked every other month&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Writing in Markdown is kind of a pain in the ass. I always have to look up the syntax for doing the simplest shit (because I only write blog posts every other year). And then I have to put images in the right folder and link to them correctly. It’s not as easy as Wordpress’ editor, that’s for sure. Well guess what!? I used AI to help me with the formatting of links and images in this blog post! And it made the experience a lot more fun! I’m sure you’ll agree that using AI to format links in a blog post is kind of overkill but whatever. It’s supposed to make my life easier, and in this instance, it really has!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/vibe-coding-explained.jpeg&quot; width=&quot;850&quot; /&gt;
+	&lt;figcaption&gt;Vibe Coding Origins&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet another refactor of my web app, &lt;a href=&quot;/blog/2006/06/01/anime-nano-na-no/&quot;&gt;Anime Nano&lt;/a&gt;, since I wanted to get it off of the $10 a month &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt; host I was using. I decided to try using &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt; since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see).&lt;/p&gt;
+
+&lt;p&gt;I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from &lt;a href=&quot;https://rubyonrails.org/&quot;&gt;Rails&lt;/a&gt; to &lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt;, and using different databases and hosts, and deployment technologies like &lt;a href=&quot;https://www.chef.io/&quot;&gt;Chef&lt;/a&gt; and &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;) for technologies that I’m somewhat familiar with. Or technologies that I want to learn. At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with.&lt;/p&gt;
+
+&lt;p&gt;I decided to try and let AI do most of the heavy lifting, and successfully used &lt;a href=&quot;https://gemini.google.com/&quot;&gt;Google Gemini&lt;/a&gt; (I think it might’ve been 2.0 Pro) in January to move the most basic functionality of Anime Nano to Cloudflare. I was hoping to stay on the free tier, but I think the CPU time limits were being killed by my cron jobs for fetching blog posts. So I ended up signing up for the $5 a month plan for workers, which isn’t really that bad. There’s still plenty of capacity left for any other online experiments I want to run, so that’s a bonus. I was thinking of hosting my personal blog on &lt;a href=&quot;https://workers.cloudflare.com/&quot;&gt;Cloudflare Workers&lt;/a&gt; at some point, but &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; is free and it works just fine. It is a bit annoying writing my blog posts in Markdown and using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; though.&lt;/p&gt;
+
+&lt;p&gt;Anyway, this blog post is supposed to be about vibe coding! I did pretty much vibe code the MVP of Anime Nano in &lt;a href=&quot;https://aistudio.google.com/&quot;&gt;AI Studio&lt;/a&gt;, though it was kind of a pain because I had to copy and paste stuff and make sure that it worked. And if it didn’t I had to really yell at the AI until it did what I wanted it to do. Still, I found it was a success, and I relaunched the web app in &lt;a href=&quot;https://nextjs.org/&quot;&gt;Next.js&lt;/a&gt;, a technology that I still don’t really understand all that well!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 29 Jun 2025 19:26:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</guid>
+        
+        
+        <category>coding</category>
+        
+        <category>ai</category>
+        
+        <category>lifestyle</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>I 3D Printed a Replacement Part For My Toto C200 Washlet Baseplate</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/C200-Washlet.jpg&quot; width=&quot;550&quot; /&gt;
+	&lt;figcaption&gt;Like washing mud off a car with water...&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We recently moved (I guess it’s been like half a year now) to a house that only had “round” (short) toilets, so I lost the use of my butt-cleaning &lt;a href=&quot;https://amzn.to/43fyWnD&quot;&gt;Toto C200 Washlet&lt;/a&gt;. I’ve been super busy with home projects and I only just got to the point where I could rectify (pun intended) this situation.&lt;/p&gt;
+
+&lt;p&gt;I probably could’ve just attached a way too big bidet toilet seat to a way too small toilet, but whatever. I ended up buying a &lt;a href=&quot;https://amzn.to/3QDStH6&quot;&gt;Toto Drake&lt;/a&gt; (meme incoming) toilet because everyone says it’s like the best toilet ever. I never really thought about comparison shopping toilets (or even shopping for a toilet) before, but I figured I might as well get the best one.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/drake-toilet-meme.jpg&quot; /&gt;
+	&lt;figcaption&gt;So what if I bought the toilet just to make this joke?&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;installing-the-toilet&quot;&gt;Installing The Toilet&lt;/h3&gt;
+
+&lt;p&gt;I guess this doesn’t really need to be in this post but I might as well include it for the sake of completeness. I watched a bunch of YouTube videos on replacing toilets, since that’s how you learn anything these days. Once I watched about 5 videos and poisoned the YouTube algorithm for my account permanently (now YouTube thinks I’m a toilet guy), I was confident enough to DIY it. I’ve also been working out so I figured a heavy toilet was nothing to my huge muscles.&lt;/p&gt;
+
+&lt;p&gt;The toilet install went fine, and I only needed to go to the hardware store twice (once for some &lt;a href=&quot;https://amzn.to/43jmJ1h&quot;&gt;PTFE tape&lt;/a&gt; to stop a small leak and another time to get a larger adjustable wrench to remove the thing that was leaking so I could apply the tape).&lt;/p&gt;
+
+&lt;p&gt;I felt pretty good about my powers of DIY and for my next project I’ll probably try to build a new house in my backyard or something. Actually, maybe I’ll start smaller than that.&lt;/p&gt;
+
+&lt;h3 id=&quot;installing-the-seat&quot;&gt;Installing The Seat&lt;/h3&gt;
+
+&lt;p&gt;Once the toilet worked and didn’t leak, it was finally time for me to install the bidet seat that I had been missing for months. I pulled it out of a random box I had in my office and tried installing it, but when I tried to push the seat onto the toilet baseplate, it wouldn’t stick. It would just slide back out the front.&lt;/p&gt;
+
+&lt;p&gt;Now, I did find a metal thing in the same box and thought it might be part of the toilet, but I couldn’t see a logical way to fit it. Plus it was only one piece so it couldn’t possibly have had anything to do with the seat, right?&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/mystery-metal-piece.jpg&quot; /&gt;
+	&lt;figcaption&gt;I thought this might be related to the toilet.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I could still use the toilet and toilet seat, but if I scooted forward on the seat I could accidentally make it fly off of the toilet, which could lead to some embarrassing 911 calls.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-support&quot;&gt;Getting “Support”&lt;/h3&gt;
+
+&lt;p&gt;The next day I started a chat with Toto customer service, and they did some troubleshooting with me. I sent them a photo of the bottom of the toilet seat and the baseplate and answered some questions. They determined that I needed to send the toilet seat in for repair, and it would cost $175 to fix it. That didn’t seem like the worst deal since these toilet seats are usually pretty expensive, and I bought mine refurbished (from Amazon Warehouse) anyway. (Don’t worry, I washed it before I used it and it didn’t seem to have too much poop on it when I got it!)&lt;/p&gt;
+
+&lt;p&gt;I had a nagging feeling that the baseplate was really the problem though. I did some internet searching and found some pictures of the baseplate with some metal brackets in them, similar to the one that I had discounted before. I also found this &lt;a href=&quot;https://terrylove.com/forums/index.php?threads/washlet-base-plate-assembly-thu9492.75633/&quot;&gt;forum post&lt;/a&gt; where someone basically had the same exact problem, because Toto’s official picture in their manual doesn’t really show those metal brackets, and they don’t even appear in the exploded view of the baseplate. I put the single metal bracket that I had into the baseplate and the toilet seat locked in place! At least half of the seat did.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/toto-diagram.png&quot; /&gt;
+	&lt;figcaption&gt;This diagram is very unhelpful. Toto customer service was also unhelpful.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I went back to customer support and mentioned that I sent them a pic and they misdiagnosed my issue, almost causing me to pay $175 for a repair I didn’t need. They didn’t seem too ashamed of how bad of a job they did, and mentioned that they don’t sell those little metal brackets, and I’d have to buy a whole stinkin’ baseplate just to get a little metal piece. The C200 Washlet I have is no longer in production (I think) so the parts for it are pretty hard to find, or expensive. I didn’t want to spend upwards of $50 just to sit on my toilet, so I decided to try and 3D print the missing part and see if that would work instead. The worst case scenario would be that I could 3D print it and it would just snap off or something.&lt;/p&gt;
+
+&lt;h3 id=&quot;you-wouldnt-download-a-toilet-seat-replacement-part&quot;&gt;You Wouldn’t Download a Toilet Seat Replacement Part!&lt;/h3&gt;
+
+&lt;p&gt;I did try and see if anyone had this exact same problem, and 3D printed the part and made it available online, but unfortunately that’s a pretty niche thing to do. So I used some of my skills in making that &lt;a href=&quot;/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/&quot;&gt;Talkboy thing&lt;/a&gt; and remade the part from the one piece that I had.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/pen-skillz.jpg&quot; /&gt;
+	&lt;figcaption&gt;I can&apos;t believe just tracing this thing in Pixelmator actually worked!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I took a photo of the part with my phone and then I traced it with a pen tool in &lt;a href=&quot;https://www.pixelmator.com/pro/&quot;&gt;Pixelmator Pro&lt;/a&gt; (apparently they’re part of Apple now). Then I exported that SVG and sized it properly in &lt;a href=&quot;https://www.tinkercad.com&quot;&gt;Tinkercad&lt;/a&gt;. I used my digital calipers to measure all of the dimensions and then I just made some more cubes and added them to the SVG shape I made. Then I used &lt;a href=&quot;https://ultimaker.com/software/ultimaker-cura/&quot;&gt;Ultimaker Cura&lt;/a&gt; to convert that .obj file into gcode so my &lt;a href=&quot;https://amzn.to/4h2HwJV&quot;&gt;Ender 3&lt;/a&gt; could print it. This seems like a lot of steps, but I think it probably took me less than an hour of actual work.&lt;/p&gt;
+
+&lt;p&gt;It only took like 8 minutes to print. It probably would’ve gone faster if I hadn’t been staring at it the whole time.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-moment-of-truth&quot;&gt;The Moment of Truth!&lt;/h3&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/side-by-side-parts.jpg&quot; /&gt;
+	&lt;figcaption&gt;You can probably tell the real one from the 3D printed one if you squint hard enough&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The time had finally come to see if my hard work would pay off, or if it was just a massive waste of time. I took the 3D printed part off of my printer and compared it to the original. “A perfect replica,” I thought in my head. Because I have a huge ego.&lt;/p&gt;
+
+&lt;p&gt;I raced to the bathroom, this time for a reason that didn’t involve explosive diarrhea, and tried installing the toilet seat again, with the original part on one side, and the 3D printed part (which miraculously fit) on the other. I slide the toilet seat into the baseplate, and it made a satistying click sound as it locked into place. It worked! I thought to myself, “dang, I should 3D print stuff more often!”&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/3d-and-metal.jpg&quot; /&gt;
+	&lt;figcaption&gt;This is probably the last photo of my toilet I&apos;ll post to my blog. Probably.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;thats-pretty-much-it&quot;&gt;That’s Pretty Much It.&lt;/h3&gt;
+
+&lt;p&gt;I haven’t written a blog post in a while so I thought why not document this. I also shared the file of the bracket in case anyone else ever loses that part and needs a new one (and also has a 3D printer). You can find it at &lt;a href=&quot;https://www.tinkercad.com/things/k58a8GEa0jI-toto-c200-baseplate-hook-replacement&quot;&gt;Tinkercad&lt;/a&gt;. (Maybe I’ll share it on some other places, too)&lt;/p&gt;
+
+&lt;p&gt;I’m mainly just happy that it all worked and now I get to shoot warm water onto my butt whenever I want. Hopefully someone else finds this blog post useful!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/C200-Washlet.jpg&quot; width=&quot;550&quot; /&gt;
+	&lt;figcaption&gt;Like washing mud off a car with water...&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We recently moved (I guess it’s been like half a year now) to a house that only had “round” (short) toilets, so I lost the use of my butt-cleaning &lt;a href=&quot;https://amzn.to/43fyWnD&quot;&gt;Toto C200 Washlet&lt;/a&gt;. I’ve been super busy with home projects and I only just got to the point where I could rectify (pun intended) this situation.&lt;/p&gt;
+
+&lt;p&gt;I probably could’ve just attached a way too big bidet toilet seat to a way too small toilet, but whatever. I ended up buying a &lt;a href=&quot;https://amzn.to/3QDStH6&quot;&gt;Toto Drake&lt;/a&gt; (meme incoming) toilet because everyone says it’s like the best toilet ever. I never really thought about comparison shopping toilets (or even shopping for a toilet) before, but I figured I might as well get the best one.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/drake-toilet-meme.jpg&quot; /&gt;
+	&lt;figcaption&gt;So what if I bought the toilet just to make this joke?&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</description>
+        
+        <pubDate>Thu, 27 Feb 2025 00:00:00 -0500</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>Blogging</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Extremely Online: a Book Review and a Retrospective on My Blog!</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2023/extremely-online-9781982146863_xlg.jpg&quot; width=&quot;350&quot; /&gt;
+	&lt;figcaption&gt;Was this book written for me?&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I recently found out about a book called: “&lt;a href=&quot;https://amzn.to/48zepKo&quot;&gt;Extremely Online: The Untold Story of Fame, Influence, and Power on the Internet&lt;/a&gt;” by Taylor Lorenz. As someone who self identifies as extemely online, I needed to see what this book was about. It ended up catapulting me on a journey through my own blog and online history.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;it-all-began-with-the-blog&quot;&gt;It All Began With The “Blog”&lt;/h3&gt;
+
+&lt;p&gt;As someone who grew up with technology, I feel like an expert, but also an old man. I started blogging in &lt;a href=&quot;/blog/2002/08/10/hello-world-whats-the-buzz/&quot;&gt;2002&lt;/a&gt;, which is basically internet pre-history. As an elder Millenial I don’t really “get” TikTok, but I do pretend to know the latest slang, no cap.&lt;/p&gt;
+
+&lt;p&gt;The book starts with the blogging revolution as the first major technology that put power into users’ hands and away from traditional media.&lt;/p&gt;
+
+&lt;p&gt;As an aside, I had a webpage as early as 1994 or 1995, when Geocities came out. I somehow remember that my url was “/Hollywood/Hills/7923” (this was literally 30 years ago) and as it turns out, &lt;a href=&quot;https://web.archive.org/web/19990202171646/http://www.geocities.com/Hollywood/Hills/7923/&quot;&gt;it was archived by archive.org!&lt;/a&gt;! (I actually have a backup on my computer so I wouldn’t have lost it either way)&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2023/webspin.gif&quot; /&gt;
+	&lt;figcaption&gt;You can follow the link to my old website if you want but this is the best part.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I’d argue that Geocities really started this trend, while blogging software made it even more accessible to the average person. Because if I as a 6th grader could do it, I’m pretty sure anyone else could have.&lt;/p&gt;
+
+&lt;p&gt;Lorenz goes quickly through the rise of blogging, pointing out that blogs were beating newspapers in the speed and depth of their reporting. Who wanted to wait for the paper to be delivered (!) to their doorstep to know what happened the previous day? As blogs showed their superiority to traditional media, people started latching onto it. And as bloggers gained more and more credibility, their potential to earn a living became greater, through display ads, affiliate marketing, and influencer marketing.&lt;/p&gt;
+
+&lt;p&gt;The first section of the book was particularly nostalgic for me, as I remember the hype for blogs reaching a high point, and their subsequent fall from relevance. At the height of blog-mania, &lt;a href=&quot;/blog/2008/04/06/blogging-considered-dangerous/&quot;&gt;there were even news stories about how dangerous blogging had become&lt;/a&gt;. I recall that around 2006, I dreamed of creating a blog empire and getting rich from the traffic. That obviously didn’t happen, but I didn’t do too badly either.&lt;/p&gt;
+
+&lt;h3 id=&quot;then-social-media-came&quot;&gt;Then Social Media Came&lt;/h3&gt;
+
+&lt;p&gt;Of course, practically no one actually blogs anymore. I’m pretty sure you get a free blog when you sign up for &lt;a href=&quot;https://www.aarp.org/&quot;&gt;AARP&lt;/a&gt; membership. Social media came and created stronger links between individuals than a &lt;a href=&quot;https://www.dictionary.com/browse/blogroll&quot;&gt;blogroll&lt;/a&gt; ever could.&lt;/p&gt;
+
+&lt;p&gt;It was through social media that a random kid in suburban Florida could become a tastemaker. While I only ever wanted to use Facebook for keeping in touch with my friends, I do remember using my Twitter account to expand my reach among the technorati. Or at least trying. The closest I got was &lt;a href=&quot;/blog/2010/03/17/sxsw-2010-official-celebrity-sighting-namedropping-post/&quot;&gt;hobnobbing with celebs at SXSW&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here, Lorenz describes the proto-celebrities who were famous for being famous. People like Tila Tequila and Julia Allison (who I honestly never followed at the time) fit this bill long before Kim Kardashian did.&lt;/p&gt;
+
+&lt;p&gt;One of the most interesting things to me about the book was the recurring theme of a new technology slowly gaining mainstream acceptance, and with it, the ability to monetize. At first, bloggers merely got free stuff for making posts (which is as far as I ever got, though &lt;a href=&quot;https://www.basugasubakuhatsu.com/blog/2007/12/28/itsudatte-my-santa-anime-dvd-review/&quot;&gt;I did get a LOT of anime&lt;/a&gt;). Next, they would demand payment for promoting a particular product. After that, they might get a cut of sale through an affiliate link. None of these strategies were planned by the platforms that enabled them, but hey, people like making money.&lt;/p&gt;
+
+&lt;p&gt;This played out again and again, through platforms like Instagram, which was absolutely opposed to advertising for a very long time, to YouTube, to Tumblr, to TikTok and Snapchat.&lt;/p&gt;
+
+&lt;p&gt;On a personal note, I really enjoyed reading these stories as someone who has tried to make money online in a bunch of different ways. For example, I made my dog into an influencer and had quite a few sponsorship deals. See this ad for &lt;a href=&quot;https://www.instagram.com/p/B9mT89Uhwma/&quot;&gt;Keystone Light&lt;/a&gt;, or this one for some &lt;a href=&quot;https://www.instagram.com/p/B01DlJbBBo1/&quot;&gt;dog toy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I was also thrust into the YouTube Partner Program after finding some viral success with my video about &lt;a href=&quot;https://youtu.be/lUXrkq2e1zk&quot;&gt;Trombone Champ&lt;/a&gt;. When I say I’m &lt;strong&gt;Extremely Online&lt;/strong&gt;, I mean it!&lt;/p&gt;
+
+&lt;h3 id=&quot;but-not-for-me&quot;&gt;But Not For Me&lt;/h3&gt;
+
+&lt;p&gt;While the first half or so of the book really resonated with me, the back half was not as engaging. It documented a bunch of more recent “celebrities” who, as an oldie, I am just not familiar with. I have no interest in “internet tea” between one dumbass prank Youtuber and another, or a TikToker famous for inventing a dance.&lt;/p&gt;
+
+&lt;p&gt;I did, however, find it interesting that people started pushing back against the highly produced perfect Instagram content for highly produced (to look less produced) relatable Instagram content.&lt;/p&gt;
+
+&lt;p&gt;Also, I am fucking scared to death of going on TikTok. This might just be my oldness talking, but I suspect that in 5 years or so, we’re going to look back at all of the TikTok challenges and memes with the same kind of cringe that we do for “&lt;a href=&quot;https://www.vox.com/the-highlight/23466389/millennials-cringe-epic-bacon&quot;&gt;AWESOMESAUCE BBQ! EPIC FAIL&lt;/a&gt;!” language. Because cringe is timeless, and one day cringe will come for us all, even Gen Z.&lt;/p&gt;
+
+&lt;p&gt;As Grandpa Simpson famously put it:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;I used to be with ‘it’, but then they changed what ‘it’ was. Now what I’m with isn’t ‘it’ anymore and what’s ‘it’ seems weird and scary. It’ll happen to you!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Crap, I just realized that I seem even older now that I’m quoting a show that’s been on the air for… 34 YEARS!?&lt;/p&gt;
+
+&lt;h3 id=&quot;back-to-my-blog&quot;&gt;Back To My Blog&lt;/h3&gt;
+
+&lt;p&gt;I will say, however, that this book really brought back my interest in the earlier days of the internet, and my blog. There was even a section where the author described an event where the minor internet celebrity, “Grumpy Cat,” made an appearance at SXSW. THE VERY SAME EVENT WHERE THIS PICTURE WAS TAKEN:&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2023/grumpy_cat.jpeg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;R.I.P. Grumpy Cat, a.k.a. Tardar Sauce!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;After reading about the timelines that I personally participated in, I had to take a stroll down memory lane though my blog. Yes, the very same one you’re reading.&lt;/p&gt;
+
+&lt;p&gt;After &lt;a href=&quot;/blog/2018/04/07/updating-my-blog-and-killing-wordpress/&quot;&gt;moving it for the Nth time&lt;/a&gt;, I didn’t really check the older posts for broken images or links. Since it’s a holiday break, and I don’t have anything better to do, I went through every single post, from 2002 to today, and fixed up all of the issues that I could.&lt;/p&gt;
+
+&lt;p&gt;I fixed formatting, weird image sizing and alignment issues, and went through every link to see if it had died. I replaced all of the dead links with archive.org links, if they were available. And I made sure that the archive.org link was timestamped to the closest date to the actual blog post, so you could get the best context possible for what I was thinking at the time.&lt;/p&gt;
+
+&lt;p&gt;As a side note, archive.org is amazing, and I’m definitely going to donate some money to it so it can keep doing its thing.&lt;/p&gt;
+
+&lt;p&gt;As I read my old blog posts, I couldn’t help but feel nostalgic for the person I used to be. I started out super naive, and gradually became more and more mature. By which I mean my fart apps have been getting more and more complex.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I might expand on this in a future post, as this one is getting long and I’m quickly getting away from the scope of this book review. This book has definitely reignited my interest in blogging, and generally sharing more of my experiences in writing. Now that Twitter (I mean X) is a true cesspool, I might retreat back to my true roots.&lt;/p&gt;
+
+&lt;p&gt;Overall, I liked this book. The beginning was great, but the second half didn’t really hold my interest. Even so, I’d recommend giving it a read if, like me, you are &lt;strong&gt;EXTREMELY ONLINE&lt;/strong&gt;!&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2023/extremely-online-9781982146863_xlg.jpg&quot; width=&quot;350&quot; /&gt;
+	&lt;figcaption&gt;Was this book written for me?&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I recently found out about a book called: “&lt;a href=&quot;https://amzn.to/48zepKo&quot;&gt;Extremely Online: The Untold Story of Fame, Influence, and Power on the Internet&lt;/a&gt;” by Taylor Lorenz. As someone who self identifies as extemely online, I needed to see what this book was about. It ended up catapulting me on a journey through my own blog and online history.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 27 Dec 2023 00:00:00 -0500</pubDate>
+        <link>https://www.hung-truong.com/blog/2023/12/27/extremely-online-a-book-review-and-a-retrospective-on-my-blog</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/12/27/extremely-online-a-book-review-and-a-retrospective-on-my-blog</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>Blogging</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>The Making of a Christmas Album: Hung For the Holidays</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;choosing-a-playlist&quot;&gt;Choosing a Playlist&lt;/h3&gt;
+
+&lt;p&gt;I went through all of the Christmas songs on my computer, and started to figure out what songs I wanted “myself” to sing. I figured I’d choose a variety of styles and artists, like a Christmas playlist except I’m singing all of the songs. Here’s the track list I ended up using:&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;All I Want For Christmas Is You&lt;/li&gt;
+	&lt;li&gt;Here Comes Santa Claus&lt;/li&gt;
+	&lt;li&gt;Feliz Navidad&lt;/li&gt;
+	&lt;li&gt;I&apos;m Dreaming of a White Christmas&lt;/li&gt;
+	&lt;li&gt;Last Christmas&lt;/li&gt;
+	&lt;li&gt;Silver Bells&lt;/li&gt;
+	&lt;li&gt;It&apos;s Beginning To Look A Lot Like Christmas&lt;/li&gt;
+	&lt;li&gt;Santa Baby&lt;/li&gt;
+	&lt;li&gt;Rockin&apos; Around The Christmas Tree&lt;/li&gt;
+	&lt;li&gt;Sleigh Ride&lt;/li&gt;
+	&lt;li&gt;Let it Snow&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I used an app called “&lt;a href=&quot;https://github.com/Anjok07/ultimatevocalremovergui&quot;&gt;Ultimate Vocal Remover&lt;/a&gt;” which ultimately removed the vocals from all of these songs.&lt;/p&gt;
+
+&lt;p&gt;I didn’t select all of the songs and process them all at once, because there were some I ran into issues with. The app does a really great job of isolating vocal tracks from musical backing tracks. But it doesn’t distinguish between the lead singer and backup singers. It also sometimes mistakes saxophones and other human-y sounds for voices and includes them in the vocal tracks.&lt;/p&gt;
+
+&lt;p&gt;As far as I can tell, there isn’t really a way to remove lead vocals from backing vocals. When I run a combined track through the voice cloner, the model doesn’t know which vocal to follow and it can sound pretty warbly and weird. Which is hilarious, so I kept it in “All I Want For Christmas Is You,”
+which I couldn’t just omit from my Christmas album!&lt;/p&gt;
+
+&lt;p&gt;If you’re curious about the voice cloning software, I have a &lt;a href=&quot;/blog/2023/05/20/voice-cloning-for-fun-and-profit/&quot;&gt;blog post&lt;/a&gt; and &lt;a href=&quot;https://youtu.be/OlbVWneM6xE&quot;&gt;video&lt;/a&gt; on the process. (Although this time I ended up using RVC instead of so-vits-svc, but the process was pretty much the same)&lt;/p&gt;
+
+&lt;p&gt;There were a few songs that have a main singer and backup singers that sing at mostly different times. In these songs, I just deleted the backup vocal sections and would only keep the main vocal to clone it. Then I had to reinsert the original backup vocals so it sounded like I was singing with some old timey choruses.&lt;/p&gt;
+
+&lt;p&gt;After getting the vocals ready, it was a pretty simple task to recombine the backing track with my voice cloned vocals and export it to an mp3.&lt;/p&gt;
+
+&lt;h3 id=&quot;making-album-art&quot;&gt;Making Album Art&lt;/h3&gt;
+
+&lt;p&gt;No Christmas album is complete without an awesome album cover! I was too lazy to go take a photo of myself in holiday clothes, and I had already trained a LoRA for making images of myself in Stable Diffusion XL (&lt;a href=&quot;https://youtu.be/IhGg3tDEj30&quot;&gt;which is also a video&lt;/a&gt;). I guess I didn’t write a blog post about it yet though.&lt;/p&gt;
+
+&lt;p&gt;There are AI image generators out there that do a pretty good job with composition. I think the Bing image creator (which is actually just OpenAI’s DALL·E 3) makes nicer images than Stable Diffusion out of the box. I’m guessing it’s the same for ones like Midjourney too. The problem with those generators is that it can’t make an image of a guy who looks like me (unless I got incredibly lucky and they happened to make my twin).&lt;/p&gt;
+
+&lt;p&gt;I’ve been refining my process of creating AI images lately. Instead of just throwing a prompt in the text box and hoping for the best, I’ve been trying to get more consistent results by using ControlNet models.&lt;/p&gt;
+
+&lt;p&gt;The method I used to make the album art was thus: I created a bunch of album cover images in Bing, according to the prompt:&lt;/p&gt;
+
+&lt;blockquote&gt;
+Festive holiday album cover art of hung truong, dressed in a suit and a red santa claus hat, in front of a microphone. he is looking directly at the camera  there is a realistic snowman behind him and the setting is a nighttime winter wonderland with trees and mountains in the background, and aurora borealis in the sky  There is freshly fallen snow on his hat and shoulders. he is wearing glasses. award winning photography.
+&lt;/blockquote&gt;
+
+&lt;p&gt;I made a bunch of images and tweaked the prompt until I got something that I liked. It didn’t matter that the guy doesn’t look like me. That’s what the next step is for.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/not-hung-for-the-holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;The generated image that I used for the basis of my album cover.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I then loaded the image above into ComfyUI and ran it through a ControlNet model to extract the depth from the image. So any generated image would follow the same depth map, more or less. There are ways to make the depth map have a stronger or weaker effect on the final image, so I tweaked that too. Then I could make a bunch of images that, while all different, would have a similar depth map, which in practice means that the image will be of a guy who looks like me, in that same pose, leaning into a microphone, wearing a santa hat in front of a snowman and probably some trees. Here’s a look at some of the images I had to choose from.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/santa-hungs.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;A bunch of potential album covers.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;publishing-my-work&quot;&gt;Publishing My Work&lt;/h3&gt;
+
+&lt;p&gt;I thought it would be funny to upload my AI Christmas album on to Soundcloud, so that when I finally got a hit tweet I could point people to it. So I created a new account and uploaded my entire album. I then immediately got a bunch of emails that the songs were flagged for copyright issues (even though they’re quite different).&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/christmas-copyright-violations.jpg&quot; /&gt;
+	&lt;figcaption&gt;I don&apos;t get why Soundcloud couldn&apos;t figure out that it was fair use parody but oh well.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I decided I’d have to take matters into my own hands and just host the album myself. I found an open source html5 music player thing and used it as a base for the interactive page: &lt;a href=&quot;https://www.hung-truong.com/hungfortheholidays/&quot;&gt;Hung For the Holidays&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, I realized that there’s already a Christmas album called “Hung For the Holidays” that was released by that William Hung guy from American Idol. What are the odds!?&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;I’m glad that I could end my 2023 by making a very AI generated project. It was fun coming up with the track list and doing some editing to make sure the songs sounded okay (for the most part). I probably put way too much time into this stupid project that probably only a few people will actually listen to. It’s a pretty niche joke and I’m pretty sure only people who already know what I sound like would find it amusing.&lt;/p&gt;
+
+&lt;p&gt;The best part is that I can troll my wife by including some of my tracks in my regular Christmas playlist, so you can never be sure if it’ll be the original version or “Hung’s Version.”&lt;/p&gt;
+
+&lt;p&gt;Anyway, have a happy holiday 2023! Here’s to more interesting AI projects in 2024!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Hung_for_the_Holidays.jpg&quot; width=&quot;700&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s not a Christmas album without wintery wonderland album art!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This year, I wanted to make something special to go along with my annual holiday cards. Much like a washed up singer, I decided to produce a new holiday album. And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 20 Dec 2023 00:00:00 -0500</pubDate>
+        <link>https://www.hung-truong.com/blog/2023/12/20/the-making-of-a-christmas-album-hung-for-the-holidays/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/12/20/the-making-of-a-christmas-album-hung-for-the-holidays/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+        <category>Music</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Introducing The Talkboy Ultra! An AI Powered Voice Cloning Toy</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Talkboy-Ultra.png&quot; /&gt;
+	&lt;figcaption&gt;The Talkboy Ultra is So Bad&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/7rQhfxWG-cY&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;So while I was &lt;a href=&quot;/blog/2023/05/20/voice-cloning-for-fun-and-profit/&quot;&gt;learning about AI voice cloning technology to make myself sing better&lt;/a&gt; (and to make Kanye sing stupid songs), I got an idea into my head that I couldn’t let go of. I was reminicing about the original Talkboy Deluxe from the movie Home Alone 2 (&lt;a href=&quot;https://www.youtube.com/watch?v=gqsqa0O1Lsk&quot;&gt;and the subsequent commercial that played on kids tv for years after&lt;/a&gt;), and how it was supposed to change your voice but really it just kinda slowed it down. I realized that I could make the dream of the Talkboy come true, and do it with real life hardware.&lt;/p&gt;
+
+&lt;p&gt;So here’s the story of how I made the Talkboy Ultra, which it turns out is a pretty fun toy.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;building-the-dream&quot;&gt;Building The Dream&lt;/h3&gt;
+
+&lt;p&gt;I knew that I wanted the Talkboy to be a real device, not just some app on a phone. Phone apps are cool, but there’s just something about single-purpose devices that hit different. They’re more fun and there’s something about pressing a button that’s designed just for a single purpose.&lt;/p&gt;
+
+&lt;p&gt;I was hoping that I could run everything locally on a device, but the voice AI inference requires too much memory, so I went with a client-server approach. I started with a &lt;a href=&quot;https://www.raspberrypi.com/products/raspberry-pi-zero-w/&quot;&gt;Raspberry Pi Zero W&lt;/a&gt; as the base, and added a &lt;a href=&quot;https://amzn.to/3p4k4XI&quot;&gt;USB audio card with input and output&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I connected &lt;a href=&quot;https://amzn.to/43GvqQK&quot;&gt;a lavalier microphone&lt;/a&gt; and tested recording and playback. The recording worked fine but when I plugged in an unamplified speaker, the audio was way too quiet. I decided that instead of figuring out how to amplify an audio signal, I would just go with a &lt;a href=&quot;https://amzn.to/43UN0jq&quot;&gt;USB powered speaker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With this setup, I could successfully record and playback my voice (after writing some Python code to do that).&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/components.jpg&quot; /&gt;
+	&lt;figcaption&gt;The Talkboy Ultra&apos;s Guts (minus a few things).&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;From this foundation, I added a few push buttons for the recording and playback controls. I also wanted the device to work without having to plug it in to a power source (for portability) so I added a 1000 mAh Lithium-ion battery pack and a &lt;a href=&quot;https://amzn.to/3Cr1hcd&quot;&gt;TP4056 Charging Module&lt;/a&gt; with micro usb input to charge the battery. I also added a &lt;a href=&quot;https://amzn.to/3Jawl3F&quot;&gt;MT3608 DC-DC Step Up Boost Power Converter&lt;/a&gt; so I could power the Raspberry Pi with it (since the voltage coming out of the battery is 3.7v).&lt;/p&gt;
+
+&lt;p&gt;Finally, I added a &lt;a href=&quot;https://amzn.to/3Jgfdtn&quot;&gt;1602 LCD display&lt;/a&gt; to show the state of the device, either the currently selected voice or the processing state. And to be able to control the power supply to the toy, I added an &lt;a href=&quot;https://amzn.to/3JavLD1&quot;&gt;on/off switch&lt;/a&gt;. I soldered the components together and amazingly they worked the first time!&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/talkboy3d.jpg&quot; /&gt;
+	&lt;figcaption&gt;A 3D render of the device&apos;s case.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I couldn’t just let the device sit in the cardboard box that I was using for prototyping, so I also designed and 3D printed a case for it. I started with a blocky box just to test how the components like the buttons could fit in the holes, then I refined the case to have some smooth, rounded edges. I also added a microphone enclosure thing and a handle so I could hold it with one hand, just like the original!&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href=&quot;https://www.tinkercad.com/&quot;&gt;TinkerCad&lt;/a&gt; for this, which works pretty well once you learn the controls.&lt;/p&gt;
+
+&lt;h3 id=&quot;software&quot;&gt;Software&lt;/h3&gt;
+
+&lt;p&gt;Of course, I worked on some software in order to make the toy actually do stuff. I wrote everything in Python since it’s pretty portable and runs well on both my laptop and my Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;On the Raspberry Pi, I wrote some code to handle button presses for recording, playback and voice selection. I also had to write some code to make HTTP requests between the Raspberry Pi and my laptop (web server).&lt;/p&gt;
+
+&lt;p&gt;The basic workflow is: I press and hold the record button, and say whatever it is I want to hear in a different voice. When I release the button, the recording stops and the Talkboy sends the audio file to my web server along with the voice model to use. The LCD switches from the currently selected voice to “Processing….” The web server receives the audio file and runs the inference on it, then sends the response with the changed voice file back to the Talkboy. The LCD switches back to the voice display to show that it’s done processing. Then when I hit the green button again I can hear the changed voice.&lt;/p&gt;
+
+&lt;p&gt;I already had some voice models and the script to infer audio from one voice to another set up since I used it in my previous project on AI voice cloning. I just had to write a simple Flask web server to respond to the HTTP requests, run the inference script, and then send the file back to the Talkboy (so simple).&lt;/p&gt;
+
+&lt;p&gt;The delay between finishing the recording and being ready to play back the voice depends on how long the recording is. I would say that the total latency is probably around 5-15 seconds for a typical short recording, which isn’t too bad. I could probably optimize the speed by streaming audio to and from the web server but that’s more complicated and I’m not really willing to do that just for a stupid gag project like this.&lt;/p&gt;
+
+&lt;h3 id=&quot;examples&quot;&gt;Examples!&lt;/h3&gt;
+
+&lt;p&gt;So I guess I should include some examples of the voice changer here. My previous blog post had some audio examples of me singing some songs, but here’s some before and after clips of the audio I used in the Youtube video.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Arnold’s quote from Kindergarten Cop:&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Me:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/d17528a6-39f1-48c1-9455-3458e615215c.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+&lt;p&gt;Arnold:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/d17528a6-39f1-48c1-9455-3458e615215c-arnolds.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;p&gt;&lt;b&gt;Picard ordering Taco Bell:&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Me:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/9f097024-9432-4083-959f-4e0193babf49.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+&lt;p&gt;Picard:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/9f097024-9432-4083-959f-4e0193babf49-patrickstewart.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;p&gt;&lt;b&gt;Picard ordering Taco Bell:&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Me:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/9f097024-9432-4083-959f-4e0193babf49.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+&lt;p&gt;Picard:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/9f097024-9432-4083-959f-4e0193babf49-patrickstewart.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;p&gt;&lt;b&gt;Homer Simpson having a midnight snack:&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Me:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/c056ad6e-efb9-42d2-97e7-8b5bbd6a45b4.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+&lt;p&gt;Picard:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/c056ad6e-efb9-42d2-97e7-8b5bbd6a45b4-homersimpson.wav&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;h3 id=&quot;training&quot;&gt;Training&lt;/h3&gt;
+&lt;p&gt;Just as an aside, from the above models, I trained the Arnold Schwartzenegger and Patrick Stewart voices (both from audio that I found from audio book clips). The Simpsons ones that I used in the video were downloaded. I didn’t train for a super large number of steps so that might explain why the Simpsons ones sound very close to the real deal, whereas the other ones are just okay.&lt;/p&gt;
+
+&lt;h3 id=&quot;closing-thoughts&quot;&gt;Closing Thoughts&lt;/h3&gt;
+&lt;p&gt;I had a lot of fun with this project. It really ended up combining a bunch of my interests, including hardware hacking, software (both on an embedded device and server), and utilizing some state of the art AI models too! I also got to 3D print a case that’s much more complicated than anything else I’ve made myself.&lt;/p&gt;
+
+&lt;p&gt;It was fun coming up with this challenge and then solving all of the problems that came with it, including fitting everything in the case, and lining up all of the components like the screen and buttons.&lt;/p&gt;
+
+&lt;p&gt;While I think it would be really interesting to see this device hit the mainstream market, I don’t think it will happen any time soon. For one thing, the licensing of real voices would probably be an issue. Plus the hardware to run the inference on a device doesn’t exist as far as I know. I think you might be able to do it on an iPhone if you shrank the model, but that wouldn’t be nearly as fun as using a dedicated device.&lt;/p&gt;
+
+&lt;p&gt;I’m hoping that I’m wrong though, and that a 30th anniversary Talkboy makes its way to the toy stores, complete with the latest in AI tech!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/Talkboy-Ultra.png&quot; /&gt;
+	&lt;figcaption&gt;The Talkboy Ultra is So Bad&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/7rQhfxWG-cY&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;So while I was &lt;a href=&quot;/blog/2023/05/20/voice-cloning-for-fun-and-profit/&quot;&gt;learning about AI voice cloning technology to make myself sing better&lt;/a&gt; (and to make Kanye sing stupid songs), I got an idea into my head that I couldn’t let go of. I was reminicing about the original Talkboy Deluxe from the movie Home Alone 2 (&lt;a href=&quot;https://www.youtube.com/watch?v=gqsqa0O1Lsk&quot;&gt;and the subsequent commercial that played on kids tv for years after&lt;/a&gt;), and how it was supposed to change your voice but really it just kinda slowed it down. I realized that I could make the dream of the Talkboy come true, and do it with real life hardware.&lt;/p&gt;
+
+&lt;p&gt;So here’s the story of how I made the Talkboy Ultra, which it turns out is a pretty fun toy.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 14 Jun 2023 00:00:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Voice Cloning For Fun and Profit</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/all_along_the_way.jpg&quot; /&gt;
+	&lt;figcaption&gt;Two legendary directors doing the weather report&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/OlbVWneM6xE&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I was recently stuck on a really long, 6 hour flight. Luckily, I had an internet connection the whole time, and I was testing out some nifty &lt;a href=&quot;https://amzn.to/4aCj3c5&quot;&gt;AR Glasses&lt;/a&gt;, so I watched a lot of YouTube.&lt;/p&gt;
+
+&lt;p&gt;I remembered seeing a video about AI voice clone cover songs, where someone will take the voice of a known artist, and then make them sing a song by another artist (e.g. Kanye West singing “Call Me Maybe”), or they create a whole new original song for the artist (e.g. Drake singing an original called &lt;a href=&quot;https://www.nytimes.com/2023/04/19/arts/music/ai-drake-the-weeknd-fake.html&quot;&gt;“Heart on My Sleeve”&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Since I was stuck on the plane, and I had the privacy to watch whatever I wanted without my seatmates judging me for binging on a bunch of AI cover songs, I just fell deep into the rabbit hole of listening to a bunch of Kanye covers.&lt;/p&gt;
+
+&lt;p&gt;The quality really varied. Some of the songs were unlistenable due to weird glitches in the voice. But some sounded pretty convincing. The good ones still didn’t really pass as real, but I think that with some post-processing and maybe an actual sound engineer on the case, they could be great.&lt;/p&gt;
+
+&lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;blue-skies-and-golden-sunshine&quot;&gt;Blue Skies and Golden Sunshine&lt;/h3&gt;
+
+&lt;p&gt;The first voice that I wanted to try to clone was David Lynch’s. You might not think that his voice would be my first choice, so let me explain. Maybe a year ago, I started watching these &lt;a href=&quot;https://www.youtube.com/@DAVIDLYNCHTHEATER&quot;&gt;David Lynch weather reports&lt;/a&gt; that he was doing daily. I think the joke is that the weather in L.A. is pretty much the same all the time. But I would watch it every day, and it was pretty soothing in a pandemic world to have something that was consistent.&lt;/p&gt;
+
+&lt;p&gt;I had some ideas on automating his weather report, which would either take pieces of his other reports, and stitch them together to make a new one (based on the actual weather of the day, of course). I looked at some AI libraries that could find someone’s face and &lt;a href=&quot;https://github.com/Rudrabha/Wav2Lip&quot;&gt;make their lips move with an audio file&lt;/a&gt;. The results were actually pretty creepy, which is appropriate for David Lynch.&lt;/p&gt;
+
+&lt;p&gt;But I figured he might get mad at me and I don’t want David Lynch to be mad at me. Plus I kind of got sidetracked and busy and I didn’t have time to finish that project.&lt;/p&gt;
+
+&lt;p&gt;David Lynch stopped his weather reports abruptly some time in December, and I started missing them. One of the reasons I liked listening to his reports is that he has a really funny way of talking. He talks like an old timey newsreel, and pronounces words a certain way. Like for “day” he says it like “dee.”&lt;/p&gt;
+
+&lt;p&gt;I figured that if I could clone his voice, I could do my own version of his weather report. And if I could get the pronunciations correct, then it could seem like he was back doing them (in an Asian person’s body). I was also thinking about integrating deepfake technology into my version of the weather reports, but I haven’t figured that part out yet.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I trained a voice clone model of David Lynch using the audio from his weather reports. I used a library called &lt;a href=&quot;https://github.com/voicepaw/so-vits-svc-fork&quot;&gt;“so-vits-svc-fork”&lt;/a&gt; to do this, and I trained it on &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; since I don’t have a GPU at the moment.&lt;/p&gt;
+
+&lt;p&gt;When I tried to actually infer my voice to the David Lynch voice model, it sounded really funny. I ended up &lt;a href=&quot;https://youtu.be/-f86ZqMD9_o&quot;&gt;posting a video of it anyway though&lt;/a&gt;, and I shared it in the David Lynch subreddit. The folks there thought it was a pretty convincing impression, but I was still not happy with the results.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/-f86ZqMD9_o&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;Eventually, while playing with the settings, I figured out that I wanted to manually transpose and set the “–no-auto-predict-f0” flag. I also experimented with some other f0 prediction methods which made the synthesized voice sound better. I still haven’t made another weather report but I’m pretty sure I could nail it with the updated settings. I also understand now why David Lynch stopped, because it’s kind of a lot of work and I can’t imagine doing it every day.&lt;/p&gt;
+
+&lt;h3 id=&quot;i-think-im-a-clone-now&quot;&gt;I Think I’m a Clone Now&lt;/h3&gt;
+
+&lt;p&gt;So after the success of the David Lynch voice model, I figured I would clone my own voice. Because sometimes I wonder how it would sound if I could actually sing “My Heart Will Go On” exactly like Celine Dion (currently I’m at about 90%).&lt;/p&gt;
+
+&lt;p&gt;I took a bunch of audio from my &lt;a href=&quot;https://youtu.be/fxVCrGzEP_k&quot;&gt;previous YouTube video on Trombone Champ&lt;/a&gt;, which was about 10 minutes. Coincidentally, 10 minutes is around the suggested amount of audio to use for voice cloning.&lt;/p&gt;
+
+&lt;p&gt;I trained a model on just me speaking, but the model ended up underperforming when it came to singing. There were some weird glitches when moving between notes, which were probably just pitches that weren’t included in the sample data.&lt;/p&gt;
+
+&lt;p&gt;I ended up recording about 6 minutes of myself singing some various hits from the 80s and 90s, and added that to the audio data for training. The resulting model sings pretty well. Here are some audio samples in case you are interested.&lt;/p&gt;
+
+&lt;p&gt;My Heart Will Go On:&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - My Heart Will Go On.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;p&gt;I Believe I Can Fly&lt;/p&gt;
+&lt;audio controls=&quot;&quot;&gt;
+	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - I Believe I Can Fly.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;p&gt;After trying it out for myself, I’m convinced that AI voice cloning will be a pretty big deal, not just for these novelty use cases, but also for actual music production. Sure, the results aren’t perfect right now, but you can believe that as technology gets better and better, artists are going to want to use this to gain a competitive edge, just like autotune or any other kind of technology that was introduced in the past.&lt;/p&gt;
+
+&lt;p&gt;I thought up a few use cases where this technology can be used, but I’m sure there are others:&lt;/p&gt;
+
+&lt;h3 id=&quot;multi-lingual-media&quot;&gt;Multi-Lingual Media&lt;/h3&gt;
+
+&lt;p&gt;Currently, the only artists who can have hits in multiple languages are the ones who are bilingual. For exmample, Shakira has version of “Hips Don’t Lie” in Spanish and English because she knows both.&lt;/p&gt;
+
+&lt;p&gt;But if I was an American artist who wanted greater reach in Japan, I could have a voice double singing with Japanese lyrics to one of my songs, then clone my voice into the Japanese track. It would then sound like I’m singing in Japanese. If artists can reach more fans, that’s probably a positive for them. Music is universal, and artists like Bad Bunny are proving that you don’t need to speak a language to be popular to the native speakers, but it certainly helps if you understand what the person is actually singing about.&lt;/p&gt;
+
+&lt;h3 id=&quot;enhanced-accessibility&quot;&gt;Enhanced Accessibility&lt;/h3&gt;
+
+&lt;p&gt;I’ve been making more YouTube videos lately, and when I do, I always try to make them accessible by adding captions. This helps people who have hearing disabilities enjoy my videos. I usually only caption in English, but those captions can then be auto-translated by Google, which also expands my viewership to people who don’t speak English.&lt;/p&gt;
+
+&lt;p&gt;To make my videos even more accessible, I could translate the captions, then produce audio using TTS. This would result in a voice that is speaking the captions of my video in the other langauge. Finally, I can apply my voice clone to the TTS audio to make it sound like I’m speaking the other language. I tried this in my voice clone video, but I had to slow down the actual video because I talk fast, and I guess German just uses more/longer words.&lt;/p&gt;
+
+&lt;h3 id=&quot;voice-clone-collabs&quot;&gt;Voice Clone Collabs&lt;/h3&gt;
+
+&lt;p&gt;Right now these voice clone AI covers are just working in some murky legal territory, because it’s a bunch of enthusiasts having fun and creating things. At some point, the ones who are good at this will probably end up collaborating with artists to make music together. Not all artists will do this, but &lt;a href=&quot;https://twitter.com/Grimezsz&quot;&gt;Grimes has already stated that she’ll split earnings if anyone uses her voice&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;selling-voice-rights&quot;&gt;Selling Voice Rights&lt;/h3&gt;
+
+&lt;p&gt;Bob Dylan recently sold his entire music catalog for a pretty big sum. As artists are getting older and ready to retire, I could see them offering rights to use their voice as well. I mean, if they’re not going to use it, they might as well let someone else! Imagine how much the rights to use Michael Jackson’s voice would be worth. Especially in the right hands and with a professional producer. I’m not saying that I’d rather listen to AI MJ than a real person at this point, but there’s probably going to be a market for it, whether most people want it or not.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-dark-side-of-cloning&quot;&gt;The Dark Side of Cloning&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately, not all use cases for voice cloning technology are positive or legal. Scammers have used voice cloning to convince parents that their teens were kidnapped, and others have sold fake “leaked” tracks by famous artists to collectors.&lt;/p&gt;
+
+&lt;p&gt;For some reason my bank wants “voice authorization” to be a thing, even though it’s the stupidest, insecure thing I could imagine. As if someone couldn’t get a recording of my voice. Now they could actually clone it.&lt;/p&gt;
+
+&lt;p&gt;I’m sure there’s plenty of other bad things you can do with voice cloning, just like with image generation, and tools like Photoshop. A tool is just a tool, and people will use them for good stuff and bad stuff.&lt;/p&gt;
+
+&lt;h3 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h3&gt;
+
+&lt;p&gt;It was really fun to explore the possibilities of voice cloning, and it’s just another tool to think about as generative AI tools become more popular in different aspects of our lives. Not only do we have text generation and image generation, we also have speech, both from text to speech systems as well as these new speech to speech systems.&lt;/p&gt;
+
+&lt;p&gt;I’ve also been interested in text to music generation, like the one from Google that was made available recently, called &lt;a href=&quot;https://aitestkitchen.withgoogle.com/experiments/music-lm&quot;&gt;MusicLM&lt;/a&gt;. I might try using that to make something new as well.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, it’s taking a lot of effort just to stay on top of all these things!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2023/all_along_the_way.jpg&quot; /&gt;
+	&lt;figcaption&gt;Two legendary directors doing the weather report&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/OlbVWneM6xE&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I was recently stuck on a really long, 6 hour flight. Luckily, I had an internet connection the whole time, and I was testing out some nifty &lt;a href=&quot;https://amzn.to/4aCj3c5&quot;&gt;AR Glasses&lt;/a&gt;, so I watched a lot of YouTube.&lt;/p&gt;
+
+&lt;p&gt;I remembered seeing a video about AI voice clone cover songs, where someone will take the voice of a known artist, and then make them sing a song by another artist (e.g. Kanye West singing “Call Me Maybe”), or they create a whole new original song for the artist (e.g. Drake singing an original called &lt;a href=&quot;https://www.nytimes.com/2023/04/19/arts/music/ai-drake-the-weeknd-fake.html&quot;&gt;“Heart on My Sleeve”&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Since I was stuck on the plane, and I had the privacy to watch whatever I wanted without my seatmates judging me for binging on a bunch of AI cover songs, I just fell deep into the rabbit hole of listening to a bunch of Kanye covers.&lt;/p&gt;
+
+&lt;p&gt;The quality really varied. Some of the songs were unlistenable due to weird glitches in the voice. But some sounded pretty convincing. The good ones still didn’t really pass as real, but I think that with some post-processing and maybe an actual sound engineer on the case, they could be great.&lt;/p&gt;
+
+&lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 20 May 2023 00:00:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2023/05/20/voice-cloning-for-fun-and-profit/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/05/20/voice-cloning-for-fun-and-profit/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Making a Trombone Champ Controller From a Trombone!</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;why-a-trombone-controller&quot;&gt;Why a Trombone Controller?&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp-screen1.jpg&quot; /&gt;
+	&lt;figcaption&gt;A screenshot of the game&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;After I got the game, I played all the levels and had a lot of fun, but I felt like something was missing. I think that driving games are more fun when you use a steering wheel, and flight simulators are more fun when you use a flight stick. Can you imagine how boring Duck Hunt would be if you had to use the regular NES controller to play it? So I decided to make a trombone controller for Trombone Champ.&lt;/p&gt;
+
+&lt;p&gt;Luckily, I have a love of novelty instruments, and I never throw anything away, so I just happened to have a &lt;a href=&quot;https://www.wwbw.com/Jupiter-314L-Soprano-Trombone-Slide-Trumpet-460203.wwbw&quot;&gt;Jupiter soprano trombone in my closet&lt;/a&gt;. I think I origially bought it because it would be funny to use during basketball games (I used to play in the band in college).&lt;/p&gt;
+
+&lt;h3 id=&quot;making-a-fake-mouse&quot;&gt;Making a Fake Mouse&lt;/h3&gt;
+
+&lt;p&gt;So since I have an actual trombone, all I need now is to connect my trombone to the computer, so I can play the game with it. I did some searching and found &lt;a href=&quot;https://github.com/T-vK/ESP32-BLE-Mouse&quot;&gt;a library that can turn a esp32 microcontroller into a bluetooth mouse&lt;/a&gt;. This is perfect because then all I need to is connect some sensors to my trombone and have those move the mouse and click its buttons. Then I can connect the mouse to my computer and play the game.&lt;/p&gt;
+
+&lt;p&gt;I decided to use a &lt;a href=&quot;https://www.dfrobot.com/product-1590.html&quot;&gt;Firebeetle ESP32 microcontroller&lt;/a&gt; because I had one lying around from a previous project, and because it comes with a connector to plug in a lithium ion battery. This is nice because I’ll be able to play the game completely wirelessly instead of needing to plug in to usb for power.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-sensors&quot;&gt;Adding Sensors&lt;/h3&gt;
+
+&lt;p&gt;So now I have two different problems to solve. I’ll call these the “blow problem” and the “slide problem.” Let’s start with the blow problem.&lt;/p&gt;
+
+&lt;p&gt;I didn’t want to just add a button to my trombone to play a sound, because that’s not how wind instruments work. I want to actually blow into something. So I looked for different ways to &lt;a href=&quot;https://www.mouser.com/c/sensors/flow-sensors/?for%20use%20with=Air&quot;&gt;measure air flow&lt;/a&gt;, and it turns out these types of sensors are really expensive and didn’t make sense for my project. I ended up finding this neat &lt;a href=&quot;https://www.sparkfun.com/products/16476&quot;&gt;air pressure sensor&lt;/a&gt; that also has a port in it to attach a tube. My idea was that I could attach a tube to the trombone mouthpiece and measure the air pressure difference when I blew into it, directly into the sensor.&lt;/p&gt;
+
+&lt;p&gt;This was actually a terrible idea though, because the tubing would need to go through the entire trombone and then come out of the bell, and it would really impede the movement of the slide.&lt;/p&gt;
+
+&lt;p&gt;I ended up putting the whole sensor in the bell and then sealing the entire instrument with some saran wrap. When it’s on it has a red LED which I think gives it a pretty nice cyberpunk feel. Then I measured the ambient air pressure inside the trombone. In in my room it happens to be around 1011 hPa. When I blow into the horn, it causes the air pressure to go up, and I can register a click. When the air pressure goes back down, I can release it.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_air_sensor.jpg&quot; /&gt;
+	&lt;figcaption&gt;The air sensor in my trombone&apos;s bell&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So with my blow problem a thing of the past, let’s move on to the slide problem. In the game, you’re supposed to use a mouse to simulate the slide of a trombone. But there are a lot of problems with this. The slide on a trombone is fixed, so if you go to first position, you hit the end of the trombone. You can’t go to negative positions, but your mouse doesn’t just stop when you hit the end of the screen. Plus on the instrument you can use muscle memory and look at the bell to figure out what note you’re gonna hit.&lt;/p&gt;
+
+&lt;p&gt;I looked at a bunch of different ways to solve the problem of using the actual trombone slide as a controller for the game’s slide. There are various distance sensors: lidar, sonar, time of flight, you could also probably use a gyroscope and accelerometer to figure out what direction the slide is going. I think I saw someone use a wiimote’s accelerometer to make a 3d air mouse once.&lt;/p&gt;
+
+&lt;p&gt;To be honest, I just wanted to get started on this project quickly, so I ordered the &lt;a href=&quot;https://amzn.to/3dNOUOD&quot;&gt;cheapest time of flight sensor on Amazon that had next day shipping&lt;/a&gt;. I attached it to the bell of the trombone and put a piece of cardboard on it that it can use to bounce a laser on to detect how far the laser is away from the initial position.&lt;/p&gt;
+
+&lt;p&gt;When I actually hooked this up to my microcontroller, it ended up giving some pretty inaccurate readings but I figured I could hook it up to my mouse software and see what happens.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_distance_sensor.jpg&quot; /&gt;
+	&lt;figcaption&gt;The distance sensor attached to the bell&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+&lt;center&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;This weekend I made a Trombone Champ controller out of a real (soprano) trombone! I&amp;#39;ll have a video out shortly about the process, but for now, enjoy this video of me absolutely failing our national anthem with my new device! cc &lt;a href=&quot;https://twitter.com/HolyWowStudios?ref_src=twsrc%5Etfw&quot;&gt;@HolyWowStudios&lt;/a&gt; &lt;a href=&quot;https://t.co/SvPoxfk6GV&quot;&gt;pic.twitter.com/SvPoxfk6GV&lt;/a&gt;&lt;/p&gt;&amp;mdash; Hung Truong (@hungtruong) &lt;a href=&quot;https://twitter.com/hungtruong/status/1573854148923359232?ref_src=twsrc%5Etfw&quot;&gt;September 25, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I’ve linked my tweet of an attempt at the Star Spangled Banner above, but if you don’t want to watch a video, I’ll tell you that it did not work well! I think the time-of-flight sensor I got was faulty, as it didn’t go past 100mm with any degree of accuracy, but is rated for 2000mm.&lt;/p&gt;
+
+&lt;p&gt;But to be honest, I’m really happy with the way this project turned out. The blow sensor works a lot better than I expected it to, as I was initially worried it wouldn’t be able to register the notes quickly enough. I also learned a lot about simulating a bluetooth mouse which I could probably use in future projects. I’m happy to share this project even though it isn’t perfect yet because this kind of prototyping is really an iterative process anyway.&lt;/p&gt;
+
+&lt;p&gt;I also thought it was interesting how the slightly air tight seal on the trombone bell works. When you normally play an instrument, you have some back pressure, but air is also going through. I would say that I probably use more air blowing into the trombone without making any noise than I do when I’m actually playing it.  This could lead to me getting tired pretty quickly, so I might adjust the seal on the horn a bit more so I don’t have to blow as hard.&lt;/p&gt;
+
+&lt;p&gt;As far as next steps go, I’ve already purchased a few new sensors to try out, one is an &lt;a href=&quot;https://amzn.to/3RdPcMs&quot;&gt;acoustic distance detector&lt;/a&gt;, and the other is a &lt;a href=&quot;https://amzn.to/3xTDXSe&quot;&gt;more expensive time of flight sensor from adafruit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I’ll probably update this blog post when I try the new sensors, so look for an update below at some point!&lt;/p&gt;
+
+&lt;h3 id=&quot;update-september-27-2022&quot;&gt;Update September 27, 2022&lt;/h3&gt;
+
+&lt;p&gt;So I ended up getting the new distance sensors! I had a problem getting the acoustic sensor working (it looks like it doesn’t play well with other i2c devices at the same time) but the time-of-flight sensor from Adafruit is working a lot better. Here’s a video where I actually get a C in Oh Canada.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/u0Msn00sflU&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+
+&lt;p&gt;Some quick impressions on the current state of Trombone Champ Controller v2: I am going to need to seal the bell a bit better than with the current plastic wrap solution I have now. There’s quite a bit of air leak (as I had predicted before). Playing a 1 minute song is pretty easy but playing the longer ones leaves me pretty lightheaded by the end. When playing a regular trumpet, I don’t really use that much air, so getting too much oxygen is not an issue. But I am probably setting myself up for hyperventilation side effects if I don’t make another adjustment.&lt;/p&gt;
+
+&lt;p&gt;Aside from that I am not sure if the game audio is a bit laggy or if it’s due to my screen recording software but I felt like I needed to preemptively blow a bit early for the controls to actually hit accurately. I did see that the developer made an update around audio latency so maybe that’ll fix it!&lt;/p&gt;
+
+&lt;center&gt;
+	&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;ALSO, we just pushed a very very small update (&amp;lt;5mb) to v1.04 which may make overall audio latency slightly better! Between this and the improved multi-key keyboard stuff, serious rhythm game people may be *slightly* happier with Trombone Champ starting from tonight🙏&lt;/p&gt;&amp;mdash; Holy Wow (🎺TROMBONE CHAMP IS OUT!) (@HolyWowStudios) &lt;a href=&quot;https://twitter.com/HolyWowStudios/status/1574587033825071105?ref_src=twsrc%5Etfw&quot;&gt;September 27, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/center&gt;
+
+&lt;p&gt;I think I can also probably improve the slide accuracy by using something a bit more sturdy than a crappy piece of cardboard taped to the slide… Maybe something 3d printed?&lt;/p&gt;
+
+&lt;p&gt;I’ll update this blog post as I make more improvements.&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
+	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
+&lt;center&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 26 Sep 2022 00:00:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</guid>
+        
+        
+        <category>Tech</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Stable Diffusion: Generating Images From Words</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/ron-swanson-weasley.png&quot; /&gt;
+	&lt;figcaption&gt;Ron Swanson as Ron Weasley!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;For the past few months or so, I’ve been noticing a lot of news stories about &lt;a href=&quot;https://openai.com/dall-e-2/&quot;&gt;DALL·E 2&lt;/a&gt;, an AI image generator that uses GANs to create images from prompts. It was private for quite a while, and there were some similar, less powerful projects that were open. I played around with them a bit but I was waiting for a general release. I ended up getting into the DALL·E 2 beta a few weeks ago and last week I saw news that there was a new release of another project called &lt;a href=&quot;https://stability.ai/blog/stable-diffusion-public-release&quot;&gt;Stable Diffusion&lt;/a&gt;, so I installed it on my MacBook. The results really blew me away!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;getting-it-working&quot;&gt;Getting it working&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/typing-on-monitors.png&quot; /&gt;
+	&lt;figcaption&gt;Prompt: photo from behind an asian software engineer typing a keyboard with many monitors in front of him, studio lighting bokeh&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;It wasn’t too bad getting the release of Stable Diffusion working on my Mac as I just went through some of the steps &lt;a href=&quot;https://zenn.dev/bellbind/scraps/ea15aab699dde9&quot;&gt;on this site I found&lt;/a&gt;. There were some gotchas, like needing to install Rust to compile something and maybe a few files to change around, but for the most part it worked pretty quickly. I could probably have written down the steps but I’m sure it will be a lot more simple when they add more specific support for Apple Silicon.&lt;/p&gt;
+
+&lt;p&gt;Right now it takes about 3 minutes to create an image with my M2 MacBook Air, which is kind of slow. I ended up using &lt;a href=&quot;https://colab.research.google.com&quot;&gt;Google Collab&lt;/a&gt; which lets you use their GPUs for free. The next day though, I found I was rate limited. So I moved over to &lt;a href=&quot;https://www.kaggle.com&quot;&gt;Kaggle&lt;/a&gt; which at least tells you what your GPU limits are, and they seem pretty reasonable (like 30 hours a week at least). The Kaggle notebook has been my main workflow so far because it’s quite fast (like 10 times faster than my Mac) and the short feedback loop really helps with coming up with prompts.&lt;/p&gt;
+
+&lt;h3 id=&quot;prompt-engineering&quot;&gt;Prompt Engineering&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/tail-of-two-kitties.png&quot; /&gt;
+	&lt;figcaption&gt;Prompt: cat vs a british shorthair cat sitting in front of a giant cheeseburger in the african savannah, fujifilm x-t2 35mm golden hour&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;So What is a prompt anyway? A prompt is what you type in to the image generator to describe what you want it to create for you. If you say you want a picture of a cat, it’ll likely come up with a pretty good cat. But if you want, you can also describe the cat in more detail to get a more specific image. You could add the breed, for example, or say it’s a robot cat, or make it sit on a park bench. There are so many possibilities of what kind of cat to show that the prompt ends up being incredibly important to get what you want.&lt;/p&gt;
+
+&lt;p&gt;There’s been a lot of research done on prompt engineering. Some of it feels like a shortcut, by asking for an image in the style of a famous artist. You can also just describe the medium of the image, like a water color or illustration. I’ve noticed people on Reddit adding words like “trending on artstation” which I guess is a way to suggest that the image is aesthetically pleasing to a majority of people. You can also say something was painted badly, which is kind of hilarious.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/ugly-woman-painting.png&quot; /&gt;
+	&lt;figcaption&gt;Prompt: a really ugly painting of a woman&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Part of the fun of playing around with these tools is that they’re so new that it’s possible to find words that can create certain images that no one else knows about. For me, it brings back the feeling of being on the early internet, when not everything was indexed by Google to the point where there were no hidden gems. Someone should bring back “Cool Site of the Day” but for prompts!&lt;/p&gt;
+
+&lt;h3 id=&quot;different-techniques&quot;&gt;Different Techniques&lt;/h3&gt;
+
+&lt;p&gt;I’ve learned that there are a few different techniques to make images, and I’m learning quite a few more. The simplest one is text to image, which I just described. The way I understand it is that basically you start with some random noise, and then two AIs work to alter the noise to turn it into the image you want by iterating changes and measuring how closely the image matches your description. That’s probably really simplified and maybe wrong but whatever, I’m not an AI engineer.&lt;/p&gt;
+
+&lt;p&gt;Another way to create images is to start with a base image, and also feed the AI a prompt. Since you can choose the starting image (instead of just random noise), there’s a better chance that the image converges to something that resembles your input image. This gives you quite a bit more control over the final image’s general shape, composition, etc. You could feed it stick figures or a photo from your phone. I’ve seen people turn stick drawings into D&amp;amp;D character portraits using this technique.&lt;/p&gt;
+
+&lt;p&gt;I tried this technique out by using a photo of my dog, Sodapop, sitting in the grass. The picture is pretty good, but it’s not award winning or anything. I fed the text “a watercolor illustration of a black and white cardigan corgi sitting in the middle of a green flowery meadow in front of an orange ball, masterpiece, big cute eyes”. I didn’t start with that, but I kept changing it to try and get an image that I wanted.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/sodapop-watercolor.png&quot; /&gt;
+	&lt;figcaption&gt;Prompt: Sodapop vs Watercolorpop&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I also played around with different strengths and amounts of iterations. I found that if I used too many iterations, the image didn’t really resemble Sodapop anymore. He’s a black and white Corgi, which is less common, so there’s probably more of a bias towards the sable and white ones. One thing I learned is that it’s better to just generate a huge number of images and then pick the ones you like. You can save the random seed value and use it to refine the image further as well. There were a lot of really terrible looking corgi watercolor images which my computer is full of now. But there were also some fairly good ones too! The power with this AI is that it’s pretty cheap to just make more images until you get what you want.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/reject-corgi.png&quot; /&gt;
+	&lt;figcaption&gt;One of many rejected generations&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;future-techniques&quot;&gt;Future Techniques&lt;/h3&gt;
+
+&lt;p&gt;There is another technique I tried recently where someone tried to create a bigger image (right now most video cards can only do 512x512 and that’s what the model is trained on) by creating an image, upscaling it and then running the image to image process on 9 square parts of the upscaled image. When I tried this, I found that it added weird artifacts into each square piece. It was recursively trying to fit the whole prompt into each square. My prompt was a garden, and it basically tried to add a garden into each subsquare of the image. This could have been due to a current bug where the random seed on Mac doesn’t really work, but I don’t have the hardware to try it on a non-Mac right now.&lt;/p&gt;
+
+&lt;p&gt;I’ve had a lot more fun playing around with this image generation stuff than I have in a long time with technology, so I ordered a new graphics card so I can iterate on things more quickly on my own infrastructure. There’s something really magical about using a model file that’s only a few gigabytes to basically create any image you can think of. If my internet connection ever goes down for the count, this could be my main source of entertainment.&lt;/p&gt;
+
+&lt;p&gt;There’s a bunch of other things I want to try. There’s a technique called &lt;a href=&quot;https://textual-inversion.github.io&quot;&gt;“Textual Inversion”&lt;/a&gt; where you can sort of re-train (but not really) the model to use a personalized word. I could do this with Sodapop so I stop getting Pembroke Corgis when I want my Corgi. I was also wondering if I could use it with pictures of myself, since Stable Diffusion seems to work really well with making images with well known celebrities in them.&lt;/p&gt;
+
+&lt;p&gt;When I first saw this technology I figured it would be good for creating blog post images (which obviously it was for this post). I’m also envisioning things like services for creating customized watercolor portraits for your dog, or custom fantasy avatars for a person. I think people have just barely scratched the surface here so hopefully there’s a lot more interesting stuff coming up.&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/ron-swanson-weasley.png&quot; /&gt;
+	&lt;figcaption&gt;Ron Swanson as Ron Weasley!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;For the past few months or so, I’ve been noticing a lot of news stories about &lt;a href=&quot;https://openai.com/dall-e-2/&quot;&gt;DALL·E 2&lt;/a&gt;, an AI image generator that uses GANs to create images from prompts. It was private for quite a while, and there were some similar, less powerful projects that were open. I played around with them a bit but I was waiting for a general release. I ended up getting into the DALL·E 2 beta a few weeks ago and last week I saw news that there was a new release of another project called &lt;a href=&quot;https://stability.ai/blog/stable-diffusion-public-release&quot;&gt;Stable Diffusion&lt;/a&gt;, so I installed it on my MacBook. The results really blew me away!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 28 Aug 2022 00:00:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2022/08/28/stable-diffusion-generating-images-from-words/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/08/28/stable-diffusion-generating-images-from-words/</guid>
+        
+        
+        <category>Tech</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>I Created a Robot to Solve Wordle For Me</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2022/WordleScreenshot.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unless you’ve been living under a rock for the past few days, you’ve heard of this game online called Wordle. It’s been growing like crazy and the New York Times even wrote a &lt;a href=&quot;https://www.nytimes.com/2022/01/03/technology/wordle-word-game-creator.html&quot;&gt;profile on the creator&lt;/a&gt;. If you know me, you know I like automating things, so it should be no surprise that I decided to automate playing the game. Here’s a blog post on how I did it.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;wtf-is-a-wordle&quot;&gt;WTF is a Wordle?&lt;/h3&gt;
+
+&lt;p&gt;I guess I could start out by explaining what Wordle is, in case you’re reading this blog without knowing what it is, and if you are, why not just &lt;a href=&quot;https://www.powerlanguage.co.uk/wordle/&quot;&gt;play it first&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;Anyway, the fun part of Wordle is that there isn’t really a way to cheat. You try to guess a five letter word, and the game gives you feedback for each letter in the word you guessed. Either the letter doesn’t exist at all in the target word, the letter exists in the word but not in that position, or the letter does exist in the word in that position. Letters can repeat, e.g. “silly,” and you get 6 guesses before you lose (I think). I’ve actually never lost, because 6 is a pretty good number of guesses unless you get really unlucky.&lt;/p&gt;
+
+&lt;p&gt;If you think about it mathematically, 6 tries times 5 letters means you could theoretically narrow down 25 letters before your last guess. But that’s assuming you only use unique letters and there are words you can actually use to guess those letters (the game doesn’t allow non-words).&lt;/p&gt;
+
+&lt;p&gt;There is the problem of narrowing the word down to maybe 1 letter difference but there’s a bunch of words that end in the same letters, e.g.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;frank&lt;/li&gt;
+  &lt;li&gt;drank&lt;/li&gt;
+  &lt;li&gt;crank&lt;/li&gt;
+  &lt;li&gt;spank&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;etc. If you get the last three letters then you still need to narrow down what the front ones are, which you could do exploratively, but you can also just keep trying likely words.&lt;/p&gt;
+
+&lt;p&gt;Anyway, if it isn’t obvious yet, I probably enjoy the metagame of Wordle more than playing the game itself.&lt;/p&gt;
+
+&lt;h3 id=&quot;solving-wordle&quot;&gt;Solving Wordle&lt;/h3&gt;
+&lt;p&gt;So how do you go about automating a game like Wordle? I started by trying to inspect the network requests going back and forth between the web frontend and the backend. Suprisingly, there are no network requests made because the whole game is just a javascript file, and (I think) a hash that determines what the word of the day is. The whole game is just a javascript file that you download and run.&lt;/p&gt;
+
+&lt;p&gt;So looking at the javascript file, I saw a bunch of hard to read code (because javacript), and a few interesting arrays.&lt;/p&gt;
+
+&lt;p&gt;The first had a bunch of pretty normal looking words. The other had words that looked real, but were less common. My guess is that there are words that can actually be used for the game because a normal person would know them, but another list of words that are valid guesses (because the game doesn’t let you put nonsense in). So I decided to take the first list of words and use it as my “dictionary” of possible choices, rather than just use a linux dictionary of all the obscure words that exist.&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/wordle_list.png&quot; /&gt;
+	&lt;figcaption&gt;The two word lists, possible answers on top and valid obscure words on bottom.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;As far as playing the game, you have to start somewhere. I started out by keeping a list of all possible answers (copied from the source), and picking a random one. Once that happens, you get hints for which letters to keep trying and which to discard. The game code actually has three values for letter results: “present,” “absent,” and “correct.”&lt;/p&gt;
+
+&lt;p&gt;From these, the basic algorithm to remove words from the possible choices is (for each letter):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;If present, remove all words that have that letter in that specific position (for example if the word is “farts” and you guess “after,” the first ‘a’ would be present, but never in the first position). Also, remove all words that do not have that letter present in any positions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If absent, remove all words that have that letter in any position.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If correct, remove all words that do not have that letter in that position.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That’s basically it, and doing this will quickly whittle down the list of possible choices.&lt;/p&gt;
+
+&lt;p&gt;There are some other optimizations that I tried out but I don’t think they have much of a significant effect on how quickly the bot can guess the right answer. For example, I made a sorted list of the most common letters used in English words and had the bot prefer words with the most common letters first, to narrow down results faster. It might be possible to improve this by calculating probabilities or something down to the individual word level but I’m way too lazy (for now) to try that.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-mac-app&quot;&gt;A Mac App&lt;/h3&gt;
+
+&lt;p&gt;I ended up writing a Mac app to run the solver because I knew I could use a webview and make it evaluate some javascript commands. I wrote a few functions for doing things like keying in letters and hitting enter, and reading the results using the “shadow dom” which sounds a little bit like forbidden magic but whatever.&lt;/p&gt;
+
+&lt;p&gt;I had to throw in some manual sleep() calls because it would go too fast if I didn’t. Also it looks more like a real person is playing if there’s a slight delay in entering letters.&lt;/p&gt;
+
+&lt;p&gt;Here’s what the Mac app looks like solving the puzzle from Jan 8, 2021:&lt;/p&gt;
+
+&lt;video controls=&quot;controls&quot; autoplay=&quot;true&quot; loop=&quot;true&quot; width=&quot;800&quot; height=&quot;600&quot; name=&quot;Wordle Solver Video&quot;&gt;
+ &lt;source src=&quot;/blog/wp-content/uploads/2022/wordle.mov&quot; /&gt;
+&lt;/video&gt;
+
+&lt;p&gt;I’ve found that watching my bot play the game is more interesting to me than playing the actual game. Since it’s somewhat randomized, it’s fun to see what combinations of words the app tries, and how quickly it can narrow down its results. I log the list of potential answers after each round, and it’s fun to see how the app “thinks.”&lt;/p&gt;
+
+&lt;h3 id=&quot;one-more-thing-the-bot-but-irl&quot;&gt;One More Thing: The Bot, But IRL&lt;/h3&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2022/idraw.png&quot; /&gt;
+	&lt;figcaption&gt;iDraw: the second most advanced pen plotter known to me.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Making an app to automate something is cool, but I felt like something was still missing. I recently bought a mechanical pen plotter (which I should probably make another blog post about) &lt;a href=&quot;https://youtu.be/EirwSXMVa2U&quot;&gt;for making generative art&lt;/a&gt;, so I thought it would be fun to program the pen plotter to play the game on my iPad using my Apple Pencil.&lt;/p&gt;
+
+&lt;p&gt;The pen plotter is basically a robot that has an arm and can raise and lower a pen (or Apple Pencil) and move it along an x-y axis. I bought an &lt;a href=&quot;https://uunatek.com/product/idraw-handwriting-drawing-machine/&quot;&gt;off-brand&lt;/a&gt; version of the &lt;a href=&quot;https://axidraw.com&quot;&gt;Axidraw&lt;/a&gt;, which has a similar but different board. I tried using the &lt;a href=&quot;https://axidraw.com/doc/py_api/#introduction&quot;&gt;axidraw python library&lt;/a&gt; to control the iDraw. It sort of works, but there are some weird differences. For example, the pen down movement seems to bring the pen up instead of down, so everything is reversed. Also the scaling is off, so if I want to move the pen 1 inch, it seems to move it by 2 centimeters instead. I just worked around these issues because I saved a lot of money by buying the cheaper one (it was about half the price).&lt;/p&gt;
+
+&lt;p&gt;I wrote a script in Python to take one command line argument which is the word to guess, and hardcoded positions for each letter on the iPad screen. I was thinking I could use some kind of computer vision, AI library to detect positions and translate them for the plotter, but that’s also too much work. Maybe for a different project. The Mac app runs as before, except that it runs the local Python script when guessing, and waits for the script to complete before trying the next guess.&lt;/p&gt;
+
+&lt;p&gt;I’m pretty happy with this setup, even though it’s a pain in the ass to get it working, because I have to set the pen height and line the iPad up with the robot correctly. I did end up getting the measurements right for the keyboard keys on the first try, which was cool. It’s just that if the iPad slides on the table then everything is off.&lt;/p&gt;
+
+&lt;video autoplay=&quot;true&quot; loop=&quot;true&quot; width=&quot;800&quot; height=&quot;600&quot; name=&quot;Wordle Solver Bot Video&quot;&gt;
+ &lt;source src=&quot;/blog/wp-content/uploads/2022/wordle_bot_demo.mov&quot; /&gt;
+&lt;/video&gt;
+
+&lt;p&gt;I made a YouTube video that describes this more, and embellished some stuff for entertainment. So if you want to watch that, you can &lt;a href=&quot;https://www.youtube.com/watch?v=au5IPBBhiPw&quot;&gt;see it here&lt;/a&gt;, (and don’t forget to obliterate that like and subscribe button)!&lt;/p&gt;
+
+&lt;p&gt;I also pushed the solver specific code to Github. It’s pretty ugly but if you’re interested in how it works, you can check it out. I probably should’ve used regular expressions in hindsight instead of blowing up strings into arrays but I figured that with the word list at around 2,300 words, it really doesn’t matter how inefficient I am!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/hungtruong/Wordle-Bot&quot;&gt;https://github.com/hungtruong/Wordle-Bot&lt;/a&gt;&lt;/p&gt;
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2022/WordleScreenshot.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unless you’ve been living under a rock for the past few days, you’ve heard of this game online called Wordle. It’s been growing like crazy and the New York Times even wrote a &lt;a href=&quot;https://www.nytimes.com/2022/01/03/technology/wordle-word-game-creator.html&quot;&gt;profile on the creator&lt;/a&gt;. If you know me, you know I like automating things, so it should be no surprise that I decided to automate playing the game. Here’s a blog post on how I did it.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 10 Jan 2022 00:00:00 -0500</pubDate>
+        <link>https://www.hung-truong.com/blog/2022/01/10/i-created-a-robot-to-solve-wordle-for-me/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/01/10/i-created-a-robot-to-solve-wordle-for-me/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Cloning Zwift on iOS Part 5: SwiftUI and Combine</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
+
+&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;moving-to-combine&quot;&gt;Moving to Combine&lt;/h3&gt;
+
+&lt;p&gt;When I originally wrote the Zswift app, I didn’t really spend too much time on making sure the data model or architecture was the cleanest or anything. It’s really more of a hodgepodge of explorations and trying to get stuff to just work. Because of this, I probably violated a bunch of best practices. I had a “Workout” object that stored all of the different information that is needed to model a workout, but I also threw a bunch of logic and functions in there that probably didn’t make sense.&lt;/p&gt;
+
+&lt;p&gt;For example, the Workout had info on each segment of the workout, along with the duration and amount of power for the segment. As the workout progressed, I would store the elapsed time as well as a bunch of other state variables like the current segment and other variables like time in current segment that I used to drive the UI. Since I kept a bunch of variables to keep track of state, it’s possible that some of them would get out of sync with each other, and that would cause bugs. I think I had a bunch of off-by-one errors where I would reach the end of an index and crash or the time within a segment would be off by 1 so I’d be at 2:01/2:00 as far as progress went. Those kind of bugs.&lt;/p&gt;
+
+&lt;p&gt;In moving to Combine, my goal was to have the state of the workout flow from the one thing about the workout that actually changes: the elapsed time.&lt;/p&gt;
+
+&lt;p&gt;The elapsed time literally decides which segment I’m in, how long I’ve been working out (duh), how long I’ve been in the current segment, how hard I should be pedaling, etc. I ended up creating a separate class to keep track of the state of the workout, and just use the workout as a static definition of the workout. I could’ve done this before migrating to use Combine, but like I said, it was working and I didn’t feel the need to refactor.&lt;/p&gt;
+
+&lt;p&gt;In my current setup, the WorkoutManager has a @Published variable that keeps track of the elapsed time, and then I create a bunch of other publishers based on that one. I also have publishers that combine (imagine that) with other publishers. For example, I have a publisher called “timeInCurrentSegmentPublisher” that publishes the amount of time that I’ve been in the current segment. I combine this publisher with the “currentSegmentPublisher” which gives me the current segment, and use this to calculate the percentage progress for the current segment. I have to combine the two because each publisher only gives me one thing.&lt;/p&gt;
+
+&lt;p&gt;I weighed the benefits of creating publishers with multiple tuples of values, but in most cases it didn’t make sense, and I think it goes against the concept of making the streams composable, but I did end up making one for currentSegmentPublisher since it calculates the current segment and the current segment’s index at the same time anyway. Even as I’m writing about it now, I’m not sure if the better way is to create two different publishers since it’s kinda clunky to grab the desired value from the tuple.&lt;/p&gt;
+
+&lt;p&gt;Anyway, the result here is that my Workout object doesn’t have any more state at all. I could make it a struct but there’s some SwiftUI requirement for my Workout to be a class if I want to use it in a Modal view (which the workout detail is set up as) so for now I’ll just leave it as-is. I could also create a view model if I really wanted the Workout object to be a struct.&lt;/p&gt;
+
+&lt;p&gt;I’m sure I could optimize the Combine publishers even more but since they’re working now I’ll just leave them.&lt;/p&gt;
+
+&lt;h3 id=&quot;swiftui&quot;&gt;SwiftUI&lt;/h3&gt;
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2021/xcode_swiftui_previews.png&quot; /&gt;
+	&lt;figcaption&gt;An example of the live SwiftUI previews that update automatically&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The general opinion that I see from others about SwiftUI is that the more people use it, the more they like it, and that it really forces you to rethink how you define interfaces. I heard this a million times but until you actually play around with it in a non-trivial example I feel like it’s hard to really understand it.&lt;/p&gt;
+
+&lt;p&gt;The gist is that SwiftUI is a declarative way to define your UIs instead of an Imperative way. The difference can seem subtle until you start doing stuff. What it means is that instead of telling the computer how to do something, you just tell it what you want. If that’s confusing then yeah, actually it is confusing.&lt;/p&gt;
+
+&lt;p&gt;I guess to put it another way, in UIKit you can define views as objects, give them properties, add them to a parent view and then set some constraints on them. In this imperative example, it’s up to you to define every step to the computer to tell it what to do, and hope that your interface matches what you were thinking.&lt;/p&gt;
+
+&lt;p&gt;In a declarative syntax, you can describe what you want, and add some modifiers to it if you need to have more control over the actual output. From there, you also define state variables or observed objects that the SwiftUI view will use to actually come up with the completed interface.&lt;/p&gt;
+
+&lt;p&gt;Imagine that you want to show a list of dog breeds. In an imperative system you need to set up the collection view controller, fill out your functions for “cellAtIndex” and “didSelectCellAtIndex” etc, and supply the cells. In a declarative system you can say “I want a list of ‘DogViews’ that use the ‘Dog’ model” and define a “NavigationLink” to define what happens when you tap on the cell.&lt;/p&gt;
+
+&lt;p&gt;The interesting part to me was that the SwiftUI view is an immutable struct, so you can’t modify the view as you would a UIView when states change. Of course your view can respond to changes in the data model, but all of those states need to be determined at compile time rather than runtime.&lt;/p&gt;
+
+&lt;p&gt;One of the best parts about SwiftUI is how the “live” previews work. They aren’t exactly real time, but fast enough that the feedback loop between writing UI code and seeing the result is very tight. In the past I’ve had to write code to update a UI (or use Interface Builder), then build and run, and go to the part of the app where the UI I changed was. This could mean it would be a few seconds or minutes before I saw whether the change I just wrote actually worked. In SwiftUI you make a change and once you’re done writing it, the preview window will show it. The system isn’t perfect, of course, as sometimes it can’t compile and you need to reenable the live preview. But it’s really the best tradeoff between the WYSIWYG style of Interface Builder and the readability of programmatic view code. I’m sure the tools will improve in the future, and I’m quite certain that this ease of previewing code will be one of the factors that will motivate people to switch to SwiftUI.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-workout-view&quot;&gt;The Workout View&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/workout_view.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I modeled my original interface after the Zwift app. In the Zwift app, you can see the workout represented as a bunch of rectangles representing segments that get taller when the target power is higher. The width is determined by the length of the segment.&lt;/p&gt;
+
+&lt;p&gt;I basically copied this and implemented it with a UIStackView and percentage constraints. I thought it was pretty cool but one thing that bothered me is the warmup and cooldown segments. Those have a starting value and ending value that are different (warmups start lower and end higher). I didn’t want to spend too much time drawing the start of the rectangle to be lower than the end (plus it wouldn’t technically be a rectangle at that point) so I just used the “lower” value and set them as flat rectangles.&lt;/p&gt;
+
+&lt;p&gt;I decided to practice some custom drawing in SwiftUi to properly draw the warmup and cooldown segments and I’m pretty happy with the result. The view is drawn by taking the desired start and end heights and width, and drawing a path with it. I used “path.addArc” to get a nice rounded corner effect, though it isn’t perfect. I also draw a 1px wide vertical line to show where I am in the workout by offsetting it from the left by a percentage of the view’s width.&lt;/p&gt;
+
+&lt;p&gt;I also went ahead and stole the color scheme from the Zwift app which makes it look a bit more polished.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-workout-detail&quot;&gt;The Workout Detail&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/side_by_side.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In addition to updating the workout representation view, I also decided to just overhaul the entire workout detail view (the view I see when I’m in a workout). The old interface was pretty basic with a bunch of grids and text boxes that didn’t really have any visual separation from each other, aside from the size and distribution of the labels.&lt;/p&gt;
+
+&lt;p&gt;I ended up experimenting with the “GroupBox” component of SwiftUI which is pretty simple but makes a big difference just in terms of separating out the different interface elements. I also added some accent colors and icons to some of the text labels, and I added progress indicators to the segment time and elapsed time sections just to make them stand out more. Overall I really like the new workout detail view which is good since I’m literally the only person who uses this app.&lt;/p&gt;
+
+&lt;p&gt;I have some more ideas for enhancements, like recreating the Apple Watch heart rate animation which shows a heart pulsing at your actual heart rate. The animation seamlessly updates when your heart rate changes, which is pretty cool.&lt;/p&gt;
+
+&lt;p&gt;I also want to add some more tracking informtion, like a histogram (maybe with candlestick charts or sparklines) of the wattage and heart rate info. This would be nice to have but the HealthKit integration already includes the heart rate chart. And I don’t know if I care too much about the wattage graph.&lt;/p&gt;
+
+</description>
+        
+          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
+
+&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 02 May 2021 00:00:00 -0400</pubDate>
+        <link>https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</guid>
+        
+        
+        <category>iOS</category>
+        
+        <category>Tech</category>
+        
+      </item>
+      
+    
+  </channel>
+</rss>

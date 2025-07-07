@@ -1,0 +1,195 @@
+
+body{
+margin: 0;
+padding: 0;
+border: 0;
+overflow: hidden;
+height: 100%; 
+max-height: 100%; 
+font-family:  "helvetica", arial, "lucida console", sans-serif;
+font-size:.9em;
+}
+
+h1{
+	font-size:32px;
+	margin-top:0px;
+}
+
+h1 a{
+	text-decoration:none;
+	color:#000;
+}
+
+#framecontent h2{
+	margin:0;
+}
+
+h2 a{
+	color:#4a4a4a;
+	text-decoration:none;
+}
+
+.bottom{
+	position:absolute;
+	bottom: 5px;
+	left: 25px;
+}
+
+#framecontent{
+position: absolute;
+top: 0;
+bottom: 0; 
+left: 0;
+width: 225px; /*Width of frame div*/
+height: 100%;
+overflow: auto; /*Disable scrollbars. Set to "scroll" to enable*/
+background-color: #E4EBF7;
+font-size:10pt;
+}
+#framecontent ul{
+	padding:0px;
+	margin-left:1em;
+}
+
+#framecontent li{
+	list-style-type:square;
+	padding:0px;
+	margin:0px;
+}
+
+#maincontent{
+position: fixed;
+top: 0; 
+left: 225px; /*Set left value to WidthOfFrameDiv*/
+right: 0;
+bottom: 0;
+overflow: auto;
+background: #fff;
+}
+
+
+#projects{
+}
+
+ul.project{
+padding: 0px;
+margin: 0px;
+list-style-type : none;
+max-width: 900px;
+}
+
+ul.project li {
+margin: 0 20px 16px 0px;
+border: 4px solid #D1CAC2;
+width: 220px;
+height: 180px;
+background: #FFFFFF;
+float : left;
+display : inline;
+}
+
+.imgwithcap{
+	margin: 0;
+	overflow: hidden;
+	float: left;
+	position: relative;
+}
+
+.imgwithcap a{
+	text-decoration: none;
+	float: left;
+}
+
+.imgwithcap a:hover{
+	cursor: pointer;
+}
+
+.imgwithcap a .desc {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	font-size: 1em;
+	color: #fff;
+	background: #000;
+	padding: 4px 4px;
+	width:100%;
+	filter:alpha(opacity=65);
+	opacity:.65;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)"; /*--IE 8 Transparency--*/
+}
+
+.imgwithcap a:hover .desc { 
+	visibility: hidden;
+	}
+	
+.imgwithcap a:hover .title{
+		display: block;
+		font-size: 1em;
+		padding: 4px;
+		background: #111;
+		filter:alpha(opacity=75);
+		opacity:.75;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /*--IE 8 Transparency--*/
+		color: #fff;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		margin: 0;
+		width: 100%;
+		border-bottom: 1px solid #999;
+	}
+	
+.imgwithcap a .title {	display: none; }
+
+.projectbody{
+clear:both;
+display:block;
+position:relative;
+}
+
+.projectimg{
+float:left;
+width:320px;
+margin-bottom:0px;
+}
+
+.projectdesc{
+float:left;
+margin-left:15px;
+width:400px;
+margin-top:0px;
+margin-bottom:7px;
+}
+
+.projectdesc a:link{
+	color:#4a4a4a;
+}
+
+.projectdesc a:visited{
+	color:#4a4a4a;
+}
+
+.projectdesc p{
+	margin-top:0px;
+}
+
+.clearer{
+	clear:both;
+}
+
+.innertube{
+margin: 15px 20px 15px 25px; /*Margins for inner DIV inside each DIV (to provide padding)*/
+}
+
+* html body{ /*IE6 hack*/
+padding: 0 0 0 200px; /*Set value to (0 0 0 WidthOfFrameDiv)*/
+}
+
+* html #maincontent{ /*IE6 hack*/
+height: 100%; 
+width: 100%; 
+}
+
+#habla_window_div {
+	margin-right:25px !important
+}
