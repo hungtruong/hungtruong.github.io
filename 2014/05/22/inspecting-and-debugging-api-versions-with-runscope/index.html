@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="referrer" content="origin">
+
+    <title>Inspecting and Debugging API Versions with Runscope</title>
+
+    <!-- Open Graph Meta -->
+    <meta content="Hung Truong: The Blog!" property="og:site_name">
+    
+      <meta content="Inspecting and Debugging API Versions with Runscope" property="og:title">
+    
+    
+      <meta content="article" property="og:type">
+    
+    
+      <meta content="I say potato, you say potato..." property="og:description">
+    
+    
+      <meta content="https://www.hung-truong.com/blog/2014/05/22/inspecting-and-debugging-api-versions-with-runscope/" property="og:url">
+    
+    
+      <meta content="2014-05-22T21:43:35+00:00" property="article:published_time">
+      <meta content="https://www.hung-truong.com/blog/about/" property="article:author">
+    
+    
+      <meta content="https://www.hung-truong.com/blog/assets/img/danbo.jpg" property="og:image">
+    
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@hungtruong">
+    <meta name="twitter:creator" content="@hungtruong">
+    
+      <meta name="twitter:title" content="Inspecting and Debugging API Versions with Runscope">
+    
+    
+      <meta name="twitter:url" content="https://www.hung-truong.com/blog/2014/05/22/inspecting-and-debugging-api-versions-with-runscope/">
+    
+    
+      <meta name="twitter:description" content="I say potato, you say potato...">
+    
+    
+      <meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/danbo.jpg">
+    
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/blog/assets/img/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/blog/assets/css/style.css">
+    <!--[if IE 8]><link rel="stylesheet" href="/blog/assets/css/ie.css"><![endif]-->
+    <link rel="canonical" href="https://www.hung-truong.com/blog/2014/05/22/inspecting-and-debugging-api-versions-with-runscope/">
+
+    <!-- Modernizr -->
+    <script src="/blog/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
+
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-248124-2');
+</script>
+ 
+</head>
+
+
+<body>
+
+    <div class="header">
+     <div class="container">
+         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList">
+                 
+                 <li class="element first  ">
+                     <a href="/blog/index.html">Home</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/archives">Archives</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/about">About</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/contact">Contact</a>
+                 </li>
+                 
+                 <li class="element   last">
+                     <a href="/blog/speaking">Speaking</a>
+                 </li>
+                 
+             </ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+
+   <div class="content">
+      <div class="container">
+         <div class="post">
+  <h1 class="postTitle">Inspecting and Debugging API Versions with Runscope</h1>
+  <p class="meta">May 22, 2014 | <span class="time">6</span> Minute Read</p>
+  
+  <p><img class="aligncenter size-medium wp-image-2839" src="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600" alt="FL-iPhones" width="434" height="600" srcset="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600 434w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=741%2C1024 741w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?w=1158 1158w" sizes="(max-width: 434px) 100vw, 434px" data-recalc-dims="1" />This past month at <a href="http://www.farmlogs.com/">FarmLogs</a>, we implemented a versioning scheme for our internal API. API versioning is often a difficult transition to make, especially if you’re using a third party API and dealing with deprecations (Facebook, I’m looking at you!). It’s often a chore to figure out exactly what has changed between API versions unless you have very good documentation.</p>
+
+<p>Coincidentally, Runscope also has a service called <a href="https://www.apichangelog.com/">API Changelog</a> that can send you notifications when a third party API changes. Luckily for me, any changes to our internal API were subject to review by our team of engineers, so if I had any questions or concerns, I could bring them up in person. Even so, when dealing with a changing API, the truth is in the response, not necessarily the documentation (or <a href="https://www.hipchat.com/">Hipchat</a> or <a href="https://hackpad.com">Hackpad</a>). For a while, I was updating the iOS client to the new version by copying and pasting the two responses into a text editor and looking at the differences. About halfway through I remembered that this functionality is built into <a href="http://www.runscope.com/">Runscope</a>, so I started using that. I’ll show you how to compare diffs of two responses so you don’t have to waste half of your time like me!
+<!--more--></p>
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>To follow along with this blog post, you’ll need just two things:</p>
+
+<ul>
+  <li>A free <a href="https://www.runscope.com">Runscope</a> account.</li>
+  <li>A free developer account at <a href="https://developer.foursquare.com/">Foursquare</a>.</li>
+</ul>
+
+<h2 id="some-versioned-api-data">Some versioned API data</h2>
+
+<p>I’m not going to post the inner workings of the FarmLogs API (though it’s pretty easy to reverse engineer, like many other APIs) since that’s probably confidential knowledge or something. Instead, I’ll use the Foursquare API, which is one of my favorites to work with and (in my opinion) has some of the best documentation around. Browsing around their developer page, I found this interesting <a href="https://developer.foursquare.com/docs/changelog">summary of API changes over the years</a>.</p>
+
+<p>There was a pretty huge change on 6/9/12 that included many breaking changes. Sounds like fun! I actually remember getting caught in this change and having to update my iOS auto-check in app to fit the new API. Let’s pick an endpoint and see what the data used to look like. We’ll be able to compare it to the modern version of the API.</p>
+
+<p>For our example, we’ll hit the /venues/explore/ endpoint. This endpoint takes a lat/long value and returns a list of suggested venues to try. If you are authenticated, it can give you personalized info about why those venues were suggested (like if your friends went there and liked it). If you go to <a href="https://developer.foursquare.com/docs/explore#req=venues/explore%3Fll%3D42.273,-83.737">this page</a>, you can get a url for that endpoint along with an oauth token added for you automatically.</p>
+
+<h2 id="hitting-the-endpoint-in-runscope">Hitting the endpoint in Runscope</h2>
+
+<p>Next we’ll copy and paste the Foursquare API url into Runscope. You can create this request in a default bucket or make a new one specifically for this test. Just hit the “New Request” button and paste the url in. Hit the “Launch Request” button to have Runscope make the API request on your behalf and save all of the data for you to compare later. <a href="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-21-at-10.50.16-PM-e1400727237497.png" rel="lightbox[2837]"><img class="aligncenter wp-image-2841 size-medium" src="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-21-at-10.50.16-PM-e1400727237497-500x238.png?resize=500%2C238" alt="" width="500" height="238" srcset="/blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-21-at-10.50.16-PM-e1400727237497.png?resize=500%2C238 500w, /blog/wp-content/uploads/2014/05/Screen-Shot-2014-05-21-at-10.50.16-PM-e1400727237497.png?w=900 900w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>If all goes well, you should see the response appear below the “Launch Request” button. Next, we’ll edit the request so that the format matches the API before the big change on 6/9/12. Foursquare uses a pretty awesome convention for API versioning that uses dates for versions. To edit the response, simply hit the pencil icon on the upper right part of the response. You’ll be taken to the response editor. From there, change the “v” parameter to 20120608 (my 29th birthday!). <a href="/blog/wp-content/uploads/2014/05/request-editor.png" rel="lightbox[2837]"><img class="aligncenter size-medium wp-image-2845" src="/blog/wp-content/uploads/2014/05/request-editor-500x307.png?resize=500%2C307" alt="request editor" width="500" height="307" srcset="/blog/wp-content/uploads/2014/05/request-editor.png?resize=500%2C307 500w, /blog/wp-content/uploads/2014/05/request-editor.png?w=963 963w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a> Hit “Launch Request” again and Runscope will fetch the response from Foursquare for a client that’s using a really old version of the API. After a short wait you should see another response appear. You can either hit the “Compare to Original” button or go to the “All Traffic” section to pick two requests to compare.</p>
+
+<h2 id="comparing-two-versions-of-the-same-request">Comparing two versions of the same request</h2>
+
+<p>Finally we’re at the meat and potatoes of this post! Let’s explore the difference that two years can make to an API endpoint. (For all of these screenshots, the older version is on the left) <a href="/blog/wp-content/uploads/2014/05/deprecationwarning-e1400768110427.png" rel="lightbox[2837]"><img class="aligncenter size-medium wp-image-2846" src="/blog/wp-content/uploads/2014/05/deprecationwarning.png?resize=500%2C86" alt="deprecationwarning" width="500" height="86" data-recalc-dims="1" /></a> The first thing to notice is that Foursquare is really polite about their deprecation warnings. I wonder how standard their meta dictionary with an error message is. I suppose it works well if you have humans reading your API (as we are now) but I’m going to assume most clients do not care about the meta error being shown in this deprecated API call. I wonder if there’s an HTTP status code for “OK now but will be deprecated soon.” <a href="/blog/wp-content/uploads/2014/05/exploresuggestionsreasons-e1400807614651.png" rel="lightbox[2837]"><img class="aligncenter size-medium wp-image-2849" src="/blog/wp-content/uploads/2014/05/exploresuggestionsreasons.png?resize=500%2C97" alt="exploresuggestionsreasons" width="500" height="97" data-recalc-dims="1" /></a>Another thing to notice is that there is a new “reasons” dictionary for each venue suggestion that lists friends that have gone to that venue. It looks like this dictionary didn’t exist before the 6/9/12 API update but probably exists in the older version of the API for compatibility reasons. <a href="/blog/wp-content/uploads/2014/05/moretipanduserinfo-e1400807832308.png" rel="lightbox[2837]"><img class="aligncenter size-medium wp-image-2851" src="/blog/wp-content/uploads/2014/05/moretipanduserinfo.png?resize=500%2C313" alt="moretipanduserinfo" width="500" height="313" data-recalc-dims="1" /></a> The tips section also seems to have gotten less info about the user giving the tip. I’m not sure if this is for privacy reasons or something else. Another thing I noticed was that the older version included a tip that I created myself while the newer version removed it (probably because the authenticated user isn’t interested in their own tips when exploring). <a href="/blog/wp-content/uploads/2014/05/icons-e1400809236196.png" rel="lightbox[2837]"><img class="aligncenter wp-image-2852 size-medium" src="/blog/wp-content/uploads/2014/05/icons.png?resize=500%2C105" alt="" width="500" height="105" data-recalc-dims="1" /></a> Finally there’s the terrible implementation of icon images for categories that Foursquare provides. The old format had a prefix, file format and an array of possible sizes for the icon. You’d have to piece the three together like <a href="https://www.youtube.com/watch?v=WQvzoY9SaQY">the silver monkey statue</a> to get an icon for your app. The newer version did away with the list of sizes (now you just need to choose a size from 32, 44, 64, and 88).</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><img class="aligncenter size-medium wp-image-2864" src="/blog/wp-content/uploads/2014/05/logo-runscope-wordmark-white.png?resize=500%2C102" alt="logo-runscope-wordmark-white" width="500" height="102" srcset="/blog/wp-content/uploads/2014/05/logo-runscope-wordmark-white.png?resize=500%2C102 500w, /blog/wp-content/uploads/2014/05/logo-runscope-wordmark-white.png?w=800 800w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
+
+<p>As you can see, Runscope makes it really easy to compare the differences between API versions. Hopefully all of your API version migrations will be smooth and come with months of warning, but in case they don’t, Runscope can be a pretty handy tool to get a handle on what’s changed. If you have any questions or comments on this or other tools to ease the pain of API version migration, please let me know by posting a comment!</p>
+
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+     
+      <a class="prev" href="/blog/2014/05/20/ideas-and-recipes-for-home-automation-with-the-internet-of-things/"><span>&laquo;&nbsp;Ideas and Recipes For Home Automation With The Internet of Things</span>
+      
+    </a>
+      
+      
+      <a class="next" href="/blog/2014/06/12/android-wear-design-contest/"><span>Android Wear Design Contest!&nbsp;&raquo;</span>
+       
+      </a>
+     
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy; 2025 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+
+      <div class="footer-links">
+         <ul class="noList">
+            
+            
+            <li><a href="https://twitter.com/hungtruong">
+                  <svg id="twitter" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="https://github.com/hungtruong">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="mailto:hung@hung-truong.com">
+                  <svg id="mail" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"></path>
+                  </svg>
+            </a></li>
+            
+         </ul>
+      </div>
+   </div>
+   <!-- Default Statcounter code for Hung Truong: The Blog!
+   http://www.hung-truong.com/blog/ -->
+   <script type="text/javascript">
+   var sc_project=1262196; 
+   var sc_invisible=1; 
+   var sc_security="4af14454"; 
+   var scJsHost = (("https:" == document.location.protocol) ?
+   "https://secure." : "http://www.");
+   document.write("<sc"+"ript type='text/javascript' src='" +
+   scJsHost+
+   "statcounter.com/counter/counter.js'></"+"script>");
+   </script>
+   <!-- End of Statcounter Code -->
+</div><!-- end .footer -->
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/blog/assets/js/dropcap.min.js"></script>
+<script src="/blog/assets/js/responsive-nav.min.js"></script>
+<script src="/blog/assets/js/scripts.js"></script>
+
+
+</body>
+
+</html>

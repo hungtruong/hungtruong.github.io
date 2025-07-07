@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="referrer" content="origin">
+
+    <title>Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth</title>
+
+    <!-- Open Graph Meta -->
+    <meta content="Hung Truong: The Blog!" property="og:site_name">
+    
+      <meta content="Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth" property="og:title">
+    
+    
+      <meta content="article" property="og:type">
+    
+    
+      <meta content="I say potato, you say potato..." property="og:description">
+    
+    
+      <meta content="https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/" property="og:url">
+    
+    
+      <meta content="2019-03-17T00:00:00+00:00" property="article:published_time">
+      <meta content="https://www.hung-truong.com/blog/about/" property="article:author">
+    
+    
+      <meta content="https://www.hung-truong.com/blog/assets/img/danbo.jpg" property="og:image">
+    
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@hungtruong">
+    <meta name="twitter:creator" content="@hungtruong">
+    
+      <meta name="twitter:title" content="Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth">
+    
+    
+      <meta name="twitter:url" content="https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/">
+    
+    
+      <meta name="twitter:description" content="I say potato, you say potato...">
+    
+    
+      <meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/danbo.jpg">
+    
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/blog/assets/img/favicon.ico" />
+
+    <!-- Come and get me RSS readers -->
+    <link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/blog/assets/css/style.css">
+    <!--[if IE 8]><link rel="stylesheet" href="/blog/assets/css/ie.css"><![endif]-->
+    <link rel="canonical" href="https://www.hung-truong.com/blog/2019/03/17/making-a-zwift-clone-part-1/">
+
+    <!-- Modernizr -->
+    <script src="/blog/assets/js/modernizr.custom.15390.js" type="text/javascript"></script>
+
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-248124-2');
+</script>
+ 
+</head>
+
+
+<body>
+
+    <div class="header">
+     <div class="container">
+         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList">
+                 
+                 <li class="element first  ">
+                     <a href="/blog/index.html">Home</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/archives">Archives</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/about">About</a>
+                 </li>
+                 
+                 <li class="element   ">
+                     <a href="/blog/contact">Contact</a>
+                 </li>
+                 
+                 <li class="element   last">
+                     <a href="/blog/speaking">Speaking</a>
+                 </li>
+                 
+             </ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+
+   <div class="content">
+      <div class="container">
+         <div class="post">
+  <h1 class="postTitle">Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth</h1>
+  <p class="meta">March 17, 2019 | <span class="time">10</span> Minute Read</p>
+  
+  <p>It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.</p>
+
+<p>I recently purchased an exercise bike called the <a href="https://shop.concept2.com/bikeerg/601-bikeerg.html">BikeErg</a> (I think the name has something to do with the rowing machines that the manufacturer also makes). The bike has a built-in computer that keeps track of things like watts (apparently cycling is a sport that has really good analytics since it’s easy to track raw power), calories burned, cadence and other stuff. You can view the data on the monitor or use an app like <a href="https://zwift.com">Zwift</a> to do workouts.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/bikeerg.jpg" />
+	<figcaption>The BikeErg comes with the PM5: the most advanced PM thing ever.</figcaption>
+</figure>
+
+<!--more-->
+
+<p>I’ve been using the BikeErg to exercise pretty regularly now, and I tried a bunch of different apps that can connect to it. Zwift is pretty much the gold standard as it has many features like 3D avatars and environments, a rich community, and lots of different workout plans for you to try. Zwift integrates with apps like MyFitnessPal and Strava, too, so I can trick people into thinking that I’ve ridden in Central Park one day and London the next.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/zwift.jpeg" />
+	<figcaption>Studies have shown that riding a bike in a completely white room really builds your FTP</figcaption>
+</figure>
+
+<p>While I think the feature set of Zwift is really compelling, I’m more of an old school app user. I don’t really care about the online community. I don’t really need to look at my avatar riding his bike around a futuristic city or an exploding volcano. I just want to do some directed workouts and maybe track my heart rate and my calories burned. The price of $15 a month is probably fine for people who use all of those features and get the value out of it, but I feel like I do not. </p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/zwift_screenshot.jpeg" />
+	<figcaption>It’s my virtual dude riding through a virtual New York with all his virtual pals</figcaption>
+</figure>
+
+<p>Just to be clear here, I do think app developers deserve to be paid for their work and it’s definitely within reason for Zwift to charge this subscription given the sheer amount of support they need to provide to all of their users’ varying setups. After just implementing a small proof of concept, I have some mad respect for their dev team.</p>
+
+<p>However, I am cheap and I’m an iOS developer so I figured, “maybe I can roll my own fake Zwift!”</p>
+
+<h3 id="enter-corebluetooth">Enter CoreBluetooth</h3>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/core_bluetooth.png" />
+	<figcaption>The more I stare at this image the less sense it makes</figcaption>
+</figure>
+
+<p>I’ve been interested in Bluetooth development ever since CoreBluetooth was added to the iOS 5.0 SDK (I think the first supported device was the iPhone 4s). But every time I tried to sit down and read the documentation I got discouraged by the complexity and ended up getting distracted by some other new shiny API. Since I had a desired use case here: Make a Zwift alternative for myself, I was able to focus up some more and get something working.</p>
+
+<p>While the Bluetooth protocol is incredibly flexible, that flexibility also makes it incredibly complicated to get even a simple proof of concept working. If you don’t know what the special Bluetooth jargon means, it can seem really confusing. I still don’t really understand all of it but I’ve managed to hack something together that will serve as a basis for my fake Zwift app.</p>
+
+<p>Rather than bore you with the technical jargon and steps required to make this app, I’d rather just go through my process of figuring it out, which may be slightly more interesting.</p>
+
+<h3 id="of-course-its-called-a-manager">Of course it’s called a “Manager”</h3>
+
+<p>So the first thing I did was go to <a href="https://developer.apple.com/library/archive/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/AboutCoreBluetooth/Introduction.html#//apple_ref/doc/uid/TP40013257">this document</a> (which I guess is deprecated now but I didn’t notice that message when I was reading it) which goes over the Core Bluetooth framework.</p>
+
+<p>I found out that I needed to create a CBCentralManager, so I did that and then I tried to scan for some Bluetooth devices:</p>
+
+<blockquote>
+  <p>let centralManager = CBCentralManager()<br />
+self.centralManager.scanForPeripherals(withServices: nil, options: nil)</p>
+</blockquote>
+
+<p>I immediately got an error that I couldn’t do that since the centralManager wasn’t powered on yet. Oops! I then set the delegate of the centralManager and waited for the method “centralManagerDidUpdateState” to check that it was powered on before scanning.</p>
+
+<p>I soon started getting a bunch of peripherals in my next delegate method, “centralManager(_:didDiscover:advertisementData:rssi:)”</p>
+
+<p>Among the things I found were my laptop (over and over again even though the scan was set to not allow duplicates…), someone’s Bluetooth headset and various other things I couldn’t identify. Success! </p>
+
+<p>Once I filtered out the peripherals that kept on repeating, I was able to turn on the bike (by cycling a bit) and I got this message in my logs:</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/peripherals.png" />
+</figure>
+
+<p>I successfully found my PM5. Now to connect to it and get the data. I ended up connecting to the PM5 based on the name. (After doing some reading it looks like I could connect based on the last service UUID of “CE060000-43E5-11E4-916C-0800200C9A66”). </p>
+
+<p>I called the “connect” function of the centralManager and later got an error because the peripheral wasn’t retained (I guess the Central doesn’t keep a strong reference, which makes sense). I tried again, this time keeping a reference to the peripheral in an array.</p>
+
+<h3 id="peripherals-services-and-characteristics">Peripherals, Services and Characteristics</h3>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/central_manager.png" />
+</figure>
+
+<p>Once I connected, I had to discover the peripheral’s services. And once that succeeded I had to discover each service’s characteristics. Once you discover those characteristics you can set the peripheral’s services’ characteristics to “notify” you when the characteristic changes. In more depth:</p>
+
+<ul>
+  <li>Connect to peripheral using the central’s “connect(_:options:)” method and retain it</li>
+  <li>Handle the “<em>centralManager(_:didConnect:)</em>” delegate method where you set the peripheral’s delegate and call its “discoverServices(_:)” method</li>
+  <li>Handle the “peripheral(_:didDiscoverServices:)” delegate method and call the peripheral’s “discoverCharacteristics(_:for:)” for each service you want to discover characteristics for (why not all of them at this point?)</li>
+  <li>Handle the “peripheral(_:didDiscoverCharacteristicsFor:error:)” delegate method for each service’s characteristics you wanted to discover by calling the peripheral’s “setNotifyValue(_:for:)” method on each service’s characteristic that you want notifications for.</li>
+  <li>Optionally handle the “peripheral(_:didUpdateNotificationStateFor:error:)” method to see if you were able to successfully update the notification state for each peripheral’s service’s characteristic. In some cases I wasn’t able to ask for updates, perhaps those characteristics are just static data?</li>
+  <li>Handle the “peripheral(_:didUpdateValueFor:error:)” method to get the updated value for each characteristic that you wanted notifications for.</li>
+</ul>
+
+<p>This all seems really convoluted to me and it was probably part of the reason that I always gave up on implementing Bluetooth in the past, but I think that’s more of a symptom of the complexity of the Bluetooth protocol than the CoreBluetooth API.</p>
+
+<p>Now all I needed to do was generate some data by cycling on the bike for a few seconds. I wasn’t quite finished yet, though. When the characteristics are updated and you start getting notified, you can inspect the new values, but those values are just <a href="https://developer.apple.com/documentation/corebluetooth/cbcharacteristic/1518878-value">Data objects</a>. Each characteristic can hold a number of values based on how the data is structured, and that is up to whoever is implementing the Bluetooth protocol. </p>
+
+<p>I did some research and found <a href="https://www.concept2.com/files/pdf/us/monitors/PM5_BluetoothSmartInterfaceDefinition.pdf">this document</a> that describes the Bluetooth specifications for the PM5 device.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/attribute_table.png" />
+	<figcaption>Just some really interesting light reading</figcaption>
+</figure>
+
+<p>In that document were some tables including the one above which describes the UUID for a characteristic that includes things like elapsed time, calories, and most importantly, watts. I discovered that the data was being encoded into bytes, so I took the raw Data object and split it into an array of 8-bit Integers. Once I started printing those arrays I saw something like this:</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/characteristics.png" />
+	<figcaption>I originally printed out the Base 64 string representation of the Data before reading the doc, which was a lot less useful</figcaption>
+</figure>
+
+<p>Because the PM5 was originally set up for rowing machines, the documentation is a bit confusing. It refers to “strokes” which might line up with rpms on a bike? I was mainly interested in watts for my proof of concept so I found a few values in the document that mentioned watts. The table in the spec mentions “Stroke Power Lo (watts)” and has a “Stroke Power Hi” (what’s the difference?). I cobbled an interface together to test out my guess about the first value and here’s the video result:</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2019/bikeerg_gif.gif" />
+	<figcaption>I took this video with an iPad and for once I’m not ashamed of that. Also it’s shaky cause I was cycling.</figcaption>
+</figure>
+
+<p>Success! I’m now able to connect my phone to my bike with my app. I have only gotten the wattage data from the bike so far, but reading through the spec it seems like there is a lot more I can pull via Bluetooth. I already know from using Zwift that I can get cadence from the bike, for example, and I saw a few other interesting things like calories, pace and distance traveled.</p>
+
+<h3 id="every-journey-begins-with-a-single-corebluetooth-implementation">Every Journey Begins With a Single CoreBluetooth Implementation</h3>
+
+<p>I titled this blog post “Part 1” in a series but I don’t know when the next step will be. My wishlist is:</p>
+
+<ul>
+  <li>I want to eventually set up directed workouts in a similar fashion as Zwift</li>
+  <li>I also want to be able to track my heart rate which I can do by writing an Apple Watch app for my existing app</li>
+  <li>I want to be able to store my workout data and integrate with Apple Health</li>
+  <li>I want to import workouts or at least create them inside of the app</li>
+  <li>I want to chart the actual wattage of the bike against the guided wattage, and also show heart rate, and show histograms</li>
+  <li>I want to avoid feature creep</li>
+</ul>
+
+<p>I haven’t figured out which order to do these things in but for now I’ll continue to use Zwift since I already paid for the membership. My next step is probably to break out the code for connecting to the PM5 into its own project and make all of the data from it available in an easy to consume form. I’m kinda torn between that and just making the MVP for doing workouts.</p>
+
+<p>If I had to estimate, I probably spent more than 3 hours working on this project so far and more on writing this blog post. If I was to value my time based on what my contracting rate would be I’d probably be able to pay for more than a year of Zwift with it! So this project is really more about learning different iOS technologies than it is about saving money at this point.</p>
+
+<p>If you found this blog post interesting let me know! I wanted to write down my process so I could remember it, but hopefully it’s useful to anyone trying to implement CoreBluetooth. I found a bunch of sample code that connects to heart rate monitors but I didn’t find any that go through the process of writing code to a spec document. If you want to try to run this app yourself (and you happen to have the same exact bike as me), <a href="https://github.com/hungtruong/Zswift/tree/blog_part_1">check out the source code here</a>.</p>
+
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+     
+      <a class="prev" href="/blog/2018/05/20/five-simple-steps-to-becoming-an-international-conference-speaker/"><span>&laquo;&nbsp;Five Simple Steps to Becoming an International™ Conference Speaker!</span>
+      
+    </a>
+      
+      
+      <a class="next" href="/blog/2019/04/07/making-a-zwift-clone-part-2/"><span>Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout&nbsp;&raquo;</span>
+       
+      </a>
+     
+  </div>
+</div>
+
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+   <div class="container">
+      <p class="copy">&copy; 2025 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+
+      <div class="footer-links">
+         <ul class="noList">
+            
+            
+            <li><a href="https://twitter.com/hungtruong">
+                  <svg id="twitter" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="https://github.com/hungtruong">
+                  <svg id="github" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"></path>
+                  </svg>
+            </a></li>
+            
+            
+            <li><a href="mailto:hung@hung-truong.com">
+                  <svg id="mail" class="custom-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" style="height: 30px; width: 30px;"><circle class="outer-shape" cx="50" cy="50" r="48" style="opacity: 1;"></circle>
+                  <path class="inner-shape" style="opacity: 1;" transform="translate(25,25) scale(0.5)" d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"></path>
+                  </svg>
+            </a></li>
+            
+         </ul>
+      </div>
+   </div>
+   <!-- Default Statcounter code for Hung Truong: The Blog!
+   http://www.hung-truong.com/blog/ -->
+   <script type="text/javascript">
+   var sc_project=1262196; 
+   var sc_invisible=1; 
+   var sc_security="4af14454"; 
+   var scJsHost = (("https:" == document.location.protocol) ?
+   "https://secure." : "http://www.");
+   document.write("<sc"+"ript type='text/javascript' src='" +
+   scJsHost+
+   "statcounter.com/counter/counter.js'></"+"script>");
+   </script>
+   <!-- End of Statcounter Code -->
+</div><!-- end .footer -->
+
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="/blog/assets/js/dropcap.min.js"></script>
+<script src="/blog/assets/js/responsive-nav.min.js"></script>
+<script src="/blog/assets/js/scripts.js"></script>
+
+
+</body>
+
+</html>
