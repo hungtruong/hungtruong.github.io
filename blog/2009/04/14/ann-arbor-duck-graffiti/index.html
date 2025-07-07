@@ -135,32 +135,97 @@
   
   <div class="comment-form">
     <h3>Leave a Comment</h3>
-    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments">
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields">
   <input name="options[redirect]" type="hidden" value="https://www.hung-truong.com/2009/04/14/ann-arbor-duck-graffiti/">
   <input name="options[slug]" type="hidden" value="ann-arbor-duck-graffiti">
   
-  <div class="form-group">
+  <div class="field">
     <label for="comment-name">Name *</label>
-    <input type="text" id="comment-name" name="fields[name]" required>
+    <input type="text" id="comment-name" name="fields[name]" class="full-width" required>
   </div>
   
-  <div class="form-group">
+  <div class="field">
     <label for="comment-email">Email *</label>
-    <input type="email" id="comment-email" name="fields[email]" required>
+    <input type="email" id="comment-email" name="fields[email]" class="full-width" required>
   </div>
   
-  <div class="form-group">
+  <div class="field">
     <label for="comment-url">Website</label>
-    <input type="url" id="comment-url" name="fields[url]">
+    <input type="url" id="comment-url" name="fields[url]" class="full-width">
   </div>
   
-  <div class="form-group">
+  <div class="field">
     <label for="comment-message">Comment *</label>
-    <textarea id="comment-message" name="fields[message]" rows="5" required></textarea>
+    <textarea id="comment-message" name="fields[message]" rows="5" class="full-width" required></textarea>
   </div>
   
-  <button type="submit">Submit Comment</button>
+  <button type="submit" class="button">Submit Comment</button>
 </form>
+
+<style>
+.comment-form {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.comment-form h3 {
+  margin-top: 0;
+  color: #5a7400;
+  text-align: center;
+}
+
+.comment-form-fields {
+  max-width: none;
+}
+
+.comments {
+  margin: 2rem 0;
+}
+
+.comment {
+  background: #f9f9f9;
+  border-left: 4px solid #5a7400;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comment-header {
+  margin-bottom: 0.5rem;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.comment-header strong {
+  color: #333;
+}
+
+.comment-header time {
+  float: right;
+}
+
+.comment-body {
+  clear: both;
+}
+
+.comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 800px) {
+  .comment-form {
+    width: 75%;
+    margin: 2rem auto;
+  }
+  
+  .comments {
+    width: 75%;
+    margin: 2rem auto;
+  }
+}
+</style>
   </div>
 
   <!-- POST NAVIGATION -->
