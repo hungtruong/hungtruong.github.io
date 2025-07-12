@@ -158,8 +158,7 @@
   <div class="comment-form">
     <h3>Leave a Comment</h3>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
-    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields">
-  <input name="options[redirect]" type="hidden" value="https://www.hung-truong.com/blog/2009/06/01/microsoft-bing/">
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="microsoft-bing">
   
   <div class="field">
@@ -182,8 +181,22 @@
     <textarea id="comment-message" name="fields[message]" rows="5" class="full-width" required></textarea>
   </div>
   
-  <button type="submit" class="button">Submit Comment</button>
+  <button type="submit" class="button" id="comment-submit">Submit Comment</button>
 </form>
+
+<div id="comment-success" style="display: none;">
+  <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 1rem; border-radius: 4px; text-align: center;">
+    <h4 style="margin-top: 0;">Thank you for your comment!</h4>
+    <p style="margin-bottom: 0;">Your comment has been submitted and will be published after manual approval.</p>
+  </div>
+</div>
+
+<div id="comment-error" style="display: none;">
+  <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 1rem; border-radius: 4px; text-align: center;">
+    <h4 style="margin-top: 0;">Submission Error</h4>
+    <p style="margin-bottom: 0;">There was an error submitting your comment. Please try again.</p>
+  </div>
+</div>
 
 <style>
 .comment-form {
