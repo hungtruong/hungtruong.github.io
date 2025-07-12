@@ -16,3 +16,10 @@ comments:
         format: "iso8601"
   reCaptcha:
     enabled: false
+  akismet:
+    enabled: true
+    author: "name"
+    authorEmail: "email"
+    authorUrl: "url"
+    content: "message"
+    type: "comment"
