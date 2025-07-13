@@ -143,7 +143,6 @@ Ellen Shell does some in-depth research behind the psychology of why we (humans)
 
   <!-- COMMENTS -->
   
-
   
   <div class="comment-form">
     <h3>Leave a Comment</h3>
@@ -209,13 +208,39 @@ Ellen Shell does some in-depth research behind the psychology of why we (humans)
 
 .comments {
   margin: 2rem 0;
+  width: 100%;
+}
+
+.comments ul {
+  width: 100%;
+}
+
+.comment-list, .comment-replies {
+    list-style: none;
+    padding-left: 0;
 }
 
 .comment {
+  box-sizing: border-box;
   background: #f9f9f9;
   border-left: 4px solid #5a7400;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+.comment-reply {
+  box-sizing: border-box;
+  padding-left: 2rem;
+  margin-top: 1rem;
+  border-left-color: #8ba300;
+  background: #fbfbfb;
+}
+
+.reply-indicator {
+  font-style: italic;
+  color: #888;
+  margin-left: 1rem;
+  font-size: 0.85em;
 }
 
 .comment-header {
@@ -247,7 +272,7 @@ Ellen Shell does some in-depth research behind the psychology of why we (humans)
   }
   
   .comments {
-    width: 75%;
+    width: 85%;
     margin: 2rem auto;
   }
 }
