@@ -5,9 +5,99 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 14 Jul 2025 14:46:50 +0000</pubDate>
-    <lastBuildDate>Mon, 14 Jul 2025 14:46:50 +0000</lastBuildDate>
-    <generator>Jekyll v4.2.1</generator>
+    <pubDate>Tue, 15 Jul 2025 20:44:30 +0000</pubDate>
+    <lastBuildDate>Tue, 15 Jul 2025 20:44:30 +0000</lastBuildDate>
+    <generator>Jekyll v4.4.1</generator>
+    
+      
+      <item>
+        <title>How Much Code Could Claude Code Code if Claude Code Could Code Code? (It Can!)</title>
+        <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/claude-code-best-friend.jpg&quot; width=&quot;700&quot; alt=&quot;A &apos;Friendship ended with&apos; meme. The top text says &apos;Friendship ended with Gemini&apos;. The image shows a picture of the author shaking hands with the Claude logo. The text in the middle says &apos;Now CLAUDE is my best friend&apos;.&quot; /&gt;
+	&lt;figcaption&gt;Claude Code - my new best friend! (I spent a lot of time on this image, btw)&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Previously on my blog, I wrote about &lt;a href=&quot;/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/&quot;&gt;vibe coding&lt;/a&gt; and how I was experimenting with Google CLI, the free agentic AI thing that runs in your command line. I talked about how cool it was, but also how I was too cheap to try anything that cost money. After repeatedly hearing about how good Claude Code was, I decided to scrounge up the last few dollars I had in my vast money bin and spent $20 on Claude Pro. So was it worth it? Heck yeah it was! Claude Code is my new best friend!&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;what-is-claude-code&quot;&gt;What is Claude Code?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://claude.ai/code&quot;&gt;Claude Code&lt;/a&gt; is Anthropic’s official CLI tool that brings Claude’s coding capabilities directly to your terminal. It’s a lot like the Google Gemini CLI that I talked about before, but it actually has brains and doesn’t get stuck in an infinite loop constantly for no reason. Previously, when I tried using the Gemini CLI, it would mostly hit rate limits, switch to the flash version of the model, and generally be bad at doing things. Even with the degraded quality, I still found some use for it, though. But I knew that if I wanted to be a true Vibe Coder, I’d have to upgrade.&lt;/p&gt;
+
+&lt;p&gt;Claude Code uses Claude Sonnet 4 which is apparently really good at code. So far I’ve used it to:&lt;/p&gt;
+
+&lt;h3 id=&quot;code&quot;&gt;Code:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;I added automated testing with playwright to Animenano&lt;/li&gt;
+  &lt;li&gt;Optimized Animenano RSS feed parsing by caching etag/last-modified headers&lt;/li&gt;
+  &lt;li&gt;Wrote a script to sync the remote Animenano Cloudflare D1 database for testing locally&lt;/li&gt;
+  &lt;li&gt;Added some tools to my LiveKit AI agent that I was messing around with, like a Japanese phrase guessing game&lt;/li&gt;
+  &lt;li&gt;Vibe coded search on my blog on a plane! (&lt;a href=&quot;https://youtu.be/S7aJlqSdi2k&quot;&gt;I actually made a video for this!&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Set up staticman for comments on my blog!&lt;/li&gt;
+  &lt;li&gt;Changed the comment form on my blog from a hard reload to an AJAX update!&lt;/li&gt;
+  &lt;li&gt;Wrote a script to scrape comments from my blog posts on archive.org to replenish my missing comments!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;other&quot;&gt;Other:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Documentation for my various side projects, instead of leaving the readme blank&lt;/li&gt;
+  &lt;li&gt;Set up wireguard on my opnsense, Claude Code helped me debug why I couldn’t access the network until it worked!&lt;/li&gt;
+  &lt;li&gt;Added documentation on how I set up mdns and nginx on a home server to serve stuff on the network, and added some more hosts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The “Other” category is honestly a really cool unlock for me personally. I have a bunch of home servers that do random stuff like run cron jobs of scripts for automation and other really random things. I usually just write one-off implementations based on quick searches of how to do things (like setting up mdns and nginx to redirect example.local domains to 10.0.0.111:8000 for example). Inevitably, I’ll forget how I set something up (like when I set up a launchd daemon thing) and it becomes this tech debt where it becomes really difficult to fix or change anything if something breaks or I need to set it up again a different way.&lt;/p&gt;
+
+&lt;p&gt;With Claude Code, I can just have it read the files and figure out how things work, then write a README.md that describes in plain language how it’s set up, how to use it, and how to modify it. Claude Code is incredible for side projects and these sorts of things where you naturally don’t put the same amount of rigor into documentation as you would for professional work. It takes the boring parts of fun projects and automates them, so you have more time to start even more side projects that may or may not ever be finished!&lt;/p&gt;
+
+&lt;h2 id=&quot;theres-a-plan-for-how-much&quot;&gt;There’s a Plan For HOW MUCH?&lt;/h2&gt;
+
+&lt;p&gt;I’ve been seeing a lot of posts online about how people are YOLOing their wallets and buying the $200 a month &lt;a href=&quot;https://www.anthropic.com/pricing&quot;&gt;Claude Max plan&lt;/a&gt;, which includes 20x the amount of requests that you can make with the Pro plan (which I’m currently on). I suppose that if I was using Claude Code for my job, and it was on a super large codebase, that might make some sense. But honestly, it seems a bit excessive. For an experienced software engineer, coding is probably like 10% of what you actually do, and the rest is reading code and planning what to do. I guess Claude can help with that too, but it just seems like the guys who are running 8 subagents simultaneously and racking up the Claude Code tokens could really just learn to git gud at software engineering. Or as the kids would say, Skill Issue! They’re obviously just karma farming because who actually does that!?&lt;/p&gt;
+
+&lt;p&gt;I guess one additional bonus of that ridiculous MAX plan is that you have access to the Opus 4 model, which may or may not be named after that penguin from the 80s. I already feel like I can accomplish pretty much whatever using Sonnet, but I guess that if I hit too many roadblocks, it might be interesting to at least try Opus.&lt;/p&gt;
+
+&lt;p&gt;I do think I made a pretty good decision paying for the $20 plan as I rarely hit the rate limit anyway, and I’ve been using this tool called ccusage to see how much I’d be paying if I was using the pay-as-you-go style of token based API usage.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/claude-code-usage-stats.jpg&quot; width=&quot;700&quot; alt=&quot;A screenshot of a terminal window displaying Claude Code usage statistics from the &apos;ccusage&apos; tool for July 1-15, 2025. The table shows columns for session start time, duration, tokens, and cost. The sum of the completed sessions is $33.66, with a final projected cost of $51.28 shown at the bottom.&quot; /&gt;
+	&lt;figcaption&gt;My Claude Code usage statistics from ccusage showing token usage and costs. Not bad for $20 a month!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This image doesn’t completely reflect my usage because it’s divided between like 3 different computers, and the tool only shows usage for the computer it’s running on. And I’m too lazy to go run it on all of them right now to see how much I actually used. On top of that, I think the Claude Code Github Actions stuff uses your Pro Plan quota, so that’s not showing up in the numbers either.&lt;/p&gt;
+
+&lt;p&gt;I plan on continuing to use Claude Code and paying for the subscription for now. I started it on July 1st and I’ve already gotten my money’s worth for the month. To be honest, I have a suspicion based on the token usage image above that this price is heavily subsidized, kinda like how Uber and Lyft rides used to be super cheap. Though with those things, you’d have to pay a person, and with Claude, you just need to pay to run a server. Hopefully servers get cheaper or more efficient, but even so, it’s hard to believe that this much utility can come at such a low price. Maybe I should be more bullish about AI.&lt;/p&gt;
+
+&lt;p&gt;I should probably report back in a month or so to see if I run out of things to use CC on, or if I just keep using it as frequently as I am now. For now though, I’m totally bought into the hype. Claude Code forever!&lt;/p&gt;
+
+&lt;h2 id=&quot;btw&quot;&gt;BTW&lt;/h2&gt;
+
+&lt;p&gt;Also, I’m still using this AI stuff to help me write my blog. None of the actual words were written using AI, but I did use it to help me be extremely lazy. For example, the image I made at the top of this blog (which was sorta generated with AI but also hand edited) was plopped into the root directory of my Jekyll repo. I then told AI to put it in the right directory, and make a link and a caption to it. I did the same with the screenshot of the ccusage tool, and I also told the AI to resize it since it was kinda big. It used a command line tool and got it to 150kb from 650kb. Interestingly, I tried asking it to add some alt text to the images in this post for accessibility. It did an okay job at first but I kept nudging it, and now the images are a lot more accessible. I also had it add some links within the post, which I could totally do myself, but why should I do it if AI can do it for me?&lt;/p&gt;
+
+&lt;p&gt;To me, that’s the whole point of AI. I enjoy writing blog posts and getting my thoughts out there, but wrangling images and formatting captions brings me no joy; it’s just friction. AI is helping me be creative and express myself, without taking away the soul of the process of creation, which is the way it should be. I’m sure I’ll think of more ways to use AI, but for now this is getting me really excited about the possibilities!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;img src=&quot;/blog/wp-content/uploads/2025/claude-code-best-friend.jpg&quot; width=&quot;700&quot; alt=&quot;A &apos;Friendship ended with&apos; meme. The top text says &apos;Friendship ended with Gemini&apos;. The image shows a picture of the author shaking hands with the Claude logo. The text in the middle says &apos;Now CLAUDE is my best friend&apos;.&quot; /&gt;
+	&lt;figcaption&gt;Claude Code - my new best friend! (I spent a lot of time on this image, btw)&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Previously on my blog, I wrote about &lt;a href=&quot;/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/&quot;&gt;vibe coding&lt;/a&gt; and how I was experimenting with Google CLI, the free agentic AI thing that runs in your command line. I talked about how cool it was, but also how I was too cheap to try anything that cost money. After repeatedly hearing about how good Claude Code was, I decided to scrounge up the last few dollars I had in my vast money bin and spent $20 on Claude Pro. So was it worth it? Heck yeah it was! Claude Code is my new best friend!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 15 Jul 2025 16:00:00 +0000</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+        <category>Claude</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1095,101 +1185,6 @@ Your browser does not support the audio element.
         <pubDate>Mon, 10 Jan 2022 00:00:00 +0000</pubDate>
         <link>https://www.hung-truong.com/blog/2022/01/10/i-created-a-robot-to-solve-wordle-for-me/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/01/10/i-created-a-robot-to-solve-wordle-for-me/</guid>
-        
-        
-        <category>iOS</category>
-        
-        <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Cloning Zwift on iOS Part 5: SwiftUI and Combine</title>
-        <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
-
-&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;moving-to-combine&quot;&gt;Moving to Combine&lt;/h3&gt;
-
-&lt;p&gt;When I originally wrote the Zswift app, I didn’t really spend too much time on making sure the data model or architecture was the cleanest or anything. It’s really more of a hodgepodge of explorations and trying to get stuff to just work. Because of this, I probably violated a bunch of best practices. I had a “Workout” object that stored all of the different information that is needed to model a workout, but I also threw a bunch of logic and functions in there that probably didn’t make sense.&lt;/p&gt;
-
-&lt;p&gt;For example, the Workout had info on each segment of the workout, along with the duration and amount of power for the segment. As the workout progressed, I would store the elapsed time as well as a bunch of other state variables like the current segment and other variables like time in current segment that I used to drive the UI. Since I kept a bunch of variables to keep track of state, it’s possible that some of them would get out of sync with each other, and that would cause bugs. I think I had a bunch of off-by-one errors where I would reach the end of an index and crash or the time within a segment would be off by 1 so I’d be at 2:01/2:00 as far as progress went. Those kind of bugs.&lt;/p&gt;
-
-&lt;p&gt;In moving to Combine, my goal was to have the state of the workout flow from the one thing about the workout that actually changes: the elapsed time.&lt;/p&gt;
-
-&lt;p&gt;The elapsed time literally decides which segment I’m in, how long I’ve been working out (duh), how long I’ve been in the current segment, how hard I should be pedaling, etc. I ended up creating a separate class to keep track of the state of the workout, and just use the workout as a static definition of the workout. I could’ve done this before migrating to use Combine, but like I said, it was working and I didn’t feel the need to refactor.&lt;/p&gt;
-
-&lt;p&gt;In my current setup, the WorkoutManager has a @Published variable that keeps track of the elapsed time, and then I create a bunch of other publishers based on that one. I also have publishers that combine (imagine that) with other publishers. For example, I have a publisher called “timeInCurrentSegmentPublisher” that publishes the amount of time that I’ve been in the current segment. I combine this publisher with the “currentSegmentPublisher” which gives me the current segment, and use this to calculate the percentage progress for the current segment. I have to combine the two because each publisher only gives me one thing.&lt;/p&gt;
-
-&lt;p&gt;I weighed the benefits of creating publishers with multiple tuples of values, but in most cases it didn’t make sense, and I think it goes against the concept of making the streams composable, but I did end up making one for currentSegmentPublisher since it calculates the current segment and the current segment’s index at the same time anyway. Even as I’m writing about it now, I’m not sure if the better way is to create two different publishers since it’s kinda clunky to grab the desired value from the tuple.&lt;/p&gt;
-
-&lt;p&gt;Anyway, the result here is that my Workout object doesn’t have any more state at all. I could make it a struct but there’s some SwiftUI requirement for my Workout to be a class if I want to use it in a Modal view (which the workout detail is set up as) so for now I’ll just leave it as-is. I could also create a view model if I really wanted the Workout object to be a struct.&lt;/p&gt;
-
-&lt;p&gt;I’m sure I could optimize the Combine publishers even more but since they’re working now I’ll just leave them.&lt;/p&gt;
-
-&lt;h3 id=&quot;swiftui&quot;&gt;SwiftUI&lt;/h3&gt;
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2021/xcode_swiftui_previews.png&quot; /&gt;
-	&lt;figcaption&gt;An example of the live SwiftUI previews that update automatically&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The general opinion that I see from others about SwiftUI is that the more people use it, the more they like it, and that it really forces you to rethink how you define interfaces. I heard this a million times but until you actually play around with it in a non-trivial example I feel like it’s hard to really understand it.&lt;/p&gt;
-
-&lt;p&gt;The gist is that SwiftUI is a declarative way to define your UIs instead of an Imperative way. The difference can seem subtle until you start doing stuff. What it means is that instead of telling the computer how to do something, you just tell it what you want. If that’s confusing then yeah, actually it is confusing.&lt;/p&gt;
-
-&lt;p&gt;I guess to put it another way, in UIKit you can define views as objects, give them properties, add them to a parent view and then set some constraints on them. In this imperative example, it’s up to you to define every step to the computer to tell it what to do, and hope that your interface matches what you were thinking.&lt;/p&gt;
-
-&lt;p&gt;In a declarative syntax, you can describe what you want, and add some modifiers to it if you need to have more control over the actual output. From there, you also define state variables or observed objects that the SwiftUI view will use to actually come up with the completed interface.&lt;/p&gt;
-
-&lt;p&gt;Imagine that you want to show a list of dog breeds. In an imperative system you need to set up the collection view controller, fill out your functions for “cellAtIndex” and “didSelectCellAtIndex” etc, and supply the cells. In a declarative system you can say “I want a list of ‘DogViews’ that use the ‘Dog’ model” and define a “NavigationLink” to define what happens when you tap on the cell.&lt;/p&gt;
-
-&lt;p&gt;The interesting part to me was that the SwiftUI view is an immutable struct, so you can’t modify the view as you would a UIView when states change. Of course your view can respond to changes in the data model, but all of those states need to be determined at compile time rather than runtime.&lt;/p&gt;
-
-&lt;p&gt;One of the best parts about SwiftUI is how the “live” previews work. They aren’t exactly real time, but fast enough that the feedback loop between writing UI code and seeing the result is very tight. In the past I’ve had to write code to update a UI (or use Interface Builder), then build and run, and go to the part of the app where the UI I changed was. This could mean it would be a few seconds or minutes before I saw whether the change I just wrote actually worked. In SwiftUI you make a change and once you’re done writing it, the preview window will show it. The system isn’t perfect, of course, as sometimes it can’t compile and you need to reenable the live preview. But it’s really the best tradeoff between the WYSIWYG style of Interface Builder and the readability of programmatic view code. I’m sure the tools will improve in the future, and I’m quite certain that this ease of previewing code will be one of the factors that will motivate people to switch to SwiftUI.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-workout-view&quot;&gt;The Workout View&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/workout_view.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I modeled my original interface after the Zwift app. In the Zwift app, you can see the workout represented as a bunch of rectangles representing segments that get taller when the target power is higher. The width is determined by the length of the segment.&lt;/p&gt;
-
-&lt;p&gt;I basically copied this and implemented it with a UIStackView and percentage constraints. I thought it was pretty cool but one thing that bothered me is the warmup and cooldown segments. Those have a starting value and ending value that are different (warmups start lower and end higher). I didn’t want to spend too much time drawing the start of the rectangle to be lower than the end (plus it wouldn’t technically be a rectangle at that point) so I just used the “lower” value and set them as flat rectangles.&lt;/p&gt;
-
-&lt;p&gt;I decided to practice some custom drawing in SwiftUi to properly draw the warmup and cooldown segments and I’m pretty happy with the result. The view is drawn by taking the desired start and end heights and width, and drawing a path with it. I used “path.addArc” to get a nice rounded corner effect, though it isn’t perfect. I also draw a 1px wide vertical line to show where I am in the workout by offsetting it from the left by a percentage of the view’s width.&lt;/p&gt;
-
-&lt;p&gt;I also went ahead and stole the color scheme from the Zwift app which makes it look a bit more polished.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-workout-detail&quot;&gt;The Workout Detail&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/side_by_side.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In addition to updating the workout representation view, I also decided to just overhaul the entire workout detail view (the view I see when I’m in a workout). The old interface was pretty basic with a bunch of grids and text boxes that didn’t really have any visual separation from each other, aside from the size and distribution of the labels.&lt;/p&gt;
-
-&lt;p&gt;I ended up experimenting with the “GroupBox” component of SwiftUI which is pretty simple but makes a big difference just in terms of separating out the different interface elements. I also added some accent colors and icons to some of the text labels, and I added progress indicators to the segment time and elapsed time sections just to make them stand out more. Overall I really like the new workout detail view which is good since I’m literally the only person who uses this app.&lt;/p&gt;
-
-&lt;p&gt;I have some more ideas for enhancements, like recreating the Apple Watch heart rate animation which shows a heart pulsing at your actual heart rate. The animation seamlessly updates when your heart rate changes, which is pretty cool.&lt;/p&gt;
-
-&lt;p&gt;I also want to add some more tracking informtion, like a histogram (maybe with candlestick charts or sparklines) of the wattage and heart rate info. This would be nice to have but the HealthKit integration already includes the heart rate chart. And I don’t know if I care too much about the wattage graph.&lt;/p&gt;
-
-</description>
-        
-          <description>&lt;p&gt;&lt;img src=&quot;/blog/wp-content/uploads/2021/Zswift_main_screen.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two. I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.&lt;/p&gt;
-
-&lt;p&gt;I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
-        <link>https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2021/05/02/zwift-clone-swiftui-combine/</guid>
         
         
         <category>iOS</category>

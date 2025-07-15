@@ -117,6 +117,35 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">January 06, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/01/06/impressions-of-android-from-an-iphone-userdeveloper/">Impressions of Android From an iPhone User/Developer</a></h3>
+        <p><p><img src="/blog/wp-content/uploads/2011/01/android-s1-box.jpg?resize=500%2C375" alt="" title="android-s1-box" width="500" height="375" class="aligncenter size-full wp-image-2221" data-recalc-dims="1" /></p>
+
+<p>I just got an Android phone, the HTC Hero, to play around with and perhaps develop on. It was only $55 on Ebay (including shipping) which seemed like a steal to me. I’m currently using it on WiFi without any phone service (the phone has a bad ESN, so that’s probably why the price was so low).</p>
+
+<p>My first impression as an iPhone user is that the interface is really clunky. There just isn’t as much attention paid to detail. For example, there are often measurable delays between pressing a button and seeing something happen. This happens when I try to add a widget to the home screen or open an app that hasn’t been opened into memory. If I press a button and I don’t see something <a href="http://www.useit.com/papers/responsetime.html">happen immediately</a>, I will assume I missed the button and press it again. This is extremely frustrating since the iPhone animates immediately upon user interaction. The iPhone may not be any faster than my Android phone, but it at least gives the illusion of it (which is probably just as good in terms of usability).</p>
+
+<p>Another thing I noticed is the lack of “back” buttons in the Android apps. Even Twitter lacks the onscreen back button. I assume this is following some kind of standard Android paradigm of favoring physical buttons over onscreen ones. It took me a while to get used to hitting the physical back button (and home, menu and search for that matter) instead of looking for navigation on the screen. While this is a different paradigm, I’m not sure I’m in a position to say it’s worse, better or on par with the iPhone. My suspicion is that the lack of onscreen navigation requires the user to go through more context switches (screen to physical button back to screen) which is disorienting. This is made worse by the fact that there’s seven fuckin’ buttons on my particular phone! I’m sure people adapt and get used to it, but I’m personally used to having just one button that takes me to the home screen (oh, and the volume and lock buttons, but they don’t serve dynamic functions in applications (unless they want to break the App Store terms)).</p>
+
+<p>About the only positive thing I can say about the Android platform is that Google is integrating the shit out of it with their own services. I only have to sign in once with my Google account and I get Voice, Talk, Maps, Search, Goggles, Places, Latitude, Market, Contacts, Gmail, YouTube and probably some other things I’m forgetting. The voice commands are incredibly cool, though I wonder how many times I’d actually use them instead of doing things the normal way. Oh, another positive is that Angry Birds is free on Android, though my device is way too slow to run it.</p>
+
+<p>I’m currently using a ROM with 2.2 on my HTC Hero, so that might account for some performance issues (though I thought it was supposed to be faster). I’m still kind of unimpressed by Android as a whole though, especially in terms of end to end usability. I originally got this device so I could test code on hardware, but I’m not so sure I even want to develop for Android anymore. I’ll probably end up writing some simple code, at least.</p>
+
+<p>Does anyone with a newer Android phone want to debunk or argue with anything I’ve written?</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">January 02, 2011</span>
         <h3><a class="post-link" href="/blog/2011/01/02/prediction-for-2011-death-of-the-phone/">Prediction for 2011: Death of the Phone</a></h3>
         <p><p>It’s January, which means it’s time for really misinformed predictions that will just look silly in hindsight! I’ve been <a href="http://www.hung-truong.com/blog/2009/07/16/to-google-voice-or-not-to-google-voice/">reluctant in the past to use Google Voice</a> because of integration issues, but I think 2011 is the year that I’ll start relying on it more, especially if I end up changing my real phone number (I’ll just give out my Google Voice # and forward calls).</p>
@@ -235,49 +264,6 @@
 <p><a href="/blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg" rel="lightbox[2157]"><img src="/blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg?resize=450%2C600" alt="" title="Cactus Holiday Letterpress Card Detail" width="450" height="600" class="aligncenter size-medium wp-image-2159" srcset="/blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg?resize=450%2C600 450w, /blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg?resize=768%2C1024 768w, /blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg?w=1208 1208w, /blog/wp-content/uploads/2010/12/Cactus-Holiday-Letterpress-Card-Detail.jpg?w=1812 1812w" sizes="(max-width: 450px) 100vw, 450px" data-recalc-dims="1" /></a></p>
 
 <p>I’m pretty happy with the result. I may end up buying the supplies to use photopolymer plates (a metal base) because this is way, way fun!</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">December 01, 2010</span>
-        <h3><a class="post-link" href="/blog/2010/12/01/conditional-gets-in-app-engine/">Conditional GETs in App Engine</a></h3>
-        <p><p>I’m currently working on an app in <a href="http://appengine.google.com">Google App Engine</a> that polls feeds periodically and then does stuff with them. I suppose I could use that <a href="http://code.google.com/p/pubsubhubbub/">pubsubhubbub</a> thingy but I have a feeling that most feeds aren’t using this yet.</p>
-
-<p>Anyway, I did a quick naive implementation of polling about every hour or so. Apparently the feed parser I’m using is pretty inefficient because it’s eating up a lot of resources (relatively speaking) on App Engine. I remembered that the http protocol is pretty smart, and there’s a way to figure out if stuff has changed since the last time you grabbed it.</p>
-
-<p>Google’s urlfetch doesn’t seem to support conditional GETs (someone tell me if I am wrong). I looked around and found a <a href="http://stii.co.za/python/http-conditional-get-with-python-urllib2/">few</a> <a href="http://www.artima.com/forums/flat.jsp?forum=122&amp;thread=15024">tutorials</a> on how to accomplish this in Python using urllib2. The tutorials weren’t exactly what I wanted, so I had to change a few things here or there. Here’s a snippet of code that I’m using:</p>
-
-<pre>import urllib2
-feed = Feed.get() #my feed object has a etag, last_modified and url property
-req = urllib2.Request(url)
-if feed.etag:
-    req.add_header("If-None-Match", feed.etag)
-if feed.last_modified:
-    req.add_header("If-Modified-Since", feed.last_modified)
-try:
-    url_handle = urllib2.urlopen(req)
-    content = url_handle.read()
-    headers = url_handle.info()
-    feed.etag = headers.getheader("ETag")
-    feed.last_modified = headers.getheader("Last-Modified")
-    feed.put()
-except Exception, e:
-    logging.info(e) #just says 304 didn't change
-    return
-dostuffwith(content)
-</pre>
-
-<p>This handles my use case, which is doing work if the feed is new, and ignoring it if it hasn’t been modified. I could probably wrap this into a function that returned false if it the file hadn’t changed, and the content if it was new… Probably will do that next.</p>
 
 
           

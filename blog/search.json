@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can",
+      "title": "How Much Code Could Claude Code Code if Claude Code Could Code Code? (It Can!)",
+      "url": "/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/",
+      "date": "2025-07-15",
+      "year": "2025",
+      "categories": ["Tech","AI","Claude"],
+      "description": "",
+      "content": "Claude Code - my new best friend! (I spent a lot of time on this image, btw) Previously on my blog, I wrote about vibe coding and how I was experimenting with Google CLI, the free agentic AI thing that runs in your command line. I talked about how cool it was, but also how I was too cheap to try anything that cost money. After repeatedly hearing about how good Claude Code was, I decided to scrounge up the last few dollars I had in my vast money bin and spent $20 on Claude Pro. So was it worth it? Heck yeah it was! Claude Code is my new best friend! What is Claude Code? Claude Code is Anthropic’s official CLI tool that brings Claude’s coding capabilities directly to your terminal. It’s a lot like the Google Gemini CLI that I talked about before, but it actually has brains and doesn’t get stuck in an infinite loop constantly for no reason. Previously, when I tried using the Gemini CLI, it would mostly hit rate limits, switch to the flash version of the model, and generally be bad at d...",
+      "excerpt": "Claude Code - my new best friend! (I spent a lot of time on this image, btw) Previously on my blog, I wrote about vibe coding and how I was experimenting with Google CLI, the free agentic AI thing ..."
+    },
+    
+    {
       "id": "vibe-coding",
       "title": "My Obligatory Blog Post About Vibe Coding As a Software Engineer",
       "url": "/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/",
