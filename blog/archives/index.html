@@ -13017,6 +13017,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const selectedCategory = categoryFilter.value;
       const selectedYear = yearFilter.value;
       const searchTerm = searchInput.value.trim();
+      let visibleCount = 0;
       
       postItems.forEach(item => {
          let show = true;
@@ -13049,7 +13050,21 @@ document.addEventListener('DOMContentLoaded', function() {
          }
          
          item.style.display = show ? 'list-item' : 'none';
+         if (show) visibleCount++;
       });
+      
+      // Update status text based on filters applied
+      if (searchTerm === '' && (selectedCategory || selectedYear)) {
+         let filterText = '';
+         if (selectedCategory && selectedYear) {
+            filterText = `category "${selectedCategory}" and year ${selectedYear}`;
+         } else if (selectedCategory) {
+            filterText = `category "${selectedCategory}"`;
+         } else if (selectedYear) {
+            filterText = `year ${selectedYear}`;
+         }
+         searchStatus.textContent = `Showing ${visibleCount} posts for ${filterText}`;
+      }
       
       updateYearHeaders();
    }
