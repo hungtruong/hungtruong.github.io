@@ -19,7 +19,7 @@
       "url": "/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/",
       "date": "2025-06-29",
       "year": "2025",
-      "categories": ["coding","ai","lifestyle"],
+      "categories": ["Coding","AI","Lifestyle"],
       "description": "",
       "content": "Vibe Coding Origins As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet another refactor of my web app, Anime Nano, since I wanted to get it off of the $10 a month DigitalOcean host I was using. I decided to try using Cloudflare since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see). I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from Rails to Django, and using different databases and hosts, and deployment technologies like Chef and Docker) for technologies that I’m somewhat familiar with. Or technologies that I want to learn. At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with. I decided to try and let AI do most of the heavy lifting, and successfully used Google Gemini (I think it might’ve been 2.0 ...",
       "excerpt": "Vibe Coding Origins As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do. Earlier this year I started yet an..."
@@ -235,7 +235,7 @@
       "url": "/blog/2017/12/03/introducing-deadringer-an-iPhone-X-lockscreen-replica/",
       "date": "2017-12-03",
       "year": "2017",
-      "categories": ["iPhone","Apple","Iphone X","Security","iOS","Tech"],
+      "categories": ["iPhone","Apple","iPhone X","Security","iOS","Tech"],
       "description": "",
       "content": "I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk. I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you have a 50% chance of having the same phone color as any other person. I was thinking that if I did mistake it as my phone and entered my passcode, I’d basically be transmitting the key to all of my personal data. That led me to think about how hard it would be to reproduce the iPhone X’s lock screen and spoof one of my own. It turns out that with some experience with iOS development, it’s not that hard. Thanks to the iPhone X’s Super Retina display, a screen full of black pixels is indistinguishable from a device that’s asleep. And thanks to the omission of the home button, and a public API for disabling the swipe to go home gesture, I was able to make a pretty convincing copy of the iPhone X’s lock screen. Your mileage may vary if you’re trying to spoof other iPhone X models. Oh also I just ...",
       "excerpt": "I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk. I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you hav..."
@@ -583,7 +583,7 @@
       "url": "/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/",
       "date": "2012-06-24",
       "year": "2012",
-      "categories": ["MapsKrieg"],
+      "categories": ["Mapskrieg"],
       "description": "",
       "content": "As I mentioned on Twitter a while back, I got a cease and desist request from craigslist a couple of weeks ago for Mapskrieg (my craigslist + Google Maps mashup for web and iOS). This request came at a pretty bad time (right before I was to move from Chicago to Ann Arbor). I quickly agreed to it and removed the app (I didn’t really have time or money to fight a lawsuit). I also added a passive-aggressive note on mapskrieg.com that you can still read if you’d like. I contacted a reporter at PandoDaily since I had seen a few other tweets about C&amp;Ds from craigslist. He proceeded to write a pretty badly researched article (he originally was going to post that I made housingmaps.com) that got very little attention. Fast forward to Friday and I got a tweet that Mapskrieg’s competitor, Padmapper, also got a C&amp;D. The internet erupts in anger and I realize that I forgot to write a eulogy for Mapskrieg! While I won’t get too deep into the politics of the current situation (I kinda thi...",
       "excerpt": "As I mentioned on Twitter a while back, I got a cease and desist request from craigslist a couple of weeks ago for Mapskrieg (my craigslist + Google Maps mashup for web and iOS). This request came ..."
@@ -835,7 +835,7 @@
       "url": "/blog/2011/04/25/the-internet-is-for-downtime/",
       "date": "2011-04-25",
       "year": "2011",
-      "categories": ["MapsKrieg","Web"],
+      "categories": ["Mapskrieg","Web"],
       "description": "",
       "content": "These last few weeks have been really, really bad for the internet. I mean, in general. What with Media Temple going down due to their nameservers, Amazon EC2 going down, and also the Playstation Network refusing to let me log in… You’d think there was a cyberattack going on or something. My websites did not manage to dodge all of the bullets either. A few sites were down from the Media Temple thing. I also inadvertently broke a few sites here and there. After the Media Temple downtime, I wanted to try updating a few Ruby Gems to get Passenger Phusion working. Unfortunately my rails apps hadn’t been updated in forever, so updating things broke backwards compatibility. I’ve been working on getting Anime Nano back to full capacity on the newest version of Rails. I think the whole experience was a bit stressful, but probably ended up being good in the long run. I was also surprised to see Mapskrieg going down late last week. Apparently I hadn’t verified the domain for Google Apps and G...",
       "excerpt": "These last few weeks have been really, really bad for the internet. I mean, in general. What with Media Temple going down due to their nameservers, Amazon EC2 going down, and also the Playstation N..."
@@ -847,7 +847,7 @@
       "url": "/blog/2011/04/08/mapskrieg-iphoneipad-app-launch/",
       "date": "2011-04-08",
       "year": "2011",
-      "categories": ["Code","MapsKrieg","Mashup","Mobile"],
+      "categories": ["Code","Mapskrieg","Mashup","Mobile"],
       "description": "",
       "content": "It’s been about 4 years since I announced the launch of Mapskrieg, my Google Maps and craigslist mashup web app. Since then, I’ve gone to school (again), worked for Microsoft and quit, and made a few apps. Today, I’m happy to announce the launch of my newest app, Mapskrieg for iOS! I’ve been working on this app for a few weeks, and I think it’s ready for public consumption. It’s basically Mapskrieg, but developed natively for the iPhone and iPad. In the past, I’ve taken a sort of iterative approach of releasing fairly minimal apps and improving on them. For example, I released Threadless as an iPhone only app and later added the iPad support. I wanted to release Mapskrieg on both platforms so the launch would have a little more bang. Plus I think the iPad app is the better of the two, and I really wanted that one to stand out for the release. I’ve been getting much more comfortable with mobile development, and I’m very happy with the rate at which I was able to conceive and release ...",
       "excerpt": "It’s been about 4 years since I announced the launch of Mapskrieg, my Google Maps and craigslist mashup web app. Since then, I’ve gone to school (again), worked for Microsoft and quit, and made a f..."
@@ -3355,7 +3355,7 @@
       "url": "/blog/2008/05/04/mapskrieg-in-a-mashup-contest-vote-for-me/",
       "date": "2008-05-04",
       "year": "2008",
-      "categories": ["MapsKrieg","Mashup"],
+      "categories": ["Mapskrieg","Mashup"],
       "description": "",
       "content": "I keep forgetting to mention this. A while back there was this cryptic ad on Facebook about mashups and it led to a Dice.com sponsored contest. I figured I would enter MapsKrieg and I sort of forgot about it. Checking the visitor stats, I noticed some people were coming from a contest poll page. So MapsKrieg was chosen as a finalist in this contest! The prize is $4000, which is pretty neat. So please check out the finalists and vote (preferably for me)! Mine is #2, “Home &amp; Apartments.” I wonder why they just didn’t label it “MapsKrieg?”",
       "excerpt": "I keep forgetting to mention this. A while back there was this cryptic ad on Facebook about mashups and it led to a Dice.com sponsored contest. I figured I would enter MapsKrieg and I sort of forgo..."
@@ -4495,7 +4495,7 @@
       "url": "/blog/2007/05/06/mapskrieg-craigslist-google-maps-mashup-launch/",
       "date": "2007-05-06",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "I did a bit more work on MapsKrieg (the official name of my craigslist and google maps mashup) in the past few days, and I think it’s ready for initial launch now. If you haven’t read my previous posts on MapsKrieg, it’s a mashup that scrapes craigslist apartment listings and displays them using the Google Maps API. I’ve been on the hunt for an apartment in Ann Arbor, MI where I’m going to go to grad school. I had seen the coolness of HousingMaps, but I noticed that it only supported a very small number of cities. I figured I’d build a similar app that listed more cities, since craigslist has expanded quite a bit since that HousingMaps was created. If you’re wondering about the name, here’s my thought process: I was originally calling the project “Craigsmaps” since that sort of made sense. But the domain name for that name is already taken. So I came up with a bunch of other stupid Web 2.0 names that didn’t really click (Abodr, apartment.icio.us (okay, just kidding)). So I switched ...",
       "excerpt": "I did a bit more work on MapsKrieg (the official name of my craigslist and google maps mashup) in the past few days, and I think it’s ready for initial launch now. If you haven’t read my previous p..."
@@ -4519,7 +4519,7 @@
       "url": "/blog/2007/05/02/craigslist-and-google-maps-mashup-thingy-day-14-getting-jquery-and-prototype-to-work-together/",
       "date": "2007-05-02",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Whoa, that’s a doozy of a title! Anyway, today I was working on making the mashup look prettier and actually somewhat usable for human consumption. I was using thickbox to get some pretty snazzy ajax stuff going on for displaying the about page and whatnot. Today, I included prototype for some even more snazzy ajax stuff. But apparently they clash. I guess both of them like using the ‘$’ character as a shortcut to make the code easier to read. Which means they have crazy namespace conflicts. Bad developers! Anyway, here’s how I got it to work. Right after the import of the jquery library, I set the ‘$’ thing to be ‘$j’ instead. Then I refactored thickbox to use the ‘$j’ name instead. It worked. Here’s what the head looks like: &lt;br /&gt; ...&lt;br /&gt; &lt;script type=\"text/javascript\" src=\"/js/jquery-latest.pack.js\"&gt;&lt;/script&gt;&lt;br /&gt; &lt;script&gt;var $j = jQuery.noConflict();&lt;/script&gt;&lt;br /&gt; &lt;script type=\"text/javascript\" src=\"/js/thickbox.js\"&gt;&lt;...",
       "excerpt": "Whoa, that’s a doozy of a title! Anyway, today I was working on making the mashup look prettier and actually somewhat usable for human consumption. I was using thickbox to get some pretty snazzy aj..."
@@ -4531,7 +4531,7 @@
       "url": "/blog/2007/05/01/craigslist-and-google-maps-mashup-thingy-day-1213-dot-com-and-cities/",
       "date": "2007-05-01",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "So I worked on the mashup quite a bit yesterday. So much that when I was done, I was too tired to write a blog entry about it. I mostly spent yesterday buying the domain name, upgrading my server, and getting the project to work on my “production” server. It wasn’t too difficult; I just needed to move the database, change some names, and make sure there weren’t any old names being used. I also started adding all of the cities on CraigsList to the database. At least, the US ones. This took a lot of time to do manually. I had to figure out if the area was an actual city, or a bunch of cities, then figure out the geo coordinates, and stuff it into the database. I thought it might be faster to do it by hand than write a script. Nope. Today I wrote a script that would make the entry faster by automagically getting the coordinates from Google Maps’ http request service. It still took a while, but today I finished inserting almost all of the US cities (excluding the combination ones, since...",
       "excerpt": "So I worked on the mashup quite a bit yesterday. So much that when I was done, I was too tired to write a blog entry about it. I mostly spent yesterday buying the domain name, upgrading my server, ..."
@@ -4543,7 +4543,7 @@
       "url": "/blog/2007/04/29/craigslist-and-google-maps-mashup-thingy-day-11-more-random-code/",
       "date": "2007-04-29",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Today for the mashup thing, I did a bit of work on the main index page where each available city will show up as a marker. So when someone goes to the root of the website, they’ll see a bunch of cities. They can also pick the cities from a drop down menu, too. This required a bit of more javascript and some template files, etc. I did a little research on the person who did the Google Maps Craigslist mashup like two years ago. Apparently he got a job at Google! While that’s pretty awesome, I can’t see this project doing the same for me, since it’s something that’s already been done (and two years ago, which is an eternity in web time). Rather, I’m just building this for my own use and perhaps for other people who wish there were more cities available in that HousingMaps mashup. I came up with a name for the application. I was going to call it CraigsMaps, but someone already has that domain name. I’m thinking I should buy the domain name pretty soon, but what if I come up with a coole...",
       "excerpt": "Today for the mashup thing, I did a bit of work on the main index page where each available city will show up as a marker. So when someone goes to the root of the website, they’ll see a bunch of ci..."
@@ -4555,7 +4555,7 @@
       "url": "/blog/2007/04/28/craigslist-and-google-maps-mashup-thingy-day-10-custom-controls-and-housekeeping/",
       "date": "2007-04-28",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "I guess this should count as the project’s 10th and 11th day, though I didn’t really spend too much time on either day, so let’s just roll them into one. After doing some CSS to overlay some divs over the Google Map, I found out there’s another way to do this: with “custom controls.” The way that the custom controls work is both pretty sweet, and not that great. I don’t like having to add content to them by using javascript. It just doesn’t seem “correct” to do so, since I’m just overlaying normal html. So I’ll be using some custom controls, and some divs. The good thing about custom controls is that the map knows not to open infowindows under them when they’re opened up. Besides that, I just did a lot of random work on getting the app to look a little better. Like showing the correct area based on which city’s listing you want to see. Overall, the project is coming along really smoothly, with very few roadblocks. I’m happy that it’s nearing completion. I really enjoy doing these on...",
       "excerpt": "I guess this should count as the project’s 10th and 11th day, though I didn’t really spend too much time on either day, so let’s just roll them into one. After doing some CSS to overlay some divs o..."
@@ -4591,7 +4591,7 @@
       "url": "/blog/2007/04/25/craigslist-and-google-maps-mashup-thingy-day-9-css-foo-and-cakephp-helpers/",
       "date": "2007-04-25",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Today I did a bunch of CSS, making the mashup thing actually look kind of nice. Later, I may add some more “Web 2.0” features such as drop shadows and gradients. I was having a hard time getting the map to show up in the div with a few of the css layouts I downloaded, so I just decided to code it by hand. I think it looks pretty neat; the map stretches across the whole screen and then the other content is shown in absolutely positioned divs. I also did some stuff with the CakePHP helpers. CakePHP’s inferiority to Rails is really starting to show to me. I think it’s all a product of PHP having not been created for this kind of MVC design. CakePHP tries to follow the conventions of Rails, but it does so in a sort of copycat manner. As such, the result does not meet or exceed the original. In the case of Helpers, Rails automagically links the named helper to the controller. In CakePHP, you must specify that a certain controller uses a certain helper. It’s kind of annoying. There also i...",
       "excerpt": "Today I did a bunch of CSS, making the mashup thing actually look kind of nice. Later, I may add some more “Web 2.0” features such as drop shadows and gradients. I was having a hard time getting th..."
@@ -4615,7 +4615,7 @@
       "url": "/blog/2007/04/22/craigslist-and-google-maps-mashup-thingy-day-8-cakephp-routing-and-caching/",
       "date": "2007-04-22",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "I spent a whole lotta time today trying to get caching working with CakePHP. Apparently, CakePHP doesn’t do caching quite as gracefully as Rails when it comes to custom routing, especially in the application root. Yeah, there’s a bug. I thought I was doing something wrong though, so it took me forever to find out it was actually a bug (or is it a “feature?”). Besides that, I got the interface to what it was previously, except with AJAX so that the Craigslist images are only downloaded when you click on a map marker. I also found that it takes a long time to put a week’s worth of listings (from Ann Arbor, at least) onto the map at once. I’m guessing there were at least 400 on there. I made a hard limit to the number of listings that show up, and it loads a lot faster now. I’m sort of back into the mood for working on this project again. I finally beat the Scrin campaign (it was really short) in Command and Conquer 3, so I’ll definitely be more focused now. I think.",
       "excerpt": "I spent a whole lotta time today trying to get caching working with CakePHP. Apparently, CakePHP doesn’t do caching quite as gracefully as Rails when it comes to custom routing, especially in the a..."
@@ -4627,7 +4627,7 @@
       "url": "/blog/2007/04/21/craigslist-and-google-maps-mashup-thingy-day-7-asynchronous-javascript-and-xml/",
       "date": "2007-04-21",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "I haven’t really been working on the Google Maps and Craigslist mashup very much recently. I blame it on a combination of going to Denver for a wedding, having a huge anime and manga backlog, getting Command and Conquer: Kane Edition, and general laziness. I think that’s a pretty good reason. Anyway, today I sorta got back into it. As the mashup worked on day 6, the Google map would preload all the stuff within the tabs for the markers. This meant it would poll Craigslist like a billion times in one second to get all of the images preloaded. Guess what? Craigslist doesn’t like that. They put a ban on me (and anyone else who would use the badly implemented map) after loading one page. Luckily it was only a temporary ban. My solution was to use AJAX to load the tabbed info windows for the markers on demand. So no pictures or anything get loaded until you request them. It’s much nicer to Craigslist, though I don’t know if it’s friendlier to my server, since there’ll be more requests. T...",
       "excerpt": "I haven’t really been working on the Google Maps and Craigslist mashup very much recently. I blame it on a combination of going to Denver for a wedding, having a huge anime and manga backlog, getti..."
@@ -4663,7 +4663,7 @@
       "url": "/blog/2007/04/12/craigslist-and-google-maps-mashup-thingy-day-6-mysql-refactoring/",
       "date": "2007-04-12",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "One of the things I didn’t really care about when I was coming up with my Google Maps Craigslist mashup thing was the correctness of the database schema. I’ve written database schema before, but this time I just got sort of lazy. When porting the application to CakePHP, I realized it was a bad idea to slack off. Today I spent some time refactoring and adding a association table to the db. I also learned some more MySQL syntax stuff. Previously, I had worked with Rails, which sort of handles the query making itself. Since I wrote a custom listing parser, I had to do some MySQL magic with JOINs and whatnot. I also worked a lot on the Facebook puzzle that I wrote about earlier today. I came up with an approach that was better than the last one I came up with, but only slightly. It’s still in the range of O(n), so I’ll have to figure out the last “clever” thing before I’ve got it finished. It’s actually a lot more interesting now due to the efficiency constraints.",
       "excerpt": "One of the things I didn’t really care about when I was coming up with my Google Maps Craigslist mashup thing was the correctness of the database schema. I’ve written database schema before, but th..."
@@ -4699,7 +4699,7 @@
       "url": "/blog/2007/04/10/craigslist-and-google-maps-mashup-thingy-day-5-cakephp/",
       "date": "2007-04-10",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Today technically counts as day 5 of my Craigslist and Google Maps Mashup thing since I didn’t work on it at all yesterday due to getting Command and Conquer 3: Kane Edition. I got the limited edition number 73137, which is cool since it’s a palindrome! Anyway, today I actually did work a little bit on the mashup. I spent most of my time switching out from a random php output file to a CakePHP setup. I haven’t ever used CakePHP before, but I have used Ruby on Rails quite a bit. CakePHP is sort of like PHP’s answer to rails. It copies a lot of the ideas and conventions that Ruby on Rails expects developers to follow. Because of the similarities between CakePHP and Rails, I found it pretty simple to migrate the PHP I already had to CakePHP. I just had to learn the proper syntax to get everything working in Cake. I still think Ruby is a really beautifully simple language to write code in. Cake tries to get things looking Ruby-ish, but there’s still some weirdness involved. It’s good fo...",
       "excerpt": "Today technically counts as day 5 of my Craigslist and Google Maps Mashup thing since I didn’t work on it at all yesterday due to getting Command and Conquer 3: Kane Edition. I got the limited edit..."
@@ -4711,7 +4711,7 @@
       "url": "/blog/2007/04/08/craigslist-and-google-maps-mashup-thingy-day-4/",
       "date": "2007-04-08",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Today I made a bit more progress with my Craigslist Google Maps mashup thing. I setup the database table that handled the pictures for the listings, and added the images to the view as well. After that, I setup a new parser to parse the listings that can be found at the Michigan off-campus housing listings page. I’m not sure if I should make a separate page for these, or include them in the Craigslist listings… I also came across a weird bug. When I ran the new Michigan parsing script by going to the page from a web browser, the thing would run fine, but after I uploaded to the server and ran it from the command line, it would flip out. It took me a really long time to figure out, but it turns out that I was calling a separate function by passing a value and not a reference. I actually thought this might be a problem when writing the function, but when it worked, I forgot about the issue momentarily. The weird part is that the function works fine when you hit the .php file from a br...",
       "excerpt": "Today I made a bit more progress with my Craigslist Google Maps mashup thing. I setup the database table that handled the pictures for the listings, and added the images to the view as well. After ..."
@@ -4723,7 +4723,7 @@
       "url": "/blog/2007/04/08/craigslist-and-google-maps-mashup-thingy-day-3/",
       "date": "2007-04-08",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Yesterday I worked on the mashup thing, but then I got sleepy and didn’t write a post about it. So here’s a post! Basically I worked on adding the individual listings onto the Google Map with stuff like the description, address, and price. At first I thought about importing the points from some kind of xml document, but I figured the approach with just embedding it was easier. Then I figured out how to start scraping some of the listing info from the Michigan off campus housing site. This site seems to have better listings in terms of quality and price. I think today I’ll work on getting all of that info into the database so I can map it as well.",
       "excerpt": "Yesterday I worked on the mashup thing, but then I got sleepy and didn’t write a post about it. So here’s a post! Basically I worked on adding the individual listings onto the Google Map with stuff..."
@@ -4735,7 +4735,7 @@
       "url": "/blog/2007/04/06/craigslist-and-google-maps-mashup-thingy-day-2/",
       "date": "2007-04-06",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "Today I pretty much worked on my Craigslist Google Maps app all day. I spent a lot more time getting the data that I scraped from the individual Craigslist ads into the database, and then setting up the cron script thing to periodically pick up the new feeds. To parse the RSS feeds, I just used Magpie since it was really easy. Magpie wouldn’t parse the KML files that Google Maps uses to do its geocoding thing (where it gives you the latitude and longitude based on an address) so I had to use a regular expression. It was a pretty ugly hack, but at least it got the job done. I suppose it’s more efficient to use regular expressions rather than a full blown parser though. Maybe. I also got the database info for the apartment ads into Google Maps using their API. It’s actually pretty simple once you understand what all the lines mean. I’m sort of weak in Javascript, so I guess this is a good chance for me to learn some more. I know Java, but I’m not used to using things like event listen...",
       "excerpt": "Today I pretty much worked on my Craigslist Google Maps app all day. I spent a lot more time getting the data that I scraped from the individual Craigslist ads into the database, and then setting u..."
@@ -4747,7 +4747,7 @@
       "url": "/blog/2007/04/05/craigslist-and-google-maps-mashup-thingy-day-1/",
       "date": "2007-04-05",
       "year": "2007",
-      "categories": ["Code","MapsKrieg","Mashup"],
+      "categories": ["Code","Mapskrieg","Mashup"],
       "description": "",
       "content": "So I’m sort of looking for housing in Michigan since I’m gonna be living there for two years. The apartments apparently go fast, so I should be looking for them a few months ago. Which is to say now. A while back, some guy made a mashup of Craigslist and Google Maps. HousingMaps shows a giant google map with pushpins corresponding to communities on Craigslist. I think this was one or two years ago. Since then, other communities have been added to Craigslist, but the person who wrote this site hasn’t updated anything. Guess what? Ann Arbor isn’t one of the communities supported by HousingMaps. So I figured it’d be a good exercise in coding (in PHP and some javascript for the Google Maps component) for me to do something similar. Sure, I’m not doing anything very original, but at least I’ll learn something, and I think it’ll be difficult enough without being impossible. So far, I’ve gotten the important chunks of info parsed out of the individual Craigslist listings. Note to Craigslis...",
       "excerpt": "So I’m sort of looking for housing in Michigan since I’m gonna be living there for two years. The apartments apparently go fast, so I should be looking for them a few months ago. Which is to say no..."
