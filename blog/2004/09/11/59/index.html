@@ -115,110 +115,19 @@ So apparently you need to register with Xanga to make a comment to someone’s b
   <button type="submit" class="button" id="comment-submit">Submit Comment</button>
 </form>
 
-<div id="comment-success" style="display: none;">
-  <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 1rem; border-radius: 4px; text-align: center;">
-    <h4 style="margin-top: 0;">Thank you for your comment!</h4>
-    <p style="margin-bottom: 0;">Your comment has been submitted and will be published after manual approval.</p>
+<div id="comment-success" style="display: none;" class="comment-message comment-message-success">
+  <div>
+    <h4>Thank you for your comment!</h4>
+    <p>Your comment has been submitted and will be published after manual approval.</p>
   </div>
 </div>
 
-<div id="comment-error" style="display: none;">
-  <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 1rem; border-radius: 4px; text-align: center;">
-    <h4 style="margin-top: 0;">Submission Error</h4>
-    <p style="margin-bottom: 0;">There was an error submitting your comment. Please try again.</p>
+<div id="comment-error" style="display: none;" class="comment-message comment-message-error">
+  <div>
+    <h4>Submission Error</h4>
+    <p>There was an error submitting your comment. Please try again.</p>
   </div>
 </div>
-
-<style>
-.comment-form {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  border: 1px solid #e6e6e6;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-}
-
-.comment-form h3 {
-  margin-top: 0;
-  color: #5a7400;
-  text-align: center;
-}
-
-.comment-form-fields {
-  max-width: none;
-}
-
-.comments {
-  margin: 2rem 0;
-  width: 100%;
-}
-
-.comments ul {
-  width: 100%;
-}
-
-.comment-list, .comment-replies {
-    list-style: none;
-    padding-left: 0;
-}
-
-.comment {
-  box-sizing: border-box;
-  background: #f9f9f9;
-  border-left: 4px solid #5a7400;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.comment-reply {
-  box-sizing: border-box;
-  padding-left: 2rem;
-  margin-top: 1rem;
-  border-left-color: #8ba300;
-  background: #fbfbfb;
-}
-
-.reply-indicator {
-  font-style: italic;
-  color: #888;
-  margin-left: 1rem;
-  font-size: 0.85em;
-}
-
-.comment-header {
-  margin-bottom: 0.5rem;
-  font-size: 0.9em;
-  color: #666;
-}
-
-.comment-header strong {
-  color: #333;
-}
-
-.comment-header time {
-  float: right;
-}
-
-.comment-body {
-  clear: both;
-}
-
-.comment-body p:last-child {
-  margin-bottom: 0;
-}
-
-@media only screen and (min-width: 800px) {
-  .comment-form {
-    width: 75%;
-    margin: 2rem auto;
-  }
-  
-  .comments {
-    width: 85%;
-    margin: 2rem auto;
-  }
-}
-</style>
   </div>
 
   <!-- POST NAVIGATION -->
