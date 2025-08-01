@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "31-days-with-claude-code-what-i-learned",
+      "title": "31 Days with Claude Code: What I Learned",
+      "url": "/blog/2025/08/01/31-days-with-claude-code-what-i-learned/",
+      "date": "2025-08-01",
+      "year": "2025",
+      "categories": ["Tech","AI","Claude"],
+      "description": "After using Claude Code as my primary coding assistant for 31 days, here's what I discovered about AI-powered development, productivity gains, and the future of programming.",
+      "content": "Claude Code - my coding companion for the past 31 days It’s been… one month since I purchased a Claude Pro subscription so I could try Claude Code instead of freeloading off of Google Gemini’s CLI. I thought I would take a look at the things I learned while vibe coding a few projects, and other uses that I found for Claude Code besides coding. If you missed it, be sure to check out my initial post about vibe coding, and the followup about how Claude Code was definitely better than Gemini (for now)! Context is King! So there’s a lot of talk about how prompt engineering is dead, and “context engineering” is the new hotness. That makes a lot of sense to me, as I ran into this issue constantly while using Claude Code, and to a lesser degree, with Gemini CLI. To understand context, let me first give you some… context. The way that LLMs work is that there is a pre-trained model with weights (the ‘P’ in ‘GPT’ stands for pre-trained). Most of these applications are next token predictors. So...",
+      "excerpt": "Claude Code - my coding companion for the past 31 days It’s been… one month since I purchased a Claude Pro subscription so I could try Claude Code instead of freeloading off of Google Gemini’s CLI...."
+    },
+    
+    {
       "id": "how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can",
       "title": "How Much Code Could Claude Code Code if Claude Code Could Code Code? (It Can!)",
       "url": "/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/",

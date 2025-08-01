@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<title>31 Days with Claude Code: What I Learned</title>
+
+	<!-- Open Graph Meta -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="31 Days with Claude Code: What I Learned" property="og:title" /><meta content="article" property="og:type" /><meta content="After using Claude Code as my primary coding assistant for 31 days, here's what I discovered about AI-powered development, productivity gains, and the future of programming." property="og:description" /><meta content="https://www.hung-truong.com/blog/2025/08/01/31-days-with-claude-code-what-i-learned/" property="og:url" /><meta
+		content="2025-08-01T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
+		content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/claude-code-31-days.png"
+		property="og:image"
+	/><!-- Twitter Cards -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@hungtruong" />
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="31 Days with Claude Code: What I Learned" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2025/08/01/31-days-with-claude-code-what-i-learned/" /><meta name="twitter:description" content="After using Claude Code as my primary coding assistant for 31 days, here's what I discovered about AI-powered development, productivity gains, and the future of programming." /><meta
+		name="twitter:image:src"
+		content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/claude-code-31-days.png"
+	/><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href=""/>
+
+	<!-- Come and get me RSS readers -->
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
+	href="https://www.hung-truong.com/blog/feed.xml" />
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="/blog/assets/css/style.css" />
+
+	<!-- Canonical URL -->
+	<link
+		rel="canonical"
+		href="https://www.hung-truong.com/blog/2025/08/01/31-days-with-claude-code-what-i-learned/"
+	/><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-248124-2');
+</script>
+</head>
+
+<body>
+
+   <div class="header ">
+     <div class="container">
+         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList"><li class="elementfirst">
+                     <a href="/blog/index.html">Home</a>
+                 </li><li class="element">
+                     <a href="/blog/archives">Archives</a>
+                 </li><li class="element">
+                     <a href="/blog/about">About</a>
+                 </li><li class="element">
+                     <a href="/blog/contact">Contact</a>
+                 </li><li class="elementlast">
+                     <a href="/blog/speaking">Speaking</a>
+                 </li></ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <article class="post">
+  <header>
+    <h1 class="postTitle">31 Days with Claude Code: What I Learned</h1>
+    <p class="meta">August 01, 2025 | <span class="time">18</span> Minute Read</p>
+  </header>
+
+  <figure>
+	<img src="/blog/wp-content/uploads/2025/claude-code-31-days.png" />
+	<figcaption>Claude Code - my coding companion for the past 31 days</figcaption>
+</figure>
+
+<p>It’s been… one month since I purchased a Claude Pro subscription so I could try Claude Code instead of freeloading off of Google Gemini’s CLI. I thought I would take a look at the things I learned while vibe coding a few projects, and other uses that I found for Claude Code besides coding. If you missed it, be sure to check out my initial post about <a href="/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/">vibe coding</a>, and the followup about <a href="/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/">how Claude Code was definitely better than Gemini</a> (for now)!</p>
+
+<h3 id="context-is-king">Context is King!</h3>
+
+<p>So there’s a lot of talk about how prompt engineering is dead, and “context engineering” is the new hotness. That makes a lot of sense to me, as I ran into this issue constantly while using Claude Code, and to a lesser degree, with Gemini CLI. To understand context, let me first give you some… context.
+<!--more--></p>
+
+<p>The way that LLMs work is that there is a pre-trained model with weights (the ‘P’ in ‘GPT’ stands for pre-trained). Most of these applications are next token predictors. So if I input: “Welcome to McDonald’s, how may I help”, the next token would probably be “you”. Before there was ChatGPT, there was the text completion API (does anyone remember using <a href="https://platform.openai.com/docs/models/davinci-002">davinci-002</a>?).</p>
+
+<p>But aside from the frozen model weights that the LLM is generating predictions from, any other context needs to come from you, the user. Most models have a specified knowledge cut-off date, which is basically the date of the most recent data used to train the model. So you can’t ask an LLM about anything newer unless it does a web search or something else to gain that context.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2025/context-window-example.webp" />
+	<figcaption>An example of models and their knowledge cutoff dates (among other info)</figcaption>
+</figure>
+
+<p>I like to think of Claude Code (or whatever coding agent I’m using) as a really smart software developer who also happens to have <a href="https://en.wikipedia.org/wiki/Anterograde_amnesia">Anterograde Amnesia</a>, like Drew Barrymore’s character in <a href="https://amzn.to/4l5bQW7">50 First Dates</a> (spoiler alert!). It can help you write an entire feature from scratch, and then completely forget who you are once its context has been wiped. From one session to the next, this tool will completely forget everything until you provide it with that context again somehow.</p>
+
+<p>For every session, Claude Code will literally need to look at whatever you’re asking it to work on and add it to the context before making more token predictions. Claude Code has a context window of like 200k tokens (see <a href="https://docs.anthropic.com/en/docs/build-with-claude/context-windows">this documentation from Anthropic</a>), so whatever you’re working on needs to fit within that window, and every message you send to Claude Code will include all of the past context that you already sent. Claude Code might know how to reverse a list in Python, but it won’t know how to do that in your project until it loads the project into its context (why are you reversing lists in your project, anyway?).</p>
+
+<p>There are a few existing ways to help “prime” the context when you start working on things, so that CC doesn’t constantly have to search around to understand what you’re asking for. The most obvious one is the <a href="https://www.anthropic.com/engineering/claude-code-best-practices">CLAUDE.md file</a> which is added to the context of each conversation you have with Claude Code. You can put things like instructions for doing common tasks, or explain the organization of which files go where. A common one would be to say where the log file is, so Claude Code can use the log files to read error messages. If you see Claude Code running a bunch of bash commands to grep files every time you ask it to do something, you might benefit from adding it to the CLAUDE.md file. Of course, it’s a balancing act as you don’t want to stick too much junk in there if it’s not relevant, either!</p>
+
+<p>When your context window gets too big, Claude Code will attempt to compress it, which I typically don’t like. I find that too many details are lost and it’s better to just start over from scratch by using the /clear command which essentially wipes all of the memory from the previous context. I think there’s been some studies done about how much worse these LLMs perform when the context window approaches its limit.</p>
+
+<p>Another thing that I’ve found is that context can get poisoned pretty easily. What I mean by that is you ask Claude Code to do something, and it does it the wrong way. Then you correct it and it undoes what it did, and does it the right way. Even though you corrected it, you still end up using that incorrect implementation on each and every turn of your conversation, because it’s in the history. To avoid this, you can hit esc twice, and just rephrase the thing you said that Claude Code misunderstood. This can save tokens in your context window and also keep the context from getting poisoned.</p>
+
+<p>One more thing I do to keep the context small (and therefore my token usage smaller) is to /clear the context whenever I’m done doing a task, especially if the next one is unrelated to the thing I just did. The way Claude Code works, all of your previous conversation history for your current session is used for your next message. So if I had Claude Code fix a bug around authentication, and then I wanted to have it work on image caching next, it doesn’t make any sense to keep sending the history about authentication in the next messages. There is some sort of token caching going on that I believe saves you usage, but I think that longer contexts are by definition less effective anyway.</p>
+
+<h3 id="claude-code-codes">Claude Code Codes</h3>
+
+<p>I don’t want to repeat myself too much with what I wrote in my previous blog post, but here’s a sample of the coding I did this month with Claude Code:</p>
+
+<ul>
+  <li>I added automated testing with playwright to <a href="https://animenano.com">Animenano</a></li>
+  <li>Optimized Animenano RSS feed parsing by caching etag/last-modified headers</li>
+  <li>Wrote a script to sync the remote Animenano Cloudflare D1 database for testing locally</li>
+  <li>Added some tools to my <a href="https://livekit.io/">LiveKit</a> AI agent that I was messing around with, like a Japanese phrase guessing game</li>
+  <li>Vibe coded search on my blog on a plane! (<a href="https://youtu.be/S7aJlqSdi2k">I actually made a video for this!</a>)</li>
+  <li>Set up staticman for comments on my blog!</li>
+  <li>Changed the comment form on my blog from a hard reload to an AJAX update!</li>
+  <li>Wrote a script to scrape comments from my old blog posts on archive.org to replenish my missing comments (due to having a static blog)!</li>
+  <li>Started working on an AI powered DJ that picks from my local music collection and adds occasional personalized commentary with TTS</li>
+  <li>Added some features to a project that automatically creates localizations for Youtube video titles/descriptions and captions</li>
+  <li>Wrote a script to convert Final Cut Pro titles to SRT subtitles (for Youtube)</li>
+  <li>Wrote a Windmill script to evaluate coffee deals on Slickdeals rss and send a Slack message if they meet my parameters (light/medium roast, cost per oz, whole bean, etc)</li>
+</ul>
+
+<p>Out of all of these things, I think Claude Code does the best when it’s working on a small, single file script. This makes sense because as we discussed earlier, context is very important. If Claude Code can store the entire script in memory, it won’t make false assumptions (hopefully!) about how things work. And if it doesn’t make those false assumptions, we can assume it will write correct code for any changes. I think it does do this most of the time.</p>
+
+<p>This is such a powerful use case that I really want to use more often. For example, I had an idea to add comments to my static blog, so I asked Claude Code how I should do it. Once we decided on staticman, Claude Code implemented it. Then I had an idea to get my missing comments on my blog back using the <a href="https://archive.org/">Internet Archive</a> (I nuked them when I went from a Wordpress blog to a static site). So I had Claude Code write a script to scrape them from it. I’m sure I could’ve done this myself, but I’m also sure I’d be too lazy to sit down and figure out the endpoints and all of the glue code to make it work. With Claude Code, I just asked it to pound away at the problem until I had the solution, while I looked at Reddit. As an individual contributor for my entire software engineering career, I finally understood what it was like to be a manager!</p>
+
+<p>Another use case was that when I make <a href="https://www.youtube.com/@HungryHungryHoagie">Youtube videos for my dog</a>, I hard code captions in English. I would turn these into SRT subtitles for other languages by literally copy/pasting each Final Cut Pro title into a caption in the project. I had an idea to automate this. So I exported the FCP project into xml and had Claude Code inspect it to see if it could convert the titles to SRT. After a few iterations, I have a script that I can just run, which saves me probably 3 or more minutes of manual work every time I make a video.</p>
+
+<p>Claude Code performed the worst when I had it make an AI powered DJ for me. That project has a lot of parts, and the architecture is honestly not super great (because vibe coding). It would code up one part, write some tests that passed, then move on to another part. The second part would also get tests, but Claude Code didn’t really integrate them at all. At the end I had a bunch of pieces that needed a lot more vibe coding to actually work together.</p>
+
+<p>It finally did end up working, but I think the project has a lot of tech debt which could probably be fixed (but I won’t because vibe coding). It’s still pretty cool because it does what I want it to do, but if I had to look at the code I might cry tears of bad engineering. Some of the blame probably goes to me, actually probably all of it. This project used a bunch of technologies that I don’t really understand, so I really did just let Claude Code go to town with it. If I had focused more on getting Claude Code to write a plan, maybe set up interfaces ahead of time, and set up integration tests, things may have gone more smoothly.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2025/ai-powered-dj.webp" />
+	<figcaption>You can tell this was made by AI by all the emojis 💪🎶🚀</figcaption>
+</figure>
+
+<p>This brings up an important point. The people who learn how to use these tools (and use them efficiently) will still have an advantage over other people using the tools like noobs. At least for now, this is a useful and probably marketable skill. Anyone can just burn a billion tokens having Claude Code try and implement something (much like an <a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">infinite number of monkeys writing Shakespeare on typewriters</a>). But when tokens have a real cost, I think people who use them efficiently will have an edge. Who knows how long this edge will last, though, given the speed at which these things change?</p>
+
+<h3 id="claude-code-doesnt-code">Claude Code Doesn’t Code</h3>
+
+<p>I honestly think the non-code uses for Claude Code are more interesting than the code uses for it. The challenge is to think of domains where text is primarily used to do work, since Claude works mostly in that modality (though I guess images and video and audio work to a certain degree, too).</p>
+
+<p>Like I wrote in my post about Gemini CLI, I’m not exactly sure why these tools are CLIs and not GUIs where you can select a working directory and then run prompts on it. Maybe these companies are just throwing CLIs at engineers and then seeing what they end up doing with them, to later turn them into products?</p>
+
+<p>Here’s my list of non-code stuff I’ve had Claude Code work on for me this month:</p>
+<ul>
+  <li>Documentation for my various side projects, instead of leaving the readme blank</li>
+  <li>Set up wireguard vpn on my opnsense router, Claude Code helped me debug why I couldn’t access the network until it worked!</li>
+  <li>Added documentation on how I set up mdns and nginx on a home server to serve stuff on the network, and added some more hosts</li>
+  <li>Debugged an issue where an external SSD connected to a Linux home server went into read only mode</li>
+  <li>Made a PDF out of some images, then compressed the PDF file with command line tools</li>
+  <li>Markdown editor for this and my other previous blog posts!</li>
+</ul>
+
+<p>One of the cooler things that I used Claude Code for was debugging an issue with an external drive that I had running on my home Linux server. I noticed that the drive had gone into read only mode. I tried restarting the server but that didn’t fix it. I asked Claude Code to take a look and it ran fsck on it, and found that there was some corruption. It gave me a list of commands to run (which I verified before running manually) that fixed the issue! I probably could’ve fixed this myself by doing some Google searches but I want to highlight this use case.</p>
+
+<p>Often when I search for fixes to things, I won’t get a relevant answer for whatever reason. Maybe it’s because my version of Linux is different or the hardware is different or the solution is to just turn it off and on again. With Claude Code, I get a quick feedback loop where it can actually run diagnostic bash commands that help it understand and diagnose the issue I’m seeing. Simple searching alone can’t really provide this tight of a feedback loop, and doing this kind of diagnosis is FAST! As long as it’s correct, of course.</p>
+
+<p>In the case of making a PDF out of some images, I was trying to use the macOS Preview app to do it, but I was getting a single page PDF that was huge. I asked Claude Code to make me a PDF and voila! Now, I realize that Claude simply used some knowledge of existing command line tools to accomplish this (in this case it used imagemagick). But as someone who doesn’t have encyclopedic knowledge of all command line tools that have ever been created, hey, it’s pretty useful to have an AI that does! I suppose that if anything, using Claude Code has made it more obvious to me how much power there is in the command line, just waiting to be used by anyone who is in the know about it.</p>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2025/pdfmaking.webp" />
+	<figcaption>Claude Code helping me convert images to PDF and compress them using command line tools</figcaption>
+</figure>
+
+<p>I mentioned the other use cases in my previous blog post about Claude Code. It happens to be quite good at reading and documenting things, especially if you give it direction. Who doesn’t have a pile of abandoned side projects with zero documentation, waiting to be resurrected? Claude Code can pretty much do the hard work of figuring out what the heck you were trying to do, and where you might’ve left off. I guess it’s kind of like reverse context engineering, where you get the AI to give you the context of the thing you completely forgot about.</p>
+
+<p>Finally, I’ve been using Claude Code a lot while writing these blog posts. I’m editing the markdown in VS Code, and I don’t really have a WYSIWYG editor, so I use CC for adding links, proofreading, and resizing and adding images. This has saved me a ton of time since using <a href="https://jekyllrb.com/">Jekyll</a> is a lot more manual work than something like Wordpress. Claude Code even wrote 100% of this blog post you’re reading right now! (Just kidding)</p>
+
+<h3 id="other-random-observations">Other Random Observations</h3>
+
+<p>One thing I noticed while working on a few projects is that Claude Code and Gemini both really suck at CSS. I’m not entirely sure why this is, but I think it has to do with the fact that the final rendering of whatever you’re doing in CSS can come from many different sources. These coding agents seem much better when the context provided is right in front of them. With CSS, you might need to see what a certain class is inherting from the p tag, since it can affect what happens in a nested structure. These coding agents don’t actually compile the CSS (or whatever it’s called, I’m not a web dev) and actually get the final styles for the thing they’re working on. I doubt there’s much training data for CSS that involves reading from multiple CSS files and determining how to fix an issue due to a downstream style. So for now I’m somehow better at debugging CSS than AI, even as a native mobile developer.</p>
+
+<p>This might also explain why AI seems to love writing inline css rather than use a style sheet. Because AI doesn’t care about taste or tech debt, and I wonder if reinforcement learning favors quick wins over manageable code.</p>
+
+<p>For a few weeks in July, I also noticed that I kept hitting Claude Code rate limits even when I had just started a session. It was probably due to those guys on the <a href="https://www.viberank.app">CC leaderboard</a> burning tokens for clout. I honestly can’t figure out why someone would try and get on that list. It’s basically admitting that you suck at using your tools efficiently. Kind of like people who brag about working 100 hours a week when most people can get by on 20!</p>
+
+<p>I did get an email from Anthropic about the issues and how they’d be resolved with more rate limits. I’m pretty sure Anthropic could have just solved this by implementing actual rate limiting… how exactly does someone abuse a system unless it’s open to be abused by the platform that provides it? Either way, I’m guessing that I won’t see any difference because I often go for entire sessions without ever seeing the warning that I’m approaching my limits. Probably because I take the precautions I described above to limit my context size, etc.</p>
+
+<h3 id="was-claude-pro-worth-it">Was Claude Pro Worth It?</h3>
+
+<figure>
+	<img src="/blog/wp-content/uploads/2025/ccusage-report.webp" />
+	<figcaption>Daily Claude Code token usage report showing $132.79 on my main desktop</figcaption>
+</figure>
+
+<p>I’ve been using this <a href="https://github.com/ryoppippi/ccusage">ccusage script</a> to keep track of how much I’ve used Claude Code for a given time block as well as just seeing how much I’ve used in tokens if I had opted to pay per token. It’s pretty interesting to see the numbers go up, and somewhat horrifying to realize how much it would actually cost if I didn’t pay for a monthly subscription. Since I’ve been using Claude Code on multiple computers, I have to add up the usage across four machines. So far I’ve used $132.79 worth on my desktop computer, $2.05 on my linux server (mostly for debugging and documenting), $30.58 on a Macbook Air I have, and $13.38 on another Macbook Air (I have a lot of computers, so what?). That comes to a whopping $181.37 worth of usage from a $20 Claude Pro subscription. I didn’t even max out my usage every day, and there were days that I didn’t even use it because I was on vacation.</p>
+
+<p>I would say that I definitely got my money’s worth out of Claude Code this month. I’ve been more productive in this month than I have in a really long time. And I don’t think it’s just because I had AI do everything for me. I’ve had more mental energy to think about things I want to accomplish, and the quick feedback loops that come from AI pounding out code has been contributing to that. This could just be a temporary boost until things regress to the mean, but for now I’m really loving the productivity gains I’m getting.</p>
+
+<p>Overall I’m pretty happy with this product. I’m hoping that this isn’t just the cheap stage of coding assistants (see <a href="https://techcrunch.com/2014/04/07/lyft-spring-pricing/">Lyft, Uber in 2014</a>) and that these tools will get more useful, powerful and faster over time!</p>
+
+
+  <!-- COMMENTS -->
+  
+
+  <div class="comment-form">
+    <h3>Leave a Comment</h3>
+    <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields" id="comment-form">
+  <input name="options[slug]" type="hidden" value="31-days-with-claude-code-what-i-learned">
+  
+  <div class="field">
+    <label for="comment-name">Name *</label>
+    <input type="text" id="comment-name" name="fields[name]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-email">Email *</label>
+    <input type="email" id="comment-email" name="fields[email]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-url">Website</label>
+    <input type="url" id="comment-url" name="fields[url]" class="full-width">
+  </div>
+  
+  <div class="field">
+    <label for="comment-message">Comment *</label>
+    <textarea id="comment-message" name="fields[message]" rows="5" class="full-width" required></textarea>
+  </div>
+  
+  <button type="submit" class="button" id="comment-submit">Submit Comment</button>
+</form>
+
+<div id="comment-success" style="display: none;" class="comment-message comment-message-success">
+  <div>
+    <h4>Thank you for your comment!</h4>
+    <p>Your comment has been submitted and will be published after manual approval.</p>
+  </div>
+</div>
+
+<div id="comment-error" style="display: none;" class="comment-message comment-message-error">
+  <div>
+    <h4>Submission Error</h4>
+    <p>There was an error submitting your comment. Please try again.</p>
+  </div>
+</div>
+  </div>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+    
+    <a class="prev image"
+      href="/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/"><span>&laquo;&nbsp;How Much Code Could Claude Code Code if Claude Code Could Code Code? (It Can!)</span>
+      
+      <img src="/blog/wp-content/uploads/2025/claude-code-best-friend.jpg" alt="">
+      
+    </a>
+    
+    
+  </div>
+  </div>
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+	<div class="container">
+		<p class="copy">&copy; 2025 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+
+		<div class="footer-links">
+			<ul class="noList"><li>
+	<a href="https://twitter.com/hungtruong" target="_blank">
+		<svg
+			id="twitter"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://github.com/hungtruong" target="_blank">
+		<svg
+			id="github"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://www.youtube.com/@techsistentialcrisis" target="_blank">
+		<svg
+			id="youtube"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path fill="#FFF" fill-rule="evenodd" clip-rule="evenodd"
+				d="M18.168 19.0028C20.4724 19.0867 22.41 17.29 22.5 14.9858V9.01982C22.41 6.71569 20.4724 4.91893 18.168 5.00282H6.832C4.52763 4.91893 2.58998 6.71569 2.5 9.01982V14.9858C2.58998 17.29 4.52763 19.0867 6.832 19.0028H18.168Z"
+				stroke="#000000" stroke-width="0"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+			<path class="outer-shape" fill-rule="evenodd" clip-rule="evenodd"
+				d="M12.008 9.17784L15.169 11.3258C15.3738 11.4454 15.4997 11.6647 15.4997 11.9018C15.4997 12.139 15.3738 12.3583 15.169 12.4778L12.008 14.8278C11.408 15.2348 10.5 14.8878 10.5 14.2518V9.75184C10.5 9.11884 11.409 8.77084 12.008 9.17784Z"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="mailto:hung@hung-truong.com" target="_blank">
+		<svg
+			id="mail"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"
+			></path>
+		</svg>
+	</a>
+</li>
+</ul>
+		</div>
+	</div>
+</div>
+<!-- end .footer -->
+      <!-- Default Statcounter code for Hung Truong: The Blog!
+   http://www.hung-truong.com/blog/ -->
+      <script type="text/javascript">
+            var sc_project = 1262196;
+            var sc_invisible = 1;
+            var sc_security = "4af14454";
+            var scJsHost = (("https:" == document.location.protocol) ?
+                  "https://secure." : "http://www.");
+            document.write("<sc" + "ript type='text/javascript' src='" +
+                  scJsHost +
+                  "statcounter.com/counter/counter.js'></" + "script>");
+      </script>
+      <!-- End of Statcounter Code -->
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src=/blog/assets/js/jquery-1.11.2.min.js><\/script>')</script>
+<script src="/blog/assets/js/dropcap.min.js"></script>
+<script src="/blog/assets/js/responsive-nav.min.js"></script>
+<script src="/blog/assets/js/scripts.js"></script>
+
+</body>
+
+</html>

@@ -73,6 +73,45 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">April 12, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/04/12/facebook-programming-puzzles-prime-bits-revisited/">Facebook Programming Puzzles &#8211; Prime Bits Revisited</a></h3>
+        <p><p>So I got a comment on my original post about the <a href="http://www.hung-truong.com/blog/2007/03/30/facebook-programming-puzzles-a-boatload-of-fun/">Facebook Programming Puzzle called “Prime Bits”</a> that asked:</p>
+
+<blockquote>
+  <p>did you get this part ?</p>
+
+  <p>Your implementation should have a running time faster than O(n), where n is b – a.</p>
+
+  <p>id like to see how you solved it.</p>
+</blockquote>
+
+<p>I felt really stupid for not catching that part until I checked the Google cache of the page. Apparently Facebook added that requirement some time after April 2nd and, presumably, getting a lot of inefficient entries (mine included).</p>
+
+<p>It’s also funny to note that if you look at the actual html, there’s a fun message hidden in comments that reads “with ‘efficient’ meaning whatever you think it ought to mean.” Touché, facebook, touché.</p>
+
+<p>Off the top of my head, I can think of a way using dynamic programming to make the problem a lot more efficient. I’m not sure whether or not it’s just an amortization hack, or an actual better than O(n) implementation, technically.</p>
+
+<p>Okay, so I went ahead and coded up the dynamic programming version. The running time actually does increase at a less than O(n) rate, so I think it counts. Maybe I’ll plot out the running time growth for good measure. I believe it’s in the neighborhood of log(n). I guess I’ll send this new version along with my resume again, and see if they’ll respond this time 🙂</p>
+
+<center>
+  <img src="/blog/wp-content/uploads/2007/04/mark-zuckerberg.png?w=604" alt="mark-zuckerberg.png" data-recalc-dims="1" />
+</center>
+
+<p>Also, Rest in Peace, Facebook Guy. You’ll be sorely missed.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">April 10, 2007</span>
         <h3><a class="post-link" href="/blog/2007/04/10/askcom-on-google/">Ask.com on Google?</a></h3>
         <p><p><img src="/blog/wp-content/uploads/2007/04/askgoogle.gif?w=604" alt="askgoogle.gif" data-recalc-dims="1" /></p>
@@ -161,33 +200,6 @@
 <p>Basically I worked on adding the individual listings onto the Google Map with stuff like the description, address, and price. At first I thought about importing the points from some kind of xml document, but I figured the approach with just embedding it was easier.</p>
 
 <p>Then I figured out how to start scraping some of the listing info from the Michigan off campus housing site. This site seems to have better listings in terms of quality and price. I think today I’ll work on getting all of that info into the database so I can map it as well.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 06, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/06/craigslist-and-google-maps-mashup-thingy-day-2/">Craigslist and Google Maps Mashup Thingy: Day 2</a></h3>
-        <p><center>
-  <img src="/blog/wp-content/uploads/2007/04/google-map.gif?w=604" alt="google-map.gif" data-recalc-dims="1" />
-</center>
-
-<p>Today I pretty much worked on my Craigslist Google Maps app all day. I spent a lot more time getting the data that I scraped from the individual Craigslist ads into the database, and then setting up the cron script thing to periodically pick up the new feeds. To parse the RSS feeds, I just used <a href="http://magpierss.sourceforge.net/">Magpie</a> since it was really easy.</p>
-
-<p>Magpie wouldn’t parse the KML files that Google Maps uses to do its geocoding thing (where it gives you the latitude and longitude based on an address) so I had to use a regular expression. It was a pretty ugly hack, but at least it got the job done. I suppose it’s more efficient to use regular expressions rather than a full blown parser though. Maybe.</p>
-
-<p>I also got the database info for the apartment ads into Google Maps using their API. It’s actually pretty simple once you understand what all the lines mean. I’m sort of weak in Javascript, so I guess this is a good chance for me to learn some more. I know Java, but I’m not used to using things like event listeners for mouse clicks and stuff like that. GUI? Who needs ‘em, right?</p>
-
-<p>So I’ve got a sort of working prototype. Now all I need to do is clean it up and add more prettiness and features. Right now when you click on the map marker, you just get the description. Hopefully I can add stuff like the price, a link to the Craigslist listing, and pictures. It shouldn’t take too long, now that I’ve got the skeleton in place.</p>
 
 
           
