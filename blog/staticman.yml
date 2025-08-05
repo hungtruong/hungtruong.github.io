@@ -1,5 +1,5 @@
 comments:
-  allowedFields: ["name", "email", "url", "message"]
+  allowedFields: ["name", "email", "url", "message", "email_md5"]
   branch: "main"
   commitMessage: "New comment by {fields.name}"
   filename: "comment-{@timestamp}"
@@ -7,13 +7,15 @@ comments:
   moderation: true
   path: "_data/comments/{options.slug}"
   requiredFields: ["name", "email", "message"]
-  transforms:
-    email: md5
   generatedFields:
     date:
       type: date
       options:
         format: "iso8601"
+    email_md5:
+      type: md5
+      options:
+        field: "email"
   reCaptcha:
     enabled: false
   akismet:
