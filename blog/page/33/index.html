@@ -29,6 +29,8 @@
 	href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
+	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
+	<script>document.documentElement.className = (document.documentElement.className + ' js').trim();</script>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
