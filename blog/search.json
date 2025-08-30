@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "fun-with-wan-2-2-text-to-video-ai",
+      "title": "Fun With Wan 2.2 Text To Video AI",
+      "url": "/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/",
+      "date": "2025-08-30",
+      "year": "2025",
+      "categories": ["Tech","AI"],
+      "description": "A blog post about the latest advancements in text-to-video AI technology.",
+      "content": "Your browser does not support the video tag. Get out the popcorn! This blog post is pretty much also a Youtube video, so if you want, you can just watch that instead! I recently got interested in text to video AI generators after reading a post about Wan 2.2. I hadn’t really been interested in them before because they all kind of sucked, and they either took too much VRAM or were proprietary ones that you couldn’t run locally like Veo or Sora, etc. But after looking at some of the videos that Wan 2.2 could generate, and seeing that it could run on some pretty standard hardware, I decided to look into it a bit more. Making a LoRA Whenever I use these AI image generators, I always like to make images of myself. Call it narcissism or whatever, but I think it’s really fun to throw myself into impossible and weird situations, or make paintings of myself as a Roman emperor or whatever. But to make the AI generate images that look even the least bit like me, I need to train a LoRA. I’ve do...",
+      "excerpt": "Your browser does not support the video tag. Get out the popcorn! This blog post is pretty much also a Youtube video, so if you want, you can just watch that instead! I recently got interested in t..."
+    },
+    
+    {
       "id": "31-days-with-claude-code-what-i-learned",
       "title": "31 Days with Claude Code: What I Learned",
       "url": "/blog/2025/08/01/31-days-with-claude-code-what-i-learned/",

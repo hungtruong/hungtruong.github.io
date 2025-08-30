@@ -90,6 +90,35 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">March 14, 2011</span>
+        <h3><a class="post-link" href="/blog/2011/03/14/note-to-myself-about-uisplitviewcontroller-and-auto-rotation/">Note to Myself about UISplitViewController and Auto-Rotation</a></h3>
+        <p><p><a href="/blog/wp-content/uploads/2011/03/fuuuuu.jpg" rel="lightbox[2389]"><img src="/blog/wp-content/uploads/2011/03/fuuuuu-e1300154340809.jpg?resize=268%2C343" alt="" title="fuuuuu" width="268" height="343" class="aligncenter size-full wp-image-2391" data-recalc-dims="1" /></a></p>
+
+<p>In order to prevent my future self from wasting like, 2 hours fucking around with UISplitViewController getting it to auto-rotate its subviews, here’s a little post!</p>
+
+<p>Most of the time, UISplitViewController doesn’t want to rotate because you didn’t set it as the root subview of the Window. This is pretty well documented on StackOverflow, etc. I thought this was why my splitviewblahblahblah wasn’t rotating. It turns out that, according to Apple’s documentation,</p>
+
+<blockquote>
+  <p>A split view controller relies on its two view controllers to determine whether interface orientation changes should be made. If one or both of the view controllers do not support the new orientation, no change is made. This is true even in portrait mode, where the first view controller is not displayed. Therefore, you must override the shouldAutorotateToInterfaceOrientation: method for both view controllers and return YES for all supported orientations.</p>
+</blockquote>
+
+<p>The key here is that the view controller wasn’t autorotating because the subviews did not answer “YES!!!” (exclamation points added by me) to shouldAutoRotateToInterfaceOrientation. I was fucking around with the Split View Controller in Interface Builder (and later programmatically) to no avail. Adding the stupid autorotate thing to yes in the subviews made it work (shouldn’t it default to YES!?!??!).</p>
+
+<p>Okay, lesson learned. Just don’t forget this next time, Hung!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">February 23, 2011</span>
         <h3><a class="post-link" href="/blog/2011/02/23/porting-mapskrieg-to-app-engine/">Porting Mapskrieg to App Engine</a></h3>
         <p><p><a href="/blog/wp-content/uploads/2011/02/appengine_lowres.gif" rel="lightbox[2380]"><img src="/blog/wp-content/uploads/2011/02/appengine_lowres.gif?resize=142%2C109" alt="" title="appengine_lowres" width="142" height="109" class="aligncenter size-full wp-image-2381" data-recalc-dims="1" /></a></p>
@@ -196,29 +225,6 @@
 <p>I noticed something really strange when looking at ads on my app. There’s no way for advertisers to disable ads on devices that already have the app installed. I keep seeing Amazon Kindle ads on both my iPad and my iPhone that already have the application installed. As a developer, I know there’s a way to prevent those ads from showing by detecting whether the app is installed at runtime. I think this strange behavior happens on both iAd and AdMob. If anyone from either organization is reading this, <a href="http://www.hung-truong.com/blog/about/">contact me</a>!</p>
 
 <p>As far as the future of ads in mobile apps goes, I hope Apple will continue working on increasing the fill rate, and that AdMob tries to increase relevancy and ad quality. Right now it’s really frustrating to see my “inventory” not live up to its revenue potential.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 03, 2011</span>
-        <h3><a class="post-link" href="/blog/2011/02/03/instapaper-friendly-wordpress-plugin/">Instapaper Friendly &#8211; WordPress Plugin</a></h3>
-        <p><p>While I was testing <a href="http://www.instascriber.com">Instascriber</a> , I noticed that the way that Instapaper was grabbing the content of my blog was a little off. The <a href="http://www.instapaper.com/publishers">Instapaper for Publishers</a> page describes how you can give Instapaper a hint on what your actual content is. I looked for a WordPress plugin that does this but didn’t see anything, so I figured I’d do it myself.</p>
-
-<p>Up to this point I had never made a WordPress plugin, so I had go figure that out first. It’s relatively simple and there’s a lot of good documentation out there. I just needed to hook into the “the_content” API hook and alter the content so it had a div surrounding it. The scary part is mostly that WordPress seems to give you a hella lot of control. So you could seriously eff things up with a simple plugin.</p>
-
-<p>With this being my first plugin, I’m not completely sure it’s been written the right way (kinda like when you make an edit on Wikipedia for the first time). Nevertheless, I’m making the plugin available. So let me know if there’s something glaringly wrong with it. It’s fairly simple, so I’m not sure exactly what could go wrong.</p>
-
-<p>I made a special page for the plugin to live at, so get it at <a href="http://www.hung-truong.com/blog/instapaper-friendly-wordpress-plugin/">Instascriber Friendly – WordPress Plugin</a>. You can also download it through the internal WordPress plugin search (look for ‘instapaper friendly’).</p>
 
 
           

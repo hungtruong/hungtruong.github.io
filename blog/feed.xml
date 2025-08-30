@@ -5,9 +5,155 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 30 Aug 2025 15:18:31 +0000</pubDate>
-    <lastBuildDate>Sat, 30 Aug 2025 15:18:31 +0000</lastBuildDate>
+    <pubDate>Sat, 30 Aug 2025 22:42:58 +0000</pubDate>
+    <lastBuildDate>Sat, 30 Aug 2025 22:42:58 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      
+      <item>
+        <title>Fun With Wan 2.2 Text To Video AI</title>
+        <description>&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/hung_popcorn.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;Get out the popcorn!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This blog post is pretty much also a Youtube video, so if you want, you can just watch that instead!&lt;/p&gt;
+&lt;figure&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/LAWa63PVMnc?si=e9StEOvQOhoc5C6c&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I recently got interested in text to video AI generators after reading a post about Wan 2.2. I hadn’t really been interested in them before because they all kind of sucked, and they either took too much VRAM or were proprietary ones that you couldn’t run locally like Veo or Sora, etc.&lt;/p&gt;
+
+&lt;p&gt;But after looking at some of the videos that Wan 2.2 could generate, and seeing that it could run on some pretty standard hardware, I decided to look into it a bit more.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;making-a-lora&quot;&gt;Making a LoRA&lt;/h3&gt;
+
+&lt;p&gt;Whenever I use these AI image generators, I always like to make images of myself. Call it narcissism or whatever, but I think it’s really fun to throw myself into impossible and weird situations, or make paintings of myself as a Roman emperor or whatever. But to make the AI generate images that look even the least bit like me, I need to train a LoRA. I’ve done this already before with image generators like &lt;a href=&quot;/blog/2022/08/28/stable-diffusion-generating-images-from-words/&quot;&gt;Stable Diffusion&lt;/a&gt; and, more recently, Flux.&lt;/p&gt;
+
+&lt;p&gt;I used a tool called &lt;a href=&quot;https://github.com/ostris/ai-toolkit&quot;&gt;ai-toolkit&lt;/a&gt; to train the Flux LoRA on &lt;a href=&quot;https://runpod.io?ref=q4k3ugru&quot;&gt;Runpod&lt;/a&gt; around a year ago. The quality of that image generation model was quite good, but I quickly forgot about it after I tried making a bunch of art for my Samsung Frame TV of myself which didn’t turn out that great. When researching ways to train a LoRA for Wan 2.2, I found that ai-toolkit already had support for it. I still had the config files and image dataset that I used to train the Flux model, so I figured it would be pretty easy to do the Wan 2.2 one too.&lt;/p&gt;
+
+&lt;p&gt;The training took about 2 hours running on a 24GB VRAM GPU. I think it was an A5000. The interesting thing about training is that I didn’t need to use videos to train the video model, just images. After I loaded the LoRA into the default ComfyUI workflow for Wan 2.2, I was able to put myself into a bunch of different situations!&lt;/p&gt;
+
+&lt;h3 id=&quot;making-use-of-ai-videos&quot;&gt;Making Use of AI Videos&lt;/h3&gt;
+
+&lt;p&gt;The main issue that pops up with these video generation AI models is that the length of the videos has to be pretty short. The other problem is that it’s hard to have consistency with characters and scenes between clips, especially if you’re only using text as a prompt to generate the video. I’ve seen some really shitty videos that people were really proud of where the characters all look slightly different between scenes, and the vehicle they’re riding in changes wildly. Yet somehow they think their AI video is the next summer blockbuster.&lt;/p&gt;
+
+&lt;p&gt;When Google’s Veo came out (I think it was Veo 3 or 4?) I saw a video that someone made that I thought was really clever. It was a fake news story about a &lt;a href=&quot;https://www.reddit.com/r/Bard/comments/1kxpb1h/i_signed_up_for_gemini_ultraheres_what_i_made/&quot;&gt;synchronized swimming team of cats&lt;/a&gt;. I thought it was really smart because news stories consist of a bunch of short clips, and there wouldn’t really need to be a whole lot of consistency between the scenes.&lt;/p&gt;
+
+&lt;p&gt;Any good artist knows to work within the constraints of whatever tools they’re using. I had a grand idea to create an 80s sitcom intro where every character was myself. You know how those videos always had someone looking at the camera and smiling? Or doing something wacky? Those scenes are always just a few seconds long, and they don’t really need to be consistent between each other since they usually super random anyway. So I started prompting. Here are a few examples that I really liked:&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/revolving_door_hung.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;I love the look on AI Hung&apos;s face&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I made this revolving door shot of myself and every time I see this video I’m just amazed by the look on my (my?) face. I mean, it doesn’t even look exactly like me, but I just think it’s so funny.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/kid_hung.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;Kid me&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I like how the AI de-aged me and the setting really does look like an 80s television show.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/telephone_hung.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;Rolled up sleeves are cool!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I had AI make me talk on a corded phone wearing a blazer with rolled up sleeves. It doesn’t get more 80s than this! I really liked how the lighting worked in this one, where you can see the shadow that was cast by the person as well as the cord of the phone itself!&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/muscle_hung.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;This is my real beach bod.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I also made AI make me totally ripped at the beach. This actually closely resembles the training images that I fed to AI, so it hardly had to do any work at all to make this video.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/doctor_hung.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;This is probably not sanitary.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;AI made me a doctor, which is something my parents can finally be proud of. Also I made myself eat a sandwich, which  I thought was an original thought but then I realized that I stole it from Weird Al’s Like a Surgeon video (or is it &lt;a href=&quot;https://x.com/alyankovic/status/1670113967497433090&quot;&gt;Weird AI&lt;/a&gt;?). I love this clip because the way he (I?) chews is so, so funny to me.&lt;/p&gt;
+
+&lt;p&gt;Anyway, here’s the whole video if you want to watch it!&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lkSdepqR4V4?si=C2_nYifkiykL2dAd&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;the-music&quot;&gt;The Music&lt;/h3&gt;
+
+&lt;p&gt;Since I wanted to make an 80s sitcom intro, and all 80s sitcom intros have banger music in them, I was thinking I could write a banger 80s sitcom intro hit myself. But then I realized that I’m not really good at writing songs or singing, and I just know how to play the trumpet, so I figured I’d just use AI for this, too. I’m honestly not a huge fan of AI music, as a musician myself. But I figured it would be appropriate given the context of the video being completely AI too.&lt;/p&gt;
+
+&lt;p&gt;I wrote the lyrics to my song myself, and then I used Suno to generate the music. It took quite a few generations and prompting with styles to get a halfway decent song. I think that Suno doesn’t really know how to write a unique melody.&lt;/p&gt;
+
+&lt;p&gt;My theory for this is that there’s probably some code or something embedded in the model that prevents Suno from using a copyrighted melody from a real song. So while it can come up with a decent chord progression and the instruments and vocals all sound real, the thing is so scared of getting sued that it won’t come up with a melody. Like, can you imagine if you asked Suno for a song and it just gave you &lt;a href=&quot;https://youtu.be/izGwDsrQ1eQ?si=RoF-4cCdNnX9DYtD&quot;&gt;Careless Whisper&lt;/a&gt;?&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-next&quot;&gt;What’s Next?&lt;/h3&gt;
+
+&lt;p&gt;I make a lot of videos, whether that’s for &lt;a href=&quot;https://www.youtube.com/@HungryHungryHoagie&quot;&gt;Hoagie’s Youtube&lt;/a&gt;  , or &lt;a href=&quot;https://www.youtube.com/@techsistentialcrisis&quot;&gt;my Youtube&lt;/a&gt;, or &lt;a href=&quot;https://www.youtube.com/@HungTruongTheater&quot;&gt;my other Youtube for stupid stuff&lt;/a&gt;. I genuinely like making videos, so it’s sometimes weird to me that people who are making these AI videos think they will replace everyone who is currently involved in video production. Like I know that “AI replacing everyone” is a trope, but another popular trope is that people are complaining because AI is making art while they do repetitive boring tasks, where it should be the other way around.&lt;/p&gt;
+
+&lt;p&gt;There have been a lot of complaints about AI slop too, whether that’s text slop or image slop or video slop. I mentioned before that I’ve seen so many cringey videos that people post thinking that they’ve made something incredible when it’s about the worst thing I’ve ever seen.&lt;/p&gt;
+
+&lt;p&gt;I think the problem is that when you make art, it can suck or it can be good, and you eventually get a good understanding of which it is that you made while you are learning to make it. Usually people start off bad at it, and then they get better. Through this process, you develop taste and an understanding of what works and what doesn’t. The experience you get from putting time into it will shape your ability to filter and be your harshest critic, which helps you make better art that is worth sharing with people.&lt;/p&gt;
+
+&lt;p&gt;When someone prompts an AI to make an image, and the image comes out sufficiently pleasing, they assume that there’s some sort of skill involved at the same level of making that image from scratch. I don’t think that’s the case, and while I’m not even anti-AI, I do think that there’s something to be said about learning a craft that you dont get by asking an AI to do it (obviously).&lt;/p&gt;
+
+&lt;p&gt;I’m not saying that I’d never use AI as part of my usual workflow to make videos (in fact, I’ve used AI that cleans up audio for my poor microphone conditions before, and it turned out pretty good). But I think AI is still at the point that CGI in movies was some time in the late 90s. Like people will never stop talking about how bad the CGI was in &lt;a href=&quot;https://movieweb.com/the-mummy-returns-vfx-supervisor-reveals-why-the-scorpion-kings-cgi-was-so-bad/&quot;&gt;the Scorpion King&lt;/a&gt;! And I’m sure there will be uses of AI that people will talk about in a similar way that haven’t even been used yet! But at some point, maybe it’ll be good enough!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+&lt;video width=&quot;600&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;
+  &lt;source src=&quot;/blog/wp-content/uploads/2025/hung_popcorn.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+&lt;figcaption&gt;Get out the popcorn!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This blog post is pretty much also a Youtube video, so if you want, you can just watch that instead!&lt;/p&gt;
+&lt;figure&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/LAWa63PVMnc?si=e9StEOvQOhoc5C6c&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I recently got interested in text to video AI generators after reading a post about Wan 2.2. I hadn’t really been interested in them before because they all kind of sucked, and they either took too much VRAM or were proprietary ones that you couldn’t run locally like Veo or Sora, etc.&lt;/p&gt;
+
+&lt;p&gt;But after looking at some of the videos that Wan 2.2 could generate, and seeing that it could run on some pretty standard hardware, I decided to look into it a bit more.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1129,97 +1275,6 @@ Your browser does not support the audio element.
         <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
         <link>https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</guid>
-        
-        
-        <category>Tech</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Stable Diffusion: Generating Images From Words</title>
-        <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/ron-swanson-weasley.png&quot; /&gt;
-	&lt;figcaption&gt;Ron Swanson as Ron Weasley!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;For the past few months or so, I’ve been noticing a lot of news stories about &lt;a href=&quot;https://openai.com/dall-e-2/&quot;&gt;DALL·E 2&lt;/a&gt;, an AI image generator that uses GANs to create images from prompts. It was private for quite a while, and there were some similar, less powerful projects that were open. I played around with them a bit but I was waiting for a general release. I ended up getting into the DALL·E 2 beta a few weeks ago and last week I saw news that there was a new release of another project called &lt;a href=&quot;https://stability.ai/blog/stable-diffusion-public-release&quot;&gt;Stable Diffusion&lt;/a&gt;, so I installed it on my MacBook. The results really blew me away!&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;getting-it-working&quot;&gt;Getting it working&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/typing-on-monitors.png&quot; /&gt;
-	&lt;figcaption&gt;Prompt: photo from behind an asian software engineer typing a keyboard with many monitors in front of him, studio lighting bokeh&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;It wasn’t too bad getting the release of Stable Diffusion working on my Mac as I just went through some of the steps &lt;a href=&quot;https://zenn.dev/bellbind/scraps/ea15aab699dde9&quot;&gt;on this site I found&lt;/a&gt;. There were some gotchas, like needing to install Rust to compile something and maybe a few files to change around, but for the most part it worked pretty quickly. I could probably have written down the steps but I’m sure it will be a lot more simple when they add more specific support for Apple Silicon.&lt;/p&gt;
-
-&lt;p&gt;Right now it takes about 3 minutes to create an image with my M2 MacBook Air, which is kind of slow. I ended up using &lt;a href=&quot;https://colab.research.google.com&quot;&gt;Google Collab&lt;/a&gt; which lets you use their GPUs for free. The next day though, I found I was rate limited. So I moved over to &lt;a href=&quot;https://www.kaggle.com&quot;&gt;Kaggle&lt;/a&gt; which at least tells you what your GPU limits are, and they seem pretty reasonable (like 30 hours a week at least). The Kaggle notebook has been my main workflow so far because it’s quite fast (like 10 times faster than my Mac) and the short feedback loop really helps with coming up with prompts.&lt;/p&gt;
-
-&lt;h3 id=&quot;prompt-engineering&quot;&gt;Prompt Engineering&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/tail-of-two-kitties.png&quot; /&gt;
-	&lt;figcaption&gt;Prompt: cat vs a british shorthair cat sitting in front of a giant cheeseburger in the african savannah, fujifilm x-t2 35mm golden hour&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;So What is a prompt anyway? A prompt is what you type in to the image generator to describe what you want it to create for you. If you say you want a picture of a cat, it’ll likely come up with a pretty good cat. But if you want, you can also describe the cat in more detail to get a more specific image. You could add the breed, for example, or say it’s a robot cat, or make it sit on a park bench. There are so many possibilities of what kind of cat to show that the prompt ends up being incredibly important to get what you want.&lt;/p&gt;
-
-&lt;p&gt;There’s been a lot of research done on prompt engineering. Some of it feels like a shortcut, by asking for an image in the style of a famous artist. You can also just describe the medium of the image, like a water color or illustration. I’ve noticed people on Reddit adding words like “trending on artstation” which I guess is a way to suggest that the image is aesthetically pleasing to a majority of people. You can also say something was painted badly, which is kind of hilarious.&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/ugly-woman-painting.png&quot; /&gt;
-	&lt;figcaption&gt;Prompt: a really ugly painting of a woman&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Part of the fun of playing around with these tools is that they’re so new that it’s possible to find words that can create certain images that no one else knows about. For me, it brings back the feeling of being on the early internet, when not everything was indexed by Google to the point where there were no hidden gems. Someone should bring back “Cool Site of the Day” but for prompts!&lt;/p&gt;
-
-&lt;h3 id=&quot;different-techniques&quot;&gt;Different Techniques&lt;/h3&gt;
-
-&lt;p&gt;I’ve learned that there are a few different techniques to make images, and I’m learning quite a few more. The simplest one is text to image, which I just described. The way I understand it is that basically you start with some random noise, and then two AIs work to alter the noise to turn it into the image you want by iterating changes and measuring how closely the image matches your description. That’s probably really simplified and maybe wrong but whatever, I’m not an AI engineer.&lt;/p&gt;
-
-&lt;p&gt;Another way to create images is to start with a base image, and also feed the AI a prompt. Since you can choose the starting image (instead of just random noise), there’s a better chance that the image converges to something that resembles your input image. This gives you quite a bit more control over the final image’s general shape, composition, etc. You could feed it stick figures or a photo from your phone. I’ve seen people turn stick drawings into D&amp;amp;D character portraits using this technique.&lt;/p&gt;
-
-&lt;p&gt;I tried this technique out by using a photo of my dog, Sodapop, sitting in the grass. The picture is pretty good, but it’s not award winning or anything. I fed the text “a watercolor illustration of a black and white cardigan corgi sitting in the middle of a green flowery meadow in front of an orange ball, masterpiece, big cute eyes”. I didn’t start with that, but I kept changing it to try and get an image that I wanted.&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/sodapop-watercolor.png&quot; /&gt;
-	&lt;figcaption&gt;Prompt: Sodapop vs Watercolorpop&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I also played around with different strengths and amounts of iterations. I found that if I used too many iterations, the image didn’t really resemble Sodapop anymore. He’s a black and white Corgi, which is less common, so there’s probably more of a bias towards the sable and white ones. One thing I learned is that it’s better to just generate a huge number of images and then pick the ones you like. You can save the random seed value and use it to refine the image further as well. There were a lot of really terrible looking corgi watercolor images which my computer is full of now. But there were also some fairly good ones too! The power with this AI is that it’s pretty cheap to just make more images until you get what you want.&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/reject-corgi.png&quot; /&gt;
-	&lt;figcaption&gt;One of many rejected generations&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h3 id=&quot;future-techniques&quot;&gt;Future Techniques&lt;/h3&gt;
-
-&lt;p&gt;There is another technique I tried recently where someone tried to create a bigger image (right now most video cards can only do 512x512 and that’s what the model is trained on) by creating an image, upscaling it and then running the image to image process on 9 square parts of the upscaled image. When I tried this, I found that it added weird artifacts into each square piece. It was recursively trying to fit the whole prompt into each square. My prompt was a garden, and it basically tried to add a garden into each subsquare of the image. This could have been due to a current bug where the random seed on Mac doesn’t really work, but I don’t have the hardware to try it on a non-Mac right now.&lt;/p&gt;
-
-&lt;p&gt;I’ve had a lot more fun playing around with this image generation stuff than I have in a long time with technology, so I ordered a new graphics card so I can iterate on things more quickly on my own infrastructure. There’s something really magical about using a model file that’s only a few gigabytes to basically create any image you can think of. If my internet connection ever goes down for the count, this could be my main source of entertainment.&lt;/p&gt;
-
-&lt;p&gt;There’s a bunch of other things I want to try. There’s a technique called &lt;a href=&quot;https://textual-inversion.github.io&quot;&gt;“Textual Inversion”&lt;/a&gt; where you can sort of re-train (but not really) the model to use a personalized word. I could do this with Sodapop so I stop getting Pembroke Corgis when I want my Corgi. I was also wondering if I could use it with pictures of myself, since Stable Diffusion seems to work really well with making images with well known celebrities in them.&lt;/p&gt;
-
-&lt;p&gt;When I first saw this technology I figured it would be good for creating blog post images (which obviously it was for this post). I’m also envisioning things like services for creating customized watercolor portraits for your dog, or custom fantasy avatars for a person. I think people have just barely scratched the surface here so hopefully there’s a lot more interesting stuff coming up.&lt;/p&gt;
-</description>
-        
-          <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/ron-swanson-weasley.png&quot; /&gt;
-	&lt;figcaption&gt;Ron Swanson as Ron Weasley!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;For the past few months or so, I’ve been noticing a lot of news stories about &lt;a href=&quot;https://openai.com/dall-e-2/&quot;&gt;DALL·E 2&lt;/a&gt;, an AI image generator that uses GANs to create images from prompts. It was private for quite a while, and there were some similar, less powerful projects that were open. I played around with them a bit but I was waiting for a general release. I ended up getting into the DALL·E 2 beta a few weeks ago and last week I saw news that there was a new release of another project called &lt;a href=&quot;https://stability.ai/blog/stable-diffusion-public-release&quot;&gt;Stable Diffusion&lt;/a&gt;, so I installed it on my MacBook. The results really blew me away!&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
-        <link>https://www.hung-truong.com/blog/2022/08/28/stable-diffusion-generating-images-from-words/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/08/28/stable-diffusion-generating-images-from-words/</guid>
         
         
         <category>Tech</category>
