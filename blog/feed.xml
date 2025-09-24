@@ -5,9 +5,101 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 15 Sep 2025 18:22:00 +0000</pubDate>
-    <lastBuildDate>Mon, 15 Sep 2025 18:22:00 +0000</lastBuildDate>
+    <pubDate>Wed, 24 Sep 2025 18:31:00 +0000</pubDate>
+    <lastBuildDate>Wed, 24 Sep 2025 18:31:00 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      
+      <item>
+        <title>Goodbye Claude and Gemini, Hello Codex!</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/goodbye-claude-and-gemini-hello-codex-openaiplush.webp&quot; alt=&quot;OpenAI plush mascot representing the switch from Claude and Gemini to Codex&quot; /&gt;
+	&lt;figcaption&gt;Thanks, OpenAI for the plushie and the office tour (not real btw)!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;There’s been a few changes in the AI CLI landscape, so it’s time for a new blog post! I’ve once again switched my AI best friend. This time from Claude to &lt;a href=&quot;https://openai.com/codex/&quot;&gt;OpenAI’s Codex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So since the last blog post I made about &lt;a href=&quot;/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/&quot;&gt;vibe coding with Claude Code&lt;/a&gt; and &lt;a href=&quot;/blog/2025/08/01/31-days-with-claude-code-what-i-learned/&quot;&gt;what I learned&lt;/a&gt;, it seems like Claude got really dumb. I actually let my subscription lapse so I could do other stuff (like play with &lt;a href=&quot;/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/&quot;&gt;text to video AI&lt;/a&gt;) so I didn’t witness this firsthand. But judging from the Claude Code subreddit and even this &lt;a href=&quot;https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues&quot;&gt;official blog post&lt;/a&gt; from Anthropic, it sounds like there was quite the regression (which Anthropic didn’t even admit to for a while, and when they did, they didn’t compensate anyone for it).&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;During that time I was pretty much using Gemini CLI again (which still kinda sucks, to be honest) and Atlassian’s &lt;a href=&quot;https://www.atlassian.com/software/rovo&quot;&gt;Rovo CLI&lt;/a&gt; which can use Claude Sonnet and GPT5 with pretty nice free limits. I also tried Grok Fast or whatever it was called when it was free for a week but it didn’t seem to work that well for me.&lt;/p&gt;
+
+&lt;p&gt;But after OpenAI announced GPT5 and later, GPT5 Codex, I was intrigued. I didn’t actually subscribe until I got an offer in my account for a free monthly trial of ChatGPT Business. So I have 5 seats of ChatGPT Business for a month right now (no one in my family accepted my offer to join my team, for some reason).&lt;/p&gt;
+
+&lt;p&gt;I’ve been testing Codex out, and so far it’s been pretty much as good or better than Claude Code was when I was trying that. I did notice that ChatGPT Codex takes a bit longer to ramp up, but once it does, the output quality is great. I also had it on the “High” setting, which I’ve been keeping it on for the most part.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-anime-nano-test&quot;&gt;The Anime Nano Test&lt;/h3&gt;
+
+&lt;p&gt;A couple of days ago I got an email from someone about &lt;a href=&quot;https://www.animenano.com&quot;&gt;Anime Nano&lt;/a&gt;, my anime blog post aggregator. They updated their blog and wanted to log in, but there wasn’t a password recovery feature for them to reset their password. When I saw the message I jumped out of my chair and started getting to work! Mostly because no one has really talked to me about Anime Nano in ages and it was validation that my website was still relevant! And it would be a great test to see how well Codex could work.&lt;/p&gt;
+
+&lt;p&gt;I went to work, prompting Codex to implement an email based password reset feature. I had already implemented one at some point, probably when Anime Nano was built on Django, so I already had some database fields ready for it. I read a &lt;a href=&quot;https://blog.cloudflare.com/sending-email-from-workers-with-mailchannels/&quot;&gt;blog post&lt;/a&gt; about how Cloudflare Workers supported sending email without creating any accounts with MailChannels, but apparently that feature was deprecated. Codex wrote an implementation and when I tried it, it didn’t work! Once I realized that function had been deprecated, I had Codex rewrite it with &lt;a href=&quot;https://developers.cloudflare.com/workers/tutorials/send-emails-with-resend/&quot;&gt;Resend&lt;/a&gt;, after creating an account and getting all of the API keys and configuration set up. And it worked!&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/goodbye-claude-and-gemini-hello-codex-session.png.webp&quot; alt=&quot;Screenshot of Codex walking through the Anime Nano password reset update&quot; /&gt;
+	&lt;figcaption&gt;Cloudflare Turnstile turning away robots and humans alike.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;When I emailed the user about the password reset, I sadly got a response that the Cloudflare Turnstile widget that I added to reduce the amount of spam and abuse was locking him out of the password reset feature. At that moment I realized that he was a robot and decided to not waste any more time on that clanker, until I was able to reproduce the issue myself. And I’m not a robot (at least I don’t think I am)! The issue boiled down to how the JavaScript was being loaded in an iframe. Or something, I dunno, AI fixed it.&lt;/p&gt;
+
+&lt;h3 id=&quot;mcps-and-cli-and-code-review&quot;&gt;MCPs and CLI and Code Review!&lt;/h3&gt;
+
+&lt;p&gt;Codex does just as well or better than Claude Code at using tools like the CLI, and it also works pretty well with this &lt;a href=&quot;https://developer.chrome.com/blog/chrome-devtools-mcp&quot;&gt;new MCP&lt;/a&gt; that I found for controlling Google Chrome. I haven’t played around with this too much yet, but it could be pretty powerful as part of my workflow for updating web apps.&lt;/p&gt;
+
+&lt;p&gt;Given a good agents.md file, Codex is also super powerful with CLI tools. I’ve been using it with wrangler (since I’ve mostly been developing on Cloudflare’s platform), and it’s a real time saver. Since it has access to my database schema, I can just ask it things about the data on my local or remote database, and it’ll make queries for me. I absolutely hate writing SQL queries so this is a lifesaver. It’s helped me debug things a lot faster than I could myself, since I can essentially generate queries in plain language.&lt;/p&gt;
+
+&lt;p&gt;I’ve also been having Codex push changes to GitHub and create PRs with the GitHub CLI tool, so that Google Gemini can review the PR and see if it has any issues. Gemini occasionally finds some good issues with the code, which makes me feel better about making PRs. But it’ll also bring up the nittiest of picks if it can’t find anything else to comment on. Just like a real developer!&lt;/p&gt;
+
+&lt;p&gt;It sometimes feels like I’m roleplaying as a software engineer at a large company, since it’s probably way too much process to create a PR just for me to accept it and merge it to main, when I can just commit directly to main anyway, and it’s not like anyone else is touching my codebase.&lt;/p&gt;
+
+&lt;p&gt;But it is pretty fun to see Gemini comment on Codex’s code. I’d have Claude review it too except I stopped paying Anthropic.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-stuff&quot;&gt;Other stuff&lt;/h3&gt;
+
+&lt;p&gt;Codex has this online feature where you can have it whip up a virtual environment and then make changes to your code without using your own computer. In theory this is kind of cool, but in practice it seemed to be a lot slower and harder to observe. Each time I wanted to add a turn to the conversation, it would have to whip up the virtual machine again, which took forever.&lt;/p&gt;
+
+&lt;p&gt;One interesting thing about this hosted feature is that you can have it run up to 4x concurrently and then pick the best result. I found that when I tried this, the implementations were all pretty similar, which I guess is a good thing. I’m not sure if it’s worth the effort to try something 4 times just to have to read 4x the code to figure out which one is the best. Maybe you could have AI do that part too, so I don’t have to!&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/goodbye-claude-and-gemini-hello-codex-sorry-earth.webp&quot; alt=&quot;Screenshot of Codex responding with Sorry, Earth!&quot; /&gt;
+	&lt;figcaption&gt;Sorry, Earth!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I tried testing ChatGPT’s other premium features too, but they didn’t work as well. For some reason, the deep research features of AI always seem to disappoint me. Maybe I’m just really good at researching things, but the AI always seem to give me a suboptimal result. Like if I ask for it to go to a page, and analyze all of the things on that page, it’ll go through maybe 50% and get bored and then finish and tell me it’s done. So I sort of consider AI to be like a lazy intern since you need to keep poking at it until it gives you what you want. The problem is that it takes about as much effort to babysit AI as it is to just do the thing yourself for a lot of tasks. So I guess it’s more about finding the tasks where AI is good (and at this point, re-evaluating that every month or so as AI gets better at things).&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Overall, I like the way that Codex works outside of the box. Maybe it’s because I already had some context files set up (I just made some symlinks from Gemini.md and Claude.md to agents.md). But it feels like Codex is good at finding the right context to add in order to make reasonable changes. The changes I asked for weren’t groundbreaking or anything, but that’s probably like 99% of what needs to be done in code bases anyway.&lt;/p&gt;
+
+&lt;p&gt;I’ll probably just let this free trial period time out (well, definitely since I added 5 business seats to my account). Then I’ll just have to see if Codex is still the top CLI AI agent at that point, or whether Anthropic recovers public trust, or maybe at that point Gemini 3 will be out and I’ll just play around with that. What a time to be alive! Meanwhile, Anime Nano is racking up features like there’s no tomorrow!&lt;/p&gt;
+
+&lt;p&gt;P.S. I used Codex to help me add links and images to this blog post, which made it a lot easier and fun to write. I didn’t have it write any of the actual text though. All bad opinions are my own.&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/goodbye-claude-and-gemini-hello-codex-openaiplush.webp&quot; alt=&quot;OpenAI plush mascot representing the switch from Claude and Gemini to Codex&quot; /&gt;
+	&lt;figcaption&gt;Thanks, OpenAI for the plushie and the office tour (not real btw)!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;There’s been a few changes in the AI CLI landscape, so it’s time for a new blog post! I’ve once again switched my AI best friend. This time from Claude to &lt;a href=&quot;https://openai.com/codex/&quot;&gt;OpenAI’s Codex&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So since the last blog post I made about &lt;a href=&quot;/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/&quot;&gt;vibe coding with Claude Code&lt;/a&gt; and &lt;a href=&quot;/blog/2025/08/01/31-days-with-claude-code-what-i-learned/&quot;&gt;what I learned&lt;/a&gt;, it seems like Claude got really dumb. I actually let my subscription lapse so I could do other stuff (like play with &lt;a href=&quot;/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/&quot;&gt;text to video AI&lt;/a&gt;) so I didn’t witness this firsthand. But judging from the Claude Code subreddit and even this &lt;a href=&quot;https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues&quot;&gt;official blog post&lt;/a&gt; from Anthropic, it sounds like there was quite the regression (which Anthropic didn’t even admit to for a while, and when they did, they didn’t compensate anyone for it).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+        <category>Coding</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1158,126 +1250,6 @@ Your browser does not support the audio element.
         <category>Tech</category>
         
         <category>AI</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Making a Trombone Champ Controller From a Trombone!</title>
-        <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
-&lt;center&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;why-a-trombone-controller&quot;&gt;Why a Trombone Controller?&lt;/h3&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp-screen1.jpg&quot; /&gt;
-	&lt;figcaption&gt;A screenshot of the game&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;After I got the game, I played all the levels and had a lot of fun, but I felt like something was missing. I think that driving games are more fun when you use a steering wheel, and flight simulators are more fun when you use a flight stick. Can you imagine how boring Duck Hunt would be if you had to use the regular NES controller to play it? So I decided to make a trombone controller for Trombone Champ.&lt;/p&gt;
-
-&lt;p&gt;Luckily, I have a love of novelty instruments, and I never throw anything away, so I just happened to have a &lt;a href=&quot;https://www.wwbw.com/Jupiter-314L-Soprano-Trombone-Slide-Trumpet-460203.wwbw&quot;&gt;Jupiter soprano trombone in my closet&lt;/a&gt;. I think I origially bought it because it would be funny to use during basketball games (I used to play in the band in college).&lt;/p&gt;
-
-&lt;h3 id=&quot;making-a-fake-mouse&quot;&gt;Making a Fake Mouse&lt;/h3&gt;
-
-&lt;p&gt;So since I have an actual trombone, all I need now is to connect my trombone to the computer, so I can play the game with it. I did some searching and found &lt;a href=&quot;https://github.com/T-vK/ESP32-BLE-Mouse&quot;&gt;a library that can turn a esp32 microcontroller into a bluetooth mouse&lt;/a&gt;. This is perfect because then all I need to is connect some sensors to my trombone and have those move the mouse and click its buttons. Then I can connect the mouse to my computer and play the game.&lt;/p&gt;
-
-&lt;p&gt;I decided to use a &lt;a href=&quot;https://www.dfrobot.com/product-1590.html&quot;&gt;Firebeetle ESP32 microcontroller&lt;/a&gt; because I had one lying around from a previous project, and because it comes with a connector to plug in a lithium ion battery. This is nice because I’ll be able to play the game completely wirelessly instead of needing to plug in to usb for power.&lt;/p&gt;
-
-&lt;h3 id=&quot;adding-sensors&quot;&gt;Adding Sensors&lt;/h3&gt;
-
-&lt;p&gt;So now I have two different problems to solve. I’ll call these the “blow problem” and the “slide problem.” Let’s start with the blow problem.&lt;/p&gt;
-
-&lt;p&gt;I didn’t want to just add a button to my trombone to play a sound, because that’s not how wind instruments work. I want to actually blow into something. So I looked for different ways to &lt;a href=&quot;https://www.mouser.com/c/sensors/flow-sensors/?for%20use%20with=Air&quot;&gt;measure air flow&lt;/a&gt;, and it turns out these types of sensors are really expensive and didn’t make sense for my project. I ended up finding this neat &lt;a href=&quot;https://www.sparkfun.com/products/16476&quot;&gt;air pressure sensor&lt;/a&gt; that also has a port in it to attach a tube. My idea was that I could attach a tube to the trombone mouthpiece and measure the air pressure difference when I blew into it, directly into the sensor.&lt;/p&gt;
-
-&lt;p&gt;This was actually a terrible idea though, because the tubing would need to go through the entire trombone and then come out of the bell, and it would really impede the movement of the slide.&lt;/p&gt;
-
-&lt;p&gt;I ended up putting the whole sensor in the bell and then sealing the entire instrument with some saran wrap. When it’s on it has a red LED which I think gives it a pretty nice cyberpunk feel. Then I measured the ambient air pressure inside the trombone. In in my room it happens to be around 1011 hPa. When I blow into the horn, it causes the air pressure to go up, and I can register a click. When the air pressure goes back down, I can release it.&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_air_sensor.jpg&quot; /&gt;
-	&lt;figcaption&gt;The air sensor in my trombone&apos;s bell&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;So with my blow problem a thing of the past, let’s move on to the slide problem. In the game, you’re supposed to use a mouse to simulate the slide of a trombone. But there are a lot of problems with this. The slide on a trombone is fixed, so if you go to first position, you hit the end of the trombone. You can’t go to negative positions, but your mouse doesn’t just stop when you hit the end of the screen. Plus on the instrument you can use muscle memory and look at the bell to figure out what note you’re gonna hit.&lt;/p&gt;
-
-&lt;p&gt;I looked at a bunch of different ways to solve the problem of using the actual trombone slide as a controller for the game’s slide. There are various distance sensors: lidar, sonar, time of flight, you could also probably use a gyroscope and accelerometer to figure out what direction the slide is going. I think I saw someone use a wiimote’s accelerometer to make a 3d air mouse once.&lt;/p&gt;
-
-&lt;p&gt;To be honest, I just wanted to get started on this project quickly, so I ordered the &lt;a href=&quot;https://amzn.to/3dNOUOD&quot;&gt;cheapest time of flight sensor on Amazon that had next day shipping&lt;/a&gt;. I attached it to the bell of the trombone and put a piece of cardboard on it that it can use to bounce a laser on to detect how far the laser is away from the initial position.&lt;/p&gt;
-
-&lt;p&gt;When I actually hooked this up to my microcontroller, it ended up giving some pretty inaccurate readings but I figured I could hook it up to my mouse software and see what happens.&lt;/p&gt;
-
-&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/trombone_distance_sensor.jpg&quot; /&gt;
-	&lt;figcaption&gt;The distance sensor attached to the bell&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
-&lt;center&gt;
-&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;This weekend I made a Trombone Champ controller out of a real (soprano) trombone! I&amp;#39;ll have a video out shortly about the process, but for now, enjoy this video of me absolutely failing our national anthem with my new device! cc &lt;a href=&quot;https://twitter.com/HolyWowStudios?ref_src=twsrc%5Etfw&quot;&gt;@HolyWowStudios&lt;/a&gt; &lt;a href=&quot;https://t.co/SvPoxfk6GV&quot;&gt;pic.twitter.com/SvPoxfk6GV&lt;/a&gt;&lt;/p&gt;&amp;mdash; Hung Truong (@hungtruong) &lt;a href=&quot;https://twitter.com/hungtruong/status/1573854148923359232?ref_src=twsrc%5Etfw&quot;&gt;September 25, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;/center&gt;
-
-&lt;p&gt;I’ve linked my tweet of an attempt at the Star Spangled Banner above, but if you don’t want to watch a video, I’ll tell you that it did not work well! I think the time-of-flight sensor I got was faulty, as it didn’t go past 100mm with any degree of accuracy, but is rated for 2000mm.&lt;/p&gt;
-
-&lt;p&gt;But to be honest, I’m really happy with the way this project turned out. The blow sensor works a lot better than I expected it to, as I was initially worried it wouldn’t be able to register the notes quickly enough. I also learned a lot about simulating a bluetooth mouse which I could probably use in future projects. I’m happy to share this project even though it isn’t perfect yet because this kind of prototyping is really an iterative process anyway.&lt;/p&gt;
-
-&lt;p&gt;I also thought it was interesting how the slightly air tight seal on the trombone bell works. When you normally play an instrument, you have some back pressure, but air is also going through. I would say that I probably use more air blowing into the trombone without making any noise than I do when I’m actually playing it.  This could lead to me getting tired pretty quickly, so I might adjust the seal on the horn a bit more so I don’t have to blow as hard.&lt;/p&gt;
-
-&lt;p&gt;As far as next steps go, I’ve already purchased a few new sensors to try out, one is an &lt;a href=&quot;https://amzn.to/3RdPcMs&quot;&gt;acoustic distance detector&lt;/a&gt;, and the other is a &lt;a href=&quot;https://amzn.to/3xTDXSe&quot;&gt;more expensive time of flight sensor from adafruit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I’ll probably update this blog post when I try the new sensors, so look for an update below at some point!&lt;/p&gt;
-
-&lt;h3 id=&quot;update-september-27-2022&quot;&gt;Update September 27, 2022&lt;/h3&gt;
-
-&lt;p&gt;So I ended up getting the new distance sensors! I had a problem getting the acoustic sensor working (it looks like it doesn’t play well with other i2c devices at the same time) but the time-of-flight sensor from Adafruit is working a lot better. Here’s a video where I actually get a C in Oh Canada.&lt;/p&gt;
-
-&lt;center&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/u0Msn00sflU&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-
-&lt;p&gt;Some quick impressions on the current state of Trombone Champ Controller v2: I am going to need to seal the bell a bit better than with the current plastic wrap solution I have now. There’s quite a bit of air leak (as I had predicted before). Playing a 1 minute song is pretty easy but playing the longer ones leaves me pretty lightheaded by the end. When playing a regular trumpet, I don’t really use that much air, so getting too much oxygen is not an issue. But I am probably setting myself up for hyperventilation side effects if I don’t make another adjustment.&lt;/p&gt;
-
-&lt;p&gt;Aside from that I am not sure if the game audio is a bit laggy or if it’s due to my screen recording software but I felt like I needed to preemptively blow a bit early for the controls to actually hit accurately. I did see that the developer made an update around audio latency so maybe that’ll fix it!&lt;/p&gt;
-
-&lt;center&gt;
-	&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;ALSO, we just pushed a very very small update (&amp;lt;5mb) to v1.04 which may make overall audio latency slightly better! Between this and the improved multi-key keyboard stuff, serious rhythm game people may be *slightly* happier with Trombone Champ starting from tonight🙏&lt;/p&gt;&amp;mdash; Holy Wow (🎺TROMBONE CHAMP IS OUT!) (@HolyWowStudios) &lt;a href=&quot;https://twitter.com/HolyWowStudios/status/1574587033825071105?ref_src=twsrc%5Etfw&quot;&gt;September 27, 2022&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;/center&gt;
-
-&lt;p&gt;I think I can also probably improve the slide accuracy by using something a bit more sturdy than a crappy piece of cardboard taped to the slide… Maybe something 3d printed?&lt;/p&gt;
-
-&lt;p&gt;I’ll update this blog post as I make more improvements.&lt;/p&gt;
-</description>
-        
-          <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2022/tchamp1920hero.jpg&quot; /&gt;
-	&lt;figcaption&gt;It&apos;s everyone&apos;s favorite new trombone music rythm game!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject. So if you want to watch the video, I’ve embedded it here! Or if you like reading more, then go ahead and read my post below! (I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)&lt;/p&gt;
-&lt;center&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/lUXrkq2e1zk&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-&lt;p&gt;I just got this new game called &lt;a href=&quot;https://store.steampowered.com/app/1059990/Trombone_Champ/&quot;&gt;“Trombone Champ”&lt;/a&gt; which is like Guitar Hero but with a trombone. It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre. I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious. I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys). So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Mon, 26 Sep 2022 00:00:00 +0000</pubDate>
-        <link>https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2022/09/26/making-a-trombone-champ-controller-from-a-trombone/</guid>
-        
-        
-        <category>Tech</category>
         
       </item>
       

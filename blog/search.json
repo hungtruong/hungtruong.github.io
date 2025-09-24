@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "goodbye-claude-and-gemini-hello-codex",
+      "title": "Goodbye Claude and Gemini, Hello Codex!",
+      "url": "/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/",
+      "date": "2025-09-24",
+      "year": "2025",
+      "categories": ["Tech","AI","Coding"],
+      "description": "There's been a few changes in the AI CLI landscape so it's time for a new blog post! I've once again switched my AI best friend.",
+      "content": "Thanks, OpenAI for the plushie and the office tour (not real btw)! There’s been a few changes in the AI CLI landscape, so it’s time for a new blog post! I’ve once again switched my AI best friend. This time from Claude to OpenAI’s Codex. So since the last blog post I made about vibe coding with Claude Code and what I learned, it seems like Claude got really dumb. I actually let my subscription lapse so I could do other stuff (like play with text to video AI) so I didn’t witness this firsthand. But judging from the Claude Code subreddit and even this official blog post from Anthropic, it sounds like there was quite the regression (which Anthropic didn’t even admit to for a while, and when they did, they didn’t compensate anyone for it). During that time I was pretty much using Gemini CLI again (which still kinda sucks, to be honest) and Atlassian’s Rovo CLI which can use Claude Sonnet and GPT5 with pretty nice free limits. I also tried Grok Fast or whatever it was called when it was ...",
+      "excerpt": "Thanks, OpenAI for the plushie and the office tour (not real btw)! There’s been a few changes in the AI CLI landscape, so it’s time for a new blog post! I’ve once again switched my AI best friend. ..."
+    },
+    
+    {
       "id": "fun-with-wan-2-2-text-to-video-ai",
       "title": "Fun With Wan 2.2 Text To Video AI",
       "url": "/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/",
