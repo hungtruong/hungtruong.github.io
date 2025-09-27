@@ -5,9 +5,90 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 24 Sep 2025 18:31:00 +0000</pubDate>
-    <lastBuildDate>Wed, 24 Sep 2025 18:31:00 +0000</lastBuildDate>
+    <pubDate>Sat, 27 Sep 2025 14:51:50 +0000</pubDate>
+    <lastBuildDate>Sat, 27 Sep 2025 14:51:50 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      
+      <item>
+        <title>Cleaning out my bookmarks</title>
+        <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/cleaning-out-my-bookmarks-tabs.webp&quot; alt=&quot;Screenshot of bookmarks folders queued for cleanup&quot; /&gt;
+	&lt;figcaption&gt;A snapshot at my incredibly outdated bookmarks.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I was adding a bookmarklet to my web browser this morning (&lt;a href=&quot;https://gist.github.com/elado/69fa611d84305dea4b38801880743928&quot;&gt;to auto-click on American Express offers&lt;/a&gt;) and was trying to figure out how to organize it so it’s easy to click when I want to find it. I realized that I have like a billion bookmarks that I’ve added to my bookmarks bar, etc, but I almost never directly use any of my bookmarks.&lt;/p&gt;
+
+&lt;p&gt;I figured I should clean out my browser bookmarks and organize them since it’s been a while since I’ve touched them. I realized that I haven’t really been adding bookmarks to anything, since I mostly just go to Reddit or a handful of other websites that just show me new stuff.&lt;/p&gt;
+
+&lt;p&gt;In our current fast paced world, I can’t even imagine reading something and then wanting to go back and read it again…&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;A few years ago I learned the keyboard shortcut for going directly to the address bar (CMD + L if you’re curious) and that’s also pretty much eliminated the need for me to use bookmarks, since it’s faster for me to just hit that shortcut and start typing. I also aliased all of my locally run apps that run on web servers, like homeassistant.local, for example, so I don’t need to use port numbers in urls, e.g. 10.0.0.1:8123.&lt;/p&gt;
+
+&lt;p&gt;So I started going through my bookmarks, and boy, are they old! A few are apartments in Seattle that I was thinking about moving into after I graduated from grad school (I moved into &lt;a href=&quot;https://www.epiapartments.com&quot;&gt;this one&lt;/a&gt;). There’s a syllabus to a class I took in grad school (&lt;a href=&quot;https://web.archive.org/web/20081210124525/http://si684w08.cms.si.umich.edu/&quot;&gt;the link broke&lt;/a&gt;). And hilariously there are also links to corporate intranet sites for multiple different companies that I worked for, including Microsoft, Amazon and Apple that I never bothered removing.&lt;/p&gt;
+
+&lt;p&gt;I also bookmarked a ton of articles about development. Things like how to implement in-app purchases in iOS, or customizing the UITabBar on iOS 5. Or &lt;a href=&quot;https://gist.github.com/trey/2596149&quot;&gt;the best way to start a Django project in 2012&lt;/a&gt;!&lt;/p&gt;
+
+&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/how-to-start-a-django-project.webp&quot; alt=&quot;Screenshot of nested bookmark folders before cleanup&quot; /&gt;
+	&lt;figcaption&gt;Even the gist recognizes this is a bit outdated...&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;There are also a bunch of low carb keto recipes that I saved, a few of which I actually made and then highly regretted making.&lt;/p&gt;
+
+&lt;p&gt;I also have a bookmark to my friend &lt;a href=&quot;http://bobthehermit.blogspot.com/&quot;&gt;Lorenzo’s blog &lt;/a&gt; which I’ll keep because it’s a good reminder to go check out his blog every now and then, and he’s another O.G. blogger like me!&lt;/p&gt;
+
+&lt;p&gt;I think it’s really interesting that bookmarks are a feature that has rarely changed in browsers. From Mosaic to… whatever the latest AI browser is these days, they’ve all had bookmarks, and the feature is probably 99% the same as it was 30+ years ago (aside from maybe the bookmark bar and bookmarklets).&lt;/p&gt;
+
+&lt;p&gt;It’s no wonder that I haven’t kept on top of pruning by bookmarks. Out of sight out of mind. I don’t really use them, so why would I need to clean them up?&lt;/p&gt;
+
+&lt;p&gt;I can think of a handful of uses for bookmarks in my current day use.&lt;/p&gt;
+
+&lt;h3 id=&quot;use-bookmarks-as-a-hint&quot;&gt;Use bookmarks as a hint&lt;/h3&gt;
+
+&lt;p&gt;I can use bookmarks as a hint that I want the browser to autocomplete what I’m typing. I’m not sure how useful this is since I think browsers also just know that I go to a certain site every single day, but it’s probably somewhat useful.&lt;/p&gt;
+
+&lt;h3 id=&quot;bookmarklets&quot;&gt;Bookmarklets&lt;/h3&gt;
+
+&lt;p&gt;This would probably be my main usecase, to run a bookmarklet to bypass a paywall by pulling up an archived version, or clicking all the offers on the Amex site, or cancelling all of my Amazon subscribe and save orders since I only do that to save 5% or whatever the first time I buy something.&lt;/p&gt;
+
+&lt;h3 id=&quot;recipes&quot;&gt;Recipes&lt;/h3&gt;
+
+&lt;p&gt;Recipes are maybe the only other thing I’d use bookmarks for since I want to go back to them, but in a somewhat random fashion, and I don’t know if I trust Google to remember what “Zucchini Cheese Enciladas recipe” means every time I type it (though they are pretty good at that). I’d probably be better off just saving the recipe somewhere or &lt;strong&gt;**gasp&lt;/strong&gt;** printing it out, but whatever.&lt;/p&gt;
+
+&lt;h2 id=&quot;bye-bye-bookmarks&quot;&gt;Bye Bye Bookmarks&lt;/h2&gt;
+
+&lt;p&gt;I feel a bit bad removing a bunch of these bookmarks. But like Marie Kondo, I can acknowledge them, thank them for their service, and let them go. Plus I saved an archive somewhere of them anyway, in case I ever wanna look at them again!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+	&lt;img src=&quot;/blog/wp-content/uploads/2025/cleaning-out-my-bookmarks-tabs.webp&quot; alt=&quot;Screenshot of bookmarks folders queued for cleanup&quot; /&gt;
+	&lt;figcaption&gt;A snapshot at my incredibly outdated bookmarks.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I was adding a bookmarklet to my web browser this morning (&lt;a href=&quot;https://gist.github.com/elado/69fa611d84305dea4b38801880743928&quot;&gt;to auto-click on American Express offers&lt;/a&gt;) and was trying to figure out how to organize it so it’s easy to click when I want to find it. I realized that I have like a billion bookmarks that I’ve added to my bookmarks bar, etc, but I almost never directly use any of my bookmarks.&lt;/p&gt;
+
+&lt;p&gt;I figured I should clean out my browser bookmarks and organize them since it’s been a while since I’ve touched them. I realized that I haven’t really been adding bookmarks to anything, since I mostly just go to Reddit or a handful of other websites that just show me new stuff.&lt;/p&gt;
+
+&lt;p&gt;In our current fast paced world, I can’t even imagine reading something and then wanting to go back and read it again…&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 27 Sep 2025 00:00:00 +0000</pubDate>
+        <link>https://www.hung-truong.com/blog/2025/09/27/cleaning-out-my-bookmarks/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/09/27/cleaning-out-my-bookmarks/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>Blogging</category>
+        
+        <category>Web</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1099,152 +1180,6 @@ Your browser does not support the audio element.
         <pubDate>Wed, 14 Jun 2023 00:00:00 +0000</pubDate>
         <link>https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/06/14/introducing-the-talkboy-ultra-voice-cloning-toy/</guid>
-        
-        
-        <category>Tech</category>
-        
-        <category>AI</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Voice Cloning For Fun and Profit</title>
-        <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2023/all_along_the_way.jpg&quot; /&gt;
-	&lt;figcaption&gt;Two legendary directors doing the weather report&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
-
-&lt;center&gt;
-	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/OlbVWneM6xE&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-
-&lt;p&gt;I was recently stuck on a really long, 6 hour flight. Luckily, I had an internet connection the whole time, and I was testing out some nifty &lt;a href=&quot;https://amzn.to/4aCj3c5&quot;&gt;AR Glasses&lt;/a&gt;, so I watched a lot of YouTube.&lt;/p&gt;
-
-&lt;p&gt;I remembered seeing a video about AI voice clone cover songs, where someone will take the voice of a known artist, and then make them sing a song by another artist (e.g. Kanye West singing “Call Me Maybe”), or they create a whole new original song for the artist (e.g. Drake singing an original called &lt;a href=&quot;https://www.nytimes.com/2023/04/19/arts/music/ai-drake-the-weeknd-fake.html&quot;&gt;“Heart on My Sleeve”&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Since I was stuck on the plane, and I had the privacy to watch whatever I wanted without my seatmates judging me for binging on a bunch of AI cover songs, I just fell deep into the rabbit hole of listening to a bunch of Kanye covers.&lt;/p&gt;
-
-&lt;p&gt;The quality really varied. Some of the songs were unlistenable due to weird glitches in the voice. But some sounded pretty convincing. The good ones still didn’t really pass as real, but I think that with some post-processing and maybe an actual sound engineer on the case, they could be great.&lt;/p&gt;
-
-&lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;blue-skies-and-golden-sunshine&quot;&gt;Blue Skies and Golden Sunshine&lt;/h3&gt;
-
-&lt;p&gt;The first voice that I wanted to try to clone was David Lynch’s. You might not think that his voice would be my first choice, so let me explain. Maybe a year ago, I started watching these &lt;a href=&quot;https://www.youtube.com/@DAVIDLYNCHTHEATER&quot;&gt;David Lynch weather reports&lt;/a&gt; that he was doing daily. I think the joke is that the weather in L.A. is pretty much the same all the time. But I would watch it every day, and it was pretty soothing in a pandemic world to have something that was consistent.&lt;/p&gt;
-
-&lt;p&gt;I had some ideas on automating his weather report, which would either take pieces of his other reports, and stitch them together to make a new one (based on the actual weather of the day, of course). I looked at some AI libraries that could find someone’s face and &lt;a href=&quot;https://github.com/Rudrabha/Wav2Lip&quot;&gt;make their lips move with an audio file&lt;/a&gt;. The results were actually pretty creepy, which is appropriate for David Lynch.&lt;/p&gt;
-
-&lt;p&gt;But I figured he might get mad at me and I don’t want David Lynch to be mad at me. Plus I kind of got sidetracked and busy and I didn’t have time to finish that project.&lt;/p&gt;
-
-&lt;p&gt;David Lynch stopped his weather reports abruptly some time in December, and I started missing them. One of the reasons I liked listening to his reports is that he has a really funny way of talking. He talks like an old timey newsreel, and pronounces words a certain way. Like for “day” he says it like “dee.”&lt;/p&gt;
-
-&lt;p&gt;I figured that if I could clone his voice, I could do my own version of his weather report. And if I could get the pronunciations correct, then it could seem like he was back doing them (in an Asian person’s body). I was also thinking about integrating deepfake technology into my version of the weather reports, but I haven’t figured that part out yet.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I trained a voice clone model of David Lynch using the audio from his weather reports. I used a library called &lt;a href=&quot;https://github.com/voicepaw/so-vits-svc-fork&quot;&gt;“so-vits-svc-fork”&lt;/a&gt; to do this, and I trained it on &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; since I don’t have a GPU at the moment.&lt;/p&gt;
-
-&lt;p&gt;When I tried to actually infer my voice to the David Lynch voice model, it sounded really funny. I ended up &lt;a href=&quot;https://youtu.be/-f86ZqMD9_o&quot;&gt;posting a video of it anyway though&lt;/a&gt;, and I shared it in the David Lynch subreddit. The folks there thought it was a pretty convincing impression, but I was still not happy with the results.&lt;/p&gt;
-
-&lt;center&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/-f86ZqMD9_o&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-
-&lt;p&gt;Eventually, while playing with the settings, I figured out that I wanted to manually transpose and set the “–no-auto-predict-f0” flag. I also experimented with some other f0 prediction methods which made the synthesized voice sound better. I still haven’t made another weather report but I’m pretty sure I could nail it with the updated settings. I also understand now why David Lynch stopped, because it’s kind of a lot of work and I can’t imagine doing it every day.&lt;/p&gt;
-
-&lt;h3 id=&quot;i-think-im-a-clone-now&quot;&gt;I Think I’m a Clone Now&lt;/h3&gt;
-
-&lt;p&gt;So after the success of the David Lynch voice model, I figured I would clone my own voice. Because sometimes I wonder how it would sound if I could actually sing “My Heart Will Go On” exactly like Celine Dion (currently I’m at about 90%).&lt;/p&gt;
-
-&lt;p&gt;I took a bunch of audio from my &lt;a href=&quot;https://youtu.be/fxVCrGzEP_k&quot;&gt;previous YouTube video on Trombone Champ&lt;/a&gt;, which was about 10 minutes. Coincidentally, 10 minutes is around the suggested amount of audio to use for voice cloning.&lt;/p&gt;
-
-&lt;p&gt;I trained a model on just me speaking, but the model ended up underperforming when it came to singing. There were some weird glitches when moving between notes, which were probably just pitches that weren’t included in the sample data.&lt;/p&gt;
-
-&lt;p&gt;I ended up recording about 6 minutes of myself singing some various hits from the 80s and 90s, and added that to the audio data for training. The resulting model sings pretty well. Here are some audio samples in case you are interested.&lt;/p&gt;
-
-&lt;p&gt;My Heart Will Go On:&lt;/p&gt;
-&lt;audio controls=&quot;&quot;&gt;
-	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - My Heart Will Go On.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
-Your browser does not support the audio element.
-&lt;/audio&gt;
-
-&lt;p&gt;I Believe I Can Fly&lt;/p&gt;
-&lt;audio controls=&quot;&quot;&gt;
-	 &lt;source src=&quot;/blog/wp-content/uploads/2023/Hung Truong - I Believe I Can Fly.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
-Your browser does not support the audio element.
-&lt;/audio&gt;
-
-&lt;p&gt;After trying it out for myself, I’m convinced that AI voice cloning will be a pretty big deal, not just for these novelty use cases, but also for actual music production. Sure, the results aren’t perfect right now, but you can believe that as technology gets better and better, artists are going to want to use this to gain a competitive edge, just like autotune or any other kind of technology that was introduced in the past.&lt;/p&gt;
-
-&lt;p&gt;I thought up a few use cases where this technology can be used, but I’m sure there are others:&lt;/p&gt;
-
-&lt;h3 id=&quot;multi-lingual-media&quot;&gt;Multi-Lingual Media&lt;/h3&gt;
-
-&lt;p&gt;Currently, the only artists who can have hits in multiple languages are the ones who are bilingual. For exmample, Shakira has version of “Hips Don’t Lie” in Spanish and English because she knows both.&lt;/p&gt;
-
-&lt;p&gt;But if I was an American artist who wanted greater reach in Japan, I could have a voice double singing with Japanese lyrics to one of my songs, then clone my voice into the Japanese track. It would then sound like I’m singing in Japanese. If artists can reach more fans, that’s probably a positive for them. Music is universal, and artists like Bad Bunny are proving that you don’t need to speak a language to be popular to the native speakers, but it certainly helps if you understand what the person is actually singing about.&lt;/p&gt;
-
-&lt;h3 id=&quot;enhanced-accessibility&quot;&gt;Enhanced Accessibility&lt;/h3&gt;
-
-&lt;p&gt;I’ve been making more YouTube videos lately, and when I do, I always try to make them accessible by adding captions. This helps people who have hearing disabilities enjoy my videos. I usually only caption in English, but those captions can then be auto-translated by Google, which also expands my viewership to people who don’t speak English.&lt;/p&gt;
-
-&lt;p&gt;To make my videos even more accessible, I could translate the captions, then produce audio using TTS. This would result in a voice that is speaking the captions of my video in the other langauge. Finally, I can apply my voice clone to the TTS audio to make it sound like I’m speaking the other language. I tried this in my voice clone video, but I had to slow down the actual video because I talk fast, and I guess German just uses more/longer words.&lt;/p&gt;
-
-&lt;h3 id=&quot;voice-clone-collabs&quot;&gt;Voice Clone Collabs&lt;/h3&gt;
-
-&lt;p&gt;Right now these voice clone AI covers are just working in some murky legal territory, because it’s a bunch of enthusiasts having fun and creating things. At some point, the ones who are good at this will probably end up collaborating with artists to make music together. Not all artists will do this, but &lt;a href=&quot;https://twitter.com/Grimezsz&quot;&gt;Grimes has already stated that she’ll split earnings if anyone uses her voice&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;selling-voice-rights&quot;&gt;Selling Voice Rights&lt;/h3&gt;
-
-&lt;p&gt;Bob Dylan recently sold his entire music catalog for a pretty big sum. As artists are getting older and ready to retire, I could see them offering rights to use their voice as well. I mean, if they’re not going to use it, they might as well let someone else! Imagine how much the rights to use Michael Jackson’s voice would be worth. Especially in the right hands and with a professional producer. I’m not saying that I’d rather listen to AI MJ than a real person at this point, but there’s probably going to be a market for it, whether most people want it or not.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-dark-side-of-cloning&quot;&gt;The Dark Side of Cloning&lt;/h3&gt;
-
-&lt;p&gt;Unfortunately, not all use cases for voice cloning technology are positive or legal. Scammers have used voice cloning to convince parents that their teens were kidnapped, and others have sold fake “leaked” tracks by famous artists to collectors.&lt;/p&gt;
-
-&lt;p&gt;For some reason my bank wants “voice authorization” to be a thing, even though it’s the stupidest, insecure thing I could imagine. As if someone couldn’t get a recording of my voice. Now they could actually clone it.&lt;/p&gt;
-
-&lt;p&gt;I’m sure there’s plenty of other bad things you can do with voice cloning, just like with image generation, and tools like Photoshop. A tool is just a tool, and people will use them for good stuff and bad stuff.&lt;/p&gt;
-
-&lt;h3 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h3&gt;
-
-&lt;p&gt;It was really fun to explore the possibilities of voice cloning, and it’s just another tool to think about as generative AI tools become more popular in different aspects of our lives. Not only do we have text generation and image generation, we also have speech, both from text to speech systems as well as these new speech to speech systems.&lt;/p&gt;
-
-&lt;p&gt;I’ve also been interested in text to music generation, like the one from Google that was made available recently, called &lt;a href=&quot;https://aitestkitchen.withgoogle.com/experiments/music-lm&quot;&gt;MusicLM&lt;/a&gt;. I might try using that to make something new as well.&lt;/p&gt;
-
-&lt;p&gt;In the meantime, it’s taking a lot of effort just to stay on top of all these things!&lt;/p&gt;
-</description>
-        
-          <description>&lt;figure&gt;
-	&lt;img src=&quot;/blog/wp-content/uploads/2023/all_along_the_way.jpg&quot; /&gt;
-	&lt;figcaption&gt;Two legendary directors doing the weather report&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!&lt;/p&gt;
-
-&lt;center&gt;
-	&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/OlbVWneM6xE&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;
-
-&lt;p&gt;I was recently stuck on a really long, 6 hour flight. Luckily, I had an internet connection the whole time, and I was testing out some nifty &lt;a href=&quot;https://amzn.to/4aCj3c5&quot;&gt;AR Glasses&lt;/a&gt;, so I watched a lot of YouTube.&lt;/p&gt;
-
-&lt;p&gt;I remembered seeing a video about AI voice clone cover songs, where someone will take the voice of a known artist, and then make them sing a song by another artist (e.g. Kanye West singing “Call Me Maybe”), or they create a whole new original song for the artist (e.g. Drake singing an original called &lt;a href=&quot;https://www.nytimes.com/2023/04/19/arts/music/ai-drake-the-weeknd-fake.html&quot;&gt;“Heart on My Sleeve”&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Since I was stuck on the plane, and I had the privacy to watch whatever I wanted without my seatmates judging me for binging on a bunch of AI cover songs, I just fell deep into the rabbit hole of listening to a bunch of Kanye covers.&lt;/p&gt;
-
-&lt;p&gt;The quality really varied. Some of the songs were unlistenable due to weird glitches in the voice. But some sounded pretty convincing. The good ones still didn’t really pass as real, but I think that with some post-processing and maybe an actual sound engineer on the case, they could be great.&lt;/p&gt;
-
-&lt;p&gt;I was on a plane to Hawaii, and while I also had some fun doing Hawaii stuff, I also spent some of the time learning about voice cloning and trying to train some voice models myself.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sat, 20 May 2023 00:00:00 +0000</pubDate>
-        <link>https://www.hung-truong.com/blog/2023/05/20/voice-cloning-for-fun-and-profit/</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/05/20/voice-cloning-for-fun-and-profit/</guid>
         
         
         <category>Tech</category>

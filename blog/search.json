@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "cleaning-out-my-bookmarks",
+      "title": "Cleaning out my bookmarks",
+      "url": "/blog/2025/09/27/cleaning-out-my-bookmarks/",
+      "date": "2025-09-27",
+      "year": "2025",
+      "categories": ["Tech","Blogging","Web"],
+      "description": "Do we even need bookmarks anymore?",
+      "content": "A snapshot at my incredibly outdated bookmarks. I was adding a bookmarklet to my web browser this morning (to auto-click on American Express offers) and was trying to figure out how to organize it so it’s easy to click when I want to find it. I realized that I have like a billion bookmarks that I’ve added to my bookmarks bar, etc, but I almost never directly use any of my bookmarks. I figured I should clean out my browser bookmarks and organize them since it’s been a while since I’ve touched them. I realized that I haven’t really been adding bookmarks to anything, since I mostly just go to Reddit or a handful of other websites that just show me new stuff. In our current fast paced world, I can’t even imagine reading something and then wanting to go back and read it again… A few years ago I learned the keyboard shortcut for going directly to the address bar (CMD + L if you’re curious) and that’s also pretty much eliminated the need for me to use bookmarks, since it’s faster for me to...",
+      "excerpt": "A snapshot at my incredibly outdated bookmarks. I was adding a bookmarklet to my web browser this morning (to auto-click on American Express offers) and was trying to figure out how to organize it ..."
+    },
+    
+    {
       "id": "goodbye-claude-and-gemini-hello-codex",
       "title": "Goodbye Claude and Gemini, Hello Codex!",
       "url": "/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/",
