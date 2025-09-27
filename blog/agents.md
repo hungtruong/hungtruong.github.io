@@ -50,6 +50,7 @@ For a post in 2025, check if there's a `2025/` folder or `2021-2025/` folder and
 ### Image Location Structure
 - Images are stored in `/wp-content/uploads/YYYY/`
 - Use the current year for new images (e.g., `/wp-content/uploads/2025/`)
+- If Hung asks for an image to be added to a post, the source file is usually sitting in the project root unless he says otherwise.
 
 ### Image Processing Steps
 1. **Move and rename** image to proper location:
@@ -75,10 +76,7 @@ For a post in 2025, check if there's a `2025/` folder or `2021-2025/` folder and
    - Resizes to 800px width (maintains aspect ratio)
    - Best web performance and compatibility
 
-4. **Clean up** original file if needed:
-   ```bash
-   rm "original-file.webp"
-   ```
+4. **Keep** the original source file in place until Hung confirms the conversion looks good. Do not delete it yourself.
 
 ### Adding Images to Blog Posts
 
