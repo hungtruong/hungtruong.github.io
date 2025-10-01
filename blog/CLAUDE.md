@@ -1,10 +1,20 @@
-# Jekyll Blog Post Creation Process
+# Jekyll Blog Agent Playbook
 
-## File Structure
-- Posts go in `_posts/` directory in appropriate year folder
-- Check existing structure: currently using `2021-2025/` for recent posts
-- Follow naming convention: `YYYY-MM-DD-title-slug.md`
-- Use today's date for new posts
+## Quick Start (TL;DR)
+- Create a new post in `_posts/` using today’s date and kebab-case slug: `YYYY-MM-DD-title-slug.md` in the correct year folder (currently `2021-2025/`).
+- Use the front matter template below; set `image` to a site-root path for the featured media: `/wp-content/uploads/YYYY/filename.webp`.
+- Add content scaffold and an excerpt break `<!--more-->`.
+- For internal links, keep your original wording and link inline using Liquid: `{{ '/path/' | prepend: site.baseurl }}`.
+- Media workflow:
+  - Images → convert to 800px WebP, store in `/wp-content/uploads/YYYY/`.
+  - Videos → copy from `zz_incoming_media/`, rename descriptively, generate a poster WebP, embed with `playsinline` + `preload="metadata"`. For tall clips, cap width ~360px and center.
+- Keep source media in `zz_incoming_media/` until approved.
+
+## Paths & Naming
+- Posts: `_posts/<year-or-range>/YYYY-MM-DD-title-slug.md` (use `2021-2025/` for recent years).
+- Media (published): `/wp-content/uploads/YYYY/`.
+- Media (staging): `zz_incoming_media/` (do not delete originals until confirmed).
+- Filenames: descriptive, kebab-case.
 
 ## Front Matter Template
 ```yaml
@@ -15,88 +25,104 @@ author: Hung
 categories: [Tech, AI, Claude]  # Choose appropriate categories
 permalink: /YYYY/MM/DD/title-slug/
 description: Brief SEO-friendly description of the post content
+# Featured image or video poster (site-root path)
+image: /wp-content/uploads/YYYY/featured-or-poster.webp
 ---
 ```
 
-## Common Categories
-Based on recent posts:
-- Tech
-- AI
-- Claude
-- iOS
-- Music
-- Blogging
-- Coding
-- Lifestyle
+## Featured Media Behavior
+- Use an absolute site-root path for `image` (e.g., `/wp-content/uploads/2025/name.webp`).
+- Prev/next thumbnails at the bottom of posts read `page.image` directly, so absolute paths show correctly.
+- Social cards (Open Graph/Twitter) are generated in `_includes/head.html`, which supports absolute `page.image` paths.
 
-## Content Structure
-- Start with front matter
-- Add `<!-- Your blog content goes here -->`
-- Include `<!--more-->` tag for excerpt break
-- Follow existing post style and tone
+## Content Structure & Linking
+- Start with front matter → intro paragraph(s) → `<!--more-->` → body sections.
+- When Hung requests a link:
+  - Keep the existing wording; add the link inline without rewriting surrounding text.
+  - Prefer natural placement that flows with the draft; usually toward the end unless context clearly points elsewhere.
+  - Use Liquid for internal links so base URL is respected: `{{ '/YYYY/MM/DD/slug/' | prepend: site.baseurl }}`.
 
-## Process
-1. Check `_posts/` directory structure to find correct year folder
-2. Create file with proper naming convention
-3. Add front matter with all required fields
-4. Include basic content structure
-5. File is ready for user to write actual content
+## Image Workflow
+1. Locate source in `zz_incoming_media/` (or as specified).
+2. Convert to WebP at 800px wide for performance.
+   - Text/graphics: lossless WebP.
+   - Photos/gradients: quality ~95.
+3. Place in `/wp-content/uploads/YYYY/` with descriptive name.
+4. Keep original source in place until approved.
 
-## Example
-For a post in 2025, check if there's a `2025/` folder or `2021-2025/` folder and use the appropriate one.
+Commands (examples)
+```bash
+# Dimensions (macOS)
+sips -g pixelWidth -g pixelHeight "image.png"
 
-## Image Processing for Blog Posts
-
-### Image Location Structure
-- Images are stored in `/wp-content/uploads/YYYY/`
-- Use the current year for new images (e.g., `/wp-content/uploads/2025/`)
-- If Hung asks for an image to be added to a post, the source file is usually sitting in the project root unless he says otherwise.
-
-### Image Processing Steps
-1. **Move and rename** image to proper location:
-   ```bash
-   mv "original-filename.webp" "/path/to/blog/wp-content/uploads/YYYY/descriptive-name.webp"
-   ```
-
-2. **Check image dimensions**:
-   ```bash
-   sips -g pixelWidth -g pixelHeight "image-path"
-   ```
-
-3. **Convert and resize** (using ImageMagick for optimal quality/size):
-   ```bash
-   # For text/graphics with sharp edges (screenshots, tables, diagrams)
-   magick "input.png" -resize 800x -define webp:lossless=true "output.webp"
-   
-   # For photos or images with gradients
-   magick "input.png" -resize 800x -quality 95 "output.webp"
-   ```
-   - WebP lossless: Perfect quality, 60% smaller than PNG
-   - WebP lossy (95%): Good for photos, even smaller files
-   - Resizes to 800px width (maintains aspect ratio)
-   - Best web performance and compatibility
-
-4. **Keep** the original source file in place until Hung confirms the conversion looks good. Do not delete it yourself.
-
-### Adding Images to Blog Posts
-
-#### Front Matter
-Add to YAML front matter for featured image:
-```yaml
-image: /wp-content/uploads/YYYY/image-name.webp
+# Convert (ImageMagick)
+magick input.png -resize 800x -define webp:lossless=true output.webp
+# Or for photos
+magick input.jpg -resize 800x -quality 95 output.webp
 ```
 
-#### Inline Figure with Caption
-Add to post content:
+Embed snippet
 ```html
 <figure>
-	<img src="{{ '/wp-content/uploads/YYYY/image-name.webp' | prepend: site.baseurl }}">
-	<figcaption>Caption text here</figcaption>
+  <img src="{{ '/wp-content/uploads/YYYY/image-name.webp' | prepend: site.baseurl }}" alt="Descriptive alt text">
+  <figcaption>Concise, helpful caption.</figcaption>
+  
 </figure>
 ```
 
-### Image Guidelines
-- **Max width**: 800px for good loading performance
-- **Format**: WebP (lossless for text/graphics, lossy for photos)
-- **Naming**: Use descriptive, kebab-case names
-- **Captions**: Keep concise and descriptive
+## Video Workflow
+1. Preview the clip in `zz_incoming_media/` and choose a descriptive, kebab-case name reflecting what’s on screen.
+2. Copy to `/wp-content/uploads/YYYY/` (leave the original in staging until approved).
+3. Generate a poster frame ~1s into the video using `ffmpeg`, then convert to an 800px-wide lossless WebP; name it with the same base plus `-poster`. After converting, delete the intermediate PNG — keep only the WebP poster.
+4. Embed with `controls playsinline preload="metadata" poster="..."`.
+5. If the clip is portrait/tall, cap width to ~360px and center it so it doesn’t overwhelm the layout.
+
+Commands (examples)
+```bash
+# Copy from staging (keep original)
+cp -p "zz_incoming_media/original-name.MP4" "wp-content/uploads/2025/descriptive-name.mp4"
+
+# Extract poster (PNG)
+ffmpeg -y -ss 00:00:01 -i wp-content/uploads/2025/descriptive-name.mp4 \
+  -frames:v 1 wp-content/uploads/2025/descriptive-name-poster.png
+
+# Convert poster to 800px lossless WebP (cwebp or ImageMagick)
+cwebp -lossless -resize 800 0 \
+  wp-content/uploads/2025/descriptive-name-poster.png \
+  -o wp-content/uploads/2025/descriptive-name-poster.webp
+
+# Remove intermediate PNG (always)
+rm wp-content/uploads/2025/descriptive-name-poster.png
+```
+
+Embed snippets
+```html
+<!-- Standard landscape or square -->
+<video controls playsinline preload="metadata"
+       poster="{{ '/wp-content/uploads/YYYY/descriptive-name-poster.webp' | prepend: site.baseurl }}"
+       style="max-width:100%;height:auto">
+  <source src="{{ '/wp-content/uploads/YYYY/descriptive-name.mp4' | prepend: site.baseurl }}" type="video/mp4">
+</video>
+
+<!-- Portrait/tall clip: narrower centered layout -->
+<video controls playsinline preload="metadata"
+       poster="{{ '/wp-content/uploads/YYYY/descriptive-name-poster.webp' | prepend: site.baseurl }}"
+       style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;">
+  <source src="{{ '/wp-content/uploads/YYYY/descriptive-name.mp4' | prepend: site.baseurl }}" type="video/mp4">
+</video>
+```
+
+## Common Categories
+- Tech, AI, Claude, iOS, Music, Blogging, Coding, Lifestyle
+
+## Example Year Folder Choice
+- For 2025 posts, use `_posts/2021-2025/` (matches current structure).
+
+## Final Checklist
+- File in correct `_posts/` year folder with `YYYY-MM-DD-slug.md`.
+- Front matter complete; `image` is an absolute path under `/wp-content/uploads/YYYY/`.
+- Excerpt break `<!--more-->` present; content follows house tone.
+- Internal links use Liquid with `site.baseurl`; wording unchanged.
+- Images converted to 800px WebP; videos have poster WebP and sensible width.
+- No intermediate poster PNGs left behind (delete after WebP is created).
+- Originals remain in `zz_incoming_media/` until approved.

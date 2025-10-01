@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "openais-sora-2",
+      "title": "OpenAI's Sora 2",
+      "url": "/blog/2025/10/01/openais-sora-2/",
+      "date": "2025-10-01",
+      "year": "2025",
+      "categories": ["Tech","AI"],
+      "description": "Initial thoughts and notes about OpenAI's Sora 2 and how it changes text-to-video generation.",
+      "content": "Your browser does not support the video tag. New AI video model == New video of me eating spaghetti! OpenAI just released a new version of Sora, their video generation model. I spammed reload on a thread on Reddit to get an invite code last night, and quickly hit the rate limit (it was 71 videos)! Here’s my first impressions on the new app and model. The main features of Sora 2 (and the new app) are that you can make short form (like 10 second) videos just by prompting, and you can also insert yourself into videos. This is pretty interesting because previously you’d have to either train a LoRA (like I did) or maybe use a static image of yourself as a starting frame which would inevitably drift away from looking like you. Onboarding The onboarding of the app is pretty interesting. To make a “cameo,” which is the term for inserting your likeness into a video, you need to record a short video of yourself saying some numbers and looking around. At first I thought the numbers were just t...",
+      "excerpt": "Your browser does not support the video tag. New AI video model == New video of me eating spaghetti! OpenAI just released a new version of Sora, their video generation model. I spammed reload on a ..."
+    },
+    
+    {
       "id": "cleaning-out-my-bookmarks",
       "title": "Cleaning out my bookmarks",
       "url": "/blog/2025/09/27/cleaning-out-my-bookmarks/",

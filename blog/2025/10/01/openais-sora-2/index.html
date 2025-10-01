@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<title>OpenAI's Sora 2</title>
+
+	<!-- Open Graph Meta -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="OpenAI's Sora 2" property="og:title" /><meta content="article" property="og:type" /><meta content="Initial thoughts and notes about OpenAI's Sora 2 and how it changes text-to-video generation." property="og:description" /><meta content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" property="og:url" /><meta
+		content="2025-10-01T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp" property="og:image" /><!-- Twitter Cards -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@hungtruong" />
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="OpenAI's Sora 2" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" /><meta name="twitter:description" content="Initial thoughts and notes about OpenAI's Sora 2 and how it changes text-to-video generation." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href=""/>
+
+	<!-- Come and get me RSS readers -->
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
+	href="https://www.hung-truong.com/blog/feed.xml" />
+
+	<!-- Stylesheet -->
+	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
+	<script>document.documentElement.className = (document.documentElement.className + ' js').trim();</script>
+
+	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
+	<style>
+	  /* Mobile/default */
+	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
+	  .nav-collapse ul li { display:block; width:100%; }
+	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+
+	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+	  @media only screen and (min-width: 800px) {
+	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
+	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
+	    .nav-toggle { display:none; }
+	  }
+	</style>
+	<link rel="stylesheet" href="/blog/assets/css/style.css" />
+
+	<!-- Canonical URL -->
+	<link
+		rel="canonical"
+		href="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/"
+	/><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-248124-2');
+</script>
+</head>
+
+
+<body>
+
+   <div class="header ">
+     <div class="container">
+         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList"><li class="elementfirst">
+                     <a href="/blog/index.html">Home</a>
+                 </li><li class="element">
+                     <a href="/blog/archives">Archives</a>
+                 </li><li class="element">
+                     <a href="/blog/about">About</a>
+                 </li><li class="element">
+                     <a href="/blog/contact">Contact</a>
+                 </li><li class="elementlast">
+                     <a href="/blog/speaking">Speaking</a>
+                 </li></ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <article class="post">
+  <header>
+    <h1 class="postTitle">OpenAI's Sora 2</h1>
+    <p class="meta">October 01, 2025 | <span class="time">8</span> Minute Read</p>
+  </header>
+
+  <figure>
+  <video controls="" playsinline="" preload="metadata" poster="/blog/wp-content/uploads/2025/sora-spaghetti-poster.webp" style="max-width:100%;height:auto">
+    <source src="/blog/wp-content/uploads/2025/sora-spaghetti.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>New AI video model == New video of me eating spaghetti!</figcaption>
+</figure>
+
+<p>OpenAI just released a new version of Sora, their video generation model. I spammed reload on a thread on Reddit to get an invite code last night, and quickly hit the rate limit (it was 71 videos)! Here’s my first impressions on the new app and model.</p>
+
+<p>The main features of Sora 2 (and <a href="https://sora.chatgpt.com/">the new app</a>) are that you can make short form (like 10 second) videos just by prompting, and you can also insert yourself into videos. This is pretty interesting because previously you’d have to either train a LoRA (<a href="/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/">like I did</a>) or maybe use a static image of yourself as a starting frame which would inevitably drift away from looking like you.</p>
+
+<!--more-->
+
+<h3 id="onboarding">Onboarding</h3>
+
+<p>The onboarding of the app is pretty interesting. To make a “cameo,” which is the term for inserting your likeness into a video, you need to record a short video of yourself saying some numbers and looking around.</p>
+
+<p>At first I thought the numbers were just to verify that you were recording a live video, but I think it’s also to capture your voice for voice cloning. The voice that the AI uses for me sort of sounds like me but not quite. It’s probably because I was mumbling the numbers.</p>
+
+<p>Once you upload the video, you can just tag yourself in videos that you want to generate. You can also determine who can make videos with your likeness through some permissions. Like if you only want friends to be able to make cameos of you.</p>
+
+<h3 id="generation">Generation</h3>
+
+<p>I was interested in seeing how good the video generation was, and how creative you can be with the app. I think there must be some prompt rewriting magic being done after your initial prompt, because you can use a really vague prompt and still get an interesting video with an actual plot. I just prompted “username farting” and it came up with this gem:</p>
+
+<figure>
+  <video controls="" playsinline="" preload="metadata" poster="/blog/wp-content/uploads/2025/sora-farting-poster.webp" style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;">
+    <source src="/blog/wp-content/uploads/2025/sora-farting.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Me farting, complete with awkward dialogue.</figcaption>
+</figure>
+
+<p>I also noticed that the notifications that the app sends out will describe the video in a way that might include more info than in your initial prompt.</p>
+
+<figure>
+  <img src="/blog/wp-content/uploads/2025/sora-notification.webp" alt="Screenshot of the Sora 2 app interface" />
+  <figcaption>You'll see the content violation notification a lot.</figcaption>
+</figure>
+
+<p>OpenAI is obviously going to be pretty risk-averse here when it comes to content moderation. When you enter a prompt that hits its guardrails, you’ll get a message that your generation failed. The annoying thing is that you can’t really tell if a prompt will run into a guardrail until you try generating the video. I’ve used identical prompts where one generation works fine and another hits a content block.</p>
+
+<p>For example, I tried recreating this <a href="https://knowyourmeme.com/memes/ai-lady-with-rock-breaking-glass-bridge">AI boulder video</a> that people are talking about where some lady busts a Chinese glass bridge and people fall into the water. I was able to prompt it to get something similar. One time it failed and I just retried with the exact same prompt and it worked. There must be a few stages where the content is checked, at least one before generation and maybe one that watches the video once it’s finished. I tried remixing this video with Sam Altman instead of me and it kept failing, even though the only change was the person with the boulder.</p>
+
+<figure>
+  <video controls="" playsinline="" preload="metadata" poster="/blog/wp-content/uploads/2025/sora-boulder-poster.webp" style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;">
+    <source src="/blog/wp-content/uploads/2025/sora-boulder.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>In hindsight, bringing a boulder to a glass bridge was a terrible idea.</figcaption>
+</figure>
+
+<p>This brings up another point I want to make about Sora and OpenAI in general. I’ve been noticing this for a while, but it seems kinda funny and weird to me that Sam Altman is increasingly the face and brand of OpenAI. I remember seeing Sam in his multiple colorful polo shirts as a bro, showing off Loopt at the Apple Keynote in 2008. I also remember meeting him once when we were doing a company offsite when I worked at FarmLogs (he was an investor and I think in charge of YCombinator at the time, and FL was a YC company). In addition to being an investor/tech startup builder guy, I guess he also wants everyone to know who he is.</p>
+
+<figure>
+  <img src="/blog/wp-content/uploads/2025/sora-sam-altman-cameo.webp" alt="Screenshot of the Sora app featuring Sam Altman cameo options" />
+  <figcaption>SamA is ready to star in your video!</figcaption>
+</figure>
+
+<p>Sama (as he’s called) is available to cameo in pretty much any video you want to make. There’s some viral ones of him shoplifting GPUs from Target for Sora inference. And also a bunch of scammy ones where people make him beg for likes so he’ll give you an invite code. I can’t imagine being so full of myself that I’d want to sign up for this kind of publicity. But I guess Sama is just built different. He does seem like a bit of a psychopath but whatever, now he’s the de facto mascot of OpenAI!</p>
+
+<h3 id="inconsistent-moderation">Inconsistent Moderation?</h3>
+
+<p>So I keep running into issues where I can’t moonwalk or make myself a chef who’s being absolutely destroyed by Guy Fieri’s criticism on Diners Drive-ins and Dives, but for some reason there’s like a million videos of Pikachu on Sora. There’s also lots of videos of GTA V and other copyrighted stuff.</p>
+
+<p>It’s been interesting to see how people get around these guardrails, though. For example, I can’t say that I want a video of myself as Kramer in Seinfeld. But I can say that I’m busting through Jerry’s apartment door in a 90s sitcom and saying “Giddyup, Jerry!” which will work. I did notice though that the actors portraying Jerry only bear a passing resemblance to Jerry Seinfeld (kind of like the episode inside an episode of Seinfeld).</p>
+
+<figure>
+  <video controls="" playsinline="" preload="metadata" poster="/blog/wp-content/uploads/2025/sora-sitcom-entrance-poster.webp" style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;">
+    <source src="/blog/wp-content/uploads/2025/sora-sitcom-entrance.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Sitcom-style apartment entrance cameo.</figcaption>
+</figure>
+
+<h3 id="other-interesting-stuff">Other Interesting Stuff</h3>
+
+<p>I recorded my cameo proof video in front of a brick fireplace wearing a striped shirt. I noticed that in most of my videos I’m wearing that striped shirt, and if I don’t add a lot of detail to my prompt, I’ll end up getting a video in that exact same spot in my house. I guess that isn’t surprising that the system will associate me with the location of the recording but it’s also kind of weird to see my home show up in videos.</p>
+
+<p>If you watch enough videos on your feed, you’ll probably also notice that many of the Sam Altman videos are just him in front of a white background. I believe that this probably matches his own cameo setup video environment.</p>
+
+<h3 id="the-feed">The Feed</h3>
+
+<p>I guess I should also talk about the social aspect of Sora. One of the weirdest things about this product launch is that it’s a social app. You can add “friends” who can make videos of you, and you can even have multiple cameos in a single video. I haven’t added any “friends” yet but eventually I might get there.</p>
+
+<p>There’s also a “For You” feed which is currently inundated with socially engineered clickbait. Like videos claiming that if you double tap (which makes you like the post) you’ll see some special emoji. I’m honestly surprised that OpenAI didn’t consider that people will try to game the system this way. It’s a bad user experience because these videos are boring and often contain the same exact script, just with different people talking. True AI slop.</p>
+
+<p>I did manage to find some interesting videos, where people have the same instinct to make fun of Sam Altman and his double polo shirts. One of the first videos I made was of him announcing Loopt 2 wearing 5 polo shirts with giant collars! So there are some gems but they’re truly hidden behind the slop.</p>
+
+<p>I guess if you want you can follow my account, it’s <a href="https://sora.chatgpt.com/profile/hungtruongy">hungtruongy</a> because somehow I didn’t get “hungtruong” in time.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<figure>
+  <video controls="" playsinline="" preload="metadata" poster="/blog/wp-content/uploads/2025/hung-cake-poster.webp" style="width:100%;max-width:360px;height:auto;display:block;margin:0 auto;">
+    <source src="/blog/wp-content/uploads/2025/hung-cake.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>I was cake this whole time!</figcaption>
+</figure>
+
+<p>Sora 2 is really a huge step forward in AI video generation. It’s incredibly impressive. Which is why it’s kind of tragic that this technology is currently just being used to make shitty slop. I’m hopeful that through moderation and algorithming, it could actually end up being an interesting platform.</p>
+
+<p>I’ve also read that the true value of this technology is through ads. Like imagine how much brands would love to offer making a cameo of you wearing their clothing so you’ll buy it. Which makes the announcement a few days ago about <a href="https://openai.com/index/buy-it-in-chatgpt/">an AI agent purchase protocol</a> a lot more obvious in hindsight.</p>
+
+<p>I had a lot of fun making videos of myself (and hitting the rate limits). I’m sure other people will too. I’m guessing some creative people will find a really cool use for this, or it’ll turn into an AI slop graveyard. Either way, it should be interesting!</p>
+
+
+  <!-- COMMENTS -->
+  
+
+  <div class="comment-form">
+    <h3>Leave a Comment</h3>
+    <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields" id="comment-form">
+  <input name="options[slug]" type="hidden" value="openais-sora-2">
+  
+  <div class="field">
+    <label for="comment-name">Name *</label>
+    <input type="text" id="comment-name" name="fields[name]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-email">Email *</label>
+    <input type="email" id="comment-email" name="fields[email]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-url">Website</label>
+    <input type="url" id="comment-url" name="fields[url]" class="full-width">
+  </div>
+  
+  <div class="field">
+    <label for="comment-message">Comment *</label>
+    <textarea id="comment-message" name="fields[message]" rows="5" class="full-width" required></textarea>
+  </div>
+  
+  <button type="submit" class="button" id="comment-submit">Submit Comment</button>
+</form>
+
+<div id="comment-success" style="display: none;" class="comment-message comment-message-success">
+  <div>
+    <h4>Thank you for your comment!</h4>
+    <p>Your comment has been submitted and will be published after manual approval.</p>
+  </div>
+</div>
+
+<div id="comment-error" style="display: none;" class="comment-message comment-message-error">
+  <div>
+    <h4>Submission Error</h4>
+    <p>There was an error submitting your comment. Please try again.</p>
+  </div>
+</div>
+  </div>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+    
+    <a class="prev image"
+      href="/blog/2025/09/27/cleaning-out-my-bookmarks/"><span>&laquo;&nbsp;Cleaning out my bookmarks</span>
+      
+      <img src="/blog/wp-content/uploads/2025/cleaning-out-my-bookmarks-tabs.webp" alt="">
+      
+    </a>
+    
+    
+  </div>
+  </div>
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+	<div class="container">
+		<p class="copy">&copy; 2025 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+
+		<div class="footer-links">
+			<ul class="noList"><li>
+	<a href="https://twitter.com/hungtruong" target="_blank">
+		<svg
+			id="twitter"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://github.com/hungtruong" target="_blank">
+		<svg
+			id="github"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://www.youtube.com/@techsistentialcrisis" target="_blank">
+		<svg
+			id="youtube"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path fill="#FFF" fill-rule="evenodd" clip-rule="evenodd"
+				d="M18.168 19.0028C20.4724 19.0867 22.41 17.29 22.5 14.9858V9.01982C22.41 6.71569 20.4724 4.91893 18.168 5.00282H6.832C4.52763 4.91893 2.58998 6.71569 2.5 9.01982V14.9858C2.58998 17.29 4.52763 19.0867 6.832 19.0028H18.168Z"
+				stroke="#000000" stroke-width="0"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+			<path class="outer-shape" fill-rule="evenodd" clip-rule="evenodd"
+				d="M12.008 9.17784L15.169 11.3258C15.3738 11.4454 15.4997 11.6647 15.4997 11.9018C15.4997 12.139 15.3738 12.3583 15.169 12.4778L12.008 14.8278C11.408 15.2348 10.5 14.8878 10.5 14.2518V9.75184C10.5 9.11884 11.409 8.77084 12.008 9.17784Z"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="mailto:hung@hung-truong.com" target="_blank">
+		<svg
+			id="mail"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"
+			></path>
+		</svg>
+	</a>
+</li>
+</ul>
+		</div>
+	</div>
+</div>
+<!-- end .footer -->
+      <!-- Default Statcounter code for Hung Truong: The Blog!
+   http://www.hung-truong.com/blog/ -->
+      <script type="text/javascript">
+            var sc_project = 1262196;
+            var sc_invisible = 1;
+            var sc_security = "4af14454";
+            var scJsHost = (("https:" == document.location.protocol) ?
+                  "https://secure." : "http://www.");
+            document.write("<sc" + "ript type='text/javascript' src='" +
+                  scJsHost +
+                  "statcounter.com/counter/counter.js'></" + "script>");
+      </script>
+      <!-- End of Statcounter Code -->
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src=/blog/assets/js/jquery-1.11.2.min.js><\/script>')</script>
+<script src="/blog/assets/js/dropcap.min.js"></script>
+<script src="/blog/assets/js/responsive-nav.min.js"></script>
+<script src="/blog/assets/js/scripts.js"></script>
+
+</body>
+
+</html>

@@ -63,6 +63,7 @@
 </script>
 </head>
 
+
 <body>
 
    <div class="header ">
@@ -88,6 +89,49 @@
       <div class="container">
          <div class="home" id="home">
   <ul class="posts noList">
+    
+      <li>
+        <span class="date">December 01, 2010</span>
+        <h3><a class="post-link" href="/blog/2010/12/01/conditional-gets-in-app-engine/">Conditional GETs in App Engine</a></h3>
+        <p><p>I’m currently working on an app in <a href="http://appengine.google.com">Google App Engine</a> that polls feeds periodically and then does stuff with them. I suppose I could use that <a href="http://code.google.com/p/pubsubhubbub/">pubsubhubbub</a> thingy but I have a feeling that most feeds aren’t using this yet.</p>
+
+<p>Anyway, I did a quick naive implementation of polling about every hour or so. Apparently the feed parser I’m using is pretty inefficient because it’s eating up a lot of resources (relatively speaking) on App Engine. I remembered that the http protocol is pretty smart, and there’s a way to figure out if stuff has changed since the last time you grabbed it.</p>
+
+<p>Google’s urlfetch doesn’t seem to support conditional GETs (someone tell me if I am wrong). I looked around and found a <a href="http://stii.co.za/python/http-conditional-get-with-python-urllib2/">few</a> <a href="http://www.artima.com/forums/flat.jsp?forum=122&amp;thread=15024">tutorials</a> on how to accomplish this in Python using urllib2. The tutorials weren’t exactly what I wanted, so I had to change a few things here or there. Here’s a snippet of code that I’m using:</p>
+
+<pre>import urllib2
+feed = Feed.get() #my feed object has a etag, last_modified and url property
+req = urllib2.Request(url)
+if feed.etag:
+    req.add_header("If-None-Match", feed.etag)
+if feed.last_modified:
+    req.add_header("If-Modified-Since", feed.last_modified)
+try:
+    url_handle = urllib2.urlopen(req)
+    content = url_handle.read()
+    headers = url_handle.info()
+    feed.etag = headers.getheader("ETag")
+    feed.last_modified = headers.getheader("Last-Modified")
+    feed.put()
+except Exception, e:
+    logging.info(e) #just says 304 didn't change
+    return
+dostuffwith(content)
+</pre>
+
+<p>This handles my use case, which is doing work if the feed is new, and ignoring it if it hasn’t been modified. I could probably wrap this into a function that returned false if it the file hadn’t changed, and the content if it was new… Probably will do that next.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
     
       <li>
         <span class="date">November 28, 2010</span>
@@ -190,53 +234,6 @@
 <p>I think it’s neat that letterpress is becoming mainstream (again) enough that it warrants a feature in iLife. As far as my concerns about taking away business (which I haven’t quite decided to get into), I think it’s good that Apple’s pushing this kind of typing further into the mainstream. There’ll probably be a lot more people interested in letterpress, and not just for the personalized photo cards, etc.</p>
 
 <p>On a technical note, I’m interested how Apple is going to farm out the print jobs. Do they have their own print shop with all the Heidelberg machines, or are they partnering with a shop? Depending on the volume of orders, I wonder what their turnaround time would be.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">October 17, 2010</span>
-        <h3><a class="post-link" href="/blog/2010/10/17/facebook-information-download-report-card/">Facebook Information Download: Report Card</a></h3>
-        <p><p><img src="/blog/wp-content/uploads/2010/10/Facebook-Download-Information.png?resize=212%2C206" alt="" title="Facebook Download Information" width="212" height="206" class="aligncenter size-full wp-image-2067" data-recalc-dims="1" /></p>
-
-<p>Ever since I signed up for Facebook, I’ve wanted a clean and easy way to export the content that my friends and I create on it. See <a href="http://www.hung-truong.com/blog/2010/04/21/questions-about-facebook-and-data-portability/">this post</a> for background. Facebook has never really made it easy to do so for end users, though they have an API that could theoretically be used for data export. Just recently, they announced a new feature that allows you to <a href="http://blog.facebook.com/blog.php?post=434691727130">download your information</a>. I gave the feature a test drive and took a look at what you actually get.</p>
-
-<p>The process for grabbing your information is pretty simple. You go to <a href="https://register.facebook.com/editaccount.php">Account Settings</a> -&gt; Download Your Information and then request your data. Facebook sends you an email when the zip file containing your stuff is ready.</p>
-
-<p>The zip file contains a few files and directories: html, photos and videos. Photos contains the photos you’ve uploaded, videos contains the videos, and html contains things like a list of your friends, messages, notes, wall posts and events. These are all stored in html files, which makes it easy for normal users to view them.</p>
-
-<p>From a data portability standpoint, it’s great that you can get all of your photos, videos and messages, etc. I like the fact that they’re in html that’s easy for anyone to browse. Since it works in its own self-contained directory structure, you could theoretically upload the contents to your own web server and host your albums yourself! For most users, the data download feature is really great.</p>
-
-<p>From a programmer/hardcore archivist’s point of view, the data download is still lacking. For example, the friend’s list gives you a list of your friends’ names. It does not, however, provide you with the unique identifier for your friends (e.g. their Facebook profile name or id number). This might be useful if you have a friend named “John Smith” and you’d like to know exactly which John it is. Generally, the files just don’t contain enough metadata to keep good records.</p>
-
-<p>Let’s say that in the distant future, Facebook has been abandoned. What we have left are the .zip files that people used to download their information. How would we go about reconstructing network ties? With the files as they are today, we can only make assumptions using names, which aren’t unique identifiers. While some people would say that including those would be overkill, they could be pretty easily added via meta tags within the html (or in a separate xml file for hardcore nerds like me).</p>
-
-<p>In addition to this lack of metadata, my other complaint is that Facebook only gives you half of your information. You can download a pretty ego-centric payload of data; stuff that friends wrote on your wall and photos you uploaded. You cannot, however, download things that you posted on your friends’ walls. This is especially important because Facebook’s early messaging model was based on wall-to-wall posts. My oldest wall posts come without any sort of context at all.</p>
-
-<p>Finally, it seems that Facebook did the unthinkable in deleting user data until around early 2006. I signed up for Facebook in January of 2005, yet my first wall post that shows up in my downloaded info is from February 2006. So there’s a whole year’s worth of wall messages that are missing. I suppose there’s no way for Facebook to retrieve this info anymore (unless they’re just witholding it because it’s hard to get to).</p>
-
-<p>If you found this tl;dr, here’s a summary:</p>
-
-<p><strong>The Good:</strong></p>
-
-<p>Facebook information download makes it easy for anyone to download their data in a nicely organized and self-contained package. Everyone should go to their account settings right now and download their data, even if they don’t plan on using for anything in the near future. The download provides a lot of information and is a good faith attempt at letting users “own” their data. There’s still work to be done, howerver.</p>
-
-<p><strong>The Bad:</strong></p>
-
-<p>The data that’s downloaded lacks enough meaningful metadata. Specifically, the data regarding connections between you and your friends is too general. Unique identifiers for friend connections would be a good first step. Facebook also omits an important side of your data: the stuff you’ve posted to others’ walls. Finally, Facebook’s data download only goes back to early 2006 (for me).</p>
-
-<p><strong>What Facebook Should Do Next:</strong></p>
-
-<p>I think Facebook’s done a really great job so far for this first iteration of data download. Now they should add more metadata and provide data in a cleaner xml or json format. After that, they should enable download of photos and video in their original format (I have a feeling Facebook keeps the original size photos before they resize them). I think that providing users with an easy way to download all of their data will lead to a better relationship and more trust, which is something Facebook could really use.</p>
 
 
           
