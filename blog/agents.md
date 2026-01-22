@@ -1,4 +1,4 @@
-# Jekyll Blog Agent Playbook
+# Jekyll Blog Assistant Guidance (Claude & Gemini)
 
 ## Quick Start (TL;DR)
 - Create a new post in `_posts/` using today’s date and kebab-case slug: `YYYY-MM-DD-title-slug.md` in the correct year folder (currently `2021-2025/`).
@@ -22,7 +22,7 @@
 title: 'Post Title Here'
 layout: post
 author: Hung
-categories: [Tech, AI, Claude]  # Choose appropriate categories
+categories: [Tech, AI, Claude, iOS, Music, Blogging, Coding, Lifestyle]  # Choose appropriate categories
 permalink: /YYYY/MM/DD/title-slug/
 description: Brief SEO-friendly description of the post content
 # Featured image or video poster (site-root path)
@@ -44,15 +44,19 @@ image: /wp-content/uploads/YYYY/featured-or-poster.webp
 
 ## Image Workflow
 1. Locate source in `zz_incoming_media/` (or as specified).
-2. Convert to WebP at 800px wide for performance.
+2. Move and rename to proper location if already WebP, or prepare for conversion.
+   ```bash
+   mv "original-filename.webp" "/path/to/blog/wp-content/uploads/YYYY/descriptive-name.webp"
+   ```
+3. Convert to WebP at 800px wide for performance.
    - Text/graphics: lossless WebP.
    - Photos/gradients: quality ~95.
-3. Place in `/wp-content/uploads/YYYY/` with descriptive name.
-4. Keep original source in place until approved.
+4. Place in `/wp-content/uploads/YYYY/` with descriptive name.
+5. Keep original source in place until approved.
 
-Commands (examples)
+### Image Commands (macOS)
 ```bash
-# Dimensions (macOS)
+# Dimensions
 sips -g pixelWidth -g pixelHeight "image.png"
 
 # Convert (ImageMagick)
@@ -61,12 +65,11 @@ magick input.png -resize 800x -define webp:lossless=true output.webp
 magick input.jpg -resize 800x -quality 95 output.webp
 ```
 
-Embed snippet
+### Image Embed Snippet
 ```html
 <figure>
   <img src="{{ '/wp-content/uploads/YYYY/image-name.webp' | prepend: site.baseurl }}" alt="Descriptive alt text">
   <figcaption>Concise, helpful caption.</figcaption>
-  
 </figure>
 ```
 
@@ -77,7 +80,7 @@ Embed snippet
 4. Embed with `controls playsinline preload="metadata" poster="..."`.
 5. If the clip is portrait/tall, cap width to ~360px and center it so it doesn’t overwhelm the layout.
 
-Commands (examples)
+### Video Commands
 ```bash
 # Copy from staging (keep original)
 cp -p "zz_incoming_media/original-name.MP4" "wp-content/uploads/2025/descriptive-name.mp4"
@@ -95,7 +98,7 @@ cwebp -lossless -resize 800 0 \
 rm wp-content/uploads/2025/descriptive-name-poster.png
 ```
 
-Embed snippets
+### Video Embed Snippets
 ```html
 <!-- Standard landscape or square -->
 <video controls playsinline preload="metadata"
@@ -111,12 +114,6 @@ Embed snippets
   <source src="{{ '/wp-content/uploads/YYYY/descriptive-name.mp4' | prepend: site.baseurl }}" type="video/mp4">
 </video>
 ```
-
-## Common Categories
-- Tech, AI, Claude, iOS, Music, Blogging, Coding, Lifestyle
-
-## Example Year Folder Choice
-- For 2025 posts, use `_posts/2021-2025/` (matches current structure).
 
 ## Final Checklist
 - File in correct `_posts/` year folder with `YYYY-MM-DD-slug.md`.
