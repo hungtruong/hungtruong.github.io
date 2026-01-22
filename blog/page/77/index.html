@@ -91,6 +91,39 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">May 06, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/05/06/mapskrieg-craigslist-google-maps-mashup-launch/">MapsKrieg &#8211; Craigslist + Google Maps Mashup Launch!</a></h3>
+        <p><center>
+  <a href="http://www.mapskrieg.com/"><img src="/blog/wp-content/uploads/2007/05/logo.png?w=604" alt="logo.png" data-recalc-dims="1" /></a>
+</center>
+
+<p>I did a bit more work on <a href="http://www.mapskrieg.com/">MapsKrieg</a> (the official name of my craigslist and google maps mashup) in the past few days, and I think it’s ready for initial launch now.</p>
+
+<p>If you haven’t read my previous posts on MapsKrieg, it’s a mashup that scrapes craigslist apartment listings and displays them using the Google Maps API. I’ve been on the hunt for an apartment in Ann Arbor, MI where I’m going to go to grad school. I had seen the coolness of <a href="http://www.housingmaps.com/">HousingMaps</a>, but I noticed that it only supported a very small number of cities. I figured I’d build a similar app that listed more cities, since craigslist has expanded quite a bit since that HousingMaps was created.</p>
+
+<p>If you’re wondering about the name, here’s my thought process: I was originally calling the project “Craigsmaps” since that sort of made sense. But the domain name for that name is already taken. So I came up with a bunch of other stupid Web 2.0 names that didn’t really click (Abodr, apartment.icio.us (okay, just kidding)). So I switched the “craig” and the “maps” and it became “mapscraig” which reminded me of “blitzkrieg” which became “mapskrieg.” And there you have it.</p>
+
+<p>Currently MapsKrieg supports 286 different craigslist locations. I haven’t added any areas outside the United States, though if I get requests, I’ll add them. And I’ll probably add new cities as their added to craigslist if people request them, too.</p>
+
+<p>As far as technical stuff goes, I built the site on the CakePHP framework, which was a new experience for me since I had been doing stuff in Ruby on Rails for the past year. The app uses Google Maps’ API for displaying the data that’s pulled directly from craigslist listings. Of course, all the data is cached in a MySQL database, so the site is decently fast.</p>
+
+<p>MapsKrieg took about two “man weeks” worth of time to complete. It was developed over about a month, though I didn’t work on it every day, and I didn’t work all day on the days I did work on it. I’d say that’s pretty good, considering I hadn’t really done much programming in PHP/Javascript before, and I had to learn the Google Maps API (which was surprisingly easy).</p>
+
+<p>Anyway, go ahead and try out <a href="http://www.mapskrieg.com/">MapsKrieg</a> and let me know what you think. The interface could probably use some tweaking, but I think the app “works” fairly well. But I’m open to any questions or comments.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">May 02, 2007</span>
         <h3><a class="post-link" href="/blog/2007/05/02/let-me-show-you-my-pokemans-let-me-show-you-them/">Let Me Show You My Pokemans. Let Me Show You Them.</a></h3>
         <p><p><img src="/blog/wp-content/uploads/2007/05/my-pokemans1.jpg?resize=500%2C400" alt="my-pokemans1" title="my-pokemans1" width="500" height="400" class="alignnone size-medium wp-image-1117" srcset="/blog/wp-content/uploads/2007/05/my-pokemans1.jpg?resize=500%2C400 500w, /blog/wp-content/uploads/2007/05/my-pokemans1.jpg?w=750 750w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></p>
@@ -179,29 +212,6 @@
 <p>I did a little research on the person who did the Google Maps Craigslist mashup like two years ago. Apparently he got a job at Google! While that’s pretty awesome, I can’t see this project doing the same for me, since it’s something that’s already been done (and two years ago, which is an eternity in web time). Rather, I’m just building this for my own use and perhaps for other people who wish there were more cities available in that HousingMaps mashup.</p>
 
 <p>I came up with a name for the application. I was going to call it CraigsMaps, but someone already has that domain name. I’m thinking I should buy the domain name pretty soon, but what if I come up with a cooler name later!? The app should be ready in a couple of days anyway. Depending on how much extra stuff I want to cram in before I “launch” it.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">April 28, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/04/28/craigslist-and-google-maps-mashup-thingy-day-10-custom-controls-and-housekeeping/">Craigslist and Google Maps Mashup Thingy: Day 10 &#8211; Custom Controls and Housekeeping</a></h3>
-        <p><p>I guess this should count as the project’s 10th and 11th day, though I didn’t really spend too much time on either day, so let’s just roll them into one. After doing some CSS to overlay some divs over the Google Map, I found out there’s another way to do this: with “custom controls.”</p>
-
-<p>The way that the custom controls work is both pretty sweet, and not that great. I don’t like having to add content to them by using javascript. It just doesn’t seem “correct” to do so, since I’m just overlaying normal html. So I’ll be using some custom controls, and some divs. The good thing about custom controls is that the map knows not to open infowindows under them when they’re opened up.</p>
-
-<p>Besides that, I just did a lot of random work on getting the app to look a little better. Like showing the correct area based on which city’s listing you want to see. Overall, the project is coming along really smoothly, with very few roadblocks. I’m happy that it’s nearing completion. I really enjoy doing these one-man projects, since it lets me get experience in everything from database schema planning and optimizing, to php backend development, to designing the css for the content, and even maybe a little tweaking in the Apache server. I think once I add this project to my “real” server, I’ll need to get a ram upgrade.</p>
-
-<p>I think the project should probably be ready to go live within a week. I dunno if I’ll actually try to get the word out, or just release it and see if people find it via Google or something. That’d be cool. Since there’s already a site that does a similar thing (though there’s a smaller number of supported cities), I don’t think what I’m doing is really that noteworthy. I think it’d be useful, though, so we’ll see if there’s any reaction at all to it.</p>
 
 
           

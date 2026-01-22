@@ -6,7 +6,7 @@
 - Add content scaffold and an excerpt break `<!--more-->`.
 - For internal links, keep your original wording and link inline using Liquid: `{{ '/path/' | prepend: site.baseurl }}`.
 - Media workflow:
-  - Images → convert to 800px WebP, store in `/wp-content/uploads/YYYY/`.
+  - Images → convert to 1000px WebP, store in `/wp-content/uploads/YYYY/`.
   - Videos → copy from `zz_incoming_media/`, rename descriptively, generate a poster WebP, embed with `playsinline` + `preload="metadata"`. For tall clips, cap width ~360px and center.
 - Keep source media in `zz_incoming_media/` until approved.
 
@@ -38,7 +38,7 @@ image: /wp-content/uploads/YYYY/featured-or-poster.webp
 ## Content Structure & Linking
 - Start with front matter → intro paragraph(s) → `<!--more-->` → body sections.
 - When Hung requests a link:
-  - Keep the existing wording; add the link inline without rewriting surrounding text.
+  - Keep the existing wording; add the link inline without rewriting surrounding text. 
   - Prefer natural placement that flows with the draft; usually toward the end unless context clearly points elsewhere.
   - Use Liquid for internal links so base URL is respected: `{{ '/YYYY/MM/DD/slug/' | prepend: site.baseurl }}`.
 
@@ -48,7 +48,7 @@ image: /wp-content/uploads/YYYY/featured-or-poster.webp
    ```bash
    mv "original-filename.webp" "/path/to/blog/wp-content/uploads/YYYY/descriptive-name.webp"
    ```
-3. Convert to WebP at 800px wide for performance.
+3. Convert to WebP at 1000px wide (or smaller if the original is smaller) for performance.
    - Text/graphics: lossless WebP.
    - Photos/gradients: quality ~95.
 4. Place in `/wp-content/uploads/YYYY/` with descriptive name.
@@ -60,9 +60,9 @@ image: /wp-content/uploads/YYYY/featured-or-poster.webp
 sips -g pixelWidth -g pixelHeight "image.png"
 
 # Convert (ImageMagick)
-magick input.png -resize 800x -define webp:lossless=true output.webp
+magick input.png -resize 1000x -define webp:lossless=true output.webp
 # Or for photos
-magick input.jpg -resize 800x -quality 95 output.webp
+magick input.jpg -resize 1000x -quality 95 output.webp
 ```
 
 ### Image Embed Snippet
@@ -76,7 +76,7 @@ magick input.jpg -resize 800x -quality 95 output.webp
 ## Video Workflow
 1. Preview the clip in `zz_incoming_media/` and choose a descriptive, kebab-case name reflecting what’s on screen.
 2. Copy to `/wp-content/uploads/YYYY/` (leave the original in staging until approved).
-3. Generate a poster frame ~1s into the video using `ffmpeg`, then convert to an 800px-wide lossless WebP; name it with the same base plus `-poster`. After converting, delete the intermediate PNG — keep only the WebP poster.
+3. Generate a poster frame ~1s into the video using `ffmpeg`, then convert to a 1000px-wide lossless WebP; name it with the same base plus `-poster`. After converting, delete the intermediate PNG — keep only the WebP poster.
 4. Embed with `controls playsinline preload="metadata" poster="..."`.
 5. If the clip is portrait/tall, cap width to ~360px and center it so it doesn’t overwhelm the layout.
 
@@ -89,8 +89,8 @@ cp -p "zz_incoming_media/original-name.MP4" "wp-content/uploads/2025/descriptive
 ffmpeg -y -ss 00:00:01 -i wp-content/uploads/2025/descriptive-name.mp4 \
   -frames:v 1 wp-content/uploads/2025/descriptive-name-poster.png
 
-# Convert poster to 800px lossless WebP (cwebp or ImageMagick)
-cwebp -lossless -resize 800 0 \
+# Convert poster to 1000px lossless WebP (cwebp or ImageMagick)
+cwebp -lossless -resize 1000 0 \
   wp-content/uploads/2025/descriptive-name-poster.png \
   -o wp-content/uploads/2025/descriptive-name-poster.webp
 
@@ -120,6 +120,6 @@ rm wp-content/uploads/2025/descriptive-name-poster.png
 - Front matter complete; `image` is an absolute path under `/wp-content/uploads/YYYY/`.
 - Excerpt break `<!--more-->` present; content follows house tone.
 - Internal links use Liquid with `site.baseurl`; wording unchanged.
-- Images converted to 800px WebP; videos have poster WebP and sensible width.
+- Images converted to 1000px WebP; videos have poster WebP and sensible width.
 - No intermediate poster PNGs left behind (delete after WebP is created).
 - Originals remain in `zz_incoming_media/` until approved.
