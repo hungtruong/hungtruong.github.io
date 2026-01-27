@@ -1,0 +1,220 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.116
+I Created a Robot to Solve Wordle For Me
+
+00:00:04.617 --> 00:00:07.174
+Published on January 10, 2022.
+
+00:00:08.174 --> 00:00:13.528
+Unless you’ve been living under a rock for the past few days, you’ve heard of this game online called Wordle.
+
+00:00:14.028 --> 00:00:18.263
+It’s been growing like crazy and the New York Times even wrote a profile on the creator.
+
+00:00:18.763 --> 00:00:24.996
+If you know me, you know I like automating things, so it should be no surprise that I decided to automate playing the game.
+
+00:00:25.496 --> 00:00:27.973
+Here’s a blog post on how I did it.
+
+00:00:28.973 --> 00:00:31.051
+WTF is a Wordle?
+
+00:00:32.551 --> 00:00:41.182
+I guess I could start out by explaining what Wordle is, in case you’re reading this blog without knowing what it is, and if you are, why not just play it first?
+
+00:00:42.182 --> 00:00:46.178
+Anyway, the fun part of Wordle is that there isn’t really a way to cheat.
+
+00:00:46.678 --> 00:00:52.911
+You try to guess a five letter word, and the game gives you feedback for each letter in the word you guessed.
+
+00:00:53.411 --> 00:01:01.322
+Either the letter doesn’t exist at all in the target word, the letter exists in the word but not in that position, or the letter does exist in the word in that position.
+
+00:01:01.822 --> 00:01:06.377
+Letters can repeat, e.g. “silly,” and you get 6 guesses before you lose (I think).
+
+00:01:06.877 --> 00:01:11.912
+I’ve actually never lost, because 6 is a pretty good number of guesses unless you get really unlucky.
+
+00:01:12.912 --> 00:01:20.504
+If you think about it mathematically, 6 tries times 5 letters means you could theoretically narrow down 25 letters before your last guess.
+
+00:01:21.004 --> 00:01:27.876
+But that’s assuming you only use unique letters and there are words you can actually use to guess those letters (the game doesn’t allow non-words).
+
+00:01:28.876 --> 00:01:36.228
+There is the problem of narrowing the word down to maybe 1 letter difference but there’s a bunch of words that end in the same letters, e.g.
+
+00:01:37.228 --> 00:01:46.499
+etc. If you get the last three letters then you still need to narrow down what the front ones are, which you could do exploratively, but you can also just keep trying likely words.
+
+00:01:47.499 --> 00:01:53.332
+Anyway, if it isn’t obvious yet, I probably enjoy the metagame of Wordle more than playing the game itself.
+
+00:01:54.332 --> 00:01:55.930
+Solving Wordle
+
+00:01:57.430 --> 00:02:00.147
+So how do you go about automating a game like Wordle?
+
+00:02:00.647 --> 00:02:06.401
+I started by trying to inspect the network requests going back and forth between the web frontend and the backend.
+
+00:02:06.901 --> 00:02:15.132
+Suprisingly, there are no network requests made because the whole game is just a javascript file, and (I think) a hash that determines what the word of the day is.
+
+00:02:15.632 --> 00:02:19.148
+The whole game is just a javascript file that you download and run.
+
+00:02:20.148 --> 00:02:27.820
+So looking at the javascript file, I saw a bunch of hard to read code (because javacript), and a few interesting arrays.
+
+00:02:28.820 --> 00:02:32.416
+The first had a bunch of pretty normal looking words.
+
+00:02:32.916 --> 00:02:35.873
+The other had words that looked real, but were less common.
+
+00:02:36.373 --> 00:02:46.682
+My guess is that there are words that can actually be used for the game because a normal person would know them, but another list of words that are valid guesses (because the game doesn’t let you put nonsense in).
+
+00:02:47.182 --> 00:02:55.813
+So I decided to take the first list of words and use it as my “dictionary” of possible choices, rather than just use a linux dictionary of all the obscure words that exist.
+
+00:02:56.813 --> 00:02:59.929
+As far as playing the game, you have to start somewhere.
+
+00:03:00.429 --> 00:03:06.743
+I started out by keeping a list of all possible answers (copied from the source), and picking a random one.
+
+00:03:07.243 --> 00:03:11.478
+Once that happens, you get hints for which letters to keep trying and which to discard.
+
+00:03:11.978 --> 00:03:18.451
+The game code actually has three values for letter results: “present,” “absent,” and “correct.”
+
+00:03:19.451 --> 00:03:24.725
+From these, the basic algorithm to remove words from the possible choices is (for each letter):
+
+00:03:25.725 --> 00:03:36.434
+If present, remove all words that have that letter in that specific position (for example if the word is “farts” and you guess “after,” the first ‘a’ would be present, but never in the first position).
+
+00:03:36.934 --> 00:03:41.409
+Also, remove all words that do not have that letter present in any positions.
+
+00:03:42.409 --> 00:03:46.644
+If absent, remove all words that have that letter in any position.
+
+00:03:47.644 --> 00:03:51.400
+If correct, remove all words that do not have that letter in that position.
+
+00:03:52.400 --> 00:03:57.035
+That’s basically it, and doing this will quickly whittle down the list of possible choices.
+
+00:03:58.035 --> 00:04:05.147
+There are some other optimizations that I tried out but I don’t think they have much of a significant effect on how quickly the bot can guess the right answer.
+
+00:04:05.647 --> 00:04:15.077
+For example, I made a sorted list of the most common letters used in English words and had the bot prefer words with the most common letters first, to narrow down results faster.
+
+00:04:15.577 --> 00:04:23.409
+It might be possible to improve this by calculating probabilities or something down to the individual word level but I’m way too lazy (for now) to try that.
+
+00:04:24.409 --> 00:04:25.767
+A Mac App
+
+00:04:27.267 --> 00:04:34.620
+I ended up writing a Mac app to run the solver because I knew I could use a webview and make it evaluate some javascript commands.
+
+00:04:35.120 --> 00:04:45.029
+I wrote a few functions for doing things like keying in letters and hitting enter, and reading the results using the “shadow dom” which sounds a little bit like forbidden magic but whatever.
+
+00:04:46.029 --> 00:04:50.185
+I had to throw in some manual sleep() calls because it would go too fast if I didn’t.
+
+00:04:50.685 --> 00:04:55.399
+Also it looks more like a real person is playing if there’s a slight delay in entering letters.
+
+00:04:56.399 --> 00:05:00.715
+Here’s what the Mac app looks like solving the puzzle from Jan 8, 2021:
+
+00:05:01.715 --> 00:05:07.069
+I’ve found that watching my bot play the game is more interesting to me than playing the actual game.
+
+00:05:07.569 --> 00:05:14.521
+Since it’s somewhat randomized, it’s fun to see what combinations of words the app tries, and how quickly it can narrow down its results.
+
+00:05:15.021 --> 00:05:20.056
+I log the list of potential answers after each round, and it’s fun to see how the app “thinks.”
+
+00:05:21.056 --> 00:05:23.853
+One More Thing: The Bot, But IRL
+
+00:05:25.353 --> 00:05:29.428
+Making an app to automate something is cool, but I felt like something was still missing.
+
+00:05:29.928 --> 00:05:41.836
+I recently bought a mechanical pen plotter (which I should probably make another blog post about) for making generative art, so I thought it would be fun to program the pen plotter to play the game on my iPad using my Apple Pencil.
+
+00:05:42.836 --> 00:05:50.827
+The pen plotter is basically a robot that has an arm and can raise and lower a pen (or Apple Pencil) and move it along an x-y axis.
+
+00:05:51.327 --> 00:05:56.602
+I bought an off-brand version of the Axidraw, which has a similar but different board.
+
+00:05:57.102 --> 00:06:01.417
+I tried using the axidraw python library to control the iDraw.
+
+00:06:01.917 --> 00:06:04.953
+It sort of works, but there are some weird differences.
+
+00:06:05.453 --> 00:06:11.127
+For example, the pen down movement seems to bring the pen up instead of down, so everything is reversed.
+
+00:06:11.627 --> 00:06:18.420
+Also the scaling is off, so if I want to move the pen 1 inch, it seems to move it by 2 centimeters instead.
+
+00:06:18.920 --> 00:06:25.553
+I just worked around these issues because I saved a lot of money by buying the cheaper one (it was about half the price).
+
+00:06:26.553 --> 00:06:34.464
+I wrote a script in Python to take one command line argument which is the word to guess, and hardcoded positions for each letter on the iPad screen.
+
+00:06:34.964 --> 00:06:43.755
+I was thinking I could use some kind of computer vision, AI library to detect positions and translate them for the plotter, but that’s also too much work.
+
+00:06:44.255 --> 00:06:46.413
+Maybe for a different project.
+
+00:06:46.913 --> 00:06:55.304
+The Mac app runs as before, except that it runs the local Python script when guessing, and waits for the script to complete before trying the next guess.
+
+00:06:56.304 --> 00:07:04.375
+I’m pretty happy with this setup, even though it’s a pain in the ass to get it working, because I have to set the pen height and line the iPad up with the robot correctly.
+
+00:07:04.875 --> 00:07:10.149
+I did end up getting the measurements right for the keyboard keys on the first try, which was cool.
+
+00:07:10.649 --> 00:07:14.885
+It’s just that if the iPad slides on the table then everything is off.
+
+00:07:15.885 --> 00:07:20.519
+I made a YouTube video that describes this more, and embellished some stuff for entertainment.
+
+00:07:21.019 --> 00:07:26.533
+So if you want to watch that, you can see it here, (and don’t forget to obliterate that like and subscribe button)!
+
+00:07:27.533 --> 00:07:30.890
+I also pushed the solver specific code to Github.
+
+00:07:31.390 --> 00:07:35.545
+It’s pretty ugly but if you’re interested in how it works, you can check it out.
+
+00:07:36.045 --> 00:07:46.674
+I probably should’ve used regular expressions in hindsight instead of blowing up strings into arrays but I figured that with the word list at around 2,300 words, it really doesn’t matter how inefficient I am!
+
+00:07:47.674 --> 00:07:53.667
+https://github.com/hungtruong/Wordle-Bot
