@@ -1,0 +1,250 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.877
+Making a Trombone Champ Controller From a Trombone!
+
+00:00:04.377 --> 00:00:07.174
+Published on September 26, 2022.
+
+00:00:08.174 --> 00:00:14.007
+Note: this blog post is more or less adapted from a script I used to make my YouTube video on this subject.
+
+00:00:14.507 --> 00:00:17.464
+So if you want to watch the video, I’ve embedded it here!
+
+00:00:17.964 --> 00:00:21.880
+Or if you like reading more, then go ahead and read my post below!
+
+00:00:22.380 --> 00:00:29.012
+(I can’t stand the recent trend of making content that’s video-only so I refuse to not make a blog post out of this video!)
+
+00:00:30.012 --> 00:00:35.526
+I just got this new game called “Trombone Champ” which is like Guitar Hero but with a trombone.
+
+00:00:36.026 --> 00:00:45.856
+It’s honestly one of the most refreshing new games I’ve seen, not only because it’s fun and has a good sense of humor, but also because it sort of reinvigorates the music game genre.
+
+00:00:46.356 --> 00:00:52.909
+I love that part of the game is subtly recognizing that you can’t really sound good on a trombone, which is hilarious.
+
+00:00:53.409 --> 00:00:59.482
+I did find that the control scheme could be improved, since you’re expected to play with a mouse (and optionally keyboard keys).
+
+00:00:59.982 --> 00:01:04.777
+So I set out to turn my soprano trombone into a real video game controller for Trombone Champ!
+
+00:01:05.777 --> 00:01:07.695
+Why a Trombone Controller?
+
+00:01:09.195 --> 00:01:14.949
+After I got the game, I played all the levels and had a lot of fun, but I felt like something was missing.
+
+00:01:15.449 --> 00:01:21.682
+I think that driving games are more fun when you use a steering wheel, and flight simulators are more fun when you use a flight stick.
+
+00:01:22.182 --> 00:01:27.616
+Can you imagine how boring Duck Hunt would be if you had to use the regular NES controller to play it?
+
+00:01:28.116 --> 00:01:31.632
+So I decided to make a trombone controller for Trombone Champ.
+
+00:01:32.632 --> 00:01:40.384
+Luckily, I have a love of novelty instruments, and I never throw anything away, so I just happened to have a Jupiter soprano trombone in my closet.
+
+00:01:40.884 --> 00:01:47.756
+I think I origially bought it because it would be funny to use during basketball games (I used to play in the band in college).
+
+00:01:48.756 --> 00:01:50.674
+Making a Fake Mouse
+
+00:01:52.174 --> 00:01:59.126
+So since I have an actual trombone, all I need now is to connect my trombone to the computer, so I can play the game with it.
+
+00:01:59.626 --> 00:02:05.940
+I did some searching and found a library that can turn a esp32 microcontroller into a bluetooth mouse.
+
+00:02:06.440 --> 00:02:13.472
+This is perfect because then all I need to is connect some sensors to my trombone and have those move the mouse and click its buttons.
+
+00:02:13.972 --> 00:02:17.089
+Then I can connect the mouse to my computer and play the game.
+
+00:02:18.089 --> 00:02:29.037
+I decided to use a Firebeetle ESP32 microcontroller because I had one lying around from a previous project, and because it comes with a connector to plug in a lithium ion battery.
+
+00:02:29.537 --> 00:02:35.930
+This is nice because I’ll be able to play the game completely wirelessly instead of needing to plug in to usb for power.
+
+00:02:36.930 --> 00:02:38.369
+Adding Sensors
+
+00:02:39.869 --> 00:02:42.346
+So now I have two different problems to solve.
+
+00:02:42.846 --> 00:02:45.643
+I’ll call these the “blow problem” and the “slide problem.”
+
+00:02:46.143 --> 00:02:48.061
+Let’s start with the blow problem.
+
+00:02:49.061 --> 00:02:54.415
+I didn’t want to just add a button to my trombone to play a sound, because that’s not how wind instruments work.
+
+00:02:54.915 --> 00:02:56.433
+I want to actually blow into something.
+
+00:02:56.933 --> 00:03:04.045
+So I looked for different ways to measure air flow, and it turns out these types of sensors are really expensive and didn’t make sense for my project.
+
+00:03:04.545 --> 00:03:10.059
+I ended up finding this neat air pressure sensor that also has a port in it to attach a tube.
+
+00:03:10.559 --> 00:03:17.432
+My idea was that I could attach a tube to the trombone mouthpiece and measure the air pressure difference when I blew into it, directly into the sensor.
+
+00:03:18.432 --> 00:03:27.223
+This was actually a terrible idea though, because the tubing would need to go through the entire trombone and then come out of the bell, and it would really impede the movement of the slide.
+
+00:03:28.223 --> 00:03:32.937
+I ended up putting the whole sensor in the bell and then sealing the entire instrument with some saran wrap.
+
+00:03:33.437 --> 00:03:38.232
+When it’s on it has a red LED which I think gives it a pretty nice cyberpunk feel.
+
+00:03:38.732 --> 00:03:41.849
+Then I measured the ambient air pressure inside the trombone.
+
+00:03:42.349 --> 00:03:46.824
+In in my room it happens to be around 1011 hPa.
+
+00:03:47.324 --> 00:03:52.198
+When I blow into the horn, it causes the air pressure to go up, and I can register a click.
+
+00:03:52.698 --> 00:03:55.575
+When the air pressure goes back down, I can release it.
+
+00:03:56.575 --> 00:04:01.450
+So with my blow problem a thing of the past, let’s move on to the slide problem.
+
+00:04:01.950 --> 00:04:06.185
+In the game, you’re supposed to use a mouse to simulate the slide of a trombone.
+
+00:04:06.685 --> 00:04:08.922
+But there are a lot of problems with this.
+
+00:04:09.422 --> 00:04:14.776
+The slide on a trombone is fixed, so if you go to first position, you hit the end of the trombone.
+
+00:04:15.276 --> 00:04:19.592
+You can’t go to negative positions, but your mouse doesn’t just stop when you hit the end of the screen.
+
+00:04:20.092 --> 00:04:24.886
+Plus on the instrument you can use muscle memory and look at the bell to figure out what note you’re gonna hit.
+
+00:04:25.886 --> 00:04:32.279
+I looked at a bunch of different ways to solve the problem of using the actual trombone slide as a controller for the game’s slide.
+
+00:04:32.779 --> 00:04:41.730
+There are various distance sensors: lidar, sonar, time of flight, you could also probably use a gyroscope and accelerometer to figure out what direction the slide is going.
+
+00:04:42.230 --> 00:04:46.785
+I think I saw someone use a wiimote’s accelerometer to make a 3d air mouse once.
+
+00:04:47.785 --> 00:04:55.537
+To be honest, I just wanted to get started on this project quickly, so I ordered the cheapest time of flight sensor on Amazon that had next day shipping.
+
+00:04:56.037 --> 00:05:04.428
+I attached it to the bell of the trombone and put a piece of cardboard on it that it can use to bounce a laser on to detect how far the laser is away from the initial position.
+
+00:05:05.428 --> 00:05:14.219
+When I actually hooked this up to my microcontroller, it ended up giving some pretty inaccurate readings but I figured I could hook it up to my mouse software and see what happens.
+
+00:05:15.219 --> 00:05:15.938
+Results
+
+00:05:17.438 --> 00:05:21.753
+This weekend I made a Trombone Champ controller out of a real (soprano) trombone!
+
+00:05:22.253 --> 00:05:36.159
+I'll have a video out shortly about the process, but for now, enjoy this video of me absolutely failing our national anthem with my new device! cc @HolyWowStudios pic.twitter.com/SvPoxfk6GV
+
+00:05:37.159 --> 00:05:44.271
+I’ve linked my tweet of an attempt at the Star Spangled Banner above, but if you don’t want to watch a video, I’ll tell you that it did not work well!
+
+00:05:44.771 --> 00:05:53.242
+I think the time-of-flight sensor I got was faulty, as it didn’t go past 100mm with any degree of accuracy, but is rated for 2000mm.
+
+00:05:54.242 --> 00:05:57.998
+But to be honest, I’m really happy with the way this project turned out.
+
+00:05:58.498 --> 00:06:05.770
+The blow sensor works a lot better than I expected it to, as I was initially worried it wouldn’t be able to register the notes quickly enough.
+
+00:06:06.270 --> 00:06:11.625
+I also learned a lot about simulating a bluetooth mouse which I could probably use in future projects.
+
+00:06:12.125 --> 00:06:18.997
+I’m happy to share this project even though it isn’t perfect yet because this kind of prototyping is really an iterative process anyway.
+
+00:06:19.997 --> 00:06:24.712
+I also thought it was interesting how the slightly air tight seal on the trombone bell works.
+
+00:06:25.212 --> 00:06:29.767
+When you normally play an instrument, you have some back pressure, but air is also going through.
+
+00:06:30.267 --> 00:06:36.101
+I would say that I probably use more air blowing into the trombone without making any noise than I do when I’m actually playing it.
+
+00:06:36.601 --> 00:06:43.233
+This could lead to me getting tired pretty quickly, so I might adjust the seal on the horn a bit more so I don’t have to blow as hard.
+
+00:06:44.233 --> 00:06:53.663
+As far as next steps go, I’ve already purchased a few new sensors to try out, one is an acoustic distance detector, and the other is a more expensive time of flight sensor from adafruit.
+
+00:06:54.663 --> 00:07:00.337
+I’ll probably update this blog post when I try the new sensors, so look for an update below at some point!
+
+00:07:01.337 --> 00:07:04.454
+Update September 27, 2022
+
+00:07:05.954 --> 00:07:09.070
+So I ended up getting the new distance sensors!
+
+00:07:09.570 --> 00:07:20.119
+I had a problem getting the acoustic sensor working (it looks like it doesn’t play well with other i2c devices at the same time) but the time-of-flight sensor from Adafruit is working a lot better.
+
+00:07:20.619 --> 00:07:23.576
+Here’s a video where I actually get a C in Oh Canada.
+
+00:07:24.576 --> 00:07:33.846
+Some quick impressions on the current state of Trombone Champ Controller v2: I am going to need to seal the bell a bit better than with the current plastic wrap solution I have now.
+
+00:07:34.346 --> 00:07:37.543
+There’s quite a bit of air leak (as I had predicted before).
+
+00:07:38.043 --> 00:07:43.397
+Playing a 1 minute song is pretty easy but playing the longer ones leaves me pretty lightheaded by the end.
+
+00:07:43.897 --> 00:07:49.651
+When playing a regular trumpet, I don’t really use that much air, so getting too much oxygen is not an issue.
+
+00:07:50.151 --> 00:07:54.705
+But I am probably setting myself up for hyperventilation side effects if I don’t make another adjustment.
+
+00:07:55.705 --> 00:08:06.414
+Aside from that I am not sure if the game audio is a bit laggy or if it’s due to my screen recording software but I felt like I needed to preemptively blow a bit early for the controls to actually hit accurately.
+
+00:08:06.914 --> 00:08:11.310
+I did see that the developer made an update around audio latency so maybe that’ll fix it!
+
+00:08:12.310 --> 00:08:21.260
+ALSO, we just pushed a very very small update (<5mb) to v1.04 which may make overall audio latency slightly better!
+
+00:08:21.760 --> 00:08:29.672
+Between this and the improved multi-key keyboard stuff, serious rhythm game people may be *slightly* happier with Trombone Champ starting from tonight🙏
+
+00:08:30.672 --> 00:08:39.702
+I think I can also probably improve the slide accuracy by using something a bit more sturdy than a crappy piece of cardboard taped to the slide… Maybe something 3d printed?
+
+00:08:40.702 --> 00:08:44.138
+I’ll update this blog post as I make more improvements.
