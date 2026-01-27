@@ -1,0 +1,241 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.836
+First Impressions of OpenAI's Sora 2 + App
+
+00:00:05.336 --> 00:00:07.573
+Published on October 01, 2025.
+
+00:00:08.573 --> 00:00:13.288
+OpenAI just released a new version of Sora, their video generation model.
+
+00:00:13.788 --> 00:00:21.540
+I spammed reload on a thread on Reddit to get an invite code last night, and quickly hit the rate limit (it was 71 videos)!
+
+00:00:22.040 --> 00:00:25.476
+Here’s my first impressions on the new app and model.
+
+00:00:26.476 --> 00:00:36.785
+The main features of Sora 2 (and the new app) are that you can make short form (like 10 second) videos just by prompting, and you can also insert yourself into videos.
+
+00:00:37.285 --> 00:00:47.115
+This is pretty interesting because previously you’d have to either train a LoRA (like I did) or maybe use a static image of yourself as a starting frame which would inevitably drift away from looking like you.
+
+00:00:48.115 --> 00:00:48.754
+Onboarding
+
+00:00:50.254 --> 00:00:52.572
+The onboarding of the app is pretty interesting.
+
+00:00:53.072 --> 00:01:01.143
+To make a “cameo,” which is the term for inserting your likeness into a video, you need to record a short video of yourself saying some numbers and looking around.
+
+00:01:02.143 --> 00:01:09.735
+At first I thought the numbers were just to verify that you were recording a live video, but I think it’s also to capture your voice for voice cloning.
+
+00:01:10.235 --> 00:01:14.071
+The voice that the AI uses for me sort of sounds like me but not quite.
+
+00:01:14.571 --> 00:01:17.367
+It’s probably because I was mumbling the numbers.
+
+00:01:18.367 --> 00:01:22.603
+Once you upload the video, you can just tag yourself in videos that you want to generate.
+
+00:01:23.103 --> 00:01:27.018
+You can also determine who can make videos with your likeness through some permissions.
+
+00:01:27.518 --> 00:01:30.395
+Like if you only want friends to be able to make cameos of you.
+
+00:01:31.395 --> 00:01:32.354
+Generation
+
+00:01:33.854 --> 00:01:39.688
+I was interested in seeing how good the video generation was, and how creative you can be with the app.
+
+00:01:40.188 --> 00:01:48.978
+I think there must be some prompt rewriting magic being done after your initial prompt, because you can use a really vague prompt and still get an interesting video with an actual plot.
+
+00:01:49.478 --> 00:01:53.154
+I just prompted “username farting” and it came up with this gem:
+
+00:01:54.154 --> 00:02:02.226
+I also noticed that the notifications that the app sends out will describe the video in a way that might include more info than in your initial prompt.
+
+00:02:03.226 --> 00:02:08.740
+OpenAI is obviously going to be pretty risk-averse here when it comes to content moderation.
+
+00:02:09.240 --> 00:02:14.434
+When you enter a prompt that hits its guardrails, you’ll get a message that your generation failed.
+
+00:02:14.934 --> 00:02:21.007
+The annoying thing is that you can’t really tell if a prompt will run into a guardrail until you try generating the video.
+
+00:02:21.507 --> 00:02:26.702
+I’ve used identical prompts where one generation works fine and another hits a content block.
+
+00:02:27.702 --> 00:02:36.093
+For example, I tried recreating this AI boulder video that people are talking about where some lady busts a Chinese glass bridge and people fall into the water.
+
+00:02:36.593 --> 00:02:40.029
+I was able to prompt it to get something similar.
+
+00:02:40.529 --> 00:02:45.563
+One time it failed and I just retried with the exact same prompt and it worked.
+
+00:02:46.063 --> 00:02:53.335
+There must be a few stages where the content is checked, at least one before generation and maybe one that watches the video once it’s finished.
+
+00:02:53.835 --> 00:03:00.388
+I tried remixing this video with Sam Altman instead of me and it kept failing, even though the only change was the person with the boulder.
+
+00:03:01.388 --> 00:03:05.943
+This brings up another point I want to make about Sora and OpenAI in general.
+
+00:03:06.443 --> 00:03:13.875
+I’ve been noticing this for a while, but it seems kinda funny and weird to me that Sam Altman is increasingly the face and brand of OpenAI.
+
+00:03:14.375 --> 00:03:21.328
+I remember seeing Sam in his multiple colorful polo shirts as a bro, showing off Loopt at the Apple Keynote in 2008.
+
+00:03:21.828 --> 00:03:32.457
+I also remember meeting him once when we were doing a company offsite when I worked at FarmLogs (he was an investor and I think in charge of YCombinator at the time, and FL was a YC company).
+
+00:03:32.957 --> 00:03:38.711
+In addition to being an investor/tech startup builder guy, I guess he also wants everyone to know who he is.
+
+00:03:39.711 --> 00:03:44.266
+Sama (as he’s called) is available to cameo in pretty much any video you want to make.
+
+00:03:44.766 --> 00:03:49.400
+There’s some viral ones of him shoplifting GPUs from Target for Sora inference.
+
+00:03:49.900 --> 00:03:55.015
+And also a bunch of scammy ones where people make him beg for likes so he’ll give you an invite code.
+
+00:03:55.515 --> 00:04:00.709
+I can’t imagine being so full of myself that I’d want to sign up for this kind of publicity.
+
+00:04:01.209 --> 00:04:03.926
+But I guess Sama is just built different.
+
+00:04:04.426 --> 00:04:10.659
+He does seem like a bit of a psychopath but whatever, now he’s the de facto mascot of OpenAI!
+
+00:04:11.659 --> 00:04:13.497
+Inconsistent Moderation?
+
+00:04:14.997 --> 00:04:26.985
+So I keep running into issues where I can’t moonwalk or make myself a chef who’s being absolutely destroyed by Guy Fieri’s criticism on Diners Drive-ins and Dives, but for some reason there’s like a million videos of Pikachu on Sora.
+
+00:04:27.485 --> 00:04:30.841
+There’s also lots of videos of GTA V and other copyrighted stuff.
+
+00:04:31.841 --> 00:04:35.677
+It’s been interesting to see how people get around these guardrails, though.
+
+00:04:36.177 --> 00:04:40.332
+For example, I can’t say that I want a video of myself as Kramer in Seinfeld.
+
+00:04:40.832 --> 00:04:47.145
+But I can say that I’m busting through Jerry’s apartment door in a 90s sitcom and saying “Giddyup, Jerry!” which will work.
+
+00:04:47.645 --> 00:04:56.276
+I did notice though that the actors portraying Jerry only bear a passing resemblance to Jerry Seinfeld (kind of like the episode inside an episode of Seinfeld).
+
+00:04:57.276 --> 00:04:58.874
+Other Interesting Stuff
+
+00:05:00.374 --> 00:05:05.569
+I recorded my cameo proof video in front of a brick fireplace wearing a striped shirt.
+
+00:05:06.069 --> 00:05:15.259
+I noticed that in most of my videos I’m wearing that striped shirt, and if I don’t add a lot of detail to my prompt, I’ll end up getting a video in that exact same spot in my house.
+
+00:05:15.759 --> 00:05:23.591
+I guess that isn’t surprising that the system will associate me with the location of the recording but it’s also kind of weird to see my home show up in videos.
+
+00:05:24.591 --> 00:05:31.863
+If you watch enough videos on your feed, you’ll probably also notice that many of the Sam Altman videos are just him in front of a white background.
+
+00:05:32.363 --> 00:05:36.518
+I believe that this probably matches his own cameo setup video environment.
+
+00:05:37.518 --> 00:05:37.998
+The Feed
+
+00:05:39.498 --> 00:05:43.014
+I guess I should also talk about the social aspect of Sora.
+
+00:05:43.514 --> 00:05:47.829
+One of the weirdest things about this product launch is that it’s a social app.
+
+00:05:48.329 --> 00:05:53.284
+You can add “friends” who can make videos of you, and you can even have multiple cameos in a single video.
+
+00:05:53.784 --> 00:05:57.779
+I haven’t added any “friends” yet but eventually I might get there.
+
+00:05:58.779 --> 00:06:03.973
+There’s also a “For You” feed which is currently inundated with socially engineered clickbait.
+
+00:06:04.473 --> 00:06:10.067
+Like videos claiming that if you double tap (which makes you like the post) you’ll see some special emoji.
+
+00:06:10.567 --> 00:06:16.880
+I’m honestly surprised that OpenAI didn’t consider that people will try to game the system this way.
+
+00:06:17.380 --> 00:06:24.013
+It’s a bad user experience because these videos are boring and often contain the same exact script, just with different people talking.
+
+00:06:24.513 --> 00:06:26.031
+True AI slop.
+
+00:06:27.031 --> 00:06:33.664
+I did manage to find some interesting videos, where people have the same instinct to make fun of Sam Altman and his double polo shirts.
+
+00:06:34.164 --> 00:06:39.918
+One of the first videos I made was of him announcing Loopt 2 wearing 5 polo shirts with giant collars!
+
+00:06:40.418 --> 00:06:43.854
+So there are some gems but they’re truly hidden behind the slop.
+
+00:06:44.854 --> 00:06:51.167
+I guess if you want you can follow my account, it’s hungtruongy because somehow I didn’t get “hungtruong” in time.
+
+00:06:52.167 --> 00:06:52.887
+Conclusion
+
+00:06:54.387 --> 00:06:58.941
+Sora 2 is really a huge step forward in AI video generation.
+
+00:06:59.441 --> 00:07:01.359
+It’s incredibly impressive.
+
+00:07:01.859 --> 00:07:06.654
+Which is why it’s kind of tragic that this technology is currently just being used to make shitty slop.
+
+00:07:07.154 --> 00:07:12.588
+I’m hopeful that through moderation and algorithming, it could actually end up being an interesting platform.
+
+00:07:13.588 --> 00:07:17.903
+I’ve also read that the true value of this technology is through ads.
+
+00:07:18.403 --> 00:07:23.837
+Like imagine how much brands would love to offer making a cameo of you wearing their clothing so you’ll buy it.
+
+00:07:24.337 --> 00:07:30.171
+Which makes the announcement a few days ago about an AI agent purchase protocol a lot more obvious in hindsight.
+
+00:07:31.171 --> 00:07:35.406
+I had a lot of fun making videos of myself (and hitting the rate limits).
+
+00:07:35.906 --> 00:07:37.984
+I’m sure other people will too.
+
+00:07:38.484 --> 00:07:43.998
+I’m guessing some creative people will find a really cool use for this, or it’ll turn into an AI slop graveyard.
+
+00:07:44.498 --> 00:07:46.655
+Either way, it should be interesting!
