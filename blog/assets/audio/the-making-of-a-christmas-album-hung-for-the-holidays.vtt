@@ -1,0 +1,178 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.516
+The Making of a Christmas Album: Hung For the Holidays
+
+00:00:05.016 --> 00:00:07.413
+Published on December 20, 2023.
+
+00:00:08.413 --> 00:00:12.968
+This year, I wanted to make something special to go along with my annual holiday cards.
+
+00:00:13.468 --> 00:00:17.384
+Much like a washed up singer, I decided to produce a new holiday album.
+
+00:00:17.884 --> 00:00:24.517
+And since 2023 has been the year of AI, I decided to revisit my voice cloning projects in the process.
+
+00:00:25.517 --> 00:00:27.195
+Choosing a Playlist
+
+00:00:28.695 --> 00:00:34.608
+I went through all of the Christmas songs on my computer, and started to figure out what songs I wanted “myself” to sing.
+
+00:00:35.108 --> 00:00:41.821
+I figured I’d choose a variety of styles and artists, like a Christmas playlist except I’m singing all of the songs.
+
+00:00:42.321 --> 00:00:45.038
+Here’s the track list I ended up using:
+
+00:00:46.038 --> 00:00:52.032
+I used an app called “Ultimate Vocal Remover” which ultimately removed the vocals from all of these songs.
+
+00:00:53.032 --> 00:00:58.945
+I didn’t select all of the songs and process them all at once, because there were some I ran into issues with.
+
+00:00:59.445 --> 00:01:04.160
+The app does a really great job of isolating vocal tracks from musical backing tracks.
+
+00:01:04.660 --> 00:01:07.936
+But it doesn’t distinguish between the lead singer and backup singers.
+
+00:01:08.436 --> 00:01:15.069
+It also sometimes mistakes saxophones and other human-y sounds for voices and includes them in the vocal tracks.
+
+00:01:16.069 --> 00:01:20.704
+As far as I can tell, there isn’t really a way to remove lead vocals from backing vocals.
+
+00:01:21.204 --> 00:01:28.956
+When I run a combined track through the voice cloner, the model doesn’t know which vocal to follow and it can sound pretty warbly and weird.
+
+00:01:29.456 --> 00:01:32.812
+Which is hilarious, so I kept it in “All I Want For Christmas Is You,”
+
+00:01:33.312 --> 00:01:35.949
+which I couldn’t just omit from my Christmas album!
+
+00:01:36.949 --> 00:01:42.303
+If you’re curious about the voice cloning software, I have a blog post and video on the process.
+
+00:01:42.803 --> 00:01:49.516
+(Although this time I ended up using RVC instead of so-vits-svc, but the process was pretty much the same)
+
+00:01:50.516 --> 00:01:55.790
+There were a few songs that have a main singer and backup singers that sing at mostly different times.
+
+00:01:56.290 --> 00:02:01.804
+In these songs, I just deleted the backup vocal sections and would only keep the main vocal to clone it.
+
+00:02:02.304 --> 00:02:08.217
+Then I had to reinsert the original backup vocals so it sounded like I was singing with some old timey choruses.
+
+00:02:09.217 --> 00:02:17.928
+After getting the vocals ready, it was a pretty simple task to recombine the backing track with my voice cloned vocals and export it to an mp3.
+
+00:02:18.928 --> 00:02:20.367
+Making Album Art
+
+00:02:21.867 --> 00:02:25.542
+No Christmas album is complete without an awesome album cover!
+
+00:02:26.042 --> 00:02:35.473
+I was too lazy to go take a photo of myself in holiday clothes, and I had already trained a LoRA for making images of myself in Stable Diffusion XL (which is also a video).
+
+00:02:35.973 --> 00:02:39.089
+I guess I didn’t write a blog post about it yet though.
+
+00:02:40.089 --> 00:02:44.085
+There are AI image generators out there that do a pretty good job with composition.
+
+00:02:44.585 --> 00:02:52.097
+I think the Bing image creator (which is actually just OpenAI’s DALL·E 3) makes nicer images than Stable Diffusion out of the box.
+
+00:02:52.597 --> 00:02:55.154
+I’m guessing it’s the same for ones like Midjourney too.
+
+00:02:55.654 --> 00:03:03.166
+The problem with those generators is that it can’t make an image of a guy who looks like me (unless I got incredibly lucky and they happened to make my twin).
+
+00:03:04.166 --> 00:03:07.282
+I’ve been refining my process of creating AI images lately.
+
+00:03:07.782 --> 00:03:14.894
+Instead of just throwing a prompt in the text box and hoping for the best, I’ve been trying to get more consistent results by using ControlNet models.
+
+00:03:15.894 --> 00:03:23.087
+The method I used to make the album art was thus: I created a bunch of album cover images in Bing, according to the prompt:
+
+00:03:24.087 --> 00:03:28.242
+I made a bunch of images and tweaked the prompt until I got something that I liked.
+
+00:03:28.742 --> 00:03:30.980
+It didn’t matter that the guy doesn’t look like me.
+
+00:03:31.480 --> 00:03:33.158
+That’s what the next step is for.
+
+00:03:34.158 --> 00:03:40.471
+I then loaded the image above into ComfyUI and ran it through a ControlNet model to extract the depth from the image.
+
+00:03:40.971 --> 00:03:44.807
+So any generated image would follow the same depth map, more or less.
+
+00:03:45.307 --> 00:03:51.859
+There are ways to make the depth map have a stronger or weaker effect on the final image, so I tweaked that too.
+
+00:03:52.359 --> 00:04:07.065
+Then I could make a bunch of images that, while all different, would have a similar depth map, which in practice means that the image will be of a guy who looks like me, in that same pose, leaning into a microphone, wearing a santa hat in front of a snowman and probably some trees.
+
+00:04:07.565 --> 00:04:10.362
+Here’s a look at some of the images I had to choose from.
+
+00:04:11.362 --> 00:04:13.040
+Publishing My Work
+
+00:04:14.540 --> 00:04:22.451
+I thought it would be funny to upload my AI Christmas album on to Soundcloud, so that when I finally got a hit tweet I could point people to it.
+
+00:04:22.951 --> 00:04:26.148
+So I created a new account and uploaded my entire album.
+
+00:04:26.648 --> 00:04:32.561
+I then immediately got a bunch of emails that the songs were flagged for copyright issues (even though they’re quite different).
+
+00:04:33.561 --> 00:04:38.676
+I decided I’d have to take matters into my own hands and just host the album myself.
+
+00:04:39.176 --> 00:04:47.167
+I found an open source html5 music player thing and used it as a base for the interactive page: Hung For the Holidays
+
+00:04:48.167 --> 00:04:55.919
+Also, I realized that there’s already a Christmas album called “Hung For the Holidays” that was released by that William Hung guy from American Idol.
+
+00:04:56.419 --> 00:04:57.777
+What are the odds!?
+
+00:04:58.777 --> 00:04:59.976
+Conclusion
+
+00:05:01.476 --> 00:05:07.869
+I’m glad that I could end my 2023 by making a very AI generated project.
+
+00:05:08.369 --> 00:05:14.682
+It was fun coming up with the track list and doing some editing to make sure the songs sounded okay (for the most part).
+
+00:05:15.182 --> 00:05:21.096
+I probably put way too much time into this stupid project that probably only a few people will actually listen to.
+
+00:05:21.596 --> 00:05:26.550
+It’s a pretty niche joke and I’m pretty sure only people who already know what I sound like would find it amusing.
+
+00:05:27.550 --> 00:05:36.501
+The best part is that I can troll my wife by including some of my tracks in my regular Christmas playlist, so you can never be sure if it’ll be the original version or “Hung’s Version.”
+
+00:05:37.501 --> 00:05:40.138
+Anyway, have a happy holiday 2023!
+
+00:05:40.638 --> 00:05:44.154
+Here’s to more interesting AI projects in 2024!
