@@ -59,8 +59,12 @@
       // Punctuation: . , ; : ? ! ) ] } " '
       const roughWords = safeText.split(/\s+/);
       const refinedWords = roughWords.map(word => {
-        // Fix: Allow punctuation to be optionally escaped (e.g. \. vs ,)
-        return word.replace(/(\\)?([.,;?!:)\]}"'])/g, '(?:\\s*<[^>]+>\\s*)*$1$2');
+        let newWord = word;
+        // Fix: Allow tags AFTER opening punctuation (e.g. (link) -> (<a...>link</a>)
+        newWord = newWord.replace(/(\\)?([(\[{])/g, '$1$2(?:\\s*<[^>]+>\\s*)*');
+        // Fix: Allow tags BEFORE closing punctuation (e.g. word. -> word</a>.)
+        newWord = newWord.replace(/(\\)?([.,;?!:)\]}"'])/g, '(?:\\s*<[^>]+>\\s*)*$1$2');
+        return newWord;
       });
 
       let regexPattern = refinedWords.join(flexibleSpacer);
