@@ -1,0 +1,184 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.235
+Adding Audio to My Blog With Qwen3-TTS Voice Cloning
+
+00:00:05.735 --> 00:00:09.012
+Published on January 27, 2026.
+
+00:00:10.012 --> 00:00:15.126
+I saw a note in my daily AI newsletter about a new TTS model that was out.
+
+00:00:15.626 --> 00:00:20.820
+I spent a better part of the day testing out its capabilities and attempting to do some fine tuning on it.
+
+00:00:21.820 --> 00:00:27.654
+I’ve had a goal for a pretty long time to add audio versions that people can use to listen to each of my blog posts.
+
+00:00:28.154 --> 00:00:32.789
+But rather than narrate them myself, I wanted the audio to be computer generated.
+
+00:00:33.289 --> 00:00:37.524
+Not only that, but I wanted it to sound like I was actually doing the narrating.
+
+00:00:38.024 --> 00:00:44.657
+So far, any of the models that I’ve tried to accomplish this haven’t lived up to the high standards of quality that you’re used to seeing on my blog.
+
+00:00:45.157 --> 00:00:48.673
+So did Qwen3-TTS finally make the grade?
+
+00:00:49.673 --> 00:00:55.826
+When I looked at the Qwen3-TTS GitHub, I noticed that it had a few ways to generate audio from text.
+
+00:00:56.326 --> 00:01:00.322
+You could just use a pre-configured voice, and even give it instructions on how to speak.
+
+00:01:00.822 --> 00:01:08.174
+You could also design a voice, clone a voice from a reference audio, or even do fine tuning on the model and then generate from that.
+
+00:01:09.174 --> 00:01:13.809
+I initially set up a Kaggle notebook to test out the audio generation capabilities.
+
+00:01:14.309 --> 00:01:20.062
+I had an old dataset from a previous experiment of me reading the beginning of one of my blog posts.
+
+00:01:20.562 --> 00:01:25.038
+The audio quality was pretty bad, but I didn’t want to record any new stuff just yet.
+
+00:01:25.538 --> 00:01:28.175
+The voice cloning seemed to work pretty well!
+
+00:01:28.675 --> 00:01:33.869
+I decided to see if I could actually fine tune a model since that should get me even better results!
+
+00:01:34.869 --> 00:01:37.106
+When Fine Tuning Goes Wrong
+
+00:01:38.606 --> 00:01:47.637
+I ended up using a better mic that I bought for making YouTube videos (which I only used once so far) and recorded some more samples of myself reading from some of my blog posts.
+
+00:01:48.137 --> 00:01:53.651
+This time I used Logic Pro and messed with some plugins to make sure the audio sounded somewhat decent.
+
+00:01:54.151 --> 00:01:59.105
+I ended up recording about 30 files and decided that was probably enough for fine tuning.
+
+00:02:00.105 --> 00:02:06.019
+I used Google Antigravity to make another Kaggle notebook for me and iterated on the code until it actually worked.
+
+00:02:06.519 --> 00:02:13.951
+I ran into out of memory issues (the Kaggle GPUs max out at 16GB) and had to use the smaller model.
+
+00:02:14.451 --> 00:02:23.242
+I think somewhere in all of the hacks that Gemini used to get the training to complete, something got messed up because I could only manage to infer gibberish from the trained model.
+
+00:02:24.242 --> 00:02:29.676
+I might need to actually train for longer, or use more voice samples, or maybe both.
+
+00:02:30.176 --> 00:02:34.571
+I just happen to be too lazy to do it right now since I already wasted like 4 hours on it.
+
+00:02:35.071 --> 00:02:40.904
+I also read some comments on GitHub that the fine-tuned model doesn’t work that well so I decided to just give up for now.
+
+00:02:41.904 --> 00:02:42.943
+Voice Cloning Instead
+
+00:02:44.443 --> 00:02:50.117
+Since I had found some early success in voice cloning, I decided to see how far I could get with that.
+
+00:02:50.617 --> 00:02:55.651
+I used a longer section of recording for my “reference audio” which is about 30 seconds long.
+
+00:02:56.151 --> 00:03:01.026
+After that I tried a 1.5 minute clip, which had some more variety to it.
+
+00:03:01.526 --> 00:03:12.075
+Now I’m wondering if I could throw a 30 minute clip at it just to get all of my nuances in there but something tells me that at a certain point, you get diminishing returns (and blow up the GPU RAM).
+
+00:03:13.075 --> 00:03:21.626
+I set up a new Kaggle notebook that would scrape the text from my blog, then break it up into sentences and generate a TTS voice clone of myself speaking each sentence.
+
+00:03:22.126 --> 00:03:27.640
+Then it would stitch all of the audio files together into a giant spoken article podcast thing!
+
+00:03:28.140 --> 00:03:32.375
+I used a similar method when I wrote that Siri feature that reads articles to you.
+
+00:03:33.375 --> 00:03:36.492
+The results ended up sounding really good!
+
+00:03:36.992 --> 00:03:44.184
+In the past, I’ve tried this same technique and got a voice that somewhat resembled mine, but it would talk in an almost southern drawl.
+
+00:03:44.684 --> 00:03:47.321
+It was super hilarious, but also not accurate.
+
+00:03:47.821 --> 00:03:54.454
+The Qwen3-TTS model gets the cadence and prosody of my speech down pretty well, all with a one-shot example!
+
+00:03:54.954 --> 00:04:00.628
+Sure, the TTS doesn’t get everything perfectly the way I would read things, but it’s good enough for me!
+
+00:04:01.628 --> 00:04:03.546
+Adding a Podcast To My Blog
+
+00:04:05.046 --> 00:04:10.320
+I started looking for projects that I could use to incorporate the audio article into my actual blog.
+
+00:04:10.820 --> 00:04:15.934
+Sort of like the transcript feature in YouTube where you can skip to sections by clicking on text.
+
+00:04:16.434 --> 00:04:19.790
+I found this project called Hyperaudio that fit the bill.
+
+00:04:20.290 --> 00:04:28.202
+Since the audio is generated from text that was lifted directly from my blog anyway, I could just generate a subtitle file while generating the blog post audio.
+
+00:04:28.702 --> 00:04:34.216
+That way I wouldn’t have to mess with something like Whisper or another ASR system which would probably be really inaccurate.
+
+00:04:35.216 --> 00:04:45.046
+Since I generate my blog with Jekyll, it was pretty simple to add another value to my frontmatter, and then conditionally add a script that would add the tags for Hyperaudio to hook into.
+
+00:04:45.546 --> 00:04:48.902
+Plus it was super simple because I just had AI do it for me!
+
+00:04:49.402 --> 00:04:58.113
+I think it’s a fun feature that makes my blog more accessible, and I’d much rather have someone listen to my blog in my own voice, or at least a pretty good approximation to it.
+
+00:04:59.113 --> 00:05:06.385
+So now you can listen to me read my blog to you, skip to sections by clicking on the text in the blog, and see the current sentence being highlighted.
+
+00:05:07.385 --> 00:05:09.063
+Future Improvements
+
+00:05:10.563 --> 00:05:13.040
+I’m pretty happy so far with how this feature works.
+
+00:05:13.540 --> 00:05:18.974
+One thing that’s annoying, though, is that it requires the blog post to already exist before I can generate audio for it.
+
+00:05:19.474 --> 00:05:22.591
+That’s kind of a chicken and egg problem, and hard to solve.
+
+00:05:23.091 --> 00:05:28.924
+I don’t want to generate an audio file for a blog post and then immediately have to make a new one because I changed a word somewhere.
+
+00:05:29.424 --> 00:05:33.100
+But it would be nice to publish the audio and the blog post at the same time.
+
+00:05:34.100 --> 00:05:40.254
+I already set up a GitHub action to run from the Kaggle notebook after it uploads the files to Cloudflare storage.
+
+00:05:40.754 --> 00:05:45.229
+It picks up the new files, adds the frontmatter to the blog post, and then redeploys my blog.
+
+00:05:45.729 --> 00:05:48.446
+Sometimes I just love being a software nerd.
+
+00:05:49.446 --> 00:05:56.238
+I’m currently filling out the backlog of my posts with audio, so you may or may not see audio on them until I get to it.
+
+00:05:57.238 --> 00:06:05.869
+I guess at some point, if a better voice cloning TTS model comes out, I could update the files again, but for now they should do the job nicely!
