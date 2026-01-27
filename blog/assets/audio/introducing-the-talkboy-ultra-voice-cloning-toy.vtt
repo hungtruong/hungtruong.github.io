@@ -1,0 +1,214 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.875
+Introducing The Talkboy Ultra! An AI Powered Voice Cloning Toy
+
+00:00:06.375 --> 00:00:09.171
+Published on June 14, 2023.
+
+00:00:10.171 --> 00:00:19.202
+Note: This blog post is based on a YouTube video I made, which you can watch in the embed, but it also has some stuff that’s not in the video, so read the stuff I wrote below!
+
+00:00:20.202 --> 00:00:29.952
+So while I was learning about AI voice cloning technology to make myself sing better (and to make Kanye sing stupid songs), I got an idea into my head that I couldn’t let go of.
+
+00:00:30.452 --> 00:00:42.599
+I was reminicing about the original Talkboy Deluxe from the movie Home Alone 2 (and the subsequent commercial that played on kids tv for years after), and how it was supposed to change your voice but really it just kinda slowed it down.
+
+00:00:43.099 --> 00:00:48.454
+I realized that I could make the dream of the Talkboy come true, and do it with real life hardware.
+
+00:00:49.454 --> 00:00:54.408
+So here’s the story of how I made the Talkboy Ultra, which it turns out is a pretty fun toy.
+
+00:00:55.408 --> 00:00:56.687
+Building The Dream
+
+00:00:58.187 --> 00:01:02.582
+I knew that I wanted the Talkboy to be a real device, not just some app on a phone.
+
+00:01:03.082 --> 00:01:07.557
+Phone apps are cool, but there’s just something about single-purpose devices that hit different.
+
+00:01:08.057 --> 00:01:13.091
+They’re more fun and there’s something about pressing a button that’s designed just for a single purpose.
+
+00:01:14.091 --> 00:01:22.163
+I was hoping that I could run everything locally on a device, but the voice AI inference requires too much memory, so I went with a client-server approach.
+
+00:01:22.663 --> 00:01:29.056
+I started with a Raspberry Pi Zero W as the base, and added a USB audio card with input and output.
+
+00:01:30.056 --> 00:01:33.732
+I connected a lavalier microphone and tested recording and playback.
+
+00:01:34.232 --> 00:01:40.065
+The recording worked fine but when I plugged in an unamplified speaker, the audio was way too quiet.
+
+00:01:40.565 --> 00:01:46.559
+I decided that instead of figuring out how to amplify an audio signal, I would just go with a USB powered speaker.
+
+00:01:47.559 --> 00:01:52.913
+With this setup, I could successfully record and playback my voice (after writing some Python code to do that).
+
+00:01:53.913 --> 00:01:58.787
+From this foundation, I added a few push buttons for the recording and playback controls.
+
+00:01:59.287 --> 00:02:13.513
+I also wanted the device to work without having to plug it in to a power source (for portability) so I added a 1000 mAh Lithium-ion battery pack and a TP4056 Charging Module with micro usb input to charge the battery.
+
+00:02:14.013 --> 00:02:25.202
+I also added a MT3608 DC-DC Step Up Boost Power Converter so I could power the Raspberry Pi with it (since the voltage coming out of the battery is 3.7v).
+
+00:02:26.202 --> 00:02:33.714
+Finally, I added a 1602 LCD display to show the state of the device, either the currently selected voice or the processing state.
+
+00:02:34.214 --> 00:02:38.529
+And to be able to control the power supply to the toy, I added an on/off switch.
+
+00:02:39.029 --> 00:02:43.104
+I soldered the components together and amazingly they worked the first time!
+
+00:02:44.104 --> 00:02:51.616
+I couldn’t just let the device sit in the cardboard box that I was using for prototyping, so I also designed and 3D printed a case for it.
+
+00:02:52.116 --> 00:03:00.188
+I started with a blocky box just to test how the components like the buttons could fit in the holes, then I refined the case to have some smooth, rounded edges.
+
+00:03:00.688 --> 00:03:07.241
+I also added a microphone enclosure thing and a handle so I could hold it with one hand, just like the original!
+
+00:03:08.241 --> 00:03:12.396
+I used TinkerCad for this, which works pretty well once you learn the controls.
+
+00:03:13.396 --> 00:03:14.515
+Software
+
+00:03:16.015 --> 00:03:19.691
+Of course, I worked on some software in order to make the toy actually do stuff.
+
+00:03:20.191 --> 00:03:26.024
+I wrote everything in Python since it’s pretty portable and runs well on both my laptop and my Raspberry Pi.
+
+00:03:27.024 --> 00:03:33.257
+On the Raspberry Pi, I wrote some code to handle button presses for recording, playback and voice selection.
+
+00:03:33.757 --> 00:03:38.952
+I also had to write some code to make HTTP requests between the Raspberry Pi and my laptop (web server).
+
+00:03:39.952 --> 00:03:46.665
+The basic workflow is: I press and hold the record button, and say whatever it is I want to hear in a different voice.
+
+00:03:47.165 --> 00:03:54.357
+When I release the button, the recording stops and the Talkboy sends the audio file to my web server along with the voice model to use.
+
+00:03:54.857 --> 00:03:58.613
+The LCD switches from the currently selected voice to “Processing….”
+
+00:03:59.113 --> 00:04:05.985
+The web server receives the audio file and runs the inference on it, then sends the response with the changed voice file back to the Talkboy.
+
+00:04:06.485 --> 00:04:10.561
+The LCD switches back to the voice display to show that it’s done processing.
+
+00:04:11.061 --> 00:04:15.376
+Then when I hit the green button again I can hear the changed voice.
+
+00:04:16.376 --> 00:04:24.128
+I already had some voice models and the script to infer audio from one voice to another set up since I used it in my previous project on AI voice cloning.
+
+00:04:24.628 --> 00:04:33.258
+I just had to write a simple Flask web server to respond to the HTTP requests, run the inference script, and then send the file back to the Talkboy (so simple).
+
+00:04:34.258 --> 00:04:47.605
+The delay between finishing the recording and being ready to play back the voice depends on how long the recording is. I would say that the total latency is probably around 5-15 seconds for a typical short recording, which isn’t too bad.
+
+00:04:48.105 --> 00:04:58.175
+I could probably optimize the speed by streaming audio to and from the web server but that’s more complicated and I’m not really willing to do that just for a stupid gag project like this.
+
+00:04:59.175 --> 00:05:00.133
+Examples!
+
+00:05:01.633 --> 00:05:04.830
+So I guess I should include some examples of the voice changer here.
+
+00:05:05.330 --> 00:05:13.161
+My previous blog post had some audio examples of me singing some songs, but here’s some before and after clips of the audio I used in the Youtube video.
+
+00:05:14.161 --> 00:05:16.719
+Arnold’s quote from Kindergarten Cop:
+
+00:05:17.719 --> 00:05:18.598
+Me:
+
+00:05:19.598 --> 00:05:20.077
+Arnold:
+
+00:05:21.077 --> 00:05:23.315
+Picard ordering Taco Bell:
+
+00:05:24.315 --> 00:05:24.794
+Me:
+
+00:05:25.794 --> 00:05:26.433
+Picard:
+
+00:05:27.433 --> 00:05:29.591
+Picard ordering Taco Bell:
+
+00:05:30.591 --> 00:05:31.470
+Me:
+
+00:05:32.470 --> 00:05:33.269
+Picard:
+
+00:05:34.269 --> 00:05:36.666
+Homer Simpson having a midnight snack:
+
+00:05:37.666 --> 00:05:38.465
+Me:
+
+00:05:39.465 --> 00:05:40.105
+Picard:
+
+00:05:41.105 --> 00:05:41.904
+Training
+
+00:05:43.404 --> 00:05:52.754
+Just as an aside, from the above models, I trained the Arnold Schwartzenegger and Patrick Stewart voices (both from audio that I found from audio book clips).
+
+00:05:53.254 --> 00:05:56.131
+The Simpsons ones that I used in the video were downloaded.
+
+00:05:56.631 --> 00:06:05.022
+I didn’t train for a super large number of steps so that might explain why the Simpsons ones sound very close to the real deal, whereas the other ones are just okay.
+
+00:06:06.022 --> 00:06:07.060
+Closing Thoughts
+
+00:06:08.560 --> 00:06:11.197
+I had a lot of fun with this project.
+
+00:06:11.697 --> 00:06:21.767
+It really ended up combining a bunch of my interests, including hardware hacking, software (both on an embedded device and server), and utilizing some state of the art AI models too!
+
+00:06:22.267 --> 00:06:26.902
+I also got to 3D print a case that’s much more complicated than anything else I’ve made myself.
+
+00:06:27.902 --> 00:06:38.051
+It was fun coming up with this challenge and then solving all of the problems that came with it, including fitting everything in the case, and lining up all of the components like the screen and buttons.
+
+00:06:39.051 --> 00:06:45.365
+While I think it would be really interesting to see this device hit the mainstream market, I don’t think it will happen any time soon.
+
+00:06:45.865 --> 00:06:49.301
+For one thing, the licensing of real voices would probably be an issue.
+
+00:06:49.801 --> 00:06:54.835
+Plus the hardware to run the inference on a device doesn’t exist as far as I know.
+
+00:06:55.335 --> 00:07:02.368
+I think you might be able to do it on an iPhone if you shrank the model, but that wouldn’t be nearly as fun as using a dedicated device.
+
+00:07:03.368 --> 00:07:11.359
+I’m hoping that I’m wrong though, and that a 30th anniversary Talkboy makes its way to the toy stores, complete with the latest in AI tech!
