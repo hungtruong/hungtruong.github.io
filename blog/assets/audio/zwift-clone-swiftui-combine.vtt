@@ -1,0 +1,232 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.756
+Cloning Zwift on iOS Part 5: SwiftUI and Combine
+
+00:00:05.256 --> 00:00:07.973
+Published on May 02, 2021.
+
+00:00:08.973 --> 00:00:15.765
+I recently switched teams at Amazon to one that is using SwiftUI and Combine, so I finally have a good excuse to learn the two.
+
+00:00:16.265 --> 00:00:23.458
+I am somewhat familiar with Functional Reactive Programming from using RxSwift at Lyft, but I’ve only really dabbled a bit with SwiftUI.
+
+00:00:24.458 --> 00:00:33.648
+I decided to spend some time last weekend (and this weekend) rewriting most of my Zwift clone app to use SwiftUI and Combine, and here’s some of the stuff I learned along the way.
+
+00:00:34.648 --> 00:00:35.847
+Moving to Combine
+
+00:00:37.347 --> 00:00:43.820
+When I originally wrote the Zswift app, I didn’t really spend too much time on making sure the data model or architecture was the cleanest or anything.
+
+00:00:44.320 --> 00:00:49.114
+It’s really more of a hodgepodge of explorations and trying to get stuff to just work.
+
+00:00:49.614 --> 00:00:52.971
+Because of this, I probably violated a bunch of best practices.
+
+00:00:53.471 --> 00:01:02.741
+I had a “Workout” object that stored all of the different information that is needed to model a workout, but I also threw a bunch of logic and functions in there that probably didn’t make sense.
+
+00:01:03.741 --> 00:01:09.814
+For example, the Workout had info on each segment of the workout, along with the duration and amount of power for the segment.
+
+00:01:10.314 --> 00:01:20.544
+As the workout progressed, I would store the elapsed time as well as a bunch of other state variables like the current segment and other variables like time in current segment that I used to drive the UI.
+
+00:01:21.044 --> 00:01:28.795
+Since I kept a bunch of variables to keep track of state, it’s possible that some of them would get out of sync with each other, and that would cause bugs.
+
+00:01:29.295 --> 00:01:39.844
+I think I had a bunch of off-by-one errors where I would reach the end of an index and crash or the time within a segment would be off by 1 so I’d be at 2:01/2:00 as far as progress went.
+
+00:01:40.344 --> 00:01:41.463
+Those kind of bugs.
+
+00:01:42.463 --> 00:01:50.455
+In moving to Combine, my goal was to have the state of the workout flow from the one thing about the workout that actually changes: the elapsed time.
+
+00:01:51.455 --> 00:02:08.238
+The elapsed time literally decides which segment I’m in, how long I’ve been working out (duh), how long I’ve been in the current segment, how hard I should be pedaling, etc. I ended up creating a separate class to keep track of the state of the workout, and just use the workout as a static definition of the workout.
+
+00:02:08.738 --> 00:02:15.131
+I could’ve done this before migrating to use Combine, but like I said, it was working and I didn’t feel the need to refactor.
+
+00:02:16.131 --> 00:02:24.123
+In my current setup, the WorkoutManager has a @Published variable that keeps track of the elapsed time, and then I create a bunch of other publishers based on that one.
+
+00:02:24.623 --> 00:02:28.698
+I also have publishers that combine (imagine that) with other publishers.
+
+00:02:29.198 --> 00:02:36.391
+For example, I have a publisher called “timeInCurrentSegmentPublisher” that publishes the amount of time that I’ve been in the current segment.
+
+00:02:36.891 --> 00:02:45.122
+I combine this publisher with the “currentSegmentPublisher” which gives me the current segment, and use this to calculate the percentage progress for the current segment.
+
+00:02:45.622 --> 00:02:49.138
+I have to combine the two because each publisher only gives me one thing.
+
+00:02:50.138 --> 00:03:07.161
+I weighed the benefits of creating publishers with multiple tuples of values, but in most cases it didn’t make sense, and I think it goes against the concept of making the streams composable, but I did end up making one for currentSegmentPublisher since it calculates the current segment and the current segment’s index at the same time anyway.
+
+00:03:07.661 --> 00:03:15.813
+Even as I’m writing about it now, I’m not sure if the better way is to create two different publishers since it’s kinda clunky to grab the desired value from the tuple.
+
+00:03:16.813 --> 00:03:21.767
+Anyway, the result here is that my Workout object doesn’t have any more state at all.
+
+00:03:22.267 --> 00:03:33.855
+I could make it a struct but there’s some SwiftUI requirement for my Workout to be a class if I want to use it in a Modal view (which the workout detail is set up as) so for now I’ll just leave it as-is.
+
+00:03:34.355 --> 00:03:38.511
+I could also create a view model if I really wanted the Workout object to be a struct.
+
+00:03:39.511 --> 00:03:45.264
+I’m sure I could optimize the Combine publishers even more but since they’re working now I’ll just leave them.
+
+00:03:46.264 --> 00:03:47.543
+SwiftUI
+
+00:03:49.043 --> 00:03:58.873
+The general opinion that I see from others about SwiftUI is that the more people use it, the more they like it, and that it really forces you to rethink how you define interfaces.
+
+00:03:59.373 --> 00:04:06.325
+I heard this a million times but until you actually play around with it in a non-trivial example I feel like it’s hard to really understand it.
+
+00:04:07.325 --> 00:04:12.839
+The gist is that SwiftUI is a declarative way to define your UIs instead of an Imperative way.
+
+00:04:13.339 --> 00:04:16.376
+The difference can seem subtle until you start doing stuff.
+
+00:04:16.876 --> 00:04:21.591
+What it means is that instead of telling the computer how to do something, you just tell it what you want.
+
+00:04:22.091 --> 00:04:25.447
+If that’s confusing then yeah, actually it is confusing.
+
+00:04:26.447 --> 00:04:36.117
+I guess to put it another way, in UIKit you can define views as objects, give them properties, add them to a parent view and then set some constraints on them.
+
+00:04:36.617 --> 00:04:45.647
+In this imperative example, it’s up to you to define every step to the computer to tell it what to do, and hope that your interface matches what you were thinking.
+
+00:04:46.647 --> 00:04:53.919
+In a declarative syntax, you can describe what you want, and add some modifiers to it if you need to have more control over the actual output.
+
+00:04:54.419 --> 00:05:02.171
+From there, you also define state variables or observed objects that the SwiftUI view will use to actually come up with the completed interface.
+
+00:05:03.171 --> 00:05:06.607
+Imagine that you want to show a list of dog breeds.
+
+00:05:07.107 --> 00:05:16.617
+In an imperative system you need to set up the collection view controller, fill out your functions for “cellAtIndex” and “didSelectCellAtIndex” etc, and supply the cells.
+
+00:05:17.117 --> 00:05:26.228
+In a declarative system you can say “I want a list of ‘DogViews’ that use the ‘Dog’ model” and define a “NavigationLink” to define what happens when you tap on the cell.
+
+00:05:27.228 --> 00:05:35.459
+The interesting part to me was that the SwiftUI view is an immutable struct, so you can’t modify the view as you would a UIView when states change.
+
+00:05:35.959 --> 00:05:42.991
+Of course your view can respond to changes in the data model, but all of those states need to be determined at compile time rather than runtime.
+
+00:05:43.991 --> 00:05:47.587
+One of the best parts about SwiftUI is how the “live” previews work.
+
+00:05:48.087 --> 00:05:55.679
+They aren’t exactly real time, but fast enough that the feedback loop between writing UI code and seeing the result is very tight.
+
+00:05:56.179 --> 00:06:04.890
+In the past I’ve had to write code to update a UI (or use Interface Builder), then build and run, and go to the part of the app where the UI I changed was.
+
+00:06:05.390 --> 00:06:10.584
+This could mean it would be a few seconds or minutes before I saw whether the change I just wrote actually worked.
+
+00:06:11.084 --> 00:06:15.959
+In SwiftUI you make a change and once you’re done writing it, the preview window will show it.
+
+00:06:16.459 --> 00:06:22.133
+The system isn’t perfect, of course, as sometimes it can’t compile and you need to reenable the live preview.
+
+00:06:22.633 --> 00:06:29.665
+But it’s really the best tradeoff between the WYSIWYG style of Interface Builder and the readability of programmatic view code.
+
+00:06:30.165 --> 00:06:38.476
+I’m sure the tools will improve in the future, and I’m quite certain that this ease of previewing code will be one of the factors that will motivate people to switch to SwiftUI.
+
+00:06:39.476 --> 00:06:40.995
+The Workout View
+
+00:06:42.495 --> 00:06:45.771
+I modeled my original interface after the Zwift app.
+
+00:06:46.271 --> 00:06:54.422
+In the Zwift app, you can see the workout represented as a bunch of rectangles representing segments that get taller when the target power is higher.
+
+00:06:54.922 --> 00:06:57.399
+The width is determined by the length of the segment.
+
+00:06:58.399 --> 00:07:03.514
+I basically copied this and implemented it with a UIStackView and percentage constraints.
+
+00:07:04.014 --> 00:07:08.409
+I thought it was pretty cool but one thing that bothered me is the warmup and cooldown segments.
+
+00:07:08.909 --> 00:07:13.784
+Those have a starting value and ending value that are different (warmups start lower and end higher).
+
+00:07:14.284 --> 00:07:25.152
+I didn’t want to spend too much time drawing the start of the rectangle to be lower than the end (plus it wouldn’t technically be a rectangle at that point) so I just used the “lower” value and set them as flat rectangles.
+
+00:07:26.152 --> 00:07:34.144
+I decided to practice some custom drawing in SwiftUi to properly draw the warmup and cooldown segments and I’m pretty happy with the result.
+
+00:07:34.644 --> 00:07:40.318
+The view is drawn by taking the desired start and end heights and width, and drawing a path with it.
+
+00:07:40.818 --> 00:07:45.852
+I used “path.addArc” to get a nice rounded corner effect, though it isn’t perfect.
+
+00:07:46.352 --> 00:07:54.424
+I also draw a 1px wide vertical line to show where I am in the workout by offsetting it from the left by a percentage of the view’s width.
+
+00:07:55.424 --> 00:08:01.097
+I also went ahead and stole the color scheme from the Zwift app which makes it look a bit more polished.
+
+00:08:02.097 --> 00:08:03.536
+The Workout Detail
+
+00:08:05.036 --> 00:08:13.747
+In addition to updating the workout representation view, I also decided to just overhaul the entire workout detail view (the view I see when I’m in a workout).
+
+00:08:14.247 --> 00:08:23.277
+The old interface was pretty basic with a bunch of grids and text boxes that didn’t really have any visual separation from each other, aside from the size and distribution of the labels.
+
+00:08:24.277 --> 00:08:33.387
+I ended up experimenting with the “GroupBox” component of SwiftUI which is pretty simple but makes a big difference just in terms of separating out the different interface elements.
+
+00:08:33.887 --> 00:08:43.557
+I also added some accent colors and icons to some of the text labels, and I added progress indicators to the segment time and elapsed time sections just to make them stand out more.
+
+00:08:44.057 --> 00:08:49.971
+Overall I really like the new workout detail view which is good since I’m literally the only person who uses this app.
+
+00:08:50.971 --> 00:08:58.323
+I have some more ideas for enhancements, like recreating the Apple Watch heart rate animation which shows a heart pulsing at your actual heart rate.
+
+00:08:58.823 --> 00:09:03.937
+The animation seamlessly updates when your heart rate changes, which is pretty cool.
+
+00:09:04.937 --> 00:09:13.009
+I also want to add some more tracking informtion, like a histogram (maybe with candlestick charts or sparklines) of the wattage and heart rate info.
+
+00:09:13.509 --> 00:09:18.303
+This would be nice to have but the HealthKit integration already includes the heart rate chart.
+
+00:09:18.803 --> 00:09:21.680
+And I don’t know if I care too much about the wattage graph.
