@@ -1,0 +1,223 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.637
+Goodbye Claude and Gemini, Hello Codex!
+
+00:00:04.137 --> 00:00:06.774
+Published on September 24, 2025.
+
+00:00:07.774 --> 00:00:12.808
+There’s been a few changes in the AI CLI landscape, so it’s time for a new blog post!
+
+00:00:13.308 --> 00:00:16.025
+I’ve once again switched my AI best friend.
+
+00:00:16.525 --> 00:00:19.482
+This time from Claude to OpenAI’s Codex.
+
+00:00:20.482 --> 00:00:27.355
+So since the last blog post I made about vibe coding with Claude Code and what I learned, it seems like Claude got really dumb.
+
+00:00:27.855 --> 00:00:34.487
+I actually let my subscription lapse so I could do other stuff (like play with text to video AI) so I didn’t witness this firsthand.
+
+00:00:34.987 --> 00:00:47.055
+But judging from the Claude Code subreddit and even this official blog post from Anthropic, it sounds like there was quite the regression (which Anthropic didn’t even admit to for a while, and when they did, they didn’t compensate anyone for it).
+
+00:00:48.055 --> 00:00:58.604
+During that time I was pretty much using Gemini CLI again (which still kinda sucks, to be honest) and Atlassian’s Rovo CLI which can use Claude Sonnet and GPT5 with pretty nice free limits.
+
+00:00:59.104 --> 00:01:05.098
+I also tried Grok Fast or whatever it was called when it was free for a week but it didn’t seem to work that well for me.
+
+00:01:06.098 --> 00:01:11.692
+But after OpenAI announced GPT5 and later, GPT5 Codex, I was intrigued.
+
+00:01:12.192 --> 00:01:18.105
+I didn’t actually subscribe until I got an offer in my account for a free monthly trial of ChatGPT Business.
+
+00:01:18.605 --> 00:01:26.037
+So I have 5 seats of ChatGPT Business for a month right now (no one in my family accepted my offer to join my team, for some reason).
+
+00:01:27.037 --> 00:01:33.590
+I’ve been testing Codex out, and so far it’s been pretty much as good or better than Claude Code was when I was trying that.
+
+00:01:34.090 --> 00:01:40.963
+I did notice that ChatGPT Codex takes a bit longer to ramp up, but once it does, the output quality is great.
+
+00:01:41.463 --> 00:01:45.298
+I also had it on the “High” setting, which I’ve been keeping it on for the most part.
+
+00:01:46.298 --> 00:01:48.136
+The Anime Nano Test
+
+00:01:49.636 --> 00:01:56.269
+A couple of days ago I got an email from someone about Anime Nano, my anime blog post aggregator.
+
+00:01:56.769 --> 00:02:02.763
+They updated their blog and wanted to log in, but there wasn’t a password recovery feature for them to reset their password.
+
+00:02:03.263 --> 00:02:06.219
+When I saw the message I jumped out of my chair and started getting to work!
+
+00:02:06.719 --> 00:02:13.432
+Mostly because no one has really talked to me about Anime Nano in ages and it was validation that my website was still relevant!
+
+00:02:13.932 --> 00:02:17.048
+And it would be a great test to see how well Codex could work.
+
+00:02:18.048 --> 00:02:23.403
+I went to work, prompting Codex to implement an email based password reset feature.
+
+00:02:23.903 --> 00:02:31.574
+I had already implemented one at some point, probably when Anime Nano was built on Django, so I already had some database fields ready for it.
+
+00:02:32.074 --> 00:02:40.705
+I read a blog post about how Cloudflare Workers supported sending email without creating any accounts with MailChannels, but apparently that feature was deprecated.
+
+00:02:41.205 --> 00:02:44.801
+Codex wrote an implementation and when I tried it, it didn’t work!
+
+00:02:45.301 --> 00:02:53.852
+Once I realized that function had been deprecated, I had Codex rewrite it with Resend, after creating an account and getting all of the API keys and configuration set up.
+
+00:02:54.352 --> 00:02:55.711
+And it worked!
+
+00:02:56.711 --> 00:03:08.139
+When I emailed the user about the password reset, I sadly got a response that the Cloudflare Turnstile widget that I added to reduce the amount of spam and abuse was locking him out of the password reset feature.
+
+00:03:08.639 --> 00:03:16.710
+At that moment I realized that he was a robot and decided to not waste any more time on that clanker, until I was able to reproduce the issue myself.
+
+00:03:17.210 --> 00:03:19.688
+And I’m not a robot (at least I don’t think I am)!
+
+00:03:20.188 --> 00:03:24.023
+The issue boiled down to how the JavaScript was being loaded in an iframe.
+
+00:03:24.523 --> 00:03:27.400
+Or something, I dunno, AI fixed it.
+
+00:03:28.400 --> 00:03:31.117
+MCPs and CLI and Code Review!
+
+00:03:32.617 --> 00:03:42.207
+Codex does just as well or better than Claude Code at using tools like the CLI, and it also works pretty well with this new MCP that I found for controlling Google Chrome.
+
+00:03:42.707 --> 00:03:48.301
+I haven’t played around with this too much yet, but it could be pretty powerful as part of my workflow for updating web apps.
+
+00:03:49.301 --> 00:03:54.495
+Given a good agents.md file, Codex is also super powerful with CLI tools.
+
+00:03:54.995 --> 00:04:01.148
+I’ve been using it with wrangler (since I’ve mostly been developing on Cloudflare’s platform), and it’s a real time saver.
+
+00:04:01.648 --> 00:04:14.675
+Since it has access to my database schema, I can just ask it things about the data on my local or remote database, and it’ll make queries for me. I absolutely hate writing SQL queries so this is a lifesaver.
+
+00:04:15.175 --> 00:04:21.728
+It’s helped me debug things a lot faster than I could myself, since I can essentially generate queries in plain language.
+
+00:04:22.728 --> 00:04:32.318
+I’ve also been having Codex push changes to GitHub and create PRs with the GitHub CLI tool, so that Google Gemini can review the PR and see if it has any issues.
+
+00:04:32.818 --> 00:04:38.572
+Gemini occasionally finds some good issues with the code, which makes me feel better about making PRs.
+
+00:04:39.072 --> 00:04:43.307
+But it’ll also bring up the nittiest of picks if it can’t find anything else to comment on.
+
+00:04:43.807 --> 00:04:45.565
+Just like a real developer!
+
+00:04:46.565 --> 00:05:00.951
+It sometimes feels like I’m roleplaying as a software engineer at a large company, since it’s probably way too much process to create a PR just for me to accept it and merge it to main, when I can just commit directly to main anyway, and it’s not like anyone else is touching my codebase.
+
+00:05:01.951 --> 00:05:05.946
+But it is pretty fun to see Gemini comment on Codex’s code.
+
+00:05:06.446 --> 00:05:10.122
+I’d have Claude review it too except I stopped paying Anthropic.
+
+00:05:11.122 --> 00:05:12.161
+Other stuff
+
+00:05:13.661 --> 00:05:21.013
+Codex has this online feature where you can have it whip up a virtual environment and then make changes to your code without using your own computer.
+
+00:05:21.513 --> 00:05:26.787
+In theory this is kind of cool, but in practice it seemed to be a lot slower and harder to observe.
+
+00:05:27.287 --> 00:05:33.601
+Each time I wanted to add a turn to the conversation, it would have to whip up the virtual machine again, which took forever.
+
+00:05:34.601 --> 00:05:40.994
+One interesting thing about this hosted feature is that you can have it run up to 4x concurrently and then pick the best result.
+
+00:05:41.494 --> 00:05:47.407
+I found that when I tried this, the implementations were all pretty similar, which I guess is a good thing.
+
+00:05:47.907 --> 00:05:54.700
+I’m not sure if it’s worth the effort to try something 4 times just to have to read 4x the code to figure out which one is the best.
+
+00:05:55.200 --> 00:05:58.556
+Maybe you could have AI do that part too, so I don’t have to!
+
+00:05:59.556 --> 00:06:04.431
+I tried testing ChatGPT’s other premium features too, but they didn’t work as well.
+
+00:06:04.931 --> 00:06:09.006
+For some reason, the deep research features of AI always seem to disappoint me.
+
+00:06:09.506 --> 00:06:15.340
+Maybe I’m just really good at researching things, but the AI always seem to give me a suboptimal result.
+
+00:06:15.840 --> 00:06:23.911
+Like if I ask for it to go to a page, and analyze all of the things on that page, it’ll go through maybe 50% and get bored and then finish and tell me it’s done.
+
+00:06:24.411 --> 00:06:30.405
+So I sort of consider AI to be like a lazy intern since you need to keep poking at it until it gives you what you want.
+
+00:06:30.905 --> 00:06:37.937
+The problem is that it takes about as much effort to babysit AI as it is to just do the thing yourself for a lot of tasks.
+
+00:06:38.437 --> 00:06:46.988
+So I guess it’s more about finding the tasks where AI is good (and at this point, re-evaluating that every month or so as AI gets better at things).
+
+00:06:47.988 --> 00:06:49.347
+Conclusion
+
+00:06:50.847 --> 00:06:54.283
+Overall, I like the way that Codex works outside of the box.
+
+00:06:54.783 --> 00:07:01.975
+Maybe it’s because I already had some context files set up (I just made some symlinks from Gemini.md and Claude.md to agents.md).
+
+00:07:02.475 --> 00:07:07.430
+But it feels like Codex is good at finding the right context to add in order to make reasonable changes.
+
+00:07:07.930 --> 00:07:15.362
+The changes I asked for weren’t groundbreaking or anything, but that’s probably like 99% of what needs to be done in code bases anyway.
+
+00:07:16.362 --> 00:07:22.595
+I’ll probably just let this free trial period time out (well, definitely since I added 5 business seats to my account).
+
+00:07:23.095 --> 00:07:33.564
+Then I’ll just have to see if Codex is still the top CLI AI agent at that point, or whether Anthropic recovers public trust, or maybe at that point Gemini 3 will be out and I’ll just play around with that.
+
+00:07:34.064 --> 00:07:35.502
+What a time to be alive!
+
+00:07:36.002 --> 00:07:40.397
+Meanwhile, Anime Nano is racking up features like there’s no tomorrow!
+
+00:07:41.397 --> 00:07:48.430
+P.S. I used Codex to help me add links and images to this blog post, which made it a lot easier and fun to write.
+
+00:07:48.930 --> 00:07:51.167
+I didn’t have it write any of the actual text though.
+
+00:07:51.667 --> 00:07:53.745
+All bad opinions are my own.
