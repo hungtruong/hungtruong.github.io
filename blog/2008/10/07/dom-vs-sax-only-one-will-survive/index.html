@@ -97,7 +97,10 @@
     <p class="meta">October 07, 2008 | <span class="time">0</span> Minute Read</p>
   </header>
 
-  <p>So while working on iPhone stuff, we used a <a href="http://en.wikipedia.org/wiki/Simple_API_for_XML">SAX</a> parser to handle xml. I thought this was a wacky way of parsing stuff, and I prefer <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> since it is much easier to understand as it’s conveniently in tree form.</p>
+  
+
+  <div id="hypertranscript">
+    <p>So while working on iPhone stuff, we used a <a href="http://en.wikipedia.org/wiki/Simple_API_for_XML">SAX</a> parser to handle xml. I thought this was a wacky way of parsing stuff, and I prefer <a href="http://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> since it is much easier to understand as it’s conveniently in tree form.</p>
 
 <p>Today, I tried parsing a 39mb xml file with Python’s minidom. Bad idea. It’s currently making my MacBook choke and it also made my desktop PC cry for memory. Apparently SAX is 1337 when it comes to memory efficiency while DOM is incredibly inefficient. Seriously, Python was taking more than 1gb of memory to parse a 39mb file! Perhaps my actual use of the minidom stuff was incorrect, but either way, I’ll probably try doing stuff in SAX if the file happens to be even remotely big.</p>
 
@@ -105,6 +108,9 @@
 
 <p><strong>Update:</strong> SAX totally pwned those large files. All 8 of them! And in less than a minute!</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   

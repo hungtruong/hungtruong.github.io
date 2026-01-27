@@ -97,7 +97,10 @@
     <p class="meta">May 22, 2014 | <span class="time">6</span> Minute Read</p>
   </header>
 
-  <p><img class="aligncenter size-medium wp-image-2839" src="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600" alt="FL-iPhones" width="434" height="600" srcset="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600 434w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=741%2C1024 741w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?w=1158 1158w" sizes="(max-width: 434px) 100vw, 434px" data-recalc-dims="1" />This past month at <a href="http://www.farmlogs.com/">FarmLogs</a>, we implemented a versioning scheme for our internal API. API versioning is often a difficult transition to make, especially if you’re using a third party API and dealing with deprecations (Facebook, I’m looking at you!). It’s often a chore to figure out exactly what has changed between API versions unless you have very good documentation.</p>
+  
+
+  <div id="hypertranscript">
+    <p><img class="aligncenter size-medium wp-image-2839" src="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600" alt="FL-iPhones" width="434" height="600" srcset="/blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=434%2C600 434w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?resize=741%2C1024 741w, /blog/wp-content/uploads/2014/05/FL-iPhones.png?w=1158 1158w" sizes="(max-width: 434px) 100vw, 434px" data-recalc-dims="1" />This past month at <a href="http://www.farmlogs.com/">FarmLogs</a>, we implemented a versioning scheme for our internal API. API versioning is often a difficult transition to make, especially if you’re using a third party API and dealing with deprecations (Facebook, I’m looking at you!). It’s often a chore to figure out exactly what has changed between API versions unless you have very good documentation.</p>
 
 <p>Coincidentally, Runscope also has a service called <a href="https://www.apichangelog.com/">API Changelog</a> that can send you notifications when a third party API changes. Luckily for me, any changes to our internal API were subject to review by our team of engineers, so if I had any questions or concerns, I could bring them up in person. Even so, when dealing with a changing API, the truth is in the response, not necessarily the documentation (or <a href="https://www.hipchat.com/">Hipchat</a> or <a href="https://hackpad.com">Hackpad</a>). For a while, I was updating the iOS client to the new version by copying and pasting the two responses into a text editor and looking at the differences. About halfway through I remembered that this functionality is built into <a href="http://www.runscope.com/">Runscope</a>, so I started using that. I’ll show you how to compare diffs of two responses so you don’t have to waste half of your time like me!
 <!--more--></p>
@@ -132,6 +135,9 @@
 
 <p>As you can see, Runscope makes it really easy to compare the differences between API versions. Hopefully all of your API version migrations will be smooth and come with months of warning, but in case they don’t, Runscope can be a pretty handy tool to get a handle on what’s changed. If you have any questions or comments on this or other tools to ease the pain of API version migration, please let me know by posting a comment!</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   

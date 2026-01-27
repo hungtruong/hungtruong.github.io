@@ -97,7 +97,10 @@
     <p class="meta">November 20, 2013 | <span class="time">3</span> Minute Read</p>
   </header>
 
-  <p>For the past few weeks, I’ve been learning Android and porting one of my iOS apps to the platform. While there are many differences between the two platforms, it’s also kind of interesting to see common design patterns between them. I figured I should write up the common design patterns that I notice and maybe help out some iOS developers who are also learning Android like me.</p>
+  
+
+  <div id="hypertranscript">
+    <p>For the past few weeks, I’ve been learning Android and porting one of my iOS apps to the platform. While there are many differences between the two platforms, it’s also kind of interesting to see common design patterns between them. I figured I should write up the common design patterns that I notice and maybe help out some iOS developers who are also learning Android like me.</p>
 
 <p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.
 <!--more-->
@@ -162,6 +165,9 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
 <p>That’s all for today. I hope this blog post was useful. I certainly found it useful, since I had to do some research to really understand what the heck I was writing about. I’ll probably write about <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDelegate_Protocol/Reference/Reference.html">UITableViewDelegate</a>/<a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDataSource_Protocol/Reference/Reference.html">Datasource</a> vs. <a href="http://developer.android.com/reference/android/widget/ListAdapter.html">ListAdapter</a> next, unless there’s something else that seems more timely.</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   

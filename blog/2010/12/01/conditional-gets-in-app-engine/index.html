@@ -97,7 +97,10 @@
     <p class="meta">December 01, 2010 | <span class="time">1</span> Minute Read</p>
   </header>
 
-  <p>I’m currently working on an app in <a href="http://appengine.google.com">Google App Engine</a> that polls feeds periodically and then does stuff with them. I suppose I could use that <a href="http://code.google.com/p/pubsubhubbub/">pubsubhubbub</a> thingy but I have a feeling that most feeds aren’t using this yet.</p>
+  
+
+  <div id="hypertranscript">
+    <p>I’m currently working on an app in <a href="http://appengine.google.com">Google App Engine</a> that polls feeds periodically and then does stuff with them. I suppose I could use that <a href="http://code.google.com/p/pubsubhubbub/">pubsubhubbub</a> thingy but I have a feeling that most feeds aren’t using this yet.</p>
 
 <p>Anyway, I did a quick naive implementation of polling about every hour or so. Apparently the feed parser I’m using is pretty inefficient because it’s eating up a lot of resources (relatively speaking) on App Engine. I remembered that the http protocol is pretty smart, and there’s a way to figure out if stuff has changed since the last time you grabbed it.</p>
 
@@ -125,6 +128,9 @@ dostuffwith(content)
 
 <p>This handles my use case, which is doing work if the feed is new, and ignoring it if it hasn’t been modified. I could probably wrap this into a function that returned false if it the file hadn’t changed, and the content if it was new… Probably will do that next.</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   

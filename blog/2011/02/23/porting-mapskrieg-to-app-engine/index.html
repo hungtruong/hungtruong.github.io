@@ -97,7 +97,10 @@
     <p class="meta">February 23, 2011 | <span class="time">2</span> Minute Read</p>
   </header>
 
-  <p><a href="/blog/wp-content/uploads/2011/02/appengine_lowres.gif" rel="lightbox[2380]"><img src="/blog/wp-content/uploads/2011/02/appengine_lowres.gif?resize=142%2C109" alt="" title="appengine_lowres" width="142" height="109" class="aligncenter size-full wp-image-2381" data-recalc-dims="1" /></a></p>
+  
+
+  <div id="hypertranscript">
+    <p><a href="/blog/wp-content/uploads/2011/02/appengine_lowres.gif" rel="lightbox[2380]"><img src="/blog/wp-content/uploads/2011/02/appengine_lowres.gif?resize=142%2C109" alt="" title="appengine_lowres" width="142" height="109" class="aligncenter size-full wp-image-2381" data-recalc-dims="1" /></a></p>
 
 <p>Lately I’ve been playing around a lot with Google App Engine. I think it’s finally at a point where it makes sense to develop for it, and it can be fun and profitable to do so. For example, I wrote Instascriber on App Engine, and so far it has cost me a few pennies in CPU cycles (and like $2 for a domain name or something).</p>
 
@@ -113,6 +116,9 @@
 
 <p>The weird thing is that adding and removing datastore objects costs quite a lot in CPU time. Additional CPU time past 6.5 hours is $.10 an hour. Storage, on the other hand, is .$01 per 2 gigabytes per day. From my usage, I am predicting that the CPU cycles that I would use to trim the datastore listings would actually cost more than just leaving them in the datastore and paying for storage. Is that insane or what? I still have to test some things out, but it kind of surprises me that storage would be that much cheaper than the CPU cycles to remove something.</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   

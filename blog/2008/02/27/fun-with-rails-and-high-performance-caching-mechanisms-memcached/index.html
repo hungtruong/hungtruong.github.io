@@ -97,7 +97,10 @@
     <p class="meta">February 27, 2008 | <span class="time">2</span> Minute Read</p>
   </header>
 
-  <p>Since it’s Spring break for University of Michiganers, I’ve had some free time to mess around with learning stuff I don’t have time for when school is in session. Something I’ve been meaning to try out is memcached, which is an uber-efficient way to cache stuff in memory so you don’t end up hitting the database a lot for redundant queries.</p>
+  
+
+  <div id="hypertranscript">
+    <p>Since it’s Spring break for University of Michiganers, I’ve had some free time to mess around with learning stuff I don’t have time for when school is in session. Something I’ve been meaning to try out is memcached, which is an uber-efficient way to cache stuff in memory so you don’t end up hitting the database a lot for redundant queries.</p>
 
 <p>I installed memcached on my mediatemple machine using some directions I found online specifically for centos. I don’t have yum or rpm or whatever people use for putting new stuff onto their linux boxes. I just wget, untar, and make/make install. I had to make a symbolic link for the libevent thing that I installed as well since the path wasn’t set up correctly. I’m still trying to get memcached to run automatically as a daemon when I boot up. I tried sticking a line in the /etc/init.d/ or something rc.local but it hasn’t really worked. Oh well.</p>
 
@@ -109,6 +112,9 @@
 
 <p>If you have a few spare hours to kill and a rails app that seems to be a little slow, it might be worthwhile to install memcached and see if caching your Active Record objects will speed things up. I’m seeing a speedup of maybe 1/2 (it takes half as long to load a page) vs running without memcached. That’s totally non-empirical observation, though.</p>
 
+  </div>
+
+  
 
   <!-- COMMENTS -->
   
