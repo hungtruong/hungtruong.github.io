@@ -5,9 +5,122 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Jan 2026 21:46:38 +0000</pubDate>
-    <lastBuildDate>Tue, 27 Jan 2026 21:46:38 +0000</lastBuildDate>
+    <pubDate>Tue, 27 Jan 2026 21:49:13 +0000</pubDate>
+    <lastBuildDate>Tue, 27 Jan 2026 21:49:13 +0000</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
+    
+      
+      <item>
+        <title>Adding Audio to My Blog With Qwen3-TTS Voice Cloning</title>
+        <description>&lt;figure&gt;
+  &lt;img src=&quot;/blog/wp-content/uploads/2026/qwen3-tts-logo.webp&quot; alt=&quot;Qwen3-TTS Logo&quot; /&gt;
+  &lt;figcaption&gt;Qwen3-TTS, the best TTS model I&apos;ve used so far!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I saw a note in my daily AI newsletter about a new TTS model that was out. I spent a better part of the day testing out its capabilities and attempting to do some fine tuning on it.&lt;/p&gt;
+
+&lt;p&gt;I’ve had a goal for a pretty long time to add audio versions that people can use to listen to each of my blog posts. But rather than narrate them myself, I wanted the audio to be computer generated. Not only that, but I wanted it to sound like I was actually doing the narrating. So far, any of the models that I’ve tried to accomplish this haven’t lived up to the high standards of quality that you’re used to seeing on my blog. So did Qwen3-TTS finally make the grade?&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;When I looked at the &lt;a href=&quot;https://github.com/QwenLM/Qwen3-TTS&quot;&gt;Qwen3-TTS GitHub&lt;/a&gt;, I noticed that it had a few ways to generate audio from text. You could just use a pre-configured voice, and even give it instructions on how to speak. You could also design a voice, clone a voice from a reference audio, or even do fine tuning on the model and then generate from that.&lt;/p&gt;
+
+&lt;p&gt;I initially set up a Kaggle notebook to test out the audio generation capabilities. I had an old dataset from a previous experiment of me reading the beginning of one of my blog posts. The audio quality was pretty bad, but I didn’t want to record any new stuff just yet. The voice cloning seemed to work pretty well! I decided to see if I could actually fine tune a model since that should get me even better results!&lt;/p&gt;
+
+&lt;h2 id=&quot;when-fine-tuning-goes-wrong&quot;&gt;When Fine Tuning Goes Wrong&lt;/h2&gt;
+
+&lt;p&gt;I ended up using a better mic that I bought for making YouTube videos (which I only used once so far) and recorded some more samples of myself reading from some of my blog posts. This time I used Logic Pro and messed with some plugins to make sure the audio sounded somewhat decent. I ended up recording about 30 files and decided that was probably enough for fine tuning.&lt;/p&gt;
+
+&lt;p&gt;I used Google Antigravity to make another Kaggle notebook for me and iterated on the code until it actually worked. I ran into out of memory issues (the Kaggle GPUs max out at 16GB) and had to use the smaller model. I think somewhere in all of the hacks that Gemini used to get the training to complete, something got messed up because I could only manage to infer gibberish from the trained model.&lt;/p&gt;
+
+&lt;figure style=&quot;width: 50%; margin: 0 auto;&quot;&gt;
+  &lt;audio controls=&quot;&quot; style=&quot;width: 100%;&quot;&gt;
+    &lt;source src=&quot;/blog/wp-content/uploads/2026/finetune_gibberish.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+  &lt;/audio&gt;
+  &lt;figcaption&gt;This is My Voice on Fine-Tuning. Any Questions?&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;I might need to actually train for longer, or use more voice samples, or maybe both. I just happen to be too lazy to do it right now since I already wasted like 4 hours on it. I also read some &lt;a href=&quot;https://github.com/QwenLM/Qwen3-TTS/issues/72&quot;&gt;comments on GitHub&lt;/a&gt; that the fine-tuned model doesn’t work that well so I decided to just give up for now.&lt;/p&gt;
+
+&lt;h2 id=&quot;voice-cloning-instead&quot;&gt;Voice Cloning Instead&lt;/h2&gt;
+
+&lt;p&gt;Since I had found some early success in voice cloning, I decided to see how far I could get with that. I used a longer section of recording for my “reference audio” which is about 30 seconds long. After that I tried a 1.5 minute clip, which had some more variety to it. Now I’m wondering if I could throw a 30 minute clip at it just to get all of my nuances in there but something tells me that at a certain point, you get diminishing returns (and blow up the GPU RAM).&lt;/p&gt;
+
+&lt;figure style=&quot;width: 50%; margin: 0 auto;&quot;&gt;
+  &lt;audio controls=&quot;&quot; style=&quot;width: 100%;&quot;&gt;
+    &lt;source src=&quot;/blog/wp-content/uploads/2026/bookmarks_real.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+  &lt;/audio&gt;
+  &lt;figcaption&gt;Ground Truth Audio&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;figure style=&quot;width: 50%; margin: 0 auto;&quot;&gt;
+  &lt;audio controls=&quot;&quot; style=&quot;width: 100%;&quot;&gt;
+    &lt;source src=&quot;/blog/wp-content/uploads/2026/bookmarks_generated.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+  &lt;/audio&gt;
+  &lt;figcaption&gt;Generated Audio&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;I set up a new Kaggle notebook that would scrape the text from my blog, then break it up into sentences and generate a TTS voice clone of myself speaking each sentence. Then it would stitch all of the audio files together into a giant spoken article podcast thing! I used a similar method when I wrote that &lt;a href=&quot;https://www.macrumors.com/how-to/get-siri-to-read-web-articles-to-you/&quot;&gt;Siri feature that reads articles to you&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The results ended up sounding really good! In the past, I’ve tried this same technique and got a voice that somewhat resembled mine, but it would talk in an almost southern drawl. It was super hilarious, but also not accurate. The Qwen3-TTS model gets the cadence and prosody of my speech down pretty well, all with a one-shot example! Sure, the TTS doesn’t get everything perfectly the way I would read things, but it’s good enough for me!&lt;/p&gt;
+
+&lt;figure style=&quot;width: 50%; margin: 0 auto;&quot;&gt;
+  &lt;audio controls=&quot;&quot; style=&quot;width: 100%;&quot;&gt;
+    &lt;source src=&quot;/blog/wp-content/uploads/2026/whole_foods_southern.mp3&quot; type=&quot;audio/mpeg&quot; /&gt;
+  &lt;/audio&gt;
+  &lt;figcaption&gt;My Previous Attempt Where I Sounded Texan&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;adding-a-podcast-to-my-blog&quot;&gt;Adding a Podcast To My Blog&lt;/h2&gt;
+
+&lt;p&gt;I started looking for projects that I could use to incorporate the audio article into my actual blog. Sort of like the transcript feature in YouTube where you can skip to sections by clicking on text. I found this project called &lt;a href=&quot;https://github.com/hyperaudio/hyperaudio-lite&quot;&gt;Hyperaudio&lt;/a&gt; that fit the bill. Since the audio is generated from text that was lifted directly from my blog anyway, I could just generate a subtitle file while generating the blog post audio. That way I wouldn’t have to mess with something like &lt;a href=&quot;https://openai.com/index/whisper/&quot;&gt;Whisper&lt;/a&gt; or another ASR system which would probably be really inaccurate.&lt;/p&gt;
+
+&lt;p&gt;Since I generate my blog with Jekyll, it was pretty simple to add another value to my frontmatter, and then conditionally add a script that would add the tags for Hyperaudio to hook into. Plus it was super simple because I just had AI do it for me! I think it’s a fun feature that makes my blog more accessible, and I’d much rather have someone listen to my blog in my own voice, or at least a pretty good approximation to it.&lt;/p&gt;
+
+&lt;p&gt;So now you can listen to me read my blog to you, skip to sections by clicking on the text in the blog, and see the current sentence being highlighted.&lt;/p&gt;
+
+&lt;h2 id=&quot;future-improvements&quot;&gt;Future Improvements&lt;/h2&gt;
+
+&lt;p&gt;I’m pretty happy so far with how this feature works. One thing that’s annoying, though, is that it requires the blog post to already exist before I can generate audio for it. That’s kind of a chicken and egg problem, and hard to solve. I don’t want to generate an audio file for a blog post and then immediately have to make a new one because I changed a word somewhere. But it would be nice to publish the audio and the blog post at the same time.&lt;/p&gt;
+
+&lt;p&gt;I already set up a GitHub action to run from the Kaggle notebook after it uploads the files to Cloudflare storage. It picks up the new files, adds the frontmatter to the blog post, and then redeploys my blog. Sometimes I just love being a software nerd.&lt;/p&gt;
+
+&lt;p&gt;I’m currently filling out the backlog of my posts with audio, so you may or may not see audio on them until I get to it.&lt;/p&gt;
+
+&lt;p&gt;I guess at some point, if a better voice cloning TTS model comes out, I could update the files again, but for now they should do the job nicely!&lt;/p&gt;
+</description>
+        
+          <description>&lt;figure&gt;
+  &lt;img src=&quot;/blog/wp-content/uploads/2026/qwen3-tts-logo.webp&quot; alt=&quot;Qwen3-TTS Logo&quot; /&gt;
+  &lt;figcaption&gt;Qwen3-TTS, the best TTS model I&apos;ve used so far!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I saw a note in my daily AI newsletter about a new TTS model that was out. I spent a better part of the day testing out its capabilities and attempting to do some fine tuning on it.&lt;/p&gt;
+
+&lt;p&gt;I’ve had a goal for a pretty long time to add audio versions that people can use to listen to each of my blog posts. But rather than narrate them myself, I wanted the audio to be computer generated. Not only that, but I wanted it to sound like I was actually doing the narrating. So far, any of the models that I’ve tried to accomplish this haven’t lived up to the high standards of quality that you’re used to seeing on my blog. So did Qwen3-TTS finally make the grade?&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
+        <link>https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/</link>
+        <guid isPermaLink="true">https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/</guid>
+        
+        
+        <category>Tech</category>
+        
+        <category>AI</category>
+        
+        <category>Coding</category>
+        
+        <category>Blogging</category>
+        
+      </item>
+      
     
       
       <item>
@@ -1060,114 +1173,6 @@
         <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
         <link>https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</guid>
-        
-        
-        <category>Tech</category>
-        
-        <category>Blogging</category>
-        
-      </item>
-      
-    
-      
-      <item>
-        <title>Extremely Online: a Book Review and a Retrospective on My Blog!</title>
-        <description>&lt;figure&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2023/extremely-online-9781982146863_xlg.jpg&quot; width=&quot;350&quot; /&gt;
-	&lt;figcaption&gt;Was this book written for me?&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I recently found out about a book called: “&lt;a href=&quot;https://amzn.to/48zepKo&quot;&gt;Extremely Online: The Untold Story of Fame, Influence, and Power on the Internet&lt;/a&gt;” by Taylor Lorenz. As someone who self identifies as extemely online, I needed to see what this book was about. It ended up catapulting me on a journey through my own blog and online history.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h3 id=&quot;it-all-began-with-the-blog&quot;&gt;It All Began With The “Blog”&lt;/h3&gt;
-
-&lt;p&gt;As someone who grew up with technology, I feel like an expert, but also an old man. I started blogging in &lt;a href=&quot;/blog/2002/08/10/hello-world-whats-the-buzz/&quot;&gt;2002&lt;/a&gt;, which is basically internet pre-history. As an elder Millenial I don’t really “get” TikTok, but I do pretend to know the latest slang, no cap.&lt;/p&gt;
-
-&lt;p&gt;The book starts with the blogging revolution as the first major technology that put power into users’ hands and away from traditional media.&lt;/p&gt;
-
-&lt;p&gt;As an aside, I had a webpage as early as 1994 or 1995, when Geocities came out. I somehow remember that my url was “/Hollywood/Hills/7923” (this was literally 30 years ago) and as it turns out, &lt;a href=&quot;https://web.archive.org/web/19990202171646/http://www.geocities.com/Hollywood/Hills/7923/&quot;&gt;it was archived by archive.org!&lt;/a&gt;! (I actually have a backup on my computer so I wouldn’t have lost it either way)&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2023/webspin.gif&quot; /&gt;
-	&lt;figcaption&gt;You can follow the link to my old website if you want but this is the best part.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I’d argue that Geocities really started this trend, while blogging software made it even more accessible to the average person. Because if I as a 6th grader could do it, I’m pretty sure anyone else could have.&lt;/p&gt;
-
-&lt;p&gt;Lorenz goes quickly through the rise of blogging, pointing out that blogs were beating newspapers in the speed and depth of their reporting. Who wanted to wait for the paper to be delivered (!) to their doorstep to know what happened the previous day? As blogs showed their superiority to traditional media, people started latching onto it. And as bloggers gained more and more credibility, their potential to earn a living became greater, through display ads, affiliate marketing, and influencer marketing.&lt;/p&gt;
-
-&lt;p&gt;The first section of the book was particularly nostalgic for me, as I remember the hype for blogs reaching a high point, and their subsequent fall from relevance. At the height of blog-mania, &lt;a href=&quot;/blog/2008/04/06/blogging-considered-dangerous/&quot;&gt;there were even news stories about how dangerous blogging had become&lt;/a&gt;. I recall that around 2006, I dreamed of creating a blog empire and getting rich from the traffic. That obviously didn’t happen, but I didn’t do too badly either.&lt;/p&gt;
-
-&lt;h3 id=&quot;then-social-media-came&quot;&gt;Then Social Media Came&lt;/h3&gt;
-
-&lt;p&gt;Of course, practically no one actually blogs anymore. I’m pretty sure you get a free blog when you sign up for &lt;a href=&quot;https://www.aarp.org/&quot;&gt;AARP&lt;/a&gt; membership. Social media came and created stronger links between individuals than a &lt;a href=&quot;https://www.dictionary.com/browse/blogroll&quot;&gt;blogroll&lt;/a&gt; ever could.&lt;/p&gt;
-
-&lt;p&gt;It was through social media that a random kid in suburban Florida could become a tastemaker. While I only ever wanted to use Facebook for keeping in touch with my friends, I do remember using my Twitter account to expand my reach among the technorati. Or at least trying. The closest I got was &lt;a href=&quot;/blog/2010/03/17/sxsw-2010-official-celebrity-sighting-namedropping-post/&quot;&gt;hobnobbing with celebs at SXSW&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here, Lorenz describes the proto-celebrities who were famous for being famous. People like Tila Tequila and Julia Allison (who I honestly never followed at the time) fit this bill long before Kim Kardashian did.&lt;/p&gt;
-
-&lt;p&gt;One of the most interesting things to me about the book was the recurring theme of a new technology slowly gaining mainstream acceptance, and with it, the ability to monetize. At first, bloggers merely got free stuff for making posts (which is as far as I ever got, though &lt;a href=&quot;https://www.basugasubakuhatsu.com/blog/2007/12/28/itsudatte-my-santa-anime-dvd-review/&quot;&gt;I did get a LOT of anime&lt;/a&gt;). Next, they would demand payment for promoting a particular product. After that, they might get a cut of sale through an affiliate link. None of these strategies were planned by the platforms that enabled them, but hey, people like making money.&lt;/p&gt;
-
-&lt;p&gt;This played out again and again, through platforms like Instagram, which was absolutely opposed to advertising for a very long time, to YouTube, to Tumblr, to TikTok and Snapchat.&lt;/p&gt;
-
-&lt;p&gt;On a personal note, I really enjoyed reading these stories as someone who has tried to make money online in a bunch of different ways. For example, I made my dog into an influencer and had quite a few sponsorship deals. See this ad for &lt;a href=&quot;https://www.instagram.com/p/B9mT89Uhwma/&quot;&gt;Keystone Light&lt;/a&gt;, or this one for some &lt;a href=&quot;https://www.instagram.com/p/B01DlJbBBo1/&quot;&gt;dog toy&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I was also thrust into the YouTube Partner Program after finding some viral success with my video about &lt;a href=&quot;https://youtu.be/lUXrkq2e1zk&quot;&gt;Trombone Champ&lt;/a&gt;. When I say I’m &lt;strong&gt;Extremely Online&lt;/strong&gt;, I mean it!&lt;/p&gt;
-
-&lt;h3 id=&quot;but-not-for-me&quot;&gt;But Not For Me&lt;/h3&gt;
-
-&lt;p&gt;While the first half or so of the book really resonated with me, the back half was not as engaging. It documented a bunch of more recent “celebrities” who, as an oldie, I am just not familiar with. I have no interest in “internet tea” between one dumbass prank Youtuber and another, or a TikToker famous for inventing a dance.&lt;/p&gt;
-
-&lt;p&gt;I did, however, find it interesting that people started pushing back against the highly produced perfect Instagram content for highly produced (to look less produced) relatable Instagram content.&lt;/p&gt;
-
-&lt;p&gt;Also, I am fucking scared to death of going on TikTok. This might just be my oldness talking, but I suspect that in 5 years or so, we’re going to look back at all of the TikTok challenges and memes with the same kind of cringe that we do for “&lt;a href=&quot;https://www.vox.com/the-highlight/23466389/millennials-cringe-epic-bacon&quot;&gt;AWESOMESAUCE BBQ! EPIC FAIL&lt;/a&gt;!” language. Because cringe is timeless, and one day cringe will come for us all, even Gen Z.&lt;/p&gt;
-
-&lt;p&gt;As Grandpa Simpson famously put it:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;I used to be with ‘it’, but then they changed what ‘it’ was. Now what I’m with isn’t ‘it’ anymore and what’s ‘it’ seems weird and scary. It’ll happen to you!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Crap, I just realized that I seem even older now that I’m quoting a show that’s been on the air for… 34 YEARS!?&lt;/p&gt;
-
-&lt;h3 id=&quot;back-to-my-blog&quot;&gt;Back To My Blog&lt;/h3&gt;
-
-&lt;p&gt;I will say, however, that this book really brought back my interest in the earlier days of the internet, and my blog. There was even a section where the author described an event where the minor internet celebrity, “Grumpy Cat,” made an appearance at SXSW. THE VERY SAME EVENT WHERE THIS PICTURE WAS TAKEN:&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2023/grumpy_cat.jpeg&quot; width=&quot;700&quot; /&gt;
-	&lt;figcaption&gt;R.I.P. Grumpy Cat, a.k.a. Tardar Sauce!&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;After reading about the timelines that I personally participated in, I had to take a stroll down memory lane though my blog. Yes, the very same one you’re reading.&lt;/p&gt;
-
-&lt;p&gt;After &lt;a href=&quot;/blog/2018/04/07/updating-my-blog-and-killing-wordpress/&quot;&gt;moving it for the Nth time&lt;/a&gt;, I didn’t really check the older posts for broken images or links. Since it’s a holiday break, and I don’t have anything better to do, I went through every single post, from 2002 to today, and fixed up all of the issues that I could.&lt;/p&gt;
-
-&lt;p&gt;I fixed formatting, weird image sizing and alignment issues, and went through every link to see if it had died. I replaced all of the dead links with archive.org links, if they were available. And I made sure that the archive.org link was timestamped to the closest date to the actual blog post, so you could get the best context possible for what I was thinking at the time.&lt;/p&gt;
-
-&lt;p&gt;As a side note, archive.org is amazing, and I’m definitely going to donate some money to it so it can keep doing its thing.&lt;/p&gt;
-
-&lt;p&gt;As I read my old blog posts, I couldn’t help but feel nostalgic for the person I used to be. I started out super naive, and gradually became more and more mature. By which I mean my fart apps have been getting more and more complex.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I might expand on this in a future post, as this one is getting long and I’m quickly getting away from the scope of this book review. This book has definitely reignited my interest in blogging, and generally sharing more of my experiences in writing. Now that Twitter (I mean X) is a true cesspool, I might retreat back to my true roots.&lt;/p&gt;
-
-&lt;p&gt;Overall, I liked this book. The beginning was great, but the second half didn’t really hold my interest. Even so, I’d recommend giving it a read if, like me, you are &lt;strong&gt;EXTREMELY ONLINE&lt;/strong&gt;!&lt;/p&gt;
-
-</description>
-        
-          <description>&lt;figure&gt;
-&lt;img src=&quot;/blog/wp-content/uploads/2023/extremely-online-9781982146863_xlg.jpg&quot; width=&quot;350&quot; /&gt;
-	&lt;figcaption&gt;Was this book written for me?&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;I recently found out about a book called: “&lt;a href=&quot;https://amzn.to/48zepKo&quot;&gt;Extremely Online: The Untold Story of Fame, Influence, and Power on the Internet&lt;/a&gt;” by Taylor Lorenz. As someone who self identifies as extemely online, I needed to see what this book was about. It ended up catapulting me on a journey through my own blog and online history.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Wed, 27 Dec 2023 00:00:00 +0000</pubDate>
-        <link>https://www.hung-truong.com/blog/2023/12/27/extremely-online-a-book-review-and-a-retrospective-on-my-blog</link>
-        <guid isPermaLink="true">https://www.hung-truong.com/blog/2023/12/27/extremely-online-a-book-review-and-a-retrospective-on-my-blog</guid>
         
         
         <category>Tech</category>

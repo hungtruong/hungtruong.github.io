@@ -91,6 +91,37 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">February 01, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/02/01/installing-the-rmagick-rubygem-on-media-temples-dv/">Installing The RMagick Rubygem On Media Temple&#8217;s DV</a></h3>
+        <p><p style="text-align: center">
+  <img src="/blog/wp-content/uploads/2007/02/framed_clown.jpg?w=604" alt="framed_clown.jpg" data-recalc-dims="1" /><br /> <em>Damn you, RMagick Clown! You haunt my nightmares!!!</em>
+</p>
+
+<p>Oh boy, so once I got rails actually running on my dv, I figured out that my applications needed the RMagick ruby gem. RMagick does graphics stuff, like resizing and creating captcha images and whatnot, so I really need it. I ran into a few gotchas while trying to install RMagic (well, installing ImageMagick) so here’s what I did:</p>
+
+<p>First, you must install ImageMagick. This involves installing a bunch of dependencies first. I did all of the ones listed on the <a href="http://rmagick.rubyforge.org/install-linux.html">Rmagick ImageMagick installation guide</a>, but the ./configure command still wouldn’t see the jpeg delegate library.</p>
+
+<p>The error message I got when trying to install RMagick was like this: “No decode delegate for this image format.” I found out from <a href="http://www.imagefolio.com/users/docs/pro31/imagemagick.shtml">this page</a> that I needed to run: “./configure –enable-shared” for it to register properly. When I tried running make and make install, I got some error like this:</p>
+
+<blockquote>
+  <p>Magick::ImageMagickError: unable to read font `…/ghostscript/fonts/n019003l.pfbâ€™</p>
+</blockquote>
+
+<p>It turns out the font directory set up for ImageMagick didn’t have any fonts… So I downloaded the GhostScript fonts (I had already installed GhostScript) into that directory. And it worked. The end.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">January 31, 2007</span>
         <h3><a class="post-link" href="/blog/2007/01/31/panflute-flowchart-t-shirt-ordered/">Panflute Flowchart T-Shirt: Ordered!</a></h3>
         <p><p><a href="http://www.toothpastefordinner.com/gallery-panflute.php"><img src="/blog/wp-content/uploads/2007/01/gallery-panflute-500.gif?w=604" alt="gallery-panflute-500.gif" data-recalc-dims="1" /></a></p>
@@ -213,45 +244,6 @@
 
             
               <a href="/blog/2007/01/26/hung-truong-is-the-sexiest-man-alive-the-song/">More &hellip;</a>
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">January 22, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/01/22/i-finally-got-a-nintendo-wii-wii-first-impressions/">I Finally Got A Nintendo Wii! Wii First Impressions.</a></h3>
-        <p><center>
-  <a href="http://www.amazon.com/gp/product/B0009VXBAQ?ie=UTF8&#038;tag=b00003ph0-20&#038;linkCode=as2&#038;camp=1789&#038;creative=9325&#038;creativeASIN=B0009VXBAQ"><img id="image448" src="/blog/wp-content/uploads/2007/01/Wii%20Box.jpg?w=604" alt="Wii Box.jpg" data-recalc-dims="1" /></a>
-</center>
-
-<p>That’s right! Two months after the <a href="http://www.amazon.com/gp/product/B0009VXBAQ?ie=UTF8&amp;tag=b00003ph0-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B0009VXBAQ">Wii</a> was released in America, I finally got it! Yesterday was some kind of national Wii holiday. Apparently 1/21/06 was the day for all retailers to hold the Wii. This is probably why I couldn’t find one in stock for the past two weeks since my last attempt.</p>
-
-<p>I decided to head over to Circuit City around 9am. That’s an hour before they open. I was surprised to see two guys standing there. They told me that the Circuit City guys only had 2 Wiis to sell to the general public, and that the others would go to their pre-order customers. False Advertsising!!! I’m probably going to file a compaint.</p>
-
-<p>Next I got to Best Buy around 9:30. I was under the impression that the store would open at 11am, since that’s what the online store checker thing said. The opening time was actually 10am. So I got there only 30 minutes early. I saw a pretty long line and counted around 38 people in front of me. Still, I figured they might have a ton; they’re Best Buy.</p>
-
-<p>So once 10am rolls along, they start herding us in there like cattle. One person remarked that it was a good sign that they didn’t hand out tickets. There must be enough for everyone in line. We snaked around the store until we got to the video game section. There we waited for each person to pick up a Wii and move along. It was kind of like the Soup Nazi thing from Seinfeld. When I finally get to the Wiis, there are about 3 left after mine. My linemates and I all share some high tens.</p>
-
-<p>In my daze of my accomplishment, I decided to also pick up <a href="http://www.amazon.com/gp/product/B000FQBPCQ?ie=UTF8&amp;tag=b00003ph0-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000FQBPCQ">Legend of Zelda: Twighlight Princess</a> at full price. This is even though I know I can get it cheaper. I’m a tool like that. I didn’t even use a gamer’s gift card…</p>
-
-<p>As far as the Wii goes, it’s pretty darn cool. The remote control is neat because it can give you some vibration feedback when you’re going over buttons. The IR sensor is still kind of inaccurate, but maybe I need to do some more calibration.</p>
-
-<p>Wii Sports is insanely fun. I could probably play the bowling game for hours at a time. That is, if my arm wasn’t so sore right now. My mom even played it, and did really well in bowling. My dad couldn’t quite get the hang of releasing the button before throwing the ball.</p>
-
-<p>Zelda is pretty cool, but the graphics seem kind of lacking. I’m gonna go get a component cable and see if that doesn’t help things. I think the Wii graphics are only slightly better than the Gamecube, which was actually the strongest console of the last generation…</p>
-
-<p>Another cool thing is that the Wii has full backwards compatibility for the Gamecube. You just flip open the top and find some memory card slots and controller ports. I really wish there was an option to save to internal memory, though. It kind of blows that I need to keep using the very small Gamecube memory card.</p>
-
-<p>All in all, I think the Wii is very cool. Hopefully the good games will keep rolling in. I might have to pick up <a href="http://www.amazon.com/gp/product/B000GPW2QO?ie=UTF8&amp;tag=b00003ph0-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000GPW2QO">Trauma Center</a> or <a href="http://www.amazon.com/gp/product/B000FQ9YB0?ie=UTF8&amp;tag=b00003ph0-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000FQ9YB0">Wario Ware</a>. <a href="http://www.amazon.com/gp/product/B000KRXAGE?ie=UTF8&amp;tag=b00003ph0-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000KRXAGE">Wii Play</a> is coming out soon, too.</p>
-
-
-          
-            
-            
-            
-
             
           
           

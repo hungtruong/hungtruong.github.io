@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<title>Adding Audio to My Blog With Qwen3-TTS Voice Cloning</title>
+
+	<!-- Open Graph Meta -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Adding Audio to My Blog With Qwen3-TTS Voice Cloning" property="og:title" /><meta content="article" property="og:type" /><meta content="Exploring the capabilities of Qwen3-TTS for voice cloning to add audio narrations to my blog posts." property="og:description" /><meta content="https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/" property="og:url" /><meta
+		content="2026-01-27T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2026/qwen3-tts-logo.webp" property="og:image" /><!-- Twitter Cards -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@hungtruong" />
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Adding Audio to My Blog With Qwen3-TTS Voice Cloning" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/" /><meta name="twitter:description" content="Exploring the capabilities of Qwen3-TTS for voice cloning to add audio narrations to my blog posts." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2026/qwen3-tts-logo.webp" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href=""/>
+
+	<!-- Come and get me RSS readers -->
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
+	href="https://www.hung-truong.com/blog/feed.xml" />
+
+	<!-- Stylesheet -->
+	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
+	<script>document.documentElement.className = (document.documentElement.className + ' js').trim();</script>
+
+	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
+	<style>
+	  /* Mobile/default */
+	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
+	  .nav-collapse ul li { display:block; width:100%; }
+	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+
+	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+	  @media only screen and (min-width: 800px) {
+	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
+	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
+	    .nav-toggle { display:none; }
+	  }
+	</style>
+	<link rel="stylesheet" href="/blog/assets/css/style.css" />
+
+	<!-- Canonical URL -->
+	<link
+		rel="canonical"
+		href="https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/"
+	/><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-248124-2');
+</script>
+</head>
+
+
+<body>
+
+   <div class="header ">
+     <div class="container">
+         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+         <nav class="nav-collapse">
+             <ul class="noList"><li class="elementfirst">
+                     <a href="/blog/index.html">Home</a>
+                 </li><li class="element">
+                     <a href="/blog/archives">Archives</a>
+                 </li><li class="element">
+                     <a href="/blog/about">About</a>
+                 </li><li class="element">
+                     <a href="/blog/contact">Contact</a>
+                 </li><li class="elementlast">
+                     <a href="/blog/speaking">Speaking</a>
+                 </li></ul>
+         </nav>
+     </div>
+ </div><!-- end .header -->
+
+   <div class="content">
+      <div class="container">
+         <article class="post">
+  <header>
+    <h1 class="postTitle">Adding Audio to My Blog With Qwen3-TTS Voice Cloning</h1>
+    <p class="meta">January 27, 2026 | <span class="time">6</span> Minute Read</p>
+  </header>
+
+  
+
+  <div id="hypertranscript">
+    <figure>
+  <img src="/blog/wp-content/uploads/2026/qwen3-tts-logo.webp" alt="Qwen3-TTS Logo" />
+  <figcaption>Qwen3-TTS, the best TTS model I've used so far!</figcaption>
+</figure>
+
+<p>I saw a note in my daily AI newsletter about a new TTS model that was out. I spent a better part of the day testing out its capabilities and attempting to do some fine tuning on it.</p>
+
+<p>I’ve had a goal for a pretty long time to add audio versions that people can use to listen to each of my blog posts. But rather than narrate them myself, I wanted the audio to be computer generated. Not only that, but I wanted it to sound like I was actually doing the narrating. So far, any of the models that I’ve tried to accomplish this haven’t lived up to the high standards of quality that you’re used to seeing on my blog. So did Qwen3-TTS finally make the grade?</p>
+
+<!--more-->
+
+<p>When I looked at the <a href="https://github.com/QwenLM/Qwen3-TTS">Qwen3-TTS GitHub</a>, I noticed that it had a few ways to generate audio from text. You could just use a pre-configured voice, and even give it instructions on how to speak. You could also design a voice, clone a voice from a reference audio, or even do fine tuning on the model and then generate from that.</p>
+
+<p>I initially set up a Kaggle notebook to test out the audio generation capabilities. I had an old dataset from a previous experiment of me reading the beginning of one of my blog posts. The audio quality was pretty bad, but I didn’t want to record any new stuff just yet. The voice cloning seemed to work pretty well! I decided to see if I could actually fine tune a model since that should get me even better results!</p>
+
+<h2 id="when-fine-tuning-goes-wrong">When Fine Tuning Goes Wrong</h2>
+
+<p>I ended up using a better mic that I bought for making YouTube videos (which I only used once so far) and recorded some more samples of myself reading from some of my blog posts. This time I used Logic Pro and messed with some plugins to make sure the audio sounded somewhat decent. I ended up recording about 30 files and decided that was probably enough for fine tuning.</p>
+
+<p>I used Google Antigravity to make another Kaggle notebook for me and iterated on the code until it actually worked. I ran into out of memory issues (the Kaggle GPUs max out at 16GB) and had to use the smaller model. I think somewhere in all of the hacks that Gemini used to get the training to complete, something got messed up because I could only manage to infer gibberish from the trained model.</p>
+
+<figure style="width: 50%; margin: 0 auto;">
+  <audio controls="" style="width: 100%;">
+    <source src="/blog/wp-content/uploads/2026/finetune_gibberish.mp3" type="audio/mpeg" />
+  </audio>
+  <figcaption>This is My Voice on Fine-Tuning. Any Questions?</figcaption>
+</figure>
+<p><br /></p>
+
+<p>I might need to actually train for longer, or use more voice samples, or maybe both. I just happen to be too lazy to do it right now since I already wasted like 4 hours on it. I also read some <a href="https://github.com/QwenLM/Qwen3-TTS/issues/72">comments on GitHub</a> that the fine-tuned model doesn’t work that well so I decided to just give up for now.</p>
+
+<h2 id="voice-cloning-instead">Voice Cloning Instead</h2>
+
+<p>Since I had found some early success in voice cloning, I decided to see how far I could get with that. I used a longer section of recording for my “reference audio” which is about 30 seconds long. After that I tried a 1.5 minute clip, which had some more variety to it. Now I’m wondering if I could throw a 30 minute clip at it just to get all of my nuances in there but something tells me that at a certain point, you get diminishing returns (and blow up the GPU RAM).</p>
+
+<figure style="width: 50%; margin: 0 auto;">
+  <audio controls="" style="width: 100%;">
+    <source src="/blog/wp-content/uploads/2026/bookmarks_real.mp3" type="audio/mpeg" />
+  </audio>
+  <figcaption>Ground Truth Audio</figcaption>
+</figure>
+
+<p><br /></p>
+
+<figure style="width: 50%; margin: 0 auto;">
+  <audio controls="" style="width: 100%;">
+    <source src="/blog/wp-content/uploads/2026/bookmarks_generated.mp3" type="audio/mpeg" />
+  </audio>
+  <figcaption>Generated Audio</figcaption>
+</figure>
+
+<p><br /></p>
+
+<p>I set up a new Kaggle notebook that would scrape the text from my blog, then break it up into sentences and generate a TTS voice clone of myself speaking each sentence. Then it would stitch all of the audio files together into a giant spoken article podcast thing! I used a similar method when I wrote that <a href="https://www.macrumors.com/how-to/get-siri-to-read-web-articles-to-you/">Siri feature that reads articles to you</a>.</p>
+
+<p>The results ended up sounding really good! In the past, I’ve tried this same technique and got a voice that somewhat resembled mine, but it would talk in an almost southern drawl. It was super hilarious, but also not accurate. The Qwen3-TTS model gets the cadence and prosody of my speech down pretty well, all with a one-shot example! Sure, the TTS doesn’t get everything perfectly the way I would read things, but it’s good enough for me!</p>
+
+<figure style="width: 50%; margin: 0 auto;">
+  <audio controls="" style="width: 100%;">
+    <source src="/blog/wp-content/uploads/2026/whole_foods_southern.mp3" type="audio/mpeg" />
+  </audio>
+  <figcaption>My Previous Attempt Where I Sounded Texan</figcaption>
+</figure>
+
+<h2 id="adding-a-podcast-to-my-blog">Adding a Podcast To My Blog</h2>
+
+<p>I started looking for projects that I could use to incorporate the audio article into my actual blog. Sort of like the transcript feature in YouTube where you can skip to sections by clicking on text. I found this project called <a href="https://github.com/hyperaudio/hyperaudio-lite">Hyperaudio</a> that fit the bill. Since the audio is generated from text that was lifted directly from my blog anyway, I could just generate a subtitle file while generating the blog post audio. That way I wouldn’t have to mess with something like <a href="https://openai.com/index/whisper/">Whisper</a> or another ASR system which would probably be really inaccurate.</p>
+
+<p>Since I generate my blog with Jekyll, it was pretty simple to add another value to my frontmatter, and then conditionally add a script that would add the tags for Hyperaudio to hook into. Plus it was super simple because I just had AI do it for me! I think it’s a fun feature that makes my blog more accessible, and I’d much rather have someone listen to my blog in my own voice, or at least a pretty good approximation to it.</p>
+
+<p>So now you can listen to me read my blog to you, skip to sections by clicking on the text in the blog, and see the current sentence being highlighted.</p>
+
+<h2 id="future-improvements">Future Improvements</h2>
+
+<p>I’m pretty happy so far with how this feature works. One thing that’s annoying, though, is that it requires the blog post to already exist before I can generate audio for it. That’s kind of a chicken and egg problem, and hard to solve. I don’t want to generate an audio file for a blog post and then immediately have to make a new one because I changed a word somewhere. But it would be nice to publish the audio and the blog post at the same time.</p>
+
+<p>I already set up a GitHub action to run from the Kaggle notebook after it uploads the files to Cloudflare storage. It picks up the new files, adds the frontmatter to the blog post, and then redeploys my blog. Sometimes I just love being a software nerd.</p>
+
+<p>I’m currently filling out the backlog of my posts with audio, so you may or may not see audio on them until I get to it.</p>
+
+<p>I guess at some point, if a better voice cloning TTS model comes out, I could update the files again, but for now they should do the job nicely!</p>
+
+  </div>
+
+  
+
+  <!-- COMMENTS -->
+  
+
+  <div class="comment-form">
+    <h3>Leave a Comment</h3>
+    <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
+    <form method="POST" action="https://staticman.hung-truong.com/v3/entry/github/hungtruong/jekyll-blog/main/comments" class="comment-form-fields" id="comment-form">
+  <input name="options[slug]" type="hidden" value="adding-audio-to-my-blog-with-qwen3-tts-voice-cloning">
+  
+  <div class="field">
+    <label for="comment-name">Name *</label>
+    <input type="text" id="comment-name" name="fields[name]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-email">Email *</label>
+    <input type="email" id="comment-email" name="fields[email]" class="full-width" required>
+  </div>
+  
+  <div class="field">
+    <label for="comment-url">Website</label>
+    <input type="url" id="comment-url" name="fields[url]" class="full-width">
+  </div>
+  
+  <div class="field">
+    <label for="comment-message">Comment *</label>
+    <textarea id="comment-message" name="fields[message]" rows="5" class="full-width" required></textarea>
+  </div>
+  
+  <button type="submit" class="button" id="comment-submit">Submit Comment</button>
+</form>
+
+<div id="comment-success" style="display: none;" class="comment-message comment-message-success">
+  <div>
+    <h4>Thank you for your comment!</h4>
+    <p>Your comment has been submitted and will be published after manual approval.</p>
+  </div>
+</div>
+
+<div id="comment-error" style="display: none;" class="comment-message comment-message-error">
+  <div>
+    <h4>Submission Error</h4>
+    <p>There was an error submitting your comment. Please try again.</p>
+  </div>
+</div>
+  </div>
+
+  <!-- POST NAVIGATION -->
+  <div class="postNav clearfix">
+    
+    <a class="prev image"
+      href="/blog/2026/01/22/how-low-can-wegovy/"><span>&laquo;&nbsp;How Low Can Wegovy?</span>
+      
+      <img src="/blog/wp-content/uploads/2026/ah-shit-here-wegovy-again.webp" alt="">
+      
+    </a>
+    
+    
+  </div>
+  </div>
+      </div>
+   </div><!-- end .content -->
+
+   <div class="footer">
+	<div class="container">
+		<p class="copy">&copy; 2026 <a href="http://www.hung-truong.com/blog/">Hung Truong</a></p>
+
+		<div class="footer-links">
+			<ul class="noList"><li>
+	<a href="https://twitter.com/hungtruong" target="_blank">
+		<svg
+			id="twitter"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M99.001,19.428c-3.606,1.608-7.48,2.695-11.547,3.184c4.15-2.503,7.338-6.466,8.841-11.189 c-3.885,2.318-8.187,4-12.768,4.908c-3.667-3.931-8.893-6.387-14.676-6.387c-11.104,0-20.107,9.054-20.107,20.223 c0,1.585,0.177,3.128,0.52,4.609c-16.71-0.845-31.525-8.895-41.442-21.131C6.092,16.633,5.1,20.107,5.1,23.813 c0,7.017,3.55,13.208,8.945,16.834c-3.296-0.104-6.397-1.014-9.106-2.529c-0.002,0.085-0.002,0.17-0.002,0.255 c0,9.799,6.931,17.972,16.129,19.831c-1.688,0.463-3.463,0.71-5.297,0.71c-1.296,0-2.555-0.127-3.783-0.363 c2.559,8.034,9.984,13.882,18.782,14.045c-6.881,5.424-15.551,8.657-24.971,8.657c-1.623,0-3.223-0.096-4.796-0.282 c8.898,5.738,19.467,9.087,30.82,9.087c36.982,0,57.206-30.817,57.206-57.543c0-0.877-0.02-1.748-0.059-2.617 C92.896,27.045,96.305,23.482,99.001,19.428z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://github.com/hungtruong" target="_blank">
+		<svg
+			id="github"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M79.099,79.099 c-3.782,3.782-8.184,6.75-13.083,8.823c-1.245,0.526-2.509,0.989-3.79,1.387v-7.344c0-3.86-1.324-6.699-3.972-8.517 c1.659-0.16,3.182-0.383,4.57-0.67c1.388-0.287,2.855-0.702,4.402-1.245c1.547-0.543,2.935-1.189,4.163-1.938 c1.228-0.75,2.409-1.723,3.541-2.919s2.082-2.552,2.847-4.067s1.372-3.334,1.818-5.455c0.446-2.121,0.67-4.458,0.67-7.01 c0-4.945-1.611-9.155-4.833-12.633c1.467-3.828,1.308-7.991-0.478-12.489l-1.197-0.143c-0.829-0.096-2.321,0.255-4.474,1.053 c-2.153,0.798-4.57,2.105-7.249,3.924c-3.797-1.053-7.736-1.579-11.82-1.579c-4.115,0-8.039,0.526-11.772,1.579 c-1.69-1.149-3.294-2.097-4.809-2.847c-1.515-0.75-2.727-1.26-3.637-1.532c-0.909-0.271-1.754-0.439-2.536-0.503 c-0.782-0.064-1.284-0.079-1.507-0.048c-0.223,0.031-0.383,0.064-0.478,0.096c-1.787,4.53-1.946,8.694-0.478,12.489 c-3.222,3.477-4.833,7.688-4.833,12.633c0,2.552,0.223,4.889,0.67,7.01c0.447,2.121,1.053,3.94,1.818,5.455 c0.765,1.515,1.715,2.871,2.847,4.067s2.313,2.169,3.541,2.919c1.228,0.751,2.616,1.396,4.163,1.938 c1.547,0.543,3.014,0.957,4.402,1.245c1.388,0.287,2.911,0.511,4.57,0.67c-2.616,1.787-3.924,4.626-3.924,8.517v7.487 c-1.445-0.43-2.869-0.938-4.268-1.53c-4.899-2.073-9.301-5.041-13.083-8.823c-3.782-3.782-6.75-8.184-8.823-13.083 C9.934,60.948,8.847,55.56,8.847,50s1.087-10.948,3.231-16.016c2.073-4.899,5.041-9.301,8.823-13.083s8.184-6.75,13.083-8.823 C39.052,9.934,44.44,8.847,50,8.847s10.948,1.087,16.016,3.231c4.9,2.073,9.301,5.041,13.083,8.823 c3.782,3.782,6.75,8.184,8.823,13.083c2.143,5.069,3.23,10.457,3.23,16.016s-1.087,10.948-3.231,16.016 C85.848,70.915,82.88,75.317,79.099,79.099L79.099,79.099z"
+			></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="https://www.youtube.com/@techsistentialcrisis" target="_blank">
+		<svg
+			id="youtube"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path fill="#FFF" fill-rule="evenodd" clip-rule="evenodd"
+				d="M18.168 19.0028C20.4724 19.0867 22.41 17.29 22.5 14.9858V9.01982C22.41 6.71569 20.4724 4.91893 18.168 5.00282H6.832C4.52763 4.91893 2.58998 6.71569 2.5 9.01982V14.9858C2.58998 17.29 4.52763 19.0867 6.832 19.0028H18.168Z"
+				stroke="#000000" stroke-width="0"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+			<path class="outer-shape" fill-rule="evenodd" clip-rule="evenodd"
+				d="M12.008 9.17784L15.169 11.3258C15.3738 11.4454 15.4997 11.6647 15.4997 11.9018C15.4997 12.139 15.3738 12.3583 15.169 12.4778L12.008 14.8278C11.408 15.2348 10.5 14.8878 10.5 14.2518V9.75184C10.5 9.11884 11.409 8.77084 12.008 9.17784Z"
+				stroke-linecap="round" stroke-linejoin="round"
+				transform="translate(22,22) scale(2.3)"></path>
+		</svg>
+	</a>
+</li>
+<li>
+	<a href="mailto:hung@hung-truong.com" target="_blank">
+		<svg
+			id="mail"
+			class="custom-icon"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 100 100"
+			style="height: 30px; width: 30px;"
+		>
+			<circle
+				class="outer-shape"
+				cx="50"
+				cy="50"
+				r="48"
+				style="opacity: 1;"
+			></circle>
+			<path
+				class="inner-shape"
+				style="opacity: 1;"
+				transform="translate(25,25) scale(0.5)"
+				d="M50,1C22.938,1,1,22.938,1,50s21.938,49,49,49s49-21.938,49-49S77.062,1,50,1z M25.5,25.5h49 c0.874,0,1.723,0.188,2.502,0.542L50,57.544L22.998,26.041C23.777,25.687,24.626,25.499,25.5,25.5L25.5,25.5z M19.375,68.375v-36.75 c0-0.128,0.005-0.256,0.014-0.383l17.96,20.953L19.587,69.958C19.448,69.447,19.376,68.916,19.375,68.375L19.375,68.375z M74.5,74.5 h-49c-0.541,0-1.072-0.073-1.583-0.212l17.429-17.429L50,66.956l8.653-10.096l17.429,17.429C75.572,74.427,75.041,74.5,74.5,74.5 L74.5,74.5z M80.625,68.375c0,0.541-0.073,1.072-0.211,1.583L62.652,52.195l17.96-20.953c0.008,0.127,0.014,0.255,0.014,0.383 L80.625,68.375L80.625,68.375z"
+			></path>
+		</svg>
+	</a>
+</li>
+</ul>
+		</div>
+	</div>
+</div>
+<!-- end .footer -->
+      <!-- Default Statcounter code for Hung Truong: The Blog!
+   http://www.hung-truong.com/blog/ -->
+      <script type="text/javascript">
+            var sc_project = 1262196;
+            var sc_invisible = 1;
+            var sc_security = "4af14454";
+            var scJsHost = (("https:" == document.location.protocol) ?
+                  "https://secure." : "http://www.");
+            document.write("<sc" + "ript type='text/javascript' src='" +
+                  scJsHost +
+                  "statcounter.com/counter/counter.js'></" + "script>");
+      </script>
+      <!-- End of Statcounter Code -->
+   <!-- Add jQuery and other scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src=/blog/assets/js/jquery-1.11.2.min.js><\/script>')</script>
+<script src="/blog/assets/js/dropcap.min.js"></script>
+<script src="/blog/assets/js/responsive-nav.min.js"></script>
+<script src="/blog/assets/js/scripts.js"></script>
+
+</body>
+
+</html>

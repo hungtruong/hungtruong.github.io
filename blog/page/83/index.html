@@ -91,6 +91,29 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">March 14, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/03/14/hung-truong-in-php/">Hung Truong: In PHP!</a></h3>
+        <p><p>So I decided that I should do a little bit in PHP since I’m going to have a Google interview soon and the most I’ve done before is manipulating other people’s code. I have my (semi-) professional site thingy over at the root of the site, <a href="http://www.hung-truong.com">hung-truong.com</a>. One thing that bugged me about doing that quick site was that I was writing everything in static html. So I had to statically write the menu bar thing so it showed the active menu item for each page. A lot of code was repeated, and it was generally pretty ugly.</p>
+
+<p>I figured it’d be a good exercise to redo that simple site in a php template of sorts. So I used this <a href="http://www.maiatech.com/varpage.php">pre-existing templating class</a> and modified it for my needs. Yeah, I’m still manipulating other peoples’ code, but at least in this case, the code is simple enough so that I understand how all of it works (I haven’t taken the time to go digging around in all of WordPress’ source yet).</p>
+
+<p>Unfortunately the class was really simple, and it still couldn’t handle my dynamic menu bar list thing. So I wrote a quick class called Menubar and it works! You can see the php version of my professional website at <a href="http://www.hung-truong.com/php/">this location</a>. I might end up just making it the official one, once I know it’ll work ok.</p>
+
+<p>It was a bit of work, and I didn’t really change anything to the actual site, but if I ever end up adding another section, it’ll be a lot less work than before. Plus it sorta refreshed my (almost non-existent) PHP coding skills!</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">March 12, 2007</span>
         <h3><a class="post-link" href="/blog/2007/03/12/locoroco-for-sony-psp-sorta-review/">LocoRoco for Sony PSP &#8211; Sorta Review</a></h3>
         <p><center>
@@ -207,57 +230,6 @@
 <p>As for the whole grad school thing, if the Google thing works out, I may decide to not go to grad school. I’m definitely keeping my options open, though. The scholarship offer from Michigan makes it feasible (at least, I think) for me to go to school there. If I get some kind of assistantship or maybe a paid internship (Google has an office in Ann Arbor), I could make it work.</p>
 
 <p>All in all, I’m very happy to have options, as they help to keep my stress levels down (if one thing doesn’t work I could go to the next, etc). I’ll post updates as soon as I get them.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 22, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/02/22/always-have-exact-change-with-only-10-coins/">Always Have Exact Change With Only 10 Coins!</a></h3>
-        <p><p>I hate having spare change. Change sucks because it usually just sits in your house and it’s a waste of money. I found a way to use the change you have and never get change back when purchasing with cash. With a set of just 10 coins, you can make change for any amount from 1 cent to 99.</p>
-
-<p>I’ve already read about the 10 coins somewhere else online. It’s not really interesting to have the answer given to you. Since I’m a nerdy computer scientist, I was trying to come up with an algorithm to produce this set of coins. I came up with an iterative solution that goes like this:</p>
-
-<blockquote>
-  <p>Start out with no coins.</p>
-
-  <p>From 1 to 99 cents:</p>
-
-  <p>If you can make exact change for the current amount, go to the next amount.</p>
-
-  <p>Otherwise, try adding the largest denomination coin to your set of coins (a quarter) that will allow you to pay the exact amount. If it’s too big, go to the next smallest until you hit a penny.</p>
-
-  <p>End Loop.</p>
-</blockquote>
-
-<p>I came up with this in the shower. When I got out and tried it, it actually worked! Here’s a portion of the trace through the loop:</p>
-
-<blockquote>
-  <p>No coins, I need to make change for 1 cent. Add a penny. Yay, I can make change for one cent!</p>
-
-  <p>…</p>
-
-  <p>4 pennies, need to make change for 5 cents. Add a nickel.</p>
-
-  <p>…</p>
-
-  <p>4 pennies 1 nickel, need to make change for 10 cents. Add a dime.</p>
-</blockquote>
-
-<p>And so on. I believe the algorithm works because it uses a greedy heuristic of choosing the largest denomination coin first before defaulting to the penny. Am I a nerd? Yes.</p>
-
-<p>Oh, I just realized I didn’t actually say which 10 coins were the ones you need. They’re 4 pennies, one nickel, two dimes, and three quarters. You can also do it with two nickels and one dime but that’s not what my algorithm came up with, plus two dimes are lighter than two nickels!</p>
-
-<p>Have fun getting rid of your change!</p>
 
 
           

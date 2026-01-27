@@ -92,6 +92,31 @@
     
       <li>
         <span class="date">February 05, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/02/05/google-phone-interview-set-for-february-9th/">Google Phone Interview Set For February 9th!</a></h3>
+        <p><p>I got an email from the recruiter at Google today. My phone interview is set for February 9th, so I have 4 good days to get ready for it. I’ve been looking at the <a href="http://www.amazon.com/gp/product/0262531968?ie=UTF8&amp;tag=hungtruong-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0262531968">giant algorithms book</a>, just refreshing myself on stuff like O notation, common sorting algorithms like mergesort, and stuff like that.</p>
+
+<p>I should probably move on to more complicated algorthms next like <a href="http://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra’s Algorithm</a> and dynamic programming algorithms like the <a href="http://en.wikipedia.org/wiki/Floyd-Warshall_algorithm">all pairs shortest path algorithm</a>. I don’t think Google would ask me about specific implmentations of these, but it would be good practice to get back into the mindset of designing algorithms this complex, since I haven’t had to do so in a while.</p>
+
+<p>I saw a sample interview question from some blog asking about defining a function f(a,b) to return a string that is all of the characters in a (in order) that are also in b. They ask for an order n<sup>2</sup> as well as an order n algorithm. The n<sup>2</sup> one seems trivial, but I can’t think of how to calculate a set intersection (which is what I think the problem boils down to) in order n time… I could try and prove that it would be impossible to do it in n time, but I don’t really want to do that either. Plus I’m not sure if it is impossible…</p>
+
+<p>Edit: Okay, so apparently they’re “strings” for a reason. The N solution is pretty easy. I was trying to solve a more complex problem in N, when I just needed to take a look at the actual question being asked. I guess I should do regular sanity checks during the interview and not try to accomplish more than they ask.</p>
+
+<p>Well, back to the book for me.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
+        <span class="date">February 05, 2007</span>
         <h3><a class="post-link" href="/blog/2007/02/05/final-fantasy-iv-6-or-3-out-for-gameboy-advance-today/">Final Fantasy IV (6, or 3&#8230;) Out For Gameboy Advance Today!</a></h3>
         <p><p style="text-align: center">
   <a href="http://www.amazon.com/gp/product/B000LY4IDK?ie=UTF8&amp;tag=hungtruong-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000LY4IDK"><img src="/blog/wp-content/uploads/2007/02/ffvi.jpg?w=604" alt="ffvi.jpg" data-recalc-dims="1" /></a>
@@ -223,37 +248,6 @@
 <p>I tried playing Zelda: Twilight Princess. There’s a huge difference with the cables. Before it was super blurry, and now it’s somewhat jaggy. Sure, the antialiasing could use work, but it still looks 100% better.</p>
 
 <p>If you have a Wii and a TV that takes component input, you MUST get cables. <a href="http://www.play-asia.com/SOap-23-83-2y80-71-10z-49-en-15-wii+cable-84-j-70-1rch.html">These ones</a> were like $13, shipping included.</p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">February 01, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/02/01/installing-the-rmagick-rubygem-on-media-temples-dv/">Installing The RMagick Rubygem On Media Temple&#8217;s DV</a></h3>
-        <p><p style="text-align: center">
-  <img src="/blog/wp-content/uploads/2007/02/framed_clown.jpg?w=604" alt="framed_clown.jpg" data-recalc-dims="1" /><br /> <em>Damn you, RMagick Clown! You haunt my nightmares!!!</em>
-</p>
-
-<p>Oh boy, so once I got rails actually running on my dv, I figured out that my applications needed the RMagick ruby gem. RMagick does graphics stuff, like resizing and creating captcha images and whatnot, so I really need it. I ran into a few gotchas while trying to install RMagic (well, installing ImageMagick) so here’s what I did:</p>
-
-<p>First, you must install ImageMagick. This involves installing a bunch of dependencies first. I did all of the ones listed on the <a href="http://rmagick.rubyforge.org/install-linux.html">Rmagick ImageMagick installation guide</a>, but the ./configure command still wouldn’t see the jpeg delegate library.</p>
-
-<p>The error message I got when trying to install RMagick was like this: “No decode delegate for this image format.” I found out from <a href="http://www.imagefolio.com/users/docs/pro31/imagemagick.shtml">this page</a> that I needed to run: “./configure –enable-shared” for it to register properly. When I tried running make and make install, I got some error like this:</p>
-
-<blockquote>
-  <p>Magick::ImageMagickError: unable to read font `…/ghostscript/fonts/n019003l.pfbâ€™</p>
-</blockquote>
-
-<p>It turns out the font directory set up for ImageMagick didn’t have any fonts… So I downloaded the GhostScript fonts (I had already installed GhostScript) into that directory. And it worked. The end.</p>
 
 
           

@@ -2,6 +2,18 @@
   "posts": [
     
     {
+      "id": "adding-audio-to-my-blog-with-qwen-3-tts-voice-cloning",
+      "title": "Adding Audio to My Blog With Qwen3-TTS Voice Cloning",
+      "url": "/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/",
+      "date": "2026-01-27",
+      "year": "2026",
+      "categories": ["Tech","AI","Coding","Blogging"],
+      "description": "Exploring the capabilities of Qwen3-TTS for voice cloning to add audio narrations to my blog posts.",
+      "content": "Qwen3-TTS, the best TTS model I've used so far! I saw a note in my daily AI newsletter about a new TTS model that was out. I spent a better part of the day testing out its capabilities and attempting to do some fine tuning on it. I’ve had a goal for a pretty long time to add audio versions that people can use to listen to each of my blog posts. But rather than narrate them myself, I wanted the audio to be computer generated. Not only that, but I wanted it to sound like I was actually doing the narrating. So far, any of the models that I’ve tried to accomplish this haven’t lived up to the high standards of quality that you’re used to seeing on my blog. So did Qwen3-TTS finally make the grade? When I looked at the Qwen3-TTS GitHub, I noticed that it had a few ways to generate audio from text. You could just use a pre-configured voice, and even give it instructions on how to speak. You could also design a voice, clone a voice from a reference audio, or even do fine tuning on the model ...",
+      "excerpt": "Qwen3-TTS, the best TTS model I've used so far! I saw a note in my daily AI newsletter about a new TTS model that was out. I spent a better part of the day testing out its capabilities and attempti..."
+    },
+    
+    {
       "id": "how-low-can-wegovy",
       "title": "How Low Can Wegovy?",
       "url": "/blog/2026/01/22/how-low-can-wegovy/",
