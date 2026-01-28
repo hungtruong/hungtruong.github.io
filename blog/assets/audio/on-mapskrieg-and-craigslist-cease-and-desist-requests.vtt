@@ -1,0 +1,196 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.756
+On Mapskrieg and craigslist Cease and Desist Requests
+
+00:00:05.256 --> 00:00:07.893
+Published on June 24, 2012.
+
+00:00:08.893 --> 00:00:20.241
+As I mentioned on Twitter a while back, I got a cease and desist request from craigslist a couple of weeks ago for Mapskrieg (my craigslist + Google Maps mashup for web and iOS).
+
+00:00:20.741 --> 00:00:25.616
+This request came at a pretty bad time (right before I was to move from Chicago to Ann Arbor).
+
+00:00:26.116 --> 00:00:30.990
+I quickly agreed to it and removed the app (I didn’t really have time or money to fight a lawsuit).
+
+00:00:31.490 --> 00:00:36.445
+I also added a passive-aggressive note on mapskrieg.com that you can still read if you’d like.
+
+00:00:36.945 --> 00:00:42.459
+I contacted a reporter at PandoDaily since I had seen a few other tweets about C&Ds from craigslist.
+
+00:00:42.959 --> 00:00:51.350
+He proceeded to write a pretty badly researched article (he originally was going to post that I made housingmaps.com) that got very little attention.
+
+00:00:51.850 --> 00:00:57.923
+Fast forward to Friday and I got a tweet that Mapskrieg’s competitor, Padmapper , also got a C&D.
+
+00:00:58.423 --> 00:01:03.218
+The internet erupts in anger and I realize that I forgot to write a eulogy for Mapskrieg!
+
+00:01:03.718 --> 00:01:18.264
+While I won’t get too deep into the politics of the current situation (I kinda think it’s like complaining about getting a speeding ticket after successfully speeding for 5 years without being caught), I will write a bit about Mapskrieg since it’s kind of a nostalgic topic for me.
+
+00:01:19.264 --> 00:01:22.460
+The success of Mapskrieg was largely an accident.
+
+00:01:22.960 --> 00:01:26.476
+It wasn’t born out of a desire to build a business or anything like that.
+
+00:01:26.976 --> 00:01:28.415
+I built it because
+
+00:01:28.915 --> 00:01:35.867
+1) I had just been rejected for a job at Google and wanted to prove to them that I was a false negative and
+
+00:01:36.367 --> 00:01:42.121
+2) I accepted an offer to go to Michigan for my Master’s degree and I needed to find a place to live.
+
+00:01:42.621 --> 00:01:45.897
+Mapskrieg killed two birds with one stone.
+
+00:01:46.897 --> 00:02:01.443
+While I had intended for Mapskrieg to simply show me apartment listings in Ann Arbor (something that housingmaps.com didn’t and still doesn’t do), I found that the scraper I wrote could just as easily apply to any of the other craigslist areas in the US and Canada.
+
+00:02:01.943 --> 00:02:06.817
+I decided to go large scale and slap some Google Adsense ads on there to help pay for the server.
+
+00:02:07.317 --> 00:02:12.032
+I sent a message to Mashable and they were nice enough to do a writeup of the service.
+
+00:02:12.532 --> 00:02:16.288
+This led to other stories from Lifehacker and other cool blogs.
+
+00:02:16.788 --> 00:02:22.941
+Apparently this bootstrapped Mapskrieg to the point where it had enough Google juice to show up in a lot of search engine results pages.
+
+00:02:23.441 --> 00:02:27.756
+I learned quite a lot about SEO and advertising from running Mapskrieg as a result.
+
+00:02:28.256 --> 00:02:35.129
+I won’t go too far in detail about how much it ended up making, but at one point it made enough to pay for my rent, which was pretty sweet.
+
+00:02:36.129 --> 00:02:40.045
+During grad school, I was too busy to add any improvements to Mapskrieg.
+
+00:02:40.545 --> 00:02:45.419
+After my first semester I realized that the page loads were getting slower and slower.
+
+00:02:45.919 --> 00:02:48.316
+Mapskrieg was slowly losing visitors.
+
+00:02:48.816 --> 00:02:54.810
+This was because I foolishly kept all listings in the database and pretty much never cleaned up or deleted old ones.
+
+00:02:55.310 --> 00:02:59.465
+The database got to millions and millions of rows or something equally ridiculous.
+
+00:02:59.965 --> 00:03:03.881
+I wrote a script that automated the process of pruning listings.
+
+00:03:04.381 --> 00:03:12.852
+Aside from a few random modifications (including porting Mapskrieg to Google App Engine, then reverting it), that was the last update I made to Mapskrieg.
+
+00:03:13.352 --> 00:03:23.102
+While Mapskrieg started to show its age (using technology from 2007 that I wrote when I was a noob), a new competitor came along that made it even more crappy looking: Padmapper.
+
+00:03:24.102 --> 00:03:27.938
+(This is starting to sound like some kind of History Channel documentary).
+
+00:03:28.938 --> 00:03:39.327
+While I could’ve attempted to go head on with Padmapper, I was instead having fun doing other projects like Troubadour Mobile and working at random places like Microsoft and Threadless.
+
+00:03:39.827 --> 00:03:46.539
+Mapskrieg was a really good source of passive income but I always figured that craigslist would contact me to have it taken down some day.
+
+00:03:47.039 --> 00:03:51.514
+I didn’t really want to put a lot of work into something that I had a feeling would eventually be sued.
+
+00:03:52.014 --> 00:03:56.010
+My hunch was correct as I got that cease and desist request last May.
+
+00:03:57.010 --> 00:04:05.241
+I’m sad to see craigslist taking this kind of action against Mapskrieg, Padmapper and other sites, but I can’t say it’s too surprising.
+
+00:04:05.741 --> 00:04:08.938
+Probably the most surprising part is how long it took them to actually do it.
+
+00:04:09.438 --> 00:04:15.191
+I don’t think these sites ever operated in some kind of legal gray area; they had always been violating terms.
+
+00:04:15.691 --> 00:04:19.847
+My personal defense is that Mapskrieg was always a search engine.
+
+00:04:20.347 --> 00:04:26.101
+If craigslist wants to order Mapskrieg to cease and desist, they should also order Google to do the same.
+
+00:04:26.601 --> 00:04:32.114
+Actually, maybe Google should take the initiative and remove craigslist from their search index preemptively.
+
+00:04:33.114 --> 00:04:38.788
+Mapskrieg holds a special place in my heart, partly because it was the one my biggest successes (so far).
+
+00:04:39.288 --> 00:04:41.845
+Also partly because the name is ridiculous.
+
+00:04:42.345 --> 00:04:47.540
+I have a feeling that putting Mapskrieg on my resume opened up doors that would’ve been closed to me otherwise.
+
+00:04:48.040 --> 00:04:53.154
+Mapskrieg did what it was supposed to do and never really evolved, but I never expected it to.
+
+00:04:53.654 --> 00:05:01.805
+If we can find a way to remember Mapskrieg in our hearts, then it will never truly be dead (plus I have a backup of it somewhere on another server).
+
+00:05:02.805 --> 00:05:05.203
+Mapskrieg: rest in peace.
+
+00:05:06.203 --> 00:05:08.680
+Born: May 6th, 2007.
+
+00:05:09.680 --> 00:05:12.397
+Died: May 21st, 2012.
+
+00:05:13.397 --> 00:05:23.147
+(P.S. If you’re interested in reading about how I made Mapskrieg, read this series of blog posts. It’s kind of an interesting look into the work ethic of 5-years-ago Hung):
+
+00:05:24.147 --> 00:05:24.946
+Part 1
+
+00:05:25.946 --> 00:05:27.064
+Part 2
+
+00:05:28.064 --> 00:05:28.943
+Part 3
+
+00:05:29.943 --> 00:05:30.583
+Part 4
+
+00:05:31.583 --> 00:05:32.302
+Part 5
+
+00:05:33.302 --> 00:05:34.341
+Part 6
+
+00:05:35.341 --> 00:05:36.859
+Part 7
+
+00:05:37.859 --> 00:05:38.578
+Part 8
+
+00:05:39.578 --> 00:05:40.937
+Part 9
+
+00:05:41.937 --> 00:05:43.135
+Part 10
+
+00:05:44.135 --> 00:05:45.494
+Part 11
+
+00:05:46.494 --> 00:05:47.852
+Part 12
+
+00:05:48.852 --> 00:05:49.731
+Part 13
