@@ -1,0 +1,178 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.957
+On Writing Successful Fart Apps
+
+00:00:04.457 --> 00:00:06.854
+Published on October 31, 2016.
+
+00:00:07.854 --> 00:00:18.963
+Last Thursday, Apple held an event where they announced a few things, including a refresh of the Macbook Pro line that killed all of the good ports and added a touch bar to replace the function key row.
+
+00:00:19.463 --> 00:00:25.216
+I was actually in a meeting during the announcement but I had heard of the touch bar through a story about a leak.
+
+00:00:25.716 --> 00:00:31.790
+Someone on Twitter put a bounty of $5 on the first fart app for the touch bar and a friend retweeted it to me.
+
+00:00:32.790 --> 00:00:39.902
+If you know me, you know that I like writing stupid apps and basically making a mockery of the Silicon Valley trope of “making the world a better place.”
+
+00:00:40.402 --> 00:00:48.553
+Specifically, the fart app genre appeals to me as a way to subvert the app ecosystem and make it a little more dumb and weird.
+
+00:00:49.053 --> 00:00:52.410
+The tech industry in particular takes itself way too seriously.
+
+00:00:52.910 --> 00:01:05.697
+In a way, I’m emulating my Computer Science hero Monzy, who created projects like “Pantscam” and  a program that morphed people’s faces into butts (which I can’t find the archive of at the moment), all while being a successful nerdcore rapper.
+
+00:01:06.197 --> 00:01:12.110
+While the things he made were somewhat stupid, you can’t deny that the technology was actually pretty cool.
+
+00:01:13.110 --> 00:01:17.505
+Writing fart apps is also a great way to learn about a particular platform.
+
+00:01:18.005 --> 00:01:29.673
+If “hello world” is the simplest app that you can write in a language, a fart app is the simplest non-trivial app you can write, since it touches the UI, the file system and whatever mechanism there is for playing an audio file.
+
+00:01:30.173 --> 00:01:39.843
+In the past I wrote some fart apps for Google Glass and the Apple Watch, which were small enough projects that I didn’t get bored and abandon them, plus I learned something in the process.
+
+00:01:40.843 --> 00:01:46.517
+So anyway, on Thursday I got home from work and installed Xcode 8.1 on my computer.
+
+00:01:47.017 --> 00:01:52.771
+I ended up needing to get another update for macOS Sierra to get the simulated Touch Bar to show up as well.
+
+00:01:53.271 --> 00:01:59.744
+I looked at some sample code, figured out what I needed to do to write the app and finished in maybe an hour or two.
+
+00:02:00.244 --> 00:02:06.877
+It was a good exercise to get reacquainted with macOS development after I stalled on a project I started a few years ago.
+
+00:02:07.377 --> 00:02:15.288
+I pushed the repo to Github, made a demo video and took a screenshot and sent some tweets to the Twitter user who requested the app.
+
+00:02:15.788 --> 00:02:24.659
+I also sent it to some other Twitter users who made similar requests, not expecting anyone to write a fart app less than 12 hours after the hardware for it was announced.
+
+00:02:25.659 --> 00:02:30.693
+On Friday, I posted the Github repo to an iOS developer community on Slack.
+
+00:02:31.193 --> 00:02:33.670
+That’s pretty much all the “promotion” I did.
+
+00:02:34.170 --> 00:02:40.244
+At some point that day, someone posted the project on Product Hunt (good call!) and it kinda just sat there.
+
+00:02:40.744 --> 00:02:46.338
+I went out of town during the weekend but I noticed someone had written a story about the project on Cult of Mac.
+
+00:02:46.838 --> 00:02:50.274
+I figured that would be the apex of my touch bar fart app’s story.
+
+00:02:50.774 --> 00:02:56.128
+At some point during the weekend though, I got a tweet that the Product Hunt entry hit 100 upvotes.
+
+00:02:56.628 --> 00:03:02.542
+Then a few more stories were written today and my project was even mentioned in NatashaTheRobot’s Swift newsletter.
+
+00:03:03.042 --> 00:03:09.275
+I’m guessing that today will be the real apex of this fart app and it’ll slowly be forgotten like my other fart apps before it.
+
+00:03:10.275 --> 00:03:13.711
+So what have I learned from this and previous fart apps?
+
+00:03:14.211 --> 00:03:18.286
+One is that some people take themselves way too seriously to enjoy a good fart app.
+
+00:03:18.786 --> 00:03:20.464
+For example, this person:
+
+00:03:21.464 --> 00:03:22.423
+First, I’m not a kid.
+
+00:03:22.923 --> 00:03:25.880
+My job title has senior in it which must mean something!
+
+00:03:26.380 --> 00:03:31.175
+Also, I have a day job and writing fart apps (a.k.a. learning stuff) is my hobby.
+
+00:03:31.675 --> 00:03:39.506
+Finally, thanks to this hard-hitting piece of journalism, we see that even fart app writers can eventually move on to greater ambitions.
+
+00:03:40.506 --> 00:03:42.984
+There’s also this killjoy from Product Hunt:
+
+00:03:43.984 --> 00:03:52.375
+While I can understand the sentiment that there could be better tech things happening, I also don’t think it’s realistic to see a new Snapchat or Twitter released every single day.
+
+00:03:52.875 --> 00:03:56.471
+Friday was a slow day, so a fart app won!
+
+00:03:56.971 --> 00:04:01.366
+And is it just the subject matter that makes the project immature and pathetic?
+
+00:04:01.866 --> 00:04:05.622
+Like, would a British PM Soundboard be any more appropriate?
+
+00:04:06.622 --> 00:04:14.373
+Bottom line is that this project only took a couple hours out of my free time, which I would’ve probably spent playing a JSRPG anyway.
+
+00:04:14.873 --> 00:04:23.264
+I suppose you could argue that the nonexistence of my app would’ve caused fewer people to waste time discussing it, but I can’t really control how other people spend their time.
+
+00:04:24.264 --> 00:04:30.098
+One cool thing that’s come out of this project is that someone has already forked it and made a soundboard project out of it.
+
+00:04:30.598 --> 00:04:39.389
+This is sort of the whole point of writing an open source fart app: establish a codebase that people can check out, learn from, and maybe even extend into their own thing.
+
+00:04:39.889 --> 00:04:43.804
+I knew from the start that my app wasn’t going to make it into an App Store.
+
+00:04:44.304 --> 00:04:50.697
+I do believe that the Github repo was the first (public at least) to reference the NSTouchBar class.
+
+00:04:51.697 --> 00:05:02.087
+Finally, if you are reading this blog post thinking: “hey, I’d like to be known for making a fart app instead of one of many other useful contributions I’ve made to this planet!” then here are some tips!
+
+00:05:02.587 --> 00:05:13.296
+First off, you need to actually be the first to market on the fart app scene as interest will surely wane as the second, third, fourth, etc fart apps written for the technology are released.
+
+00:05:13.796 --> 00:05:21.148
+Unless you add something really cool, like actual fart smells in addition to sounds, then you probably wanna rush your fart app to market.
+
+00:05:21.648 --> 00:05:24.365
+Second, you’ll need to market your app with some kind of video.
+
+00:05:24.865 --> 00:05:37.891
+When building for cutting edge hardware like the touch bar (which no one has yet) or Google Glass (which literally no one bought),  you can assume that no one will have the hardware or be interested in installing your app, so just make a video!
+
+00:05:38.391 --> 00:05:40.949
+In my experience it helps if you mumble a lot.
+
+00:05:41.449 --> 00:05:46.962
+Finally, share your code by making it available on Github and attach a generous license to it.
+
+00:05:47.462 --> 00:05:52.257
+I used the MIT license but put the wrong year because I copy-pasted it from another app.
+
+00:05:52.757 --> 00:05:57.472
+But I guess my mistake was relatable because more than one person commented on that commit!
+
+00:05:57.972 --> 00:06:01.648
+Your app won’t be worth anything anyway, so you might as well share it.
+
+00:06:02.648 --> 00:06:07.203
+I hope this post has helped explain my motivations for making a touch bar fart app.
+
+00:06:07.703 --> 00:06:13.776
+Partly it’s to prove that I could, and partly make a cool $0.03 on the video ads.
+
+00:06:14.776 --> 00:06:20.610
+P.S. Apple, if you are reading this, please do not ban me from WWDC over this.
+
+00:06:21.110 --> 00:06:26.144
+I promise to write some software using one of your new frameworks for non-fart applications!
