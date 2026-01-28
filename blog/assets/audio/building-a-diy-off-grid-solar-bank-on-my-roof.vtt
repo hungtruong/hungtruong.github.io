@@ -1,0 +1,151 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.436
+Building a DIY Off-Grid Solar Bank on my Roof
+
+00:00:04.936 --> 00:00:07.493
+Published on October 07, 2016.
+
+00:00:08.493 --> 00:00:17.204
+I’ve been fascinated with solar energy ever since I was a kid and my brother had a toy with a motor attached to a mini solar panel that you could run under a strong light.
+
+00:00:17.704 --> 00:00:24.577
+In recent years, solar panels have come down in price and now seemed like a good a time as any for me to experiment with it a bit.
+
+00:00:25.077 --> 00:00:34.187
+I took a week long staycation from work a few weeks ago, and in preparation, I did a bunch of research and bought a ton of components to set up an off grid solar thing.
+
+00:00:34.687 --> 00:00:46.275
+I chose to go off-grid because I didn’t want to deal with actually putting the power back into the grid and all the bureaucracy involved (I’m not sure if my power company even buys power back), and the scale I’m working at is super small anyway.
+
+00:00:46.775 --> 00:00:50.451
+Here are the components I used, and why I decided to go with them.
+
+00:00:50.951 --> 00:00:57.504
+They might not be the best choice, because I have no idea what I’m doing, but even so, I learned a lot in the process.
+
+00:00:58.504 --> 00:00:59.862
+The Battery
+
+00:01:01.362 --> 00:01:07.356
+As I was building an off-grid solar charging system,  I needed something to store the energy gathered by the panel.
+
+00:01:07.856 --> 00:01:11.692
+My initial goal with the project was to charge the battery on my electric bike.
+
+00:01:12.192 --> 00:01:18.665
+The bike is something like 12Ah at 48v, so overall the capacity is about 580 watt hours.
+
+00:01:19.165 --> 00:01:26.117
+I only let the bike battery drain to about 80% at most, so I wanted to charge about 100 watt hours at a time.
+
+00:01:27.117 --> 00:01:35.828
+The type of battery I got was a lead acid sealed AGM battery, which is apparently pretty safe and commonly used in this sort of application.
+
+00:01:36.328 --> 00:01:49.914
+After doing some research about these batteries, it sounds like they also last longer if you only let them discharge to about 60-80% of their capacity, so I got a battery that holds 660 watt hours (12v * 55 Ah).
+
+00:01:50.414 --> 00:01:54.650
+I could probably have gone with a bigger battery but this one only cost about $100.
+
+00:01:55.650 --> 00:02:02.522
+I had no idea what sort of connector this battery used when I bought it, but it turns out that it’s a pretty common connector that uses a bolt.
+
+00:02:03.022 --> 00:02:10.614
+The inverter I ended up buying worked out of the box with it and I ended up buying a box of additional eyelet adaptors to make my own wires.
+
+00:02:11.614 --> 00:02:12.893
+The Solar Panel
+
+00:02:14.393 --> 00:02:18.948
+I wanted a panel that would be able to charge up my battery to a decent level each day.
+
+00:02:19.448 --> 00:02:24.562
+I ended up getting probably more capacity than needed, but I can always expand my project later.
+
+00:02:25.062 --> 00:02:32.414
+I bought a 100W polycrystalline (because it was cheaper than mono) panel by Renology because it had good ratings and a good price to watt ratio.
+
+00:02:32.914 --> 00:02:40.346
+The connectors on the panel are MC4 so I ended up buying some additional cable so I could connect the panel to a charge controller.
+
+00:02:41.346 --> 00:02:43.104
+The Charge Controller
+
+00:02:44.604 --> 00:02:50.518
+I ended up getting a cheap charge controller that came at a discount in exchange for me writing a review.
+
+00:02:51.018 --> 00:02:58.210
+I was going to buy one that looked similar anyway, though I’m not sure if it’s the same manufacturer or just a knock off of the one I was going to buy.
+
+00:02:58.710 --> 00:03:11.977
+Either way it is the perfect size for my project at 10A and shows info like the current voltage level of the battery and the amperage going into the battery as well as the load coming out of the usb ports and the load out connectors.
+
+00:03:12.977 --> 00:03:19.050
+I assumed you were supposed to connect the load out directly to an inverter but I read a few posts about how that would be a bad idea.
+
+00:03:19.550 --> 00:03:22.826
+I’m guessing too much load would fry your charge controller.
+
+00:03:23.826 --> 00:03:25.105
+The Inverter
+
+00:03:26.605 --> 00:03:40.111
+I was looking for a pure sine wave inverter, which is supposed to be more efficient and nice to your electronic devices, but I couldn’t find one under $100 so I ended up getting an 800W inverter that seemed pretty solid.
+
+00:03:40.611 --> 00:03:44.926
+As I mentioned earlier, the connectors just worked for the battery, which was nice.
+
+00:03:45.426 --> 00:03:55.976
+I only use one outlet at a time, so I haven’t tested if this thing can actually throw out 800W, but it’s probably a good rule of thumb to get an inverter with more capacity than you’ll need on average anyway.
+
+00:03:56.476 --> 00:04:02.069
+My bike battery charger uses about 140W and a Macbook charger will use 80W.
+
+00:04:02.569 --> 00:04:08.803
+I’m not sure how many watts that is after efficiency lost with the inverter but it’s probably not too terrible.
+
+00:04:09.803 --> 00:04:11.161
+Putting it all together
+
+00:04:12.661 --> 00:04:17.696
+After getting all of the parts I realized that I was missing the connection from the charge controller to the battery.
+
+00:04:18.196 --> 00:04:24.988
+I ended up buying some ringlet adapters that would fit the battery and cut off part of the long wire I bought to make a new wire.
+
+00:04:25.488 --> 00:04:27.406
+This worked better than I thought it would.
+
+00:04:27.906 --> 00:04:31.742
+After that, I was able to connect the panel and battery to the charge controller.
+
+00:04:32.242 --> 00:04:37.276
+I was able to read that the panel was giving something like 3 amps to the battery, which was amazing to me at the time.
+
+00:04:38.276 --> 00:04:42.352
+I also connected the inverter to the battery and was able to run my bike charger.
+
+00:04:42.852 --> 00:04:49.485
+I attached my Smart Things outlet in between the outlet and the charger so I could monitor how much voltage the battery used.
+
+00:04:49.985 --> 00:04:56.378
+It’s interesting because once the battery reaches a certain charge, the charger tapers down its power usage slowly.
+
+00:04:56.878 --> 00:05:10.304
+Finally, I placed the panel on the roof, which was kind of difficult considering how tall the roof is and how short my ladder apparently is, plus how heavy the panel was and how much I’m able to lift above my head while also balancing on top of a ladder…
+
+00:05:11.304 --> 00:05:14.900
+Here’s some photos of the system running just inside the door to the roof.
+
+00:05:15.400 --> 00:05:22.512
+I’ll probably set up a plank or something to drill the charge controller and inverter onto, since right now it’s a little janky.
+
+00:05:23.512 --> 00:05:28.067
+Hopefully you found this interesting and are already planning an off grid solar system of your own.
+
+00:05:28.567 --> 00:05:35.040
+I’m happy to say that my ebike is now powered 100% by my project, as well as a bunch of electronics in my house.
+
+00:05:35.540 --> 00:05:40.175
+Also, my house has become a lot more valuable in the case of a zombie apocalypse.
