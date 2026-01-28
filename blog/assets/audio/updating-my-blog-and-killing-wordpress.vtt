@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.557
+Updating My Blog and Killing Wordpress!
+
+00:00:04.057 --> 00:00:06.694
+Published on April 07, 2018.
+
+00:00:07.694 --> 00:00:12.649
+A week or two ago I got an email from Google telling me that my blog had once again been hacked.
+
+00:00:13.149 --> 00:00:22.099
+I’ve written before about getting hacked and I basically knew how to unhack myself, but I put it off for a bit until I checked my website again and noticed that Chrome was warning me to avoid it!
+
+00:00:22.599 --> 00:00:24.597
+This was pretty much the last straw.
+
+00:00:25.097 --> 00:00:29.972
+I decided to move off of self-hosted Wordpress and switch to something a bit more secure.
+
+00:00:30.972 --> 00:00:39.043
+I looked at some options such as Ghost or Hugo but it seemed like Jekyll was the most mature static blog platform, so I went with that.
+
+00:00:39.543 --> 00:00:44.338
+I used a plugin that would generate the Markdown files that I’d need to regenerate my blog.
+
+00:00:44.838 --> 00:00:50.352
+It also ended up transferring my image files, etc, which made it pretty easy to get started.
+
+00:00:51.352 --> 00:00:55.907
+I found a cool looking theme called Long Haul that I ended up modifying quite a bit.
+
+00:00:56.407 --> 00:01:02.800
+I updated the header image, changed up some colors and added an archives page and support for post excepts.
+
+00:01:03.300 --> 00:01:08.254
+What’s currently missing is a site search and category/tag support, but I can live with that.
+
+00:01:08.754 --> 00:01:12.830
+Comments are also gone but you should never read the comments anyway so that’s fine.
+
+00:01:13.330 --> 00:01:18.524
+I’m happy with the speed that the site loads as it’s all static and hosted on Github pages.
+
+00:01:19.524 --> 00:01:23.679
+I wouldn’t necessarily recommend Jekyll to everyone who wants to convert their blog.
+
+00:01:24.179 --> 00:01:29.134
+It’s clearly written by developers for developers as it’s insanely un-user friendly.
+
+00:01:29.634 --> 00:01:42.421
+Don’t get me wrong, the documentation is great, but it’s surprising to me that something resembling a blogging platform has been around this long without anyone setting up a WYSIWYG type of editor like the kind that Wordpress has.
+
+00:01:42.921 --> 00:01:48.115
+I ran into quite a few issues and a pretty steep learning curve while converting my blog.
+
+00:01:48.615 --> 00:01:52.371
+Now that I’m past that, hopefully I can start blogging more often again!
+
+00:01:53.371 --> 00:02:06.238
+(I checked the hilariously outdated “friends” links on my blog and most of them died around 2009 or the domain names ended up failing or being transferred to new owners, so I guess I’m one of the few remaining bloggers of the world)
