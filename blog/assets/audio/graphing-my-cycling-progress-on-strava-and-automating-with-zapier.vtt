@@ -1,0 +1,211 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.996
+Graphing My Cycling Progress on Strava and Automating With Zapier
+
+00:00:05.496 --> 00:00:07.973
+Published on October 10, 2014.
+
+00:00:08.973 --> 00:00:15.046
+Since I moved to a new home that’s closer to work, I’ve been riding my bike to commute at least a few times each week.
+
+00:00:15.546 --> 00:00:19.861
+My commute to work is very easy as it’s almost completely downhill.
+
+00:00:20.361 --> 00:00:22.039
+I pay for it on the way back, though.
+
+00:00:22.539 --> 00:00:27.334
+I’ve been trying to get healthier, so commuting with my bike has definitely become a priority.
+
+00:00:27.834 --> 00:00:35.586
+In addition to having fun, I’d also like to motivate myself to ride more often and push myself to get better at it (especially the uphill part).
+
+00:00:36.086 --> 00:00:45.436
+I’ve been using Strava to track my rides, and it turns out that my ride home includes a user-generated segment that automatically tracks my performance when I’m going uphill on Liberty.
+
+00:00:45.936 --> 00:00:49.212
+The first time I rode, it took 10:44 for me to complete.
+
+00:00:49.712 --> 00:00:52.190
+My best time so far is 6:58.
+
+00:00:52.690 --> 00:00:58.843
+The cool part is that I’m able to see the progress I’ve made, and I really do feel accomplished when I beat one of my best times.
+
+00:00:59.343 --> 00:01:02.060
+Here’s the view I’m using to see what my times are:
+
+00:01:03.060 --> 00:01:12.969
+This isn’t the easiest table to read, but you can see that the dates sort of correlate with my times, as the fastest one is in September and the ones in August are slower on average.
+
+00:01:13.469 --> 00:01:19.623
+While beating my fastest time is a good motivator, it’s not realistic to try and break my record every time I ride.
+
+00:01:20.123 --> 00:01:23.639
+I’d rather see consistent improvement as a motivator.
+
+00:01:24.639 --> 00:01:30.712
+To visualize this, I decided to grab all of the times by viewing the full leaderboard (with just my results).
+
+00:01:31.212 --> 00:01:36.087
+I gathered the times and dates and thew them into a Google spreadsheet to visualize my trend.
+
+00:01:36.587 --> 00:01:38.185
+Here are the results so far.
+
+00:01:39.185 --> 00:01:46.937
+Success! It looks like I made some really good progress since I started in July, and my times have been inching downward as I get better at cycling uphill.
+
+00:01:47.437 --> 00:01:54.389
+The times also probably vary a bit because there are some stop signs and a traffic signal within the segment, which can slow me down.
+
+00:01:55.389 --> 00:01:58.586
+The next problem I wanted to tackle was the data entry bit.
+
+00:01:59.086 --> 00:02:08.915
+Since it’s a pain to update the spreadsheet each time I ride,  I wanted to automate the addition of new efforts (the term that Strava uses to describe single instances of activities on a segment).
+
+00:02:09.415 --> 00:02:11.333
+This is where things get interesting.
+
+00:02:12.333 --> 00:02:18.486
+Because I’m storing the efforts in a Google Doc, and because Strava has an API, I just need to connect the two together.
+
+00:02:18.986 --> 00:02:24.820
+Unfortunately, my go-to choice for this kind of thing, IFTTT, doesn’t have Strava as a channel.
+
+00:02:25.320 --> 00:02:39.946
+Luckily, I can do something similar with Zapier (btw that’s a referral link, so be sure to click it so I can get more tasks), which is sort of like IFTTT but costs money (albeit with a nice free tier) and has more integrations.
+
+00:02:40.446 --> 00:02:44.441
+You can also set up your own integration, which is what I had to do with Strava.
+
+00:02:45.441 --> 00:02:51.754
+In order to get the list of my efforts on that particular segment, I had to create a few Zapier “triggers.”
+
+00:02:52.254 --> 00:03:07.839
+One to get my Strava user ID (for use in other API endpoints), another to grab my starred segments (so I could specify which segment I wanted to track), and finally a trigger to listen for any new efforts on my commute’s segment (limited to efforts created by me).
+
+00:03:08.339 --> 00:03:14.572
+I also had to post-process the last trigger so that I could get the date in a format that works in Google Spreadsheets.
+
+00:03:15.072 --> 00:03:16.750
+The result looks something like this:
+
+00:03:17.750 --> 00:03:25.422
+Now, whenever I ride home on my bike while recording the segment with Strava, the effort will be automatically logged and graphed on my Google Spreadsheet!
+
+00:03:25.922 --> 00:03:29.278
+Apparently, I can embed the chart, so here it is!
+
+00:03:30.278 --> 00:03:36.911
+While the Zapier integration had a somewhat steep learning curve, it’s nice to just set the “zap” and then forget about it.
+
+00:03:37.411 --> 00:03:40.927
+Any new integrations I might need to write will also go much quicker.
+
+00:03:41.427 --> 00:03:49.419
+As always, Runscope was a really useful tool for exploring the Strava API and getting real responses from the API to play around with.
+
+00:03:49.919 --> 00:03:59.349
+Finally, I learned the right way to spell athlete rather painfully (after misspelling athlete_id a billion times and wondering why my request wasn’t filtering correctly)!
+
+00:04:00.349 --> 00:04:10.258
+I went from seeing some sketchy looking progress in my Strava results table to being able to visualize it on a graph, while also setting the graph up to update whenever I record a new effort!
+
+00:04:10.758 --> 00:04:12.037
+Automation for the win!
+
+00:04:13.037 --> 00:04:20.229
+If you’re interested in the details of the integration, or if you want to try it out yourself, let me know and I can invite you as a tester.
+
+00:04:20.729 --> 00:04:27.042
+If there’s a lot of interest, I can also go over the creation of the integration, as I ran into a few gotchas while building it.
+
+00:04:28.042 --> 00:04:28.682
+Comments
+
+00:04:30.182 --> 00:04:31.780
+Very nice integration!
+
+00:04:32.280 --> 00:04:38.593
+I’m looking for a way to automatically share my Strava activities to Twitter, either directly or through Zapier.
+
+00:04:39.093 --> 00:04:44.767
+I already tried to do it via Facebook, through Zapier, and confirmed with Zapier that it wouldn’t work that way.
+
+00:04:45.267 --> 00:04:47.584
+Do you think something like this is possible?
+
+00:04:48.584 --> 00:04:50.342
+Hi Chris, thanks for the comment!
+
+00:04:50.842 --> 00:04:54.278
+This is definitely possible using the Zapier integration I’ve written.
+
+00:04:54.778 --> 00:04:58.534
+I made a “beta” version of the integration if you’re interested in trying it out.
+
+00:04:59.034 --> 00:05:00.552
+Just go to this link:
+
+00:05:01.052 --> 00:05:18.384
+https://zapier.com/developer/invite/13496/a8dfb674e69310a871f44a10fe08202d/ You can use the trigger for a new ride, and pair it up with a new tweet.
+
+00:05:18.884 --> 00:05:21.121
+The output should look something like this:
+
+00:05:22.121 --> 00:05:24.438
+Let me know if you have any questions about getting it to work.
+
+00:05:25.438 --> 00:05:29.434
+Thanks! The trigger works, however the output’s not looking great.
+
+00:05:29.934 --> 00:05:43.680
+It looks like just text, see this Tweet for an example – https://twitter.com/cjremus/status/524681563091775489
+
+00:05:44.180 --> 00:05:49.694
+Ideally, I’d like the output to look like the Tweet that is sent when you hit the Twitter share button on a workout in Strava.
+
+00:05:50.194 --> 00:05:55.388
+Alternatively, I’d like to at least add how many miles the ride was and maybe the image link.
+
+00:05:55.888 --> 00:05:58.286
+Do you think it’s possible to do any of this?
+
+00:05:59.286 --> 00:06:05.599
+Hey Chris, it looks like you figured out the formatting for the Strava integration based on your more recent tweets.
+
+00:06:06.099 --> 00:06:09.135
+Let me know if that’s the case or if you need more help with it.
+
+00:06:10.135 --> 00:06:13.412
+Super cool. I’ve been looking for a way to do this.
+
+00:06:13.912 --> 00:06:21.664
+How might I go about converting the ‘moving time’ data from seconds to mm:ss and/or avg & max speed from m/s to km/hr?
+
+00:06:22.664 --> 00:06:23.782
+This is so rad!
+
+00:06:24.282 --> 00:06:25.960
+What a killer use case.
+
+00:06:26.460 --> 00:06:28.378
+Appreciate you sharing it!
+
+00:06:29.378 --> 00:06:31.296
+Great share, thanks very much.
+
+00:06:31.796 --> 00:06:45.702
+I’d like to use it to access to access friends activities i.e. have a trigger on https://www.strava.com/api/v3/activities/following.
+
+00:06:46.202 --> 00:06:48.599
+Any chance you could add that to Strava Beta?
+
+00:06:49.599 --> 00:07:00.948
+Sorry, after thinking it through as what I want to do is give friends kudos there would have to be a trigger to do so and I can only see List activity kudoers, and it doesn’t seem to be a part of Update activity.
+
+00:07:01.948 --> 00:07:04.585
+Great work. Thanks for making it available.
