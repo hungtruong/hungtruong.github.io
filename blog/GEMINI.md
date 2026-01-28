@@ -159,15 +159,5 @@ To force regeneration (e.g., after fixing typos or scraper logic):
 2.  **Push**: Commit and push the removal.
 3.  **Run Batch**: Execute the Kaggle batch notebook. It will detect the missing audio (since the slug is gone/invalidated) and regenerate it.
 
-## Code Styling Standards
-- **Theme:** Tokyo Night inspired (Deep dark blue background `#1a1b26`, pastel syntax colors).
-- **Layout:** 
-  - Width must be `100%` and match the blog post's content width (centered via `margin: 0 auto` or breakpoint rules).
-  - Rounded corners (`8px`).
-  - Subtle box-shadow for depth.
-  - Asymmetrical padding for balance: `0.8rem` vertical, `1.2rem` horizontal.
-- **Typography:** `0.8em` font size for a cleaner hierarchy; antialiased rendering via `-webkit-font-smoothing`.
-- **Custom Scrollbar:** Thin, dark scrollbar that matches the theme.
-
 # CRITICAL RULES
 - DO NOT push to Kaggle (`kaggle kernels push`) unless EXPLICITLY requested by the user. Always ask for confirmation first.
