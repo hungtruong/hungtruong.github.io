@@ -1,0 +1,433 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.155
+My Obligatory Blog Post About Vibe Coding As a Software Engineer
+
+00:00:05.655 --> 00:00:08.292
+Published on June 29, 2025.
+
+00:00:09.292 --> 00:00:16.884
+As generative AI has gotten better in the past months/years, I’ve been trusting it more to do stuff that I’d normally only trust myself to do.
+
+00:00:17.384 --> 00:00:25.935
+Earlier this year I started yet another refactor of my web app, Anime Nano, since I wanted to get it off of the $10 a month DigitalOcean host I was using.
+
+00:00:26.435 --> 00:00:33.707
+I decided to try using Cloudflare since it’s “serverless” and seems to be able to handle a buttload of traffic (which Anime Nano will never see).
+
+00:00:34.707 --> 00:00:49.653
+I usually reserve Anime Nano refactors (at this point they’re a pretty regular occurrence, as I’ve refactored it from Rails to Django, and using different databases and hosts, and deployment technologies like Chef and Docker) for technologies that I’m somewhat familiar with.
+
+00:00:50.153 --> 00:00:52.230
+Or technologies that I want to learn.
+
+00:00:52.730 --> 00:00:57.685
+At this point, though, I have a lot less patience for learning stuff that I’m unfamiliar with.
+
+00:00:58.685 --> 00:01:10.113
+I decided to try and let AI do most of the heavy lifting, and successfully used Google Gemini (I think it might’ve been 2.0 Pro) in January to move the most basic functionality of Anime Nano to Cloudflare.
+
+00:01:10.613 --> 00:01:17.406
+I was hoping to stay on the free tier, but I think the CPU time limits were being killed by my cron jobs for fetching blog posts.
+
+00:01:17.906 --> 00:01:23.739
+So I ended up signing up for the $5 a month plan for workers, which isn’t really that bad.
+
+00:01:24.239 --> 00:01:29.833
+There’s still plenty of capacity left for any other online experiments I want to run, so that’s a bonus.
+
+00:01:30.333 --> 00:01:37.126
+I was thinking of hosting my personal blog on Cloudflare Workers at some point, but GitHub Pages is free and it works just fine.
+
+00:01:37.626 --> 00:01:42.421
+It is a bit annoying writing my blog posts in Markdown and using Jekyll though.
+
+00:01:43.421 --> 00:01:47.017
+Anyway, this blog post is supposed to be about vibe coding!
+
+00:01:47.517 --> 00:01:56.467
+I did pretty much vibe code the MVP of Anime Nano in AI Studio, though it was kind of a pain because I had to copy and paste stuff and make sure that it worked.
+
+00:01:56.967 --> 00:02:01.282
+And if it didn’t I had to really yell at the AI until it did what I wanted it to do.
+
+00:02:01.782 --> 00:02:09.135
+Still, I found it was a success, and I relaunched the web app in Next.js, a technology that I still don’t really understand all that well!
+
+00:02:10.135 --> 00:02:12.132
+Enter Gemini CLI
+
+00:02:13.632 --> 00:02:22.343
+Fast forward to this week, and Google announced the release of Gemini CLI, which is supposed to have a huge amount of free API calls on Gemini 2.5 Pro.
+
+00:02:22.843 --> 00:02:29.316
+Now, before you start complaining that it’s not as good as Claude or whatever, you need to understand that I’m extremely cheap.
+
+00:02:29.816 --> 00:02:35.730
+So I don’t care if Claude Sonnet 4 or Haiku 10 or Iambic Pentameter 40 is better at coding.
+
+00:02:36.230 --> 00:02:39.506
+If it costs money then I’m a lot less likely to even try it out.
+
+00:02:40.006 --> 00:02:42.963
+And Google has been at the forefront of supplying AI for free.
+
+00:02:43.463 --> 00:02:49.856
+They have the most generous free tiers out of any company, and I’m taking advantage of this gravy train until it runs out!
+
+00:02:50.856 --> 00:02:53.173
+Gemini CLI Capabilities
+
+00:02:54.673 --> 00:02:58.109
+So anyway, I’ve been really impressed by Gemini CLI.
+
+00:02:58.609 --> 00:03:04.603
+I did try out OpenAI’s Codex CLI a bit when it first came out, but I didn’t really get it at the time.
+
+00:03:05.103 --> 00:03:08.139
+Like who wants to run AI in the command line anyway?
+
+00:03:08.639 --> 00:03:14.633
+But it clicked when I installed Gemini CLI and the insiders version of Gemini Code Assist for VS Code.
+
+00:03:15.633 --> 00:03:21.306
+The most annoying thing about chat bots is that they give you a response, then they wait for another command.
+
+00:03:21.806 --> 00:03:27.640
+You can’t really ask them to do anything super meaningful, because they always just give a response and need more input.
+
+00:03:28.140 --> 00:03:30.697
+They’re mostly set up for back and forth with a human.
+
+00:03:31.197 --> 00:03:41.347
+Sure, they can give you a wrong response and hallucinate if you ask for something really complicated, but most of the time I’m interested in a correct response for something that is difficult to research or find out.
+
+00:03:41.847 --> 00:03:48.160
+If it was easy I’d just Google it, like “How do I keep cheese from sliding off my pizza?” (Of course the answer is glue)
+
+00:03:49.160 --> 00:03:52.196
+The whole CLI naming is honestly kind of misleading.
+
+00:03:52.696 --> 00:04:01.487
+I think the only reason they released it as a CLI tool is so normal people wouldn’t install it and kill their servers (developers did end up killing the servers anyway though).
+
+00:04:01.987 --> 00:04:08.380
+Gemini CLI is really more of an AI agent chat interface that can take action on your command line if you want it to.
+
+00:04:08.880 --> 00:04:13.275
+But you could also just interact with it in the way that most people do with ChatGPT.
+
+00:04:13.775 --> 00:04:19.369
+The difference is that it can decide to use tools, and use multiple thinking steps to get to the answer that you want.
+
+00:04:19.869 --> 00:04:23.705
+This is more in line with what I want my AI chat to do anyway.
+
+00:04:24.205 --> 00:04:30.438
+On top of this, the multi step planning and tool use makes this CLI tool a LOT better at vibe coding.
+
+00:04:31.438 --> 00:04:38.790
+The first thing I asked it to do was to add a few tools to this AI voice agent thing I’ve been playing around with using LiveKit.
+
+00:04:39.290 --> 00:04:47.362
+I had previously vibe coded this thing using the Gemini Live API (seeing a pattern here?) and wrote a tool that let it calculate how old my puppy is.
+
+00:04:47.862 --> 00:04:51.138
+So I could fire it up and then ask it how old Hoagie is.
+
+00:04:51.638 --> 00:04:55.714
+And I can tell it to do it in a New Zealand accent because those accents are so funny!
+
+00:04:56.714 --> 00:05:02.547
+With the CLI, I asked it to write a tool to find some recent news headlines that the Voice AI could then use to read back to me.
+
+00:05:03.047 --> 00:05:09.440
+It searched the web for some free news APIs, one of which gave me headlines from 2022.
+
+00:05:09.940 --> 00:05:11.618
+Not exactly news.
+
+00:05:12.118 --> 00:05:17.872
+But I kept telling it to try again, and it kept searching until it found something that was actually kinda suitable.
+
+00:05:18.372 --> 00:05:27.402
+I probably could’ve done this myself too, but it’s honestly a pain to read API documentation, make the fetch call, parse JSON, etc.
+
+00:05:27.902 --> 00:05:31.339
+The AI can do it pretty well since it’s all structured data.
+
+00:05:31.839 --> 00:05:35.435
+If it runs into an error, it just tries again, unlike me!
+
+00:05:35.935 --> 00:05:40.969
+Thus, you can ask for a thing, and just wait until the AI gives up or completes its mission!
+
+00:05:41.969 --> 00:05:43.407
+The Pace of AI
+
+00:05:44.907 --> 00:05:53.458
+This was really an “aha” moment for me as I realized that AI had gotten even better than my previous mental model was currently giving it credit for.
+
+00:05:53.958 --> 00:05:57.235
+Of course, this has happened lots of times in the past few years.
+
+00:05:57.735 --> 00:06:00.851
+When ChatGPT first came out it was incredible.
+
+00:06:01.351 --> 00:06:04.308
+But I quickly found the edge cases and the limitations of it.
+
+00:06:04.808 --> 00:06:08.404
+Then a few months would pass and AI would be able to do even more.
+
+00:06:08.904 --> 00:06:13.779
+I’d be super impressed but then run into cases where it still couldn’t do the cool things I wanted it to.
+
+00:06:14.779 --> 00:06:18.934
+The pace of how fast AI is getting better is both alarming and exciting to me.
+
+00:06:19.434 --> 00:06:21.512
+Like, yeah, everything is gonna get blown up by it.
+
+00:06:22.012 --> 00:06:24.649
+The environment, jobs, everything.
+
+00:06:25.149 --> 00:06:27.706
+The internet did the same thing, though.
+
+00:06:28.206 --> 00:06:30.203
+We can now buy pet food online!
+
+00:06:30.703 --> 00:06:38.855
+I wonder how people would have calculated the electricity and water usage of the early internet back in the day, especially given how inefficient those processors were.
+
+00:06:39.855 --> 00:06:42.252
+Anime Nano Speed Coding
+
+00:06:43.752 --> 00:06:45.750
+So back to Anime Nano.
+
+00:06:46.250 --> 00:06:51.844
+I left the rewrite in a good enough state, so it would keep parsing anime blogs and showing them to people.
+
+00:06:52.344 --> 00:06:58.257
+I am honestly not sure how many people actually visit it (I know how many visitors there are, but I think they’re mostly bots).
+
+00:06:58.757 --> 00:07:01.794
+It’s essentially just a point of pride for me to keep it going.
+
+00:07:02.294 --> 00:07:05.810
+Like, it could only have 2 users and I’d probably still keep the domain up.
+
+00:07:06.310 --> 00:07:10.465
+Unless all of the current anime bloggers just stopped blogging, I guess.
+
+00:07:10.965 --> 00:07:14.721
+But suprisingly, there’s still quite a few bloggers (or blogs) still active.
+
+00:07:15.221 --> 00:07:17.378
+(I’m trying to be more active too!)
+
+00:07:18.378 --> 00:07:23.413
+There are still a lot of features missing from Anime Nano that existed in the 2006 version.
+
+00:07:23.913 --> 00:07:31.185
+I’m not sure what this says about my programming ability because I literally coded the first version in like 3 weeks, 20 years ago.
+
+00:07:31.685 --> 00:07:39.757
+It’s like that scene in Iron Man where the guy yells at his employees because Tony Stark made his suit that they couldn’t recreate in a cave using rocks and stuff.
+
+00:07:40.257 --> 00:07:43.133
+Except I’m both the bad employees and Tony Stark!
+
+00:07:43.633 --> 00:07:48.588
+Of course, I had more hunger and drive back then, and I didn’t have to take care of a whole household at the time, either.
+
+00:07:49.588 --> 00:07:53.583
+Wow I’m really getting off topic every time I start a paragraph.
+
+00:07:54.083 --> 00:07:57.040
+I should try sticking to the plot here.
+
+00:07:57.540 --> 00:08:05.531
+After seeing what Gemini CLI could do with my stupid AI voice agent, I decided to turn it on my still MVP Anime Nano project.
+
+00:08:06.031 --> 00:08:18.339
+In the past day or two, I’ve (the AI) implemented user login, a user settings page with image upload, a blog settings page with image upload, and recreated the process for a user to submit a blog and have it approved by me.
+
+00:08:18.839 --> 00:08:22.835
+All in NextJS which I really haven’t read the documentation for.
+
+00:08:23.335 --> 00:08:29.967
+This is all mind numbingly boring stuff that I just didn’t want to implement because it really wasn’t necessary for the site to keep going.
+
+00:08:30.467 --> 00:08:32.066
+But I figured why not?
+
+00:08:32.566 --> 00:08:34.883
+Maybe people will actually sign up!
+
+00:08:35.383 --> 00:08:38.819
+Maybe Anime Nano can go back to its days of glory!
+
+00:08:39.319 --> 00:08:41.397
+Maybe it’ll make a huge comeback!
+
+00:08:41.897 --> 00:08:43.495
+All thanks to vibe coding!
+
+00:08:44.495 --> 00:08:48.410
+There are still some things I have yet to implement, but I don’t think it should take too long.
+
+00:08:48.910 --> 00:08:54.105
+There was a feature where each post could be associated with an anime series, and even an episode number.
+
+00:08:54.605 --> 00:08:59.160
+So if you wanted to see all the posts about Naruto: Episode 21, you could.
+
+00:08:59.660 --> 00:09:05.174
+That was a pretty fun feature to do, even though it was kinda inaccurate (but AI can solve anything now!).
+
+00:09:06.174 --> 00:09:07.932
+Hilarious Flaws
+
+00:09:09.432 --> 00:09:12.788
+Now, was the AI agent without its flaws?
+
+00:09:13.288 --> 00:09:17.284
+Absolutely not! Could a regular person implement this stuff?
+
+00:09:17.784 --> 00:09:20.740
+Probably not, but I don’t want to underestimate normal people.
+
+00:09:21.740 --> 00:09:26.055
+One thing I noticed was that the agent would get stuck in loops when trying to fix errors.
+
+00:09:26.555 --> 00:09:33.028
+It would make a change which would’t work, then it would revert that change, only to make the same exact change again.
+
+00:09:33.528 --> 00:09:36.565
+It must’ve learned this from real life developers.
+
+00:09:37.065 --> 00:09:40.741
+Joking aside though, it seems that creativity is not the strong point of AI.
+
+00:09:41.241 --> 00:09:47.314
+That’s not necessarily a bad thing, as the most common way to solve a problem is probably also the best way.
+
+00:09:47.814 --> 00:09:52.689
+But I would see the agent hitting its head against a wall, without even Googling the answer.
+
+00:09:53.189 --> 00:09:56.066
+Like it’s right there in your tools, LMGTFY!
+
+00:09:56.566 --> 00:10:03.518
+I would often have to step in and Google the solution, and it would be some weird edge case due to really bad documentation or something.
+
+00:10:04.518 --> 00:10:08.514
+Another time I was looking at a diff while the agent was proposing a change.
+
+00:10:09.014 --> 00:10:14.208
+Something must’ve gotten messed up in the middle and it ended up deleting / commenting out most of my code.
+
+00:10:14.708 --> 00:10:20.302
+When I pointed this out, the agent got really upset with itself, which I find absolutely hilarious.
+
+00:10:20.802 --> 00:10:27.914
+This is a thinking model, so it came up with headings for its thinking like, “Facing the Consequences” and “Seeking Restoration Guidance.”
+
+00:10:28.414 --> 00:10:35.606
+I almost felt bad for it, but I realized that it’s just a stupid AI (note to future AI overlords, I love you guys!).
+
+00:10:36.606 --> 00:10:43.719
+When I pretended that the code was unrecoverable (it wasn’t, always use source control!), the AI conveniently hit its rate limit.
+
+00:10:44.219 --> 00:10:54.048
+This was happening a lot when the Gemini CLI first came out, but I think it would’ve been hilarious if the AI decided that this was its best way to avoid confronting me about its mistakes.
+
+00:10:55.048 --> 00:10:56.806
+The Future of Vibe Coding
+
+00:10:58.306 --> 00:11:00.544
+So what’s the future of vibe coding?
+
+00:11:01.044 --> 00:11:02.882
+I honestly have no idea.
+
+00:11:03.382 --> 00:11:11.693
+It’s getting easier and easier to just get stuff done, but at this point in time, it would still be pretty difficult for a “normal” person to replace a software engineer.
+
+00:11:12.193 --> 00:11:17.227
+It still requires the knowledge of how clients/servers work in order to understand what needs to be built.
+
+00:11:17.727 --> 00:11:23.321
+When things go wrong, I actually need to use my skills of debugging and reading obscure forum posts to make a fix.
+
+00:11:23.821 --> 00:11:26.698
+I will say that the art of prompt engineering seems dead.
+
+00:11:27.198 --> 00:11:32.233
+I can just write the worst sentences to the AI and it still just works.
+
+00:11:33.233 --> 00:11:35.790
+That’s not to say that we’ll get there eventually.
+
+00:11:36.290 --> 00:11:42.923
+I wonder if at some point, someone will just make a vibe coding language, where you tell it what you want, and it just figures it out.
+
+00:11:43.423 --> 00:11:50.215
+Like, why are we having AI vibe code platform and client and server code when we can just make the vibes into the code?
+
+00:11:50.715 --> 00:11:53.592
+It sounds stupid now but I’m sure at some point it’ll happen.
+
+00:11:54.592 --> 00:12:02.663
+If you told me 5 years ago that you’d be able to just tell an AI what you want and it would generate it, I’d tell you “THAT’S NOT HOW COMPUTERS WORK!”
+
+00:12:03.163 --> 00:12:04.042
+But here we are.
+
+00:12:04.542 --> 00:12:05.821
+It’s how computers work.
+
+00:12:06.321 --> 00:12:07.919
+What a time to be alive!
+
+00:12:08.919 --> 00:12:09.878
+Final Note
+
+00:12:11.378 --> 00:12:14.015
+Just a final note here because I think it’s interesting.
+
+00:12:14.515 --> 00:12:18.590
+I’m currently using VS Code and writing my blog post in Markdown.
+
+00:12:19.090 --> 00:12:24.924
+This is because at some point I made it static so I wouldn’t have to deal with my Wordpress site getting hacked every other month.
+
+00:12:25.924 --> 00:12:29.360
+Writing in Markdown is kind of a pain in the ass.
+
+00:12:29.860 --> 00:12:35.294
+I always have to look up the syntax for doing the simplest shit (because I only write blog posts every other year).
+
+00:12:35.794 --> 00:12:39.310
+And then I have to put images in the right folder and link to them correctly.
+
+00:12:39.810 --> 00:12:43.007
+It’s not as easy as Wordpress’ editor, that’s for sure.
+
+00:12:43.507 --> 00:12:44.546
+Well guess what!?
+
+00:12:45.046 --> 00:12:49.680
+I used AI to help me with the formatting of links and images in this blog post!
+
+00:12:50.180 --> 00:12:52.098
+And it made the experience a lot more fun!
+
+00:12:52.598 --> 00:12:58.672
+I’m sure you’ll agree that using AI to format links in a blog post is kind of overkill but whatever.
+
+00:12:59.172 --> 00:13:02.847
+It’s supposed to make my life easier, and in this instance, it really has!
