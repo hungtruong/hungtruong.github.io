@@ -1,0 +1,250 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.635
+Reverse Engineering Quibi: Protocol Buffers and HLS Streaming
+
+00:00:06.135 --> 00:00:08.772
+Published on May 12, 2020.
+
+00:00:09.772 --> 00:00:15.446
+I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects.
+
+00:00:15.946 --> 00:00:20.900
+I really enjoy reverse engineering apps, so I decided to take a look at Quibi.
+
+00:00:21.900 --> 00:00:27.494
+Quibi (short for “Quick Bites”) is a video streaming app/service that has a bunch of shows that are short.
+
+00:00:27.994 --> 00:00:33.588
+The idea is that you can sit on a bus ride and consume an episode or two, depending on how long your commute is.
+
+00:00:34.088 --> 00:00:40.321
+One of the constraints of the platform is that you can only watch these videos on a phone or tablet with the app installed.
+
+00:00:41.321 --> 00:00:56.027
+Since everyone is stuck indoors for a while this constraint is kinda stupid and most people would probably like to watch their videos on their big tv rather than huddle around a phone, which is what Emily and I had to do to watch that stupid viral show about the terrible wife with the golden arm.
+
+00:00:57.027 --> 00:01:04.379
+Anyway, I had an idea to write a tvOS app that would work with Quibi, so you could watch your terrible shows on your tv.
+
+00:01:04.879 --> 00:01:07.995
+Here’s what I learned trying to reverse engineer the Quibi app.
+
+00:01:08.995 --> 00:01:10.274
+Setting up Charles
+
+00:01:11.774 --> 00:01:18.327
+The first rule of reverse engineering club is that you should probably install Charles proxy on your computer, and point your phone to it.
+
+00:01:18.827 --> 00:01:22.822
+This lets you inspect network requests and figure out the API for an app.
+
+00:01:23.322 --> 00:01:29.715
+Depending on how stringent the app’s security settings are, you can either learn a lot, or very little from Charles.
+
+00:01:30.715 --> 00:01:35.990
+The way Charles works is that you basically route all of your traffic from your iPhone to your computer.
+
+00:01:36.490 --> 00:01:44.161
+You need to install a certificate on your phone and trust it, so that your phone thinks that it’s going through a secure connection when it’s really getting owned.
+
+00:01:44.661 --> 00:01:47.139
+But since you’re self-owning, it’s generally okay.
+
+00:01:47.639 --> 00:01:51.874
+I’m not going to do a full tutorial on how to do this because you can just read the docs.
+
+00:01:52.874 --> 00:01:56.789
+You can also buy a version of Charles that runs directly on your phone.
+
+00:01:57.289 --> 00:02:04.482
+I did this, but I also find it easier to work with on my computer, so I used the free version that stops working every 30 minutes.
+
+00:02:04.982 --> 00:02:06.979
+I should probably buy the full version.
+
+00:02:07.979 --> 00:02:19.168
+Anyway, once you get the proxy working on your phone and add the proper domains to the allowed list, you should start seeing your network requests and responses pop up in Charles after firing up the app and doing stuff.
+
+00:02:20.168 --> 00:02:25.842
+It turns out (luckily for me) that Quibi doesn’t utilize certificate pinning (at least at the time I’m writing this article).
+
+00:02:26.342 --> 00:02:35.692
+Cert pinning is a way to prevent snooping of network requests by embedding a certificate (or maybe a hash of it or a public key) to be trusted into the actual app binary.
+
+00:02:36.192 --> 00:02:41.626
+This means that adding the additional Charles certificate won’t work because the app won’t accept it.
+
+00:02:42.126 --> 00:02:47.400
+The process of pinning is kind of a pain in the ass, which is why a lot of companies don’t do it.
+
+00:02:48.400 --> 00:02:57.191
+Because Quibi doesn’t use cert pinning, that means I can observe all of the requests and responses that the app sends and receives, which makes it a lot easier to reverse engineer!
+
+00:02:58.191 --> 00:02:59.869
+Authentication
+
+00:03:01.369 --> 00:03:10.639
+I won’t go too much into the way that Quibi does authentication, as it appears to be a pretty basic implementation of OAuth 2.0, using auth0 as a service provider.
+
+00:03:11.139 --> 00:03:20.729
+It doesn’t appear to use a client secret key, as I’m able to just replay the request with my username, password, client id and other parameters and get a valid access token back.
+
+00:03:21.229 --> 00:03:29.141
+One interesting thing to note here is how short the token expiration is, just 2700 seconds, or 45 minutes.
+
+00:03:30.141 --> 00:03:37.813
+Once authentication happens, the access token is used in subsequent requests as the authorization bearer header tokens.
+
+00:03:38.813 --> 00:03:49.282
+I didn’t bother to set up a new app with authentication because I wanted to get to the meat of the app, and started taking a look at how the app’s requests and responses were structured, which brings us to…
+
+00:03:50.282 --> 00:03:52.120
+Protocol Buffers!
+
+00:03:53.620 --> 00:03:56.656
+I’ll be honest, I was initially pretty annoyed when I read the line,
+
+00:03:57.656 --> 00:04:00.133
+content-type: application/protobuf
+
+00:04:01.133 --> 00:04:06.887
+in Charles. That’s because protocol buffers are pretty annoying to work with unless you actually have access to the .
+
+00:04:07.387 --> 00:04:10.424
+proto files that were used to generate the schema for the response.
+
+00:04:11.424 --> 00:04:18.696
+Luckily, I have experience working with protobufs (as the cool kids call them) because we started implementing them at Lyft last year.
+
+00:04:19.196 --> 00:04:27.667
+As a primer, protocol buffers basically define requests and responses, and their types, in a way that can be shared between servers, clients, etc.
+
+00:04:28.167 --> 00:04:31.843
+It does so in a way that reduces the amount of redundancy in the data.
+
+00:04:32.343 --> 00:04:42.812
+So instead of looking at a JSON file that labels each key/value pair for each item in an array, you just see the values, and the keys (and their types) are essentially encoded outside of the format itself.
+
+00:04:43.312 --> 00:04:50.025
+That’s probably a gross simplification of protobufs, but that’s basically how I understand their functionality in lay person terms.
+
+00:04:51.025 --> 00:04:54.781
+So getting back to Quibi, I was seeing calls to endpoints like
+
+00:04:55.781 --> 00:05:04.092
+https://qlient-api.quibi.com/quibi.qlient.api.home.Home/GetHomeCards
+
+00:05:05.092 --> 00:05:09.487
+with a bunch of wacky characters, urls, and names and descriptions of tv shows.
+
+00:05:09.987 --> 00:05:18.538
+Looking at the raw text gave me an idea of what was being returned, but there was also a lot of data that I couldn’t see because it was encoded as a protobuf response.
+
+00:05:19.538 --> 00:05:27.210
+I found a tool written by someone named Alba Mendez called protobuf-inspector which allows you to visualize the values in a protobuf response.
+
+00:05:27.710 --> 00:05:31.785
+Once I threw the response into this tool, it started to make a lot more sense.
+
+00:05:32.785 --> 00:05:38.779
+Here, I could see that the home cards were displaying structured information for each of the cards in the app.
+
+00:05:39.279 --> 00:05:46.711
+The hierarchy seemed to be a card with series info, a mp4 preview link, and then info about that particular episode.
+
+00:05:47.211 --> 00:05:56.241
+There were also some values that didn’t really seem useful, like “<varint> = 1” which could’ve meant anything, like a bool value or episode number.
+
+00:05:57.241 --> 00:06:04.034
+The tool has a way to set up object definitions, so that when you run it again, you see the key names and types that you defined.
+
+00:06:04.534 --> 00:06:09.648
+This is helpful if you’re trying to guess what something is and you want to compare it against a few different objects.
+
+00:06:10.148 --> 00:06:14.224
+Here’s what the response looked like once I tried defining some of the keys:
+
+00:06:15.224 --> 00:06:18.020
+This makes the response look a bit more logical.
+
+00:06:18.520 --> 00:06:23.555
+I really guessed some of these, so if someone from Quibi actually reads this maybe you can confirm.
+
+00:06:24.055 --> 00:06:31.407
+I probably spent more time on this than I needed, because really all I want is to show a list of shows and maybe even start watching a show.
+
+00:06:32.407 --> 00:06:36.323
+To waste even more time, I ended up defining this response in a .
+
+00:06:36.823 --> 00:06:43.855
+proto file, compiled it into Swift with swift-protobuf and got a Swift app to parse the response into real Swift structs!
+
+00:06:44.355 --> 00:06:46.353
+Here is the proto definition:
+
+00:06:47.353 --> 00:06:53.666
+The generated proto code in Swift is pretty big, so I’ll leave it as an exercise to the reader to run it through swift-protobuf.
+
+00:06:54.666 --> 00:06:58.022
+Here’s what it looks like running in the debugger in my app:
+
+00:06:59.022 --> 00:07:12.049
+So with what I have written about so far, I could actually write a functioning Quibi client that supports logging in, making a request to get a list of tv show cards, and displays them, with a “live” preview, just like the real app.
+
+00:07:12.549 --> 00:07:15.586
+That doesn’t matter much unless you can actually watch the show, though.
+
+00:07:16.586 --> 00:07:18.583
+HLS and Video Streaming
+
+00:07:20.083 --> 00:07:25.597
+I apologize for the anti-climactic finale of this blog post, but this is where I got stuck.
+
+00:07:26.597 --> 00:07:31.152
+Before I tried reverse engineering this app, I pretty much knew nothing about video streaming.
+
+00:07:31.652 --> 00:07:50.670
+When looking at the chain of requests that the app makes, it appears that the app hits an endpoint called “GetPlaybackInfo” and sends a payload of series id, season #, and episode # along with a mystery UUID that I haven’t seen anywhere else in the app requests/responses, then receives a link to a “license” url, a few links to .
+
+00:07:51.170 --> 00:07:56.284
+m3u8 resources and some cookies for accessing those . m3u8 resources.
+
+00:07:57.284 --> 00:08:03.997
+Then the app makes a request to the license url with some form encoded data and receives some other encoded data back.
+
+00:08:04.497 --> 00:08:07.613
+Finally, the app makes a request to one of the .
+
+00:08:08.113 --> 00:08:11.390
+m3u8 files and starts streaming the video.
+
+00:08:12.390 --> 00:08:14.707
+I did some research and it looks like a .
+
+00:08:15.207 --> 00:08:20.561
+m3u8 url basically provides the client with a way or ways to display the video to the user.
+
+00:08:21.061 --> 00:08:28.094
+It can include things like different video streams with varying quality, and it looks like it even has some subtitle file support.
+
+00:08:29.094 --> 00:08:31.331
+I tried just replaying the call to the .
+
+00:08:31.831 --> 00:08:36.786
+m3u8 file with the same authentication cookie and it unfortunately didn’t work.
+
+00:08:37.286 --> 00:08:45.437
+I think that the license url provides the app with a way to decode the video, and without knowing what to send or how to decode it, I think I’m essentially stuck.
+
+00:08:46.437 --> 00:08:51.391
+I sort of didn’t expect to be able to finish this app anyway, so I’m pretty happy with how far I got.
+
+00:08:51.891 --> 00:08:59.164
+I also figure that if I try to go any further with this, Quibi will probably try to sue me or something, so it probably isn’t worth it.
+
+00:08:59.664 --> 00:09:05.098
+In any case, I did learn a lot from this project, and hopefully you have too, from reading this post.
+
+00:09:05.598 --> 00:09:11.271
+If you have any ideas on how I would proceed or if you enjoyed this post, feel free to let me know!
