@@ -1,0 +1,229 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.594
+Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth
+
+00:00:07.094 --> 00:00:09.891
+Published on March 17, 2019.
+
+00:00:10.891 --> 00:00:19.602
+It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.
+
+00:00:20.602 --> 00:00:28.273
+I recently purchased an exercise bike called the BikeErg (I think the name has something to do with the rowing machines that the manufacturer also makes).
+
+00:00:28.773 --> 00:00:40.042
+The bike has a built-in computer that keeps track of things like watts (apparently cycling is a sport that has really good analytics since it’s easy to track raw power), calories burned, cadence and other stuff.
+
+00:00:40.542 --> 00:00:44.857
+You can view the data on the monitor or use an app like Zwift to do workouts.
+
+00:00:45.857 --> 00:00:51.770
+I’ve been using the BikeErg to exercise pretty regularly now, and I tried a bunch of different apps that can connect to it.
+
+00:00:52.270 --> 00:01:01.860
+Zwift is pretty much the gold standard as it has many features like 3D avatars and environments, a rich community, and lots of different workout plans for you to try.
+
+00:01:02.360 --> 00:01:11.551
+Zwift integrates with apps like MyFitnessPal and Strava, too, so I can trick people into thinking that I’ve ridden in Central Park one day and London the next.
+
+00:01:12.551 --> 00:01:17.985
+While I think the feature set of Zwift is really compelling, I’m more of an old school app user.
+
+00:01:18.485 --> 00:01:20.722
+I don’t really care about the online community.
+
+00:01:21.222 --> 00:01:26.896
+I don’t really need to look at my avatar riding his bike around a futuristic city or an exploding volcano.
+
+00:01:27.396 --> 00:01:32.111
+I just want to do some directed workouts and maybe track my heart rate and my calories burned.
+
+00:01:32.611 --> 00:01:40.203
+The price of $15 a month is probably fine for people who use all of those features and get the value out of it, but I feel like I do not.
+
+00:01:41.203 --> 00:01:52.471
+Just to be clear here, I do think app developers deserve to be paid for their work and it’s definitely within reason for Zwift to charge this subscription given the sheer amount of support they need to provide to all of their users’ varying setups.
+
+00:01:52.971 --> 00:01:58.085
+After just implementing a small proof of concept, I have some mad respect for their dev team.
+
+00:01:59.085 --> 00:02:05.239
+However, I am cheap and I’m an iOS developer so I figured, “maybe I can roll my own fake Zwift!”
+
+00:02:06.239 --> 00:02:07.917
+Enter CoreBluetooth
+
+00:02:09.417 --> 00:02:17.888
+I’ve been interested in Bluetooth development ever since CoreBluetooth was added to the iOS 5.0 SDK (I think the first supported device was the iPhone 4s).
+
+00:02:18.388 --> 00:02:26.299
+But every time I tried to sit down and read the documentation I got discouraged by the complexity and ended up getting distracted by some other new shiny API.
+
+00:02:26.799 --> 00:02:34.152
+Since I had a desired use case here: Make a Zwift alternative for myself, I was able to focus up some more and get something working.
+
+00:02:35.152 --> 00:02:43.383
+While the Bluetooth protocol is incredibly flexible, that flexibility also makes it incredibly complicated to get even a simple proof of concept working.
+
+00:02:43.883 --> 00:02:47.639
+If you don’t know what the special Bluetooth jargon means, it can seem really confusing.
+
+00:02:48.139 --> 00:02:54.612
+I still don’t really understand all of it but I’ve managed to hack something together that will serve as a basis for my fake Zwift app.
+
+00:02:55.612 --> 00:03:04.003
+Rather than bore you with the technical jargon and steps required to make this app, I’d rather just go through my process of figuring it out, which may be slightly more interesting.
+
+00:03:05.003 --> 00:03:06.921
+Of course it’s called a “Manager”
+
+00:03:08.421 --> 00:03:17.611
+So the first thing I did was go to this document (which I guess is deprecated now but I didn’t notice that message when I was reading it) which goes over the Core Bluetooth framework.
+
+00:03:18.611 --> 00:03:25.004
+I found out that I needed to create a CBCentralManager, so I did that and then I tried to scan for some Bluetooth devices:
+
+00:03:26.004 --> 00:03:28.561
+let centralManager = CBCentralManager()
+
+00:03:29.061 --> 00:03:34.895
+self.centralManager.scanForPeripherals(withServices: nil, options: nil)
+
+00:03:35.895 --> 00:03:40.450
+I immediately got an error that I couldn’t do that since the centralManager wasn’t powered on yet.
+
+00:03:40.950 --> 00:03:48.861
+Oops! I then set the delegate of the centralManager and waited for the method “centralManagerDidUpdateState” to check that it was powered on before scanning.
+
+00:03:49.861 --> 00:03:57.773
+I soon started getting a bunch of peripherals in my next delegate method, “centralManager(_:didDiscover:advertisementData:rssi:)”
+
+00:03:58.773 --> 00:04:09.482
+Among the things I found were my laptop (over and over again even though the scan was set to not allow duplicates…), someone’s Bluetooth headset and various other things I couldn’t identify. Success!
+
+00:04:10.482 --> 00:04:17.994
+Once I filtered out the peripherals that kept on repeating, I was able to turn on the bike (by cycling a bit) and I got this message in my logs:
+
+00:04:18.994 --> 00:04:21.791
+I successfully found my PM5.
+
+00:04:22.291 --> 00:04:25.247
+Now to connect to it and get the data.
+
+00:04:25.747 --> 00:04:28.704
+I ended up connecting to the PM5 based on the name.
+
+00:04:29.204 --> 00:04:42.870
+(After doing some reading it looks like I could connect based on the last service UUID of “CE060000-43E5-11E4-916C-0800200C9A66”).
+
+00:04:43.870 --> 00:04:52.661
+I called the “connect” function of the centralManager and later got an error because the peripheral wasn’t retained (I guess the Central doesn’t keep a strong reference, which makes sense).
+
+00:04:53.161 --> 00:04:57.236
+I tried again, this time keeping a reference to the peripheral in an array.
+
+00:04:58.236 --> 00:05:01.113
+Peripherals, Services and Characteristics
+
+00:05:02.613 --> 00:05:06.369
+Once I connected, I had to discover the peripheral’s services.
+
+00:05:06.869 --> 00:05:11.184
+And once that succeeded I had to discover each service’s characteristics.
+
+00:05:11.684 --> 00:05:19.116
+Once you discover those characteristics you can set the peripheral’s services’ characteristics to “notify” you when the characteristic changes.
+
+00:05:19.616 --> 00:05:20.655
+In more depth:
+
+00:05:21.655 --> 00:05:33.483
+This all seems really convoluted to me and it was probably part of the reason that I always gave up on implementing Bluetooth in the past, but I think that’s more of a symptom of the complexity of the Bluetooth protocol than the CoreBluetooth API.
+
+00:05:34.483 --> 00:05:38.878
+Now all I needed to do was generate some data by cycling on the bike for a few seconds.
+
+00:05:39.378 --> 00:05:41.456
+I wasn’t quite finished yet, though.
+
+00:05:41.956 --> 00:05:49.148
+When the characteristics are updated and you start getting notified, you can inspect the new values, but those values are just Data objects.
+
+00:05:49.648 --> 00:05:56.680
+Each characteristic can hold a number of values based on how the data is structured, and that is up to whoever is implementing the Bluetooth protocol.
+
+00:05:57.680 --> 00:06:03.754
+I did some research and found this document that describes the Bluetooth specifications for the PM5 device.
+
+00:06:04.754 --> 00:06:14.344
+In that document were some tables including the one above which describes the UUID for a characteristic that includes things like elapsed time, calories, and most importantly, watts.
+
+00:06:14.844 --> 00:06:23.075
+I discovered that the data was being encoded into bytes, so I took the raw Data object and split it into an array of 8-bit Integers.
+
+00:06:23.575 --> 00:06:27.570
+Once I started printing those arrays I saw something like this:
+
+00:06:28.570 --> 00:06:33.925
+Because the PM5 was originally set up for rowing machines, the documentation is a bit confusing.
+
+00:06:34.425 --> 00:06:38.340
+It refers to “strokes” which might line up with rpms on a bike?
+
+00:06:38.840 --> 00:06:45.793
+I was mainly interested in watts for my proof of concept so I found a few values in the document that mentioned watts.
+
+00:06:46.293 --> 00:06:52.686
+The table in the spec mentions “Stroke Power Lo (watts)” and has a “Stroke Power Hi” (what’s the difference?).
+
+00:06:53.186 --> 00:06:58.940
+I cobbled an interface together to test out my guess about the first value and here’s the video result:
+
+00:06:59.940 --> 00:07:03.615
+Success! I’m now able to connect my phone to my bike with my app.
+
+00:07:04.115 --> 00:07:11.707
+I have only gotten the wattage data from the bike so far, but reading through the spec it seems like there is a lot more I can pull via Bluetooth.
+
+00:07:12.207 --> 00:07:20.918
+I already know from using Zwift that I can get cadence from the bike, for example, and I saw a few other interesting things like calories, pace and distance traveled.
+
+00:07:21.918 --> 00:07:26.233
+Every Journey Begins With a Single CoreBluetooth Implementation
+
+00:07:27.733 --> 00:07:32.608
+I titled this blog post “Part 1” in a series but I don’t know when the next step will be.
+
+00:07:33.108 --> 00:07:34.626
+My wishlist is:
+
+00:07:35.626 --> 00:07:41.779
+I haven’t figured out which order to do these things in but for now I’ll continue to use Zwift since I already paid for the membership.
+
+00:07:42.279 --> 00:07:51.470
+My next step is probably to break out the code for connecting to the PM5 into its own project and make all of the data from it available in an easy to consume form.
+
+00:07:51.970 --> 00:07:56.045
+I’m kinda torn between that and just making the MVP for doing workouts.
+
+00:07:57.045 --> 00:08:03.678
+If I had to estimate, I probably spent more than 3 hours working on this project so far and more on writing this blog post.
+
+00:08:04.178 --> 00:08:11.131
+If I was to value my time based on what my contracting rate would be I’d probably be able to pay for more than a year of Zwift with it!
+
+00:08:11.631 --> 00:08:17.784
+So this project is really more about learning different iOS technologies than it is about saving money at this point.
+
+00:08:18.784 --> 00:08:21.261
+If you found this blog post interesting let me know!
+
+00:08:21.761 --> 00:08:27.994
+I wanted to write down my process so I could remember it, but hopefully it’s useful to anyone trying to implement CoreBluetooth.
+
+00:08:28.494 --> 00:08:35.766
+I found a bunch of sample code that connects to heart rate monitors but I didn’t find any that go through the process of writing code to a spec document.
+
+00:08:36.266 --> 00:08:42.340
+If you want to try to run this app yourself (and you happen to have the same exact bike as me), check out the source code here.
