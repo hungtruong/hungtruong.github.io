@@ -1,0 +1,64 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.078
+Open Sourcing Stuff on Github
+
+00:00:03.578 --> 00:00:05.655
+Published on June 05, 2013.
+
+00:00:06.655 --> 00:00:13.128
+A common piece of advice to developers that I often hear is that they should try to contribute to open source projects.
+
+00:00:13.628 --> 00:00:21.220
+One thing that I haven’t really been good at before is having actual code that I’ve written out in the open for people to see and maybe even use.
+
+00:00:21.720 --> 00:00:25.636
+I’ve started to rectify this with a few public Github repos.
+
+00:00:26.636 --> 00:00:30.392
+The killer feature of Github really is the social aspect of it.
+
+00:00:30.892 --> 00:00:39.522
+I could either have a mediocre piece of code that sits around and keeps sucking, or I could post it to Github and anyone who wants to use it and possibly improve on it can.
+
+00:00:40.022 --> 00:00:46.176
+Not only does having code out there help your rep, but the act of putting it out there raises your standards quite a bit.
+
+00:00:47.176 --> 00:00:51.970
+What follows are a few projects I’ve posted on Github under “freeish” licenses.
+
+00:00:52.470 --> 00:00:57.345
+I don’t know too much about them, but a pal once told me that the MIT one is pretty open.
+
+00:00:57.845 --> 00:01:04.078
+Most of these are things I’ve used in my own code or things I used to learn a language (like the Chef recipe).
+
+00:01:04.578 --> 00:01:08.414
+I’ve learned to not care about perfection and just let people try it.
+
+00:01:08.914 --> 00:01:12.510
+I’m sure they’ll let me know if it sucks (especially if it hits Hacker News).
+
+00:01:13.510 --> 00:01:21.262
+ObjTweet – a helper class for Twitter related stuff on iOS (now deprecated in favor of the official integration.
+
+00:01:22.262 --> 00:01:29.933
+LinkedIn Password Leak Checker – some people made a web based form version of this, which I thought was a really, really bad idea.
+
+00:01:30.933 --> 00:01:35.408
+Weathergram – an example of an “award winning” Twilio contest app.
+
+00:01:35.908 --> 00:01:38.705
+Some super low quality code here, folks.
+
+00:01:39.705 --> 00:01:44.100
+Google TTS CLI – I wrote more about this Google hack here .
+
+00:01:45.100 --> 00:01:50.934
+Chef recipe for Duo Unix – I was learning Chef so I thought I’d make a recipe for a cool startup in town.
+
+00:01:51.934 --> 00:02:01.924
+Runscope iOS – This is a subclass of NSMutableURLRequest that makes it easy to use Runscope, which is a cool product for helping you analyze and debug API requests.
+
+00:02:02.924 --> 00:02:10.835
+These are mostly one-off simple hacks or convenience classes, so hopefully one of these days I’ll release something more substantial and open source it.
