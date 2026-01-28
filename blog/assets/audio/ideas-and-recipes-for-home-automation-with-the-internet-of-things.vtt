@@ -1,0 +1,244 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.715
+Ideas and Recipes For Home Automation With The Internet of Things
+
+00:00:06.215 --> 00:00:08.852
+Published on May 20, 2014.
+
+00:00:09.852 --> 00:00:15.765
+A few weeks ago my friend Emily asked me to speak at the Ann Arbor Mini Maker Faire for their speaker series.
+
+00:00:16.265 --> 00:00:21.140
+I said “sure” and figured I’d talk about something like app development or design.
+
+00:00:21.640 --> 00:00:26.674
+I ended up picking a more “Maker Faire-y” topic since I thought it would work better for the crowd.
+
+00:00:27.674 --> 00:00:32.389
+I’ve been really getting into home automation and buying a lot of “internet of things” products lately.
+
+00:00:32.889 --> 00:00:39.362
+I decided to do an introductory talk on home automation along with ideas on how people can get up and running quickly.
+
+00:00:39.862 --> 00:00:42.979
+I did the talk last weekend and had a great turnout.
+
+00:00:43.479 --> 00:00:48.593
+Some people asked for more information so I thought I’d write up a blog post that more or less summarized the talk.
+
+00:00:49.093 --> 00:00:50.292
+So here it is!
+
+00:00:51.292 --> 00:00:53.689
+What exactly is the “Internet of Things?”
+
+00:00:55.189 --> 00:01:01.023
+“The Internet of Things” is a term that gets thrown around a lot but doesn’t seem to have an official definition.
+
+00:01:01.523 --> 00:01:10.713
+I like to think of it as the concept that, as devices gain more intelligence through the ability to communicate wirelessly and through the internet, they become more useful.
+
+00:01:11.213 --> 00:01:15.368
+In other words, things will form their own internet and will generally be awesome.
+
+00:01:15.868 --> 00:01:24.339
+I was reminded the video game, Megaman Battle Network, where literally everything, including a microwave, has a port to jack into (and can thus catch a virus).
+
+00:01:25.339 --> 00:01:31.413
+It also means that your refrigerator might be able to tweet when you run out of milk, or stream music via Pandora.
+
+00:01:32.413 --> 00:01:35.609
+Why am I hearing so much about the IoT right now?
+
+00:01:37.109 --> 00:01:41.584
+In the past few decades, we’ve seen the cost of producing software go way down.
+
+00:01:42.084 --> 00:01:46.479
+Starting a software business simply costs less today than it did in the 90s.
+
+00:01:46.979 --> 00:01:55.610
+While hardware always brings more upfront costs, it seems like commodity hardware and Kickstarter are making it easier for smaller companies to get into the hardware game.
+
+00:01:56.110 --> 00:02:04.501
+On top of that, wireless technologies like Bluetooth LE and low power Wifi are enabling devices to talk to one another as well as to the internet.
+
+00:02:05.001 --> 00:02:13.632
+In the past few years we’ve seen large companies like Belkin get into this space as well as smaller startups like Nest (though they were aquired by Google pretty recently).
+
+00:02:14.632 --> 00:02:16.310
+Some things you can accomplish
+
+00:02:17.810 --> 00:02:22.685
+I’m just going to list a few use cases that I consider to fall in the category of “Internet of Things.”
+
+00:02:23.185 --> 00:02:30.137
+After I give an initial survey, I’ll go into ways that you can use these off-the-shelf solutions to automate your home.
+
+00:02:31.137 --> 00:02:32.815
+Turn on/off light switches
+
+00:02:34.315 --> 00:02:39.030
+One of the simplest use cases for home automation is turning off/on light switches.
+
+00:02:39.530 --> 00:02:45.044
+You can do this with the Belkin Wemo (which is what I use) or with something like Ninja Blocks or SmartThings.
+
+00:02:46.044 --> 00:02:47.243
+Detect Motion
+
+00:02:48.743 --> 00:02:54.497
+You can use Dropcam to detect motion with video, or Wemo / SmartThings to detect motion events.
+
+00:02:54.997 --> 00:02:59.152
+This is mostly useful indoors if you don’t have pets since they can set false alarms.
+
+00:03:00.152 --> 00:03:02.389
+Detect when doors/windows are open
+
+00:03:03.889 --> 00:03:07.246
+You can use SmartThings to detect when a door or window has been opened.
+
+00:03:07.746 --> 00:03:15.817
+This could be useful for knowing if you left a window open while it’s raining, though it would be even more helpful if it could close the window for you automatically.
+
+00:03:16.817 --> 00:03:19.694
+Detect water moisture / floods
+
+00:03:21.194 --> 00:03:23.991
+Apparently it really sucks to have a flood in your basement.
+
+00:03:24.491 --> 00:03:30.084
+It might be worth the extra money to install a SmartThings moisture detector to tell you if there’s a water leak or flood.
+
+00:03:31.084 --> 00:03:32.763
+Lock or unlock your front door
+
+00:03:34.263 --> 00:03:39.537
+I ordered a Lockitron a really long time ago and am happy to announce that it should be shipping soon!
+
+00:03:40.037 --> 00:03:43.473
+I also found a product by Schlage that seems to do something similar.
+
+00:03:44.473 --> 00:03:46.311
+Keep track of your driving
+
+00:03:47.811 --> 00:03:53.884
+Automatic helps you keep track of your MPG and total distance traveled by connecting to the data port of your car.
+
+00:03:54.884 --> 00:03:56.562
+Don’t kill your plants
+
+00:03:58.062 --> 00:04:04.935
+This is a fairly stupid product called the Parrot Flower Power that can remind you to water your plant when the soil gets too dry.
+
+00:04:05.435 --> 00:04:11.269
+It’s probably more cost effective to just buy a new plant if yours dies from under/over watering but whatever.
+
+00:04:12.269 --> 00:04:14.906
+Keep track of how many eggs you have left
+
+00:04:16.406 --> 00:04:20.241
+The Quirky Egg Minder keeps track of how many eggs you have in your fridge.
+
+00:04:21.241 --> 00:04:24.038
+Recipes with IFTTT / Zapier
+
+00:04:25.538 --> 00:04:33.450
+IFTTT (if this then that) is an online tool that makes it easy for non-programmers to connect different internet and mobile services to each other.
+
+00:04:33.950 --> 00:04:38.904
+Think of it as glue that can tie all of your IoT devices together via triggers and actions.
+
+00:04:39.404 --> 00:04:44.599
+A trigger might be that your Wemo has detected motion, and an action might be to open your garage door.
+
+00:04:45.099 --> 00:04:54.289
+IFTTT works well with many of the devices I’ve listed previously and offers an iOS and Android app that can hook into things like your location and photos.
+
+00:04:55.289 --> 00:05:02.161
+Zapier is another tool that is similar to IFTTT but a bit more complicated and expensive to use.
+
+00:05:02.661 --> 00:05:08.735
+Some recipes are only compatible with Zapier (like Lockitron) so you might need to sign up for that service as well.
+
+00:05:09.735 --> 00:05:16.048
+I’ll share a few recipes on IFTTT or Zapier that you can use to automate your home with your newfound gadgets.
+
+00:05:17.048 --> 00:05:19.765
+Play the radio when a burglar enters your home
+
+00:05:21.265 --> 00:05:27.338
+This recipe is possible without using IFTTT (and is probably more secure since it doesn’t require internet).
+
+00:05:27.838 --> 00:05:32.233
+I set up my motion detector to turn on a switch that’s connected to a portable radio.
+
+00:05:32.733 --> 00:05:37.848
+During certain hours when I’m not at home, if someone enters my house, the radio will start playing.
+
+00:05:38.348 --> 00:05:41.624
+The hope here is that the noise will be a deterrent to the invader.
+
+00:05:42.124 --> 00:05:48.517
+If I was feeling in a Home Alone mood, I could also connect the switch to a tape player that played scenes from a mobster movie.
+
+00:05:49.517 --> 00:05:51.755
+Make sure your doors are locked when you leave home
+
+00:05:53.255 --> 00:06:01.166
+When your IFTTT mobile app detects that you are leaving your home, you can send an email that Zapier can use to connect to Lockitron to ensure that your doors are locked.
+
+00:06:01.666 --> 00:06:10.777
+This is a pretty convoluted recipe since it uses both services, but there isn’t really a better way to do this, unless you want to simply lock your door with the Lockitron app when you leave.
+
+00:06:11.777 --> 00:06:14.973
+Automatically start the coffee maker by waking up
+
+00:06:16.473 --> 00:06:21.428
+This is a really cool IFTTT recipe I found that was shared by another user.
+
+00:06:21.928 --> 00:06:27.681
+The Jawbone UP 24 has a feature that can wake you up at the best time in your sleep cycle in the morning.
+
+00:06:28.181 --> 00:06:35.134
+The UP can send a message the moment you wake up to IFTTT that can turn on a switch that’s connected to your coffee maker.
+
+00:06:35.634 --> 00:06:38.830
+Voila, your coffee is ready as soon as you get out of bed.
+
+00:06:39.830 --> 00:06:42.707
+Log all of your driving trips in Google Docs
+
+00:06:44.207 --> 00:06:48.762
+I use this recipe to keep track of total miles driven and my fuel efficiency.
+
+00:06:49.262 --> 00:06:57.653
+It’s not particularly useful for anything, but if I was a taxi driver (or Lyft or Uber X) it might be pretty useful for tax purposes.
+
+00:06:58.653 --> 00:07:01.210
+DIY Home Automation
+
+00:07:02.710 --> 00:07:07.425
+One thing I haven’t really touched on is creating DIY projects to automate your home.
+
+00:07:07.925 --> 00:07:13.279
+I’m a big fan of home grown projects like this DIY Lockitron using Arduino.
+
+00:07:13.779 --> 00:07:17.695
+I recently bought a Raspberry Pi to act as an iBeacon in my home.
+
+00:07:18.195 --> 00:07:24.748
+I’m trying to create an app that will be location aware to the room in my house that I’m in (or at least that my iPhone is in).
+
+00:07:25.248 --> 00:07:34.278
+I’ve heard that the best way to predict the future is to invent it, so if there’s anything in this space that you haven’t seen available, the best solution is to do it yourself!
+
+00:07:35.278 --> 00:07:39.753
+If you have any interesting projects or recipes you’d like to share, I’d love to hear about them.
+
+00:07:40.253 --> 00:07:46.966
+I am about to move into a new house, so the automation potential is about to grow a lot more for me (versus living in an apartment).
+
+00:07:47.466 --> 00:07:51.142
+Good luck and try not to get any viruses in your microwaves!
