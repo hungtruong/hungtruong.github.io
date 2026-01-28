@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.158
+Android Wear Design Contest!
+
+00:00:03.658 --> 00:00:06.614
+Published on June 12, 2014.
+
+00:00:07.614 --> 00:00:11.850
+Last week I went to a GDG Ann Arbor Android meetup on Android Wear.
+
+00:00:12.350 --> 00:00:18.343
+The presentation was set up by Google and had a bunch of information on the upcoming Android Wear SDK.
+
+00:00:18.843 --> 00:00:24.517
+At the end, it was announced that there would be a few vouchers for Android Wear devices available.
+
+00:00:25.017 --> 00:00:28.613
+A design contest was announced and the deadline was set at Sunday.
+
+00:00:29.613 --> 00:00:41.281
+Being naturally competitive and really into new technology, I made a design mockup for a home automation app that I thought would be useful to have on a wearable device (the most common form factor happens to be a watch).
+
+00:00:41.781 --> 00:00:45.217
+Here’s my submission that I originally posted to Google Plus:
+
+00:00:46.217 --> 00:00:52.850
+The app uses the user’s location as a way to provide feedback only when it’s necessary, and to stay out of the way when it isn’t.
+
+00:00:53.350 --> 00:00:59.103
+In this example, the app can detect when a user is arriving home and can ask if they want to switch the lights on.
+
+00:01:00.103 --> 00:01:06.576
+Instead of switching individual lights on and off, the user can create preset groups and activate them with voice commands.
+
+00:01:07.076 --> 00:01:10.832
+Users can set commonly used groups like “living room” and “kitchen.”
+
+00:01:11.832 --> 00:01:18.305
+Night owl users can set reminders to go to bed, and the app can turn off lights if the user decides to stay up late.
+
+00:01:19.305 --> 00:01:26.018
+The app can also use sensors to detect when motion is occurring in the home and alert the user if no one is supposed to be at home.
+
+00:01:26.518 --> 00:01:32.831
+The user can decide whether the motion is a false alarm or if further action should be taken.
+
+00:01:33.831 --> 00:01:41.103
+There is obviously much more that can be done with a home automation app, but these are just a few scenarios that would work well on an Android Wear device.
+
+00:01:41.603 --> 00:01:45.679
+I’m looking forward to experimenting on Android Wear when it becomes available!
+
+00:01:46.679 --> 00:01:53.791
+I heard this week that my submission was a winning entry, so I’ll get an Android Wear device as soon as they go on sale some time this Summer.
+
+00:01:54.291 --> 00:01:58.367
+Thanks to Google and the GDG group here in Ann Arbor for setting up the event!
