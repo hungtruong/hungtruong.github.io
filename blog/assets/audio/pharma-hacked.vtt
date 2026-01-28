@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.438
+Pharma Hacked!
+
+00:00:02.938 --> 00:00:05.735
+Published on June 21, 2012.
+
+00:00:06.735 --> 00:00:11.130
+I noticed that the Google results for my blog have been showing ads for pharmaceuticals.
+
+00:00:11.630 --> 00:00:15.226
+I am not actively trying to sell drugs, so I figured this was a hack.
+
+00:00:16.226 --> 00:00:21.500
+I ended up nuking the wp directory for this blog and re-installing plugins/images.
+
+00:00:22.000 --> 00:00:30.312
+I think the site’s clean now but it’s hard to tell since the “fetch as Googlebot” feature in Google Webmaster tools seems to show stale data.
+
+00:00:30.812 --> 00:00:34.488
+I’m not sure whether to blame Cloudflare, Google or myself.
+
+00:00:35.488 --> 00:00:39.643
+Hopefully my Google results for this blog clear up in a few days or so.
+
+00:00:40.143 --> 00:00:43.419
+The weird part of the hack is that normal visitors are not affected.
+
+00:00:43.919 --> 00:00:47.515
+So the malware writers are apparently trying to sell stuff to Google.
+
+00:00:48.015 --> 00:00:53.929
+Of course, they’re just trying to raise their Google rank by inserting links and not being caught by being too obvious.
+
+00:00:54.429 --> 00:00:59.543
+But it’s interesting that the hack is transparent to normal people unless you check the Google cache.
+
+00:01:00.543 --> 00:01:03.660
+Oh and sorry if you came here looking for the pharmaceuticals.
+
+00:01:04.160 --> 00:01:06.557
+You’ll just have to get them somewhere else.
