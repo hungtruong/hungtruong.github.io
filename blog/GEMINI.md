@@ -1,4 +1,5 @@
 # Jekyll Blog Assistant Guidance (Claude & Gemini)
+The site baseurl is /blog so always navigate to /blog/
 
 ## Quick Start (TL;DR)
 - Create a new post in `_posts/` using today’s date and kebab-case slug: `YYYY-MM-DD-title-slug.md` in the correct year folder (currently `2021-2025/`).
@@ -123,3 +124,37 @@ rm wp-content/uploads/2025/descriptive-name-poster.png
 - Images converted to 1000px WebP; videos have poster WebP and sensible width.
 - No intermediate poster PNGs left behind (delete after WebP is created).
 - Originals remain in `zz_incoming_media/` until approved.
+
+## TTS Scraper Rules (Kaggle Notebooks)
+- **Included Tags:** `p`, `h1-h6`, `li`, `blockquote`.
+- **Excluded Tags:** `pre` (code blocks) and `figcaption` (captions) must be explicitly deleted (decomposed) before scraping.
+- **Whitespace Normalization:** All text must be extracted using `get_text(separator=' ', strip=True)` and then normalized with `re.sub(r'\s+', ' ', text)` to prevent "broken" sentences from newlines or inline tags.
+- **Smart Nesting:** Scrape only top-level elements of interest to avoid duplicate content from nested tags.
+
+## Code Styling Standards
+- **Theme:** Tokyo Night inspired (Deep dark blue background `#1a1b26`, pastel syntax colors).
+- **Layout:** 
+  - Width must be `100%` and match the blog post's content width (centered via `margin: 0 auto` or breakpoint rules).
+  - Rounded corners (`8px`).
+  - Subtle box-shadow for depth.
+  - Asymmetrical padding for balance: `0.8rem` vertical, `1.2rem` horizontal.
+- **Typography:** `0.8em` font size for a cleaner hierarchy; antialiased rendering via `-webkit-font-smoothing`.
+- **Custom Scrollbar:** Thin, dark scrollbar that matches the theme.
+
+## Kaggle CLI Workflow
+To fire a notebook run from the terminal:
+
+1.  **Authentication:** Ensure `KAGGLE_API_TOKEN` is exported (added to `~/.zshrc` for permanence).
+2.  **Navigation:** Move to the specific notebook folder.
+    *   Single Post: `cd scripts/qwen3-tts-single`
+    *   Batch Process: `cd scripts/qwen3-tts-batch`
+3.  **Run:** Push the notebook to Kaggle to trigger execution.
+    ```bash
+    kaggle kernels push
+    ```
+4.  **Status:** Check the status of the run.
+    ```bash
+    kaggle kernels status hungtruong64/qwen-3-tts-blog-post
+    # OR
+    kaggle kernels status hungtruong64/qwen3-tts-voice-clone-demo-batch-processing
+    ```

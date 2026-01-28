@@ -24,71 +24,179 @@
     return cues;
   }
 
-  // --- Helper: Time String to Milliseconds ---
   function timeToMillis(timeStr) {
     const parts = timeStr.split(':');
     const secondsParts = parts[2].split('.');
     return (parseInt(parts[0], 10) * 3600 + parseInt(parts[1], 10) * 60 + parseInt(secondsParts[0], 10)) * 1000 + parseInt(secondsParts[1], 10);
   }
 
-  // --- Helper: Escape Regex Special Characters ---
-  function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
   // --- Core: Inject Spans into DOM ---
   function injectCues(rootElement, cues) {
-    let html = rootElement.innerHTML;
-    let matchCount = 0;
+    // 1. Flatten all text nodes
+    const textNodes = [];
+    const walker = document.createTreeWalker(rootElement, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (node.parentElement.closest('#audio-container, .comment-form, .postNav')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }, false);
+
+    let node;
+    while (node = walker.nextNode()) {
+      textNodes.push(node);
+    }
+
+    let fullText = "";
+    const charMap = [];
+    textNodes.forEach(textNode => {
+      const val = textNode.nodeValue;
+      for (let i = 0; i < val.length; i++) {
+        charMap.push({ node: textNode, index: i });
+      }
+      fullText += val;
+    });
+
+    // --- Normalization ---
+    function robustNormalize(char) {
+      if (/\s/.test(char)) return ' ';
+      if (['’', '‘'].includes(char)) return "'";
+      if (['“', '”'].includes(char)) return '"';
+      if (['–', '—'].includes(char)) return '-';
+      return char.toLowerCase();
+    }
+
+    const normalizedData = (function buildNormalized(rawText) {
+      let norm = "";
+      const mapping = [];
+      for (let i = 0; i < rawText.length; i++) {
+        let char = rawText[i];
+        if (char === '…') {
+          for (let j = 0; j < 3; j++) { mapping.push(i); norm += "."; }
+          continue;
+        }
+        const nChar = robustNormalize(char);
+        if (nChar === ' ' && (norm.length === 0 || norm[norm.length - 1] === ' ')) continue;
+        mapping.push(i);
+        norm += nChar;
+      }
+      return { str: norm, map: mapping };
+    })(fullText);
+
+    function normalizeCue(text) {
+      let res = "";
+      for (const char of text) {
+        if (char === '…') { res += "..."; continue; }
+        const n = robustNormalize(char);
+        if (n === ' ' && (res.length === 0 || res[res.length - 1] === ' ')) continue;
+        res += n;
+      }
+      return res.trim();
+    }
+
+    const normParams = normalizedData;
+    let lastFoundIndex = 0;
+    const matches = []; // { cue, rawStart, rawEnd }
+    const missingCues = [];
 
     cues.forEach(cue => {
-      // 1. Normalize the search text
-      // 1. Normalize the search text
-      let safeText = escapeRegExp(cue.text);
+      const cueText = normalizeCue(cue.text);
+      if (!cueText) return;
 
-      // Use placeholders to protect quote regex patterns from being decorated as punctuation
-      const SQ_PH = "___SQ___";
-      const DQ_PH = "___DQ___";
-      safeText = safeText.replace(/['’]/g, SQ_PH);
-      safeText = safeText.replace(/["“”]/g, DQ_PH);
+      const searchStr = normParams.str;
+      let foundNormIndex = searchStr.indexOf(cueText, lastFoundIndex);
 
-      // 2. Handle HTML tags between words and punctuation (The Fix)
-      const flexibleSpacer = '(?:\\s+|<[^>]+>)+';
+      // Fuzzy match for "Published on [Date]" metadata
+      if (foundNormIndex === -1 && cueText.startsWith("published on ")) {
+        let fuzzyCue = cueText.replace("published on ", "").trim();
+        // Remove trailing dot if exists
+        if (fuzzyCue.endsWith(".")) fuzzyCue = fuzzyCue.slice(0, -1);
+        foundNormIndex = searchStr.indexOf(fuzzyCue, lastFoundIndex);
+      }
 
-      // Split logic: explicitly handle punctuation to allow tags before it
-      // Punctuation: . , ; : ? ! ) ] } " '
-      const roughWords = safeText.split(/\s+/);
-      const refinedWords = roughWords.map(word => {
-        let newWord = word;
-        // Fix: Allow tags AFTER opening punctuation (e.g. (link) -> (<a...>link</a>)
-        newWord = newWord.replace(/(\\)?([(\[{])/g, '$1$2(?:\\s*<[^>]+>\\s*)*');
-        // Fix: Allow tags BEFORE closing punctuation (e.g. word. -> word</a>.)
-        newWord = newWord.replace(/(\\)?([.,;?!:)\]}"'])/g, '(?:\\s*<[^>]+>\\s*)*$1$2');
-        return newWord;
-      });
+      if (foundNormIndex !== -1) {
+        const startNorm = foundNormIndex;
+        const endNorm = foundNormIndex + (cueText.startsWith("published on ") && cueText.indexOf(searchStr.substr(foundNormIndex, 10)) === -1 ? (cueText.length - 13) : cueText.length);
 
-      let regexPattern = refinedWords.join(flexibleSpacer);
-
-      // 3. Restore quote regex patterns
-      regexPattern = regexPattern.replace(new RegExp(SQ_PH, 'g'), "['’]");
-      regexPattern = regexPattern.replace(new RegExp(DQ_PH, 'g'), '["“”]');
-
-      try {
-        const regex = new RegExp(`(${regexPattern})`, '');
-        if (regex.test(html)) {
-          html = html.replace(regex, `<span data-m="${cue.start}" data-d="${cue.duration}" class="hyperaudio-transcript-text">$1</span>`);
-          matchCount++;
-        } else {
-          // Suppress warning for title/metadata headers not in body
-          // console.warn(`[VTT Injector] Could not match text: "${cue.text.substring(0, 50)}..."`);
+        // Actually, let's keep it simple: the match length is whatever we found in searchStr
+        // But indexOf doesn't tell us length if we fuzzy matched.
+        // Let's just use the actual cueText length or the fuzzy length.
+        let matchLength = cueText.length;
+        if (cueText.startsWith("published on ") && searchStr.indexOf(cueText, lastFoundIndex) === -1) {
+          // We used fuzzy
+          let fuzzyCue = cueText.replace("published on ", "").trim();
+          if (fuzzyCue.endsWith(".")) fuzzyCue = fuzzyCue.slice(0, -1);
+          matchLength = fuzzyCue.length;
         }
-      } catch (e) {
-        console.warn("[VTT Injector] Regex error for cue:", cue);
+
+        const rawStart = normParams.map[startNorm];
+        let rawEnd = (startNorm + matchLength - 1 < normParams.map.length) ? normParams.map[startNorm + matchLength - 1] + 1 : fullText.length;
+
+        lastFoundIndex = startNorm + matchLength;
+        matches.push({ cue, rawStart, rawEnd });
+      } else {
+        missingCues.push(cue.text);
       }
     });
 
-    console.log(`[VTT Injector] Injected ${matchCount} / ${cues.length} matches.`);
-    rootElement.innerHTML = html;
+    // 2. Identify and execute wraps (Reverse order to avoid invalidating indices)
+    // Actually, we need to handle block-crossing by splitting matches into "Safe Ranges"
+    const safeMatches = [];
+    matches.forEach(m => {
+      let currentStart = m.rawStart;
+      for (let i = m.rawStart; i < m.rawEnd; i++) {
+        const node = charMap[i].node;
+        const prevNode = i > m.rawStart ? charMap[i - 1].node : null;
+
+        if (prevNode && node !== prevNode) {
+          // Check if we crossed a block-level boundary
+          if (areSeparatedByBlock(prevNode, node)) {
+            safeMatches.push({ cue: m.cue, start: currentStart, end: i });
+            currentStart = i;
+          }
+        }
+      }
+      safeMatches.push({ cue: m.cue, start: currentStart, end: m.rawEnd });
+    });
+
+    function areSeparatedByBlock(node1, node2) {
+      // Find the parent block of each node
+      const getBlock = (n) => n.parentElement.closest('p, div, li, h1, h2, h3, h4, h5, h6, article, section, figure');
+      return getBlock(node1) !== getBlock(node2);
+    }
+
+    // Sort by start position descending
+    safeMatches.sort((a, b) => b.start - a.start);
+
+    safeMatches.forEach(m => {
+      if (m.start >= m.end) return;
+
+      try {
+        const range = document.createRange();
+        const startObj = charMap[m.start];
+        const endObj = charMap[m.end - 1];
+
+        range.setStart(startObj.node, startObj.index);
+        range.setEnd(endObj.node, endObj.index + 1);
+
+        const span = document.createElement('span');
+        span.className = 'hyperaudio-transcript-text unread';
+        span.setAttribute('data-m', m.cue.start);
+        span.setAttribute('data-d', m.cue.duration);
+
+        const contents = range.extractContents();
+        span.appendChild(contents);
+        range.insertNode(span);
+      } catch (e) {
+        // Silent
+      }
+    });
+
+    if (missingCues.length > 0) {
+      console.warn(`[VTT Injector] Missing ${missingCues.length} cues:`, missingCues);
+    }
+    console.log(`[VTT Injector] Injected (DOM) ${matches.length} / ${cues.length} matches.`);
   }
 
   // --- Main Init Function ---
@@ -109,7 +217,6 @@
         injectCues(contentEl, cues);
 
         // Initialize Hyperaudio Lite
-        // Usage: new HyperaudioLite(transcriptId, mediaId, ...config)
         if (typeof HyperaudioLite !== 'undefined') {
           console.log("[VTT Injector] Initializing HyperaudioLite (class)...");
           new HyperaudioLite(contentId, playerId, false, true, false, false, true);

@@ -85,7 +85,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Stupid Data Tricks: Facebook Names</h1>
     <p class="meta">August 17, 2010 | <span class="time">0</span> Minute Read</p>
@@ -93,7 +93,7 @@
 
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p><a href="/blog/wp-content/uploads/2010/08/Facebook-Directory.png" rel="lightbox[1992]"><img src="/blog/wp-content/uploads/2010/08/Facebook-Directory.png?resize=500%2C298" alt="" title="Facebook Directory" width="500" height="298" class="aligncenter size-medium wp-image-1993" srcset="/blog/wp-content/uploads/2010/08/Facebook-Directory.png?resize=500%2C298 500w, /blog/wp-content/uploads/2010/08/Facebook-Directory.png?w=686 686w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
 
 <p>Like a good data nerd, I downloaded the list of <a href="http://www.skullsecurity.org/blog/?p=887">publicly available Facebook names</a>, dumped into text files. I was trying to figure out a neat way to use them. It’s always weird when people have the same first and last names, so I wrote a quick regex to find people with names like “John John” and “Laura Laura.” I used <em>/^([a-z]+) \1$/</em>, but maybe there’s a better one. I think mine left out the middle names.</p>

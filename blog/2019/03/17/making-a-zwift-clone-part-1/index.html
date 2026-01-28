@@ -91,7 +91,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Making an iOS Zwift Clone to Save $15 a Month! Part 1: Core Bluetooth</h1>
     <p class="meta">March 17, 2019 | <span class="time">10</span> Minute Read</p>
@@ -112,7 +112,7 @@
   </div>
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p>It’s been a while since I’ve worked on a personal project, but I’ve been having an itch to make some new iOS apps and yesterday morning I decided to go ahead and hack something together.</p>
 
 <p>I recently purchased an exercise bike called the <a href="https://shop.concept2.com/bikeerg/601-bikeerg.html">BikeErg</a> (I think the name has something to do with the rowing machines that the manufacturer also makes). The bike has a built-in computer that keeps track of things like watts (apparently cycling is a sport that has really good analytics since it’s easy to track raw power), calories burned, cadence and other stuff. You can view the data on the monitor or use an app like <a href="https://zwift.com">Zwift</a> to do workouts.</p>
@@ -250,13 +250,13 @@ self.centralManager.scanForPeripherals(withServices: nil, options: nil)</p>
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769609182"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769609184"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-1.vtt?v=1769582567";
+      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-1.vtt?v=1769609182";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles

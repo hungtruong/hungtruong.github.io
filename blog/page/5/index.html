@@ -117,17 +117,7 @@
         <h3><a class="post-link" href="/blog/2019/05/03/making-a-zwift-clone-part-3/">Cloning Zwift on iOS Part 3: HealthKit and a WatchOS App!</a></h3>
         <p><p><img src="/blog/wp-content/uploads/2019/healthkit.jpg" /></p>
 
-<p>I’ve been a bit slow to update my blog series about trying to make a clone of
-Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use
-the “MVP” of what I’ve built so far in parts
-<a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">1</a>
-and
-<a href="/blog/2019/04/07/making-a-zwift-clone-part-2/">2</a>,
-and I was finding that the time I spent working on my app could be used actually
-working out. Like, I literally would write an implementation of something, but
-it would take so much of my time that I couldn’t test it out and I’d have to go
-to bed… Still, I was missing a few important features in my app, so I’ve been
-slowly working on them in between working on my fitness.</p>
+<p>I’ve been a bit slow to update my blog series about trying to make a clone of Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use the “MVP” of what I’ve built so far in parts <a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">1</a> and <a href="/blog/2019/04/07/making-a-zwift-clone-part-2/">2</a>, and I was finding that the time I spent working on my app could be used actually working out. Like, I literally would write an implementation of something, but it would take so much of my time that I couldn’t test it out and I’d have to go to bed… Still, I was missing a few important features in my app, so I’ve been slowly working on them in between working on my fitness.</p>
 
 
 
@@ -152,27 +142,18 @@ slowly working on them in between working on my fitness.</p>
 	<figcaption>A very colorful Zwift Workout</figcaption>
 </figure>
 
-<p>Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
-<a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">learning Core Bluetooth to connect to my exercise bike and get data streaming
-directly to my
-app</a>.</p>
+<p>Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about <a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">learning Core Bluetooth to connect to my exercise bike and get data streaming directly to my app</a>.</p>
 
-<p>Since writing that article, I cleaned up the implementation of the Core
-Bluetooth service a bit and started supporting some additional data like
-distance, calories burned and cycling cadence.</p>
+<p>Since writing that article, I cleaned up the implementation of the Core Bluetooth service a bit and started supporting some additional data like distance, calories burned and cycling cadence.</p>
 
-<p>While cycling on my exercise bike and staring at these numbers is fun, the
-built-in screen on my bike already shows these numbers, so I essentially
-recreated a subset of the official
-<a href="https://www.concept2.com/service/software/ergdata">ergData</a> app so far.</p>
+<p>While cycling on my exercise bike and staring at these numbers is fun, the built-in screen on my bike already shows these numbers, so I essentially recreated a subset of the official <a href="https://www.concept2.com/service/software/ergdata">ergData</a> app so far.</p>
 
 <figure>
 	<img src="/blog/wp-content/uploads/2019/ergdata.jpg" />
 	<figcaption>The ergData app is functional but ugly af</figcaption>
 </figure>
 
-<p>I realized the next challenge would be to start a guided workout in my app and
-show the target wattage alongside my actual wattage on the bike.</p>
+<p>I realized the next challenge would be to start a guided workout in my app and show the target wattage alongside my actual wattage on the bike.</p>
 
 
 
@@ -224,23 +205,9 @@ show the target wattage alongside my actual wattage on the bike.</p>
 	<figcaption>Me speaking at iOSCon London 2018. Image copyright <a href="http://www.edtelling.com">Ed
 Telling</a></figcaption>
 </figure>
-<p>A few years ago, I made a goal for myself that I would start speaking at
-conferences. In the past I had gone to quite a few awesome conferences and I
-really admired the folks who could get on a stage, share a bunch of knowledge
-and inspire an audience to do cool stuff. While I had a bit of experience with
-public speaking (I spoke at some local iOS/Android meetups and moderated two
-panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference
-spot.</p>
+<p>A few years ago, I made a goal for myself that I would start speaking at conferences. In the past I had gone to quite a few awesome conferences and I really admired the folks who could get on a stage, share a bunch of knowledge and inspire an audience to do cool stuff. While I had a bit of experience with public speaking (I spoke at some local iOS/Android meetups and moderated two panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference spot.</p>
 
-<p>I think the conference that convinced me to start applying was Swift Summit,
-which I attended in 2015. There were a number of really inspiring talks, and the
-community felt really fresh and welcoming. One interesting aside: I learned
-after joining Lyft that no fewer than three of my current coworkers on iOS spoke
-at that conference (<a href="https://www.youtube.com/watch?v=FmT3A_tm9_4">Keith</a>,
-<a href="https://www.youtube.com/watch?v=P0HD5bODhZM">Sam</a> and
-<a href="https://www.youtube.com/watch?v=kz6d-ES7WtE">JP</a>, though only Keith was working
-at Lyft at the time) and a few others attended that year. I’m not sure if that’s
-correlation or causation at work.</p>
+<p>I think the conference that convinced me to start applying was Swift Summit, which I attended in 2015. There were a number of really inspiring talks, and the community felt really fresh and welcoming. One interesting aside: I learned after joining Lyft that no fewer than three of my current coworkers on iOS spoke at that conference (<a href="https://www.youtube.com/watch?v=FmT3A_tm9_4">Keith</a>, <a href="https://www.youtube.com/watch?v=P0HD5bODhZM">Sam</a> and <a href="https://www.youtube.com/watch?v=kz6d-ES7WtE">JP</a>, though only Keith was working at Lyft at the time) and a few others attended that year. I’m not sure if that’s correlation or causation at work.</p>
 
 
 

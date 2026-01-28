@@ -85,7 +85,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Reverse Engineering Quibi: Protocol Buffers and HLS Streaming</h1>
     <p class="meta">May 12, 2020 | <span class="time">9</span> Minute Read</p>
@@ -106,7 +106,7 @@
   </div>
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p><img src="/blog/wp-content/uploads/2020/Quibi_Logo.png" /></p>
 
 <p>I’ve had a lot of free time in the past few weeks so I decided to spend some of it working on side projects. I really enjoy reverse engineering apps, so I decided to take a look at Quibi.</p>
@@ -213,13 +213,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769609182"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769609184"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/reverse-engineering-quibi.vtt?v=1769582567";
+      var vttUrl = "/blog/assets/audio/reverse-engineering-quibi.vtt?v=1769609182";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles

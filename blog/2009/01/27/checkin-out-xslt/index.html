@@ -91,7 +91,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Checkin&#8217; Out XSLT</h1>
     <p class="meta">January 27, 2009 | <span class="time">1</span> Minute Read</p>
@@ -99,7 +99,7 @@
 
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p>So at work, I’m trying to figure out a good way to make some web pages extensible and also extremely easy to edit. Basically, the people in charge need to be able to make new pages and edit the existing ones when I leave. I was trying to figure out how to do this without a CMS. Because I can’t just throw a CMS into the web server.</p>
 
 <p>I have a friend who wrote something for his portfolio that involves making an xml file, then using the xml to make an HTML page. I was curious to see if this was some kind of common paradigm, and if so, if there were frameworks I could use. The ideal situation would be if I could just set up some XML schema for people to fill in content and then somehow create the HTML from that. Then whoever was updating it would just update the XML (which would be fairly easy since they wouldn’t worry about markup, just the data).</p>

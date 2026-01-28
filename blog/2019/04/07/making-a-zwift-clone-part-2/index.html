@@ -91,184 +91,86 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout</h1>
     <p class="meta">April 07, 2019 | <span class="time">4</span> Minute Read</p>
   </header>
 
   
-  <div class="audio-player-container" id="audio-container">
-    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
-    <div class="audio-header">
-      <div class="audio-label">Listen to this blog post</div>
-      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
-    </div>
-    <audio id="hyperplayer" controls preload="auto">
-      <source src="/blog/assets/audio/making-a-zwift-clone-part-2.mp3"
-        type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-  
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <figure>
 	<img src="/blog/wp-content/uploads/2019/zwiftworkoutheader.png" />
 	<figcaption>A very colorful Zwift Workout</figcaption>
 </figure>
 
-<p>Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
-<a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">learning Core Bluetooth to connect to my exercise bike and get data streaming
-directly to my
-app</a>.</p>
+<p>Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about <a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">learning Core Bluetooth to connect to my exercise bike and get data streaming directly to my app</a>.</p>
 
-<p>Since writing that article, I cleaned up the implementation of the Core
-Bluetooth service a bit and started supporting some additional data like
-distance, calories burned and cycling cadence.</p>
+<p>Since writing that article, I cleaned up the implementation of the Core Bluetooth service a bit and started supporting some additional data like distance, calories burned and cycling cadence.</p>
 
-<p>While cycling on my exercise bike and staring at these numbers is fun, the
-built-in screen on my bike already shows these numbers, so I essentially
-recreated a subset of the official
-<a href="https://www.concept2.com/service/software/ergdata">ergData</a> app so far.</p>
+<p>While cycling on my exercise bike and staring at these numbers is fun, the built-in screen on my bike already shows these numbers, so I essentially recreated a subset of the official <a href="https://www.concept2.com/service/software/ergdata">ergData</a> app so far.</p>
 
 <figure>
 	<img src="/blog/wp-content/uploads/2019/ergdata.jpg" />
 	<figcaption>The ergData app is functional but ugly af</figcaption>
 </figure>
 
-<p>I realized the next challenge would be to start a guided workout in my app and
-show the target wattage alongside my actual wattage on the bike.</p>
+<p>I realized the next challenge would be to start a guided workout in my app and show the target wattage alongside my actual wattage on the bike.</p>
 
 <!--more-->
 
 <h3 id="enter-the-workout">Enter the Workout</h3>
 
-<p>Zwift workouts seem pretty simple to begin with. You can set up a number of
-workout segments to guide your workout. There are warmups, steady states,
-intervals, free ride sections and cool-downs. At any given point in your
-workout, Zwift will tell you to put in a certain amount of effort. You just try
-to get your watt number to match what Zwift wants you to do.</p>
+<p>Zwift workouts seem pretty simple to begin with. You can set up a number of workout segments to guide your workout. There are warmups, steady states, intervals, free ride sections and cool-downs. At any given point in your workout, Zwift will tell you to put in a certain amount of effort. You just try to get your watt number to match what Zwift wants you to do.</p>
 
-<p>At first I figured I could come up with my own way of representing workouts, but
-that would also require me to re-create all of the workouts I usually use on
-Zwift. Zwift also has a nice workout editor that can use to edit preset workouts
-or create completely new ones on your own.</p>
+<p>At first I figured I could come up with my own way of representing workouts, but that would also require me to re-create all of the workouts I usually use on Zwift. Zwift also has a nice workout editor that can use to edit preset workouts or create completely new ones on your own.</p>
 
 <figure>
 	<img src="/blog/wp-content/uploads/2019/zwiftworkoutedit.png" />
 	<figcaption>Zwift’s built-in workout editor is pretty nice!</figcaption>
 </figure>
 
-<p>I discovered that if you copy an existing workout to edit it, the workout will
-be saved as user data and will be synced between all devices. How is the workout
-data saved, you ask? No, not as JSON as a sane developer would use. It’s XML.
-Okay, so technically it’s a .zwo file but I know what XML looks like! Here’s a
-sample of an exported workout file:</p>
+<p>I discovered that if you copy an existing workout to edit it, the workout will be saved as user data and will be synced between all devices. How is the workout data saved, you ask? No, not as JSON as a sane developer would use. It’s XML. Okay, so technically it’s a .zwo file but I know what XML looks like! Here’s a sample of an exported workout file:</p>
 
 <figure>
 	<img src="/blog/wp-content/uploads/2019/zwofile.png" />
 	<figcaption>Hello darkness, my old friend</figcaption>
 </figure>
 
-<p>So I went ahead and implemented an XMLParser in Swift to turn .zwo files into my
-own Workout struct. I won’t bore you with the implementation details but it was
-kind of a walk down memory lane dealing with the delegation-based API of
-XMLParser. I’m surprised there isn’t a more modern solution in Foundation but
-I’m guessing it’s because most people have moved on from XML.</p>
+<p>So I went ahead and implemented an XMLParser in Swift to turn .zwo files into my own Workout struct. I won’t bore you with the implementation details but it was kind of a walk down memory lane dealing with the delegation-based API of XMLParser. I’m surprised there isn’t a more modern solution in Foundation but I’m guessing it’s because most people have moved on from XML.</p>
 
 <h3 id="lets-reverse-engineering">Let’s Reverse Engineering</h3>
 
-<p>By reading the .zwo files, I was able to figure out how Zwift represents their
-workouts and basically reverse engineer the structure of a workout:</p>
+<p>By reading the .zwo files, I was able to figure out how Zwift represents their workouts and basically reverse engineer the structure of a workout:</p>
 
 <ul>
   <li>Warmups have a duration, a low and high power (which is a percentage of
-<a href="https://zwift.com/news/4100-zwift-how-to-understanding-finding-your-ftp">FTP</a>).
-The warmup begins at the low power and steadily ramps up to the high power by
-the end of the segment.</li>
+<a href="https://zwift.com/news/4100-zwift-how-to-understanding-finding-your-ftp">FTP</a>). The warmup begins at the low power and steadily ramps up to the high power by the end of the segment.</li>
   <li>SteadyStates are the simplest, with just a duration and power.</li>
   <li>Intervals are the most complicated, with a repeat number, onDuration,
-offDuration, onPower and offPower. The intervals segment goes between the high
-and low power levels, and repeats a certain number of times. I didn’t want to
-deal with the extra complexity of this type so I just wrote some code to expand
-them out into SteadyStates.</li>
+offDuration, onPower and offPower. The intervals segment goes between the high and low power levels, and repeats a certain number of times. I didn’t want to deal with the extra complexity of this type so I just wrote some code to expand them out into SteadyStates.</li>
   <li>Cooldowns are like warmups but in reverse.</li>
 </ul>
 
-<p>There are also some other things like text captions that appear during a
-workout, free ride segments and cadence settings that I didn’t bother to
-implement because I don’t use them. The cadence stuff makes sense if you’re
-using a smart trainer but my bike doesn’t support automatically changing
-resistance anyway.</p>
+<p>There are also some other things like text captions that appear during a workout, free ride segments and cadence settings that I didn’t bother to implement because I don’t use them. The cadence stuff makes sense if you’re using a smart trainer but my bike doesn’t support automatically changing resistance anyway.</p>
 
 <script src="https://gist.github.com/hungtruong/55e92115f993221693f9040431ee39fe.js"></script>
 
-<p>I decided to represent the WorkoutSegment as a Swift enum since it needs to
-support a bunch of different formats with varying levels of complexity. I’m
-actually kinda curious how the Zwift team ended up representing these and if
-they did something similar.</p>
+<p>I decided to represent the WorkoutSegment as a Swift enum since it needs to support a bunch of different formats with varying levels of complexity. I’m actually kinda curious how the Zwift team ended up representing these and if they did something similar.</p>
 
-<p>From here it’s pretty simple to get stuff like the total duration or the target
-wattage for a particular time offset, whether I need to calculate that (in the
-case of a warmup or cooldown) or if I just return the constant value.</p>
+<p>From here it’s pretty simple to get stuff like the total duration or the target wattage for a particular time offset, whether I need to calculate that (in the case of a warmup or cooldown) or if I just return the constant value.</p>
 
 <script src="https://gist.github.com/hungtruong/718f50f48c32b324a2f25a80c78ae46b.js"></script>
 
-<p>Aside from representing the workout segments, the actual workout object will
-consist of things like the name, description, FTP and other information that
-pertains to the state of the workout like time elapsed. I wrote a function that
-takes the current time elapsed in the workout, loops through and finds the
-corresponding segment and returns the desired wattage. There might be a more
-efficient way to do that but for now it works.</p>
+<p>Aside from representing the workout segments, the actual workout object will consist of things like the name, description, FTP and other information that pertains to the state of the workout like time elapsed. I wrote a function that takes the current time elapsed in the workout, loops through and finds the corresponding segment and returns the desired wattage. There might be a more efficient way to do that but for now it works.</p>
 
-<p>I also added some things to my project for displaying and choosing workouts from
-a list, and actually displaying the target wattage alongside actual wattage. I
-want to improve the interface now since it’s terrible, but I’ll save that for
-another blog post. If you want to check out the project, <a href="https://github.com/hungtruong/Zswift">it’s all here on
-Github</a>, including the playgrounds I used
-to test out the workout segment logic before adding it to the Xcode project.</p>
+<p>I also added some things to my project for displaying and choosing workouts from a list, and actually displaying the target wattage alongside actual wattage. I want to improve the interface now since it’s terrible, but I’ll save that for another blog post. If you want to check out the project, <a href="https://github.com/hungtruong/Zswift">it’s all here on Github</a>, including the playgrounds I used to test out the workout segment logic before adding it to the Xcode project.</p>
 
-<p>Next on my list of tasks is to make the workout interface a lot prettier/usable,
-and to add heart rate information from my Apple Watch.</p>
+<p>Next on my list of tasks is to make the workout interface a lot prettier/usable, and to add heart rate information from my Apple Watch.</p>
 
   </div>
 
-  
-  <!-- Hyperaudio Integration -->
-  <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
-  <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-2.vtt?v=1769582567";
-      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
-
-      // Add 'is-active' class on play to enable interaction styles
-      var player = document.getElementById('hyperplayer');
-      var transcript = document.getElementById('hypertranscript');
-      var container = document.getElementById('audio-container');
-
-      if (player && transcript) {
-        player.addEventListener('play', function () {
-          transcript.classList.add('is-active');
-          if (container) container.classList.add('is-sticky');
-        });
-      }
-
-      // Handle Close Button
-      var closeBtn = document.getElementById('audio-close');
-      var container = document.getElementById('audio-container');
-      if (closeBtn && container) {
-        closeBtn.addEventListener('click', function () {
-          container.style.display = 'none';
-          if (player) player.pause();
-        });
-      }
-    });
-  </script>
   
 
   <!-- COMMENTS -->

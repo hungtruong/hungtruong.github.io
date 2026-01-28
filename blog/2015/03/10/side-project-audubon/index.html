@@ -91,7 +91,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Side Project: Audubon</h1>
     <p class="meta">March 10, 2015 | <span class="time">3</span> Minute Read</p>
@@ -112,7 +112,7 @@
   </div>
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <h2 id="the-idea">The Idea</h2>
 
 <p>A few weeks ago, I noticed a <a href="https://twitter.com/johnsheehan/status/569619743109304320">tweet</a> from John Sheehan asking if there was an automated tweet -&gt; screenshot tool:</p>
@@ -161,13 +161,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769609182"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769609184"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/side-project-audubon.vtt?v=1769582567";
+      var vttUrl = "/blog/assets/audio/side-project-audubon.vtt?v=1769609182";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles

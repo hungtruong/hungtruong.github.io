@@ -91,7 +91,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Design Patterns: iOS and Android &#8211; Dispatch Queues and AsyncTask</h1>
     <p class="meta">November 20, 2013 | <span class="time">3</span> Minute Read</p>
@@ -112,7 +112,7 @@
   </div>
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p>For the past few weeks, I’ve been learning Android and porting one of my iOS apps to the platform. While there are many differences between the two platforms, it’s also kind of interesting to see common design patterns between them. I figured I should write up the common design patterns that I notice and maybe help out some iOS developers who are also learning Android like me.</p>
 
 <p>Today I’ll look at doing asynchronous tasks in each platform. While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.
@@ -183,13 +183,13 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769609182"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769609184"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/design-patterns-ios-and-android-dispatch-queues-and-asynctask.vtt?v=1769582567";
+      var vttUrl = "/blog/assets/audio/design-patterns-ios-and-android-dispatch-queues-and-asynctask.vtt?v=1769609182";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles

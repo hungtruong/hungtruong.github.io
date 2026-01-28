@@ -91,7 +91,7 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Craigslist and Google Maps Mashup Thingy: Day 14 &#8211; Getting Jquery and Prototype to Work Together</h1>
     <p class="meta">May 02, 2007 | <span class="time">0</span> Minute Read</p>
@@ -99,7 +99,7 @@
 
   
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p>Whoa, that’s a doozy of a title! Anyway, today I was working on making the mashup look prettier and actually somewhat usable for human consumption. I was using thickbox to get some pretty snazzy ajax stuff going on for displaying the about page and whatnot. Today, I included prototype for some even more snazzy ajax stuff. But apparently they clash.</p>
 
 <p>I guess both of them like using the ‘$’ character as a shortcut to make the code easier to read. Which means they have crazy namespace conflicts. Bad developers! Anyway, here’s how I got it to work. Right after the import of the jquery library, I set the ‘$’ thing to be ‘$j’ instead. Then I refactored thickbox to use the ‘$j’ name instead. It worked. Here’s what the head looks like:</p>

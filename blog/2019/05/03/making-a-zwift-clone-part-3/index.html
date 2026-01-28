@@ -91,41 +91,18 @@
 
    <div class="content">
       <div class="container">
-         <article class="post">
+         <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">Cloning Zwift on iOS Part 3: HealthKit and a WatchOS App!</h1>
     <p class="meta">May 03, 2019 | <span class="time">6</span> Minute Read</p>
   </header>
 
   
-  <div class="audio-player-container" id="audio-container">
-    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
-    <div class="audio-header">
-      <div class="audio-label">Listen to this blog post</div>
-      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
-    </div>
-    <audio id="hyperplayer" controls preload="auto">
-      <source src="/blog/assets/audio/making-a-zwift-clone-part-3.mp3"
-        type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-  
 
-  <div id="hypertranscript">
+  <div class="post-content">
     <p><img src="/blog/wp-content/uploads/2019/healthkit.jpg" /></p>
 
-<p>I’ve been a bit slow to update my blog series about trying to make a clone of
-Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use
-the “MVP” of what I’ve built so far in parts
-<a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">1</a>
-and
-<a href="/blog/2019/04/07/making-a-zwift-clone-part-2/">2</a>,
-and I was finding that the time I spent working on my app could be used actually
-working out. Like, I literally would write an implementation of something, but
-it would take so much of my time that I couldn’t test it out and I’d have to go
-to bed… Still, I was missing a few important features in my app, so I’ve been
-slowly working on them in between working on my fitness.</p>
+<p>I’ve been a bit slow to update my blog series about trying to make a clone of Zwift, but not because I’ve stopped working on it. Rather, I’ve been able to use the “MVP” of what I’ve built so far in parts <a href="/blog/2019/03/17/making-a-zwift-clone-part-1/">1</a> and <a href="/blog/2019/04/07/making-a-zwift-clone-part-2/">2</a>, and I was finding that the time I spent working on my app could be used actually working out. Like, I literally would write an implementation of something, but it would take so much of my time that I couldn’t test it out and I’d have to go to bed… Still, I was missing a few important features in my app, so I’ve been slowly working on them in between working on my fitness.</p>
 
 <!--more-->
 
@@ -136,38 +113,17 @@ slowly working on them in between working on my fitness.</p>
 	<figcaption>Zwift’s interface for connecting the Apple Watch works really well</figcaption>
 </figure>
 
-<p>One of the great things about Zwift is how much support they provide for
-different fitness accessories, including the Apple Watch. Unfortunately, the
-Apple Watch hardware is not set up to allow arbitrary Bluetooth connections like
-my exercise bike was in part 1. Instead, to access the user’s health information
-like heart rate, you need to write a full blown WatchOS app!</p>
+<p>One of the great things about Zwift is how much support they provide for different fitness accessories, including the Apple Watch. Unfortunately, the Apple Watch hardware is not set up to allow arbitrary Bluetooth connections like my exercise bike was in part 1. Instead, to access the user’s health information like heart rate, you need to write a full blown WatchOS app!</p>
 
-<p>Luckily, this wasn’t my first rodeo as I worked on the Apple Watch app for
-Starbucks, so I was able to add a Watch app extension target in my project
-pretty quickly.</p>
+<p>Luckily, this wasn’t my first rodeo as I worked on the Apple Watch app for Starbucks, so I was able to add a Watch app extension target in my project pretty quickly.</p>
 
-<p>I Googled for how to get a user’s heart rate programmatically, came across a
-<a href="https://stackoverflow.com/questions/38158841/live-heart-rate-in-watchos-3">promising StackOverflow
-post</a>
-with a link to a <a href="https://github.com/coolioxlr/watchOS-3-heartrate/blob/master/VimoHeartRate%20WatchKit%20App%20Extension/InterfaceController.swift">Github
-project</a>,
-and was able to get it implemented myself. However, as I looked at the
-copy-pasta code, it seemed sort of wrong to me. The code was starting a workout
-session, but then created an object query that would run a closure whenever a
-new heart rate sample (older than a certain date) was added by the workout. This
-seems like a really roundabout way to get heart rate samples, and I wondered if
-Apple had a better API to accomplish this.</p>
+<p>I Googled for how to get a user’s heart rate programmatically, came across a <a href="https://stackoverflow.com/questions/38158841/live-heart-rate-in-watchos-3">promising StackOverflow post</a> with a link to a <a href="https://github.com/coolioxlr/watchOS-3-heartrate/blob/master/VimoHeartRate%20WatchKit%20App%20Extension/InterfaceController.swift">Github project</a>, and was able to get it implemented myself. However, as I looked at the copy-pasta code, it seemed sort of wrong to me. The code was starting a workout session, but then created an object query that would run a closure whenever a new heart rate sample (older than a certain date) was added by the workout. This seems like a really roundabout way to get heart rate samples, and I wondered if Apple had a better API to accomplish this.</p>
 
 <h3 id="implementing-healthkit">Implementing HealthKit</h3>
 
 <p><img src="/blog/wp-content/uploads/2019/healthkit_hero.jpg" /></p>
 
-<p>I ended up finding some Apple <a href="https://developer.apple.com/documentation/healthkit/workouts_and_activity_rings/speedysloth_creating_a_workout">sample
-code</a>
-that showed a better way to fetch heart rate data. The solution is to use some
-new features introduced in WatchOS 5 that allow for creation of a workout
-directly on the Apple Watch. The Apple doc I linked explains it pretty well, but
-the steps are:</p>
+<p>I ended up finding some Apple <a href="https://developer.apple.com/documentation/healthkit/workouts_and_activity_rings/speedysloth_creating_a_workout">sample code</a> that showed a better way to fetch heart rate data. The solution is to use some new features introduced in WatchOS 5 that allow for creation of a workout directly on the Apple Watch. The Apple doc I linked explains it pretty well, but the steps are:</p>
 
 <ol>
   <li>Ask the user for permission to track their heart rate data</li>
@@ -184,126 +140,46 @@ a bunch of samples, including heart rate information</li>
 
 <script src="https://gist.github.com/hungtruong/918839f7ba4a213c92817b387a6fd91f.js"></script>
 
-<p>Rather than add some UI to the watch app to start a workout session, the iPhone
-version of <em>HKHealthStore</em> has a function called
-<a href="https://developer.apple.com/documentation/healthkit/hkhealthstore/1648358-startwatchapp">startWatchApp(with:completion:)</a>
-which will send a workout configuration to the watch to facilitate the creation
-of a workout. All I need to do is call that function when my workout on the
-iPhone app starts and my watch app will respond by starting a HealthKit workout
-session which starts measuring things like heart rate (and calculating its own
-estimated calories burned).</p>
+<p>Rather than add some UI to the watch app to start a workout session, the iPhone version of <em>HKHealthStore</em> has a function called <a href="https://developer.apple.com/documentation/healthkit/hkhealthstore/1648358-startwatchapp">startWatchApp(with:completion:)</a> which will send a workout configuration to the watch to facilitate the creation of a workout. All I need to do is call that function when my workout on the iPhone app starts and my watch app will respond by starting a HealthKit workout session which starts measuring things like heart rate (and calculating its own estimated calories burned).</p>
 
-<p>I was now able to get the heart rate as the watch was reading it, and update
-whatever display on the watch I wanted to. That was only half the story though.
-In Zwift the heart rate shows up in the user interface, and I wanted to mimic
-that myself. Since I couldn’t access the workout session directly from the phone
-I’d have to send the heart rate info back to the main app from the watch.</p>
+<p>I was now able to get the heart rate as the watch was reading it, and update whatever display on the watch I wanted to. That was only half the story though. In Zwift the heart rate shows up in the user interface, and I wanted to mimic that myself. Since I couldn’t access the workout session directly from the phone I’d have to send the heart rate info back to the main app from the watch.</p>
 
 <h3 id="back-to-the-app">Back to the App</h3>
 
-<p>This blog post isn’t about Watch apps, so I won’t go over that aspect of this
-feature too much. I basically used the WatchConnectivity session to send
-messages back to the app with a dictionary containing the new heart rate.</p>
+<p>This blog post isn’t about Watch apps, so I won’t go over that aspect of this feature too much. I basically used the WatchConnectivity session to send messages back to the app with a dictionary containing the new heart rate.</p>
 
-<p>And after all of that programming, I’d like to present you with the most
-difficult video I’ve ever shot: on an iPad, while balancing on an exercise bike,
-recording both my wrist watch with my heart rate AND the app showing the exact
-same heart rate!</p>
+<p>And after all of that programming, I’d like to present you with the most difficult video I’ve ever shot: on an iPad, while balancing on an exercise bike, recording both my wrist watch with my heart rate AND the app showing the exact same heart rate!</p>
 
 <p><img src="/blog/wp-content/uploads/2019/zwift-part-3.gif" /></p>
 
-<p>I also rigged up an initial interface that shows which workout segment I’m on,
-the next segment coming up, the progress through the segment and my progress for
-the entire workout, along with stats like calories burned (determined by the
-bike), cadence and distance traveled.</p>
+<p>I also rigged up an initial interface that shows which workout segment I’m on, the next segment coming up, the progress through the segment and my progress for the entire workout, along with stats like calories burned (determined by the bike), cadence and distance traveled.</p>
 
-<p>At this point I have a pretty functional app! But seeing the extensive APIs of
-HealthKit made me want to add more and more to my app. This is scope creep in
-action. See the documentation of
-<a href="https://developer.apple.com/documentation/healthkit/hkworkoutbuilder">HKWorkoutBuilder</a>
-to see all of the data and metadata you can store. I ended up sending a few more
-messages from the app back to the watch so I could store more data to the
-workout:</p>
+<p>At this point I have a pretty functional app! But seeing the extensive APIs of HealthKit made me want to add more and more to my app. This is scope creep in action. See the documentation of <a href="https://developer.apple.com/documentation/healthkit/hkworkoutbuilder">HKWorkoutBuilder</a> to see all of the data and metadata you can store. I ended up sending a few more messages from the app back to the watch so I could store more data to the workout:</p>
 
 <script src="https://gist.github.com/hungtruong/a45a91a9d598a448db7ce3947d70304d.js"></script>
 
-<p>At the end of a workout, I send the start and end times, along with the total
-calories burned and distance traveled. This isn’t really necessary because the
-watch already makes a guess about the calories burned and the distance isn’t
-real because it’s on a stationary bike. But I thought it might be interesting to
-see how that data is represented.</p>
+<p>At the end of a workout, I send the start and end times, along with the total calories burned and distance traveled. This isn’t really necessary because the watch already makes a guess about the calories burned and the distance isn’t real because it’s on a stationary bike. But I thought it might be interesting to see how that data is represented.</p>
 
-<p>I also toyed around with sending segment data but I haven’t seen it visually
-represented anywhere in the workout view. I wanted to see more detail about the
-workout in the Apple Activity app so I also sent the name of the workout as the
+<p>I also toyed around with sending segment data but I haven’t seen it visually represented anywhere in the workout view. I wanted to see more detail about the workout in the Apple Activity app so I also sent the name of the workout as the
 <em>HKMetadataKeyWorkoutBrandName</em> value, though I’m not sure that’s what it’s
-intended for! Here’s what the workouts look like in the Activity app and the
-Health app’s workout data:</p>
+intended for! Here’s what the workouts look like in the Activity app and the Health app’s workout data:</p>
 
 <p><img src="/blog/wp-content/uploads/2019/workout.png" />
 <img src="/blog/wp-content/uploads/2019/sample.png" />
 <img src="/blog/wp-content/uploads/2019/sample2.png" /></p>
 
-<p>One more fun but optional thing I thought of and added was a wrist tap reminder
-when I got close to the end of a segment. Sometimes I’m just in the zone and not
-paying attention to the fact that I need to ramp up or ramp down for the next
-section, so when there’s 5 seconds left in a segment I send a message to the
-watch from the phone to tap my wrist and send a reminder:</p>
+<p>One more fun but optional thing I thought of and added was a wrist tap reminder when I got close to the end of a segment. Sometimes I’m just in the zone and not paying attention to the fact that I need to ramp up or ramp down for the next section, so when there’s 5 seconds left in a segment I send a message to the watch from the phone to tap my wrist and send a reminder:</p>
 
 <script src="https://gist.github.com/hungtruong/9ebc2061b51cd3b13b3acffbb9930398.js"></script>
 
-<p>One of the nice things about writing your own workout app is that you don’t need
-to wait for a third party developer to implement any ideas you have for the app!
-I think that’s actually the only nice thing…</p>
+<p>One of the nice things about writing your own workout app is that you don’t need to wait for a third party developer to implement any ideas you have for the app! I think that’s actually the only nice thing…</p>
 
-<p>Anyway, I’m pretty happy with the results. Next up, I plan on adding a bit of
-visual polish to the interface and maybe even create an app icon! I also want to
-aggregate the data like heart rate info, watt effort, etc and keep track of
-statistics and chart the data, perhaps in real time. I find it very motivating
-to compare my effort in the same exact workout across different days to see if
-I’m improving (maybe by measuring heart rate average).</p>
+<p>Anyway, I’m pretty happy with the results. Next up, I plan on adding a bit of visual polish to the interface and maybe even create an app icon! I also want to aggregate the data like heart rate info, watt effort, etc and keep track of statistics and chart the data, perhaps in real time. I find it very motivating to compare my effort in the same exact workout across different days to see if I’m improving (maybe by measuring heart rate average).</p>
 
-<p>As usual, my changes are in <a href="https://github.com/hungtruong/Zswift">Github</a> in
-case you happen to have the same exact exercise bike as me or are curious how I
-implemented certain things.</p>
+<p>As usual, my changes are in <a href="https://github.com/hungtruong/Zswift">Github</a> in case you happen to have the same exact exercise bike as me or are curious how I implemented certain things.</p>
 
   </div>
 
-  
-  <!-- Hyperaudio Integration -->
-  <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769582567"></script>
-  <script
-    src="/blog/assets/js/vtt-inject.js?v=1769582569"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-3.vtt?v=1769582567";
-      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
-
-      // Add 'is-active' class on play to enable interaction styles
-      var player = document.getElementById('hyperplayer');
-      var transcript = document.getElementById('hypertranscript');
-      var container = document.getElementById('audio-container');
-
-      if (player && transcript) {
-        player.addEventListener('play', function () {
-          transcript.classList.add('is-active');
-          if (container) container.classList.add('is-sticky');
-        });
-      }
-
-      // Handle Close Button
-      var closeBtn = document.getElementById('audio-close');
-      var container = document.getElementById('audio-container');
-      if (closeBtn && container) {
-        closeBtn.addEventListener('click', function () {
-          container.style.display = 'none';
-          if (player) player.pause();
-        });
-      }
-    });
-  </script>
   
 
   <!-- COMMENTS -->
