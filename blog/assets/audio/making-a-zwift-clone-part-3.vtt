@@ -1,334 +1,163 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.075
+00:00:00.000 --> 00:00:04.715
 Cloning Zwift on iOS Part 3: HealthKit and a WatchOS App!
 
-00:00:05.575 --> 00:00:07.893
+00:00:06.215 --> 00:00:08.532
 Published on May 03, 2019.
 
-00:00:08.893 --> 00:00:12.968
-I’ve been a bit slow to update my blog series about trying to make a clone of
+00:00:09.532 --> 00:00:16.085
+I’ve been a bit slow to update my blog series about trying to make a clone of Zwift, but not because I’ve stopped working on it.
 
-00:00:13.468 --> 00:00:16.265
-Zwift, but not because I’ve stopped working on it.
+00:00:16.585 --> 00:00:24.896
+Rather, I’ve been able to use the “MVP” of what I’ve built so far in parts 1 and 2 , and I was finding that the time I spent working on my app could be used actually working out.
 
-00:00:16.765 --> 00:00:18.283
-Rather, I’ve been able to use
+00:00:25.396 --> 00:00:38.743
+Like, I literally would write an implementation of something, but it would take so much of my time that I couldn’t test it out and I’d have to go to bed… Still, I was missing a few important features in my app, so I’ve been slowly working on them in between working on my fitness.
 
-00:00:18.783 --> 00:00:21.500
-the “MVP” of what I’ve built so far in parts
-
-00:00:22.000 --> 00:00:22.959
-1 and 2,
-
-00:00:23.459 --> 00:00:27.854
-and I was finding that the time I spent working on my app could be used actually
-
-00:00:28.354 --> 00:00:32.430
-working out. Like, I literally would write an implementation of something, but
-
-00:00:32.930 --> 00:00:37.645
-it would take so much of my time that I couldn’t test it out and I’d have to go
-
-00:00:38.145 --> 00:00:42.779
-to bed… Still, I was missing a few important features in my app, so I’ve been
-
-00:00:43.279 --> 00:00:46.076
-slowly working on them in between working on my fitness.
-
-00:00:47.076 --> 00:00:48.914
+00:00:39.743 --> 00:00:41.820
 Hooking up the Apple Watch
 
-00:00:50.414 --> 00:00:54.090
-One of the great things about Zwift is how much support they provide for
+00:00:43.320 --> 00:00:49.873
+One of the great things about Zwift is how much support they provide for different fitness accessories, including the Apple Watch.
 
-00:00:54.590 --> 00:00:57.866
-different fitness accessories, including the Apple Watch.
+00:00:50.373 --> 00:00:57.646
+Unfortunately, the Apple Watch hardware is not set up to allow arbitrary Bluetooth connections like my exercise bike was in part 1.
 
-00:00:58.366 --> 00:01:03.401
-Unfortunately, the Apple Watch hardware is not set up to allow arbitrary Bluetooth connections like
+00:00:58.146 --> 00:01:03.899
+Instead, to access the user’s health information like heart rate, you need to write a full blown WatchOS app!
 
-00:01:03.901 --> 00:01:05.899
-my exercise bike was in part 1.
+00:01:04.899 --> 00:01:13.530
+Luckily, this wasn’t my first rodeo as I worked on the Apple Watch app for Starbucks, so I was able to add a Watch app extension target in my project pretty quickly.
 
-00:01:06.399 --> 00:01:09.275
-Instead, to access the user’s health information
+00:01:14.530 --> 00:01:24.360
+I Googled for how to get a user’s heart rate programmatically, came across a promising StackOverflow post with a link to a Github project , and was able to get it implemented myself.
 
-00:01:09.775 --> 00:01:12.972
-like heart rate, you need to write a full blown WatchOS app!
+00:01:24.860 --> 00:01:28.776
+However, as I looked at the copy-pasta code, it seemed sort of wrong to me.
 
-00:01:13.972 --> 00:01:18.047
-Luckily, this wasn’t my first rodeo as I worked on the Apple Watch app for
+00:01:29.276 --> 00:01:39.105
+The code was starting a workout session, but then created an object query that would run a closure whenever a new heart rate sample (older than a certain date) was added by the workout.
 
-00:01:18.547 --> 00:01:24.301
-Starbucks, so I was able to add a Watch app extension target in my project pretty quickly.
+00:01:39.605 --> 00:01:46.478
+This seems like a really roundabout way to get heart rate samples, and I wondered if Apple had a better API to accomplish this.
 
-00:01:25.301 --> 00:01:29.456
-I Googled for how to get a user’s heart rate programmatically, came across a
-
-00:01:29.956 --> 00:01:32.194
-promising StackOverflow post
-
-00:01:32.694 --> 00:01:34.532
-with a link to a Github
-
-00:01:35.032 --> 00:01:37.669
-project, and was able to get it implemented myself.
-
-00:01:38.169 --> 00:01:40.326
-However, as I looked at the
-
-00:01:40.826 --> 00:01:44.262
-copy-pasta code, it seemed sort of wrong to me.
-
-00:01:44.762 --> 00:01:46.361
-The code was starting a workout
-
-00:01:46.861 --> 00:01:50.776
-session, but then created an object query that would run a closure whenever a
-
-00:01:51.276 --> 00:01:55.511
-new heart rate sample (older than a certain date) was added by the workout.
-
-00:01:56.011 --> 00:02:00.167
-This seems like a really roundabout way to get heart rate samples, and I wondered if
-
-00:02:00.667 --> 00:02:03.544
-Apple had a better API to accomplish this.
-
-00:02:04.544 --> 00:02:05.822
+00:01:47.478 --> 00:01:49.396
 Implementing HealthKit
 
-00:02:07.322 --> 00:02:09.639
-I ended up finding some Apple sample
+00:01:50.896 --> 00:01:55.291
+I ended up finding some Apple sample code that showed a better way to fetch heart rate data.
 
-00:02:10.139 --> 00:02:13.336
-code that showed a better way to fetch heart rate data.
+00:01:55.791 --> 00:02:02.743
+The solution is to use some new features introduced in WatchOS 5 that allow for creation of a workout directly on the Apple Watch.
 
-00:02:13.836 --> 00:02:15.594
-The solution is to use some
+00:02:03.243 --> 00:02:07.399
+The Apple doc I linked explains it pretty well, but the steps are:
 
-00:02:16.094 --> 00:02:20.809
-new features introduced in WatchOS 5 that allow for creation of a workout
+00:02:08.399 --> 00:02:11.755
+Ask the user for permission to track their heart rate data
 
-00:02:21.309 --> 00:02:22.907
-directly on the Apple Watch.
+00:02:12.755 --> 00:02:19.947
+Create a workout configuration (e.g. an indoor cycling workout) and a workout session, along with its associated workout builder
 
-00:02:23.407 --> 00:02:27.003
-The Apple doc I linked explains it pretty well, but
+00:02:20.947 --> 00:02:25.103
+Start the session and tell the workout builder to start collecting data samples
 
-00:02:27.503 --> 00:02:28.781
-the steps are:
+00:02:26.103 --> 00:02:33.295
+Respond to the delegate method “workoutBuilder(_:didCollectDataOf:)” to collect a bunch of samples, including heart rate information
 
-00:02:29.781 --> 00:02:32.099
+00:02:34.295 --> 00:02:36.612
 In code it looks something like this:
 
-00:02:33.099 --> 00:02:37.574
-Rather than add some UI to the watch app to start a workout session, the iPhone
+00:02:37.612 --> 00:02:50.399
+Rather than add some UI to the watch app to start a workout session, the iPhone version of HKHealthStore has a function called startWatchApp(with:completion:) which will send a workout configuration to the watch to facilitate the creation of a workout.
 
-00:02:38.074 --> 00:02:41.030
-version of HKHealthStore has a function called
+00:02:50.899 --> 00:03:03.526
+All I need to do is call that function when my workout on the iPhone app starts and my watch app will respond by starting a HealthKit workout session which starts measuring things like heart rate (and calculating its own estimated calories burned).
 
-00:02:41.530 --> 00:02:48.003
-startWatchApp(with:completion:) which will send a workout configuration to the watch to facilitate the creation
+00:03:04.526 --> 00:03:11.159
+I was now able to get the heart rate as the watch was reading it, and update whatever display on the watch I wanted to.
 
-00:02:48.503 --> 00:02:49.303
-of a workout.
-
-00:02:49.803 --> 00:02:52.999
-All I need to do is call that function when my workout on the
-
-00:02:53.499 --> 00:02:58.054
-iPhone app starts and my watch app will respond by starting a HealthKit workout
-
-00:02:58.554 --> 00:03:03.269
-session which starts measuring things like heart rate (and calculating its own
-
-00:03:03.769 --> 00:03:05.607
-estimated calories burned).
-
-00:03:06.607 --> 00:03:10.922
-I was now able to get the heart rate as the watch was reading it, and update
-
-00:03:11.422 --> 00:03:13.340
-whatever display on the watch I wanted to.
-
-00:03:13.840 --> 00:03:15.997
+00:03:11.659 --> 00:03:13.817
 That was only half the story though.
 
-00:03:16.497 --> 00:03:20.972
-In Zwift the heart rate shows up in the user interface, and I wanted to mimic
+00:03:14.317 --> 00:03:19.751
+In Zwift the heart rate shows up in the user interface, and I wanted to mimic that myself.
 
-00:03:21.472 --> 00:03:25.628
-that myself. Since I couldn’t access the workout session directly from the phone
+00:03:20.251 --> 00:03:27.683
+Since I couldn’t access the workout session directly from the phone I’d have to send the heart rate info back to the main app from the watch.
 
-00:03:26.128 --> 00:03:29.644
-I’d have to send the heart rate info back to the main app from the watch.
-
-00:03:30.644 --> 00:03:31.922
+00:03:28.683 --> 00:03:30.201
 Back to the App
 
-00:03:33.422 --> 00:03:38.457
-This blog post isn’t about Watch apps, so I won’t go over that aspect of this
+00:03:31.701 --> 00:03:36.736
+This blog post isn’t about Watch apps, so I won’t go over that aspect of this feature too much.
 
-00:03:38.957 --> 00:03:39.836
-feature too much.
+00:03:37.236 --> 00:03:43.789
+I basically used the WatchConnectivity session to send messages back to the app with a dictionary containing the new heart rate.
 
-00:03:40.336 --> 00:03:43.772
-I basically used the WatchConnectivity session to send
+00:03:44.789 --> 00:03:56.936
+And after all of that programming, I’d like to present you with the most difficult video I’ve ever shot: on an iPad, while balancing on an exercise bike, recording both my wrist watch with my heart rate AND the app showing the exact same heart rate!
 
-00:03:44.272 --> 00:03:47.708
-messages back to the app with a dictionary containing the new heart rate.
+00:03:57.936 --> 00:04:12.802
+I also rigged up an initial interface that shows which workout segment I’m on, the next segment coming up, the progress through the segment and my progress for the entire workout, along with stats like calories burned (determined by the bike), cadence and distance traveled.
 
-00:03:48.708 --> 00:03:52.144
-And after all of that programming, I’d like to present you with the most
-
-00:03:52.644 --> 00:03:58.078
-difficult video I’ve ever shot: on an iPad, while balancing on an exercise bike,
-
-00:03:58.578 --> 00:04:02.814
-recording both my wrist watch with my heart rate AND the app showing the exact
-
-00:04:03.314 --> 00:04:04.192
-same heart rate!
-
-00:04:05.192 --> 00:04:09.268
-I also rigged up an initial interface that shows which workout segment I’m on,
-
-00:04:09.768 --> 00:04:14.403
-the next segment coming up, the progress through the segment and my progress for
-
-00:04:14.903 --> 00:04:19.378
-the entire workout, along with stats like calories burned (determined by the
-
-00:04:19.878 --> 00:04:22.195
-bike), cadence and distance traveled.
-
-00:04:23.195 --> 00:04:25.912
+00:04:13.802 --> 00:04:16.039
 At this point I have a pretty functional app!
 
-00:04:26.412 --> 00:04:28.809
-But seeing the extensive APIs of
+00:04:16.539 --> 00:04:21.334
+But seeing the extensive APIs of HealthKit made me want to add more and more to my app.
 
-00:04:29.309 --> 00:04:32.106
-HealthKit made me want to add more and more to my app.
+00:04:21.834 --> 00:04:23.752
+This is scope creep in action.
 
-00:04:32.606 --> 00:04:34.284
-This is scope creep in
+00:04:24.252 --> 00:04:29.686
+See the documentation of HKWorkoutBuilder to see all of the data and metadata you can store.
 
-00:04:34.784 --> 00:04:37.821
-action. See the documentation of
+00:04:30.186 --> 00:04:35.540
+I ended up sending a few more messages from the app back to the watch so I could store more data to the workout:
 
-00:04:38.321 --> 00:04:42.237
-HKWorkoutBuilder to see all of the data and metadata you can store.
+00:04:36.540 --> 00:04:42.214
+At the end of a workout, I send the start and end times, along with the total calories burned and distance traveled.
 
-00:04:42.737 --> 00:04:44.894
-I ended up sending a few more
+00:04:42.714 --> 00:04:49.986
+This isn’t really necessary because the watch already makes a guess about the calories burned and the distance isn’t real because it’s on a stationary bike.
 
-00:04:45.394 --> 00:04:49.390
-messages from the app back to the watch so I could store more data to the workout:
+00:04:50.486 --> 00:04:54.082
+But I thought it might be interesting to see how that data is represented.
 
-00:04:50.390 --> 00:04:54.545
-At the end of a workout, I send the start and end times, along with the total
+00:04:55.082 --> 00:05:01.315
+I also toyed around with sending segment data but I haven’t seen it visually represented anywhere in the workout view.
 
-00:04:55.045 --> 00:04:57.362
-calories burned and distance traveled.
+00:05:01.815 --> 00:05:13.003
+I wanted to see more detail about the workout in the Apple Activity app so I also sent the name of the workout as the HKMetadataKeyWorkoutBrandName value, though I’m not sure that’s what it’s intended for!
 
-00:04:57.862 --> 00:05:00.020
-This isn’t really necessary because the
+00:05:13.503 --> 00:05:18.618
+Here’s what the workouts look like in the Activity app and the Health app’s workout data:
 
-00:05:00.520 --> 00:05:04.515
-watch already makes a guess about the calories burned and the distance isn’t
+00:05:19.618 --> 00:05:25.691
+One more fun but optional thing I thought of and added was a wrist tap reminder when I got close to the end of a segment.
 
-00:05:05.015 --> 00:05:07.413
-real because it’s on a stationary bike.
+00:05:26.191 --> 00:05:38.738
+Sometimes I’m just in the zone and not paying attention to the fact that I need to ramp up or ramp down for the next section, so when there’s 5 seconds left in a segment I send a message to the watch from the phone to tap my wrist and send a reminder:
 
-00:05:07.913 --> 00:05:10.310
-But I thought it might be interesting to
+00:05:39.738 --> 00:05:46.851
+One of the nice things about writing your own workout app is that you don’t need to wait for a third party developer to implement any ideas you have for the app!
 
-00:05:10.810 --> 00:05:12.568
-see how that data is represented.
-
-00:05:13.568 --> 00:05:17.803
-I also toyed around with sending segment data but I haven’t seen it visually
-
-00:05:18.303 --> 00:05:20.541
-represented anywhere in the workout view.
-
-00:05:21.041 --> 00:05:23.358
-I wanted to see more detail about the
-
-00:05:23.858 --> 00:05:29.212
-workout in the Apple Activity app so I also sent the name of the workout as the
-
-00:05:29.712 --> 00:05:34.028
-HKMetadataKeyWorkoutBrandName value, though I’m not sure that’s what it’s
-
-00:05:34.528 --> 00:05:38.523
-intended for! Here’s what the workouts look like in the Activity app and the
-
-00:05:39.023 --> 00:05:41.660
-Health app’s workout data:
-
-00:05:42.660 --> 00:05:46.895
-One more fun but optional thing I thought of and added was a wrist tap reminder
-
-00:05:47.395 --> 00:05:49.393
-when I got close to the end of a segment.
-
-00:05:49.893 --> 00:05:51.971
-Sometimes I’m just in the zone and not
-
-00:05:52.471 --> 00:05:56.386
-paying attention to the fact that I need to ramp up or ramp down for the next
-
-00:05:56.886 --> 00:06:01.361
-section, so when there’s 5 seconds left in a segment I send a message to the
-
-00:06:01.861 --> 00:06:05.697
-watch from the phone to tap my wrist and send a reminder:
-
-00:06:06.697 --> 00:06:10.693
-One of the nice things about writing your own workout app is that you don’t need
-
-00:06:11.193 --> 00:06:15.268
-to wait for a third party developer to implement any ideas you have for the app!
-
-00:06:15.768 --> 00:06:18.325
+00:05:47.351 --> 00:05:49.588
 I think that’s actually the only nice thing…
 
-00:06:19.325 --> 00:06:22.282
+00:05:50.588 --> 00:05:53.225
 Anyway, I’m pretty happy with the results.
 
-00:06:22.782 --> 00:06:24.780
-Next up, I plan on adding a bit of
+00:05:53.725 --> 00:05:59.719
+Next up, I plan on adding a bit of visual polish to the interface and maybe even create an app icon!
 
-00:06:25.280 --> 00:06:29.195
-visual polish to the interface and maybe even create an app icon!
+00:06:00.219 --> 00:06:09.329
+I also want to aggregate the data like heart rate info, watt effort, etc and keep track of statistics and chart the data, perhaps in real time.
 
-00:06:29.695 --> 00:06:31.134
-I also want to
+00:06:09.829 --> 00:06:17.980
+I find it very motivating to compare my effort in the same exact workout across different days to see if I’m improving (maybe by measuring heart rate average).
 
-00:06:31.634 --> 00:06:37.787
-aggregate the data like heart rate info, watt effort, etc and keep track of
-
-00:06:38.287 --> 00:06:41.723
-statistics and chart the data, perhaps in real time.
-
-00:06:42.223 --> 00:06:44.141
-I find it very motivating
-
-00:06:44.641 --> 00:06:48.477
-to compare my effort in the same exact workout across different days to see if
-
-00:06:48.977 --> 00:06:52.173
-I’m improving (maybe by measuring heart rate average).
-
-00:06:53.173 --> 00:06:56.769
-As usual, my changes are in Github in
-
-00:06:57.269 --> 00:07:02.224
-case you happen to have the same exact exercise bike as me or are curious how I
-
-00:07:02.724 --> 00:07:04.641
-implemented certain things.
+00:06:18.980 --> 00:06:26.972
+As usual, my changes are in Github in case you happen to have the same exact exercise bike as me or are curious how I implemented certain things.
