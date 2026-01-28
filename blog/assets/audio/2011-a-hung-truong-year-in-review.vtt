@@ -1,0 +1,157 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.877
+2011: A Hung Truong Year In Review
+
+00:00:04.377 --> 00:00:06.774
+Published on January 03, 2012.
+
+00:00:07.774 --> 00:00:12.009
+Last year I wrote a review of the stuff I had accomplished in 2010 .
+
+00:00:12.509 --> 00:00:18.263
+It was useful for me to look back and realize that even though I felt I hadn’t accomplished much, I really had.
+
+00:00:18.763 --> 00:00:23.718
+I figure I should do the same this year, so here’s what I did in 2011.
+
+00:00:24.718 --> 00:00:33.269
+January was a pretty big month for me. I had entered my apps into a University of Michigan contest and Checkmate ended up winning 3rd place .
+
+00:00:33.769 --> 00:00:39.282
+I also “released” Instascriber , which got picked up on a couple of tech news sites, including LifeHacker .
+
+00:00:39.782 --> 00:00:47.534
+At the end of January, I socially engineered a Facebook poll to virally get around 60,000 responses before Facebook shut it down .
+
+00:00:48.034 --> 00:00:49.632
+That was pretty fun.
+
+00:00:50.132 --> 00:00:51.411
+February was a bit slower.
+
+00:00:51.911 --> 00:00:59.982
+I think I mostly ported Mapskrieg to App Engine (though I since reverted it back to the PHP version since App Engine raised their prices like crazy).
+
+00:01:00.482 --> 00:01:07.035
+I think I also interviewed at a couple of places for jobs, but didn’t have any sustained interest from anyone (or with anyone, really).
+
+00:01:08.035 --> 00:01:18.105
+I must have spent most of March doing iOS programming, because the only blog posts I have are the one about UISplitViewController and the release of <3 Threadless for iPad .
+
+00:01:18.605 --> 00:01:26.836
+The iPad app release was pretty big for me since I had not previously released an iPad app that was much more than a simple scrollview with a main view attached.
+
+00:01:27.836 --> 00:01:31.432
+In April, I released another iPad app, Mapskrieg .
+
+00:01:31.932 --> 00:01:37.846
+This was a really good way for me to get better with iOS development and to write my own API to use in the app.
+
+00:01:38.346 --> 00:01:43.700
+I believe April is also when I started interviewing for other jobs, including one at Bebarang.
+
+00:01:44.200 --> 00:01:49.074
+I also started working on a freelance app for the University’s Enriching Scholarship event.
+
+00:01:49.574 --> 00:01:54.049
+I guess I never announced it on my blog previously, but here’s the app I worked on .
+
+00:01:55.049 --> 00:01:59.684
+In May, I started working with Allen Kim on Bebarang, the Netflix for baby clothes.
+
+00:02:00.184 --> 00:02:06.258
+I moved to New York in June , and stayed there to work on the startup for July and August as well.
+
+00:02:06.758 --> 00:02:12.032
+My summer experience deserves a blog post of its own, which I started writing and sorta forgot about.
+
+00:02:12.532 --> 00:02:17.007
+It was really awesome getting mentorship on the ins and outs of starting a business.
+
+00:02:17.507 --> 00:02:21.023
+I got to meet lots of incredible people and learned a ton.
+
+00:02:21.523 --> 00:02:25.199
+I also got to eat some really good food and experience New York.
+
+00:02:25.699 --> 00:02:30.493
+I am super grateful for the opportunity to work with NYC Seedstart and Bebarang.
+
+00:02:30.993 --> 00:02:35.548
+Unfortunately, things just didn’t work out, and I left the company at the end of August.
+
+00:02:36.548 --> 00:02:41.823
+In September, I noticed a job posting at Threadless, and contacted my pal Chris about it.
+
+00:02:42.323 --> 00:02:46.957
+I attended the Threadless Family Reunion and got a job offer that I couldn’t refuse !
+
+00:02:47.457 --> 00:02:57.207
+I moved to Chicago (actually a suburb of it, Oak Park) in October and I am currently working on cool things at Threadless , including an awesome looking redesign of the site.
+
+00:02:57.707 --> 00:03:03.940
+So far I have learned a ton about actual software engineering (as opposed to the cowboy coding that I’m accustomed to).
+
+00:03:04.440 --> 00:03:11.393
+It is majorly sweet that I’m getting paid to get better at Django and Python (oh, and contribute to the code base, of course).
+
+00:03:11.893 --> 00:03:17.247
+I really couldn’t ask for a better turn of events than to work at a company I’ve long admired (and bought from).
+
+00:03:18.247 --> 00:03:24.800
+In December, I took a trip to California to hang out with my family (much of whom also traveled to California to hang out).
+
+00:03:25.300 --> 00:03:30.894
+I went to the Santa Cruz Mystery Spot but forgot my fucking bumpersticker!!!! I am really pissed about that.
+
+00:03:31.394 --> 00:03:36.668
+I discovered that my niece and nephew really like Minecraft, and I think I will write a separate blog post about that.
+
+00:03:37.668 --> 00:03:41.184
+Looking back, I feel I got a lot accomplished in 2011.
+
+00:03:41.684 --> 00:03:50.475
+I think I finally found a good balance between doing whatever the heck I want (and getting paid little) and being a complete corporate slave (and getting paid slightly better).
+
+00:03:50.975 --> 00:03:56.809
+I learned that maybe being a startup founder is not for me (at least in this stage of my life).
+
+00:03:57.309 --> 00:04:00.185
+I want to make an impact in whichever field I work in.
+
+00:04:00.685 --> 00:04:06.998
+I’m still figuring out how to maximize that (while still enjoying life and hanging out with other people, like my girlfriend).
+
+00:04:07.498 --> 00:04:16.529
+I feel like I am finally at the point where my hard work and accumulation of experience have paid their dividends, and it is now up to me to continue working hard and improving every day.
+
+00:04:17.529 --> 00:04:22.963
+I think my greatest concern for 2012 is that I won’t accomplish as much as I have in previous years.
+
+00:04:23.463 --> 00:04:30.655
+Working a full time job can be hard on side projects, so I’ll try to put in a good effort on keeping those and my hobbies alive.
+
+00:04:31.155 --> 00:04:36.110
+I also want to work on my health, as living in New York and eating all of its food has added a few pounds.
+
+00:04:36.610 --> 00:04:38.847
+I started playing DDR again. It’s fun.
+
+00:04:39.847 --> 00:04:43.283
+I have a few ideas for side projects that I’d like to work on.
+
+00:04:43.783 --> 00:04:50.017
+One is an open source ifttt clone that anyone can install (on their own server) and write modules for.
+
+00:04:50.517 --> 00:04:55.311
+Another is a redesign of Anime Nano (and maybe a rewrite in Django).
+
+00:04:55.811 --> 00:05:00.606
+I also want to get an aluminum base plate and photopolymer plates made for my letterpress.
+
+00:05:01.106 --> 00:05:08.218
+Finally, I would like to blog more often; shorter blogs, longer blogs, blogs about wacky stuff that I experience.
+
+00:05:09.218 --> 00:05:15.931
+I want to look back to this blog post in a year, and hopefully I’ll have accomplished many or all of my “resolutions” by then.
