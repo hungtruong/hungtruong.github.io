@@ -1,0 +1,508 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.516
+Five Simple Steps to Becoming an International™ Conference Speaker!
+
+00:00:05.016 --> 00:00:07.174
+Published on May 20, 2018.
+
+00:00:08.174 --> 00:00:11.849
+A few years ago, I made a goal for myself that I would start speaking at
+
+00:00:12.349 --> 00:00:16.825
+conferences. In the past I had gone to quite a few awesome conferences and I
+
+00:00:17.325 --> 00:00:21.080
+really admired the folks who could get on a stage, share a bunch of knowledge
+
+00:00:21.580 --> 00:00:24.217
+and inspire an audience to do cool stuff.
+
+00:00:24.717 --> 00:00:27.035
+While I had a bit of experience with
+
+00:00:27.535 --> 00:00:32.409
+public speaking (I spoke at some local iOS/Android meetups and moderated two
+
+00:00:32.909 --> 00:00:38.983
+panels at SXSW back in ’11 and ’13), I wanted to try for a “real” conference spot.
+
+00:00:39.983 --> 00:00:43.898
+I think the conference that convinced me to start applying was Swift Summit,
+
+00:00:44.398 --> 00:00:46.396
+which I attended in 2015.
+
+00:00:46.896 --> 00:00:50.172
+There were a number of really inspiring talks, and the
+
+00:00:50.672 --> 00:00:53.469
+community felt really fresh and welcoming.
+
+00:00:53.969 --> 00:00:56.766
+One interesting aside: I learned
+
+00:00:57.266 --> 00:01:02.221
+after joining Lyft that no fewer than three of my current coworkers on iOS spoke
+
+00:01:02.721 --> 00:01:04.079
+at that conference (Keith,
+
+00:01:04.579 --> 00:01:07.536
+Sam and JP, though only Keith was working
+
+00:01:08.036 --> 00:01:11.712
+at Lyft at the time) and a few others attended that year.
+
+00:01:12.212 --> 00:01:13.490
+I’m not sure if that’s
+
+00:01:13.990 --> 00:01:15.988
+correlation or causation at work.
+
+00:01:16.988 --> 00:01:18.906
+Step 1: Applying to speak
+
+00:01:20.406 --> 00:01:25.040
+According to my Google Doc which keeps track of my CFP applications, I started
+
+00:01:25.540 --> 00:01:27.778
+applying heavily in 2016.
+
+00:01:28.278 --> 00:01:31.315
+There was a gap between when I wanted to apply and
+
+00:01:31.815 --> 00:01:35.570
+when I started to apply simply because I felt I didn’t have much to talk about.
+
+00:01:36.070 --> 00:01:40.386
+Once I had some interesting experience with iMessage and accessibility while
+
+00:01:40.886 --> 00:01:45.121
+working at Starbucks, I figured people might want to know about those things,
+
+00:01:45.621 --> 00:01:48.657
+too. In retrospect I think I probably waited too long.
+
+00:01:49.157 --> 00:01:50.116
+If you are passionate
+
+00:01:50.616 --> 00:01:54.292
+about something, don’t wait until you feel you’re an expert on the subject.
+
+00:01:54.792 --> 00:01:59.427
+That day probably (at least for me) will never come, and you can always do research
+
+00:01:59.927 --> 00:02:02.244
+about your topic once it’s been accepted!
+
+00:02:03.244 --> 00:02:07.799
+In all of my CFPs I use a template which I learned about during my time in the
+
+00:02:08.299 --> 00:02:10.057
+Twilio Heroes program.
+
+00:02:10.557 --> 00:02:11.916
+Essentially, you need to:
+
+00:02:12.916 --> 00:02:16.832
+Here’s an example of my iMessage talk, which used that template:
+
+00:02:17.832 --> 00:02:21.587
+(1) Messaging apps are huge and getting huger.
+
+00:02:22.087 --> 00:02:24.325
+With WhatsApp, WeChat and
+
+00:02:24.825 --> 00:02:28.820
+Facebook Messenger users in the millions or billions, it’s clear that messaging
+
+00:02:29.320 --> 00:02:31.158
+is not a fad.
+
+00:02:31.658 --> 00:02:34.215
+So how can a developer take advantage of this growth?
+
+00:02:34.715 --> 00:02:38.711
+(2) Starting a new messaging app is probably out of the question.
+
+00:02:39.211 --> 00:02:41.608
+(3) Thankfully, Apple has
+
+00:02:42.108 --> 00:02:45.464
+introduced iMessage app extensions in iOS 10.
+
+00:02:45.964 --> 00:02:48.362
+Learn how to use iMessage to let
+
+00:02:48.862 --> 00:02:53.097
+your users send rich, interactive messages, and learn how to take advantage of
+
+00:02:53.597 --> 00:02:58.232
+the network effects that iMessage app extensions allow, including updates
+
+00:02:58.732 --> 00:03:03.447
+introduced in iOS 11 like Live Message Layouts and the Direct Send API.
+
+00:03:04.447 --> 00:03:06.604
+Step 2: Getting rejected
+
+00:03:08.104 --> 00:03:12.579
+After using this template for talks and applying to pretty much every iOS
+
+00:03:13.079 --> 00:03:17.714
+related conference in 2016, I ended up getting a ton of rejections.
+
+00:03:18.214 --> 00:03:23.249
+This is totally fine and to be expected since I think most conferences get way more talk
+
+00:03:23.749 --> 00:03:25.746
+proposals than they have spots.
+
+00:03:26.246 --> 00:03:29.043
+I also noticed that conferences tend to invite
+
+00:03:29.543 --> 00:03:33.539
+speakers who have spoken before, which is a form of risk management but also
+
+00:03:34.039 --> 00:03:36.516
+kind of unfair for people who have never spoken.
+
+00:03:37.516 --> 00:03:42.151
+The best way to beat this sort of chicken and egg situation is probably to aim
+
+00:03:42.651 --> 00:03:46.247
+at local meetups which are always looking for people to give talks!
+
+00:03:46.747 --> 00:03:51.302
+Another benefit of this is that you get to practice your talk and refine it before
+
+00:03:51.802 --> 00:03:55.318
+taking it to a bigger stage and audience (which is exactly what I did for my
+
+00:03:55.818 --> 00:03:59.573
+accessibility talk that I gave at iOSCon in London this year).
+
+00:04:00.073 --> 00:04:01.192
+Because I had
+
+00:04:01.692 --> 00:04:05.928
+given my talk at an Xcoders meeting two weeks before the conference, I was able
+
+00:04:06.428 --> 00:04:10.663
+to time my talk, practice it in front of people, get their questions to
+
+00:04:11.163 --> 00:04:15.398
+incorporate back into the talk, and feel like I was ready once I spoke in front
+
+00:04:15.898 --> 00:04:17.097
+of a larger crowd.
+
+00:04:18.097 --> 00:04:20.734
+Step 3: Getting accepted
+
+00:04:22.234 --> 00:04:26.069
+The first year I really started getting serious about applying to conferences,
+
+00:04:26.569 --> 00:04:29.206
+my acceptance rate was 1 of 7¹.
+
+00:04:29.706 --> 00:04:32.583
+Success! I attended the first
+
+00:04:33.083 --> 00:04:35.720
+CodeMobile conference in Chester, UK and talked
+
+00:04:36.220 --> 00:04:37.579
+about iMessage apps.
+
+00:04:38.079 --> 00:04:41.195
+The experience of going on stage, sharing something I
+
+00:04:41.695 --> 00:04:45.851
+thought was interesting, and then getting feedback that it actually was
+
+00:04:46.351 --> 00:04:48.588
+interesting to people was great!
+
+00:04:49.088 --> 00:04:51.885
+The attendees were all amazing and I finally
+
+00:04:52.385 --> 00:04:55.901
+got to travel outside of North America for the first time in my life.
+
+00:04:56.401 --> 00:05:00.396
+I had reached my goals and become an International™ Speaker as well as generally
+
+00:05:00.896 --> 00:05:04.173
+becoming an iOS Conference Speaker all in one go.
+
+00:05:05.173 --> 00:05:07.250
+Step 4: Preparation
+
+00:05:08.750 --> 00:05:12.826
+The thing that most people don’t tell you, and the thing that you quickly find
+
+00:05:13.326 --> 00:05:17.241
+out when preparing a conference talk is how much work it is to prepare!
+
+00:05:17.741 --> 00:05:22.936
+As an audience member to some great talks, I always assumed that the talk took maybe a
+
+00:05:23.436 --> 00:05:25.833
+handful of hours to prepare and format.
+
+00:05:26.833 --> 00:05:31.388
+In practice, a talk can take something like 40–50 hours for a 45 minute session.
+
+00:05:31.888 --> 00:05:35.644
+That includes coming up with the proposal, learning about the subject (often
+
+00:05:36.144 --> 00:05:39.500
+this happens after the proposal has been accepted!
+
+00:05:40.000 --> 00:05:41.358
+), coming up with a format
+
+00:05:41.858 --> 00:05:46.014
+that will educate and inspire (and hopefully entertain) your audience, and
+
+00:05:46.514 --> 00:05:49.151
+practicing the delivery of the material.
+
+00:05:49.651 --> 00:05:51.968
+You probably also want to tailor your
+
+00:05:52.468 --> 00:05:56.384
+presentation for the audience you’re speaking to; are they mostly students?
+
+00:05:56.884 --> 00:05:59.681
+What skill level would be most appropriate to present to?
+
+00:06:00.181 --> 00:06:01.699
+What kinds of jokes might
+
+00:06:02.199 --> 00:06:04.037
+work well with your audience?
+
+00:06:05.037 --> 00:06:08.793
+A good amount of the time that I put into preparing talks is practicing.
+
+00:06:09.293 --> 00:06:13.528
+It’s really up to you how polished you want the talk to be, and how comfortable you
+
+00:06:14.028 --> 00:06:17.304
+will be presenting with the amount of practice you’ve put into it.
+
+00:06:17.804 --> 00:06:22.359
+As I mentioned before, presenting early to a smaller group can really help by
+
+00:06:22.859 --> 00:06:26.775
+creating a deadline that is sooner than the actual talk and providing a method
+
+00:06:27.275 --> 00:06:30.551
+of gathering feedback to tweak your talk to make it even better.
+
+00:06:31.551 --> 00:06:35.467
+One thing that’s great about having a conference talk lined up is that you can
+
+00:06:35.967 --> 00:06:38.844
+do some pretty productive stuff while procrastinating.
+
+00:06:39.344 --> 00:06:40.542
+In order to avoid
+
+00:06:41.042 --> 00:06:45.997
+preparing my iOSCon talk, I applied to speak at a conference in New York called
+
+00:06:46.497 --> 00:06:52.250
+!! Con. That application ended up getting accepted, so I started down a pretty
+
+00:06:52.750 --> 00:06:55.787
+vicious cycle of speaking at more conferences!
+
+00:06:56.787 --> 00:07:00.862
+I recently came across this Twitter thread of many speakers sharing their
+
+00:07:01.362 --> 00:07:03.999
+process and how much time they put into their talks:
+
+00:07:04.999 --> 00:07:09.554
+Hey, people who talk at things:How long does it take you to put a new talk together?
+
+00:07:10.054 --> 00:07:13.970
+I need like 50 hours over at least a couple of months to make something I don't hate.
+
+00:07:14.470 --> 00:07:19.824
+I'm trying to get that down (maybe by not doing pictures?) but wondering what's normal for everyone else.
+
+00:07:20.824 --> 00:07:22.742
+Step 5: Actually presenting
+
+00:07:24.242 --> 00:07:27.358
+Giving the actual talk is kind of a weird experience.
+
+00:07:27.858 --> 00:07:29.457
+After putting a ton of
+
+00:07:29.957 --> 00:07:35.151
+time into a talk upfront, I’ve found that the actual talk goes by faster than I
+
+00:07:35.651 --> 00:07:36.290
+think it will.
+
+00:07:36.790 --> 00:07:40.866
+Once I get up and start talking, I’m more or less on autopilot,
+
+00:07:41.366 --> 00:07:44.242
+and it’s almost like having an out of body experience.
+
+00:07:44.742 --> 00:07:46.341
+It might be because I put
+
+00:07:46.841 --> 00:07:51.316
+all of my brain power into giving the talk, but I can’t even really remember how
+
+00:07:51.816 --> 00:07:53.733
+I did once it’s done.
+
+00:07:54.233 --> 00:07:57.270
+Then at the end everyone claps and hopefully people ask
+
+00:07:57.770 --> 00:08:02.005
+insightful questions and no one asks a question that’s really just a statement
+
+00:08:02.505 --> 00:08:05.142
+that they’re trying to use to prove that they know something.
+
+00:08:06.142 --> 00:08:09.499
+Once I’ve given the talk, I can actually enjoy the conference.
+
+00:08:09.999 --> 00:08:11.037
+I’ve been lucky
+
+00:08:11.537 --> 00:08:16.572
+that the first few conferences I’ve spoken at, I was the first speaker after the
+
+00:08:17.072 --> 00:08:19.549
+keynote speaker on the first day.
+
+00:08:20.049 --> 00:08:23.006
+Going earlier is also nice because then people
+
+00:08:23.506 --> 00:08:27.341
+have seen you talk and they’re usually more open about chatting with you in the hallway.
+
+00:08:28.341 --> 00:08:29.460
+Presenting some more
+
+00:08:30.960 --> 00:08:35.036
+After speaking at CodeMobile in Chester, UK, I
+
+00:08:35.536 --> 00:08:38.093
+didn’t get any talks accepted for about a year.
+
+00:08:38.593 --> 00:08:40.591
+I ended up speaking again in the
+
+00:08:41.091 --> 00:08:43.088
+UK, this time in London for
+
+00:08:43.588 --> 00:08:46.225
+iOSCon in March of 2018.
+
+00:08:46.725 --> 00:08:49.122
+Then I most recently spoke at !!
+
+00:08:49.622 --> 00:08:51.700
+Con in New York in May.
+
+00:08:52.200 --> 00:08:55.716
+I’ll be giving an updated version of my iOS accessibility
+
+00:08:56.216 --> 00:08:58.773
+talk in Boston next month for SwiftFest.
+
+00:08:59.773 --> 00:09:04.408
+This time around my acceptance rate was 3/6, which is much better.
+
+00:09:04.908 --> 00:09:08.904
+I would mostly chalk this up to the fact that I gave a talk at CodeMobile last year.
+
+00:09:09.404 --> 00:09:13.239
+I also applied to some more diverse types of tech conferences since there were
+
+00:09:13.739 --> 00:09:18.534
+fewer iOS specific ones (I think a few that I applied to didn’t actually happen).
+
+00:09:19.534 --> 00:09:23.849
+In the future, I hope I can speak again but with the three consecutive talks I’m
+
+00:09:24.349 --> 00:09:28.585
+doing in March/May/June this year, I’m ready for a little break before I get
+
+00:09:29.085 --> 00:09:31.402
+back on the conference speaking circuit.
+
+00:09:31.902 --> 00:09:33.900
+I’m really happy that I’ve been given
+
+00:09:34.400 --> 00:09:38.315
+the opportunity to share some of my experiences and the conferences I’ve been to
+
+00:09:38.815 --> 00:09:40.973
+have been really enjoyable so far.
+
+00:09:41.973 --> 00:09:43.971
+You should talk, too!
+
+00:09:45.471 --> 00:09:49.786
+When I first set my personal goal to talk at some conferences, I really wasn’t
+
+00:09:50.286 --> 00:09:52.683
+sure if I had what it would take to succeed.
+
+00:09:53.183 --> 00:09:55.021
+I don’t consider myself a great
+
+00:09:55.521 --> 00:09:59.517
+public speaker, nor would I consider myself to be an exceptional software
+
+00:10:00.017 --> 00:10:05.371
+engineer. The secret is that neither is really a requirement to share cool stuff
+
+00:10:05.871 --> 00:10:10.106
+with people. You just need to have some passion for something and effectively
+
+00:10:10.606 --> 00:10:13.802
+communicate that passion by telling your story.
+
+00:10:14.802 --> 00:10:19.197
+If you’re looking for iOS conferences to apply to, there’s a well maintained
+
+00:10:19.697 --> 00:10:21.615
+list along with CFP deadlines
+
+00:10:22.115 --> 00:10:23.554
+here. Good luck!
+
+00:10:24.554 --> 00:10:27.590
+Finally, if you see me at a conference, say hi!
+
+00:10:28.090 --> 00:10:29.529
+I’m always happy to chat with
+
+00:10:30.029 --> 00:10:33.784
+people, even if I look like I’m busy or focused on other stuff.
+
+00:10:34.784 --> 00:10:38.620
+¹Actually I ended up getting another talk accepted but the conference was not
+
+00:10:39.120 --> 00:10:44.075
+interested in reimbursing me for any travel expenses so I politely declined.
+
+00:10:44.575 --> 00:10:49.130
+Given the amount of time it takes to prepare a good presentation, a conference
+
+00:10:49.630 --> 00:10:52.347
+should absolutely reimburse you for speaking.
