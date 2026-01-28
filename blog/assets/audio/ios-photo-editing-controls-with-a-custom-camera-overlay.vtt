@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.676
+iOS Photo Editing Controls With A Custom Camera Overlay
+
+00:00:05.176 --> 00:00:07.733
+Published on January 23, 2013.
+
+00:00:08.733 --> 00:00:14.886
+This is one of those blog posts that’s basically for me and anyone else who cares to Google these search terms, so yeah.
+
+00:00:15.886 --> 00:00:18.843
+I’m currently working on an app that does camera capture.
+
+00:00:19.343 --> 00:00:22.699
+Instead of using the normal Apple control, I’m using a custom overlay.
+
+00:00:23.199 --> 00:00:32.310
+Typically to do this, you do two things: set the UIImagePickerController’s “allowsEditing” to YES and add your overlay view to the controller’s “cameraOverlayView” view.
+
+00:00:32.810 --> 00:00:37.285
+Oh, and you also set the sourceType to UIImagePickerControllerSourceTypeCamera, obviously.
+
+00:00:38.285 --> 00:00:48.035
+I learned through searching about 10 StackOverflow questions and doing my own testing that the custom photo editing control only shows up when you show the normal apple camera controls.
+
+00:00:48.535 --> 00:01:00.362
+So unless you want to do some weird hacking to get your overlay to show up over the normal controls and then have them disappear when the photo is taken, it’s not possible to use a custom overlay and still get the built in photo editing tool.
+
+00:01:01.362 --> 00:01:03.280
+Unless someone wants to correct me…
+
+00:01:04.280 --> 00:01:10.354
+The annoying part is this is not captured in Apple’s official documentation (or anywhere, really).
+
+00:01:10.854 --> 00:01:17.167
+So hopefully this blog post helps someone who is trying to use a custom overlay and the built-in Apple photo cropping tool.
