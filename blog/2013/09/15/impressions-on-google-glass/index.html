@@ -98,6 +98,19 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/impressions-on-google-glass.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <figure id="attachment_2711" class="wp-caption aligncenter"><a href="/blog/wp-content/uploads/2013/08/Photo-on-9-12-13-at-5.05-PM.jpg" rel="lightbox[2708]"><img src="/blog/wp-content/uploads/2013/08/Photo-on-9-12-13-at-5.05-PM.jpg?resize=604%2C402" alt="Obligatory double-glasses Glasshole shot." width="604" height="402" class="size-large wp-image-2711" srcset="/blog/wp-content/uploads/2013/08/Photo-on-9-12-13-at-5.05-PM.jpg?resize=1024%2C682 1024w, /blog/wp-content/uploads/2013/08/Photo-on-9-12-13-at-5.05-PM.jpg?resize=500%2C333 500w, /blog/wp-content/uploads/2013/08/Photo-on-9-12-13-at-5.05-PM.jpg?w=1080 1080w" sizes="(max-width: 604px) 100vw, 604px" data-recalc-dims="1" /></a><figcaption class="wp-caption-text">Obligatory double-glasses Glasshole shot.</figcaption></figure>
@@ -124,6 +137,41 @@
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769636469"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1769636471"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/impressions-on-google-glass.vtt?v=1769636469";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->

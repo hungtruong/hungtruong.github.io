@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.998
+Impressions on Google Glass
+
+00:00:03.498 --> 00:00:06.374
+Published on September 15, 2013.
+
+00:00:07.374 --> 00:00:11.610
+I had a chance to play around with Google Glass Explorer Edition via my employer .
+
+00:00:12.110 --> 00:00:20.661
+I was able to successfully hook it up to my personal Google account, contrary to stuff I’ve read about the Explorer program not allowing loans, etc.
+
+00:00:21.161 --> 00:00:26.115
+If there’s a specific policy behind that, it doesn’t seem to be enforced on a technical level.
+
+00:00:27.115 --> 00:00:31.430
+Anyway, I figured I should write down some of my initial impressions on the thing.
+
+00:00:31.930 --> 00:00:39.842
+It’s always interesting to look back and see how well I did in my predictions, like when I thought Twitter was just for narcissists (not sure I was wrong on that one).
+
+00:00:40.842 --> 00:00:48.834
+The two strong feelings I have from Google Glass are that I wish it was less visible (to others) and I think it will greatly improve on video and photo sharing.
+
+00:00:49.834 --> 00:00:58.944
+While I understand that technology can work as a fashion accessory (see anyone who owns an iPhone), I also feel like it shouldn’t burden the user with its outward appearance.
+
+00:00:59.444 --> 00:01:07.196
+Everyone writes about how Google Glass will create some kind of panopticon state, but the one wearing them is really the one who feels watched.
+
+00:01:07.696 --> 00:01:14.089
+I once tried walking to get my mail while wearing the gadget, and felt super awkward as I said hi to a neighbor.
+
+00:01:14.589 --> 00:01:21.701
+The awkwardness could have also had something to do with the fact that I have to wear the Google Glass over my normal glasses, which looks super dumb.
+
+00:01:22.701 --> 00:01:29.574
+On a positive note, I think the ability to take first person videos is going to be the killer feature of Google Glass, if one ends up existing.
+
+00:01:30.074 --> 00:01:40.863
+I took a few videos of myself making dinner, which aren’t really that interesting now, but I can see a sort of lifestream genre bubble up from taking short videos of doing really mundane stuff day to day.
+
+00:01:41.363 --> 00:01:43.440
+Here’s a sample video I took:
+
+00:01:44.440 --> 00:01:51.712
+As far as developing for the Glass, I found that the Google Mirror API is a bit lacking if you don’t already have some existing app you’d like to integrate.
+
+00:01:52.212 --> 00:01:57.886
+It’s basically glorified push notifications with a few extra location features built in.
+
+00:01:58.386 --> 00:02:07.177
+As an Android noob, I haven’t really pushed anything interesting to the Glass device yet in terms of native apps (just the Hello World one and a few samples).
+
+00:02:07.677 --> 00:02:13.590
+I’d wait for the official GDK to start developing in earnest, and maybe in the meantime, learn Android.
+
+00:02:14.590 --> 00:02:17.787
+I had some mixed experiences with the Glass, overall.
+
+00:02:18.287 --> 00:02:25.000
+While the technology is neat, I feel there are many social hurdles that the device must pass before the thing can take off.
+
+00:02:25.500 --> 00:02:28.536
+Remember those Bluetooth headsets that you can wear on your ear?
+
+00:02:29.036 --> 00:02:34.230
+Google Glass is basically twice as useful, yet also twice as awkward.
+
+00:02:34.730 --> 00:02:41.923
+I think that a lot of the awkwardness will go away once sub-vocal microphone technology advances to the consumer level (think Metal Gear Solid).
+
+00:02:42.423 --> 00:02:47.777
+Then all Glass will need is a makeover to disguise the camera and screen into a normal set of glasses.
+
+00:02:48.277 --> 00:02:53.151
+Once the technology becomes outwardly invisible, the technology will be able to speak for itself.
+
+00:02:54.151 --> 00:03:03.022
+Until either the technology makes itself less conspicuous or society decides that it’s socially acceptable, Google Glass wearers will all look like this guy .
