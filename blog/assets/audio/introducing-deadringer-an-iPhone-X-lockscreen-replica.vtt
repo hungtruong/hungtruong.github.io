@@ -1,0 +1,226 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.916
+Introducing DeadRinger: An iPhone X Lockscreen Replica
+
+00:00:05.416 --> 00:00:07.973
+Published on December 03, 2017.
+
+00:00:08.973 --> 00:00:14.087
+I got an idea the other day when I was looking at my co-worker’s iPhone X sitting on a desk.
+
+00:00:14.587 --> 00:00:23.698
+I thought that I could have mistaken it for my own phone, since iPhone X comes in two colors and you have a 50% chance of having the same phone color as any other person.
+
+00:00:24.198 --> 00:00:31.310
+I was thinking that if I did mistake it as my phone and entered my passcode, I’d basically be transmitting the key to all of my personal data.
+
+00:00:32.310 --> 00:00:38.223
+That led me to think about how hard it would be to reproduce the iPhone X’s lock screen and spoof one of my own.
+
+00:00:38.723 --> 00:00:43.758
+It turns out that with some experience with iOS development, it’s not that hard.
+
+00:00:44.258 --> 00:00:51.530
+Thanks to the iPhone X’s Super Retina display, a screen full of black pixels is indistinguishable from a device that’s asleep.
+
+00:00:52.030 --> 00:01:02.020
+And thanks to the omission of the home button, and a public API for disabling the swipe to go home gesture, I was able to make a pretty convincing copy of the iPhone X’s lock screen.
+
+00:01:02.520 --> 00:01:06.835
+Your mileage may vary if you’re trying to spoof other iPhone X models.
+
+00:01:07.335 --> 00:01:16.525
+Oh also I just decided to call it “DeadRinger” because I was inspired by security exploits like HeartBleed that basically have their own marketing departments.
+
+00:01:17.025 --> 00:01:20.781
+I wanted my app to have a slightly scary and trendy name as well.
+
+00:01:21.781 --> 00:01:31.211
+I uploaded the source code to a Github repo which has a pretty good README file but I’ll go into a bit more detail about some interesting code implementation for the rest of this post.
+
+00:01:31.711 --> 00:01:35.227
+If you want to watch the full demo video, you can watch it below:
+
+00:01:36.227 --> 00:01:37.426
+Usage
+
+00:01:38.926 --> 00:01:43.960
+I’m not suggesting you actually use this app but here’s the theoretical attack vector.
+
+00:01:44.460 --> 00:01:49.814
+You would load this app on to a phone that you supply (you’d have to be okay with losing it).
+
+00:01:50.314 --> 00:01:55.748
+The only change you would probably need to make is to the wallpaper image which should match the target’s phone.
+
+00:01:56.248 --> 00:02:00.644
+Swap your phone with the target’s phone and then wait for them to try to unlock their device.
+
+00:02:01.144 --> 00:02:06.817
+If the target has a case I guess you’d want to get the same one or swap it when you swap phones.
+
+00:02:07.317 --> 00:02:14.669
+You could theoretically write some networking code to transmit the entered passcode and then use it to unlock the real phone which you have in your possession.
+
+00:02:15.669 --> 00:02:21.743
+The app works by entering the inactive state, which just shows a black screen and mimics the phone being asleep.
+
+00:02:22.243 --> 00:02:29.595
+Upon raising to wake the phone or tapping on the device, the lock screen will show up, then the passcode entry view will appear shortly afterwards.
+
+00:02:30.095 --> 00:02:35.689
+The user can cancel back to the lock screen and if they want they can tap to get back to the passcode entry mode.
+
+00:02:36.189 --> 00:02:44.020
+The app isn’t sophisticated enough to handle things like pressing the physical lock button but that’s considered outside the scope of this proof of concept.
+
+00:02:44.520 --> 00:02:50.594
+The app does intercept swipes up from the bottom which would normally take the user back to the home screen.
+
+00:02:51.594 --> 00:02:52.952
+Implementation
+
+00:02:54.452 --> 00:02:58.608
+Probably the most interesting part of the project is disabling the swipe to go home gesture.
+
+00:02:59.108 --> 00:03:03.343
+You can find documentation about the iPhone X methods for deferring system gestures here.
+
+00:03:03.843 --> 00:03:07.439
+Here’s my implementation below, found in a UIViewController.
+
+00:03:08.439 --> 00:03:15.072
+This prevents an initial gesture but if the user tries again then they’ll go to the home screen and your app will be defeated.
+
+00:03:15.572 --> 00:03:18.209
+Your target will also probably be really confused.
+
+00:03:18.709 --> 00:03:27.340
+There’s also code in the app that handles the visibility of the home indicator, since you want it hidden on the “inactive” screen but visible on lock screen.
+
+00:03:28.340 --> 00:03:34.893
+With the home indicator logic out of the way, there are a few other tasks like making sure the phone doesn’t really go to sleep.
+
+00:03:35.393 --> 00:03:38.189
+This has been possible since iOS 2.
+
+00:03:38.689 --> 00:03:41.486
+The line of code to accomplish that is
+
+00:03:42.486 --> 00:03:46.801
+UIApplication.shared.isIdleTimerDisabled = true
+
+00:03:47.801 --> 00:03:53.635
+To recreate the tilt to wake feature, I use a CMMotionManager to sample the device’s pitch.
+
+00:03:54.135 --> 00:03:59.249
+I just guessed that 0.5 would be a good value but it could probably be tweaked a bit.
+
+00:03:59.749 --> 00:04:05.503
+If the device is put back down, it will go to the inactive state, but not while a user is entering the passcode.
+
+00:04:06.003 --> 00:04:11.197
+The real device also seems to wake on a delay so I used a Timer to handle that state change.
+
+00:04:12.197 --> 00:04:12.996
+TODO
+
+00:04:14.496 --> 00:04:28.003
+I’d say my recreation of the lock screen is just about good enough to convince most people that they’re using the real thing, but there are a few nitpicks and details that I didn’t get to in the interest of time (since I’m not actually going to use this app to steal anyone’s passcode).
+
+00:04:29.003 --> 00:04:36.435
+The camera and flashlight buttons on the lock screen have a cool 3D Touch effect that requires you to push with force to get them to fire.
+
+00:04:36.935 --> 00:04:41.410
+I didn’t implement these because I don’t want my target to take a photo, I want their passcode.
+
+00:04:41.910 --> 00:04:45.346
+The flashlight one would actually be simple enough to implement though.
+
+00:04:46.346 --> 00:04:52.979
+iOS 11.2 has a special control center indicator on the lock screen that I haven’t implemented yet.
+
+00:04:53.479 --> 00:04:59.233
+I would just need to do a check on the OS version and add the view if I’m on iOS 11.2 or higher.
+
+00:05:00.233 --> 00:05:07.505
+There are some cool transition animations in the keypad when going into the passcode entry mode in the real view that I haven’t recreated yet.
+
+00:05:08.005 --> 00:05:12.640
+The buttons animate on a slight delay from the bottom up and have a slight zoom animation in.
+
+00:05:13.140 --> 00:05:15.937
+The average person is not going to notice the difference, though.
+
+00:05:16.937 --> 00:05:23.969
+There isn’t a way to get the real notification center items from a user’s device and put them on another device so I’m not going there.
+
+00:05:24.469 --> 00:05:29.663
+For some people I guess the lack of a billion notifications would signal that something is fishy.
+
+00:05:30.663 --> 00:05:31.942
+Possible Solutions
+
+00:05:33.442 --> 00:05:39.036
+I think there are a few ways to solve this “vulnerability” (which I put in quotes because it doesn’t seem too terrible to me).
+
+00:05:39.536 --> 00:05:45.210
+One solution would be to include a “personal security image” like banks do on their login screens.
+
+00:05:45.710 --> 00:05:49.226
+It’s also pretty easy to defeat, though, if you know the target’s image.
+
+00:05:49.726 --> 00:05:52.522
+Plus it’s probably too tacky for Apple to implement.
+
+00:05:53.522 --> 00:05:59.756
+Another solution would be to add a hardware feature like an LED that lights up when you’re entering something into an OS control.
+
+00:06:00.256 --> 00:06:05.130
+There’s precedent for this like how the MacBook camera causes an LED to light up when it’s on.
+
+00:06:05.630 --> 00:06:08.747
+This would also mitigate some other security issues that have popped up.
+
+00:06:09.247 --> 00:06:13.722
+As long as everything is replicable in software there’s always a way to spoof it.
+
+00:06:14.722 --> 00:06:20.635
+As a user you could also immediately cover your phone in stickers or something easily identifiable.
+
+00:06:21.135 --> 00:06:22.654
+Or keep your phone really dirty.
+
+00:06:23.154 --> 00:06:26.430
+Or find some other way to adorn your phone in a unique way.
+
+00:06:27.430 --> 00:06:32.784
+As our phones become the center of our universe, it makes a lot of sense to treat security as a top priority.
+
+00:06:33.284 --> 00:06:37.919
+Hopefully Apple can do something to make our lock screens more secure from spoofing!
+
+00:06:38.919 --> 00:06:39.558
+Disclaimer
+
+00:06:41.058 --> 00:06:44.414
+Please don’t use this app to steal someone’s passcode.
+
+00:06:44.914 --> 00:06:46.033
+That’s not cool.
+
+00:06:47.033 --> 00:06:48.631
+Conclusion
+
+00:06:50.131 --> 00:06:57.324
+I made this app solely as a proof of concept, and I had a lot of fun figuring out the solutions to some technical problems as outlined above.
+
+00:06:57.824 --> 00:07:02.618
+It was also fun trying to get the design of the app as close to the real lock screen as possible.
+
+00:07:03.118 --> 00:07:09.511
+I learned quite a bit about supporting some new iPhone X features and hopefully you’ve learned something from this article as well!
+
+00:07:10.011 --> 00:07:16.484
+Check out my Github repo for more details and feel free to contribute if you’re able to tackle any of the TODOs listed above.
