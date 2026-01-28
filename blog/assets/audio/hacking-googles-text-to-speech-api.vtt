@@ -1,0 +1,88 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.557
+Hacking Google’s Text To Speech “API”
+
+00:00:04.057 --> 00:00:06.934
+Published on April 26, 2013.
+
+00:00:07.934 --> 00:00:16.325
+When I was at my previous job, one task I had was localizing a large set of phrases to multiple languages, both in text and audio files.
+
+00:00:16.825 --> 00:00:20.101
+I did this by using the awesome Google Translate API .
+
+00:00:21.101 --> 00:00:27.334
+The Google Translate website has features for translating text and playing audio of it in the translated language.
+
+00:00:27.834 --> 00:00:30.631
+There’s no official API for getting audio, though.
+
+00:00:31.131 --> 00:00:35.367
+Luckily, I’ve never let a lack of an official API stop me before.
+
+00:00:35.867 --> 00:00:43.459
+I had read a few old blog posts about how Google’s undocumented TTS API could be used, albeit with a 100 character limit.
+
+00:00:43.959 --> 00:00:47.874
+Going over 100 characters would result in a truncated audio file.
+
+00:00:48.374 --> 00:00:52.290
+Some of the text I needed to output to audio was longer than that.
+
+00:00:52.790 --> 00:00:59.103
+It turns out that with a little bit of Chrome web inspector, I could replicate the functionality of the Google Translate site.
+
+00:01:00.103 --> 00:01:04.978
+The first thing to check out is the url scheme of the audio files, which looks like this:
+
+00:01:05.978 --> 00:01:23.081
+Breaking down the parameters, “ie” is the text’s encoding, “q” is the text to convert to audio, “tl” is the text language, “total” is the total number of chunks (more on that later), “idx” is which chunk we’re on, “textlen” is the length of the text in that chunk and “prev” is not really important.
+
+00:01:24.081 --> 00:01:30.394
+The Google Translate site itself gets around its own character limit by breaking big blocks of text into “chunks”.
+
+00:01:30.894 --> 00:01:38.646
+It seems to try and break along punctuation, but for super long sentences it will also break in the middle of a sentence, which ends up sounding pretty weird.
+
+00:01:39.146 --> 00:01:44.580
+Using the Gettysburg Address as an example, Google makes a request for the chunk “civil war”.
+
+00:01:45.580 --> 00:01:53.012
+In order to download audio files for longer chunks of text, I wrote up a python script that broke the text down and made separate requests to Google.
+
+00:01:53.512 --> 00:01:57.587
+The script would write all of the files to one file, and somehow, it worked!
+
+00:01:58.087 --> 00:02:07.438
+Just to be safe, I also set my script up to use Google’s Flash player as the referer (sic) and set the user agent to a version of Firefox.
+
+00:02:08.438 --> 00:02:13.152
+At the time, I didn’t want to release the code as it was being used for some uber top secret stuff.
+
+00:02:13.652 --> 00:02:19.886
+But since I’m not working on that project anymore, I refactored the original code into a command line Python script.
+
+00:02:20.386 --> 00:02:27.178
+Along the way I had to learn how to use Python’s argparse , which is a pretty neat way of parsing command line arguments.
+
+00:02:28.178 --> 00:02:32.813
+The project is available on Github right now, so go grab it and try it out .
+
+00:02:33.313 --> 00:02:42.184
+If you’re curious what the output sounds like, here’s a recording of female Abraham Lincoln reciting the Gettysburg Address (yes, she mispronounces some words).
+
+00:02:42.684 --> 00:02:46.999
+One fun thing to try out is outputting clashing input and output languages.
+
+00:02:47.499 --> 00:02:53.972
+Here’s Female Japanese Abraham Lincoln reciting the same speech (she just seems to be spelling words, slacker).
+
+00:02:54.972 --> 00:02:58.568
+If you enjoyed this hack, let me know and I could post some other ones I’ve been working on.
+
+00:02:59.068 --> 00:03:05.221
+And if you find a way to improve the code (probably not difficult at all) go ahead and submit a pull request on Github.
+
+00:03:05.721 --> 00:03:09.717
+And if you’re from Google, please don’t shut down my Gmail and Adsense accounts.
