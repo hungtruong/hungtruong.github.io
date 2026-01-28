@@ -130,6 +130,14 @@ rm wp-content/uploads/2025/descriptive-name-poster.png
 - **Excluded Tags:** `pre` (code blocks) and `figcaption` (captions) must be explicitly deleted (decomposed) before scraping.
 - **Whitespace Normalization:** All text must be extracted using `get_text(separator=' ', strip=True)` and then normalized with `re.sub(r'\s+', ' ', text)` to prevent "broken" sentences from newlines or inline tags.
 - **Smart Nesting:** Scrape only top-level elements of interest to avoid duplicate content from nested tags.
+- **Pronunciation Fixes:** "Hung" is automatically replaced with "Hang" during TTS generation (case-sensitive) to ensure correct pronunciation, while preserving the original spelling in VTT transcripts.
+- **Ignore Comments:** The scraper explicitly stops when encountering a header equal to "Comments" or the text "Leave a Comment".
+
+## Audio Reset Workflow
+To force regeneration of audio for a specific post (e.g., after code updates):
+1. Remove the `audio_slug` field from the post's front matter.
+2. Commit and push the change.
+3. Run the batch processing notebook on Kaggle. It will detect the missing audio (since the slug is gone/invalidated) and regenerate it.
 
 ## Code Styling Standards
 - **Theme:** Tokyo Night inspired (Deep dark blue background `#1a1b26`, pastel syntax colors).
