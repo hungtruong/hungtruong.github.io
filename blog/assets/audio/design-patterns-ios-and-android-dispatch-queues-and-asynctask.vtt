@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.555
+Design Patterns: iOS and Android – Dispatch Queues and AsyncTask
+
+00:00:06.055 --> 00:00:08.292
+Published on November 20, 2013.
+
+00:00:09.292 --> 00:00:14.487
+For the past few weeks, I’ve been learning Android and porting one of my iOS apps to the platform.
+
+00:00:14.987 --> 00:00:21.859
+While there are many differences between the two platforms, it’s also kind of interesting to see common design patterns between them.
+
+00:00:22.359 --> 00:00:29.711
+I figured I should write up the common design patterns that I notice and maybe help out some iOS developers who are also learning Android like me.
+
+00:00:30.711 --> 00:00:34.467
+Today I’ll look at doing asynchronous tasks in each platform.
+
+00:00:34.967 --> 00:00:42.639
+While there are many ways of doing this in both platforms, I’ll take a look at Dispatch Queues for iOS and AsyncTask in Android, since that’s what I’ve been using lately.
+
+00:00:43.139 --> 00:00:48.973
+In iOS, you can use the dispatch_async call to run code on a background dispatch queue.
+
+00:00:49.473 --> 00:00:54.747
+Say we get an NSArray of JSON objects and want to save them to a Core Data store.
+
+00:00:55.247 --> 00:01:03.958
+We can call dispatch_async on a dispatch queue, process all of the objects and then update the UI by using dispatch_async again on the main queue:
+
+00:01:04.958 --> 00:01:10.312
+In Android, performing a lightweight asynchronous task requires you to subclass AsyncTask.
+
+00:01:10.812 --> 00:01:19.443
+I guess I’m using the term “lightweight” loosely because creating a subclass just to do something asynchronously seems a bit heavy, but at least you get to reuse your code!
+
+00:01:20.443 --> 00:01:30.033
+You must define three generic types which describe what the input is (in this example, a String), the progress type (an Integer) and a result (a Boolean).
+
+00:01:31.033 --> 00:01:33.989
+Once you have that AsyncTask set up, you can call
+
+00:01:34.989 --> 00:01:36.827
+to run your asynchronous task.
+
+00:01:37.327 --> 00:12:31.967
+One tricky thing to remember is that execute takes a list of objects and sends it to doInBackground as an array.
+
+00:12:32.467 --> 00:12:40.139
+I’m not BFF with Java so the syntax threw me a bit, but apparently it’s using a feature called varargs that’s been in Java for a while now.
+
+00:12:41.139 --> 00:12:42.418
+That’s all for today.
+
+00:12:42.918 --> 00:12:45.235
+I hope this blog post was useful.
+
+00:12:45.735 --> 00:12:50.929
+I certainly found it useful, since I had to do some research to really understand what the heck I was writing about.
+
+00:12:51.429 --> 00:12:57.742
+I’ll probably write about UITableViewDelegate/Datasource vs. ListAdapter next, unless there’s something else that seems more timely.
+
+00:12:58.742 --> 00:12:59.302
+Comments
+
+00:13:00.802 --> 00:13:05.996
+Hi , nice post, I was looking for a way to do onProgressUpdate in ios, any idea
+
+00:13:06.996 --> 00:13:08.195
+Thanks for the post.
+
+00:13:08.695 --> 00:13:12.690
+I’ve been struggling to port my iOS app to android as well.
+
+00:13:13.190 --> 00:13:18.065
+It helps me learning the AsyncTask feature, and appreciate the simplicity of GCD
