@@ -3,227 +3,137 @@ WEBVTT
 00:00:00.000 --> 00:00:06.793
 Making an iOS Zwift Clone to Save $15 a Month! Part 2: Reverse Engineering a Workout
 
-00:00:08.293 --> 00:00:10.850
+00:00:08.293 --> 00:00:10.770
 Published on April 07, 2019.
 
-00:00:11.850 --> 00:00:16.485
-Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about
+00:00:11.770 --> 00:00:22.958
+Last time, on “Making an iOS Zwift Clone to Save $15 a Month” I wrote about learning Core Bluetooth to connect to my exercise bike and get data streaming directly to my app .
 
-00:00:16.985 --> 00:00:21.699
-learning Core Bluetooth to connect to my exercise bike and get data streaming
+00:00:23.958 --> 00:00:34.268
+Since writing that article, I cleaned up the implementation of the Core Bluetooth service a bit and started supporting some additional data like distance, calories burned and cycling cadence.
 
-00:00:22.199 --> 00:00:23.638
-directly to my app.
+00:00:35.268 --> 00:00:46.216
+While cycling on my exercise bike and staring at these numbers is fun, the built-in screen on my bike already shows these numbers, so I essentially recreated a subset of the official ergData app so far.
 
-00:00:24.638 --> 00:00:28.234
-Since writing that article, I cleaned up the implementation of the Core
+00:00:47.216 --> 00:00:54.648
+I realized the next challenge would be to start a guided workout in my app and show the target wattage alongside my actual wattage on the bike.
 
-00:00:28.734 --> 00:00:32.330
-Bluetooth service a bit and started supporting some additional data like
-
-00:00:32.830 --> 00:00:36.106
-distance, calories burned and cycling cadence.
-
-00:00:37.106 --> 00:00:41.261
-While cycling on my exercise bike and staring at these numbers is fun, the
-
-00:00:41.761 --> 00:00:46.236
-built-in screen on my bike already shows these numbers, so I essentially
-
-00:00:46.736 --> 00:00:49.214
-recreated a subset of the official
-
-00:00:49.714 --> 00:00:52.351
-ergData app so far.
-
-00:00:53.351 --> 00:00:57.586
-I realized the next challenge would be to start a guided workout in my app and
-
-00:00:58.086 --> 00:01:01.682
-show the target wattage alongside my actual wattage on the bike.
-
-00:01:02.682 --> 00:01:04.200
+00:00:55.648 --> 00:00:56.927
 Enter the Workout
 
-00:01:05.700 --> 00:01:08.817
+00:00:58.427 --> 00:01:01.943
 Zwift workouts seem pretty simple to begin with.
 
-00:01:09.317 --> 00:01:10.835
-You can set up a number of
+00:01:02.443 --> 00:01:05.959
+You can set up a number of workout segments to guide your workout.
 
-00:01:11.335 --> 00:01:13.972
-workout segments to guide your workout.
+00:01:06.459 --> 00:01:11.014
+There are warmups, steady states, intervals, free ride sections and cool-downs.
 
-00:01:14.472 --> 00:01:16.869
-There are warmups, steady states,
+00:01:11.514 --> 00:01:15.989
+At any given point in your workout, Zwift will tell you to put in a certain amount of effort.
 
-00:01:17.369 --> 00:01:20.166
-intervals, free ride sections and cool-downs.
+00:01:16.489 --> 00:01:20.005
+You just try to get your watt number to match what Zwift wants you to do.
 
-00:01:20.666 --> 00:01:22.744
-At any given point in your
+00:01:21.005 --> 00:01:28.757
+At first I figured I could come up with my own way of representing workouts, but that would also require me to re-create all of the workouts I usually use on Zwift.
 
-00:01:23.244 --> 00:01:27.079
-workout, Zwift will tell you to put in a certain amount of effort.
+00:01:29.257 --> 00:01:36.129
+Zwift also has a nice workout editor that can use to edit preset workouts or create completely new ones on your own.
 
-00:01:27.579 --> 00:01:28.458
-You just try
+00:01:37.129 --> 00:01:44.801
+I discovered that if you copy an existing workout to edit it, the workout will be saved as user data and will be synced between all devices.
 
-00:01:28.958 --> 00:01:31.835
-to get your watt number to match what Zwift wants you to do.
+00:01:45.301 --> 00:01:47.539
+How is the workout data saved, you ask?
 
-00:01:32.835 --> 00:01:36.911
-At first I figured I could come up with my own way of representing workouts, but
-
-00:01:37.411 --> 00:01:41.406
-that would also require me to re-create all of the workouts I usually use on
-
-00:01:41.906 --> 00:01:48.059
-Zwift. Zwift also has a nice workout editor that can use to edit preset workouts
-
-00:01:48.559 --> 00:01:50.717
-or create completely new ones on your own.
-
-00:01:51.717 --> 00:01:56.112
-I discovered that if you copy an existing workout to edit it, the workout will
-
-00:01:56.612 --> 00:02:00.448
-be saved as user data and will be synced between all devices.
-
-00:02:00.948 --> 00:02:02.386
-How is the workout
-
-00:02:02.886 --> 00:02:04.484
-data saved, you ask?
-
-00:02:04.984 --> 00:02:08.341
+00:01:48.039 --> 00:01:50.756
 No, not as JSON as a sane developer would use.
 
-00:02:08.841 --> 00:02:12.996
+00:01:51.256 --> 00:01:54.772
 It’s XML. Okay, so technically it’s a .
 
-00:02:13.496 --> 00:02:16.692
+00:01:55.272 --> 00:01:58.388
 zwo file but I know what XML looks like!
 
-00:02:17.192 --> 00:02:20.948
+00:01:58.888 --> 00:02:01.605
 Here’s a sample of an exported workout file:
 
-00:02:21.948 --> 00:02:25.944
+00:02:02.605 --> 00:02:06.521
 So I went ahead and implemented an XMLParser in Swift to turn .
 
-00:02:26.444 --> 00:02:27.962
-zwo files into my
+00:02:07.021 --> 00:02:09.418
+zwo files into my own Workout struct.
 
-00:02:28.462 --> 00:02:30.220
-own Workout struct.
+00:02:09.918 --> 00:02:17.670
+I won’t bore you with the implementation details but it was kind of a walk down memory lane dealing with the delegation-based API of XMLParser.
 
-00:02:30.720 --> 00:02:33.677
-I won’t bore you with the implementation details but it was
+00:02:18.170 --> 00:02:24.403
+I’m surprised there isn’t a more modern solution in Foundation but I’m guessing it’s because most people have moved on from XML.
 
-00:02:34.177 --> 00:02:39.211
-kind of a walk down memory lane dealing with the delegation-based API of
-
-00:02:39.711 --> 00:02:45.065
-XMLParser. I’m surprised there isn’t a more modern solution in Foundation but
-
-00:02:45.565 --> 00:02:48.682
-I’m guessing it’s because most people have moved on from XML.
-
-00:02:49.682 --> 00:02:51.440
+00:02:25.403 --> 00:02:27.640
 Let’s Reverse Engineering
 
-00:02:52.940 --> 00:02:53.659
+00:02:29.140 --> 00:02:30.339
 By reading the .
 
-00:02:54.159 --> 00:02:58.075
-zwo files, I was able to figure out how Zwift represents their
+00:02:30.839 --> 00:02:37.951
+zwo files, I was able to figure out how Zwift represents their workouts and basically reverse engineer the structure of a workout:
 
-00:02:58.575 --> 00:03:01.931
-workouts and basically reverse engineer the structure of a workout:
+00:02:38.951 --> 00:02:44.625
+Warmups have a duration, a low and high power (which is a percentage of FTP ).
 
-00:03:02.931 --> 00:03:06.767
-There are also some other things like text captions that appear during a
+00:02:45.125 --> 00:02:50.000
+The warmup begins at the low power and steadily ramps up to the high power by the end of the segment.
 
-00:03:07.267 --> 00:03:11.182
-workout, free ride segments and cadence settings that I didn’t bother to
+00:02:51.000 --> 00:02:55.075
+SteadyStates are the simplest, with just a duration and power.
 
-00:03:11.682 --> 00:03:13.840
-implement because I don’t use them.
+00:02:56.075 --> 00:03:01.829
+Intervals are the most complicated, with a repeat number, onDuration, offDuration, onPower and offPower.
 
-00:03:14.340 --> 00:03:16.417
-The cadence stuff makes sense if you’re
+00:03:02.329 --> 00:03:08.083
+The intervals segment goes between the high and low power levels, and repeats a certain number of times.
 
-00:03:16.917 --> 00:03:21.712
-using a smart trainer but my bike doesn’t support automatically changing resistance anyway.
+00:03:08.583 --> 00:03:14.176
+I didn’t want to deal with the extra complexity of this type so I just wrote some code to expand them out into SteadyStates.
 
-00:03:22.712 --> 00:03:27.507
-I decided to represent the WorkoutSegment as a Swift enum since it needs to
+00:03:15.176 --> 00:03:17.893
+Cooldowns are like warmups but in reverse.
 
-00:03:28.007 --> 00:03:31.603
-support a bunch of different formats with varying levels of complexity.
+00:03:18.893 --> 00:03:27.924
+There are also some other things like text captions that appear during a workout, free ride segments and cadence settings that I didn’t bother to implement because I don’t use them.
 
-00:03:32.103 --> 00:03:36.258
-I’m actually kinda curious how the Zwift team ended up representing these and if
+00:03:28.424 --> 00:03:35.216
+The cadence stuff makes sense if you’re using a smart trainer but my bike doesn’t support automatically changing resistance anyway.
 
-00:03:36.758 --> 00:03:38.276
-they did something similar.
+00:03:36.216 --> 00:03:44.128
+I decided to represent the WorkoutSegment as a Swift enum since it needs to support a bunch of different formats with varying levels of complexity.
 
-00:03:39.276 --> 00:03:43.352
-From here it’s pretty simple to get stuff like the total duration or the target
+00:03:44.628 --> 00:03:50.861
+I’m actually kinda curious how the Zwift team ended up representing these and if they did something similar.
 
-00:03:43.852 --> 00:03:48.007
-wattage for a particular time offset, whether I need to calculate that (in the
+00:03:51.861 --> 00:04:03.529
+From here it’s pretty simple to get stuff like the total duration or the target wattage for a particular time offset, whether I need to calculate that (in the case of a warmup or cooldown) or if I just return the constant value.
 
-00:03:48.507 --> 00:03:52.822
-case of a warmup or cooldown) or if I just return the constant value.
+00:04:04.529 --> 00:04:15.718
+Aside from representing the workout segments, the actual workout object will consist of things like the name, description, FTP and other information that pertains to the state of the workout like time elapsed.
 
-00:03:53.822 --> 00:03:58.297
-Aside from representing the workout segments, the actual workout object will
+00:04:16.218 --> 00:04:23.730
+I wrote a function that takes the current time elapsed in the workout, loops through and finds the corresponding segment and returns the desired wattage.
 
-00:03:58.797 --> 00:04:03.832
-consist of things like the name, description, FTP and other information that
+00:04:24.230 --> 00:04:27.666
+There might be a more efficient way to do that but for now it works.
 
-00:04:04.332 --> 00:04:07.129
-pertains to the state of the workout like time elapsed.
+00:04:28.666 --> 00:04:36.578
+I also added some things to my project for displaying and choosing workouts from a list, and actually displaying the target wattage alongside actual wattage.
 
-00:04:07.629 --> 00:04:09.227
-I wrote a function that
+00:04:37.078 --> 00:04:42.192
+I want to improve the interface now since it’s terrible, but I’ll save that for another blog post.
 
-00:04:09.727 --> 00:04:13.962
-takes the current time elapsed in the workout, loops through and finds the
+00:04:42.692 --> 00:04:51.243
+If you want to check out the project, it’s all here on Github , including the playgrounds I used to test out the workout segment logic before adding it to the Xcode project.
 
-00:04:14.462 --> 00:04:17.339
-corresponding segment and returns the desired wattage.
-
-00:04:17.839 --> 00:04:18.878
-There might be a more
-
-00:04:19.378 --> 00:04:22.734
-efficient way to do that but for now it works.
-
-00:04:23.734 --> 00:04:27.889
-I also added some things to my project for displaying and choosing workouts from
-
-00:04:28.389 --> 00:04:32.545
-a list, and actually displaying the target wattage alongside actual wattage.
-
-00:04:33.045 --> 00:04:37.040
-I want to improve the interface now since it’s terrible, but I’ll save that for
-
-00:04:37.540 --> 00:04:39.218
-another blog post.
-
-00:04:39.718 --> 00:04:42.675
-If you want to check out the project, it’s all here on
-
-00:04:43.175 --> 00:04:45.892
-Github, including the playgrounds I used
-
-00:04:46.392 --> 00:04:50.467
-to test out the workout segment logic before adding it to the Xcode project.
-
-00:04:51.467 --> 00:04:56.582
-Next on my list of tasks is to make the workout interface a lot prettier/usable,
-
-00:04:57.082 --> 00:04:59.879
-and to add heart rate information from my Apple Watch.
+00:04:52.243 --> 00:05:00.474
+Next on my list of tasks is to make the workout interface a lot prettier/usable, and to add heart rate information from my Apple Watch.
