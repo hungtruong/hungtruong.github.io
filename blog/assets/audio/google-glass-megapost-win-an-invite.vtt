@@ -1,103 +1,148 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:03.676
+00:00:00.000 --> 00:00:03.037
 Google Glass Megapost (+ win an invite!)
 
-00:00:05.176 --> 00:00:07.973
+00:00:04.537 --> 00:00:08.053
 Published on December 06, 2013.
 
-00:00:08.973 --> 00:00:12.729
+00:00:09.053 --> 00:00:12.489
 Here’s a giant post of stuff I’ve been doing with Google Glass!
 
-00:00:13.229 --> 00:00:19.222
+00:00:12.989 --> 00:00:18.902
 I made a survey, wrote an app and am running a contest, so that’s all bundled into this blog post.
 
-00:00:20.222 --> 00:00:21.101
+00:00:19.902 --> 00:00:20.382
 Survey
 
-00:00:22.601 --> 00:00:26.756
-I got a Google Glass invite after signing up at Google’s official waitlist.
+00:00:21.882 --> 00:00:25.718
+I got a Google Glass invite after signing up at Google’s official waitlist .
 
-00:00:27.256 --> 00:00:32.770
+00:00:26.218 --> 00:00:31.492
 After deciding I would go ahead and get one, I was paralyzed by the choice of which color to order.
 
-00:00:33.270 --> 00:00:38.465
+00:00:31.992 --> 00:00:36.706
 I made a survey that asked participants to rank the five colors in order of awesomeness.
 
-00:00:38.965 --> 00:00:46.477
+00:00:37.206 --> 00:00:44.079
 The results surprised me. I was leaning towards white (cotton) and sky blue, but everyone seemed to really like tangerine (orange).
 
-00:00:47.477 --> 00:00:55.228
+00:00:45.079 --> 00:00:52.751
 I was going to go against the popular vote and get the white one, but both the white and black ones were out of stock at the time, so I went for the fan favorite.
 
-00:00:55.728 --> 00:01:01.002
+00:00:53.251 --> 00:00:59.324
 I ended up getting the Tangerine device the day after I ordered it (next day shipping FTW).
 
-00:01:02.002 --> 00:01:03.201
+00:01:00.324 --> 00:01:01.683
 GlassFart
 
-00:01:04.701 --> 00:01:13.172
+00:01:03.183 --> 00:01:11.734
 My intention with getting the Google Glass is to try it out and see if I can make anything really cool with the additional sensors and the fact that the device is worn on a person’s head.
 
-00:01:13.672 --> 00:01:18.787
+00:01:12.234 --> 00:01:16.629
 I was really struggling with what to start working on, and then it hit me: a fart app.
 
-00:01:19.287 --> 00:01:24.561
+00:01:17.129 --> 00:01:22.643
 I was actually working on a Dragonball Z Scouter app, but that was going to be too complicated.
 
-00:01:25.061 --> 00:01:31.454
+00:01:23.143 --> 00:01:29.136
 I found that you can insert your own “Okay Glass” prompts to start an app, so I figured I’d make a hello world fart app.
 
-00:01:32.454 --> 00:01:38.447
+00:01:30.136 --> 00:01:36.210
 The history of fart apps on advanced mobile operating systems is a long one, so I won’t go over all that.
 
-00:01:38.947 --> 00:01:44.381
+00:01:36.710 --> 00:01:42.543
 Suffice it to say I am proud to have written the first (as far as I know) native fart app for Google Glass.
 
-00:01:44.881 --> 00:01:47.039
+00:01:43.043 --> 00:01:45.520
 Here’s a video of me demonstrating it:
 
-00:01:48.039 --> 00:01:52.993
+00:01:46.520 --> 00:01:52.754
 Having played around with the GDK a bit, and the device a bit more, I am still not sure if I will keep it.
 
-00:01:53.493 --> 00:01:55.811
+00:01:53.254 --> 00:01:56.130
 The $1500 price tag is one factor.
 
-00:01:56.311 --> 00:01:59.188
+00:01:56.630 --> 00:01:59.587
 The public acceptance of the device is another.
 
-00:01:59.688 --> 00:02:02.724
+00:02:00.087 --> 00:02:03.283
 My opinions on my previous Glass post still hold.
 
-00:02:03.224 --> 00:02:09.218
+00:02:03.783 --> 00:02:10.496
 If anything, the opportunity is definitely worth the $1500 “loan” to Google plus return shipping.
 
-00:02:10.218 --> 00:02:11.256
+00:02:11.496 --> 00:02:12.455
 Contest
 
-00:02:12.756 --> 00:02:18.350
+00:02:13.955 --> 00:02:19.789
 Before I even got my first Google Glass invite, I went to a GDG Android meeting in Ann Arbor.
 
-00:02:18.850 --> 00:02:22.926
+00:02:20.289 --> 00:02:24.124
 The organizer had some spare Glass invites, so I asked for one.
 
-00:02:23.426 --> 00:02:31.097
+00:02:24.624 --> 00:02:32.216
 I hadn’t heard back about the invite, but after ordering my Glass from my original invites, I got another one from the GDG group’s pool.
 
-00:02:31.597 --> 00:02:39.109
-I figured I’d give it away, and to drum up interest in the fart app, I’m going to make a tweet and ask users to retweet it for a chance to win.
+00:02:32.716 --> 00:02:40.308
+I figured I’d give it away, and to drum up interest in the fart app, I’m going to make a tweet and ask users to retweet it for a chance to win.
 
-00:02:40.109 --> 00:02:44.744
+00:02:41.308 --> 00:02:46.582
 To celebrate my Google Glass fart app, I'm running a contest to win a Glass invite!
 
-00:02:45.244 --> 00:02:52.517
+00:02:47.082 --> 00:02:54.674
 RT to enter, check http://t.co/vfT2UtsuSc for details.
 
-00:02:53.517 --> 00:02:58.231
+00:02:55.174 --> 00:02:58.690
 — Hung Truong (@hungtruong) December 6, 2013
 
-00:02:59.231 --> 00:03:00.590
+00:02:59.690 --> 00:03:01.288
 Here’s some rules:
 
-00:03:01.590 --> 00:03:03.987
+00:03:02.288 --> 00:03:04.766
+Enter the contest by retweeting this tweet .
+
+00:03:05.766 --> 00:03:08.243
+You can only enter once per Twitter account.
+
+00:03:09.243 --> 00:03:13.478
+Don’t make multiple Twitter accounts to enter or you’ll be disqualified.
+
+00:03:14.478 --> 00:03:16.316
+The contest is for the invite code.
+
+00:03:16.816 --> 00:03:19.213
+You still have to buy the Glass yourself.
+
+00:03:20.213 --> 00:03:24.848
+The contest will end on Sunday, Dec 8th at 11:59PM ET.
+
+00:03:25.848 --> 00:03:32.721
+The contest winner will be chosen by random and will get a DM with the code (you should also follow me to make sure I can DM you).
+
+00:03:33.721 --> 00:03:37.876
+The invite code expires some time on Dec 10th, so you’ll have a couple of days to order it.
+
+00:03:38.876 --> 00:03:40.794
+I’m not liable for anything.
+
+00:03:41.294 --> 00:03:45.050
+Like if you’re mad about getting an invite and want to sue me or something.
+
+00:03:46.050 --> 00:03:50.365
+If no one enters I’ll probably just tweet out the code and the first person to use it gets it!
+
+00:03:51.365 --> 00:03:53.523
 Here are Google’s rule for eligibility:
+
+00:03:54.523 --> 00:03:55.961
+be U.S. residents
+
+00:03:56.961 --> 00:03:58.799
+be 18 years or older
+
+00:03:59.799 --> 00:04:01.077
+purchase Glass
+
+00:04:02.077 --> 00:04:09.430
+provide a U.S. shipping address OR pick up their Glass at one of our locations in New York, San Francisco or Los Angeles

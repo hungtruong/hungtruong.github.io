@@ -156,8 +156,14 @@ The Jekyll layout (`_layouts/post.html`) and JavaScript (`assets/js/vtt-inject.j
 ### Regenerating Audio
 To force regeneration (e.g., after fixing typos or scraper logic):
 1.  **Remove `audio_slug`**: Delete the line from the post's front matter.
-2.  **Push**: Commit and push the removal.
-3.  **Run Batch**: Execute the Kaggle batch notebook. It will detect the missing audio (since the slug is gone/invalidated) and regenerate it.
+2.  **Push**: Commit and push the removal to GitHub.
+3.  **Run Batch**: Execute the Kaggle batch notebook. It will detect the missing audio (since the slug is gone) and regenerate it.
+    - Note: The scraper logic handles `<li>` tags, so missing bullet points should be resolved by this process.
+
+### Auditing
+If you suspect missing content:
+- Use a script (like `audit_missing_bullets.py`, though keep it local/ignored) to check for list items in markdown that are absent from VTT.
+- If inconsistencies are found, use the regeneration steps above.
 
 # CRITICAL RULES
 - DO NOT push to Kaggle (`kaggle kernels push`) unless EXPLICITLY requested by the user. Always ask for confirmation first.
