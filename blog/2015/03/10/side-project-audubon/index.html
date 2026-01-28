@@ -117,7 +117,10 @@
 
 <p>A few weeks ago, I noticed a <a href="https://twitter.com/johnsheehan/status/569619743109304320">tweet</a> from John Sheehan asking if there was an automated tweet -&gt; screenshot tool:</p>
 
-<p><a href="/blog/wp-content/uploads/2015/03/tweet.png" rel="lightbox[2930]"><img class="aligncenter size-medium wp-image-2931" src="/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297" alt="Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?" width="500" height="297" srcset="/blog/wp-content/uploads/2015/03/tweet.png?resize=500%2C297 500w, /blog/wp-content/uploads/2015/03/tweet.png?w=640 640w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After <a href="http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/">playing around with Ghost Inspector</a>, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.
+<figure>
+  <img src="/blog/wp-content/uploads/2015/tweet.webp" alt="Anyone know of a browser extension or something else that can turn a tweet into a single image for presentations, etc?" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+</figure>
+<p>I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript. After <a href="http://www.hung-truong.com/blog/2015/01/20/how-ghost-inspector-helped-me-furnish-my-house/">playing around with Ghost Inspector</a>, I knew it would be possible to render a screen capture of a webpage. I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.
 <!--more--></p>
 <h2 id="the-solution">The Solution</h2>
 
@@ -131,9 +134,10 @@
 
 <p>Finally, I threw together an index view with a form and a button that takes a Twitter URL and loads the image into the same view when you click on “OK.” I got a nice theme from <a href="http://bootstrapzero.com/bootstrap-template/landing-page">here</a> and hardly customized it.</p>
 
-<figure id="attachment_2936" class="wp-caption aligncenter">
-
-<a href="/blog/wp-content/uploads/2015/03/audubon-screenshot.png" rel="lightbox[2930]"><img class="size-medium wp-image-2936" src="/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473" alt="Screenshot in a screenshot inception." width="500" height="473" srcset="/blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=500%2C473 500w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?resize=1024%2C968 1024w, /blog/wp-content/uploads/2015/03/audubon-screenshot.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a><figcaption class="wp-caption-text">Screenshot in a screenshot inception.</figcaption></figure>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/audubon-screenshot.webp" alt="Screenshot in a screenshot inception." style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+  <figcaption>Screenshot in a screenshot inception.</figcaption>
+</figure>
 
 <p>I also figured out how to use the “Deploy to Heroku” feature by adding an app.json file to my git project.</p>
 
@@ -141,7 +145,11 @@
 
 <p>I called the project Audubon after the <a href="http://www.audubon.org/">Audubon Society</a> which is really into birds (get it? birds, tweets?). You can deploy it yourself with this button:</p>
 
-<p><a href="https://heroku.com/deploy?template=https://github.com/hungtruong/Audubon"><img style="max-width: 100%;" src="https://camo.githubusercontent.com/83b0e95b38892b49184e07ad572c94c8038323fb/68747470733a2f2f7777772e6865726f6b7563646e2e636f6d2f6465706c6f792f627574746f6e2e737667" alt="Deploy" data-canonical-src="https://www.herokucdn.com/deploy/button.svg" /></a></p>
+<figure>
+  <a href="https://heroku.com/deploy?template=https://github.com/hungtruong/Audubon">
+    <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+  </a>
+</figure>
 
 <h2 id="todo">TODO</h2>
 
@@ -161,13 +169,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769641171"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769641287"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769641173"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769641289"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/side-project-audubon.vtt?v=1769641171";
+      var vttUrl = "/blog/assets/audio/side-project-audubon.vtt?v=1769641287";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles

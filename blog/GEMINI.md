@@ -4,8 +4,11 @@ You are an AI agent that helps the user, Hung Truong, write and maintain this bl
 # CRITICAL RULES & PROTOCOLS
 - **MISTAKE PROTOCOL**: If you make a mistake, you MUST update `GEMINI.md` with a rule to prevent recurrence.
   - *Added 2026-01-28*: Always verify the current year and date before writing documentation or paths.
+- **VERIFICATION PROTOCOL**: Do NOT consider a visual/UI task complete until you have verified it matches the context (e.g., surrounding text width). If it 'looks wrong', it IS wrong. Don't stop at the first technical 'fix' if the result is visually inconsistent.
+- **BROWSER TOOL PROTOCOL**: Prefer `chrome-devtools` MCP over `browser_subagent` whenever possible for inspecting or interacting with pages.
 - **ZERO TOLERANCE COMMIT POLICY**: STRICTLY FORBIDDEN from running `git commit` or `git push` unless the user explicitly asks. NEVER assume a commit is implied.
 - **PLAN EXECUTION**: UNLESS EXPLICITLY INSTRUCTED, you are STRICTLY FORBIDDEN from executing an `implementation_plan.md` (e.g. `ShouldAutoProceed` MUST be `false`).
+- **IMAGE STYLE PREFERENCE**: Always prefer using `<figure>` and `<figcaption>` tags for images and their descriptions over standard Markdown image syntax. Do NOT "invent" or add caption text; only use existing descriptions or if explicitly provided.
 - **API KEYS**: The proxy handles OpenRouter API keys. Do NOT request or expect client-side keys.
 - **NO TEMPORARY SCRIPTS**: Never commit temporary scripts. Run, delete, or gitignore them.
 
@@ -39,8 +42,8 @@ image: /wp-content/uploads/YYYY/featured-or-poster.webp # Absolute site-root pat
 ### Images
 1. **Source**: Take from `zz_incoming_media/`.
 2. **Convert**:
-   - `magick input.png -resize 1000x -define webp:lossless=true output.webp` (Text/Graphics)
-   - `magick input.jpg -resize 1000x -quality 95 output.webp` (Photos)
+   - `magick input.png -resize '1000x>' -define webp:lossless=true output.webp` (Text/Graphics)
+   - `magick input.jpg -resize '1000x>' -quality 95 output.webp` (Photos)
 3. **Place**: Move to `/wp-content/uploads/YYYY/`. Keep originals in staging until approved.
 
 ### Videos

@@ -94,7 +94,7 @@
          <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">How Ghost Inspector Helped Me Furnish My House</h1>
-    <p class="meta">January 20, 2015 | <span class="time">6</span> Minute Read</p>
+    <p class="meta">January 20, 2015 | <span class="time">5</span> Minute Read</p>
   </header>
 
   
@@ -103,11 +103,14 @@
     <h2 id="act-1">Act 1</h2>
 
 <p>Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best. When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it. The problem was that it never seemed to be in stock.</p>
+
 <figure>
-  <a href="/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg" rel="lightbox[2911]"><img class="size-medium wp-image-2912" src="/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500" alt="Behold the majesty." width="500" height="500" srcset="/blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=500%2C500 500w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=150%2C150 150w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?resize=1024%2C1024 1024w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1208 1208w, /blog/wp-content/uploads/2015/01/0178733_PE331593_S5.jpg?w=1812 1812w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>
+  <img src="/blog/wp-content/uploads/2015/ikea-stockholm.webp" alt="Behold the majesty." style="max-width:100%;height:auto;display:block;margin:1em auto;" />
   <figcaption>Behold the majesty.</figcaption>
 </figure>
+
 <!--more-->
+
 <p>I must have waited for months, maybe even a year, to see if the unit was available in my Ikea store, but apparently there were production issues. The Ikea phone support was never useful and just told me to check again later. I was stuck waiting it out while my current Ikea (non-Stockholm) tv stand bowed under the weight of my 60″ television.</p>
 
 <p>On a random visit in December, though, my interest was piqued. The “buy” button was actually there on the page! I tried faking an order and got a preliminary ship date! For whatever stupid reason, I thought this meant that the supply issues had been fixed. I delayed. I wanted to make sure the thing would fit in my living room. I missed out. Later that week, when I checked the site, the unit was gone.</p>
@@ -126,27 +129,43 @@
 
 <p>This is what my first test run looked like after I recorded the process of adding the item to the cart, entering my address info and trying to check out:</p>
 
-<p><a href="/blog/wp-content/uploads/2015/01/testfail.png" rel="lightbox[2911]"><img class="aligncenter size-medium wp-image-2916" src="/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310" alt="" width="500" height="310" srcset="/blog/wp-content/uploads/2015/01/testfail.png?resize=500%2C310 500w, /blog/wp-content/uploads/2015/01/testfail.png?resize=1024%2C634 1024w, /blog/wp-content/uploads/2015/01/testfail.png?w=1596 1596w, /blog/wp-content/uploads/2015/01/testfail.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>As you can see, the test failed, which is bad, because I was testing to see if the item was out of stock (which I knew was true). The Ghost Inspector recorder picked up that I clicked on a button with a “pressed” state active. Unfortunately, the headless browser doesn’t hover over a button when clicking it, so it didn’t actually see this element and couldn’t click it. I fixed this by selecting the ‘a’ tag with the specific id that I knew would actually add the item to my cart (I also made the browser pause in case something needed to finish loading before hitting the button):</p>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ghost-inspector-test-fail.webp" alt="Ghost Inspector test failed" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+</figure>
+<p>As you can see, the test failed, which is bad, because I was testing to see if the item was out of stock (which I knew was true). The Ghost Inspector recorder picked up that I clicked on a button with a “pressed” state active. Unfortunately, the headless browser doesn’t hover over a button when clicking it, so it didn’t actually see this element and couldn’t click it. I fixed this by selecting the ‘a’ tag with the specific id that I knew would actually add the item to my cart (I also made the browser pause in case something needed to finish loading before hitting the button):</p>
 
-<p><a href="/blog/wp-content/uploads/2015/01/success.png" rel="lightbox[2911]"><img class="aligncenter size-medium wp-image-2917" src="/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263" alt="" width="500" height="263" srcset="/blog/wp-content/uploads/2015/01/success.png?resize=500%2C263 500w, /blog/wp-content/uploads/2015/01/success.png?resize=1024%2C539 1024w, /blog/wp-content/uploads/2015/01/success.png?w=1566 1566w, /blog/wp-content/uploads/2015/01/success.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>Here’s the screenshot of my successful (empty cart) test:</p>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ghost-inspector-success.webp" alt="Ghost Inspector test success" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+</figure>
+<p>Here’s the screenshot of my successful (empty cart) test:</p>
 
-<p><a href="/blog/wp-content/uploads/2015/01/ikeaempty.png" rel="lightbox[2911]"><img class="aligncenter size-medium wp-image-2918" src="/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470" alt="" width="500" height="470" srcset="/blog/wp-content/uploads/2015/01/ikeaempty.png?resize=500%2C470 500w, /blog/wp-content/uploads/2015/01/ikeaempty.png?resize=1024%2C963 1024w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1280 1280w, /blog/wp-content/uploads/2015/01/ikeaempty.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ikea-empty-cart.webp" alt="Ikea empty cart" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+</figure>
 
 <p>At the end of the test, I created an assertion that an element with class “#cartTableError” exists, which shouldn’t happen if your cart is full of Stockholm awesomeness and ready to be shipped. With the test running automatically every day, all that was left for me to do was wait until Ghost Inspector emailed me to notify me of the test “failure,” which meant the item was in stock.</p>
 
 <h2 id="act-3">Act 3</h2>
 
-<p>The fateful day. I got an email from Ghost Inspector that my test failed. I hurriedly typed “ikea.com” into my browser. The product page slowly revealed itself and I girded my loins for the moment I could click “buy.” But the buy button wasn’t there! The test failed because the website now correctly showed that the item was not for sale. Boo!<figure id="attachment_2926" style="max-width: 500px" class="wp-caption aligncenter"></figure></p>
+<p>The fateful day. I got an email from Ghost Inspector that my test failed. I hurriedly typed “ikea.com” into my browser. The product page slowly revealed itself and I girded my loins for the moment I could click “buy.” But the buy button wasn’t there! The test failed because the website now correctly showed that the item was not for sale. Boo!</p>
 
-<p><a href="/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png" rel="lightbox[2911]"><img class="size-medium wp-image-2926" src="/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261" alt="Test failed, but not the way I wanted" width="500" height="261" srcset="/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?resize=500%2C261 500w, /blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-20-at-2.39.55-PM.png?w=792 792w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a>&lt;figcaption class="wp-caption-text"&gt;Test failed, but not the way I wanted&lt;/figcaption&gt;&lt;/figure&gt;</p>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ghost-inspector-fail-2.webp" alt="Test failed, but not the way I wanted" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+  <figcaption>Test failed, but not the way I wanted</figcaption>
+</figure>
 
 <p>I had to write another test. But unfortunately, I couldn’t assert the non-existence of an object. Instead, I faked clicking the buy button (which apparently worked fine) and then tested whether the cart was empty when I clicked to it. The test looked like this:</p>
 
-<p><a href="/blog/wp-content/uploads/2015/01/emptcart.png" rel="lightbox[2911]"><img class="aligncenter size-medium wp-image-2921" src="/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173" alt="" width="500" height="173" srcset="/blog/wp-content/uploads/2015/01/emptcart.png?resize=500%2C173 500w, /blog/wp-content/uploads/2015/01/emptcart.png?resize=1024%2C353 1024w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1576 1576w, /blog/wp-content/uploads/2015/01/emptcart.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ghost-inspector-empty-cart.webp" alt="Ghost Inspector empty cart" style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+</figure>
 
 <p>Apparently this is a stupid test because it is actually still passing. But Ghost Inspector has a feature where it takes a screenshot after every passed test and compares it to the next test. In this case, the screenshot diff test failed and I was notified  a few days ago. And it turns out that the tv stand is actually in stock!</p>
-<figure id="attachment_2922" class="wp-caption aligncenter">
-<a href="/blog/wp-content/uploads/2015/01/screenshotdiff.png" rel="lightbox[2911]"><img class="size-medium wp-image-2922" src="/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262" alt="A comparison of screenshots." srcset="/blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=500%2C262 500w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?resize=1024%2C537 1024w, /blog/wp-content/uploads/2015/01/screenshotdiff.png?w=1208 1208w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a><figcaption>A comparison of screenshots.</figcaption></figure>
+
+<figure>
+  <img src="/blog/wp-content/uploads/2015/ghost-inspector-screenshot-diff.webp" alt="A comparison of screenshots." style="max-width:100%;height:auto;display:block;margin:1em auto;" />
+  <figcaption>A comparison of screenshots.</figcaption>
+</figure>
 
 <h2 id="epilogue">Epilogue</h2>
 
