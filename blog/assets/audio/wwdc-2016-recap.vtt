@@ -1,0 +1,145 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.797
+WWDC 2016 Recap
+
+00:00:04.297 --> 00:00:06.534
+Published on June 28, 2016.
+
+00:00:07.534 --> 00:00:16.325
+As a beginning iOS developer, I remember learning a lot of the craft by trial and error, paired with many of the WWDC videos of years’ past.
+
+00:00:16.825 --> 00:00:18.823
+I was very lucky this year to
+
+00:00:19.323 --> 00:00:22.999
+1) get chosen for the WWDC lottery and
+
+00:00:23.499 --> 00:00:27.814
+2) work for a company that would support my trip to San Francisco.
+
+00:00:28.314 --> 00:00:31.670
+The week flew by and I went to some really interesting sessions.
+
+00:00:32.170 --> 00:00:34.647
+Here’s the things I found most interesting.
+
+00:00:35.647 --> 00:00:37.485
+Accessibility
+
+00:00:38.985 --> 00:00:45.618
+I’ve been developing some accessibility features since starting at Starbucks, and so I went to the What’s New in Accessibility session.
+
+00:00:46.118 --> 00:00:56.587
+The most interesting developer facing features are the improved Accessibility Inspector (which lets you quickly run accessibility audits, even in the simulator) and custom rotors for secondary actions.
+
+00:00:57.087 --> 00:01:05.638
+I’m still pretty new to accessibility but I imagine enabling custom rotors will be nice since I just used a hack with the headers rotor to enable skipping between content.
+
+00:01:06.638 --> 00:01:08.556
+Swift APIs
+
+00:01:10.056 --> 00:01:17.088
+Although I haven’t been writing much Swift at work (we’re just starting to adopt it), I went to the Swift API Design Guidelines session.
+
+00:01:17.588 --> 00:01:29.256
+It was interesting to note the conscious decisions to make Swift read grammatically, and how developers are reconciling that with the ways that Swift needs to be compatible with Objective-c APIs.
+
+00:01:29.756 --> 00:01:35.031
+The talk itself was really interesting and worth watching in full, because I’m not going to try to summarize it here!
+
+00:01:36.031 --> 00:01:37.389
+WatchOS 3
+
+00:01:38.889 --> 00:01:52.316
+As a person who actually bought an Apple Watch and still wears it every day, I would really like developers to take advantage of the performance gains in WatchOS 3, least of which is leaving apps in memory so they can load much faster!
+
+00:01:52.816 --> 00:01:59.528
+I was also really mesmerized by the power of rich notifications on the watch using SpriteKit and/or SceneKit.
+
+00:02:00.028 --> 00:02:09.938
+I’m worried that the watch is in a catch-22 right now where it’s not really worth the work to develop for it because there aren’t enough users, which aren’t using the watch because of the lack of good apps.
+
+00:02:10.438 --> 00:02:15.712
+Or it could be that the watch really just needs a good weather app and that’s it. Oh well.
+
+00:02:16.712 --> 00:02:18.470
+Search APIs
+
+00:02:19.970 --> 00:02:25.644
+I also went to a session about using search APIs like NSUserActivity and CoreSpotlight.
+
+00:02:26.144 --> 00:02:38.372
+I largely ignored these features in the past, but it would be pretty interesting to hook into the system in order to provide phone numbers or addresses to hand off to maps or some other apps that the user is switching to.
+
+00:02:39.372 --> 00:02:40.251
+Other Stuff
+
+00:02:41.751 --> 00:02:51.101
+I went to quite a few other sessions on things like iOS Photography (which I sort of just went to accidentally and stayed for) and iMessage integration and On-Demand Resources.
+
+00:02:51.601 --> 00:02:59.113
+Overall, the sessions were really great and I found it really nice to be able to attend a talk in person and absorb the knowledge without distractions.
+
+00:02:59.613 --> 00:03:10.482
+It’s true that the sessions are all available either streaming or online shortly after happening, but too often I’m watching a video while also working against some work deadline or only paying half attention.
+
+00:03:10.982 --> 00:03:19.692
+It’s also pretty neat to be among other iOS developers, and it’s kind of hard to believe that companies have a hard time hiring when you can see so many developers in one room!
+
+00:03:20.692 --> 00:03:22.291
+Hair Force One
+
+00:03:23.791 --> 00:03:29.384
+Craig Federighi has become one of the best parts of Apple Keynotes as he’s equal parts funny and informative.
+
+00:03:29.884 --> 00:03:35.159
+Whenever he showed up in the conference center, huge lines of people would gather to take a photo with him.
+
+00:03:35.659 --> 00:03:42.212
+He’s a really tall dude and it’s really nice of him to put up with random iOS developer who want to take a photo with him.
+
+00:03:43.212 --> 00:03:43.771
+The Jacket
+
+00:03:45.271 --> 00:03:50.865
+I received what is apparently a tradition at WWDC; a jacket with the year on it.
+
+00:03:51.365 --> 00:04:02.074
+I immediately felt weird about getting a nice jacket that basically screams “I am the most elite of the elite, because either I or my company can pay $1600 for me to go to a developer conference!”
+
+00:04:02.574 --> 00:04:11.524
+I spotted a few jackets from earlier years in the conference center, as though it’s a way to show that you’ve been in this game for longer and you’re much cooler than people who just got their first jacket this year.
+
+00:04:12.024 --> 00:04:23.533
+I am in the process of de-labeling my jacket with nail polish remover (ask me about it if you’re interested!) and I’ll hopefully get to wear the jacket embarrassment free once the weather gets cooler (it’s a really nice jacket!).
+
+00:04:24.033 --> 00:04:30.905
+I am hoping that Apple stops giving these jackets out at some point and does something like, I dunno, plants a tree for each attendee?
+
+00:04:31.405 --> 00:04:35.800
+Then again, we are talking about a company that makes objects that people literally worship.
+
+00:04:36.800 --> 00:04:38.318
+The Company Store
+
+00:04:39.818 --> 00:04:48.449
+Speaking of products, there’s a company store set up in the conference center where you can buy shirts and baby stuff and hats with Apple logos on them.
+
+00:04:48.949 --> 00:04:56.301
+I was going to buy something but I realized that you’re literally paying $40 for the logo as the shirt itself is a fairly standard bella canvas tee.
+
+00:04:56.801 --> 00:05:01.516
+Plus I already have a WWDC jacket that asserts my dominance as an iOS developer!
+
+00:05:02.516 --> 00:05:03.635
+In Closing
+
+00:05:05.135 --> 00:05:10.809
+Again, I feel incredibly lucky to have been able to go to WWDC this year, for the first time ever.
+
+00:05:11.309 --> 00:05:18.661
+The keynote and sessions were really great and I got at least 3 ideas for future apps, which is a lot more than I’ve had in the past year or two.
+
+00:05:19.161 --> 00:05:21.798
+Hopefully I can go next year do it all over again.
