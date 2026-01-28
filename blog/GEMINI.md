@@ -125,19 +125,39 @@ rm wp-content/uploads/2025/descriptive-name-poster.png
 - No intermediate poster PNGs left behind (delete after WebP is created).
 - Originals remain in `zz_incoming_media/` until approved.
 
-## TTS Scraper Rules (Kaggle Notebooks)
-- **Included Tags:** `p`, `h1-h6`, `li`, `blockquote`.
-- **Excluded Tags:** `pre` (code blocks) and `figcaption` (captions) must be explicitly deleted (decomposed) before scraping.
-- **Whitespace Normalization:** All text must be extracted using `get_text(separator=' ', strip=True)` and then normalized with `re.sub(r'\s+', ' ', text)` to prevent "broken" sentences from newlines or inline tags.
-- **Smart Nesting:** Scrape only top-level elements of interest to avoid duplicate content from nested tags.
-- **Pronunciation Fixes:** "Hung" is automatically replaced with "Hang" during TTS generation (case-sensitive) to ensure correct pronunciation, while preserving the original spelling in VTT transcripts.
-- **Ignore Comments:** The scraper explicitly stops when encountering a header equal to "Comments" or the text "Leave a Comment".
+## Audio Article System
 
-## Audio Reset Workflow
-To force regeneration of audio for a specific post (e.g., after code updates):
-1. Remove the `audio_slug` field from the post's front matter.
-2. Commit and push the change.
-3. Run the batch processing notebook on Kaggle. It will detect the missing audio (since the slug is gone/invalidated) and regenerate it.
+The blog uses an automated pipeline to generate audio narrations for posts using Qwen-3 TTS Voice Cloning on Kaggle.
+
+### How It Works
+1.  **Trigger**: The system checks for posts *missing* the `audio_slug` in Front Matter.
+2.  **Scraping**: The notebook scrapes the post content.
+    -   **Inclusions**: `p`, `h1-h6`, `li`, `blockquote`.
+    -   **Exclusions**: `pre` (code), `figcaption` (captions), and "Comments" sections.
+    -   **Normalization**: Whitespace is normalized; "Hung" is pronounced "Hang" (case-sensitive) for audio but preserved in text.
+3.  **Generation**: Qwen-3 TTS generates MP3 audio and VTT transcripts.
+4.  **Delivery**: Files are uploaded to R2. A GitHub Dispatch event triggers a workflow to update the post's `audio_slug` in the repository provided `GITHUB_TOKEN` is set.
+
+### Kaggle Workflow
+To run the generation pipeline (requires `KAGGLE_API_TOKEN`):
+
+1.  **Navigate**: Go to `scripts/qwen3-tts-batch` (for multiple posts) or `scripts/qwen3-tts-single` (testing).
+2.  **Push**: Run `kaggle kernels push` to start the notebook.
+3.  **Status**: Monitor with `kaggle kernels status hungtruong64/qwen3-tts-voice-clone-demo-batch-processing`.
+
+### Frontend Integration
+The Jekyll layout (`_layouts/post.html`) and JavaScript (`assets/js/vtt-inject.js`) handle the playback and transcript synchronization:
+
+1.  **Player Injection**: If `page.audio_slug` exists, `_layouts/post.html` injects an `<audio>` tag pointing to `/assets/audio/[audio_slug].mp3`.
+2.  **Transcript Fetching**: The same slug is used to fetch the VTT file at `/assets/audio/[audio_slug].vtt`.
+3.  **DOM Synchronization**: `vtt-inject.js` parses the VTT cues and traverses the DOM of the post content (`#hypertranscript`). It wraps matching text nodes in `<span>` tags with `data-m` (milliseconds) attributes.
+4.  **Interactive Playback**: `HyperaudioLite` uses these spans to highlight words in sync with audio and allows clicking text to jump to that timestamp.
+
+### Regenerating Audio
+To force regeneration (e.g., after fixing typos or scraper logic):
+1.  **Remove `audio_slug`**: Delete the line from the post's front matter.
+2.  **Push**: Commit and push the removal.
+3.  **Run Batch**: Execute the Kaggle batch notebook. It will detect the missing audio (since the slug is gone/invalidated) and regenerate it.
 
 ## Code Styling Standards
 - **Theme:** Tokyo Night inspired (Deep dark blue background `#1a1b26`, pastel syntax colors).
@@ -148,24 +168,6 @@ To force regeneration of audio for a specific post (e.g., after code updates):
   - Asymmetrical padding for balance: `0.8rem` vertical, `1.2rem` horizontal.
 - **Typography:** `0.8em` font size for a cleaner hierarchy; antialiased rendering via `-webkit-font-smoothing`.
 - **Custom Scrollbar:** Thin, dark scrollbar that matches the theme.
-
-## Kaggle CLI Workflow For Blog Article Audio
-To fire a notebook run from the terminal:
-
-1.  **Authentication:** Ensure `KAGGLE_API_TOKEN` is exported (added to `~/.zshrc` for permanence).
-2.  **Navigation:** Move to the specific notebook folder.
-    *   Single Post: `cd scripts/qwen3-tts-single`
-    *   Batch Process: `cd scripts/qwen3-tts-batch`
-3.  **Run:** Push the notebook to Kaggle to trigger execution.
-    ```bash
-    kaggle kernels push
-    ```
-4.  **Status:** Check the status of the run.
-    ```bash
-    kaggle kernels status hungtruong64/qwen-3-tts-blog-post
-    # OR
-    kaggle kernels status hungtruong64/qwen3-tts-voice-clone-demo-batch-processing
-    ```
 
 # CRITICAL RULES
 - DO NOT push to Kaggle (`kaggle kernels push`) unless EXPLICITLY requested by the user. Always ask for confirmation first.
