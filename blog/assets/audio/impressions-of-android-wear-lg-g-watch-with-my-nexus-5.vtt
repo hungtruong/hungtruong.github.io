@@ -1,0 +1,160 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.555
+Impressions of Android Wear (LG G Watch) with my Nexus 5
+
+00:00:06.055 --> 00:00:09.491
+Published on July 28, 2014.
+
+00:00:10.491 --> 00:00:14.966
+I finally got the LG G watch that I won in a contest about a week ago.
+
+00:00:15.466 --> 00:00:22.259
+I replaced my Pebble smart watch with the Android Wear device along with using my spare Nexus 5 instead of my iPhone.
+
+00:00:22.759 --> 00:00:27.633
+It’s been about four days or so since I made the switch so I thought I’d write up my impressions.
+
+00:00:28.633 --> 00:00:29.672
+The Watch
+
+00:00:31.172 --> 00:00:35.967
+The LG G watch is one of the two currently available Android Wear devices for purchase.
+
+00:00:36.467 --> 00:00:41.022
+My coworker Jason, who also won a watch in the same contest, got the Samsung model.
+
+00:00:41.522 --> 00:00:49.034
+We both would have rather had the Motorola watch, but it isn’t available until later this summer so Google decided to send us these ones.
+
+00:00:50.034 --> 00:00:52.591
+The LG watch is not particularly fashionable.
+
+00:00:53.091 --> 00:00:56.607
+It looks like a pretty generic black rectangle with rounded corners.
+
+00:00:57.107 --> 00:01:01.183
+It comes with a pretty neat charging base that you can magnetically attach the watch to.
+
+00:01:01.683 --> 00:01:07.516
+I would’ve preferred some kind of wireless charging, but this gets the job done, and the watch actually charges pretty quickly.
+
+00:01:08.016 --> 00:01:12.411
+The quick charge time is good because the watch only last about 24 hours anyway.
+
+00:01:13.411 --> 00:01:14.690
+The Software
+
+00:01:16.190 --> 00:01:21.544
+The software for the LG watch is basically an enhanced version of the notification dock in Android.
+
+00:01:22.044 --> 00:01:28.197
+This actually mirrors Google Glass a bit, but the execution is less awkward because you’re not wearing a watch on your face.
+
+00:01:28.697 --> 00:01:32.133
+Each notification that lives on your phone will also appear on the watch.
+
+00:01:32.633 --> 00:01:37.268
+If the notification is enhanced, you might be able to take action on it through the watch.
+
+00:01:37.768 --> 00:01:42.483
+For example, you can reply to a text message or Google Hangout by dictating a message.
+
+00:01:42.983 --> 00:01:49.696
+This is probably the killer app of the watch, though I feel like talking to your watch is still going to be considered antisocial behavior.
+
+00:01:50.696 --> 00:01:56.849
+Aside from the notifications, you can also tell the watch to take notes, send e-mails, and set alarms.
+
+00:01:57.349 --> 00:02:00.466
+The watch still relies pretty heavily on your Android phone, though.
+
+00:02:00.966 --> 00:02:08.957
+Notes get saved to Google Keep (which I am not really sure is an app that will stick around), and GPS navigation simply opens Google maps on your phone.
+
+00:02:09.457 --> 00:02:14.332
+I’m guessing that in the future the watch will get smarter, but for now I think that’s a pretty decent feature set.
+
+00:02:15.332 --> 00:02:22.204
+I’ve been toying around with the idea of writing an app that creates a persistent notification that just shows me how late the bus is going to be in the morning.
+
+00:02:22.704 --> 00:02:27.739
+Every morning I check the AATA website to see how late my bus is going to be.
+
+00:02:28.239 --> 00:02:38.788
+The information is contextual and time sensitive, and I only need it for that one time during the day, so it would make sense to make this something that shows up on my watch when I need it and goes away when I don’t.
+
+00:02:39.288 --> 00:02:48.238
+I think that Google Now could do this to some extent, but it’s not smart enough to know that I want to leave 5 minutes before my bus comes around and not when it’s “scheduled” to arrive.
+
+00:02:49.238 --> 00:02:49.718
+Android
+
+00:02:51.218 --> 00:02:58.330
+In order to fully test out the Android Wear watch, I took my SIM card out of my iPhone 5S and put it into my Nexus 5.
+
+00:02:58.830 --> 00:03:03.865
+So far the transition hasn’t been too difficult as I mostly rely on Google services anyway.
+
+00:03:04.365 --> 00:03:08.840
+There aren’t really any apps on the iPhone that I haven’t been able to use on my Android phone.
+
+00:03:09.840 --> 00:03:16.952
+I may have said this before in previous blog post, but I really think that the quality of Google’s services is catching up to the polish of the iPhone.
+
+00:03:17.452 --> 00:03:21.528
+Consider how bad Apple’s online services are, and how good Google’s are.
+
+00:03:22.028 --> 00:03:31.138
+I can live without iCloud and Apple’s email service (does anyone use their .me email as a real email address?), but I am locked into Gmail, both personally and professionally.
+
+00:03:32.138 --> 00:03:38.931
+I am guessing that Google could increase Android’s marketshare sharply by simply withdrawing support for all Google services on iOS.
+
+00:03:39.431 --> 00:03:47.982
+Meanwhile, Apple is relying more and more on third parties to fill out the expertise that it is lacking (I mean, really, who the fuck uses WebObjects?).
+
+00:03:48.482 --> 00:03:56.873
+I can’t really see a situation in the long term where Apple beats Google on services, either directly or by convincing third party developers to do it for them.
+
+00:03:57.373 --> 00:04:03.766
+As for whether I am actually switching to Android as my main device, I’d need to see what Apple has in store for their next generation.
+
+00:04:04.266 --> 00:04:08.981
+(Sadly, this LG G watch is not nearly awesome enough to make me switch on its own)
+
+00:04:09.981 --> 00:04:16.533
+On top of the awesome built-in services of Android, the material design stuff coming from them from this past I/O is looking pretty sweet.
+
+00:04:17.033 --> 00:04:27.583
+If Android can give iOS a run for its money in terms of look and feel, and ease of creating really nice custom views and animations, then developers might just defect en masse.
+
+00:04:28.083 --> 00:04:39.111
+I guess the only thing Android needs to do now is get away from Java (if Apple can do this with Swift, then I’m sure Google can figure it out), because developing on it really sucks the joy out of being a developer.
+
+00:04:40.111 --> 00:04:42.668
+Anyway, enough reverse-fanboying.
+
+00:04:43.168 --> 00:04:44.926
+I think it’s time for the…
+
+00:04:45.926 --> 00:04:46.805
+Conclusion
+
+00:04:48.305 --> 00:04:55.338
+While I think Android Wear does a lot of things right, and it has a lot of potential, the watch really isn’t all that revolutionary.
+
+00:04:55.838 --> 00:05:03.110
+To put it in terms of the HBO show SIlicon Valley, it’s not disrupting or making the world a better place through compression algorithms.
+
+00:05:03.610 --> 00:05:09.603
+It also isn’t a particularly stylish piece of metal and glass, so I wouldn’t wear it if it didn’t serve a purpose.
+
+00:05:10.103 --> 00:05:21.452
+Having said that, Google stuff is all about the integrated services, so I am feeling bullish on the fact that Google Now is always getting smarter, and developers should be able to hook into it, giving it a bit more life than it has right now.
+
+00:05:21.952 --> 00:05:24.109
+Would I buy it if I hadn’t won it?
+
+00:05:24.609 --> 00:05:30.123
+Maybe if I was an Android user already anyway, but I tend to buy too many gadgets as it is.
