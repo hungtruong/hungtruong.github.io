@@ -1,0 +1,133 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.356
+Writing Google Glass Apps With the GDK Sneak Peek
+
+00:00:04.856 --> 00:00:07.653
+Published on February 25, 2014.
+
+00:00:08.653 --> 00:00:13.208
+Since the beginning of time, humans have wanted to mount small computers on their heads.
+
+00:00:13.708 --> 00:00:20.181
+In 2013 we got our wish, as Google started releasing Glass onto explorers and developers alike.
+
+00:00:20.681 --> 00:00:28.193
+In November of 2013, Google released a “Sneak Peek” of the GDK, a way to write native code for Google Glass.
+
+00:00:29.193 --> 00:00:39.183
+While the GDK is still under development and will probably change quite a bit before being finalized, those on the cutting edge will want to familiarize themselves with it.
+
+00:00:40.183 --> 00:00:45.617
+In this quick start guide, I’ll go through the steps of writing your first GDK app, “Where Am I?”
+
+00:00:46.117 --> 00:00:48.514
+This app will ensure you are never lost.
+
+00:00:49.014 --> 00:00:56.446
+By simply shouting “Okay Glass, where am I?” the app will find your latitude and longitude, and try to find the nearest street address.
+
+00:00:57.446 --> 00:00:58.804
+Prerequisites
+
+00:01:00.304 --> 00:01:04.380
+In order to start writing native apps for Google Glass, here’s what you’ll need:
+
+00:01:05.380 --> 00:01:07.058
+Getting Started
+
+00:01:08.558 --> 00:01:15.990
+Google Glass runs on a special version of Android, “Glass Development Kit Sneak Peek” – a tricked out version of API 15.
+
+00:01:16.490 --> 00:01:25.361
+You’ll need to download this version with the Android SDK Manager within ADT (you can open it by clicking on the icon of the Android with a blue box and an arrow on it).
+
+00:01:26.361 --> 00:01:31.875
+Once you’ve done that, you’ll need to create a new Android project with the correct SDK settings.
+
+00:01:32.375 --> 00:01:39.167
+Use API 15 for Minimum and Target SDK, and set “Compile With” to the GDK Sneak Peek.Congratulations!
+
+00:01:39.667 --> 00:01:42.704
+You’ve created a project that should run on Google Glass!
+
+00:01:43.204 --> 00:01:49.277
+If you try running the app on your device, it may or may not work, since it won’t have a voice trigger associated with it yet.
+
+00:01:49.777 --> 00:01:52.734
+We’ll add a voice trigger in the next step.
+
+00:01:53.734 --> 00:01:55.412
+Adding a Voice Trigger
+
+00:01:56.912 --> 00:02:02.106
+If you’re following along with git, you can type the following command to fill out all the code for this step:
+
+00:02:03.106 --> 00:02:09.739
+Because Google Glass is such a new paradigm for user input, we’ll need to set up a voice trigger to allow the user to start our app.
+
+00:02:10.239 --> 00:02:17.511
+To do this, we’ll add some some strings to our strings.xml and add an xml resource that describes the voice trigger.
+
+00:02:18.011 --> 00:02:23.765
+Finally, we’ll add an intent filter to our AndroidManifest.xml to register the voice command.
+
+00:02:24.765 --> 00:02:30.998
+Now, if you run your code on Glass, you should be able to find the “Where Am I?” command in the Ok, Glass menu!
+
+00:02:31.998 --> 00:02:33.996
+Using Glass Cards
+
+00:02:35.496 --> 00:02:38.852
+We’ve gotten voice commands working, and that’s half the battle.
+
+00:02:39.352 --> 00:02:43.667
+Next we’ll learn how to use Cards, the native user interface for Glass.
+
+00:02:44.167 --> 00:02:50.880
+We’ll need to remove the existing style, then instantiate a Card object, set up its text and set it as the content view.
+
+00:02:51.880 --> 00:02:54.597
+If you run the app, should see something like this:
+
+00:02:55.597 --> 00:02:57.914
+Getting Location and Updating the Card
+
+00:02:59.414 --> 00:03:05.088
+If you’re following along with git, you can type the following command to fill out all the code for this step:
+
+00:03:06.088 --> 00:03:10.643
+Finally, we want to get the Glass’ location and update the card with the appropriate info.
+
+00:03:11.143 --> 00:03:14.659
+Our lost Glass Explorer will be found and all will be well.
+
+00:03:15.159 --> 00:03:24.749
+We’ll do this by requesting location permissions, setting up a LocationManager and handling its callbacks by updating the card with lat long and a geocoded address, if available.
+
+00:03:25.749 --> 00:03:32.622
+The app should now start getting location updates on the Glass (it can take a while to get a good fix) and update the Card once it finds you.
+
+00:03:33.122 --> 00:03:35.679
+The result should look something like this:
+
+00:03:36.679 --> 00:03:39.795
+Congratulations! You’ve finished your first Glass app.
+
+00:03:40.295 --> 00:03:52.363
+Future generations will wonder how they ever knew where they were without a head mounted computer printing out their exact location on the earth into a glowing prism directly above their field of vision at all times!
+
+00:03:53.363 --> 00:03:58.797
+For more information about the GDK, check out Google’s official documentation! Glass on!
+
+00:03:59.797 --> 00:04:00.516
+Comments
+
+00:04:02.016 --> 00:04:13.125
+Thank you! Most tutorials for Glass expect the reader to know a lot of basic android/java stuff already, but I’m a total noob and I’ve been looking for a clear step-by-step guide like this for a while.
+
+00:04:13.625 --> 00:04:14.903
+It was very helpful.
+
+00:04:15.903 --> 00:04:17.981
+You’re welcome! I’m glad you found it helpful.
