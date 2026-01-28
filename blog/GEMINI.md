@@ -141,7 +141,7 @@ rm wp-content/uploads/2025/descriptive-name-poster.png
 - **Typography:** `0.8em` font size for a cleaner hierarchy; antialiased rendering via `-webkit-font-smoothing`.
 - **Custom Scrollbar:** Thin, dark scrollbar that matches the theme.
 
-## Kaggle CLI Workflow
+## Kaggle CLI Workflow For Blog Article Audio
 To fire a notebook run from the terminal:
 
 1.  **Authentication:** Ensure `KAGGLE_API_TOKEN` is exported (added to `~/.zshrc` for permanence).
@@ -158,3 +158,6 @@ To fire a notebook run from the terminal:
     # OR
     kaggle kernels status hungtruong64/qwen3-tts-voice-clone-demo-batch-processing
     ```
+
+# CRITICAL RULES
+- DO NOT push to Kaggle (`kaggle kernels push`) unless EXPLICITLY requested by the user. Always ask for confirmation first.
