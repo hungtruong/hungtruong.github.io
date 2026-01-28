@@ -1,0 +1,100 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.317
+Side Project: Audubon
+
+00:00:03.817 --> 00:00:06.055
+Published on March 10, 2015.
+
+00:00:07.055 --> 00:00:07.694
+The Idea
+
+00:00:09.194 --> 00:00:15.587
+A few weeks ago, I noticed a tweet from John Sheehan asking if there was an automated tweet -> screenshot tool:
+
+00:00:16.587 --> 00:00:24.978
+I thought it was a pretty interesting concept that would be fairly easy to implement and had a small enough scope that I could use it to learn some more Javascript.
+
+00:00:25.478 --> 00:00:31.472
+After playing around with Ghost Inspector, I knew it would be possible to render a screen capture of a webpage.
+
+00:00:31.972 --> 00:00:37.486
+I just needed to implement the logic for figuring out what area of a page to render, rather than the whole page.
+
+00:00:38.486 --> 00:00:39.684
+The Solution
+
+00:00:41.184 --> 00:00:49.575
+I played around with CasperJS before finding a StackOverflow post that described that I could do all that I wanted in PhantomJS, which CasperJS is built on.
+
+00:00:50.075 --> 00:00:55.749
+I wrote a script that would take a url as an input and spit a png out to stdout.
+
+00:00:56.249 --> 00:01:03.921
+Then I wrote a node web app in Express that could take the url as a parameter and run the script through the child_process.spawn command.
+
+00:01:04.421 --> 00:01:11.214
+I had the express app write the stdout of the child process to a buffer and send it once the script was finished. Done!
+
+00:01:12.214 --> 00:01:13.652
+Heroku
+
+00:01:15.152 --> 00:01:19.148
+I ran into a problem when I wanted to host my app on Heroku.
+
+00:01:19.648 --> 00:01:27.319
+Heroku apparently does not support writing to /dev/stdout, and I only found out about this when my images were being sent as empty files.
+
+00:01:27.819 --> 00:01:36.210
+I looked at some solutions that involved writing to an Amazon S3 bucket, but I didn’t want to incur that much of an operations overhead for something so lightweight.
+
+00:01:37.210 --> 00:01:46.001
+As a workaround, I found that Heroku does allow writing to /tmp, though any files you throw in there are not guaranteed to remain there after the request is over.
+
+00:01:46.501 --> 00:01:50.976
+For me that’s perfect, since the file only needs to exist as long as the request lasts.
+
+00:01:51.976 --> 00:01:59.968
+Finally, I threw together an index view with a form and a button that takes a Twitter URL and loads the image into the same view when you click on “OK.”
+
+00:02:00.468 --> 00:02:03.025
+I got a nice theme from here and hardly customized it.
+
+00:02:04.025 --> 00:02:10.338
+I also figured out how to use the “Deploy to Heroku” feature by adding an app.json file to my git project.
+
+00:02:11.338 --> 00:02:23.725
+There were a couple of other issues I ran into that I didn’t describe yet, mostly getting PhantomJS 2.0 to run on Heroku (because previous versions don’t render webfonts correctly) and setting up the multiple buildpacks on Heroku.
+
+00:02:24.225 --> 00:02:27.901
+You can see what I ended up using by inspecting the Github project here.
+
+00:02:28.901 --> 00:02:35.214
+I called the project Audubon after the Audubon Society which is really into birds (get it? birds, tweets?).
+
+00:02:35.714 --> 00:02:37.792
+You can deploy it yourself with this button:
+
+00:02:38.792 --> 00:02:39.671
+TODO
+
+00:02:41.171 --> 00:02:43.968
+There’s a couple of things I need to wrap up in this project.
+
+00:02:44.468 --> 00:02:50.381
+If anyone wants to they could also fork the project and throw a pull request at me, but I’m planning on doing these eventually:
+
+00:02:51.381 --> 00:02:56.336
+Overall I think this was a really good side project in terms of scope and complete-ability.
+
+00:02:56.836 --> 00:03:00.512
+I learned a lot about Node.js, ExpressJS and PhantomJS.
+
+00:03:01.012 --> 00:03:06.686
+I’ve been meaning to level up my Javascript web game, and this project has been a useful exercise.
+
+00:03:07.686 --> 00:03:08.325
+Comments
+
+00:03:09.825 --> 00:03:11.503
+Great work Hung!!
