@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.356
+Note to Myself about UISplitViewController and Auto-Rotation
+
+00:00:04.856 --> 00:00:07.413
+Published on March 14, 2011.
+
+00:00:08.413 --> 00:00:18.163
+In order to prevent my future self from wasting like, 2 hours fucking around with UISplitViewController getting it to auto-rotate its subviews, here’s a little post!
+
+00:00:19.163 --> 00:00:25.796
+Most of the time, UISplitViewController doesn’t want to rotate because you didn’t set it as the root subview of the Window.
+
+00:00:26.296 --> 00:00:32.849
+This is pretty well documented on StackOverflow, etc. I thought this was why my splitviewblahblahblah wasn’t rotating.
+
+00:00:33.349 --> 00:00:36.865
+It turns out that, according to Apple’s documentation,
+
+00:00:37.865 --> 00:00:43.619
+A split view controller relies on its two view controllers to determine whether interface orientation changes should be made.
+
+00:00:44.119 --> 00:00:49.393
+If one or both of the view controllers do not support the new orientation, no change is made.
+
+00:00:49.893 --> 00:00:54.208
+This is true even in portrait mode, where the first view controller is not displayed.
+
+00:00:54.708 --> 00:01:02.460
+Therefore, you must override the shouldAutorotateToInterfaceOrientation: method for both view controllers and return YES for all supported orientations.
+
+00:01:03.460 --> 00:01:12.650
+The key here is that the view controller wasn’t autorotating because the subviews did not answer “YES!!!” (exclamation points added by me) to shouldAutoRotateToInterfaceOrientation.
+
+00:01:13.150 --> 00:01:19.224
+I was fucking around with the Split View Controller in Interface Builder (and later programmatically) to no avail.
+
+00:01:19.724 --> 00:01:25.957
+Adding the stupid autorotate thing to yes in the subviews made it work (shouldn’t it default to YES!?!??!).
+
+00:01:26.957 --> 00:01:28.235
+Okay, lesson learned.
+
+00:01:28.735 --> 00:01:30.973
+Just don’t forget this next time, Hung!
