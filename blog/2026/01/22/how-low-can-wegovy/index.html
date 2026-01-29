@@ -209,13 +209,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769698763"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769698857"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769698765"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769698859"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/how-low-can-wegovy.vtt?v=1769698763";
+      var vttUrl = "/blog/assets/audio/how-low-can-wegovy.vtt?v=1769698857";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -285,9 +285,61 @@
 <div id="comment-error" style="display: none;" class="comment-message comment-message-error">
   <div>
     <h4>Submission Error</h4>
-    <p>There was an error submitting your comment. Please try again.</p>
+    <p id="comment-error-text">There was an error submitting your comment. Please try again.</p>
   </div>
 </div>
+
+<script>
+  const form = document.getElementById('comment-form');
+  const success = document.getElementById('comment-success');
+  const error = document.getElementById('comment-error');
+  const errorText = document.getElementById('comment-error-text');
+  const submitBtn = document.getElementById('comment-submit');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    error.style.display = 'none';
+
+    const formData = new FormData(form);
+
+    // Convert to URLSearchParams for x-www-form-urlencoded
+    const params = new URLSearchParams();
+    for (const pair of formData) {
+      params.append(pair[0], pair[1]);
+    }
+
+    fetch(form.action, {
+      method: 'POST',
+      body: params,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          if (response.status === 403) {
+            errorText.innerText = "lol ur a spammer";
+          } else {
+            errorText.innerText = "There was an error submitting your comment. Please try again.";
+          }
+          error.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        }
+      })
+      .catch(() => {
+        errorText.innerText = "There was an error submitting your comment. Please try again.";
+        error.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Comment';
+      });
+  });
+</script>
   </div>
 
   <!-- POST NAVIGATION -->
