@@ -3,95 +3,107 @@ WEBVTT
 00:00:00.000 --> 00:00:03.037
 Strange Copy Pasta in Developer Resumes
 
-00:00:04.537 --> 00:00:07.413
+00:00:04.537 --> 00:00:07.653
 Published on September 06, 2016.
 
-00:00:08.413 --> 00:00:14.167
+00:00:08.653 --> 00:00:13.847
 So for the past few weeks we’ve been trying to hire for a contractor position to work on our iOS app.
 
-00:00:14.667 --> 00:00:22.259
+00:00:14.347 --> 00:00:22.099
 Along with the rest of the team, I’ve been reviewing resumes on a really corporate looking website that have been submitted by recruiters on behalf of candidates.
 
-00:00:22.759 --> 00:00:30.191
+00:00:22.599 --> 00:00:30.031
 It’s an interesting exercise because the resumes are almost all in the same exact format and after a while, they really start to look the same.
 
-00:00:30.691 --> 00:00:35.406
+00:00:30.531 --> 00:00:35.805
 In some cases, this is because a candidate has been rejected and resubmitted accidentally.
 
-00:00:36.406 --> 00:00:43.198
-While scanning through a bunch of resumes, my coworker Will noticed a bullet point that actually appeared in more than one person’s resume:
+00:00:36.805 --> 00:00:43.438
+While scanning through a bunch of resumes, my coworker Will noticed a bullet point that actually appeared in more than one person’s resume:
 
-00:00:44.198 --> 00:00:52.590
+00:00:44.438 --> 00:00:52.510
 Experienced in creating and custom UIViews, Table Views, Tab Bars and Navigation Bar, which are some basic functionalities in a Multi-view Application.
 
-00:00:53.590 --> 00:00:56.386
+00:00:53.510 --> 00:00:55.987
 There are a few things that stand out about this.
 
-00:00:56.886 --> 00:01:01.202
+00:00:56.487 --> 00:01:01.681
 The sentence itself runs on and on, and the grammar used is pretty dubious.
 
-00:01:01.702 --> 00:01:13.450
+00:01:02.181 --> 00:01:13.290
 Also, the inclusion of this into an iOS developer’s resume tells you nothing because every iOS developer should have experience with these elementary UI elements, and the sentence even sort of explains that at the end.
 
-00:01:13.950 --> 00:01:20.902
+00:01:13.790 --> 00:01:20.662
 The fact that it appears in more than one resume is surprising, since it’s such a stupid thing to include in your resume to begin with.
 
-00:01:21.902 --> 00:01:27.096
+00:01:21.662 --> 00:01:26.297
 I was curious about this bullet point, so I suggested that Will paste the phrase into Google.
 
-00:01:27.596 --> 00:01:30.473
+00:01:26.797 --> 00:01:29.754
 Here’s an interesting slice of the results:
 
-00:01:31.473 --> 00:01:37.227
+00:01:30.754 --> 00:01:37.067
 While there’s not a direct match, there are links to resumes which have slightly altered versions of the same phrase.
 
-00:01:37.727 --> 00:01:43.241
+00:01:37.567 --> 00:01:44.040
 The part that is mostly shared is the “…which are some basic functionality in a Multi view Application.”
 
-00:01:43.741 --> 00:01:49.335
+00:01:44.540 --> 00:01:50.214
 If you google for that, you will find pages and pages of resumes with a bullet point similar to the original.
 
-00:01:49.835 --> 00:01:56.467
+00:01:50.714 --> 00:01:57.826
 Will even started a tally of “mutations” of the phrase with added embellishments at the end, or with slightly better grammar.
 
-00:01:57.467 --> 00:02:02.502
+00:01:58.826 --> 00:02:04.180
 I was curious which other phrases in these resumes were common, so I tried googling some of them.
 
-00:02:03.002 --> 00:02:05.959
+00:02:04.680 --> 00:02:07.717
 Some that I found that had become memes were:
 
-00:02:06.959 --> 00:02:11.034
+00:02:08.717 --> 00:02:17.907
+Strong Knowledge of Software Development Life Cycle (SDLC) with strategically designing and implementing the software, debugging, fixing and maintaining the software.
+
+00:02:18.907 --> 00:02:26.179
+Developed apps using various iOS design patterns (MVC, Delegation, Target-action and Slide-out Navigation).
+
+00:02:27.179 --> 00:02:33.892
+Proficient in Memory Management: Automatic Reference Counting (ARC) and Manual Reference Counting (MRC).
+
+00:02:34.892 --> 00:02:45.361
+Mobile Application Development (iPhone/iPad) using objective-C, UIKit, Core Location, MapKit, Cocoa Touch and Cocoa Service Frameworks.
+
+00:02:46.361 --> 00:02:50.357
 I have a few guesses as to why these are in so many resumes verbatim.
 
-00:02:11.534 --> 00:02:18.327
+00:02:50.857 --> 00:02:57.570
 It could be that the candidate simply copied and pasted the bullet points from a friend’s resume and hopefully actually has those skills.
 
-00:02:18.827 --> 00:02:24.181
+00:02:58.070 --> 00:03:03.424
 Another could be that the recruiting firm offered to touch up their resume for them and did so lazily.
 
-00:02:24.681 --> 00:02:30.674
+00:03:03.924 --> 00:03:09.038
 While it’s easy to attribute this to malice, it’s probably just good old fashioned laziness.
 
-00:02:31.174 --> 00:02:34.930
+00:03:09.538 --> 00:03:12.734
 After all, if it works for so many developers, it should work for you!
 
-00:02:35.430 --> 00:02:41.344
+00:03:13.234 --> 00:03:18.908
 Either way it looks terrible for the candidate and it’s frustrating for people doing the hiring to see such a lack of originality.
 
-00:02:41.844 --> 00:02:47.438
+00:03:19.408 --> 00:03:26.281
 I already have to go through more than 30 resumes; I don’t want to think I’m going crazy with all the feelings of Deja Vu.
 
-00:02:48.438 --> 00:02:53.392
+00:03:27.281 --> 00:03:31.996
 My recommendation to developers would be to write, in your own words, what you’ve actually accomplished.
 
-00:02:53.892 --> 00:03:01.324
+00:03:32.496 --> 00:03:40.487
 Resume writing is annoying, and no one likes doing it, but the downside to plagiarism is that I toss your resume out and assume you’re a terrible person.
 
-00:03:01.824 --> 00:03:11.734
+00:03:40.987 --> 00:03:50.577
 Also, I’m secretly hoping that this blog post becomes the top Google result for all of these copied bullet points so any curious resume-reviewers realize they’re not going insane.
 
-00:03:12.234 --> 00:03:18.627
-Also, feel free to nitpick my own outdated resume which you can find here on my (way outdated) portfolio site.
+00:03:51.077 --> 00:03:58.109
+Also, feel free to nitpick my own outdated resume which you can find here on my (way outdated) portfolio site .
 
-00:03:19.627 --> 00:03:29.297
+00:03:59.109 --> 00:04:08.220
 I haven’t gone in depth at all to discover more of these copied phrases, but I’m willing to bet that a big percentage of bullet points in resumes are simply ripped off from other resumes.
