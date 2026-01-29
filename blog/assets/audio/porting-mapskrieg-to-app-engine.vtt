@@ -1,0 +1,94 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.758
+Porting Mapskrieg to App Engine
+
+00:00:03.258 --> 00:00:05.975
+Published on February 23, 2011.
+
+00:00:06.975 --> 00:00:10.091
+Lately I’ve been playing around a lot with Google App Engine.
+
+00:00:10.591 --> 00:00:16.505
+I think it’s finally at a point where it makes sense to develop for it, and it can be fun and profitable to do so.
+
+00:00:17.005 --> 00:00:25.556
+For example, I wrote Instascriber on App Engine, and so far it has cost me a few pennies in CPU cycles (and like $2 for a domain name or something).
+
+00:00:26.556 --> 00:00:34.068
+Playing around with memcaching and stuff with Instascriber has led me to become a little obsessed with efficiency (not that I wasn’t already).
+
+00:00:34.568 --> 00:00:38.963
+I took a look at Mapskrieg and found that it was performing pretty slowly.
+
+00:00:39.463 --> 00:00:44.338
+My Google Webmaster Tools thing was saying it took on average 6-8 seconds to load!
+
+00:00:44.838 --> 00:00:51.071
+I wanted to decrease that number, and I figured I could make it work on App Engine, so I started working on it last week.
+
+00:00:52.071 --> 00:00:56.466
+I modified the parser I use to grab craigslist listings to also send them to Mapskrieg.
+
+00:00:56.966 --> 00:01:02.959
+Then I basically rewrote all of the logic that existed in PHP and ported it over to App Engine.
+
+00:01:03.459 --> 00:01:08.334
+This took a little while but it wasn’t too difficult since Mapskrieg is a pretty simple web app.
+
+00:01:08.834 --> 00:01:16.426
+I hardly changed any code in the Maps API implementation, though I’m thinking of moving to v3 (which is apparently supposed to be faster).
+
+00:01:17.426 --> 00:01:23.180
+I just switched out the hosting from my MediaTemple PHP based host to the Google App Engine based one.
+
+00:01:23.680 --> 00:01:25.997
+So far the results look good.
+
+00:01:26.497 --> 00:01:37.366
+I think Mapskrieg is faster in terms of response time and the caching is definitely smarter than it was before (a memcache that only gets cleared when the content in it changes versus a time based cache expiration).
+
+00:01:38.366 --> 00:01:43.640
+I’m going to watch closely to make sure nothing got borked in the transition, but so far so good.
+
+00:01:44.140 --> 00:01:52.771
+If I can keep Mapskrieg on App Engine, I might downgrade the MediaTemple server to save some money and maybe eventually move other services to App Engine as well.
+
+00:01:53.771 --> 00:01:57.367
+One funny thing I noticed was the pricing plan for App Engine.
+
+00:01:57.867 --> 00:02:06.018
+I’m currently pruning listings from the database when they get too old or move past the limit of listings per listing type (because I’ll never show them).
+
+00:02:06.518 --> 00:02:10.514
+This is actually older behavior from when I had listing info in MySQL.
+
+00:02:11.014 --> 00:02:15.169
+Back then, the size of the database would affect the performance of selecting rows.
+
+00:02:15.669 --> 00:02:19.904
+Google’s datastore apparently does not get slower with respect to size.
+
+00:02:20.404 --> 00:02:22.482
+This is actually pretty awesome.
+
+00:02:23.482 --> 00:02:28.277
+The weird thing is that adding and removing datastore objects costs quite a lot in CPU time.
+
+00:02:28.777 --> 00:02:33.252
+Additional CPU time past 6.5 hours is $.10 an hour.
+
+00:02:33.752 --> 00:02:35.909
+Storage, on the other hand, is .
+
+00:02:36.409 --> 00:02:39.766
+$01 per 2 gigabytes per day.
+
+00:02:40.266 --> 00:02:49.136
+From my usage, I am predicting that the CPU cycles that I would use to trim the datastore listings would actually cost more than just leaving them in the datastore and paying for storage.
+
+00:02:49.636 --> 00:02:51.154
+Is that insane or what?
+
+00:02:51.654 --> 00:02:58.607
+I still have to test some things out, but it kind of surprises me that storage would be that much cheaper than the CPU cycles to remove something.
