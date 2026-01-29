@@ -98,6 +98,19 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/instascriber-automagically-add-content-to-instapaper.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p>I just “announced” a little web app that I’ve been developing off and on called “<a href="https://web.archive.org/web/20110131074346/http://www.instascriber.com/">Instascriber</a>.” It’s basically a tool to help you populate your <a href="http://www.instapaper.com">Instapaper</a> reading list with stuff using an RSS Feed subscription model. If you use Instapaper a lot and use it to keep track of your reading list, you might want to automatically add new items, say from the New York Times Book section, into your Instapaper reading list. If you already know you’d like to read the content on Instapaper, it’s a pain to manually add each thing you want to read.</p>
@@ -108,6 +121,41 @@
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769729095"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1769729097"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/instascriber-automagically-add-content-to-instapaper.vtt?v=1769729095";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->

@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.957
+Automatic Checkins in Google Latitude
+
+00:00:04.457 --> 00:00:07.813
+Published on February 02, 2011.
+
+00:00:08.813 --> 00:00:16.085
+It looks like Google has updated their Latitude app with checkins, including automatic notifications and checkins (and checkouts).
+
+00:00:17.085 --> 00:00:22.040
+When I developed Checkmate , there wasn’t really a standard design for the auto-checkin behavior.
+
+00:00:22.540 --> 00:00:29.332
+Some users have mentioned that the app might work better by sending notification to check in, more like reminders.
+
+00:00:29.832 --> 00:00:33.508
+I’ve leaned towards fully automated checkins, myself.
+
+00:00:34.508 --> 00:00:38.584
+Google seems to be taking a hybrid approach, which is pretty interesting.
+
+00:00:39.084 --> 00:00:47.555
+You get a notification the first time you arrive somewhere (probably only for places you’ve checked into before), and then an option to automatically check in after that.
+
+00:00:48.555 --> 00:00:55.188
+I might end up building some kind of hybrid (or a simple option in settings) system in Checkmate to see if that works better in general.
+
+00:00:55.688 --> 00:01:00.242
+I wonder how Google is mitigating the cost of GPS usage in its Latitude app.
+
+00:01:00.742 --> 00:01:06.656
+I always figured that the thing keeping auto-checkin out of official apps is the fact that they run the battery down pretty hard.
