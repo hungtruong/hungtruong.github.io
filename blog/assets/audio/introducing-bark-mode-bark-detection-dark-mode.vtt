@@ -1,202 +1,214 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.155
+00:00:00.000 --> 00:00:03.676
 Introducing BarkMode: Bark Detection + Dark Mode
 
-00:00:05.655 --> 00:00:07.973
+00:00:05.176 --> 00:00:07.573
 Published on July 14, 2019.
 
-00:00:08.973 --> 00:00:14.247
+00:00:08.573 --> 00:00:14.407
 I was in California about a month ago for work and I was able to attend a few events during WWDC week.
 
-00:00:14.747 --> 00:00:25.776
+00:00:14.907 --> 00:00:26.974
 I read a lot about the new features and APIs but didn’t really have a lot of time to mess with stuff like SwiftUI, etc. I got a stupid idea for a project but I didn’t really take the time to work on it until this weekend.
 
-00:00:26.276 --> 00:00:29.872
+00:00:27.474 --> 00:00:30.751
 Now I’d like to introduce you to my latest app: Bark Mode!
 
-00:00:30.872 --> 00:00:33.189
+00:00:31.751 --> 00:00:34.148
 WTF is Bark Mode?
 
-00:00:34.689 --> 00:00:41.402
+00:00:35.648 --> 00:00:41.961
 Right after the new APIs were announced at WWDC, I scanned them for anything that might be interesting.
 
-00:00:41.902 --> 00:00:49.334
-I really like being one of the first to try out a new technology, but I figured that everyone would be all over SwiftUI, and I was right.
+00:00:42.461 --> 00:00:49.654
+I really like being one of the first to try out a new technology, but I figured that everyone would be all over SwiftUI , and I was right.
 
-00:00:49.834 --> 00:00:57.186
+00:00:50.154 --> 00:00:57.346
 I found a somewhat obscure new feature as part of CreateML that allowed users to generate a ML model that could classify sounds.
 
-00:00:58.186 --> 00:01:03.300
+00:00:58.346 --> 00:01:04.259
 This SoundAnalysis API in particular seems relevant to my typically immature interests.
 
-00:01:03.800 --> 00:01:12.591
-💨 #WWDC19 https://t.co/0Aipwa99Lu
+00:01:04.759 --> 00:01:15.948
+💨 #WWDC19 https://t.co/0Aipwa99Lu — Hung Truong (@hungtruong) June 4, 2019
 
-00:01:13.591 --> 00:01:17.586
+00:01:16.948 --> 00:01:21.103
 Of course the first thing I thought of was to make an app that could detect farts.
 
-00:01:18.086 --> 00:01:21.603
+00:01:21.603 --> 00:01:25.279
 I could even make it so that a fart would toggle dark mode off/on.
 
-00:01:22.103 --> 00:01:39.442
+00:01:25.779 --> 00:01:43.518
 Though I wanted to start experimenting right away, I discovered that you actually needed to have the newest version of macOS Catalina installed in addition to the newest Xcode to use Create ML, and I didn’t have my personal computer handy and couldn’t install a beta OS on my work computer, so I ended up not building it.
 
-00:01:40.442 --> 00:01:45.796
+00:01:44.518 --> 00:01:51.231
 Fast forward to this weekend, and I eventually got Catalina and all the other prerequisites I needed to get started.
 
-00:01:46.296 --> 00:01:54.527
+00:01:51.731 --> 00:02:00.361
 Instead of “FarkMode” which doesn’t really make sense, I decided to switch it up this time and detect dogs barking, since “Bark” rhymes better with “Dark” than “Fart.”
 
-00:01:55.027 --> 00:01:56.865
+00:02:00.861 --> 00:02:03.259
 Plus everybody loves dogs!
 
-00:01:57.365 --> 00:02:01.121
+00:02:03.759 --> 00:02:07.674
 Perhaps I’m finally maturing in my old age (probably not).
 
-00:02:02.121 --> 00:02:05.717
+00:02:08.674 --> 00:02:11.951
 Anyway, here’s the steps I needed to take to make my BarkMode app.
 
-00:02:06.717 --> 00:02:08.155
+00:02:12.951 --> 00:02:14.549
 Creating the model
 
-00:02:09.655 --> 00:02:14.929
+00:02:16.049 --> 00:02:21.003
 I had seen some videos of people making image classifiers using CreateML in the past.
 
-00:02:15.429 --> 00:02:20.384
+00:02:21.503 --> 00:02:26.618
 It seemed as easy as creating a few folders with different labels and images of those things.
 
-00:02:20.884 --> 00:02:27.197
+00:02:27.118 --> 00:02:33.191
 You would have to create one batch for training images, and another for optionally testing the models once they were created.
 
-00:02:28.197 --> 00:02:34.750
+00:02:34.191 --> 00:02:40.744
 The process for creating an audio classifier is pretty similar except that you need to use sound files instead of images.
 
-00:02:35.250 --> 00:02:38.766
+00:02:41.244 --> 00:02:45.000
 I started by finding a bunch of stock sound effects of dogs barking.
 
-00:02:39.266 --> 00:02:47.178
+00:02:45.500 --> 00:02:52.452
 I also found a bunch of random stock sound effects of things like bells ringing, wind blowing, and other stuff that I could label as “not barking.”
 
-00:02:47.678 --> 00:02:56.308
+00:02:52.952 --> 00:03:01.583
 I feel like this is a pretty wacky way to do classification but if there’s another way that doesn’t involve downloading a bunch of random stock sound effects, that would be awesome.
 
-00:02:57.308 --> 00:03:01.544
+00:03:02.583 --> 00:03:06.499
 At first I took larger sound files and chopped them up into really short ones.
 
-00:03:02.044 --> 00:03:08.037
+00:03:06.999 --> 00:03:12.353
 This way I had a bunch of training data that I can use both to train and test my classifier.
 
-00:03:09.037 --> 00:03:15.830
+00:03:13.353 --> 00:03:20.066
 However, when I ran the Create ML app on the training data, I got an obscure error that the training had been interrupted.
 
-00:03:16.330 --> 00:03:20.965
+00:03:20.566 --> 00:03:24.801
 I saw that the app thought I only had 3 files when I had created a bunch more.
 
-00:03:21.465 --> 00:03:26.899
+00:03:25.301 --> 00:03:30.735
 I believe that Create ML is unable to train with really short audio files (less than a second).
 
-00:03:27.399 --> 00:03:30.995
+00:03:31.235 --> 00:03:35.470
 I ended up inserting the full sound files instead of the short ones.
 
-00:03:31.495 --> 00:03:35.970
+00:03:35.970 --> 00:03:41.245
 At this point I think I had about 8 or 9 files for either barking or not barking.
 
-00:03:36.970 --> 00:03:40.406
+00:03:42.245 --> 00:03:46.800
 The model was created but it had a really terrible accuracy.
 
-00:03:40.906 --> 00:03:46.500
+00:03:47.300 --> 00:03:52.893
 I decided to just add a bunch more files both of dogs barking and things that weren’t dogs barking.
 
-00:03:47.000 --> 00:03:50.196
+00:03:53.393 --> 00:03:56.830
 The more examples I added the “better” the model became.
 
-00:03:51.196 --> 00:03:52.954
+00:03:57.830 --> 00:03:59.188
 Polishing the model
 
-00:03:54.454 --> 00:04:01.007
+00:04:00.688 --> 00:04:07.081
 Create ML has a feature where you can test your audio classifier with audio data coming from your own microphone.
 
-00:04:01.507 --> 00:04:05.822
+00:04:07.581 --> 00:04:12.536
 When I did this I noticed that the model was too biased towards no sound being barking.
 
-00:04:06.322 --> 00:04:11.676
+00:04:13.036 --> 00:04:18.070
 I’m not sure why but maybe white noise sounds more like barking than an old timey car horn?
 
-00:04:12.676 --> 00:04:17.311
+00:04:19.070 --> 00:04:23.146
 I ended up adding a bunch of white noise and recorded some nothing to add to the model.
 
-00:04:17.811 --> 00:04:19.330
+00:04:23.646 --> 00:04:25.244
 This helped quite a bit.
 
-00:04:19.830 --> 00:04:26.702
+00:04:25.744 --> 00:04:32.137
 The last thing I did was also record some audio of myself talking so that the model would not recognize me talking as barking.
 
-00:04:27.202 --> 00:04:34.155
+00:04:32.637 --> 00:04:39.829
 This was useful so I wouldn’t get false positives during my demo video (which I ended up getting anyway in a bunch of outtakes).
 
-00:04:35.155 --> 00:04:36.993
+00:04:40.829 --> 00:04:43.067
 Integrating the model in the app
 
-00:04:38.493 --> 00:04:42.248
+00:04:44.567 --> 00:04:48.242
 I created a new app and promptly enabled “Use SwiftUI.”
 
-00:04:42.748 --> 00:04:47.383
+00:04:48.742 --> 00:04:53.217
 Then I promptly made a new project because I couldn’t figure out where my ViewController class was!
 
-00:04:47.883 --> 00:04:54.116
+00:04:53.717 --> 00:04:59.631
 I’ll take a look at SwiftUI later but for now I’ll focus on getting my BarkMode app actually working.
 
-00:04:55.116 --> 00:04:59.032
+00:05:00.631 --> 00:05:04.147
 The Create ML app made a model that I could then copy into my app.
 
-00:04:59.532 --> 00:05:03.608
+00:05:04.647 --> 00:05:08.643
 It was really as simple as dragging it from one place to another.
 
-00:05:04.608 --> 00:05:13.238
+00:05:09.643 --> 00:05:18.433
 Looking at the model in Xcode, it describes an interface with an input of “audioSamples” that takes a MultiArray of (Float32 15600).
 
-00:05:13.738 --> 00:05:19.013
+00:05:18.933 --> 00:05:23.728
 I assumed this had something to do with the number of samples per second and the bitrate of the audio.
 
-00:05:19.513 --> 00:05:32.220
+00:05:24.228 --> 00:05:36.536
 I fiddled around with the AudioToolbox framework and a few other lower level audio APIs until I discovered Apple’s documentation on the SoundAnalysis framework which provides a much, much easier method of feeding audio to the model.
 
-00:05:33.220 --> 00:05:39.933
+00:05:37.536 --> 00:05:42.730
 I implemented the steps described and extended my ViewController to conform to the SNResultsObserving protocol.
 
-00:05:40.433 --> 00:05:49.063
+00:05:43.230 --> 00:05:52.900
 Then it was a few simple steps to write some logic to handle the app detecting no barking to barking and back to no barking, and toggling the dark mode off and on.
 
-00:05:50.063 --> 00:05:58.934
+00:05:53.900 --> 00:06:02.451
 Finally, I added a label and an image view that takes an image with different assets for the light and dark modes, which changes automatically based on the current setting.
 
-00:05:59.934 --> 00:06:02.331
+00:06:03.451 --> 00:06:05.209
 The model runs pretty quickly.
 
-00:06:02.831 --> 00:06:07.546
+00:06:05.709 --> 00:06:10.983
 Here’s a gif of the terminal output from the logging whenever some sound data comes in:
 
-00:06:08.546 --> 00:06:12.462
+00:06:11.983 --> 00:06:15.579
 If you want to see the app in action, I created this video to demonstrate:
 
-00:06:13.462 --> 00:06:20.254
+00:06:16.579 --> 00:06:23.771
 As it is, this app isn’t very useful for much of anything, but I could see a few potential uses for the model I trained:
 
-00:06:21.254 --> 00:06:26.129
+00:06:24.771 --> 00:06:32.363
+Write an app that detects your dog is unhappy when it’s at home and triggers a home automation action like playing music or shooting a treat at your dog
+
+00:06:33.363 --> 00:06:37.838
+Detect if suspicious sound at your house is a robber or just a dog
+
+00:06:38.838 --> 00:06:43.073
+Classify different types of barks and make a dog barking translation app
+
+00:06:44.073 --> 00:06:48.149
+For people who are allergic to dogs, advance warning of incoming dog
+
+00:06:49.149 --> 00:06:54.023
 I’ve posted the full project to Github in case you’re curious about how I implemented the app.
 
-00:06:26.629 --> 00:06:32.463
+00:06:54.523 --> 00:07:00.757
 I didn’t upload the Create ML project but it just has a bunch of sound effect files and files of me saying gibberish.
 
-00:06:32.963 --> 00:06:36.878
+00:07:01.257 --> 00:07:05.412
 The model included in the Github repo should work fine anyway.
 
-00:06:37.878 --> 00:06:40.196
+00:07:06.412 --> 00:07:08.170
 I’m pretty happy with my end result.
 
-00:06:40.696 --> 00:06:48.128
+00:07:08.670 --> 00:07:16.741
 It’s fun to play around with new APIs and now I can say that I’ve trained an ML model to classify sounds, in addition to implementing Dark Mode!
 
-00:06:48.628 --> 00:06:52.943
+00:07:17.241 --> 00:07:21.557
 Hopefully I’ll have some time to play with other APIs that were introduced to iOS soon.
