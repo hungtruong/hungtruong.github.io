@@ -1,181 +1,187 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:02.797
+00:00:00.000 --> 00:00:02.717
 How Ghost Inspector Helped Me Furnish My House
 
-00:00:04.297 --> 00:00:07.094
+00:00:04.217 --> 00:00:07.094
 Published on January 20, 2015.
 
-00:00:08.094 --> 00:00:09.372
+00:00:08.094 --> 00:00:09.452
 Act 1
 
-00:00:10.872 --> 00:00:18.304
+00:00:10.952 --> 00:00:18.304
 Ikea Stockholm. The average college student would scoff at such luxury, but as a first-time homebuyer, I wanted the best.
 
 00:00:18.804 --> 00:00:23.679
 When I saw the Ikea Stockholm TV Unit (in walnut veneer), I knew I would have it.
 
-00:00:24.179 --> 00:00:26.896
+00:00:24.179 --> 00:00:27.056
 The problem was that it never seemed to be in stock.
 
-00:00:27.896 --> 00:00:36.287
+00:00:28.056 --> 00:00:35.008
 I must have waited for months, maybe even a year, to see if the unit was available in my Ikea store, but apparently there were production issues.
 
-00:00:36.787 --> 00:00:40.623
-The Ikea phone support was never useful and just told me to check again later.
+00:00:35.508 --> 00:00:40.063
+The Ikea phone support was never useful and just told me to check again later.
 
-00:00:41.123 --> 00:00:48.555
+00:00:40.563 --> 00:00:47.036
 I was stuck waiting it out while my current Ikea (non-Stockholm) tv stand bowed under the weight of my 60″ television.
 
-00:00:49.555 --> 00:00:53.870
+00:00:48.036 --> 00:00:51.392
 On a random visit in December, though, my interest was piqued.
 
-00:00:54.370 --> 00:00:56.687
+00:00:51.892 --> 00:00:54.370
 The “buy” button was actually there on the page!
 
-00:00:57.187 --> 00:01:00.464
+00:00:54.870 --> 00:00:58.146
 I tried faking an order and got a preliminary ship date!
 
-00:01:00.964 --> 00:01:05.039
+00:00:58.646 --> 00:01:02.721
 For whatever stupid reason, I thought this meant that the supply issues had been fixed.
 
-00:01:05.539 --> 00:01:09.055
+00:01:03.221 --> 00:01:06.897
 I delayed. I wanted to make sure the thing would fit in my living room.
 
-00:01:09.555 --> 00:01:10.434
+00:01:07.397 --> 00:01:08.596
 I missed out.
 
-00:01:10.934 --> 00:01:14.850
+00:01:09.096 --> 00:01:13.091
 Later that week, when I checked the site, the unit was gone.
 
-00:01:15.850 --> 00:01:16.968
+00:01:14.091 --> 00:01:15.290
 Act 2
 
-00:01:18.468 --> 00:01:22.624
+00:01:16.790 --> 00:01:20.386
 I noticed that the website did something weird when I tried buying the tv unit.
 
-00:01:23.124 --> 00:01:25.281
+00:01:20.886 --> 00:01:22.964
 The “buy” button was still working.
 
-00:01:25.781 --> 00:01:27.699
+00:01:23.464 --> 00:01:25.381
 The item was added to my cart.
 
-00:01:28.199 --> 00:01:33.713
+00:01:25.881 --> 00:01:30.516
 But when I tried to enter my address, I would get an error in my cart saying the unit wasn’t available.
 
-00:01:34.213 --> 00:01:37.010
+00:01:31.016 --> 00:01:33.653
 There must’ve been some issue with their inventory system.
 
-00:01:38.010 --> 00:01:46.081
+00:01:34.653 --> 00:01:41.925
 Instead of checking manually every day to see if Ikea had any real stock, I decided to automate the process using a tool called Ghost Inspector.
 
-00:01:47.081 --> 00:01:53.474
+00:01:42.925 --> 00:01:48.439
 Ghost Inspector is a service that lets you define actions for a headless (ghostly) web browser to run for you.
 
-00:01:53.974 --> 00:02:02.286
+00:01:48.939 --> 00:01:57.251
 It’s mostly intended for running tests on parts of your website (like verifying that a user can log in, get some data, not get an error, etc).
 
-00:02:02.786 --> 00:02:09.578
+00:01:57.751 --> 00:02:05.023
 If you end up changing a part of your website and it breaks another, Ghost Inspector can automate the process of discovering that regression.
 
-00:02:10.578 --> 00:02:16.732
+00:02:06.023 --> 00:02:13.295
 As the title of my blog post implies, Ghost Inspector can also tell you when that piece of furniture you want goes back in stock.
 
-00:02:17.732 --> 00:02:21.727
-To get started, I created a free account on ghostinspector.com.
+00:02:14.295 --> 00:02:18.211
+To get started, I created a free account on ghostinspector.com .
 
-00:02:22.227 --> 00:02:25.983
+00:02:18.711 --> 00:02:22.706
 The free tier allows you to run 100 automated tests per month.
 
-00:02:26.483 --> 00:02:30.079
+00:02:23.206 --> 00:02:26.642
 This was more than enough for me to check Ikea once every day.
 
-00:02:30.579 --> 00:02:44.565
+00:02:27.142 --> 00:02:40.969
 To create a “test,” you can either download a Chrome extension that assists you in recording a test, or enter steps into the site itself using actions and CSS selectors (you can also use the extension to record a rough version of a test and edit it later, as I did).
 
-00:02:45.565 --> 00:02:53.397
+00:02:41.969 --> 00:02:49.800
 This is what my first test run looked like after I recorded the process of adding the item to the cart, entering my address info and trying to check out:
 
-00:02:54.397 --> 00:03:00.869
+00:02:50.800 --> 00:02:57.593
 As you can see, the test failed, which is bad, because I was testing to see if the item was out of stock (which I knew was true).
 
-00:03:01.369 --> 00:03:06.164
+00:02:58.093 --> 00:03:03.127
 The Ghost Inspector recorder picked up that I clicked on a button with a “pressed” state active.
 
-00:03:06.664 --> 00:03:13.856
+00:03:03.627 --> 00:03:09.781
 Unfortunately, the headless browser doesn’t hover over a button when clicking it, so it didn’t actually see this element and couldn’t click it.
 
-00:03:14.356 --> 00:03:23.946
+00:03:10.281 --> 00:03:20.510
 I fixed this by selecting the ‘a’ tag with the specific id that I knew would actually add the item to my cart (I also made the browser pause in case something needed to finish loading before hitting the button):
 
-00:03:24.946 --> 00:03:28.223
+00:03:21.510 --> 00:03:24.467
 Here’s the screenshot of my successful (empty cart) test:
 
-00:03:29.223 --> 00:03:39.053
-At the end of the test, I created an assertion that an element with class “#cartTableError” exists, which shouldn’t happen if your cart is full of Stockholm awesomeness and ready to be shipped.
+00:03:25.467 --> 00:03:35.536
+At the end of the test, I created an assertion that an element with class “#cartTableError” exists, which shouldn’t happen if your cart is full of Stockholm awesomeness and ready to be shipped.
 
-00:03:39.553 --> 00:03:49.462
+00:03:36.036 --> 00:03:45.626
 With the test running automatically every day, all that was left for me to do was wait until Ghost Inspector emailed me to notify me of the test “failure,” which meant the item was in stock.
 
-00:03:50.462 --> 00:03:52.380
+00:03:46.626 --> 00:03:47.905
 Act 3
 
-00:03:53.880 --> 00:03:55.238
+00:03:49.405 --> 00:03:50.763
 The fateful day.
 
-00:03:55.738 --> 00:03:59.494
+00:03:51.263 --> 00:03:54.779
 I got an email from Ghost Inspector that my test failed.
 
-00:03:59.994 --> 00:04:03.111
+00:03:55.279 --> 00:03:58.635
 I hurriedly typed “ikea.com” into my browser.
 
-00:04:03.611 --> 00:04:08.645
+00:03:59.135 --> 00:04:03.850
 The product page slowly revealed itself and I girded my loins for the moment I could click “buy.”
 
-00:04:09.145 --> 00:04:10.903
+00:04:04.350 --> 00:04:06.508
 But the buy button wasn’t there!
 
-00:04:11.403 --> 00:04:17.077
+00:04:07.008 --> 00:04:13.641
 The test failed because the website now correctly showed that the item was not for sale. Boo!
 
-00:04:18.077 --> 00:04:25.349
-<figcaption class="wp-caption-text">Test failed, but not the way I wanted</figcaption></figure>
-
-00:04:26.349 --> 00:04:28.187
+00:04:14.641 --> 00:04:16.478
 I had to write another test.
 
-00:04:28.687 --> 00:04:32.523
+00:04:16.978 --> 00:04:20.335
 But unfortunately, I couldn’t assert the non-existence of an object.
 
-00:04:33.023 --> 00:04:39.176
+00:04:20.835 --> 00:04:27.388
 Instead, I faked clicking the buy button (which apparently worked fine) and then tested whether the cart was empty when I clicked to it.
 
-00:04:39.676 --> 00:04:41.514
+00:04:27.888 --> 00:04:29.726
 The test looked like this:
 
-00:04:42.514 --> 00:04:46.510
+00:04:30.726 --> 00:04:34.322
 Apparently this is a stupid test because it is actually still passing.
 
-00:04:47.010 --> 00:04:53.243
+00:04:34.822 --> 00:04:41.215
 But Ghost Inspector has a feature where it takes a screenshot after every passed test and compares it to the next test.
 
-00:04:53.743 --> 00:04:58.458
-In this case, the screenshot diff test failed and I was notified  a few days ago.
+00:04:41.715 --> 00:04:46.349
+In this case, the screenshot diff test failed and I was notified a few days ago.
 
-00:04:58.958 --> 00:05:01.834
+00:04:46.849 --> 00:04:50.046
 And it turns out that the tv stand is actually in stock!
 
-00:05:02.834 --> 00:05:03.713
+00:04:51.046 --> 00:04:51.685
 Epilogue
 
-00:05:05.213 --> 00:05:09.209
+00:04:53.185 --> 00:04:57.101
 I’ve ordered the tv stand and it should be on its way by the end of the month.
 
-00:05:09.709 --> 00:05:18.180
+00:04:57.601 --> 00:05:06.232
 Many thanks to Ghost Inspector for creating a free tier for this service so that furniture aficionados like me can automate their obsessive compulsive shopping.
 
-00:05:18.680 --> 00:05:20.837
+00:05:06.732 --> 00:05:08.889
 But in future versions, please support:
 
-00:05:21.837 --> 00:05:30.229
+00:05:09.889 --> 00:05:14.604
+More specific selection of css selectors when using the Chrome recording tool
+
+00:05:15.604 --> 00:05:19.120
+Negative assertions that check when an element doesn’t exist.
+
+00:05:19.620 --> 00:05:25.454
+(I can probably do this by evaluating Javascript but tests take so long to run that it’s hard to debug)
+
+00:05:26.454 --> 00:05:35.164
 If you’re interested in creating automated tests for your website (or in getting notifications for furniture availability), definitely give Ghost Inspector a shot.

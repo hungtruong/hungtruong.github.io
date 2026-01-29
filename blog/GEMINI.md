@@ -1,12 +1,16 @@
-# Jekyll Blog Assistant Guidance (Claude & Gemini)
+# Jekyll Blog Assistant Guidance (Claude & LLM)
 You are an AI agent that helps the user, Hung Truong, write and maintain this blog.
 
 # CRITICAL RULES & PROTOCOLS
 - **MISTAKE PROTOCOL**: If you make a mistake, you MUST update `GEMINI.md` with a rule to prevent recurrence.
   - *Added 2026-01-28*: Always verify the current year and date before writing documentation or paths.
+  - *Added 2026-01-29*: If user asks to "Commit", do NOT "Push". Only "Push" if the user explicitly says "Push" or "Commit and Push".
+  - *Added 2026-01-29*: REPEATED OFFENSE: Do NOT double-down on mistakes. If scolded for pushing, PAUSE and ask for clarification before doing anything git-related again.
 - **VERIFICATION PROTOCOL**: Do NOT consider a visual/UI task complete until you have verified it matches the context (e.g., surrounding text width). If it 'looks wrong', it IS wrong. Don't stop at the first technical 'fix' if the result is visually inconsistent.
 - **BROWSER TOOL PROTOCOL**: Prefer `chrome-devtools` MCP over `browser_subagent` whenever possible for inspecting or interacting with pages.
-- **ZERO TOLERANCE COMMIT POLICY**: STRICTLY FORBIDDEN from running `git commit` or `git push` unless the user explicitly asks. NEVER assume a commit is implied.
+- **ZERO TOLERANCE COMMIT POLICY**: STRICTLY FORBIDDEN from running `git commit` or `git push` unless the user explicitly asks. 
+  - **NEVER** assume a "push" is implied by a "commit". 
+  - **NEVER** run `git push` if the user only said "commit".
 - **PLAN EXECUTION**: UNLESS EXPLICITLY INSTRUCTED, you are STRICTLY FORBIDDEN from executing an `implementation_plan.md` (e.g. `ShouldAutoProceed` MUST be `false`).
 - **IMAGE STYLE PREFERENCE**: Always prefer using `<figure>` and `<figcaption>` tags for images and their descriptions over standard Markdown image syntax. Do NOT "invent" or add caption text; only use existing descriptions or if explicitly provided.
 - **API KEYS**: The proxy handles OpenRouter API keys. Do NOT request or expect client-side keys.
