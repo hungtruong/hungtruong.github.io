@@ -1,178 +1,187 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:03.116
+00:00:00.000 --> 00:00:02.797
 Inspecting and Debugging API Versions with Runscope
 
-00:00:04.617 --> 00:00:07.253
+00:00:04.297 --> 00:00:06.295
 Published on May 22, 2014.
 
-00:00:08.254 --> 00:00:14.327
-This past month at FarmLogs, we implemented a versioning scheme for our internal API.
+00:00:07.295 --> 00:00:12.089
+This past month at FarmLogs , we implemented a versioning scheme for our internal API.
 
-00:00:14.827 --> 00:00:23.857
+00:00:12.589 --> 00:00:21.460
 API versioning is often a difficult transition to make, especially if you’re using a third party API and dealing with deprecations (Facebook, I’m looking at you!).
 
-00:00:24.357 --> 00:00:30.750
+00:00:21.960 --> 00:00:27.714
 It’s often a chore to figure out exactly what has changed between API versions unless you have very good documentation.
 
-00:00:31.750 --> 00:00:39.902
+00:00:28.714 --> 00:00:35.666
 Coincidentally, Runscope also has a service called API Changelog that can send you notifications when a third party API changes.
 
-00:00:40.402 --> 00:00:49.033
+00:00:36.166 --> 00:00:45.996
 Luckily for me, any changes to our internal API were subject to review by our team of engineers, so if I had any questions or concerns, I could bring them up in person.
 
-00:00:49.533 --> 00:00:57.924
-Even so, when dealing with a changing API, the truth is in the response, not necessarily the documentation (or Hipchat or Hackpad).
+00:00:46.496 --> 00:00:55.526
+Even so, when dealing with a changing API, the truth is in the response, not necessarily the documentation (or Hipchat or Hackpad ).
 
-00:00:58.424 --> 00:01:05.856
+00:00:56.026 --> 00:01:04.897
 For a while, I was updating the iOS client to the new version by copying and pasting the two responses into a text editor and looking at the differences.
 
-00:01:06.356 --> 00:01:12.109
-About halfway through I remembered that this functionality is built into Runscope, so I started using that.
+00:01:05.397 --> 00:01:11.470
+About halfway through I remembered that this functionality is built into Runscope , so I started using that.
 
-00:01:12.609 --> 00:01:17.644
+00:01:11.970 --> 00:01:17.245
 I’ll show you how to compare diffs of two responses so you don’t have to waste half of your time like me!
 
-00:01:18.644 --> 00:01:19.922
+00:01:18.245 --> 00:01:19.203
 Prerequisites
 
-00:01:21.422 --> 00:01:24.619
+00:01:20.703 --> 00:01:24.619
 To follow along with this blog post, you’ll need just two things:
 
-00:01:25.619 --> 00:01:27.776
+00:01:25.619 --> 00:01:27.297
+A free Runscope account.
+
+00:01:28.297 --> 00:01:31.014
+A free developer account at Foursquare .
+
+00:01:32.014 --> 00:01:34.012
 Some versioned API data
 
-00:01:29.276 --> 00:01:39.026
+00:01:35.512 --> 00:01:44.702
 I’m not going to post the inner workings of the FarmLogs API (though it’s pretty easy to reverse engineer, like many other APIs) since that’s probably confidential knowledge or something.
 
-00:01:39.526 --> 00:01:46.958
+00:01:45.202 --> 00:01:52.634
 Instead, I’ll use the Foursquare API, which is one of my favorites to work with and (in my opinion) has some of the best documentation around.
 
-00:01:47.458 --> 00:01:53.532
-Browsing around their developer page, I found this interesting summary of API changes over the years.
+00:01:53.134 --> 00:01:58.648
+Browsing around their developer page, I found this interesting summary of API changes over the years .
 
-00:01:54.532 --> 00:01:59.646
+00:01:59.648 --> 00:02:05.162
 There was a pretty huge change on 6/9/12 that included many breaking changes.
 
-00:02:00.146 --> 00:02:01.584
+00:02:05.662 --> 00:02:07.340
 Sounds like fun!
 
-00:02:02.084 --> 00:02:08.398
+00:02:07.840 --> 00:02:14.153
 I actually remember getting caught in this change and having to update my iOS auto-check in app to fit the new API.
 
-00:02:08.898 --> 00:02:12.254
+00:02:14.653 --> 00:02:17.530
 Let’s pick an endpoint and see what the data used to look like.
 
-00:02:12.754 --> 00:02:15.790
+00:02:18.030 --> 00:02:20.907
 We’ll be able to compare it to the modern version of the API.
 
-00:02:16.790 --> 00:02:20.706
+00:02:21.907 --> 00:02:25.663
 For our example, we’ll hit the /venues/explore/ endpoint.
 
-00:02:21.206 --> 00:02:26.480
+00:02:26.163 --> 00:02:31.357
 This endpoint takes a lat/long value and returns a list of suggested venues to try.
 
-00:02:26.980 --> 00:02:33.773
+00:02:31.857 --> 00:02:38.650
 If you are authenticated, it can give you personalized info about why those venues were suggested (like if your friends went there and liked it).
 
-00:02:34.273 --> 00:02:39.867
-If you go to this page, you can get a url for that endpoint along with an oauth token added for you automatically.
+00:02:39.150 --> 00:02:45.702
+If you go to this page , you can get a url for that endpoint along with an oauth token added for you automatically.
 
-00:02:40.867 --> 00:02:42.944
+00:02:46.702 --> 00:02:48.700
 Hitting the endpoint in Runscope
 
-00:02:44.444 --> 00:02:49.159
+00:02:50.200 --> 00:02:54.915
 Next we’ll copy and paste the Foursquare API url into Runscope.
 
-00:02:49.659 --> 00:02:55.173
+00:02:55.415 --> 00:03:00.609
 You can create this request in a default bucket or make a new one specifically for this test.
 
-00:02:55.673 --> 00:02:58.870
+00:03:01.109 --> 00:03:04.226
 Just hit the “New Request” button and paste the url in.
 
-00:02:59.370 --> 00:03:06.402
-Hit the “Launch Request” button to have Runscope make the API request on your behalf and save all of the data for you to compare later.
+00:03:04.726 --> 00:03:11.199
+Hit the “Launch Request” button to have Runscope make the API request on your behalf and save all of the data for you to compare later.
 
-00:03:06.902 --> 00:03:11.297
+00:03:11.699 --> 00:03:15.934
 If all goes well, you should see the response appear below the “Launch Request” button.
 
-00:03:11.797 --> 00:03:17.551
-Next, we’ll edit the request so that the format matches the API before the big change on 6/9/12.
+00:03:16.434 --> 00:03:23.387
+Next, we’ll edit the request so that the format matches the API before the big change on 6/9/12.
 
-00:03:18.051 --> 00:03:23.565
+00:03:23.887 --> 00:03:29.720
 Foursquare uses a pretty awesome convention for API versioning that uses dates for versions.
 
-00:03:24.065 --> 00:03:28.780
+00:03:30.220 --> 00:03:35.574
 To edit the response, simply hit the pencil icon on the upper right part of the response.
 
-00:03:29.280 --> 00:03:32.076
+00:03:36.074 --> 00:03:38.232
 You’ll be taken to the response editor.
 
-00:03:32.576 --> 00:03:37.451
-From there, change the “v” parameter to 20120608 (my 29th birthday!).
+00:03:38.732 --> 00:03:44.086
+From there, change the “v” parameter to 20120608 (my 29th birthday!).
 
-00:03:37.951 --> 00:03:45.143
+00:03:44.586 --> 00:03:51.538
 Hit “Launch Request” again and Runscope will fetch the response from Foursquare for a client that’s using a really old version of the API.
 
-00:03:45.643 --> 00:03:48.840
+00:03:52.038 --> 00:03:55.395
 After a short wait you should see another response appear.
 
-00:03:49.340 --> 00:03:55.493
+00:03:55.895 --> 00:04:02.607
 You can either hit the “Compare to Original” button or go to the “All Traffic” section to pick two requests to compare.
 
-00:03:56.493 --> 00:03:59.370
+00:04:03.607 --> 00:04:06.244
 Comparing two versions of the same request
 
-00:04:00.870 --> 00:04:04.146
+00:04:07.744 --> 00:04:11.740
 Finally we’re at the meat and potatoes of this post!
 
-00:04:04.646 --> 00:04:08.802
+00:04:12.240 --> 00:04:15.916
 Let’s explore the difference that two years can make to an API endpoint.
 
-00:04:09.302 --> 00:04:17.053
-(For all of these screenshots, the older version is on the left)  The first thing to notice is that Foursquare is really polite about their deprecation warnings.
+00:04:16.416 --> 00:04:19.852
+(For all of these screenshots, the older version is on the left)
 
-00:04:17.553 --> 00:04:30.740
+00:04:20.352 --> 00:04:25.307
+The first thing to notice is that Foursquare is really polite about their deprecation warnings.
+
+00:04:25.807 --> 00:04:39.473
 I wonder how standard their meta dictionary with an error message is. I suppose it works well if you have humans reading your API (as we are now) but I’m going to assume most clients do not care about the meta error being shown in this deprecated API call.
 
-00:04:31.240 --> 00:04:36.195
-I wonder if there’s an HTTP status code for “OK now but will be deprecated soon.”
+00:04:39.973 --> 00:04:45.247
+I wonder if there’s an HTTP status code for “OK now but will be deprecated soon.”
 
-00:04:36.695 --> 00:04:44.047
+00:04:45.747 --> 00:04:53.419
 Another thing to notice is that there is a new “reasons” dictionary for each venue suggestion that lists friends that have gone to that venue.
 
-00:04:44.547 --> 00:04:53.337
-It looks like this dictionary didn’t exist before the 6/9/12 API update but probably exists in the older version of the API for compatibility reasons.
+00:04:53.919 --> 00:05:01.910
+It looks like this dictionary didn’t exist before the 6/9/12 API update but probably exists in the older version of the API for compatibility reasons.
 
-00:04:53.837 --> 00:04:58.312
-The tips section also seems to have gotten less info about the user giving the tip.
+00:05:02.410 --> 00:05:06.646
+The tips section also seems to have gotten less info about the user giving the tip.
 
-00:04:58.812 --> 00:05:02.089
+00:05:07.146 --> 00:05:10.342
 I’m not sure if this is for privacy reasons or something else.
 
-00:05:02.589 --> 00:05:13.617
+00:05:10.842 --> 00:05:21.471
 Another thing I noticed was that the older version included a tip that I created myself while the newer version removed it (probably because the authenticated user isn’t interested in their own tips when exploring).
 
-00:05:14.117 --> 00:05:19.871
+00:05:21.971 --> 00:05:27.485
 Finally there’s the terrible implementation of icon images for categories that Foursquare provides.
 
-00:05:20.371 --> 00:05:25.246
+00:05:27.985 --> 00:05:34.138
 The old format had a prefix, file format and an array of possible sizes for the icon.
 
-00:05:25.746 --> 00:05:30.381
-You’d have to piece the three together like the silver monkey statue to get an icon for your app.
+00:05:34.638 --> 00:05:39.753
+You’d have to piece the three together like the silver monkey statue to get an icon for your app.
 
-00:05:30.881 --> 00:05:37.593
-The newer version did away with the list of sizes (now you just need to choose a size from 32, 44, 64, and 88).
+00:05:40.253 --> 00:05:47.925
+The newer version did away with the list of sizes (now you just need to choose a size from 32, 44, 64, and 88).
 
-00:05:38.593 --> 00:05:39.952
+00:05:48.925 --> 00:05:50.123
 Conclusion
 
-00:05:41.452 --> 00:05:46.646
+00:05:51.623 --> 00:05:56.817
 As you can see, Runscope makes it really easy to compare the differences between API versions.
 
-00:05:47.146 --> 00:05:57.216
+00:05:57.317 --> 00:06:07.547
 Hopefully all of your API version migrations will be smooth and come with months of warning, but in case they don’t, Runscope can be a pretty handy tool to get a handle on what’s changed.
 
-00:05:57.716 --> 00:06:06.107
+00:06:08.047 --> 00:06:14.840
 If you have any questions or comments on this or other tools to ease the pain of API version migration, please let me know by posting a comment!
