@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.317
+Greplin Programming Challenge
+
+00:00:03.817 --> 00:00:06.454
+Published on February 16, 2011.
+
+00:00:07.454 --> 00:00:16.725
+I had some spare time on Monday and just read about Greplin getting some funding (and I guess they just went out of private beta today), so I did the Greplin Programming Challenge .
+
+00:00:17.725 --> 00:00:22.759
+Unlike many programming challenges, the problems in this one were pretty easy to solve.
+
+00:00:23.259 --> 00:00:27.974
+I think a lot of people on Hacker News complained that you could basically brute force them into submission.
+
+00:00:28.474 --> 00:00:32.230
+For example, one question is finding a prime Fibonacci number.
+
+00:00:32.730 --> 00:00:39.602
+I’m sure there’s super smart ways to do it but I just iterated through Fibs and then ran a really slow primeness function on each one.
+
+00:00:40.102 --> 00:00:41.700
+It worked eventually!
+
+00:00:42.700 --> 00:00:48.214
+I finished the challenge and sent an email to the Greplin guys, since the challenge instructed me to do so.
+
+00:00:48.714 --> 00:00:53.509
+After reading through some of their site, the challenge actually started to make more sense to me.
+
+00:00:54.009 --> 00:00:55.607
+From their jobs page :
+
+00:00:56.607 --> 00:01:02.681
+You should know the fastest way to do something – which sometimes means the least CPU cycles and sometimes means the least programmer cycles.
+
+00:01:03.681 --> 00:01:11.193
+Basically, you could figure out the most efficient way to do the challenges (from a computational perspective) at a cost to programming time.
+
+00:01:11.693 --> 00:01:18.565
+Or you could recognize that N was trivially large for all of the challenge cases and just code something really simple up and get the answer.
+
+00:01:19.065 --> 00:01:20.663
+I picked the latter.
+
+00:01:21.163 --> 00:01:25.878
+Greplin is probably looking for both types, so I think they did a good job designing the challenge.
+
+00:01:26.878 --> 00:01:29.995
+In other news, I signed up for their service and tried it out.
+
+00:01:30.495 --> 00:01:33.132
+It seems like a really cool concept and I like it so far.
+
+00:01:33.632 --> 00:01:36.349
+I kind of wish there was a roll your own version though.
+
+00:01:36.849 --> 00:01:45.559
+I dunno if I can trust Greplin with all of my innermost secrets… It’s bad enough that Google has all of your email; Greplin can have that plus your tweets and Facebook stuff too!
