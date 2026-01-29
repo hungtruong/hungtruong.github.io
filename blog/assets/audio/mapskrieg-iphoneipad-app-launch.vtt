@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.477
+Mapskrieg iPhone/iPad App Launch!
+
+00:00:03.977 --> 00:00:06.295
+Published on April 08, 2011.
+
+00:00:07.295 --> 00:00:13.608
+It’s been about 4 years since I announced the launch of Mapskrieg , my Google Maps and craigslist mashup web app.
+
+00:00:14.108 --> 00:00:19.222
+Since then, I’ve gone to school (again), worked for Microsoft and quit, and made a few apps.
+
+00:00:19.722 --> 00:00:25.156
+Today, I’m happy to announce the launch of my newest app, Mapskrieg for iOS !
+
+00:00:26.156 --> 00:00:30.152
+I’ve been working on this app for a few weeks, and I think it’s ready for public consumption.
+
+00:00:30.652 --> 00:00:34.328
+It’s basically Mapskrieg , but developed natively for the iPhone and iPad.
+
+00:00:34.828 --> 00:00:40.501
+In the past, I’ve taken a sort of iterative approach of releasing fairly minimal apps and improving on them.
+
+00:00:41.001 --> 00:00:45.956
+For example, I released Threadless as an iPhone only app and later added the iPad support.
+
+00:00:46.456 --> 00:00:52.050
+I wanted to release Mapskrieg on both platforms so the launch would have a little more bang.
+
+00:00:52.550 --> 00:00:58.303
+Plus I think the iPad app is the better of the two, and I really wanted that one to stand out for the release.
+
+00:00:58.803 --> 00:01:06.315
+I’ve been getting much more comfortable with mobile development, and I’m very happy with the rate at which I was able to conceive and release this app.
+
+00:01:07.315 --> 00:01:10.672
+That’s not to say I didn’t struggle or learn anything new with it.
+
+00:01:11.172 --> 00:01:17.645
+While a lot of the concepts are borrowed from my Threadless iPad app, I had to do a lot of stuff I hadn’t done before.
+
+00:01:18.145 --> 00:01:25.976
+For example, since Mapskrieg is going to rely on iAds to make money, I decided that both the iPad and iPhone versions would support iAd.
+
+00:01:26.476 --> 00:01:32.710
+Apple, in their infinite wisdom, made the split view controller a very useful and now, standard, design paradigm.
+
+00:01:33.210 --> 00:01:37.445
+Unfortunately, they don’t provide any support for using it with iAd at all.
+
+00:01:37.945 --> 00:01:40.102
+What the fucking fuck, Apple!?
+
+00:01:40.602 --> 00:01:46.756
+So I had to basically recreate the Split View (well, the landscape mode at least) in order to support iAds.
+
+00:01:47.256 --> 00:01:50.692
+It’ll be well worth it if I can rake in some iAd dough, though!
+
+00:01:51.692 --> 00:01:55.847
+This post also comes almost 1 year after I quit my job at Microsoft.
+
+00:01:56.347 --> 00:02:03.380
+That milestone probably deserves its own post, but I’ll just say that I have not yet regretted my decision in the very least so far.
+
+00:02:03.880 --> 00:02:06.117
+This is as fun as it gets, folks!
