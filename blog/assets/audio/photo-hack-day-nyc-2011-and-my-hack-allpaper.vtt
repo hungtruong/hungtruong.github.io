@@ -1,0 +1,88 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.235
+Photo Hack Day NYC 2011 And My Hack: AllPaper
+
+00:00:05.735 --> 00:00:08.852
+Published on August 22, 2011.
+
+00:00:09.852 --> 00:00:13.528
+This past weekend I participated in my first NYC hackathon.
+
+00:00:14.028 --> 00:00:16.904
+The New York Hackathon is a mythical beast.
+
+00:00:17.404 --> 00:00:22.679
+They’ve been written about quite extensively, but you really need to just show up to one to know what it’s all about.
+
+00:00:23.679 --> 00:00:32.230
+This particular hackathon ( Photo Hack Day ) was organized by Aviary, with sponsorships by Bing, Pepsi, PBR and others.
+
+00:00:32.730 --> 00:00:36.565
+There was plenty of food so that hackers didn’t have an excuse to leave, ever.
+
+00:00:37.065 --> 00:00:41.380
+I still ended up going home to get some sleep on Saturday night before the demo on Sunday.
+
+00:00:42.380 --> 00:00:47.415
+I really think I picked a good first hackathon to attend, as the prizes were pretty insane.
+
+00:00:47.915 --> 00:00:53.349
+First place got $5000 and the cash prizes for second and third place were quite good as well.
+
+00:00:53.849 --> 00:00:58.164
+On top of those, there were prizes for best use of certain APIs.
+
+00:00:58.664 --> 00:01:04.578
+Face.com’s API stood out as a popular one; 500px had quite a few users as well.
+
+00:01:05.578 --> 00:01:11.811
+I ended up working on a project I had wanted to build for a while: a custom collage creator for your iPhone wallpaper.
+
+00:01:12.311 --> 00:01:13.989
+I called it “AllPaper.”
+
+00:01:14.489 --> 00:01:18.005
+It seemed pretty catchy and I don’t think there’s a product with that name yet.
+
+00:01:18.505 --> 00:01:25.937
+I integrated Instagram into it first, then threw support for 500px, PicPlz and Facebook before calling it a hack.
+
+00:01:26.437 --> 00:01:31.472
+I also integrated the Sincerely Ship Library which lets you turn your collage into a real postcard.
+
+00:01:31.972 --> 00:01:34.129
+I’m really looking forward to trying that out!
+
+00:01:35.129 --> 00:01:38.326
+Overall I’m pretty happy with how the hack turned out.
+
+00:01:38.826 --> 00:01:43.540
+I can probably turn it into a real app fairly easily with some tweaking here and there.
+
+00:01:44.040 --> 00:01:49.474
+As this was my first hackathon, I noticed a few interesting things about the top hacks.
+
+00:01:49.974 --> 00:01:53.011
+There was some grumbling about how many of them seemed “hardcoded.”
+
+00:01:53.511 --> 00:01:57.666
+I wonder if presentation really counts more than actual hack-worthiness these days.
+
+00:01:58.166 --> 00:02:05.518
+You could spend your time actually coding something, or you could create the facade of something that looks even better, but is not really that worthy of being called a “hack.”
+
+00:02:06.018 --> 00:02:15.608
+It seems that the presentation wins over the true hack-worthiness, as one of the cooler ones, a jailbroken iPhone that took MMS messages and uploaded them to a web service, won nothing.
+
+00:02:16.608 --> 00:02:24.760
+Coming away empty-handed was a little damaging to the ego, especially after winning something in my last hackathon , but my ego’s not too bruised.
+
+00:02:25.260 --> 00:02:27.417
+I hate to sound like I’m complaining!
+
+00:02:27.917 --> 00:02:32.632
+Almost all of the presentations were well done, and the winners certainly did deserve to win.
+
+00:02:33.132 --> 00:02:38.167
+I’m hoping to participate in something similar again soon, as the atmosphere was really enjoyable.
