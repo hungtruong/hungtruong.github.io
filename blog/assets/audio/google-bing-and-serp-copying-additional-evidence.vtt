@@ -1,0 +1,127 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.155
+Google, Bing, and SERP Copying: Additional Evidence?
+
+00:00:05.655 --> 00:00:07.973
+Published on April 06, 2011.
+
+00:00:08.973 --> 00:00:20.881
+In the beginning of February this year there was some mild uproar about Google setting up an elaborate sting operation against Bing to prove that Bing was copying search results pages directly from Google using the Bing Toolbar.
+
+00:00:21.381 --> 00:00:24.657
+I personally thought it was a bit childish of Google to do this.
+
+00:00:25.157 --> 00:00:28.433
+All’s fair in gathering user-generated data, right?
+
+00:00:29.433 --> 00:00:31.511
+Fast forward to a few weeks ago.
+
+00:00:32.011 --> 00:00:38.963
+I put some code on Mapskrieg that would auto-detect a mobile device using the useragent string and show a mobile friendly site.
+
+00:00:39.463 --> 00:00:43.299
+I thought this was clever, but apparently Google thought it was cloaking.
+
+00:00:43.799 --> 00:00:44.758
+Oops! My bad.
+
+00:00:45.258 --> 00:00:47.655
+I took a hit on my Google search rankings.
+
+00:00:48.155 --> 00:00:52.550
+Once I fixed the issue my hits from Google have been coming back up slowly.
+
+00:00:53.550 --> 00:00:59.464
+I looked at Google Analytics to see how the organic search referrals had changed, and I noticed something interesting.
+
+00:00:59.964 --> 00:01:04.998
+Not only had the referrals from Google gone down, the ones from Yahoo and Bing did as well.
+
+00:01:05.498 --> 00:01:11.412
+Perhaps Yahoo and Bing noticed the “cloaking” behavior, too (Yahoo is just using Bing results in their SERPs now).
+
+00:01:11.912 --> 00:01:14.709
+If so, then Bing was a bit slower than Google.
+
+00:01:15.209 --> 00:01:16.887
+See the charts below:
+
+00:01:17.887 --> 00:01:21.323
+I started getting punished by Google around the 15th of March.
+
+00:01:21.823 --> 00:01:26.778
+Bing seems to have taken a few days to lower my rankings (and thus the # of clicks).
+
+00:01:27.278 --> 00:01:35.029
+My website’s recovery from punishment shows a similar upward trend, even though the site was no longer “cloaking” for about a week before that recovery.
+
+00:01:35.529 --> 00:01:40.324
+This suggests (at least, to me) that Bing really is copying Google’s search results pages.
+
+00:01:40.824 --> 00:01:53.611
+Otherwise they have a very similar method of cloaking detection, a similar policy for punishment, and a similar timeline for reducing the punishment for cloaking… At this point I feel that there are too many coincidences for this to be mere chance.
+
+00:01:54.611 --> 00:02:01.084
+I was previously on Bing’s side because I figured that the Google data was just one data point out of many that they use.
+
+00:02:01.584 --> 00:02:07.897
+This example makes it seem like Google’s data is THE data point, or at least a major, major part of their “algorithm.”
+
+00:02:08.897 --> 00:02:15.930
+Having stated all of this, my experience is only a sample size of 1, but I’m sure other webmasters have similar data sitting around.
+
+00:02:16.430 --> 00:02:20.345
+I’d be interested in seeing if there’s more evidence for Google’s stance.
+
+00:02:20.845 --> 00:02:29.796
+If I were Google, I’d be analyzing data from Google Analytics on other websites to see if they agree (I have a feeling they’re allowed to use this data anonymously).
+
+00:02:30.796 --> 00:02:38.148
+Full Disclosure (because why not?): I used to work for Microsoft AdCenter, but I haven’t been involved with their operations for over a year now.
+
+00:02:38.648 --> 00:02:44.721
+I have a can of Bing soda water on my shelf but I mostly use Google (unless I want to use Bing ironically).
+
+00:02:45.721 --> 00:02:49.957
+Edit: I’ve gotten some really great comments from Hacker News.
+
+00:02:50.457 --> 00:02:53.733
+I thought I’d paraphrase a few and write my comments on them.
+
+00:02:54.233 --> 00:02:57.749
+If you want to see the actual comments, go directly to my submission .
+
+00:02:58.749 --> 00:03:02.665
+Comment : How could Bing get SERP info from just the toolbar?
+
+00:03:03.665 --> 00:03:13.015
+My response : 1) My site drops from many SERP listings, Bing Toolbar stops getting click info for my site so the listings drop from Bing as well.
+
+00:03:14.015 --> 00:03:16.972
+Comment : It might not be cloaking punishment.
+
+00:03:17.472 --> 00:03:24.744
+It could just be an outside factor, like people generally searching for the site’s keywords less or a competitor coming in and being better.
+
+00:03:25.744 --> 00:03:32.217
+My response : The traffic to Mapskrieg is pretty darn regular and this was a significant drop for both search engines.
+
+00:03:32.717 --> 00:03:38.630
+Through trial and error the only thing that changed my rankings back was fixing the user agent thing.
+
+00:03:39.630 --> 00:03:46.503
+Comment : Google suggested that the changes to SERPs took months to propagate and this data only took about a day.
+
+00:03:47.503 --> 00:03:50.140
+My response : Okay, that’s a good point!
+
+00:03:51.140 --> 00:03:55.615
+The response from Hacker News has been great and really made me think more about the issue.
+
+00:03:56.115 --> 00:04:01.709
+I’m not sure if Bing really is copying from Google, but I thought this was a worthwhile data point to look at.
+
+00:04:02.209 --> 00:04:05.325
+Maybe someone else has some data they’d like to share as well.
