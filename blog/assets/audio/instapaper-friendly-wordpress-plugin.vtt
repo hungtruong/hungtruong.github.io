@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.637
+Instapaper Friendly – WordPress Plugin
+
+00:00:04.137 --> 00:00:07.094
+Published on February 03, 2011.
+
+00:00:08.094 --> 00:00:14.247
+While I was testing Instascriber , I noticed that the way that Instapaper was grabbing the content of my blog was a little off.
+
+00:00:14.747 --> 00:00:26.975
+The Instapaper for Publishers page describes how you can give Instapaper a hint on what your actual content is. I looked for a WordPress plugin that does this but didn’t see anything, so I figured I’d do it myself.
+
+00:00:27.975 --> 00:00:33.009
+Up to this point I had never made a WordPress plugin, so I had go figure that out first.
+
+00:00:33.509 --> 00:00:37.584
+It’s relatively simple and there’s a lot of good documentation out there.
+
+00:00:38.084 --> 00:00:44.238
+I just needed to hook into the “the_content” API hook and alter the content so it had a div surrounding it.
+
+00:00:44.738 --> 00:00:48.813
+The scary part is mostly that WordPress seems to give you a hella lot of control.
+
+00:00:49.313 --> 00:00:52.270
+So you could seriously eff things up with a simple plugin.
+
+00:00:53.270 --> 00:01:01.102
+With this being my first plugin, I’m not completely sure it’s been written the right way (kinda like when you make an edit on Wikipedia for the first time).
+
+00:01:01.602 --> 00:01:03.919
+Nevertheless, I’m making the plugin available.
+
+00:01:04.419 --> 00:01:06.896
+So let me know if there’s something glaringly wrong with it.
+
+00:01:07.396 --> 00:01:10.832
+It’s fairly simple, so I’m not sure exactly what could go wrong.
+
+00:01:11.832 --> 00:01:17.506
+I made a special page for the plugin to live at, so get it at Instascriber Friendly – WordPress Plugin .
+
+00:01:18.006 --> 00:01:23.360
+You can also download it through the internal WordPress plugin search (look for ‘instapaper friendly’).
