@@ -1,424 +1,481 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:03.116
+00:00:00.000 --> 00:00:02.797
 31 Days with Claude Code: What I Learned
 
-00:00:04.617 --> 00:00:07.094
+00:00:04.297 --> 00:00:06.934
 Published on August 01, 2025.
 
-00:00:08.094 --> 00:00:15.606
+00:00:07.934 --> 00:00:15.526
 It’s been… one month since I purchased a Claude Pro subscription so I could try Claude Code instead of freeloading off of Google Gemini’s CLI.
 
-00:00:16.106 --> 00:00:23.857
+00:00:16.026 --> 00:00:23.618
 I thought I would take a look at the things I learned while vibe coding a few projects, and other uses that I found for Claude Code besides coding.
 
-00:00:24.357 --> 00:00:32.828
-If you missed it, be sure to check out my initial post about vibe coding, and the followup about how Claude Code was definitely better than Gemini (for now)!
+00:00:24.118 --> 00:00:33.068
+If you missed it, be sure to check out my initial post about vibe coding , and the followup about how Claude Code was definitely better than Gemini (for now)!
 
-00:00:33.828 --> 00:00:35.586
+00:00:34.068 --> 00:00:35.507
 Context is King!
 
-00:00:37.086 --> 00:00:43.320
+00:00:37.007 --> 00:00:43.000
 So there’s a lot of talk about how prompt engineering is dead, and “context engineering” is the new hotness.
 
-00:00:43.820 --> 00:00:52.211
+00:00:43.500 --> 00:00:50.692
 That makes a lot of sense to me, as I ran into this issue constantly while using Claude Code, and to a lesser degree, with Gemini CLI.
 
-00:00:52.711 --> 00:00:56.467
+00:00:51.192 --> 00:00:55.028
 To understand context, let me first give you some… context.
 
-00:00:57.467 --> 00:01:04.339
+00:00:56.028 --> 00:01:02.341
 The way that LLMs work is that there is a pre-trained model with weights (the ‘P’ in ‘GPT’ stands for pre-trained).
 
-00:01:04.839 --> 00:01:07.556
+00:01:02.841 --> 00:01:06.117
 Most of these applications are next token predictors.
 
-00:01:08.056 --> 00:01:13.810
+00:01:06.617 --> 00:01:12.451
 So if I input: “Welcome to McDonald’s, how may I help”, the next token would probably be “you”.
 
-00:01:14.310 --> 00:01:21.022
-Before there was ChatGPT, there was the text completion API (does anyone remember using davinci-002?).
+00:01:12.951 --> 00:01:19.584
+Before there was ChatGPT, there was the text completion API (does anyone remember using davinci-002 ?).
 
-00:01:22.022 --> 00:01:29.854
+00:01:20.584 --> 00:01:27.856
 But aside from the frozen model weights that the LLM is generating predictions from, any other context needs to come from you, the user.
 
-00:01:30.354 --> 00:01:37.227
+00:01:28.356 --> 00:01:34.989
 Most models have a specified knowledge cut-off date, which is basically the date of the most recent data used to train the model.
 
-00:01:37.727 --> 00:01:44.040
+00:01:35.489 --> 00:01:41.722
 So you can’t ask an LLM about anything newer unless it does a web search or something else to gain that context.
 
-00:01:45.040 --> 00:01:57.427
-I like to think of Claude Code (or whatever coding agent I’m using) as a really smart software developer who also happens to have Anterograde Amnesia, like Drew Barrymore’s character in 50 First Dates (spoiler alert!).
+00:01:42.722 --> 00:01:55.509
+I like to think of Claude Code (or whatever coding agent I’m using) as a really smart software developer who also happens to have Anterograde Amnesia , like Drew Barrymore’s character in 50 First Dates (spoiler alert!).
 
-00:01:57.927 --> 00:02:04.720
+00:01:56.009 --> 00:02:02.242
 It can help you write an entire feature from scratch, and then completely forget who you are once its context has been wiped.
 
-00:02:05.220 --> 00:02:12.172
+00:02:02.742 --> 00:02:08.496
 From one session to the next, this tool will completely forget everything until you provide it with that context again somehow.
 
-00:02:13.172 --> 00:02:21.324
+00:02:09.496 --> 00:02:17.488
 For every session, Claude Code will literally need to look at whatever you’re asking it to work on and add it to the context before making more token predictions.
 
-00:02:21.824 --> 00:02:35.011
-Claude Code has a context window of like 200k tokens (see this documentation from Anthropic), so whatever you’re working on needs to fit within that window, and every message you send to Claude Code will include all of the past context that you already sent.
+00:02:17.988 --> 00:02:31.734
+Claude Code has a context window of like 200k tokens (see this documentation from Anthropic ), so whatever you’re working on needs to fit within that window, and every message you send to Claude Code will include all of the past context that you already sent.
 
-00:02:35.511 --> 00:02:45.580
+00:02:32.234 --> 00:02:41.984
 Claude Code might know how to reverse a list in Python, but it won’t know how to do that in your project until it loads the project into its context (why are you reversing lists in your project, anyway?).
 
-00:02:46.580 --> 00:02:54.811
+00:02:42.984 --> 00:02:51.295
 There are a few existing ways to help “prime” the context when you start working on things, so that CC doesn’t constantly have to search around to understand what you’re asking for.
 
-00:02:55.311 --> 00:03:01.065
+00:02:51.795 --> 00:02:58.268
 The most obvious one is the CLAUDE.md file which is added to the context of each conversation you have with Claude Code.
 
-00:03:01.565 --> 00:03:07.478
+00:02:58.768 --> 00:03:04.921
 You can put things like instructions for doing common tasks, or explain the organization of which files go where.
 
-00:03:07.978 --> 00:03:14.531
+00:03:05.421 --> 00:03:12.773
 A common one would be to say where the log file is, so Claude Code can use the log files to read error messages.
 
-00:03:15.031 --> 00:03:24.941
+00:03:13.273 --> 00:03:21.824
 If you see Claude Code running a bunch of bash commands to grep files every time you ask it to do something, you might benefit from adding it to the CLAUDE.md file.
 
-00:03:25.441 --> 00:03:30.396
+00:03:22.324 --> 00:03:27.359
 Of course, it’s a balancing act as you don’t want to stick too much junk in there if it’s not relevant, either!
 
-00:03:31.396 --> 00:03:37.149
+00:03:28.359 --> 00:03:33.713
 When your context window gets too big, Claude Code will attempt to compress it, which I typically don’t like.
 
-00:03:37.649 --> 00:03:46.600
+00:03:34.213 --> 00:03:43.403
 I find that too many details are lost and it’s better to just start over from scratch by using the /clear command which essentially wipes all of the memory from the previous context.
 
-00:03:47.100 --> 00:03:52.934
+00:03:43.903 --> 00:03:49.897
 I think there’s been some studies done about how much worse these LLMs perform when the context window approaches its limit.
 
-00:03:53.934 --> 00:03:58.488
+00:03:50.897 --> 00:03:55.691
 Another thing that I’ve found is that context can get poisoned pretty easily.
 
-00:03:58.988 --> 00:04:04.103
+00:03:56.191 --> 00:04:01.306
 What I mean by that is you ask Claude Code to do something, and it does it the wrong way.
 
-00:04:04.603 --> 00:04:08.119
+00:04:01.806 --> 00:04:05.721
 Then you correct it and it undoes what it did, and does it the right way.
 
-00:04:08.619 --> 00:04:15.891
+00:04:06.221 --> 00:04:14.053
 Even though you corrected it, you still end up using that incorrect implementation on each and every turn of your conversation, because it’s in the history.
 
-00:04:16.391 --> 00:04:22.864
+00:04:14.553 --> 00:04:20.387
 To avoid this, you can hit esc twice, and just rephrase the thing you said that Claude Code misunderstood.
 
-00:04:23.364 --> 00:04:28.079
+00:04:20.887 --> 00:04:26.001
 This can save tokens in your context window and also keep the context from getting poisoned.
 
-00:04:29.079 --> 00:04:40.028
+00:04:27.001 --> 00:04:38.429
 One more thing I do to keep the context small (and therefore my token usage smaller) is to /clear the context whenever I’m done doing a task, especially if the next one is unrelated to the thing I just did.
 
-00:04:40.528 --> 00:04:46.281
+00:04:38.929 --> 00:04:45.642
 The way Claude Code works, all of your previous conversation history for your current session is used for your next message.
 
-00:04:46.781 --> 00:04:57.171
+00:04:46.142 --> 00:04:57.011
 So if I had Claude Code fix a bug around authentication, and then I wanted to have it work on image caching next, it doesn’t make any sense to keep sending the history about authentication in the next messages.
 
-00:04:57.671 --> 00:05:05.502
+00:04:57.511 --> 00:05:05.422
 There is some sort of token caching going on that I believe saves you usage, but I think that longer contexts are by definition less effective anyway.
 
-00:05:06.502 --> 00:05:07.781
+00:05:06.422 --> 00:05:07.621
 Claude Code Codes
 
-00:05:09.281 --> 00:05:16.553
+00:05:09.121 --> 00:05:16.473
 I don’t want to repeat myself too much with what I wrote in my previous blog post, but here’s a sample of the coding I did this month with Claude Code:
 
-00:05:17.553 --> 00:05:23.307
+00:05:17.473 --> 00:05:20.670
+I added automated testing with playwright to Animenano
+
+00:05:21.670 --> 00:05:27.184
+Optimized Animenano RSS feed parsing by caching etag/last-modified headers
+
+00:05:28.184 --> 00:05:33.218
+Wrote a script to sync the remote Animenano Cloudflare D1 database for testing locally
+
+00:05:34.218 --> 00:05:40.691
+Added some tools to my LiveKit AI agent that I was messing around with, like a Japanese phrase guessing game
+
+00:05:41.691 --> 00:05:44.488
+Vibe coded search on my blog on a plane!
+
+00:05:44.988 --> 00:05:46.826
+( I actually made a video for this! )
+
+00:05:47.826 --> 00:05:50.862
+Set up staticman for comments on my blog!
+
+00:05:51.862 --> 00:05:56.577
+Changed the comment form on my blog from a hard reload to an AJAX update!
+
+00:05:57.577 --> 00:06:05.169
+Wrote a script to scrape comments from my old blog posts on archive.org to replenish my missing comments (due to having a static blog)!
+
+00:06:06.169 --> 00:06:14.081
+Started working on an AI powered DJ that picks from my local music collection and adds occasional personalized commentary with TTS
+
+00:06:15.081 --> 00:06:21.713
+Added some features to a project that automatically creates localizations for Youtube video titles/descriptions and captions
+
+00:06:22.713 --> 00:06:27.428
+Wrote a script to convert Final Cut Pro titles to SRT subtitles (for Youtube)
+
+00:06:28.428 --> 00:06:39.377
+Wrote a Windmill script to evaluate coffee deals on Slickdeals rss and send a Slack message if they meet my parameters (light/medium roast, cost per oz, whole bean, etc)
+
+00:06:40.377 --> 00:06:45.571
 Out of all of these things, I think Claude Code does the best when it’s working on a small, single file script.
 
-00:05:23.807 --> 00:05:28.601
+00:06:46.071 --> 00:06:50.706
 This makes sense because as we discussed earlier, context is very important.
 
-00:05:29.101 --> 00:05:35.255
+00:06:51.206 --> 00:06:57.200
 If Claude Code can store the entire script in memory, it won’t make false assumptions (hopefully!) about how things work.
 
-00:05:35.755 --> 00:05:41.269
+00:06:57.700 --> 00:07:02.734
 And if it doesn’t make those false assumptions, we can assume it will write correct code for any changes.
 
-00:05:41.769 --> 00:05:44.086
+00:07:03.234 --> 00:07:06.031
 I think it does do this most of the time.
 
-00:05:45.086 --> 00:05:49.321
+00:07:07.031 --> 00:07:10.787
 This is such a powerful use case that I really want to use more often.
 
-00:05:49.821 --> 00:05:55.495
+00:07:11.287 --> 00:07:17.280
 For example, I had an idea to add comments to my static blog, so I asked Claude Code how I should do it.
 
-00:05:55.995 --> 00:05:59.511
+00:07:17.780 --> 00:07:22.015
 Once we decided on staticman, Claude Code implemented it.
 
-00:06:00.011 --> 00:06:08.642
+00:07:22.515 --> 00:07:31.466
 Then I had an idea to get my missing comments on my blog back using the Internet Archive (I nuked them when I went from a Wordpress blog to a static site).
 
-00:06:09.142 --> 00:06:12.258
+00:07:31.966 --> 00:07:35.162
 So I had Claude Code write a script to scrape them from it.
 
-00:06:12.758 --> 00:06:19.711
+00:07:35.662 --> 00:07:42.855
 I’m sure I could’ve done this myself, but I’m also sure I’d be too lazy to sit down and figure out the endpoints and all of the glue code to make it work.
 
-00:06:20.211 --> 00:06:26.125
+00:07:43.355 --> 00:07:49.188
 With Claude Code, I just asked it to pound away at the problem until I had the solution, while I looked at Reddit.
 
-00:06:26.625 --> 00:06:32.938
+00:07:49.688 --> 00:07:55.921
 As an individual contributor for my entire software engineering career, I finally understood what it was like to be a manager!
 
-00:06:33.938 --> 00:06:39.771
-Another use case was that when I make Youtube videos for my dog, I hard code captions in English.
+00:07:56.921 --> 00:08:02.595
+Another use case was that when I make Youtube videos for my dog , I hard code captions in English.
 
-00:06:40.271 --> 00:06:48.183
+00:08:03.095 --> 00:08:12.046
 I would turn these into SRT subtitles for other languages by literally copy/pasting each Final Cut Pro title into a caption in the project.
 
-00:06:48.683 --> 00:06:50.760
+00:08:12.546 --> 00:08:14.544
 I had an idea to automate this.
 
-00:06:51.260 --> 00:06:59.332
+00:08:15.044 --> 00:08:22.156
 So I exported the FCP project into xml and had Claude Code inspect it to see if it could convert the titles to SRT.
 
-00:06:59.832 --> 00:07:06.944
+00:08:22.656 --> 00:08:30.727
 After a few iterations, I have a script that I can just run, which saves me probably 3 or more minutes of manual work every time I make a video.
 
-00:07:07.944 --> 00:07:12.819
+00:08:31.727 --> 00:08:36.922
 Claude Code performed the worst when I had it make an AI powered DJ for me.
 
-00:07:13.319 --> 00:07:19.712
+00:08:37.422 --> 00:08:43.095
 That project has a lot of parts, and the architecture is honestly not super great (because vibe coding).
 
-00:07:20.212 --> 00:07:24.527
+00:08:43.595 --> 00:08:47.990
 It would code up one part, write some tests that passed, then move on to another part.
 
-00:07:25.027 --> 00:07:29.262
+00:08:48.490 --> 00:08:52.086
 The second part would also get tests, but Claude Code didn’t really integrate them at all.
 
-00:07:29.762 --> 00:07:34.637
+00:08:52.586 --> 00:08:57.461
 At the end I had a bunch of pieces that needed a lot more vibe coding to actually work together.
 
-00:07:35.637 --> 00:07:43.229
+00:08:58.461 --> 00:09:05.973
 It finally did end up working, but I think the project has a lot of tech debt which could probably be fixed (but I won’t because vibe coding).
 
-00:07:43.729 --> 00:07:50.282
+00:09:06.473 --> 00:09:13.266
 It’s still pretty cool because it does what I want it to do, but if I had to look at the code I might cry tears of bad engineering.
 
-00:07:50.782 --> 00:07:53.898
+00:09:13.766 --> 00:09:17.442
 Some of the blame probably goes to me, actually probably all of it.
 
-00:07:54.398 --> 00:08:01.111
+00:09:17.942 --> 00:09:25.374
 This project used a bunch of technologies that I don’t really understand, so I really did just let Claude Code go to town with it.
 
-00:08:01.611 --> 00:08:10.961
+00:09:25.874 --> 00:09:34.904
 If I had focused more on getting Claude Code to write a plan, maybe set up interfaces ahead of time, and set up integration tests, things may have gone more smoothly.
 
-00:08:11.961 --> 00:08:14.359
+00:09:35.904 --> 00:09:38.142
 This brings up an important point.
 
-00:08:14.859 --> 00:08:21.811
+00:09:38.642 --> 00:09:45.994
 The people who learn how to use these tools (and use them efficiently) will still have an advantage over other people using the tools like noobs.
 
-00:08:22.311 --> 00:08:26.307
+00:09:46.494 --> 00:09:49.690
 At least for now, this is a useful and probably marketable skill.
 
-00:08:26.807 --> 00:08:34.798
-Anyone can just burn a billion tokens having Claude Code try and implement something (much like an infinite number of monkeys writing Shakespeare on typewriters).
+00:09:50.190 --> 00:09:58.022
+Anyone can just burn a billion tokens having Claude Code try and implement something (much like an infinite number of monkeys writing Shakespeare on typewriters ).
 
-00:08:35.298 --> 00:08:40.652
+00:09:58.522 --> 00:10:02.997
 But when tokens have a real cost, I think people who use them efficiently will have an edge.
 
-00:08:41.152 --> 00:08:46.187
+00:10:03.497 --> 00:10:08.052
 Who knows how long this edge will last, though, given the speed at which these things change?
 
-00:08:47.187 --> 00:08:49.424
+00:10:09.052 --> 00:10:11.049
 Claude Code Doesn’t Code
 
-00:08:50.924 --> 00:08:55.479
+00:10:12.549 --> 00:10:17.024
 I honestly think the non-code uses for Claude Code are more interesting than the code uses for it.
 
-00:08:55.979 --> 00:09:05.489
+00:10:17.524 --> 00:10:28.233
 The challenge is to think of domains where text is primarily used to do work, since Claude works mostly in that modality (though I guess images and video and audio work to a certain degree, too).
 
-00:09:06.489 --> 00:09:16.798
+00:10:29.233 --> 00:10:38.823
 Like I wrote in my post about Gemini CLI, I’m not exactly sure why these tools are CLIs and not GUIs where you can select a working directory and then run prompts on it.
 
-00:09:17.298 --> 00:09:24.331
+00:10:39.323 --> 00:10:46.116
 Maybe these companies are just throwing CLIs at engineers and then seeing what they end up doing with them, to later turn them into products?
 
-00:09:25.331 --> 00:09:30.046
+00:10:47.116 --> 00:10:51.831
 Here’s my list of non-code stuff I’ve had Claude Code work on for me this month:
 
-00:09:31.046 --> 00:09:38.717
+00:10:52.831 --> 00:10:57.306
+Documentation for my various side projects, instead of leaving the readme blank
+
+00:10:58.306 --> 00:11:05.818
+Set up wireguard vpn on my opnsense router, Claude Code helped me debug why I couldn’t access the network until it worked!
+
+00:11:06.818 --> 00:11:14.649
+Added documentation on how I set up mdns and nginx on a home server to serve stuff on the network, and added some more hosts
+
+00:11:15.649 --> 00:11:20.924
+Debugged an issue where an external SSD connected to a Linux home server went into read only mode
+
+00:11:21.924 --> 00:11:26.878
+Made a PDF out of some images, then compressed the PDF file with command line tools
+
+00:11:27.878 --> 00:11:31.714
+Markdown editor for this and my other previous blog posts!
+
+00:11:32.714 --> 00:11:40.625
 One of the cooler things that I used Claude Code for was debugging an issue with an external drive that I had running on my home Linux server.
 
-00:09:39.217 --> 00:09:42.254
+00:11:41.125 --> 00:11:44.322
 I noticed that the drive had gone into read only mode.
 
-00:09:42.754 --> 00:09:45.631
+00:11:44.822 --> 00:11:47.938
 I tried restarting the server but that didn’t fix it.
 
-00:09:46.131 --> 00:09:51.565
+00:11:48.438 --> 00:11:54.272
 I asked Claude Code to take a look and it ran fsck on it, and found that there was some corruption.
 
-00:09:52.065 --> 00:09:57.899
+00:11:54.772 --> 00:12:00.286
 It gave me a list of commands to run (which I verified before running manually) that fixed the issue!
 
-00:09:58.399 --> 00:10:03.593
+00:12:00.786 --> 00:12:06.700
 I probably could’ve fixed this myself by doing some Google searches but I want to highlight this use case.
 
-00:10:04.593 --> 00:10:09.467
+00:12:07.700 --> 00:12:12.814
 Often when I search for fixes to things, I won’t get a relevant answer for whatever reason.
 
-00:10:09.967 --> 00:10:16.600
+00:12:13.314 --> 00:12:19.867
 Maybe it’s because my version of Linux is different or the hardware is different or the solution is to just turn it off and on again.
 
-00:10:17.100 --> 00:10:24.612
+00:12:20.367 --> 00:12:28.598
 With Claude Code, I get a quick feedback loop where it can actually run diagnostic bash commands that help it understand and diagnose the issue I’m seeing.
 
-00:10:25.112 --> 00:10:31.106
+00:12:29.098 --> 00:12:35.331
 Simple searching alone can’t really provide this tight of a feedback loop, and doing this kind of diagnosis is FAST!
 
-00:10:31.606 --> 00:10:33.603
+00:12:35.831 --> 00:12:38.069
 As long as it’s correct, of course.
 
-00:10:34.603 --> 00:10:42.755
+00:12:39.069 --> 00:12:47.620
 In the case of making a PDF out of some images, I was trying to use the macOS Preview app to do it, but I was getting a single page PDF that was huge.
 
-00:10:43.255 --> 00:10:46.771
+00:12:48.120 --> 00:12:51.476
 I asked Claude Code to make me a PDF and voila!
 
-00:10:47.271 --> 00:10:55.182
+00:12:51.976 --> 00:12:58.928
 Now, I realize that Claude simply used some knowledge of existing command line tools to accomplish this (in this case it used imagemagick).
 
-00:10:55.682 --> 00:11:03.834
+00:12:59.428 --> 00:13:07.340
 But as someone who doesn’t have encyclopedic knowledge of all command line tools that have ever been created, hey, it’s pretty useful to have an AI that does!
 
-00:11:04.334 --> 00:11:13.364
+00:13:07.840 --> 00:13:16.711
 I suppose that if anything, using Claude Code has made it more obvious to me how much power there is in the command line, just waiting to be used by anyone who is in the know about it.
 
-00:11:14.364 --> 00:11:18.520
+00:13:17.711 --> 00:13:21.946
 I mentioned the other use cases in my previous blog post about Claude Code.
 
-00:11:19.020 --> 00:11:23.335
+00:13:22.446 --> 00:13:27.560
 It happens to be quite good at reading and documenting things, especially if you give it direction.
 
-00:11:23.835 --> 00:11:29.189
+00:13:28.060 --> 00:13:33.335
 Who doesn’t have a pile of abandoned side projects with zero documentation, waiting to be resurrected?
 
-00:11:29.689 --> 00:11:36.002
+00:13:33.835 --> 00:13:40.467
 Claude Code can pretty much do the hard work of figuring out what the heck you were trying to do, and where you might’ve left off.
 
-00:11:36.502 --> 00:11:42.655
+00:13:40.967 --> 00:13:47.680
 I guess it’s kind of like reverse context engineering, where you get the AI to give you the context of the thing you completely forgot about.
 
-00:11:43.655 --> 00:11:48.290
+00:13:48.680 --> 00:13:53.315
 Finally, I’ve been using Claude Code a lot while writing these blog posts.
 
-00:11:48.790 --> 00:11:57.021
+00:13:53.815 --> 00:14:02.526
 I’m editing the markdown in VS Code, and I don’t really have a WYSIWYG editor, so I use CC for adding links, proofreading, and resizing and adding images.
 
-00:11:57.521 --> 00:12:03.675
+00:14:03.026 --> 00:14:08.859
 This has saved me a ton of time since using Jekyll is a lot more manual work than something like Wordpress.
 
-00:12:04.175 --> 00:12:08.890
+00:14:09.359 --> 00:14:14.234
 Claude Code even wrote 100% of this blog post you’re reading right now! (Just kidding)
 
-00:12:09.890 --> 00:12:12.207
+00:14:15.234 --> 00:14:17.471
 Other Random Observations
 
-00:12:13.707 --> 00:12:19.780
+00:14:18.971 --> 00:14:24.725
 One thing I noticed while working on a few projects is that Claude Code and Gemini both really suck at CSS.
 
-00:12:20.280 --> 00:12:29.710
+00:14:25.225 --> 00:14:33.776
 I’m not entirely sure why this is, but I think it has to do with the fact that the final rendering of whatever you’re doing in CSS can come from many different sources.
 
-00:12:30.210 --> 00:12:34.765
+00:14:34.276 --> 00:14:38.591
 These coding agents seem much better when the context provided is right in front of them.
 
-00:12:35.265 --> 00:12:42.298
+00:14:39.091 --> 00:14:46.204
 With CSS, you might need to see what a certain class is inherting from the p tag, since it can affect what happens in a nested structure.
 
-00:12:42.798 --> 00:12:51.668
+00:14:46.704 --> 00:14:54.695
 These coding agents don’t actually compile the CSS (or whatever it’s called, I’m not a web dev) and actually get the final styles for the thing they’re working on.
 
-00:12:52.168 --> 00:13:00.080
+00:14:55.195 --> 00:15:03.506
 I doubt there’s much training data for CSS that involves reading from multiple CSS files and determining how to fix an issue due to a downstream style.
 
-00:13:00.580 --> 00:13:06.414
+00:15:04.006 --> 00:15:10.000
 So for now I’m somehow better at debugging CSS than AI, even as a native mobile developer.
 
-00:13:07.414 --> 00:13:12.848
+00:15:11.000 --> 00:15:16.674
 This might also explain why AI seems to love writing inline css rather than use a style sheet.
 
-00:13:13.348 --> 00:13:21.019
+00:15:17.174 --> 00:15:24.046
 Because AI doesn’t care about taste or tech debt, and I wonder if reinforcement learning favors quick wins over manageable code.
 
-00:13:22.019 --> 00:13:28.572
+00:15:25.046 --> 00:15:31.839
 For a few weeks in July, I also noticed that I kept hitting Claude Code rate limits even when I had just started a session.
 
-00:13:29.072 --> 00:13:33.148
+00:15:32.339 --> 00:15:36.974
 It was probably due to those guys on the CC leaderboard burning tokens for clout.
 
-00:13:33.648 --> 00:13:37.164
+00:15:37.474 --> 00:15:41.469
 I honestly can’t figure out why someone would try and get on that list.
 
-00:13:37.664 --> 00:13:41.739
+00:15:41.969 --> 00:15:45.086
 It’s basically admitting that you suck at using your tools efficiently.
 
-00:13:42.239 --> 00:13:47.354
+00:15:45.586 --> 00:15:50.221
 Kind of like people who brag about working 100 hours a week when most people can get by on 20!
 
-00:13:48.354 --> 00:13:53.228
+00:15:51.221 --> 00:15:56.015
 I did get an email from Anthropic about the issues and how they’d be resolved with more rate limits.
 
-00:13:53.728 --> 00:14:03.079
+00:15:56.515 --> 00:16:06.025
 I’m pretty sure Anthropic could have just solved this by implementing actual rate limiting… how exactly does someone abuse a system unless it’s open to be abused by the platform that provides it?
 
-00:14:03.579 --> 00:14:11.011
+00:16:06.525 --> 00:16:14.757
 Either way, I’m guessing that I won’t see any difference because I often go for entire sessions without ever seeing the warning that I’m approaching my limits.
 
-00:14:11.511 --> 00:14:16.545
+00:16:15.257 --> 00:16:19.732
 Probably because I take the precautions I described above to limit my context size, etc.
 
-00:14:17.545 --> 00:14:19.543
+00:16:20.732 --> 00:16:22.889
 Was Claude Pro Worth It?
 
-00:14:21.043 --> 00:14:31.112
+00:16:24.389 --> 00:16:34.699
 I’ve been using this ccusage script to keep track of how much I’ve used Claude Code for a given time block as well as just seeing how much I’ve used in tokens if I had opted to pay per token.
 
-00:14:31.612 --> 00:14:38.884
+00:16:35.199 --> 00:16:42.071
 It’s pretty interesting to see the numbers go up, and somewhat horrifying to realize how much it would actually cost if I didn’t pay for a monthly subscription.
 
-00:14:39.384 --> 00:14:45.778
+00:16:42.571 --> 00:16:48.644
 Since I’ve been using Claude Code on multiple computers, I have to add up the usage across four machines.
 
-00:14:46.278 --> 00:14:59.384
+00:16:49.144 --> 00:17:07.203
 So far I’ve used $132.79 worth on my desktop computer, $2.05 on my linux server (mostly for debugging and documenting), $30.58 on a Macbook Air I have, and $13.38 on another Macbook Air (I have a lot of computers, so what?).
 
-00:14:59.884 --> 00:15:06.677
+00:17:07.703 --> 00:17:14.416
 That comes to a whopping $181.37 worth of usage from a $20 Claude Pro subscription.
 
-00:15:07.177 --> 00:15:12.611
+00:17:14.916 --> 00:17:20.430
 I didn’t even max out my usage every day, and there were days that I didn’t even use it because I was on vacation.
 
-00:15:13.611 --> 00:15:17.766
+00:17:21.430 --> 00:17:25.265
 I would say that I definitely got my money’s worth out of Claude Code this month.
 
-00:15:18.266 --> 00:15:22.102
+00:17:25.765 --> 00:17:29.201
 I’ve been more productive in this month than I have in a really long time.
 
-00:15:22.602 --> 00:15:25.878
+00:17:29.701 --> 00:17:32.818
 And I don’t think it’s just because I had AI do everything for me.
 
-00:15:26.378 --> 00:15:35.089
+00:17:33.318 --> 00:17:41.629
 I’ve had more mental energy to think about things I want to accomplish, and the quick feedback loops that come from AI pounding out code has been contributing to that.
 
-00:15:35.589 --> 00:15:42.462
+00:17:42.129 --> 00:17:49.002
 This could just be a temporary boost until things regress to the mean, but for now I’m really loving the productivity gains I’m getting.
 
-00:15:43.462 --> 00:15:45.779
+00:17:50.002 --> 00:17:52.399
 Overall I’m pretty happy with this product.
 
-00:15:46.279 --> 00:15:55.869
-I’m hoping that this isn’t just the cheap stage of coding assistants (see Lyft, Uber in 2014) and that these tools will get more useful, powerful and faster over time!
+00:17:52.899 --> 00:18:02.489
+I’m hoping that this isn’t just the cheap stage of coding assistants (see Lyft, Uber in 2014 ) and that these tools will get more useful, powerful and faster over time!
