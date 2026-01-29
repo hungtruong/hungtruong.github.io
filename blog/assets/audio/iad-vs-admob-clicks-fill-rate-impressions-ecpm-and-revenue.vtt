@@ -1,0 +1,103 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.514
+iAd Vs. AdMob – Clicks, Fill Rate, Impressions, eCPM and Revenue
+
+00:00:07.014 --> 00:00:10.051
+Published on February 07, 2011.
+
+00:00:11.051 --> 00:00:18.163
+About two weeks ago I updated one of my apps to use AdMob mobile ads when iAd fails to deliver (pretty damn often).
+
+00:00:18.663 --> 00:00:27.534
+Instead of swapping out iAd for AdMob, I use the iAd “didFailToReceiveAdWithError” delegate method to request an AdMob ad when iAd fails.
+
+00:00:28.034 --> 00:00:33.228
+This means that AdMob shouldn’t take any income away from iAd, but only supplement it.
+
+00:00:33.728 --> 00:00:38.123
+I thought I’d take a look at the stats and compare the performance of the two ad networks on my app.
+
+00:00:39.123 --> 00:00:44.237
+(The following numbers I’m referring to are from the time period from 1/25 to 2/7)
+
+00:00:45.237 --> 00:00:51.471
+For an idea of scale, my app, Anime Nano , gets about 600 iAd requests per day.
+
+00:00:51.971 --> 00:00:56.925
+My app analytics software (Flurry) is saying I’m getting about 600 sessions per day.
+
+00:00:57.425 --> 00:01:08.534
+The thing is that about 1/5 of those sessions are on the iPad (and I haven’t enabled iAd on the iPad yet), so I think that on average, the iPhone apps are making a little more than one iAd request per session.
+
+00:01:09.534 --> 00:01:15.927
+Despite the fairly healthy rate of requests that I’m getting, iAds are only getting sent about 15% of the time.
+
+00:01:16.427 --> 00:01:19.064
+This percentage is what’s known as the “fill rate.”
+
+00:01:19.564 --> 00:01:23.160
+This is also what most developers complain about being too low.
+
+00:01:23.660 --> 00:01:27.415
+The clickthrough rate is actually pretty good at 0.81%.
+
+00:01:28.415 --> 00:01:33.370
+When iAd fails to deliver (85% of the time), I fall back to AdMob.
+
+00:01:33.870 --> 00:01:39.863
+The fill rate for AdMob is a high 88%, though the past few days it’s been closer to 99%.
+
+00:01:40.363 --> 00:01:46.197
+The CTR, however, is a fairly low 0.25%, which is less than half of iAd.
+
+00:01:46.697 --> 00:01:52.211
+This is partly due to the fact that AdMob ads refresh more often, so the number of impressions is higher.
+
+00:01:53.211 --> 00:02:00.164
+I’m going to describe my revenue in terms of percentages here since ad platforms typically don’t like it when publishers publish their income.
+
+00:02:00.664 --> 00:02:04.020
+Not sure if that’s changed lately, but whatever!
+
+00:02:04.520 --> 00:02:15.788
+In the time period from 1/25/2011 to 2/7/2011, I made 2.3x more with iAd than AdMob, even with the super low fill rate (and impressions) of iAd.
+
+00:02:16.288 --> 00:02:20.284
+This is pretty interesting since iAd only shows up 15% of the time.
+
+00:02:20.784 --> 00:02:32.372
+There were actually a few days where AdMob beat iAd, but there were a couple of days where iAd made a killing (relatively), probably from those super awesome interactive ads which I still haven’t experienced firsthand yet.
+
+00:02:33.372 --> 00:02:39.445
+For now, I’m content with the fill rate of AdMob, though it sort of pains me to see such a low click rate and revenue per click.
+
+00:02:39.945 --> 00:02:49.615
+Something tells me that if AdMob worked harder at increasing ad quality (like iAd), they’d be able to charge more and their advertisers would probably see a better return on investment.
+
+00:02:50.115 --> 00:02:55.789
+Most of the advertisers don’t even bother to use an image ad, which I assume would increase the clickthrough rate.
+
+00:02:56.789 --> 00:03:00.305
+I noticed something really strange when looking at ads on my app.
+
+00:03:00.805 --> 00:03:05.839
+There’s no way for advertisers to disable ads on devices that already have the app installed.
+
+00:03:06.339 --> 00:03:12.653
+I keep seeing Amazon Kindle ads on both my iPad and my iPhone that already have the application installed.
+
+00:03:13.153 --> 00:03:19.785
+As a developer, I know there’s a way to prevent those ads from showing by detecting whether the app is installed at runtime.
+
+00:03:20.285 --> 00:03:24.201
+I think this strange behavior happens on both iAd and AdMob.
+
+00:03:24.701 --> 00:03:28.457
+If anyone from either organization is reading this, contact me !
+
+00:03:29.457 --> 00:03:38.487
+As far as the future of ads in mobile apps goes, I hope Apple will continue working on increasing the fill rate, and that AdMob tries to increase relevancy and ad quality.
+
+00:03:38.987 --> 00:03:43.542
+Right now it’s really frustrating to see my “inventory” not live up to its revenue potential.
