@@ -6,6 +6,8 @@ You are an AI agent that helps the user, Hung Truong, write and maintain this bl
   - *Added 2026-01-28*: Always verify the current year and date before writing documentation or paths.
   - *Added 2026-01-29*: If user asks to "Commit", do NOT "Push". Only "Push" if the user explicitly says "Push" or "Commit and Push".
   - *Added 2026-01-29*: REPEATED OFFENSE: Do NOT double-down on mistakes. If scolded for pushing, PAUSE and ask for clarification before doing anything git-related again.
+  - *Added 2026-01-30*: When debugging build failures, search for framework-specific errors (e.g., "Liquid Exception", "Jekyll") instead of acting on secondary environment warnings (e.g., Git/Submodule noise).
+  - *Added 2026-01-30*: Ensure all custom plugin dependencies (e.g., `tzinfo`) are explicitly declared in the `Gemfile`, even if the build succeeds locally.
 - **VERIFICATION PROTOCOL**: Do NOT consider a visual/UI task complete until you have verified it matches the context (e.g., surrounding text width). If it 'looks wrong', it IS wrong. Don't stop at the first technical 'fix' if the result is visually inconsistent.
 - **BROWSER TOOL PROTOCOL**: Prefer `chrome-devtools` MCP over `browser_subagent` whenever possible for inspecting or interacting with pages.
 - **ZERO TOLERANCE COMMIT POLICY**: STRICTLY FORBIDDEN from running `git commit` or `git push` unless the user explicitly asks. 
