@@ -1,0 +1,154 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.838
+What I Learned From Checkmate
+
+00:00:03.338 --> 00:00:05.735
+Published on September 09, 2010.
+
+00:00:06.735 --> 00:00:10.651
+Just about two weeks ago, I released my first paid iPhone app , Checkmate .
+
+00:00:11.151 --> 00:00:15.146
+The experience has been priceless, plus I made a few bucks as well.
+
+00:00:15.646 --> 00:00:19.242
+I thought I’d share the stuff I learned, both technical and otherwise.
+
+00:00:20.242 --> 00:00:20.962
+Technical:
+
+00:00:22.462 --> 00:00:34.689
+Core Location. Being the first iPhone app I’ve done that uses Core Location, I learned a lot about the process of starting up the location manager, filtering location updates and getting them to work in the background.
+
+00:00:35.189 --> 00:00:38.545
+The background stuff is pretty new, just released in iOS 4.
+
+00:00:39.545 --> 00:00:41.303
+Design takes thought.
+
+00:00:41.803 --> 00:00:52.592
+One of the most difficult things in designing an app is balancing between user expectations (“it should work like magic”) and real-world constraints (battery, accuracy tradeoffs).
+
+00:00:53.092 --> 00:01:01.403
+I’ve taken the approach of leaving the details under the hood (another app that does something similar gives users full control) for simplicity.
+
+00:01:01.903 --> 00:01:04.381
+This is a deliberate design decision.
+
+00:01:04.881 --> 00:01:08.956
+I’ve found that many users are happy with the app, and some are unhappy.
+
+00:01:09.456 --> 00:01:14.970
+I assume there is a minority that is unhappy, but that they seem to be more vocal (more on that later).
+
+00:01:15.970 --> 00:01:21.244
+Core Data. I also learned about Core Data, since I use that for storing venue data persistently.
+
+00:01:21.744 --> 00:01:26.699
+There’s a bit of a learning curve with Core Data, but I have a pretty good idea of how it works.
+
+00:01:27.199 --> 00:01:30.875
+I guess it helps that I’ve designed a bunch of database schema in the past.
+
+00:01:31.875 --> 00:01:32.834
+Get to good enough.
+
+00:01:33.334 --> 00:01:36.770
+I definitely feel like I have accomplished something by releasing the app.
+
+00:01:37.270 --> 00:01:43.343
+I have wrestled in the past between releasing something when it’s “good enough” but not getting stuck in perfectionist limbo.
+
+00:01:43.843 --> 00:01:53.753
+In the case of Checkmate, I got to a point where I was happy enough with its performance (it works) and did not want to delay any further, lest I lose steam and give up on ever releasing it.
+
+00:01:54.253 --> 00:01:59.127
+Now that I’ve gotten a feedback loop going, it’ll be easier to improve and update the app anyway.
+
+00:01:59.627 --> 00:02:03.783
+As far as interface design goes, the app is a bit clunky for my taste.
+
+00:02:04.283 --> 00:02:11.635
+Having admitted that, I think I could go back and make some things more obvious (like the login screen) and polish up the user experience.
+
+00:02:12.635 --> 00:02:13.674
+Business-ey
+
+00:02:15.174 --> 00:02:17.731
+Ask for reviews.
+
+00:02:18.231 --> 00:02:20.868
+Ask satisfied customers for reviews.
+
+00:02:21.368 --> 00:02:25.044
+Because if you don’t, only the unhappy users will post them.
+
+00:02:25.544 --> 00:02:28.181
+And you’ll end up getting a pretty bad average rating.
+
+00:02:28.681 --> 00:02:35.314
+Even if your app makes crap into gold, there will be users who don’t see the value in it, or think that $2 is too much to pay.
+
+00:02:35.814 --> 00:02:41.807
+Encourage users to post reviews in-app and you’ll see a well-rounded view of what people think about your app.
+
+00:02:42.807 --> 00:02:44.405
+It’s okay to have a competitor.
+
+00:02:44.905 --> 00:02:50.739
+While developing my app, I found that another similar app had launched and gotten some press from Techcrunch.
+
+00:02:51.239 --> 00:02:55.394
+This was a bit depressing as I wanted to have that exposure.
+
+00:02:55.894 --> 00:03:01.408
+I ended up using it as a motivator since the blog post and app validated my own idea.
+
+00:03:01.908 --> 00:03:05.184
+There’s always room for competition, especially if you can outdo them.
+
+00:03:06.184 --> 00:03:08.182
+Popular takes all on the App Store.
+
+00:03:08.682 --> 00:03:14.995
+There have been blog posts on the subject of iTunes ranking and how valuable it is to make a top 100 list.
+
+00:03:15.495 --> 00:03:22.208
+Apps seem to be ranked in search based on their sales volume, which means that popular apps will become more popular.
+
+00:03:22.708 --> 00:03:27.982
+Having been featured on Mashable at launch, my app got to #2 for a “foursquare” search.
+
+00:03:28.482 --> 00:03:30.480
+This helped a lot for residual sales.
+
+00:03:30.980 --> 00:03:34.576
+I’m assuming that most apps are sold directly from app store searches.
+
+00:03:35.076 --> 00:03:37.473
+There are other ways to discover apps.
+
+00:03:38.473 --> 00:03:44.387
+Have fun! It was really exhilarating to see my app get into the app store and into the hands of users.
+
+00:03:44.887 --> 00:03:52.319
+I set up a twitter account to communicate with users, monitored twitter searches for my app and answered emails sent through a contact form on my website.
+
+00:03:52.819 --> 00:03:55.935
+It was really fun having people react to work that I did.
+
+00:03:56.435 --> 00:04:00.191
+It’s probably one of the strongest motivators for me to keep doing what I’m doing.
+
+00:04:01.191 --> 00:04:04.467
+I have learned a great deal from my first commercial app launch.
+
+00:04:04.967 --> 00:04:08.563
+I’m really glad that I had an idea and stuck with it to completion.
+
+00:04:09.063 --> 00:04:11.461
+I’m still learning a great deal from Checkmate.
+
+00:04:11.961 --> 00:04:19.473
+I know that this experience will make the launch of my next product/app (whatever it might be) more smooth, both for me and users!
