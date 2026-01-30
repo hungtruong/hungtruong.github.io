@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.037
+ObjTweet: Helper Class for Twitter on iOS
+
+00:00:04.537 --> 00:00:06.934
+Published on November 20, 2010.
+
+00:00:07.934 --> 00:00:19.762
+I’ve been working on a new app (I’ll write more about it in a week or so), part of which required opening a user’s Twitter client with a pre-populated tweet or opening Twitter on a particular user’s profile for easy following.
+
+00:00:20.262 --> 00:00:26.175
+There are a lot of Twitter clients out there, so it’s hard to predict what a particular user will have installed on their device.
+
+00:00:26.675 --> 00:00:29.073
+They might not even have any Twitter client installed.
+
+00:00:30.073 --> 00:00:36.306
+Many (but not all) Twitter clients have url schemes that allow you to open them with a particular message filled out, etc.
+
+00:00:36.806 --> 00:00:40.402
+There’s a few here , but it’s not a definitive list by any means.
+
+00:00:40.902 --> 00:00:46.336
+I gathered a bunch of the more popular ones and wrapped them in a helper class called ObjTweet.
+
+00:00:47.336 --> 00:01:01.162
+Since I want to give back (and I wouldn’t mind the recognition), I’ve licensed this class under the GNU GPL license MIT License (thanks, Marcello for pointing out that the GPL license is pretty restrictive) and uploaded it to Github .
+
+00:01:01.662 --> 00:01:03.820
+Hopefully someone else finds it useful.
+
+00:01:04.320 --> 00:01:10.553
+My hope is also that people will help find some of the missing url schemes for other apps and build on ObjTweet.
+
+00:01:11.053 --> 00:01:13.610
+If you found this class and are using it, let me know!
+
+00:01:14.110 --> 00:01:15.948
+Hopefully it works as described.
