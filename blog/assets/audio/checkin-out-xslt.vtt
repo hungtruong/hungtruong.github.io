@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.758
+Checkin’ Out XSLT
+
+00:00:03.258 --> 00:00:06.295
+Published on January 27, 2009.
+
+00:00:07.295 --> 00:00:13.448
+So at work, I’m trying to figure out a good way to make some web pages extensible and also extremely easy to edit.
+
+00:00:13.948 --> 00:00:19.302
+Basically, the people in charge need to be able to make new pages and edit the existing ones when I leave.
+
+00:00:19.802 --> 00:00:23.238
+I was trying to figure out how to do this without a CMS.
+
+00:00:23.738 --> 00:00:26.455
+Because I can’t just throw a CMS into the web server.
+
+00:00:27.455 --> 00:00:35.447
+I have a friend who wrote something for his portfolio that involves making an xml file, then using the xml to make an HTML page.
+
+00:00:35.947 --> 00:00:42.020
+I was curious to see if this was some kind of common paradigm, and if so, if there were frameworks I could use.
+
+00:00:42.520 --> 00:00:50.192
+The ideal situation would be if I could just set up some XML schema for people to fill in content and then somehow create the HTML from that.
+
+00:00:50.692 --> 00:00:57.884
+Then whoever was updating it would just update the XML (which would be fairly easy since they wouldn’t worry about markup, just the data).
+
+00:00:58.884 --> 00:01:04.398
+I came across another old friend’s framework, Onion ML , while searching for a solution.
+
+00:01:04.898 --> 00:01:09.853
+It’s pretty funny that I went to undergrad with this guy but just found his site by looking up my own keywords.
+
+00:01:10.353 --> 00:01:15.387
+The Onion ML thing led me to XSLT , which seems to be the solution to my problem.
+
+00:01:16.387 --> 00:01:22.061
+Apparently XSLT is a way to transform XML into HTML (or something else that’s useful).
+
+00:01:22.561 --> 00:01:26.476
+Unfortunately, XSLT seems a bit more complicated than I was hoping.
+
+00:01:26.976 --> 00:01:34.808
+It looks like the style is defined in one file, then the XML is in another, then there needs to be a way to smash the two together (at running time).
+
+00:01:35.308 --> 00:01:39.224
+I guess there are ways to do this using javascript but I haven’t gotten that far yet.
+
+00:01:40.224 --> 00:01:42.221
+So what’s the point of this post?
+
+00:01:42.721 --> 00:01:46.877
+I dunno. Probably just to document my thought process on how I got this far.
+
+00:01:47.377 --> 00:01:58.006
+Next step is to see if XSLT can make the job easier or make it needlessly complex (it seems to be a technology that was popular in the early 2000’s, if all these Google searches are correct).
