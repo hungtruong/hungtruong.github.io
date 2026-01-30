@@ -92,6 +92,19 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/checkmate-for-foursquare-for-iphone-release.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p><a href="https://web.archive.org/web/20100828150917/http://www.checkinmate.com/"><img src="/blog/wp-content/uploads/2010/08/Checkmate-large.png?resize=500%2C500" alt="" title="Checkmate-large" width="500" height="500" class="aligncenter size-medium wp-image-2002" srcset="/blog/wp-content/uploads/2010/08/Checkmate-large.png?resize=500%2C500 500w, /blog/wp-content/uploads/2010/08/Checkmate-large.png?resize=150%2C150 150w, /blog/wp-content/uploads/2010/08/Checkmate-large.png?w=512 512w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" /></a></p>
@@ -104,6 +117,41 @@
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769734536"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1769734538"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/checkmate-for-foursquare-for-iphone-release.vtt?v=1769734536";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->
