@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.797
+Stupid Data Tricks: Facebook Names
+
+00:00:04.297 --> 00:00:06.934
+Published on August 17, 2010.
+
+00:00:07.934 --> 00:00:13.767
+Like a good data nerd, I downloaded the list of publicly available Facebook names , dumped into text files.
+
+00:00:14.267 --> 00:00:16.585
+I was trying to figure out a neat way to use them.
+
+00:00:17.085 --> 00:00:24.837
+It’s always weird when people have the same first and last names, so I wrote a quick regex to find people with names like “John John” and “Laura Laura.”
+
+00:00:25.337 --> 00:00:28.853
+I used /^([a-z]+) \1$/ , but maybe there’s a better one.
+
+00:00:29.353 --> 00:00:31.670
+I think mine left out the middle names.
+
+00:00:32.670 --> 00:00:35.866
+Apparently there are a lot of people with the same first and last name.
+
+00:00:36.366 --> 00:00:39.403
+14,495 in my list, to be exact.
+
+00:00:39.903 --> 00:00:43.739
+But that’s out of a 100 million or so (I only did unique names).
+
+00:00:44.239 --> 00:00:46.396
+Here’s the list for anyone who might care.
+
+00:00:46.896 --> 00:00:52.011
+I’m trying to figure out a more useful application for this dataset. Any ideas?
