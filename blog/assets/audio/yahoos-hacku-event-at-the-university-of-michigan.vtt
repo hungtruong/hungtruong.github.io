@@ -1,0 +1,136 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.877
+Yahoo’s HackU Event at the University of Michigan
+
+00:00:04.377 --> 00:00:07.653
+Published on March 21, 2009.
+
+00:00:08.653 --> 00:00:12.569
+I sorta participated in the HackU event that Yahoo sponsored at my school.
+
+00:00:13.069 --> 00:00:20.021
+I say sorta because I got back in from SXSW on Tuesday night (post about that forthcoming) and missed the kick-off.
+
+00:00:20.521 --> 00:00:23.318
+First off, I gotta say something about the name.
+
+00:00:23.818 --> 00:00:27.174
+HackU. Is that like a pun on something?
+
+00:00:28.174 --> 00:00:34.328
+Anyway, on Wednesday the Yahoo guys went over some stuff on semantic web, search monkey and BOSS.
+
+00:00:34.828 --> 00:00:40.741
+Apparently, the customized search results are the “carrot” on the stick for content producers to markup their content semantically.
+
+00:00:41.241 --> 00:00:45.237
+The Yahoos noted that the customized results provide better click-through rate.
+
+00:00:45.737 --> 00:00:51.410
+While that’s a nice way to think about incentivizing the semantic web, I see a few flaws.
+
+00:00:52.410 --> 00:00:56.806
+First off, the increased click-throughs are probably due to the pretty graphics and stuff.
+
+00:00:57.306 --> 00:01:00.742
+What happens when everyone has customized search results?
+
+00:01:01.242 --> 00:01:04.598
+The search results page gets cluttered and looks like crap.
+
+00:01:05.098 --> 00:01:15.567
+Furthermore, an increase of click-through in a search engine that has 20% of the search engine market (says Comscore… the numbers for my sites are more like 2-3%) is not much.
+
+00:01:16.067 --> 00:01:20.382
+In my case I’d probably be better off spending my time doing other SEO stuff for Google.
+
+00:01:20.882 --> 00:01:26.796
+Yeah, this is kind of harsh to say (I didn’t say it to the Yahoo guys’ faces) but it’s also realistic.
+
+00:01:27.296 --> 00:01:32.570
+Honestly, I do hope search monkey and BOSS end up being successful, for Yahoo’s sake.
+
+00:01:33.070 --> 00:01:37.385
+As far as swag goes, I picked up a brown Search Monkey shirt on the way out.
+
+00:01:37.885 --> 00:01:40.602
+Oh, and they served some tasty Indian food.
+
+00:01:41.602 --> 00:01:44.479
+Anyway, I missed the Yahoo events on Thursday.
+
+00:01:44.979 --> 00:01:48.255
+Apparently they did some presentations, then went to a bar.
+
+00:01:48.755 --> 00:01:53.071
+Instead, I had fun at the video game archive and my student org, SCSI.
+
+00:01:53.571 --> 00:01:56.927
+Then on Friday, the 24-hour hackathon thing started.
+
+00:01:57.427 --> 00:02:04.539
+I got there at 4pm and ate some food (it came in waves, burritos, pizza, snacks, Red Bull, soda, etc).
+
+00:02:05.039 --> 00:02:08.795
+They had a different shirt this time, a black one with a wizard on it!
+
+00:02:09.795 --> 00:02:17.627
+I started trying to figure out what to hack on and came up with an addition to a site that I’ve slowly been working on, What is Hung Doing?
+
+00:02:18.127 --> 00:02:22.522
+Note to self: I think I need to write a blog post on WiHD as well.
+
+00:02:23.022 --> 00:02:31.333
+Basically, I thought it’d be cool to add my location to the site (I was hoping that Google Latitude would be able to do this but I guess it doesn’t offer an API).
+
+00:02:31.833 --> 00:02:36.468
+I used Fire Eagle and the iPhone app called Sparrow to update my location.
+
+00:02:36.968 --> 00:02:41.043
+To grab the location I just made a new application on my server.
+
+00:02:41.543 --> 00:02:44.420
+I dunno the best way to present this info.
+
+00:02:44.920 --> 00:02:46.198
+I’ll fix it up later.
+
+00:02:47.198 --> 00:02:51.673
+I got the location stuff working and promptly decided to go home around 2am.
+
+00:02:52.173 --> 00:02:54.331
+No 24-hour hacking for me.
+
+00:02:54.831 --> 00:02:57.948
+On Saturday (today), I got up and ran some errands.
+
+00:02:58.448 --> 00:03:05.400
+I bought groceries and got a haircut, then raced back to the CS building on North Campus to do my presentation for WiHD.
+
+00:03:05.900 --> 00:03:08.937
+There were some really neat hacks that were shown off today.
+
+00:03:09.437 --> 00:03:13.113
+One of my friends from the School of Information even won 3rd place.
+
+00:03:13.613 --> 00:03:21.764
+I ended up with a novelty award: “Wannabee Internet Stalkee” or something like that, because WiHD basically enables stalkers.
+
+00:03:22.264 --> 00:03:27.218
+But hey, if it keeps them online instead of around me, then it’s okay, right?
+
+00:03:27.718 --> 00:03:33.792
+Finally, I picked up my final shirt (It has a dragon and a kung-fu guy on it) and went home, along with my award:
+
+00:03:34.792 --> 00:03:37.509
+Not too bad for just hacking away at my own project.
+
+00:03:38.009 --> 00:03:44.482
+It’s nice to see Yahoo come and show some goodwill to our school, especially since they skipped out on the career fairs this year.
+
+00:03:44.982 --> 00:03:46.660
+I wonder if they’re even hiring.
+
+00:03:47.160 --> 00:03:54.032
+Either way, I got three shirts, an official Yahoo Faceball , a random puzzle ball and an award, so I’m pretty happy.
