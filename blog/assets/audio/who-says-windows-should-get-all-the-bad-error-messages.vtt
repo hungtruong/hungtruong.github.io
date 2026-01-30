@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.356
+Who Says Windows Should Get All The Bad Error Messages?
+
+00:00:04.856 --> 00:00:07.174
+Published on February 11, 2009.
+
+00:00:08.174 --> 00:00:12.009
+I just saw this on my Macbook Pro while trying to move a file:
+
+00:00:13.009 --> 00:00:16.366
+I tried it a few times and it gave me the same useless message.
+
+00:00:16.866 --> 00:00:21.740
+Then I figured out that I was trying to copy a 4GB+ file to a Fat32 partitioned drive.
+
+00:00:22.240 --> 00:00:27.914
+I can figure that out from memory, but OSX should be able to tell a less informed user…
+
+00:00:28.914 --> 00:00:35.147
+Oh, and by “move” I mean copy, paste, then delete, since OSX doesn’t have cut + paste…
+
+00:00:36.147 --> 00:00:36.547
+</rant>
