@@ -1,0 +1,73 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.276
+Shuffling and Randomizing Algorithms for Music Playlists
+
+00:00:04.776 --> 00:00:07.254
+Published on June 06, 2009.
+
+00:00:08.254 --> 00:00:11.690
+I’ve been messing around with iTunes and the DJ functionality.
+
+00:00:12.190 --> 00:00:21.220
+It seems like all it does is pick random songs out of the library and shows them in the order they’ll be played (unlike shuffle, which just randomly jumps around).
+
+00:00:21.720 --> 00:00:25.876
+Typically, I like to put my iTunes library on random when I’m listening.
+
+00:00:26.376 --> 00:00:29.572
+This allows me to hear a bunch of different music in my library.
+
+00:00:30.072 --> 00:00:34.467
+If I don’t like a certain song, I’ll skip it, unless I’m not really paying attention.
+
+00:00:35.467 --> 00:00:40.422
+I find that the most important piece of metadata in my iTunes library is probably “play count.”
+
+00:00:40.922 --> 00:00:44.038
+This is a pretty good indicator of how much I like a song.
+
+00:00:44.538 --> 00:00:51.651
+It’s a bit off sometimes though, since I might really like a new song with a lower play count because I haven’t had a chance to listen to it 80 times.
+
+00:00:52.151 --> 00:01:00.542
+I use a smart playlist that sorts on “play count” to determine which songs to stick into my iPhone on sync since the phone can’t hold my entire music library.
+
+00:01:01.042 --> 00:01:02.720
+Generally it works well.
+
+00:01:03.220 --> 00:01:10.012
+Perhaps there could be another measure like “normalized play count” that takes into account how long the song has existed in my library.
+
+00:01:11.012 --> 00:01:15.967
+The iTunes DJ is pretty lacking in terms of how you can weigh what will randomly show up next.
+
+00:01:16.467 --> 00:01:21.102
+You can basically click a box that says “play higher rated songs more often.”
+
+00:01:21.602 --> 00:01:40.220
+I don’t rate my songs (the metadata gets thrown away pretty quickly as I move from computer to computer or Mac to PC, etc), so this feature doesn’t do a lot for me. I prefer the implicit rating (play count) versus the explicit rating (star rating) because the implicit way to do it is natural and doesn’t require me to do anything extra.
+
+00:01:41.220 --> 00:01:44.895
+I’d like there to be a “play songs with a higher play count more often” feature.
+
+00:01:45.395 --> 00:01:49.391
+This could be bad, though, because it’d lead to a sort of rich get richer deal.
+
+00:01:49.891 --> 00:01:51.889
+So weighting would be important.
+
+00:01:52.389 --> 00:02:00.380
+I’d say it’d be a good heuristic to give each song a probability of “(playcount + 1)/(total number of library plays + # of songs)” to be played.
+
+00:02:00.880 --> 00:02:08.552
+That way the more popular songs (the ones I like more) are played more often, but other songs still have a chance to be played as well (and skipped).
+
+00:02:09.052 --> 00:02:18.083
+There might be other better algorithms for weighing songs based on play count that don’t lead to an unnatural skew (which would mess up the point of having the feature in the first place).
+
+00:02:19.083 --> 00:02:24.037
+Another thing I could do is prune all of the songs I skip most out of my library.
+
+00:02:24.537 --> 00:02:30.451
+I’m too much of a digital packrat to do that, though, so I guess a smarter algorithm will have to suffice.
