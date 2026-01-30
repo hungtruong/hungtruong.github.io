@@ -1,0 +1,64 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.436
+What Happened to Yahoo (and What Could Happen to iAd)
+
+00:00:04.936 --> 00:00:07.413
+Published on August 15, 2010.
+
+00:00:08.413 --> 00:00:12.968
+I recently read an essay by Paul Graham on what happened to Yahoo .
+
+00:00:13.468 --> 00:00:22.099
+In it, he describes how Yahoo acted like a media company when it was really technology company, and how funky management made it into what it is today.
+
+00:00:22.599 --> 00:00:25.076
+One quote struck me as relevant today:
+
+00:00:26.076 --> 00:00:30.871
+By 1998, Yahoo was the beneficiary of a de facto Ponzi scheme.
+
+00:00:31.371 --> 00:00:33.369
+Investors were excited about the Internet.
+
+00:00:33.869 --> 00:00:38.024
+One reason they were excited was Yahoo’s revenue growth.
+
+00:00:38.524 --> 00:00:41.161
+So they invested in new Internet startups.
+
+00:00:41.661 --> 00:00:45.817
+The startups then used the money to buy ads on Yahoo to get traffic.
+
+00:00:46.317 --> 00:00:52.230
+Which caused yet more revenue growth for Yahoo, and further convinced investors the Internet was worth investing in.
+
+00:00:52.730 --> 00:00:59.443
+When I realized this one day, sitting in my cubicle, I jumped up like Archimedes in his bathtub, except instead of “Eureka!”
+
+00:00:59.943 --> 00:01:01.461
+I was shouting “Sell!”
+
+00:01:02.461 --> 00:01:09.014
+Having just integrated iAd into one of my iPhone apps I’ve noticed that pretty much all of the ads are for other apps.
+
+00:01:09.514 --> 00:01:15.348
+Most of these apps are “free,” and I assume that they could potentially be using iAd for revenue as well.
+
+00:01:15.848 --> 00:01:23.040
+This is a result of low fill rates for iAd and Apple wanting to offer developers a way to advertise their apps.
+
+00:01:23.540 --> 00:01:33.529
+It makes sense, but one has to wonder exactly where all the money is eventually going (Apple gets a 40% cut of iAd revenue), and who has the incentive to keep that system running.
+
+00:01:34.529 --> 00:01:37.326
+A while ago I wrote my predictions for iAd .
+
+00:01:37.826 --> 00:01:43.101
+I didn’t foresee Apple opening iAds up to developers who wanted to advertise their apps.
+
+00:01:43.601 --> 00:01:53.990
+That’ll help the fill rate, but I can’t see it helping CPMs when developers have something like a $0.25 CPC and it was reported that the larger media campaigns like Dove were closer to $2 CPC.
+
+00:01:54.490 --> 00:01:58.166
+Seems like another race to the bottom, just like paid app prices.
