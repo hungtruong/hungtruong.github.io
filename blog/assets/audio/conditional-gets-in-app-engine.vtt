@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.998
+Conditional GETs in App Engine
+
+00:00:03.498 --> 00:00:05.895
+Published on December 01, 2010.
+
+00:00:06.895 --> 00:00:13.128
+I’m currently working on an app in Google App Engine that polls feeds periodically and then does stuff with them.
+
+00:00:13.628 --> 00:00:18.503
+I suppose I could use that pubsubhubbub thingy but I have a feeling that most feeds aren’t using this yet.
+
+00:00:19.503 --> 00:00:24.218
+Anyway, I did a quick naive implementation of polling about every hour or so.
+
+00:00:24.718 --> 00:00:31.830
+Apparently the feed parser I’m using is pretty inefficient because it’s eating up a lot of resources (relatively speaking) on App Engine.
+
+00:00:32.330 --> 00:00:39.043
+I remembered that the http protocol is pretty smart, and there’s a way to figure out if stuff has changed since the last time you grabbed it.
+
+00:00:40.043 --> 00:00:45.157
+Google’s urlfetch doesn’t seem to support conditional GETs (someone tell me if I am wrong).
+
+00:00:45.657 --> 00:00:50.931
+I looked around and found a few tutorials on how to accomplish this in Python using urllib2.
+
+00:00:51.431 --> 00:00:55.986
+The tutorials weren’t exactly what I wanted, so I had to change a few things here or there.
+
+00:00:56.486 --> 00:00:59.763
+Here’s a snippet of code that I’m using:
+
+00:01:00.763 --> 00:01:06.916
+This handles my use case, which is doing work if the feed is new, and ignoring it if it hasn’t been modified.
+
+00:01:07.416 --> 00:01:15.168
+I could probably wrap this into a function that returned false if it the file hadn’t changed, and the content if it was new… Probably will do that next.

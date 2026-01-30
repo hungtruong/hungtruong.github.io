@@ -1,0 +1,85 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.637
+♥s Threadless: iPhone App Launch!
+
+00:00:04.137 --> 00:00:07.174
+Published on November 28, 2010.
+
+00:00:08.174 --> 00:00:13.048
+Today my newest app was approved for the App Store (and should be propagating quickly)!
+
+00:00:13.548 --> 00:00:17.224
+♥s Threadless is what I’ve been working on mostly for the past few weeks or so.
+
+00:00:17.724 --> 00:00:22.039
+Hurry up and download and review it, then come back here for more info about the app.
+
+00:00:23.039 --> 00:00:30.631
+It’s no secret that I’ve been a huge fan of Threadless since I discovered it back in 2005 ( see these blog posts for proof ).
+
+00:00:31.131 --> 00:00:36.006
+I really love the fact that the community provides designs and decides which ones will be printed.
+
+00:00:36.506 --> 00:00:41.221
+The company is really only there to provide the machinery to make shirts and fulfill orders!
+
+00:00:41.721 --> 00:00:48.673
+I wanted to contribute to the community by making an unofficial Threadless app (and maybe get a little store credit to feed my t-shirt needs).
+
+00:00:49.673 --> 00:00:59.023
+My main reasoning for writing a native Threadless app is that I found it pretty hard to browse shirts, even in a fully fledged web browser let alone an iPhone browser.
+
+00:00:59.523 --> 00:01:07.035
+The Threadless site is by no means bad, but it’s hard to see what designs look like when the images are small and on models.
+
+00:01:07.535 --> 00:01:10.012
+I prefer viewing the actual design.
+
+00:01:10.512 --> 00:01:13.389
+So I built an app that makes it easy to
+
+00:01:13.889 --> 00:01:16.047
+1) browse and find cool shirts and
+
+00:01:16.547 --> 00:01:18.624
+2) share them with your friends.
+
+00:01:19.624 --> 00:01:23.300
+In order to do this, I needed to get a database of shirts on Threadless.
+
+00:01:23.800 --> 00:01:26.917
+It’s kind of unfortunate that Threadless doesn’t have an API.
+
+00:01:27.417 --> 00:01:34.929
+At all. Threadless does, however, has a few feeds of shirts: one for shirts that are in stock and another for the weekly additions.
+
+00:01:35.429 --> 00:01:49.575
+I parsed this list of shirts and saved them in an App Engine database along with some other metadata like image urls, category info, etc. I also figured out a way to get the list of all Threadless shirts, including the ones that aren’t currently in stock.
+
+00:01:50.075 --> 00:01:55.828
+What this means is that the â™¥s Threadless app will help you find more shirts than even the official website can.
+
+00:01:56.328 --> 00:02:01.682
+You can filter by category, color and run fulltext searches on the entire shirt database.
+
+00:02:02.682 --> 00:02:10.114
+As far as the front end work went, I had to build a custom table view cell to scroll through shirts and a nested scrollview to view shirt images.
+
+00:02:10.614 --> 00:02:14.450
+The shirt view looks a lot like the native photo browser app for the iPhone.
+
+00:02:14.950 --> 00:02:23.741
+I also added features for sharing, including saving the image to your photo album, posting the design on Twitter and Facebook and emailing the shirt design as an attachment.
+
+00:02:24.241 --> 00:02:27.357
+I figure that covers most bases as far as sharing goes.
+
+00:02:28.357 --> 00:02:31.234
+So far I’ve only designed and built the iPhone version.
+
+00:02:31.734 --> 00:02:39.566
+I think an iPad version would be neat, too, but I want to gauge the interest in the iPhone/iPod app before putting more time into this.
+
+00:02:40.066 --> 00:02:42.863
+If you like the app, let me know and write up a review for it !
