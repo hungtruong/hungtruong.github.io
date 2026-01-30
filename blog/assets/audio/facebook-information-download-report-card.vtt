@@ -1,0 +1,157 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.116
+Facebook Information Download: Report Card
+
+00:00:04.617 --> 00:00:07.174
+Published on October 17, 2010.
+
+00:00:08.174 --> 00:00:14.886
+Ever since I signed up for Facebook, I’ve wanted a clean and easy way to export the content that my friends and I create on it.
+
+00:00:15.386 --> 00:00:17.464
+See this post for background.
+
+00:00:17.964 --> 00:00:25.396
+Facebook has never really made it easy to do so for end users, though they have an API that could theoretically be used for data export.
+
+00:00:25.896 --> 00:00:30.371
+Just recently, they announced a new feature that allows you to download your information .
+
+00:00:30.871 --> 00:00:34.307
+I gave the feature a test drive and took a look at what you actually get.
+
+00:00:35.307 --> 00:00:38.264
+The process for grabbing your information is pretty simple.
+
+00:00:38.764 --> 00:00:43.319
+You go to Account Settings -> Download Your Information and then request your data.
+
+00:00:43.819 --> 00:00:48.214
+Facebook sends you an email when the zip file containing your stuff is ready.
+
+00:00:49.214 --> 00:00:54.968
+The zip file contains a few files and directories: html, photos and videos.
+
+00:00:55.468 --> 00:01:04.738
+Photos contains the photos you’ve uploaded, videos contains the videos, and html contains things like a list of your friends, messages, notes, wall posts and events.
+
+00:01:05.238 --> 00:01:09.633
+These are all stored in html files, which makes it easy for normal users to view them.
+
+00:01:10.633 --> 00:01:19.823
+From a data portability standpoint, it’s great that you can get all of your photos, videos and messages, etc. I like the fact that they’re in html that’s easy for anyone to browse.
+
+00:01:20.323 --> 00:01:28.315
+Since it works in its own self-contained directory structure, you could theoretically upload the contents to your own web server and host your albums yourself!
+
+00:01:28.815 --> 00:01:32.411
+For most users, the data download feature is really great.
+
+00:01:33.411 --> 00:01:38.445
+From a programmer/hardcore archivist’s point of view, the data download is still lacking.
+
+00:01:38.945 --> 00:01:42.701
+For example, the friend’s list gives you a list of your friends’ names.
+
+00:01:43.201 --> 00:01:49.914
+It does not, however, provide you with the unique identifier for your friends (e.g. their Facebook profile name or id number).
+
+00:01:50.414 --> 00:01:55.448
+This might be useful if you have a friend named “John Smith” and you’d like to know exactly which John it is.
+
+00:01:55.948 --> 00:02:00.184
+Generally, the files just don’t contain enough metadata to keep good records.
+
+00:02:01.184 --> 00:02:04.380
+Let’s say that in the distant future, Facebook has been abandoned.
+
+00:02:04.880 --> 00:02:09.195
+What we have left are the .zip files that people used to download their information.
+
+00:02:09.695 --> 00:02:12.812
+How would we go about reconstructing network ties?
+
+00:02:13.312 --> 00:02:19.225
+With the files as they are today, we can only make assumptions using names, which aren’t unique identifiers.
+
+00:02:19.725 --> 00:02:29.795
+While some people would say that including those would be overkill, they could be pretty easily added via meta tags within the html (or in a separate xml file for hardcore nerds like me).
+
+00:02:30.795 --> 00:02:36.708
+In addition to this lack of metadata, my other complaint is that Facebook only gives you half of your information.
+
+00:02:37.208 --> 00:02:43.442
+You can download a pretty ego-centric payload of data; stuff that friends wrote on your wall and photos you uploaded.
+
+00:02:43.942 --> 00:02:47.218
+You cannot, however, download things that you posted on your friends’ walls.
+
+00:02:47.718 --> 00:02:52.672
+This is especially important because Facebook’s early messaging model was based on wall-to-wall posts.
+
+00:02:53.172 --> 00:02:56.688
+My oldest wall posts come without any sort of context at all.
+
+00:02:57.688 --> 00:03:03.762
+Finally, it seems that Facebook did the unthinkable in deleting user data until around early 2006.
+
+00:03:04.262 --> 00:03:13.132
+I signed up for Facebook in January of 2005, yet my first wall post that shows up in my downloaded info is from February 2006.
+
+00:03:13.632 --> 00:03:16.909
+So there’s a whole year’s worth of wall messages that are missing.
+
+00:03:17.409 --> 00:03:23.402
+I suppose there’s no way for Facebook to retrieve this info anymore (unless they’re just witholding it because it’s hard to get to).
+
+00:03:24.402 --> 00:03:26.879
+If you found this tl;dr, here’s a summary:
+
+00:03:27.879 --> 00:03:28.599
+The Good:
+
+00:03:29.599 --> 00:03:36.791
+Facebook information download makes it easy for anyone to download their data in a nicely organized and self-contained package.
+
+00:03:37.291 --> 00:03:43.764
+Everyone should go to their account settings right now and download their data, even if they don’t plan on using for anything in the near future.
+
+00:03:44.264 --> 00:03:48.979
+The download provides a lot of information and is a good faith attempt at letting users “own” their data.
+
+00:03:49.479 --> 00:03:51.876
+There’s still work to be done, howerver.
+
+00:03:52.876 --> 00:03:54.155
+The Bad:
+
+00:03:55.155 --> 00:03:58.671
+The data that’s downloaded lacks enough meaningful metadata.
+
+00:03:59.171 --> 00:04:03.646
+Specifically, the data regarding connections between you and your friends is too general.
+
+00:04:04.146 --> 00:04:07.742
+Unique identifiers for friend connections would be a good first step.
+
+00:04:08.242 --> 00:04:12.956
+Facebook also omits an important side of your data: the stuff you’ve posted to others’ walls.
+
+00:04:13.456 --> 00:04:18.651
+Finally, Facebook’s data download only goes back to early 2006 (for me).
+
+00:04:19.651 --> 00:04:21.728
+What Facebook Should Do Next:
+
+00:04:22.728 --> 00:04:26.964
+I think Facebook’s done a really great job so far for this first iteration of data download.
+
+00:04:27.464 --> 00:04:33.137
+Now they should add more metadata and provide data in a cleaner xml or json format.
+
+00:04:33.637 --> 00:04:42.108
+After that, they should enable download of photos and video in their original format (I have a feeling Facebook keeps the original size photos before they resize them).
+
+00:04:42.608 --> 00:04:50.760
+I think that providing users with an easy way to download all of their data will lead to a better relationship and more trust, which is something Facebook could really use.
