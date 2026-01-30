@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.756
+Openbook Reveals Less Than Facebook’s Own Search
+
+00:00:05.256 --> 00:00:07.333
+Published on June 03, 2010.
+
+00:00:08.333 --> 00:00:15.845
+A while ago, I found “ Openbook ,” a frontend to Facebook’s own search APIs that expose status updates from people who have them set to be public.
+
+00:00:16.345 --> 00:00:23.138
+The site’s purpose is basically to point out how much potentially embarrassing information is available, and how easy it is to find.
+
+00:00:24.138 --> 00:00:26.455
+I thought this was a really clever idea.
+
+00:00:26.955 --> 00:00:31.031
+Then I realized that Openbook actually shows less than what Facebook does.
+
+00:00:31.531 --> 00:00:36.086
+I went over to Openbook and clicked on the query for “getting divorced.”
+
+00:00:36.586 --> 00:00:39.063
+Then I ran the same search inside of Facebook.
+
+00:00:39.563 --> 00:00:45.636
+Openbook has the same results, but Facebook also includes replies and “likes” to the status messages.
+
+00:00:46.136 --> 00:00:52.769
+In some cases it even shows comments from users who do not make their own status messages public (but replied to a public one).
+
+00:00:53.269 --> 00:00:59.902
+I suppose that’s another thing that should be added to the list of “Things Facebook shares about you that’s not readily apparent.”
+
+00:01:00.902 --> 00:01:03.299
+Here’s the Openbook search I did:
+
+00:01:04.299 --> 00:01:05.818
+And here’s the Facebook one:
+
+00:01:06.818 --> 00:01:08.975
+Way to one-up Openbook, Facebook!
