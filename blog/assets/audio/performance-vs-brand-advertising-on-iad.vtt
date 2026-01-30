@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.196
+Performance vs. Brand Advertising on iAd
+
+00:00:04.696 --> 00:00:07.094
+Published on September 14, 2010.
+
+00:00:08.094 --> 00:00:12.968
+I’ve got some more thoughts on iAd after trying iAd out on one of my apps for about a month now.
+
+00:00:13.968 --> 00:00:21.400
+As I noted in an earlier post , Apple responded to a really low fill rate on their iAd program by enabling developer ads.
+
+00:00:21.900 --> 00:00:26.375
+Developer ads are simple banner ads that entice a user to download an iPhone app.
+
+00:00:26.875 --> 00:00:30.232
+Here’s what the use case looks like via Business Insider :
+
+00:00:31.232 --> 00:00:34.268
+To Apple’s credit, the workflow is actually pretty good.
+
+00:00:34.768 --> 00:00:38.204
+It doesn’t require users to leave the app to download another one.
+
+00:00:39.204 --> 00:00:48.794
+Since developers can’t really afford the insane $2 cost per click that the big media customers pay, Apple is charging $.25 a click instead, and no cost per impression.
+
+00:00:49.294 --> 00:00:59.044
+Theoretically, this should mean that the fill rate would be very high (as long as developers are not maxing out on their daily spend limit or too aggressively filtering out apps).
+
+00:00:59.544 --> 00:01:05.378
+Yet I’ve noticed a pretty big fall in fill rate (from about 30% to 20%) in the last month.
+
+00:01:06.378 --> 00:01:11.732
+I think the main issue is that Apple never really intended iAd to be used for performance advertising.
+
+00:01:12.232 --> 00:01:17.666
+Performance advertising is about getting that direct action (in this case, an app download).
+
+00:01:18.166 --> 00:01:25.998
+Apple’s been pushing iAd as a great Brand advertising solution (where the user is not expected to go out and buy Dove soap from their phone).
+
+00:01:26.498 --> 00:01:30.653
+That’s why the premium brands are willing to pay so much per click and impression.
+
+00:01:31.153 --> 00:01:36.427
+By comparison, AdMob ads on the iPhone seem to be more geared toward performance advertising.
+
+00:01:37.427 --> 00:01:45.818
+By introducing developer ads, I think Apple has tried to appease publishers at the cost of the perceived premium value of iAds.
+
+00:01:46.318 --> 00:01:55.189
+Sure, the developer ads aren’t as flashy as the premium advertisers’, but $.25 versus $2 a click for the same piece of real estate is quite a difference.
+
+00:01:55.689 --> 00:02:02.881
+Add the perception that iAds for developers are not cost-effective and you could come to the conclusion that Apple is doing it wrong.
+
+00:02:03.381 --> 00:02:10.094
+It doesn’t help that the premium brand advertisers seem to be frustrated with the process of dealing with Apple as a gatekeeper .
+
+00:02:11.094 --> 00:02:13.251
+So what can Apple do to fix this?
+
+00:02:13.751 --> 00:02:18.067
+They should go back to their specialization: doing one or a few things really well.
+
+00:02:18.567 --> 00:02:21.443
+They should focus on iAd as a brand advertising platform.
+
+00:02:21.943 --> 00:02:26.498
+They should work on getting as many large partners onto iAd as quickly as possible.
+
+00:02:26.998 --> 00:02:31.793
+This will alleviate the growing pains that publishers (including me) are feeling with fill rates.
+
+00:02:32.293 --> 00:02:37.328
+Right now it seems like Apple is reacting rather than acting; following rather than leading.
+
+00:02:37.828 --> 00:02:43.182
+They need to show that they’re serious about carving their own niche in the mobile advertising space.
