@@ -1,0 +1,205 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.877
+On Customer Service and Giant Companies
+
+00:00:04.377 --> 00:00:06.534
+Published on April 14, 2009.
+
+00:00:07.534 --> 00:00:10.891
+For a long time, I’ve been a pretty cost-centered consumer.
+
+00:00:11.391 --> 00:00:14.587
+By that, I mean that I mostly cared about how much things cost.
+
+00:00:15.087 --> 00:00:18.843
+This makes sense if you’re poor or really care about getting a good deal.
+
+00:00:19.343 --> 00:00:26.535
+Recently at SXSW, I considered the concept of customer service as explained by Tony Hsieh , the Zappos guy.
+
+00:00:27.035 --> 00:00:31.430
+Random thought: crap, I still need to finish my epic SXSW post!
+
+00:00:32.430 --> 00:00:41.461
+Tony argued that by focusing on customer service and, a step above that, customer happiness, you could grow your business based on word of mouth and repeat business.
+
+00:00:41.961 --> 00:00:43.958
+This makes sense for a retailer.
+
+00:00:44.458 --> 00:00:49.972
+It’s pretty wonderful how successful Zappos has become just by treating the customer like a king.
+
+00:00:50.472 --> 00:00:54.867
+Lately I’ve been working on projects that rely on software written by other companies.
+
+00:00:55.367 --> 00:00:57.205
+This concept is not new.
+
+00:00:57.705 --> 00:01:01.301
+I’ve been very frustrated by interacting with systems that don’t work well.
+
+00:01:01.801 --> 00:01:08.914
+Thinking back to the Zappos talk, I wonder if the customer service (and happiness) concept couldn’t be translated to giant software companies.
+
+00:01:09.914 --> 00:01:15.667
+Web apps are cool because they are relatively easy to build and the users are the most important part of them.
+
+00:01:16.167 --> 00:01:19.524
+They create much of the data and interactions between each other.
+
+00:01:20.024 --> 00:01:23.380
+Web apps have the potential to be highly scalable.
+
+00:01:23.880 --> 00:01:29.074
+What often ends up happening is that a small number of engineers work on an app that millions of people use.
+
+00:01:29.574 --> 00:01:32.611
+This is the case at places like Facebook and Google.
+
+00:01:33.111 --> 00:01:41.182
+Facebook’s job site currently states that it has less than 200 engineers and just a few days ago announced it had reached 200 million users.
+
+00:01:41.682 --> 00:01:45.118
+That’s a ratio of about 1 million users per engineer.
+
+00:01:45.618 --> 00:01:49.054
+I’m sure Google has similar insane ratios.
+
+00:01:50.054 --> 00:01:52.612
+What do these ratios mean for “customer service?”
+
+00:01:53.112 --> 00:01:55.189
+Basically that it doesn’t exist.
+
+00:01:55.689 --> 00:01:59.845
+And this leads to great frustration when I have an issue with the software.
+
+00:02:00.345 --> 00:02:05.619
+For example, I needed to rename a Facebook Page for work because there was a typo in the name.
+
+00:02:06.119 --> 00:02:08.516
+I filled out the contact form.
+
+00:02:09.016 --> 00:02:10.454
+Never got a reply.
+
+00:02:10.954 --> 00:02:15.350
+I did check the FAQ and yes, it stated that page names are not changeable.
+
+00:02:15.850 --> 00:02:17.048
+But why the hell not?
+
+00:02:17.548 --> 00:02:19.786
+It’s just a record in a database.
+
+00:02:20.286 --> 00:02:26.039
+The problem isn’t really that the name isn’t changeable; it’s that I get the feeling that no one is listening to me.
+
+00:02:27.039 --> 00:02:32.314
+I also had an issue with Google Apps and their gadget within Sites not working in IE.
+
+00:02:32.814 --> 00:02:40.565
+This is a pretty obscure error but upon inspection of the Google forums (which are actually kind of useful), it appears others have the same issue.
+
+00:02:41.065 --> 00:02:50.176
+But even though multiple users have complained, the Google spokespeople are happy to claim it’s an edge case and dismiss it by giving out urls to help articles that don’t resolve the issue.
+
+00:02:50.676 --> 00:02:52.594
+Again, it seems like they don’t care.
+
+00:02:53.594 --> 00:02:58.548
+I also had a problem with Google Forms being extremely volatile and absolutely not working correctly.
+
+00:02:59.048 --> 00:03:04.242
+I was literally wondering if anyone had run any kind of QA on the software before releasing it.
+
+00:03:04.742 --> 00:03:08.019
+Simply put, the software was not ready for deployment.
+
+00:03:08.519 --> 00:03:10.756
+Who could I voice my opinion to?
+
+00:03:11.256 --> 00:03:15.891
+No one, because Google is a faceless giant who doesn’t care what I think.
+
+00:03:16.891 --> 00:03:21.446
+And they shouldn’t care, because this user frustration is not hurting their bottom lines.
+
+00:03:21.946 --> 00:03:25.782
+For every frustrated user there are a thousand who aren’t frustrated.
+
+00:03:26.282 --> 00:03:31.796
+Those users will probably just go away and avoid putting more strain on Google’s massive infrastructure.
+
+00:03:32.296 --> 00:03:33.894
+Good riddance, right?
+
+00:03:34.894 --> 00:03:39.529
+I can’t imagine there is a good solution to the problem of too many users and not enough support.
+
+00:03:40.029 --> 00:03:46.262
+Forums help, but they can’t completely solve everyone’s problems, especially when the problems exist in bugs in the software.
+
+00:03:46.762 --> 00:03:52.276
+I wish companies would pay more attention to their “customers” when they had real issues with their products.
+
+00:03:52.776 --> 00:03:56.372
+But these companies are just way too massive to give personalized help.
+
+00:03:57.372 --> 00:04:01.927
+I imagine that some day there will be a massive backlash against this style of software design.
+
+00:04:02.427 --> 00:04:07.941
+Internet scale companies have a way of alienating users and making them feel as though their opinions really don’t matter.
+
+00:04:08.441 --> 00:04:13.555
+They take a “we know best” approach and make blanket decisions that will be good for 99% of the user base.
+
+00:04:14.055 --> 00:04:21.008
+When users protest a redesign of Facebook in aggregate, they might wield more power, but how influential are they, really?
+
+00:04:22.008 --> 00:04:26.563
+I guess open-source software might be able to fill niches where these giant companies fail.
+
+00:04:27.063 --> 00:04:35.214
+Case in point: WordPress, which I’m using to write this blog post (but who knows where my blog will reside in the future?) is thousands of times better than Google’s Blogger.
+
+00:04:35.714 --> 00:04:44.185
+My theory is that after Google bought Blogger, they moved it to their servers and promptly stopped caring about features, usability and general quality.
+
+00:04:44.685 --> 00:04:47.402
+In my opinion, Blogger is an anachronism.
+
+00:04:47.902 --> 00:04:49.660
+It sucks hard.
+
+00:04:50.160 --> 00:04:55.834
+WordPress, on the other hand, has been constantly improving thanks to contributions from volunteers.
+
+00:04:56.334 --> 00:05:00.889
+This is also probably the reason that WordPress kicked MovableType’s ass.
+
+00:05:01.889 --> 00:05:06.444
+So open-source software is quicker to improve and react to user needs.
+
+00:05:06.944 --> 00:05:11.179
+But how do you open-source social software that relies on network-effects like Facebook?
+
+00:05:11.679 --> 00:05:13.916
+I guess a decentralized model would work.
+
+00:05:14.416 --> 00:05:17.932
+Maybe a social network based on a protocol instead of a website.
+
+00:05:18.432 --> 00:05:20.670
+Does that sound a bit like twitter?
+
+00:05:21.170 --> 00:05:23.487
+Maybe, but probably not enough.
+
+00:05:23.987 --> 00:05:32.698
+For now, we’re still stuck accepting that we’re lowly users, unable to affect the status quo of applications owned by giant companies who don’t care what we think.
+
+00:05:33.198 --> 00:05:37.194
+Unless, of course, we are employed by those companies and really want to make a difference…
