@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Implementing a Zwift-inspired workout visualization in Swift using UIKit and stack views for iOS. Color-coded FTP percentage zones (1-6) map to segment intensity, while width and height anchors represent duration and wattage targets within UITableViewCell. Fixed index-tracking bugs and added a horizontal progress slider to track workout segment completion at accelerated speeds." />
 	<title>Cloning Zwift on iOS Part 4: Workout View</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Cloning Zwift on iOS Part 4: Workout View" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/" property="og:url" /><meta
-		content="2019-09-29T00:00:00+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Cloning Zwift on iOS Part 4: Workout View" property="og:title" /><meta content="article" property="og:type" /><meta content="Implementing a Zwift-inspired workout visualization in Swift using UIKit and stack views for iOS. Color-coded FTP percentage zones (1-6) map to segment intensity, while width and height anchors represent duration and wattage targets within UITableViewCell. Fixed index-tracking bugs and added a horizontal progress slider to track workout segment completion at accelerated speeds." property="og:description" /><meta content="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/" property="og:url" /><meta content="2019-09-29T00:00:00-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Cloning Zwift on iOS Part 4: Workout View" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Cloning Zwift on iOS Part 4: Workout View" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/" /><meta name="twitter:description" content="Implementing a Zwift-inspired workout visualization in Swift using UIKit and stack views for iOS. Color-coded FTP percentage zones (1-6) map to segment intensity, while width and height anchors represent duration and wattage targets within UITableViewCell. Fixed index-tracking bugs and added a horizontal progress slider to track workout segment completion at accelerated speeds." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Cloning Zwift on iOS Part 4: Workout View",
+      "image": [
+        null
+       ],
+      "datePublished": "2019-09-29T00:00:00-04:00",
+      "dateModified": "2019-09-29T00:00:00-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Implementing a Zwift-inspired workout visualization in Swift using UIKit and stack views for iOS. Color-coded FTP percentage zones (1-6) map to segment intensity, while width and height anchors represent duration and wattage targets within UITableViewCell. Fixed index-tracking bugs and added a ho...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2019/05/03/making-a-zwift-clone-part-4-workout-view/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -177,19 +215,18 @@
 
 <p>That’s about it for now! I think this makes my app pretty usable and until I find another thing I need to add to it, I feel like this is a good replacement for Zwift. If you happen to need the exact same thing that I do and also happen to have the same exact exercise bike, feel free to clone the <a href="https://github.com/hungtruong/Zswift">Github</a> repo and use the app!</p>
 
-
   </div>
 
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-4-workout-view.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/making-a-zwift-clone-part-4-workout-view.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -224,7 +261,7 @@
     <h3>Leave a Comment</h3>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
-  <input name="options[slug]" type="hidden" value="making-a-zwift-clone-part-4-workout-view">
+  <input name="options[slug]" type="hidden" value="making-a-zwift-clone-part-4">
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -332,7 +369,7 @@
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

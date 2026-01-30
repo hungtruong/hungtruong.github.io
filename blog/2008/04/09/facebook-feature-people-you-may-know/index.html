@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Facebook's friend suggestion algorithm likely uses shared connections to recommend people you might know. The author critiques the lack of nuanced weighting in friend scoring and suggests adding a 'DO NOT WANT' button for unwanted suggestions." />
 	<title>Facebook Feature: People You May Know</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Facebook Feature: People You May Know" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/" property="og:url" /><meta
-		content="2008-04-09T21:01:31+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Facebook Feature: People You May Know" property="og:title" /><meta content="article" property="og:type" /><meta content="Facebook's friend suggestion algorithm likely uses shared connections to recommend people you might know. The author critiques the lack of nuanced weighting in friend scoring and suggests adding a 'DO NOT WANT' button for unwanted suggestions." property="og:description" /><meta content="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/" property="og:url" /><meta content="2008-04-09T17:01:31-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Facebook Feature: People You May Know" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Facebook Feature: People You May Know" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/" /><meta name="twitter:description" content="Facebook's friend suggestion algorithm likely uses shared connections to recommend people you might know. The author critiques the lack of nuanced weighting in friend scoring and suggests adding a 'DO NOT WANT' button for unwanted suggestions." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Facebook Feature: People You May Know",
+      "image": [
+        null
+       ],
+      "datePublished": "2008-04-09T17:01:31-04:00",
+      "dateModified": "2008-04-09T17:01:31-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Facebook's friend suggestion algorithm likely uses shared connections to recommend people you might know. The author critiques the lack of nuanced weighting in friend scoring and suggests adding a 'DO NOT WANT' button for unwanted suggestions.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2008/04/09/facebook-feature-people-you-may-know/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -130,11 +168,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://blog.biscit.me.uk/" target="_blank">Biscit</a>
+      <a href="http://blog.biscit.me.uk/" target="_blank">Biscit</a>
       
     </strong>
-    <time datetime="2008-04-11T05:18:00+00:00">
-      April 11, 2008 at 05:18 AM
+    <time datetime="2008-04-11T01:18:00-04:00">
+      April 11, 2008 at 01:18 AM
     </time>
   </div>
   <div class="comment-body">
@@ -152,11 +190,11 @@ I agree on this feature needing a “Not interested” button.</p>
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.seaslugteam.com" target="_blank">Kabitzin</a>
+      <a href="http://www.seaslugteam.com" target="_blank">Kabitzin</a>
       
     </strong>
-    <time datetime="2008-04-14T14:59:00+00:00">
-      April 14, 2008 at 02:59 PM
+    <time datetime="2008-04-14T10:59:00-04:00">
+      April 14, 2008 at 10:59 AM
     </time>
   </div>
   <div class="comment-body">
@@ -173,11 +211,11 @@ I agree on this feature needing a “Not interested” button.</p>
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2008-04-14T16:54:00+00:00">
-      April 14, 2008 at 04:54 PM
+    <time datetime="2008-04-14T12:54:00-04:00">
+      April 14, 2008 at 12:54 PM
     </time>
   </div>
   <div class="comment-body">
@@ -303,7 +341,7 @@ I agree on this feature needing a “Not interested” button.</p>
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

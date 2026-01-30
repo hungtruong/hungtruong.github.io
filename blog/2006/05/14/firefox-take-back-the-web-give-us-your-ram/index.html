@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Firefox consumes excessive RAM, using 375MB with just one window and five tabs. The post questions whether upgrading to Firefox 2.0 alpha could resolve the memory usage issue." />
 	<title>Firefox – Take Back The Web; Give Us Your RAM!</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Firefox – Take Back The Web; Give Us Your RAM!" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/" property="og:url" /><meta
-		content="2006-05-14T21:06:59+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Firefox – Take Back The Web; Give Us Your RAM!" property="og:title" /><meta content="article" property="og:type" /><meta content="Firefox consumes excessive RAM, using 375MB with just one window and five tabs. The post questions whether upgrading to Firefox 2.0 alpha could resolve the memory usage issue." property="og:description" /><meta content="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/" property="og:url" /><meta content="2006-05-14T17:06:59-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Firefox – Take Back The Web; Give Us Your RAM!" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Firefox – Take Back The Web; Give Us Your RAM!" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/" /><meta name="twitter:description" content="Firefox consumes excessive RAM, using 375MB with just one window and five tabs. The post questions whether upgrading to Firefox 2.0 alpha could resolve the memory usage issue." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Firefox – Take Back The Web; Give Us Your RAM!",
+      "image": [
+        null
+       ],
+      "datePublished": "2006-05-14T17:06:59-04:00",
+      "dateModified": "2006-05-14T17:06:59-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Firefox consumes excessive RAM, using 375MB with just one window and five tabs. The post questions whether upgrading to Firefox 2.0 alpha could resolve the memory usage issue.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2006/05/14/firefox-take-back-the-web-give-us-your-ram/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -128,11 +166,11 @@
   <div class="comment-header">
     <strong>
       
-        harsha
+      harsha
       
     </strong>
-    <time datetime="2006-07-09T08:04:03+00:00">
-      July 09, 2006 at 08:04 AM
+    <time datetime="2006-07-09T04:04:03-04:00">
+      July 09, 2006 at 04:04 AM
     </time>
   </div>
   <div class="comment-body">
@@ -258,7 +296,7 @@
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

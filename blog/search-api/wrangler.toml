@@ -1,0 +1,24 @@
+name = "blog-search-api"
+main = "src/index.js"
+compatibility_date = "2024-04-01"
+
+routes = [
+	{ pattern = "blogsearch.hung-truong.com", custom_domain = true }
+]
+
+
+[[vectorize]]
+binding = "VECTOR_INDEX"
+index_name = "blog-index"
+
+[[vectorize]]
+binding = "VECTOR_INDEX_CONTENT"
+index_name = "blog-index-content"
+
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "RATE_LIMITER"
+id = "cb29906627fc4f3795ee0ebbefd368eb"
+

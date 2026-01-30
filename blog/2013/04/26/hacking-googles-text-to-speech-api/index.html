@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Bypass Google Translate's undocumented 100-character TTS API limit using a Python script that chunks text and mimics browser requests. The script splits input using Google's chunking logic with parameters 'total', 'idx', and 'textlen', while setting Firefox User-Agent and Flash-referer headers for successful audio retrieval. Code available on GitHub implements argparse for command-line text-to-MP3 conversion, enabling creative multilingual voice outputs despite occasional mispronunciations." />
 	<title>Hacking Google’s Text To Speech “API”</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Hacking Google’s Text To Speech “API”" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/" property="og:url" /><meta
-		content="2013-04-26T21:44:46+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Hacking Google’s Text To Speech “API”" property="og:title" /><meta content="article" property="og:type" /><meta content="Bypass Google Translate's undocumented 100-character TTS API limit using a Python script that chunks text and mimics browser requests. The script splits input using Google's chunking logic with parameters 'total', 'idx', and 'textlen', while setting Firefox User-Agent and Flash-referer headers for successful audio retrieval. Code available on GitHub implements argparse for command-line text-to-MP3 conversion, enabling creative multilingual voice outputs despite occasional mispronunciations." property="og:description" /><meta content="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/" property="og:url" /><meta content="2013-04-26T17:44:46-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Hacking Google’s Text To Speech “API”" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Hacking Google’s Text To Speech “API”" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/" /><meta name="twitter:description" content="Bypass Google Translate's undocumented 100-character TTS API limit using a Python script that chunks text and mimics browser requests. The script splits input using Google's chunking logic with parameters 'total', 'idx', and 'textlen', while setting Firefox User-Agent and Flash-referer headers for successful audio retrieval. Code available on GitHub implements argparse for command-line text-to-MP3 conversion, enabling creative multilingual voice outputs despite occasional mispronunciations." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Hacking Google’s Text To Speech “API”",
+      "image": [
+        null
+       ],
+      "datePublished": "2013-04-26T17:44:46-04:00",
+      "dateModified": "2013-04-26T17:44:46-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Bypass Google Translate's undocumented 100-character TTS API limit using a Python script that chunks text and mimics browser requests. The script splits input using Google's chunking logic with parameters 'total', 'idx', and 'textlen', while setting Firefox User-Agent and Flash-referer headers fo...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2013/04/26/hacking-googles-text-to-speech-api/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -143,13 +181,13 @@ I had read a few old blog posts about how Google’s undocumented TTS API could 
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/hacking-googles-text-to-speech-api.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/hacking-googles-text-to-speech-api.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -193,11 +231,11 @@ I had read a few old blog posts about how Google’s undocumented TTS API could 
   <div class="comment-header">
     <strong>
       
-        Tom Cox
+      Tom Cox
       
     </strong>
-    <time datetime="2013-05-15T01:44:57+00:00">
-      May 15, 2013 at 01:44 AM
+    <time datetime="2013-05-14T21:44:57-04:00">
+      May 14, 2013 at 09:44 PM
     </time>
   </div>
   <div class="comment-body">
@@ -214,11 +252,11 @@ I had read a few old blog posts about how Google’s undocumented TTS API could 
   <div class="comment-header">
     <strong>
       
-        zaggynl
+      zaggynl
       
     </strong>
-    <time datetime="2013-05-29T09:04:49+00:00">
-      May 29, 2013 at 09:04 AM
+    <time datetime="2013-05-29T05:04:49-04:00">
+      May 29, 2013 at 05:04 AM
     </time>
   </div>
   <div class="comment-body">
@@ -238,11 +276,11 @@ Result: https://mega.co.nz/#!fR9VAIbD!X2NAI1daKrkpLVAGW86gpGAmHiYKd94zdkAQ6gVcsG
   <div class="comment-header">
     <strong>
       
-        umer
+      umer
       
     </strong>
-    <time datetime="2013-06-20T15:38:56+00:00">
-      June 20, 2013 at 03:38 PM
+    <time datetime="2013-06-20T11:38:56-04:00">
+      June 20, 2013 at 11:38 AM
     </time>
   </div>
   <div class="comment-body">
@@ -259,11 +297,11 @@ Result: https://mega.co.nz/#!fR9VAIbD!X2NAI1daKrkpLVAGW86gpGAmHiYKd94zdkAQ6gVcsG
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2013-06-26T16:07:34+00:00">
-      June 26, 2013 at 04:07 PM
+    <time datetime="2013-06-26T12:07:34-04:00">
+      June 26, 2013 at 12:07 PM
     </time>
   </div>
   <div class="comment-body">
@@ -277,20 +315,19 @@ I cannot find urlib2 for python 3.3 anywhere.</p>
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151254">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2013-10-02T18:11:10+00:00">
-      October 02, 2013 at 06:11 PM
+    <time datetime="2013-10-02T14:11:10-04:00">
+      October 02, 2013 at 02:11 PM
     </time>
   </div>
   <div class="comment-body">
@@ -302,9 +339,9 @@ I wrote this for Python 2.7, so you’ll have to change things around for 3.3. I
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -312,11 +349,11 @@ I wrote this for Python 2.7, so you’ll have to change things around for 3.3. I
   <div class="comment-header">
     <strong>
       
-        Mike
+      Mike
       
     </strong>
-    <time datetime="2013-07-14T19:01:46+00:00">
-      July 14, 2013 at 07:01 PM
+    <time datetime="2013-07-14T15:01:46-04:00">
+      July 14, 2013 at 03:01 PM
     </time>
   </div>
   <div class="comment-body">
@@ -325,20 +362,19 @@ I wrote this for Python 2.7, so you’ll have to change things around for 3.3. I
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-150639">
   <div class="comment-header">
     <strong>
       
-        Leon
+      Leon
       
     </strong>
-    <time datetime="2013-07-24T08:23:13+00:00">
-      July 24, 2013 at 08:23 AM
+    <time datetime="2013-07-24T04:23:13-04:00">
+      July 24, 2013 at 04:23 AM
     </time>
   </div>
   <div class="comment-body">
@@ -350,9 +386,9 @@ GoogleTTS.py -l en_us -f text.txt</p>
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -360,11 +396,11 @@ GoogleTTS.py -l en_us -f text.txt</p>
   <div class="comment-header">
     <strong>
       
-        Atul
+      Atul
       
     </strong>
-    <time datetime="2013-07-18T15:39:32+00:00">
-      July 18, 2013 at 03:39 PM
+    <time datetime="2013-07-18T11:39:32-04:00">
+      July 18, 2013 at 11:39 AM
     </time>
   </div>
   <div class="comment-body">
@@ -383,11 +419,11 @@ Has google stopped it from downloading?</p>
   <div class="comment-header">
     <strong>
       
-        Dmitri DB
+      Dmitri DB
       
     </strong>
-    <time datetime="2013-08-02T16:57:10+00:00">
-      August 02, 2013 at 04:57 PM
+    <time datetime="2013-08-02T12:57:10-04:00">
+      August 02, 2013 at 12:57 PM
     </time>
   </div>
   <div class="comment-body">
@@ -404,11 +440,11 @@ Has google stopped it from downloading?</p>
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.31stcenturygames.com" target="_blank">Joe Suber</a>
+      <a href="http://www.31stcenturygames.com" target="_blank">Joe Suber</a>
       
     </strong>
-    <time datetime="2013-09-05T22:14:26+00:00">
-      September 05, 2013 at 10:14 PM
+    <time datetime="2013-09-05T18:14:26-04:00">
+      September 05, 2013 at 06:14 PM
     </time>
   </div>
   <div class="comment-body">
@@ -417,20 +453,19 @@ Has google stopped it from downloading?</p>
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151250">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2013-09-19T16:23:48+00:00">
-      September 19, 2013 at 04:23 PM
+    <time datetime="2013-09-19T12:23:48-04:00">
+      September 19, 2013 at 12:23 PM
     </time>
   </div>
   <div class="comment-body">
@@ -439,20 +474,19 @@ Has google stopped it from downloading?</p>
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151251">
   <div class="comment-header">
     <strong>
       
-        <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
+      <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
       
     </strong>
-    <time datetime="2013-09-27T01:38:04+00:00">
-      September 27, 2013 at 01:38 AM
+    <time datetime="2013-09-26T21:38:04-04:00">
+      September 26, 2013 at 09:38 PM
     </time>
   </div>
   <div class="comment-body">
@@ -463,20 +497,19 @@ You don’t have to download all 3.5 gigs of card images unless you want the com
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151252">
   <div class="comment-header">
     <strong>
       
-        <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
+      <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
       
     </strong>
-    <time datetime="2013-09-27T01:47:21+00:00">
-      September 27, 2013 at 01:47 AM
+    <time datetime="2013-09-26T21:47:21-04:00">
+      September 26, 2013 at 09:47 PM
     </time>
   </div>
   <div class="comment-body">
@@ -487,22 +520,22 @@ You don’t have to download all 3.5 gigs of card images unless you want the com
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
-        
-        
+    
+    
+    
 <li class="comment" id="comment-151253">
   <div class="comment-header">
     <strong>
       
-        <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
+      <a href="http://gravatar.com/joesuber" target="_blank">joesuber</a>
       
     </strong>
-    <time datetime="2013-09-29T02:08:34+00:00">
-      September 29, 2013 at 02:08 AM
+    <time datetime="2013-09-28T22:08:34-04:00">
+      September 28, 2013 at 10:08 PM
     </time>
   </div>
   <div class="comment-body">
@@ -514,13 +547,13 @@ Got git-hub fork of your thing put up. Git is like learning a new OS.</p>
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
     </ul>
@@ -637,7 +670,7 @@ Got git-hub fork of your thing put up. Git is like learning a new OS.</p>
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

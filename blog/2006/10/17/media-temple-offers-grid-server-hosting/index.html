@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Media Temple launches Grid-Server hosting with parallel web servers for improved resource allocation. The service promises better uptime by distributing users across a cluster instead of single machines, addressing common hosting slowdowns. Potential switch from current host due to persistent uptime issues affecting Notecentric's availability." />
 	<title>Media Temple Offers “Grid-Server” Hosting</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Media Temple Offers “Grid-Server” Hosting" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/" property="og:url" /><meta
-		content="2006-10-17T22:31:14+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Media Temple Offers “Grid-Server” Hosting" property="og:title" /><meta content="article" property="og:type" /><meta content="Media Temple launches Grid-Server hosting with parallel web servers for improved resource allocation. The service promises better uptime by distributing users across a cluster instead of single machines, addressing common hosting slowdowns. Potential switch from current host due to persistent uptime issues affecting Notecentric's availability." property="og:description" /><meta content="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/" property="og:url" /><meta content="2006-10-17T18:31:14-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Media Temple Offers “Grid-Server” Hosting" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Media Temple Offers “Grid-Server” Hosting" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/" /><meta name="twitter:description" content="Media Temple launches Grid-Server hosting with parallel web servers for improved resource allocation. The service promises better uptime by distributing users across a cluster instead of single machines, addressing common hosting slowdowns. Potential switch from current host due to persistent uptime issues affecting Notecentric's availability." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Media Temple Offers “Grid-Server” Hosting",
+      "image": [
+        null
+       ],
+      "datePublished": "2006-10-17T18:31:14-04:00",
+      "dateModified": "2006-10-17T18:31:14-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Media Temple launches Grid-Server hosting with parallel web servers for improved resource allocation. The service promises better uptime by distributing users across a cluster instead of single machines, addressing common hosting slowdowns. Potential switch from current host due to persistent upt...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2006/10/17/media-temple-offers-grid-server-hosting/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -130,11 +168,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://scott.animeblogger.net" target="_blank">scottfrye</a>
+      <a href="http://scott.animeblogger.net" target="_blank">scottfrye</a>
       
     </strong>
-    <time datetime="2006-10-17T23:27:00+00:00">
-      October 17, 2006 at 11:27 PM
+    <time datetime="2006-10-17T19:27:00-04:00">
+      October 17, 2006 at 07:27 PM
     </time>
   </div>
   <div class="comment-body">
@@ -152,11 +190,11 @@ Now, I don’t want you to get me wrong. I love AnimeNano! It really helps with 
   <div class="comment-header">
     <strong>
       
-        <a href="http://bakavic.2a1timecapsule.org.uk" target="_blank">bakavic</a>
+      <a href="http://bakavic.2a1timecapsule.org.uk" target="_blank">bakavic</a>
       
     </strong>
-    <time datetime="2006-10-19T06:41:00+00:00">
-      October 19, 2006 at 06:41 AM
+    <time datetime="2006-10-19T02:41:00-04:00">
+      October 19, 2006 at 02:41 AM
     </time>
   </div>
   <div class="comment-body">
@@ -285,7 +323,7 @@ Sigh. So now we’ll have to monthly figures we’ll have to worry about – ban
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

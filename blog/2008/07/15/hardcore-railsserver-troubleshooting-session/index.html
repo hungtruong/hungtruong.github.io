@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Anime Nano site experienced 502 proxy errors due to a 189-second timeout. The issue stemmed from a Text Link Ads plugin fetching unreachable ad feeds. Removing the plugin resolved the memory and timeout problems affecting multiple sites." />
 	<title>Hardcore Rails/Server Troubleshooting Session!</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Hardcore Rails/Server Troubleshooting Session!" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/" property="og:url" /><meta
-		content="2008-07-15T21:29:50+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Hardcore Rails/Server Troubleshooting Session!" property="og:title" /><meta content="article" property="og:type" /><meta content="Anime Nano site experienced 502 proxy errors due to a 189-second timeout. The issue stemmed from a Text Link Ads plugin fetching unreachable ad feeds. Removing the plugin resolved the memory and timeout problems affecting multiple sites." property="og:description" /><meta content="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/" property="og:url" /><meta content="2008-07-15T17:29:50-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Hardcore Rails/Server Troubleshooting Session!" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Hardcore Rails/Server Troubleshooting Session!" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/" /><meta name="twitter:description" content="Anime Nano site experienced 502 proxy errors due to a 189-second timeout. The issue stemmed from a Text Link Ads plugin fetching unreachable ad feeds. Removing the plugin resolved the memory and timeout problems affecting multiple sites." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Hardcore Rails/Server Troubleshooting Session!",
+      "image": [
+        null
+       ],
+      "datePublished": "2008-07-15T17:29:50-04:00",
+      "dateModified": "2008-07-15T17:29:50-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Anime Nano site experienced 502 proxy errors due to a 189-second timeout. The issue stemmed from a Text Link Ads plugin fetching unreachable ad feeds. Removing the plugin resolved the memory and timeout problems affecting multiple sites.",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2008/07/15/hardcore-railsserver-troubleshooting-session/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -136,11 +174,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.baka-raptor.com" target="_blank">Baka-Raptor</a>
+      <a href="http://www.baka-raptor.com" target="_blank">Baka-Raptor</a>
       
     </strong>
-    <time datetime="2008-07-15T23:25:00+00:00">
-      July 15, 2008 at 11:25 PM
+    <time datetime="2008-07-15T19:25:00-04:00">
+      July 15, 2008 at 07:25 PM
     </time>
   </div>
   <div class="comment-body">
@@ -157,11 +195,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2008-07-15T23:56:14+00:00">
-      July 15, 2008 at 11:56 PM
+    <time datetime="2008-07-15T19:56:14-04:00">
+      July 15, 2008 at 07:56 PM
     </time>
   </div>
   <div class="comment-body">
@@ -178,11 +216,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://bateszi.animeuknews.net/" target="_blank">bateszi</a>
+      <a href="http://bateszi.animeuknews.net/" target="_blank">bateszi</a>
       
     </strong>
-    <time datetime="2008-07-16T04:46:56+00:00">
-      July 16, 2008 at 04:46 AM
+    <time datetime="2008-07-16T00:46:56-04:00">
+      July 16, 2008 at 12:46 AM
     </time>
   </div>
   <div class="comment-body">
@@ -199,11 +237,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.seaslugteam.com" target="_blank">Kabitzin</a>
+      <a href="http://www.seaslugteam.com" target="_blank">Kabitzin</a>
       
     </strong>
-    <time datetime="2008-07-17T13:33:15+00:00">
-      July 17, 2008 at 01:33 PM
+    <time datetime="2008-07-17T09:33:15-04:00">
+      July 17, 2008 at 09:33 AM
     </time>
   </div>
   <div class="comment-body">
@@ -220,11 +258,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.concretebadger.net/blog/" target="_blank">Martin</a>
+      <a href="http://www.concretebadger.net/blog/" target="_blank">Martin</a>
       
     </strong>
-    <time datetime="2008-07-17T14:46:59+00:00">
-      July 17, 2008 at 02:46 PM
+    <time datetime="2008-07-17T10:46:59-04:00">
+      July 17, 2008 at 10:46 AM
     </time>
   </div>
   <div class="comment-body">
@@ -241,11 +279,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2008-07-19T00:42:15+00:00">
-      July 19, 2008 at 12:42 AM
+    <time datetime="2008-07-18T20:42:15-04:00">
+      July 18, 2008 at 08:42 PM
     </time>
   </div>
   <div class="comment-body">
@@ -262,11 +300,11 @@
   <div class="comment-header">
     <strong>
       
-        <a href="http://opinionprone.blogspot.com" target="_blank">Kiri</a>
+      <a href="http://opinionprone.blogspot.com" target="_blank">Kiri</a>
       
     </strong>
-    <time datetime="2008-11-02T00:44:23+00:00">
-      November 02, 2008 at 12:44 AM
+    <time datetime="2008-11-01T20:44:23-04:00">
+      November 01, 2008 at 08:44 PM
     </time>
   </div>
   <div class="comment-body">
@@ -392,7 +430,7 @@
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

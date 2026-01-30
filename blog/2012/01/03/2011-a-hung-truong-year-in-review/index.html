@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hung Truong's 2011 year-in-review highlights iOS app development at U-M, winning a mobile competition, co-founding Bebarang via NYC Seedstart, and transitioning to a Python/Django role at Threadless. Key projects include Checkmate (3rd place U-M winner), Instascriber (Lifehacker-featured RSS tool), Mapskrieg iOS app porting challenges with App Engine pricing struggles, and a viral Facebook poll experiment. Career shifts include leaving Bebarang after NYC startup acceleration, joining Threadless' Django/Python engineering team, and balancing full-time work with side projects like Anime Nano rewrites and IFTTT clones." />
 	<title>2011: A Hung Truong Year In Review</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="2011: A Hung Truong Year In Review" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/" property="og:url" /><meta
-		content="2012-01-03T01:01:57+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="2011: A Hung Truong Year In Review" property="og:title" /><meta content="article" property="og:type" /><meta content="Hung Truong's 2011 year-in-review highlights iOS app development at U-M, winning a mobile competition, co-founding Bebarang via NYC Seedstart, and transitioning to a Python/Django role at Threadless. Key projects include Checkmate (3rd place U-M winner), Instascriber (Lifehacker-featured RSS tool), Mapskrieg iOS app porting challenges with App Engine pricing struggles, and a viral Facebook poll experiment. Career shifts include leaving Bebarang after NYC startup acceleration, joining Threadless' Django/Python engineering team, and balancing full-time work with side projects like Anime Nano rewrites and IFTTT clones." property="og:description" /><meta content="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/" property="og:url" /><meta content="2012-01-02T20:01:57-05:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="2011: A Hung Truong Year In Review" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="2011: A Hung Truong Year In Review" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/" /><meta name="twitter:description" content="Hung Truong's 2011 year-in-review highlights iOS app development at U-M, winning a mobile competition, co-founding Bebarang via NYC Seedstart, and transitioning to a Python/Django role at Threadless. Key projects include Checkmate (3rd place U-M winner), Instascriber (Lifehacker-featured RSS tool), Mapskrieg iOS app porting challenges with App Engine pricing struggles, and a viral Facebook poll experiment. Career shifts include leaving Bebarang after NYC startup acceleration, joining Threadless' Django/Python engineering team, and balancing full-time work with side projects like Anime Nano rewrites and IFTTT clones." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "2011: A Hung Truong Year In Review",
+      "image": [
+        null
+       ],
+      "datePublished": "2012-01-02T20:01:57-05:00",
+      "dateModified": "2012-01-02T20:01:57-05:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Hung Truong's 2011 year-in-review highlights iOS app development at U-M, winning a mobile competition, co-founding Bebarang via NYC Seedstart, and transitioning to a Python/Django role at Threadless. Key projects include Checkmate (3rd place U-M winner), Instascriber (Lifehacker-featured RSS tool...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2012/01/03/2011-a-hung-truong-year-in-review/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,34 +100,39 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
          <article class="post" id="hypertranscript">
   <header>
     <h1 class="postTitle">2011: A Hung Truong Year In Review</h1>
-    <p class="meta">January 03, 2012 | <span class="time">5</span> Minute Read</p>
+    <p class="meta">January 02, 2012 | <span class="time">5</span> Minute Read</p>
   </header>
 
   
@@ -142,13 +180,13 @@ February was a bit slower. I think I mostly <a href="http://www.hung-truong.com/
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/2011-a-hung-truong-year-in-review.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/2011-a-hung-truong-year-in-review.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -192,11 +230,11 @@ February was a bit slower. I think I mostly <a href="http://www.hung-truong.com/
   <div class="comment-header">
     <strong>
       
-        Ben
+      Ben
       
     </strong>
-    <time datetime="2012-01-04T02:17:00+00:00">
-      January 04, 2012 at 02:17 AM
+    <time datetime="2012-01-03T21:17:00-05:00">
+      January 03, 2012 at 09:17 PM
     </time>
   </div>
   <div class="comment-body">
@@ -213,11 +251,11 @@ February was a bit slower. I think I mostly <a href="http://www.hung-truong.com/
   <div class="comment-header">
     <strong>
       
-        Carmen
+      Carmen
       
     </strong>
-    <time datetime="2012-01-04T06:05:00+00:00">
-      January 04, 2012 at 06:05 AM
+    <time datetime="2012-01-04T01:05:00-05:00">
+      January 04, 2012 at 01:05 AM
     </time>
   </div>
   <div class="comment-body">
@@ -236,11 +274,11 @@ Regards</p>
   <div class="comment-header">
     <strong>
       
-        Lorenzo
+      Lorenzo
       
     </strong>
-    <time datetime="2012-01-04T11:12:00+00:00">
-      January 04, 2012 at 11:12 AM
+    <time datetime="2012-01-04T06:12:00-05:00">
+      January 04, 2012 at 06:12 AM
     </time>
   </div>
   <div class="comment-body">
@@ -257,11 +295,11 @@ Regards</p>
   <div class="comment-header">
     <strong>
       
-        Emily
+      Emily
       
     </strong>
-    <time datetime="2012-01-05T09:14:00+00:00">
-      January 05, 2012 at 09:14 AM
+    <time datetime="2012-01-05T04:14:00-05:00">
+      January 05, 2012 at 04:14 AM
     </time>
   </div>
   <div class="comment-body">
@@ -278,11 +316,11 @@ Regards</p>
   <div class="comment-header">
     <strong>
       
-        Jennifer
+      Jennifer
       
     </strong>
-    <time datetime="2012-01-11T20:06:00+00:00">
-      January 11, 2012 at 08:06 PM
+    <time datetime="2012-01-11T15:06:00-05:00">
+      January 11, 2012 at 03:06 PM
     </time>
   </div>
   <div class="comment-body">
@@ -299,11 +337,11 @@ Regards</p>
   <div class="comment-header">
     <strong>
       
-        <a href="http://mrmcelwee.blogspot.com" target="_blank">Patrick Mc</a>
+      <a href="http://mrmcelwee.blogspot.com" target="_blank">Patrick Mc</a>
       
     </strong>
-    <time datetime="2012-02-01T15:53:00+00:00">
-      February 01, 2012 at 03:53 PM
+    <time datetime="2012-02-01T10:53:00-05:00">
+      February 01, 2012 at 10:53 AM
     </time>
   </div>
   <div class="comment-body">
@@ -431,7 +469,7 @@ Regards</p>
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

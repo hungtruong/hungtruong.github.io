@@ -7,24 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Sora 2 enables short AI-generated videos with personalized cameos via app onboarding, though users report rate limits (71 videos) and inconsistent content guardrails. The model leverages prompt rewriting and voice cloning despite occasional content violation notifications, with moderation bypassed via contextual phrasing like '90s sitcom'. OpenAI's AI agent purchase protocol hints at potential branded advertising integrations amidst viral misuses of Sam Altman cameos." />
 	<title>First Impressions of OpenAI's Sora 2 + App</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="First Impressions of OpenAI's Sora 2 + App" property="og:title" /><meta content="article" property="og:type" /><meta content="Initial thoughts and notes about OpenAI's Sora 2 and how it changes text-to-video generation." property="og:description" /><meta content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" property="og:url" /><meta
-		content="2025-10-01T00:00:00+00:00"
-		property="article:published_time"
-	/>
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="First Impressions of OpenAI's Sora 2 + App" property="og:title" /><meta content="article" property="og:type" /><meta content="Sora 2 enables short AI-generated videos with personalized cameos via app onboarding, though users report rate limits (71 videos) and inconsistent content guardrails. The model leverages prompt rewriting and voice cloning despite occasional content violation notifications, with moderation bypassed via contextual phrasing like '90s sitcom'. OpenAI's AI agent purchase protocol hints at potential branded advertising integrations amidst viral misuses of Sam Altman cameos." property="og:description" /><meta content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" property="og:url" /><meta content="2025-10-01T00:00:00-04:00" property="article:published_time" />
 	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="First Impressions of OpenAI's Sora 2 + App" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" /><meta name="twitter:description" content="Initial thoughts and notes about OpenAI's Sora 2 and how it changes text-to-video generation." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp" /><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="First Impressions of OpenAI's Sora 2 + App" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" /><meta name="twitter:description" content="Sora 2 enables short AI-generated videos with personalized cameos via app onboarding, though users report rate limits (71 videos) and inconsistent content guardrails. The model leverages prompt rewriting and voice cloning despite occasional content violation notifications, with moderation bypassed via contextual phrasing like '90s sitcom'. OpenAI's AI agent purchase protocol hints at potential branded advertising integrations amidst viral misuses of Sam Altman cameos." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -32,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "First Impressions of OpenAI's Sora 2 + App",
+      "image": [
+        "https://www.hung-truong.com/blog/assets/img//wp-content/uploads/2025/sora-spaghetti-poster.webp"
+       ],
+      "datePublished": "2025-10-01T00:00:00-04:00",
+      "dateModified": "2025-10-01T00:00:00-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Sora 2 enables short AI-generated videos with personalized cameos via app onboarding, though users report rate limits (71 videos) and inconsistent content guardrails. The model leverages prompt rewriting and voice cloning despite occasional content violation notifications, with moderation bypasse...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -61,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -220,13 +264,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/openais-sora-2.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/openais-sora-2.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -371,7 +415,7 @@
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

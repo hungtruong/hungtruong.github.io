@@ -14,7 +14,8 @@ You are an AI agent that helps the user, Hung Truong, write and maintain this bl
 - **PLAN EXECUTION**: UNLESS EXPLICITLY INSTRUCTED, you are STRICTLY FORBIDDEN from executing an `implementation_plan.md` (e.g. `ShouldAutoProceed` MUST be `false`).
 - **IMAGE STYLE PREFERENCE**: Always prefer using `<figure>` and `<figcaption>` tags for images and their descriptions over standard Markdown image syntax. Do NOT "invent" or add caption text; only use existing descriptions or if explicitly provided.
 - **API KEYS**: The proxy handles OpenRouter API keys. Do NOT request or expect client-side keys.
-- **NO TEMPORARY SCRIPTS**: Never commit temporary scripts. Run, delete, or gitignore them.
+- **NO TEMPORARY SCRIPTS**: Place one-off analysis or fix scripts in `scripts/temp/` (which is gitignored). Do NOT pollute the root `scripts/` directory with disposable files.
+- **CONTEXT LIMITS**: Do NOT worry about context limits prematurely. Send full content unless it's obviously impossible.
 
 ## Paths & Naming
 - **Posts**: `_posts/2026-2030/YYYY-MM-DD-title-slug.md` (Use correct year folder).
@@ -33,7 +34,14 @@ description: Brief SEO-friendly description
 image: /wp-content/uploads/YYYY/featured-or-poster.webp # Absolute site-root path
 ---
 ```
+```
 
+## Metadata Workflow
+Before publishing, ensure high-quality metadata (Category, Tags, SEO Summary) by running:
+```bash
+python3 scripts/update_post_metadata.py --file _posts/YYYY-MM-DD-title-slug.md
+```
+This script uses an LLM to assign a standard category, generate specific tags, and write a dense search-optimized summary.
 ## Content Structure & Linking
 - Start with front matter → intro paragraph(s) → `<!--more-->` → body sections.
 - When Hung requests a link:
@@ -81,3 +89,32 @@ To force regeneration (e.g. to fix typos):
 3. **Run Batch** on Kaggle. It will detect the missing audio and regenerate.
 
 
+## Semantic Search System
+A vector-based search engine leveraging Cloudflare Workers AI (Qwen3-0.6b embeddings) and Cloudflare Vectorize.
+
+### Core Components
+- **Embeddings**: `@cf/qwen/qwen3-embedding-0.6b` (8192 token context loop, 8MB payload limit).
+- **Index**: 
+  - `blog-index-content` (Primary): Embeds `Title + Summary + Full Body`.
+  - `blog-index` (Legacy): Embeds `Title + Summary` only.
+
+### Indexing (`scripts/smart_indexer.py`)
+Run locally to populate Cloudflare Vectorize.
+- **Dependency**: Requires `tiktoken` for accurate token limits.
+- **Run**: `python3 scripts/smart_indexer.py --mode content` (Processing 600+ posts takes ~2 min with greedy batching).
+- **Logic**: 
+  - Uses Greedy Batching (max 3000 tokens/batch) to optimize speed without hitting API payload errors.
+  - Caches hashes in `scripts/.vector-cache-blog-index-content.json` to process only new/changed files.
+
+### Search API (`search-api/`)
+Custom Cloudflare Worker handling vector search requests.
+- **URL**: `https://blogsearch.hung-truong.com`
+- **Default Behavior**: Queries `blog-index-content` (Full Content).
+- **Legacy Mode**: `https://blogsearch.hung-truong.com?index_type=summary`
+- **Deployment**: `npx wrangler deploy` in `search-api/` directory.
+
+### Debugging & Verification
+To verify the index quality or debug missing results:
+1. **Compare Indices**: Use `scripts/compare_indices.py` to run side-by-side queries.
+2. **Missing Posts**: Check `scripts/check_skipped_posts.py` if posts appear missing.
+3. **Reset Cache**: To force full re-index, delete `scripts/.vector-cache-[index-name].json` and run indexer.

@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 30 Jan 2026 13:24:23 +0000</pubDate>
-    <lastBuildDate>Fri, 30 Jan 2026 13:24:23 +0000</lastBuildDate>
+    <pubDate>Fri, 30 Jan 2026 14:43:43 -0500</pubDate>
+    <lastBuildDate>Fri, 30 Jan 2026 14:43:43 -0500</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       
@@ -106,18 +106,22 @@
 
 </description>
         
-        <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
+        <pubDate>Tue, 27 Jan 2026 00:00:00 -0500</pubDate>
         <link>https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/</guid>
         
+        <category>Qwen3-TTS</category>
+        
+        <category>Kaggle</category>
+        
+        <category>GitHub</category>
+        
+        <category>Logic Pro</category>
+        
+        <category>Jekyll</category>
+        
         
         <category>Tech</category>
-        
-        <category>AI</category>
-        
-        <category>Coding</category>
-        
-        <category>Blogging</category>
         
       </item>
       
@@ -234,14 +238,22 @@
 
 </description>
         
-        <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 22 Jan 2026 00:00:00 -0500</pubDate>
         <link>https://www.hung-truong.com/blog/2026/01/22/how-low-can-wegovy/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2026/01/22/how-low-can-wegovy/</guid>
         
+        <category>Wegovy</category>
+        
+        <category>Semaglutide</category>
+        
+        <category>GLP-1</category>
+        
+        <category>Weight Loss</category>
+        
+        <category>Concept2 RowErg</category>
+        
         
         <category>Life</category>
-        
-        <category>Random</category>
         
       </item>
       
@@ -372,14 +384,22 @@
 
 </description>
         
-        <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 01 Oct 2025 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/10/01/openais-sora-2/</guid>
         
+        <category>Sora 2</category>
+        
+        <category>OpenAI</category>
+        
+        <category>Generative AI</category>
+        
+        <category>LoRA</category>
+        
+        <category>Content Moderation</category>
+        
         
         <category>Tech</category>
-        
-        <category>AI</category>
         
       </item>
       
@@ -451,16 +471,22 @@
 
 </description>
         
-        <pubDate>Sat, 27 Sep 2025 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 27 Sep 2025 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/09/27/cleaning-out-my-bookmarks/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/09/27/cleaning-out-my-bookmarks/</guid>
         
+        <category>iOS</category>
         
-        <category>Tech</category>
+        <category>Django</category>
         
-        <category>Blogging</category>
+        <category>Bookmarklets</category>
         
-        <category>Web</category>
+        <category>Browser Shortcuts</category>
+        
+        <category>Personal</category>
+        
+        
+        <category>Life</category>
         
       </item>
       
@@ -543,16 +569,24 @@
 
 </description>
         
-        <pubDate>Wed, 24 Sep 2025 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 24 Sep 2025 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/09/24/goodbye-claude-and-gemini-hello-codex/</guid>
         
+        <category>OpenAI Codex</category>
         
-        <category>Tech</category>
+        <category>CLI</category>
+        
+        <category>GPT-5</category>
+        
+        <category>Cloudflare Workers</category>
+        
+        <category>Resend</category>
         
         <category>AI</category>
         
-        <category>Coding</category>
+        
+        <category>Tech</category>
         
       </item>
       
@@ -691,14 +725,22 @@
 
 </description>
         
-        <pubDate>Sat, 30 Aug 2025 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 30 Aug 2025 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/08/30/fun-with-wan-2-2-text-to-video-ai/</guid>
         
+        <category>LoRA</category>
+        
+        <category>Wan 2.2</category>
+        
+        <category>ComfyUI</category>
+        
+        <category>A5000 GPU</category>
+        
+        <category>Suno</category>
+        
         
         <category>Tech</category>
-        
-        <category>AI</category>
         
       </item>
       
@@ -842,16 +884,22 @@
 &lt;p&gt;So there’s a lot of talk about how prompt engineering is dead, and “context engineering” is the new hotness. That makes a lot of sense to me, as I ran into this issue constantly while using Claude Code, and to a lesser degree, with Gemini CLI. To understand context, let me first give you some… context.&lt;/p&gt;
 </description>
         
-        <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/08/01/31-days-with-claude-code-what-i-learned/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/08/01/31-days-with-claude-code-what-i-learned/</guid>
         
+        <category>Claude Code</category>
+        
+        <category>Context Windows</category>
+        
+        <category>LLMs</category>
+        
+        <category>AI Coding</category>
+        
+        <category>Tokens</category>
+        
         
         <category>Tech</category>
-        
-        <category>AI</category>
-        
-        <category>Claude</category>
         
       </item>
       
@@ -932,16 +980,22 @@
 
 </description>
         
-        <pubDate>Tue, 15 Jul 2025 16:00:00 +0000</pubDate>
+        <pubDate>Tue, 15 Jul 2025 12:00:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/07/15/how-much-code-could-claude-code-code-if-claude-code-could-code-code-it-can/</guid>
         
+        <category>Claude Code</category>
+        
+        <category>Claude Sonnet 4</category>
+        
+        <category>AI CLI</category>
+        
+        <category>Playwright</category>
+        
+        <category>Cloudflare D1</category>
+        
         
         <category>Tech</category>
-        
-        <category>AI</category>
-        
-        <category>Claude</category>
         
       </item>
       
@@ -1051,16 +1105,22 @@
 
 </description>
         
-        <pubDate>Sun, 29 Jun 2025 23:26:00 +0000</pubDate>
+        <pubDate>Sun, 29 Jun 2025 19:26:00 -0400</pubDate>
         <link>https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/06/29/my-obligatory-blog-post-about-vibe-coding-as-a-software-engineer/</guid>
         
+        <category>Google Gemini CLI</category>
         
-        <category>Coding</category>
+        <category>Cloudflare Workers</category>
         
-        <category>AI</category>
+        <category>Next.js</category>
         
-        <category>Lifestyle</category>
+        <category>AI Coding</category>
+        
+        <category>Anime Nano</category>
+        
+        
+        <category>Tech</category>
         
       </item>
       
@@ -1170,14 +1230,24 @@
 
 </description>
         
-        <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 -0500</pubDate>
         <link>https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</link>
         <guid isPermaLink="true">https://www.hung-truong.com/blog/2025/02/27/i-3d-printed-a-replacement-part-for-my-toto-c200-washlet-baseplate</guid>
         
+        <category>Toto C200 Washlet</category>
         
-        <category>Tech</category>
+        <category>3D Printing</category>
         
-        <category>Blogging</category>
+        <category>TinkerCad</category>
+        
+        <category>Ender 3</category>
+        
+        <category>DIY</category>
+        
+        <category>Home</category>
+        
+        
+        <category>Life</category>
         
       </item>
       

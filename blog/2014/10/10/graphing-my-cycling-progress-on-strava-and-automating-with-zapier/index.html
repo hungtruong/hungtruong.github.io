@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Automated tracking of Strava cycling segment efforts to Google Sheets using Zapier and the Strava API for real-time performance visualization. Configured Zapier triggers for user ID retrieval, starred segments, and new effort detection with date formatting for spreadsheet compatibility. Utilized Runscope for API debugging and resolved parameter errors like misspelled 'athlete_id' during integration." />
 	<title>Graphing My Cycling Progress on Strava and Automating With Zapier</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Graphing My Cycling Progress on Strava and Automating With Zapier" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/" property="og:url" /><meta
-		content="2014-10-10T12:03:32+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="Graphing My Cycling Progress on Strava and Automating With Zapier" property="og:title" /><meta content="article" property="og:type" /><meta content="Automated tracking of Strava cycling segment efforts to Google Sheets using Zapier and the Strava API for real-time performance visualization. Configured Zapier triggers for user ID retrieval, starred segments, and new effort detection with date formatting for spreadsheet compatibility. Utilized Runscope for API debugging and resolved parameter errors like misspelled 'athlete_id' during integration." property="og:description" /><meta content="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/" property="og:url" /><meta content="2014-10-10T08:03:32-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Graphing My Cycling Progress on Strava and Automating With Zapier" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="Graphing My Cycling Progress on Strava and Automating With Zapier" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/" /><meta name="twitter:description" content="Automated tracking of Strava cycling segment efforts to Google Sheets using Zapier and the Strava API for real-time performance visualization. Configured Zapier triggers for user ID retrieval, starred segments, and new effort detection with date formatting for spreadsheet compatibility. Utilized Runscope for API debugging and resolved parameter errors like misspelled 'athlete_id' during integration." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Graphing My Cycling Progress on Strava and Automating With Zapier",
+      "image": [
+        null
+       ],
+      "datePublished": "2014-10-10T08:03:32-04:00",
+      "dateModified": "2014-10-10T08:03:32-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "Automated tracking of Strava cycling segment efforts to Google Sheets using Zapier and the Strava API for real-time performance visualization. Configured Zapier triggers for user ID retrieval, starred segments, and new effort detection with date formatting for spreadsheet compatibility. Utilized ...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2014/10/10/graphing-my-cycling-progress-on-strava-and-automating-with-zapier/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -148,13 +186,13 @@ I’ve been using <a href="http://www.strava.com/">Strava</a> to track my rides,
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/graphing-my-cycling-progress-on-strava-and-automating-with-zapier.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/graphing-my-cycling-progress-on-strava-and-automating-with-zapier.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -198,11 +236,11 @@ I’ve been using <a href="http://www.strava.com/">Strava</a> to track my rides,
   <div class="comment-header">
     <strong>
       
-        <a href="http://cjremus.ghost.io" target="_blank">Chris</a>
+      <a href="http://cjremus.ghost.io" target="_blank">Chris</a>
       
     </strong>
-    <time datetime="2014-10-17T09:06:17+00:00">
-      October 17, 2014 at 09:06 AM
+    <time datetime="2014-10-17T05:06:17-04:00">
+      October 17, 2014 at 05:06 AM
     </time>
   </div>
   <div class="comment-body">
@@ -211,20 +249,19 @@ I’ve been using <a href="http://www.strava.com/">Strava</a> to track my rides,
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151275">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2014-10-18T14:23:40+00:00">
-      October 18, 2014 at 02:23 PM
+    <time datetime="2014-10-18T10:23:40-04:00">
+      October 18, 2014 at 10:23 AM
     </time>
   </div>
   <div class="comment-body">
@@ -237,20 +274,19 @@ You can use the trigger for a new ride, and pair it up with a new tweet. The out
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151276">
   <div class="comment-header">
     <strong>
       
-        <a href="http://twitter.com/cjremus" target="_blank">Chris Remus (@cjremus)</a>
+      <a href="http://twitter.com/cjremus" target="_blank">Chris Remus (@cjremus)</a>
       
     </strong>
-    <time datetime="2014-10-22T10:04:32+00:00">
-      October 22, 2014 at 10:04 AM
+    <time datetime="2014-10-22T06:04:32-04:00">
+      October 22, 2014 at 06:04 AM
     </time>
   </div>
   <div class="comment-body">
@@ -260,20 +296,19 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151277">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2014-10-25T11:45:47+00:00">
-      October 25, 2014 at 11:45 AM
+    <time datetime="2014-10-25T07:45:47-04:00">
+      October 25, 2014 at 07:45 AM
     </time>
   </div>
   <div class="comment-body">
@@ -284,22 +319,22 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
-        
-        
+    
+    
+    
 <li class="comment" id="comment-151293">
   <div class="comment-header">
     <strong>
       
-        <a href="http://twitter.com/andrewwitchell" target="_blank">Andrew Witchell (@andrewwitchell)</a>
+      <a href="http://twitter.com/andrewwitchell" target="_blank">Andrew Witchell (@andrewwitchell)</a>
       
     </strong>
-    <time datetime="2015-12-12T22:41:24+00:00">
-      December 12, 2015 at 10:41 PM
+    <time datetime="2015-12-12T17:41:24-05:00">
+      December 12, 2015 at 05:41 PM
     </time>
   </div>
   <div class="comment-body">
@@ -310,13 +345,13 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -324,11 +359,11 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   <div class="comment-header">
     <strong>
       
-        <a href="http://zapier.com" target="_blank">Alison Groves</a>
+      <a href="http://zapier.com" target="_blank">Alison Groves</a>
       
     </strong>
-    <time datetime="2014-10-31T16:09:34+00:00">
-      October 31, 2014 at 04:09 PM
+    <time datetime="2014-10-31T12:09:34-04:00">
+      October 31, 2014 at 12:09 PM
     </time>
   </div>
   <div class="comment-body">
@@ -345,11 +380,11 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   <div class="comment-header">
     <strong>
       
-        <a href="https://plus.google.com/+MarkParssey" target="_blank">Mark Parssey</a>
+      <a href="https://plus.google.com/+MarkParssey" target="_blank">Mark Parssey</a>
       
     </strong>
-    <time datetime="2015-02-11T20:19:03+00:00">
-      February 11, 2015 at 08:19 PM
+    <time datetime="2015-02-11T15:19:03-05:00">
+      February 11, 2015 at 03:19 PM
     </time>
   </div>
   <div class="comment-body">
@@ -360,20 +395,19 @@ Any chance you could add that to Strava Beta?</p>
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-151283">
   <div class="comment-header">
     <strong>
       
-        <a href="https://plus.google.com/+MarkParssey" target="_blank">Mark Parssey</a>
+      <a href="https://plus.google.com/+MarkParssey" target="_blank">Mark Parssey</a>
       
     </strong>
-    <time datetime="2015-02-11T20:47:51+00:00">
-      February 11, 2015 at 08:47 PM
+    <time datetime="2015-02-11T15:47:51-05:00">
+      February 11, 2015 at 03:47 PM
     </time>
   </div>
   <div class="comment-body">
@@ -384,9 +418,9 @@ Any chance you could add that to Strava Beta?</p>
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -394,11 +428,11 @@ Any chance you could add that to Strava Beta?</p>
   <div class="comment-header">
     <strong>
       
-        David
+      David
       
     </strong>
-    <time datetime="2015-08-05T06:23:56+00:00">
-      August 05, 2015 at 06:23 AM
+    <time datetime="2015-08-05T02:23:56-04:00">
+      August 05, 2015 at 02:23 AM
     </time>
   </div>
   <div class="comment-body">
@@ -524,7 +558,7 @@ Any chance you could add that to Strava Beta?</p>
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 

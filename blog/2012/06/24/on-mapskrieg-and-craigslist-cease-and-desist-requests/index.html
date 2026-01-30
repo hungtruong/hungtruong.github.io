@@ -7,30 +7,19 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="MapsKrieg, a Craigslist-Google Maps mashup for web and iOS, was shut down after a cease and desist from Craigslist in 2012. Developed as a scalable scraper for US/Canada listings, it faced database scaling challenges requiring manual pruning and migration to Google App Engine. The accidental success generated passive income via Google Adsense, inspired SEO learnings, and preceded competitor Padmapper's legal takedown." />
 	<title>On Mapskrieg and craigslist Cease and Desist Requests</title>
 
 	<!-- Open Graph Meta -->
-	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="On Mapskrieg and craigslist Cease and Desist Requests" property="og:title" /><meta content="article" property="og:type" /><meta content="I say potato, you say potato..." property="og:description" /><meta content="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/" property="og:url" /><meta
-		content="2012-06-24T23:14:37+00:00"
-		property="article:published_time"
-	/>
-	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-		property="og:image"
-	/><!-- Twitter Cards -->
+	<meta content="Hung Truong: The Blog!" property="og:site_name" /><meta content="On Mapskrieg and craigslist Cease and Desist Requests" property="og:title" /><meta content="article" property="og:type" /><meta content="MapsKrieg, a Craigslist-Google Maps mashup for web and iOS, was shut down after a cease and desist from Craigslist in 2012. Developed as a scalable scraper for US/Canada listings, it faced database scaling challenges requiring manual pruning and migration to Google App Engine. The accidental success generated passive income via Google Adsense, inspired SEO learnings, and preceded competitor Padmapper's legal takedown." property="og:description" /><meta content="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/" property="og:url" /><meta content="2012-06-24T19:14:37-04:00" property="article:published_time" />
+	<meta content="https://www.hung-truong.com/blog/about/" property="article:author" /><meta content="https://www.hung-truong.com/blog/assets/img/touring.jpg" property="og:image" /><!-- Twitter Cards -->
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@hungtruong" />
-	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="On Mapskrieg and craigslist Cease and Desist Requests" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/" /><meta name="twitter:description" content="I say potato, you say potato..." /><meta
-		name="twitter:image:src"
-		content="https://www.hung-truong.com/blog/assets/img/touring.jpg"
-	/><!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href=""/>
+	<meta name="twitter:creator" content="@hungtruong" /><meta name="twitter:title" content="On Mapskrieg and craigslist Cease and Desist Requests" /><meta name="twitter:url" content="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/" /><meta name="twitter:description" content="MapsKrieg, a Craigslist-Google Maps mashup for web and iOS, was shut down after a cease and desist from Craigslist in 2012. Developed as a scalable scraper for US/Canada listings, it faced database scaling challenges requiring manual pruning and migration to Google App Engine. The accidental success generated passive income via Google Adsense, inspired SEO learnings, and preceded competitor Padmapper's legal takedown." /><meta name="twitter:image:src" content="https://www.hung-truong.com/blog/assets/img/touring.jpg" /><!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="" />
 
 	<!-- Come and get me RSS readers -->
-	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!"
-	href="https://www.hung-truong.com/blog/feed.xml" />
+	<link rel="alternate" type="application/rss+xml" title="Hung Truong: The Blog!" href="https://www.hung-truong.com/blog/feed.xml" />
 
 	<!-- Stylesheet -->
 	<!-- Ensure JS class exists before CSS loads to avoid FOUC on JS-dependent components -->
@@ -38,25 +27,69 @@
 
 	<!-- Critical nav CSS: apply final nav layout early to avoid menu reflow/flicker -->
 	<style>
-	  /* Mobile/default */
-	  .nav-collapse ul { margin:0; padding:0; list-style:none; }
-	  .nav-collapse ul li { display:block; width:100%; }
-	  .nav-collapse ul li a { display:block; padding:5px 2rem; }
+		/* Mobile/default */
+		.nav-collapse ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-	  /* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
-	  @media only screen and (min-width: 800px) {
-	    .nav-collapse ul li { display:inline; line-height:3em; background:none; padding:0; border:none; }
-	    .nav-collapse ul li a { display:inline-block; padding:0 0.25em; font-size:1.1em; }
-	    .nav-toggle { display:none; }
-	  }
+		.nav-collapse ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.nav-collapse ul li a {
+			display: block;
+			padding: 5px 2rem;
+		}
+
+		/* Desktop breakpoint - mirror _800up.scss to avoid reflow when media queries apply */
+		@media only screen and (min-width: 800px) {
+			.nav-collapse ul li {
+				display: inline;
+				line-height: 3em;
+				background: none;
+				padding: 0;
+				border: none;
+			}
+
+			.nav-collapse ul li a {
+				display: inline-block;
+				padding: 0 0.25em;
+				font-size: 1.1em;
+			}
+
+			.nav-toggle {
+				display: none;
+			}
+		}
 	</style>
 	<link rel="stylesheet" href="/blog/assets/css/style.css" />
 
 	<!-- Canonical URL -->
-	<link
-		rel="canonical"
-		href="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/"
-	/><!-- Global site tag (gtag.js) - Google Analytics -->
+	<link rel="canonical" href="https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/" /><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "On Mapskrieg and craigslist Cease and Desist Requests",
+      "image": [
+        null
+       ],
+      "datePublished": "2012-06-24T19:14:37-04:00",
+      "dateModified": "2012-06-24T19:14:37-04:00",
+      "author": [{
+          "@type": "Person",
+          "name": "Hung Truong",
+          "url": "https://www.hung-truong.com/blog/about/"
+        }],
+      "description": "MapsKrieg, a Craigslist-Google Maps mashup for web and iOS, was shut down after a cease and desist from Craigslist in 2012. Developed as a scalable scraper for US/Canada listings, it faced database scaling challenges requiring manual pruning and migration to Google App Engine. The accidental succ...",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hung-truong.com/blog/2012/06/24/on-mapskrieg-and-craigslist-cease-and-desist-requests/"
+      }
+    }
+    </script><!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-248124-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -67,27 +100,32 @@
 </script>
 </head>
 
-
 <body>
 
    <div class="header ">
-     <div class="container">
-         <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
-         <nav class="nav-collapse">
-             <ul class="noList"><li class="elementfirst">
-                     <a href="/blog/index.html">Home</a>
-                 </li><li class="element">
-                     <a href="/blog/archives">Archives</a>
-                 </li><li class="element">
-                     <a href="/blog/about">About</a>
-                 </li><li class="element">
-                     <a href="/blog/contact">Contact</a>
-                 </li><li class="elementlast">
-                     <a href="/blog/speaking">Speaking</a>
-                 </li></ul>
-         </nav>
-     </div>
- </div><!-- end .header -->
+    <div class="container">
+        <h1 class="logo"><a href="/blog/">Hung Truong: The Blog!</a></h1>
+        <nav class="nav-collapse">
+            <ul class="noList"><li
+                    class="elementfirst">
+                    <a href="/blog/index.html">Home</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/archives">Archives</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/about">About</a>
+                </li><li
+                    class="element">
+                    <a href="/blog/contact">Contact</a>
+                </li><li
+                    class="elementlast">
+                    <a href="/blog/speaking">Speaking</a>
+                </li></ul>
+        </nav>
+
+    </div>
+</div><!-- end .header -->
 
    <div class="content">
       <div class="container">
@@ -172,13 +210,13 @@ Fast forward to Friday and I got a tweet that Mapskrieg’s competitor, <a href=
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769779463"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769802223"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769779465"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769802225"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/on-mapskrieg-and-craigslist-cease-and-desist-requests.vtt?v=1769779463";
+      var vttUrl = "/blog/assets/audio/on-mapskrieg-and-craigslist-cease-and-desist-requests.vtt?v=1769802223";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -222,11 +260,11 @@ Fast forward to Friday and I got a tweet that Mapskrieg’s competitor, <a href=
   <div class="comment-header">
     <strong>
       
-        <a href="http://aseba.com.ar" target="_blank">Sebas</a>
+      <a href="http://aseba.com.ar" target="_blank">Sebas</a>
       
     </strong>
-    <time datetime="2012-06-25T09:21:17+00:00">
-      June 25, 2012 at 09:21 AM
+    <time datetime="2012-06-25T05:21:17-04:00">
+      June 25, 2012 at 05:21 AM
     </time>
   </div>
   <div class="comment-body">
@@ -236,20 +274,19 @@ It’s a really usable piece of software to run on you own server when looking f
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-141117">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2012-06-25T10:04:34+00:00">
-      June 25, 2012 at 10:04 AM
+    <time datetime="2012-06-25T06:04:34-04:00">
+      June 25, 2012 at 06:04 AM
     </time>
   </div>
   <div class="comment-body">
@@ -258,20 +295,19 @@ It’s a really usable piece of software to run on you own server when looking f
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-141119">
   <div class="comment-header">
     <strong>
       
-        CJ
+      CJ
       
     </strong>
-    <time datetime="2012-07-06T00:13:49+00:00">
-      July 06, 2012 at 12:13 AM
+    <time datetime="2012-07-05T20:13:49-04:00">
+      July 05, 2012 at 08:13 PM
     </time>
   </div>
   <div class="comment-body">
@@ -281,20 +317,19 @@ Fuck em and their anti-progress old-timey classifieds site. They’re just going
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-141121">
   <div class="comment-header">
     <strong>
       
-        Karmen
+      Karmen
       
     </strong>
-    <time datetime="2012-07-06T19:52:32+00:00">
-      July 06, 2012 at 07:52 PM
+    <time datetime="2012-07-06T15:52:32-04:00">
+      July 06, 2012 at 03:52 PM
     </time>
   </div>
   <div class="comment-body">
@@ -305,17 +340,17 @@ Fuck em and their anti-progress old-timey classifieds site. They’re just going
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
+    
     </ul>
-  
+    
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -323,11 +358,11 @@ Fuck em and their anti-progress old-timey classifieds site. They’re just going
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.Jonathan.Lansey.net" target="_blank">Jonathan Lansey</a>
+      <a href="http://www.Jonathan.Lansey.net" target="_blank">Jonathan Lansey</a>
       
     </strong>
-    <time datetime="2013-01-21T20:25:34+00:00">
-      January 21, 2013 at 08:25 PM
+    <time datetime="2013-01-21T15:25:34-05:00">
+      January 21, 2013 at 03:25 PM
     </time>
   </div>
   <div class="comment-body">
@@ -339,20 +374,19 @@ Thanks,
   </div>
 
   
-  
-    <ul class="comment-replies">
-      
-        
-        
+   <ul class="comment-replies">
+    
+    
+    
 <li class="comment" id="comment-142871">
   <div class="comment-header">
     <strong>
       
-        <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
+      <a href="http://www.hung-truong.com/blog/" target="_blank">Hung</a>
       
     </strong>
-    <time datetime="2013-01-23T12:24:24+00:00">
-      January 23, 2013 at 12:24 PM
+    <time datetime="2013-01-23T07:24:24-05:00">
+      January 23, 2013 at 07:24 AM
     </time>
   </div>
   <div class="comment-body">
@@ -363,9 +397,9 @@ Thanks,
   
   
 </li>
-      
+    
     </ul>
-  
+    
 </li>
       
         
@@ -373,11 +407,11 @@ Thanks,
   <div class="comment-header">
     <strong>
       
-        Lelouch L.
+      Lelouch L.
       
     </strong>
-    <time datetime="2013-03-07T19:05:08+00:00">
-      March 07, 2013 at 07:05 PM
+    <time datetime="2013-03-07T14:05:08-05:00">
+      March 07, 2013 at 02:05 PM
     </time>
   </div>
   <div class="comment-body">
@@ -503,7 +537,7 @@ Thanks,
     </a>
     
   </div>
-  </div>
+</article>
       </div>
    </div><!-- end .content -->
 
