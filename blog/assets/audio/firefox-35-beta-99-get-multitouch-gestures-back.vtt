@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.875
+Firefox 3.5 beta 99 – Get Multitouch Gestures Back!
+
+00:00:06.375 --> 00:00:08.852
+Published on June 09, 2009.
+
+00:00:09.852 --> 00:00:15.526
+I just updated to the newest beta of Firefox 3.5 and it’s apparently beta 99.
+
+00:00:16.026 --> 00:00:19.142
+This is pretty funny because the previous one was 4.
+
+00:00:19.642 --> 00:00:23.158
+I think it’s just an indicator that they’re pretty close to a release candidate.
+
+00:00:24.158 --> 00:00:30.951
+One thing I really like about Firefox (at least these beta versions) is that they support multitouch gestures on my Macbook Pro.
+
+00:00:31.451 --> 00:00:40.481
+Pinching zooms out, un-pinching (spreading?) zooms in, three finger swipe up goes to the top of the page and three finger swipe down goes to the bottom.
+
+00:00:40.981 --> 00:00:42.420
+This is really cool.
+
+00:00:43.420 --> 00:00:48.854
+One of the weirder ones is that twisting with two fingers lets you go back and forth between tabs.
+
+00:00:49.354 --> 00:00:52.630
+I thought it was wacky at first but now I think it’s very useful.
+
+00:00:53.130 --> 00:00:59.283
+For some reason, the default value for this gesture is disabled in the newest version (beta 99).
+
+00:00:59.783 --> 00:01:02.660
+It’s also disabled in Shiretoko, the nightly build.
+
+00:01:03.160 --> 00:01:07.156
+I tried looking in the preferences to control this but they weren’t in there.
+
+00:01:07.656 --> 00:01:09.573
+Then I remembered about:config.
+
+00:01:10.573 --> 00:01:14.889
+To get the twist thing back, type “about:config” into the address bar.
+
+00:01:15.389 --> 00:01:24.579
+Then find the settings that say “browser.gesture.twist” The setting for “browser.gesture.twist.left” should be “Browser:PrevTab”Â and the one for .
+
+00:01:25.079 --> 00:01:27.796
+right should be “Browser:NextTab” like so:
+
+00:01:28.796 --> 00:01:32.312
+Voila! Your twisty tab changing gestures will be back!
