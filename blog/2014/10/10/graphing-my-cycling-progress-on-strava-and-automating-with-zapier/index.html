@@ -218,13 +218,13 @@ I’ve been using <a href="http://www.strava.com/">Strava</a> to track my rides,
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869459"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869645"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769869461"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769869647"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/graphing-my-cycling-progress-on-strava-and-automating-with-zapier.vtt?v=1769869459";
+      var vttUrl = "/blog/assets/audio/graphing-my-cycling-progress-on-strava-and-automating-with-zapier.vtt?v=1769869645";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -279,6 +279,10 @@ I’ve been using <a href="http://www.strava.com/">Strava</a> to track my rides,
     <p>Very nice integration! I’m looking for a way to automatically share my Strava activities to Twitter, either directly or through Zapier. I already tried to do it via Facebook, through Zapier, and confirmed with Zapier that it wouldn’t work that way. Do you think something like this is possible?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151274"
+      data-comment-name="Chris">Reply</a>
+  </div>
 
   
    <ul class="comment-replies">
@@ -304,6 +308,10 @@ You can use the trigger for a new ride, and pair it up with a new tweet. The out
 <p>Let me know if you have any questions about getting it to work.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151275"
+      data-comment-name="Hung">Reply</a>
+  </div>
 
   
    <ul class="comment-replies">
@@ -326,6 +334,10 @@ You can use the trigger for a new ride, and pair it up with a new tweet. The out
 Ideally, I’d like the output to look like the Tweet that is sent when you hit the Twitter share button on a workout in Strava. Alternatively, I’d like to at least add how many miles the ride was and maybe the image link. Do you think it’s possible to do any of this?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151276"
+      data-comment-name="Chris Remus (@cjremus)">Reply</a>
+  </div>
 
   
    <ul class="comment-replies">
@@ -346,6 +358,10 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   <div class="comment-body">
     <p>Hey Chris, it looks like you figured out the formatting for the Strava integration based on your more recent tweets. Let me know if that’s the case or if you need more help with it.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151277"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -372,6 +388,10 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
   <div class="comment-body">
     <p>Super cool. I’ve been looking for a way to do this. How might I go about converting the ‘moving time’ data from seconds to mm:ss and/or avg &amp; max speed from m/s to km/hr?</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151293"
+      data-comment-name="Andrew Witchell (@andrewwitchell)">Reply</a>
   </div>
 
   
@@ -402,6 +422,10 @@ Ideally, I’d like the output to look like the Tweet that is sent when you hit 
     <p>This is so rad! What a killer use case. Appreciate you sharing it!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151279"
+      data-comment-name="Alison Groves">Reply</a>
+  </div>
 
   
   
@@ -425,6 +449,10 @@ I’d like to use it to access to access friends activities i.e. have a trigger 
 Any chance you could add that to Strava Beta?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151282"
+      data-comment-name="Mark Parssey">Reply</a>
+  </div>
 
   
    <ul class="comment-replies">
@@ -445,6 +473,10 @@ Any chance you could add that to Strava Beta?</p>
   <div class="comment-body">
     <p>Sorry, after thinking it through as what I want to do is give friends kudos there would have to be a trigger to do so and I can only see List activity kudoers, and it doesn’t seem to be a part of Update activity.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151283"
+      data-comment-name="Mark Parssey">Reply</a>
   </div>
 
   
@@ -471,6 +503,10 @@ Any chance you could add that to Strava Beta?</p>
     <p>Great work. Thanks for making it available.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="151291"
+      data-comment-name="David">Reply</a>
+  </div>
 
   
   
@@ -485,6 +521,14 @@ Any chance you could add that to Strava Beta?</p>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="graphing-my-cycling-progress-on-strava-and-automating-with-zapier">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -524,55 +568,104 @@ Any chance you could add that to Strava Beta?</p>
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

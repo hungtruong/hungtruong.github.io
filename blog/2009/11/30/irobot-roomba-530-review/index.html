@@ -198,13 +198,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869459"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869645"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769869461"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769869647"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/irobot-roomba-530-review.vtt?v=1769869459";
+      var vttUrl = "/blog/assets/audio/irobot-roomba-530-review.vtt?v=1769869645";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -259,6 +259,10 @@
     <p>Now all you need is a cat to ride around on it!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134341"
+      data-comment-name="Kate">Reply</a>
+  </div>
 
   
   
@@ -279,6 +283,10 @@
   <div class="comment-body">
     <p>I think the Roomba is all the pet I need right now. I just have to make sure it doesn’t get into any trouble while I’m out.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134344"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -302,6 +310,10 @@
 If you have pets – clean it regularly. The pet hairs is a Bi#@h to remove once it goes around the rollers.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134485"
+      data-comment-name="Pet Vacuums">Reply</a>
+  </div>
 
   
   
@@ -323,6 +335,10 @@ If you have pets – clean it regularly. The pet hairs is a Bi#@h to remove once
     <p>How did it handle the shaggy rug? It’s a nice little gadget but I’ve always presumed with big fluffy objects such as thick rugs it might not be so affective?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="140064"
+      data-comment-name="Rug Traders">Reply</a>
+  </div>
 
   
   
@@ -337,6 +353,14 @@ If you have pets – clean it regularly. The pet hairs is a Bi#@h to remove once
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="irobot-roomba-530-review">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -376,55 +400,104 @@ If you have pets – clean it regularly. The pet hairs is a Bi#@h to remove once
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

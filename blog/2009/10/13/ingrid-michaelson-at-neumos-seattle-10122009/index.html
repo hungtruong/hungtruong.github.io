@@ -206,13 +206,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869459"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869645"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769869461"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769869647"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.vtt?v=1769869459";
+      var vttUrl = "/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.vtt?v=1769869645";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -269,6 +269,10 @@ I was standing close to the girl who fainted. I then moved upstairs to get a dif
 Thanks!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134223"
+      data-comment-name="janet">Reply</a>
+  </div>
 
   
   
@@ -289,6 +293,10 @@ Thanks!</p>
   <div class="comment-body">
     <p>After Maybe, she and the band hid behind stuff on stage. Then for the encore they played a song about how much they like Mexican food (Maybe except with different words) and then Far Away, I believe. She had people yell “Far Away!” after she sang it, and then she made us sing “Are New” when she sang “Where the people are.” It was a short encore; I thought she was gonna sing more.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134224"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -312,6 +320,10 @@ Thanks!</p>
 Just heard her song “OK” on Ugly Betty (first episode of this new season). Good to hear her music is getting exposure.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134230"
+      data-comment-name="janet">Reply</a>
+  </div>
 
   
   
@@ -326,6 +338,14 @@ Just heard her song “OK” on Ugly Betty (first episode of this new season). G
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="ingrid-michaelson-at-neumos-seattle-10122009">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -365,55 +385,104 @@ Just heard her song “OK” on Ugly Betty (first episode of this new season). G
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

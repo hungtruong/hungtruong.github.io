@@ -211,6 +211,10 @@
     <p>Come on… say something about the actual questions - my wife is interviewing for that position tomorrow!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="42b3fd26e8c369a2"
+      data-comment-name="Mike Lee">Reply</a>
+  </div>
 
   
   
@@ -231,6 +235,10 @@
   <div class="comment-body">
     <p>If your wife needs to know the questions beforehand, she probably shouldn’t be working at Apple…</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="91b2bc5d82afb474"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -253,6 +261,10 @@
     <p>lame answer mr self righteous who didn’t get the job.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="cc1a7f0cd9e7e8d4"
+      data-comment-name="lame">Reply</a>
+  </div>
 
   
   
@@ -273,6 +285,10 @@
   <div class="comment-body">
     <p>Oh man, internet lurkers are here to hurt my feelings!</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="b75302c5535f4142"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -297,6 +313,10 @@ Cheers,
 Josh</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="ea4c52392fbb98be"
+      data-comment-name="Josh Marinos">Reply</a>
+  </div>
 
   
   
@@ -311,6 +331,14 @@ Josh</p>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="apple-internship-phone-interview-verdict">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -350,55 +378,104 @@ Josh</p>
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

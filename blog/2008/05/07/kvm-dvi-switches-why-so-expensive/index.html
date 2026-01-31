@@ -209,6 +209,10 @@
     <p>Paying $30-40 for a non-DVI KVM switch is already highway robbery from a technological standpoint, but not many ordinary consumers use them anymore. Add on DVI capability to the switch, and you have an even smaller pool of people who are interested – since like you said, a lot of folks can’t distinguish the difference in visual quality.  At least, that’s my theory.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="7fb36a6b1f8bfa17"
+      data-comment-name="Ender">Reply</a>
+  </div>
 
   
   
@@ -229,6 +233,10 @@
   <div class="comment-body">
     <p>I know cables in general are scams. I wasn’t sure about switches. I mean, they’re just switches! I learned about those in my circuits class way back when! I just figured they might have something special in them that requires some kind of thought. Maybe not. I guess it could just be demand vs. supply vs. no one buys these so jack up the price!</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="fcaf10ad7b2aee1a"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -253,6 +261,10 @@ For example, for the DVI KVM switch, there are DVI-I, DVi-D, Dual-link  or Singl
 Some IC chips cost even triple than the low-end one.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="f895409cd79f84a8"
+      data-comment-name="Rex">Reply</a>
+  </div>
 
   
   
@@ -276,6 +288,10 @@ However, getting a switch that minimises the degradation of the video, will not 
 My company specialises is ‘no-compromise’ KVM solutions and our customers include military, broadcast and media and CGI film producers, they won’t touch a $175 DVI switch with a very long stick. It is very complicated and very difficult to get right. It always amazes me that people wil spend $2000 on a PC, $500 on a display, $300 on a graphics card and hook it up through a $25/175 switch and complain that it is expensive!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="8396c52cddf36992"
+      data-comment-name="Richard">Reply</a>
+  </div>
 
   
   
@@ -296,6 +312,10 @@ My company specialises is ‘no-compromise’ KVM solutions and our customers in
   <div class="comment-body">
     <p>Hey Richard, I admit I have a $2000 PC, $500 24″ monitor and $400 printer but I found a 2-port DVI kvm for $175 is very expensive! With that money, I can get an 19 inch monitor. When you compare with VGA kvm, I got one for $20, that’s about 12% the cost of a DVI device. If the manufacturers can lower the price, I’m sure more people can afford and “willing” to pay for it.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="bd1f8aec592e97a0"
+      data-comment-name="Patrick">Reply</a>
   </div>
 
   
@@ -343,6 +363,10 @@ Please respond to the following email address:
 With appreciation, Larry</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="47128ad2769d2aaf"
+      data-comment-name="Lawrence Sobel">Reply</a>
+  </div>
 
   
   
@@ -363,6 +387,10 @@ With appreciation, Larry</p>
   <div class="comment-body">
     <p>yes, if i had unlimited taxpayer funding available to me, i too could afford to buy $500 dvi switches (&amp; $900 hammers) just like the US military does.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="153dee8b00480864"
+      data-comment-name="ss">Reply</a>
   </div>
 
   
@@ -386,6 +414,10 @@ With appreciation, Larry</p>
 one can do this thing manually with just one extra cable,to make this thing automatic  i wd rather buy an robot  or teach my dog how to do it.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="8f6b8291f3f54b49"
+      data-comment-name="james  bond">Reply</a>
+  </div>
 
   
   
@@ -400,6 +432,14 @@ one can do this thing manually with just one extra cable,to make this thing auto
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="kvm-dvi-switches-why-so-expensive">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -439,55 +479,104 @@ one can do this thing manually with just one extra cable,to make this thing auto
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

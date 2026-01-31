@@ -210,6 +210,10 @@
 i’d love to give FE a try but i can’t get my hands on an invite … argh…</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="37ce46762a1e3c4a"
+      data-comment-name="Tim">Reply</a>
+  </div>
 
   
   
@@ -232,6 +236,10 @@ i’d love to give FE a try but i can’t get my hands on an invite … argh…<
 Fire Eagle looks awesome – Exactly what I’ve been looking for! Do you ahve any invites spare? I’m dying to get soem stuff going with Mobil applications and geo-blogging.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="b1c10dd5144c0f56"
+      data-comment-name="Che Armstrong">Reply</a>
+  </div>
 
   
   
@@ -253,6 +261,10 @@ Fire Eagle looks awesome – Exactly what I’ve been looking for! Do you ahve a
     <p>Yes, I am intrigued by Fire Eagle and can’t seem to get my hands on an invite…could you help me out?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="17202810f5dc3951"
+      data-comment-name="Luke">Reply</a>
+  </div>
 
   
   
@@ -273,6 +285,10 @@ Fire Eagle looks awesome – Exactly what I’ve been looking for! Do you ahve a
   <div class="comment-body">
     <p>For some reason, invites are decoupled from developer accounts. So it’s not like I get invites just for signing up a la gmail. This is pretty weird, and I’m sorry I can’t provide invites right now since it seems a lot of people are interested in this.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="3c2b83565c24a217"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -296,6 +312,10 @@ Fire Eagle looks awesome – Exactly what I’ve been looking for! Do you ahve a
 Got a spare invite for me? Thanks.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="d3031dfdbbd9b245"
+      data-comment-name="cruster">Reply</a>
+  </div>
 
   
   
@@ -316,6 +336,10 @@ Got a spare invite for me? Thanks.</p>
   <div class="comment-body">
     <p>if you have a spare invite, i would really appreciate one.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="3bb9894b618fb9ce"
+      data-comment-name="Ankur Oberoi">Reply</a>
   </div>
 
   
@@ -339,6 +363,10 @@ Got a spare invite for me? Thanks.</p>
 Thanks, melanieb.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="1c5639c18c60db33"
+      data-comment-name="melanieb">Reply</a>
+  </div>
 
   
   
@@ -359,6 +387,10 @@ Thanks, melanieb.</p>
   <div class="comment-body">
     <p>Didn’t I just post that I don’t get invites just for being a developer? I’m sure you can find some from a more official person. Like I said before, I don’t have any invites, sorry!</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="4b357c55664421ac"
+      data-comment-name="Hung">Reply</a>
   </div>
 
   
@@ -381,6 +413,10 @@ Thanks, melanieb.</p>
     <p>fenixcsmar@gmail.com..I would really like an invite..thank you</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="cc890111698526c2"
+      data-comment-name="Monroe">Reply</a>
+  </div>
 
   
   
@@ -395,6 +431,14 @@ Thanks, melanieb.</p>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="fire-eagle-invite-get">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -434,55 +478,104 @@ Thanks, melanieb.</p>
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

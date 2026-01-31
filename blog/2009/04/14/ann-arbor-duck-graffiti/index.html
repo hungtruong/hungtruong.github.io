@@ -196,13 +196,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869459"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769869645"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769869461"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769869647"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/ann-arbor-duck-graffiti.vtt?v=1769869459";
+      var vttUrl = "/blog/assets/audio/ann-arbor-duck-graffiti.vtt?v=1769869645";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
@@ -259,6 +259,10 @@ Flickr collection #1 – Phlag
 Flickr collection #2 – Wild Guru Larry</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="130869"
+      data-comment-name="Pieter">Reply</a>
+  </div>
 
   
   
@@ -279,6 +283,10 @@ Flickr collection #2 – Wild Guru Larry</p>
   <div class="comment-body">
     <p>Very good observation! There’s also “CHU”, which is probably older and slightly less omnipresent.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="130919"
+      data-comment-name="Arnab">Reply</a>
   </div>
 
   
@@ -301,6 +309,10 @@ Flickr collection #2 – Wild Guru Larry</p>
     <p>Duck is, as far as I know, currently the most prolific tagger in Ann Arbor. While I have no idea who’s doing it, I am constantly tempted to hang a canvas in an alley downtown with a “Put duck here” sign on it, to hopefully get a nice original.
 More to the point, it has prompted me to always be on the lookout for a single tag, somewhere hard to find, that says “goose.”</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="133588"
+      data-comment-name="Afrop">Reply</a>
   </div>
 
   
@@ -325,6 +337,10 @@ My name is Stephanie Steinberg, and I am a reporter for the Michigan Daily. I am
 I would love to get student commentary for the article. Please e-mail me at [email protected] if you are interested. Thank you!</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="133962"
+      data-comment-name="Stephanie">Reply</a>
+  </div>
 
   
   
@@ -346,6 +362,10 @@ I would love to get student commentary for the article. Please e-mail me at [ema
     <p>I am duck.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134168"
+      data-comment-name="duck duck duck goose">Reply</a>
+  </div>
 
   
    <ul class="comment-replies">
@@ -366,6 +386,10 @@ I would love to get student commentary for the article. Please e-mail me at [ema
   <div class="comment-body">
     <p>Are you also CHU? That guy sucks.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="134211"
+      data-comment-name="Not Duck or Chu">Reply</a>
   </div>
 
   
@@ -410,6 +434,10 @@ SeakOner
 And a ton more that I can’t recall at this moment. It’s fun to wander around town and try to find all of these tags and to see where and how these writers get to some of these spots.</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="138991"
+      data-comment-name="sihk">Reply</a>
+  </div>
 
   
   
@@ -424,6 +452,14 @@ And a ton more that I can’t recall at this moment. It’s fun to wander around
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="ann-arbor-duck-graffiti">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -463,55 +499,104 @@ And a ton more that I can’t recall at this moment. It’s fun to wander around
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 

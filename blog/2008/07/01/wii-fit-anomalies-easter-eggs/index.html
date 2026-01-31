@@ -217,6 +217,10 @@
     <p>Interesting observations about the trainers but have you found the jogging and Ultimate Balance Test easter eggs yet?</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="4f399dcf2afd24ee"
+      data-comment-name="WiiBBG">Reply</a>
+  </div>
 
   
   
@@ -237,6 +241,10 @@
   <div class="comment-body">
     <p>I am not as big a fan of the strength and yoga exercises.  If only they had more difficult aerobic exercises!</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="9372c6e05eeac63e"
+      data-comment-name="Kabitzin">Reply</a>
   </div>
 
   
@@ -260,6 +268,10 @@
 Right, Kabitzin. If only there was a “go outside” button or something… I bet Nintendo just doesn’t want to get sued when someone gets too into the aerobics and has a Myocardial Infarction (been watching too much House).</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="12197cb33f006084"
+      data-comment-name="Hung">Reply</a>
+  </div>
 
   
   
@@ -280,6 +292,10 @@ Right, Kabitzin. If only there was a “go outside” button or something… I b
   <div class="comment-body">
     <p>Could be lupus.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="d0e7573fd1f85383"
+      data-comment-name="Kabitzin">Reply</a>
   </div>
 
   
@@ -305,6 +321,10 @@ Right, Kabitzin. If only there was a “go outside” button or something… I b
 I could only do 8 push ups, and all my friends make fun of me for it</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="3baecc88f374dab3"
+      data-comment-name="Jesus159159159">Reply</a>
+  </div>
 
   
   
@@ -325,6 +345,10 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
   <div class="comment-body">
     <p>The Wii fit probably won’t have you break out in a major sweat or even breathing really heavy, but you definitely feel like you are exercising.  I use it when I am feeling too lazy to really exercise hard and yet I know I should be exercising.  The strength and aerobic exercises probably give the best workout, but unless you use the Wii Fit for like hours at a time, you probably won’t be sore the next day.</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="1b1429e524596adc"
+      data-comment-name="Kabitzin">Reply</a>
   </div>
 
   
@@ -348,6 +372,10 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
 (btw, for anyone still trying to find Wii-Fit, including me, I found out from the nintendoworldstore.com that they sell a few Wii-Fits every morning! I might have to visit there!… but New York Drivers… ITS TOO MUCH!!! That itself is a “workout”! D:)</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="99dd18fce8d70e87"
+      data-comment-name="Jesus159159159">Reply</a>
+  </div>
 
   
   
@@ -368,6 +396,10 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
   <div class="comment-body">
     <p>Just a quick note, I got a wii fit two days after I started looking for one, you just have to call around even to stores you didn’t think would carry games</p>
 
+  </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="e95ddfaaf0958024"
+      data-comment-name="some guy">Reply</a>
   </div>
 
   
@@ -390,6 +422,10 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
     <p>I noticed that as well, that’s why I googled it. this was the ifrst website too. Now, I had the male trainer and he had his hair cut short one day with lil gel spikes and the next day he had long hair that was really ugly. I think they should change their outfits more often. It’s kind of gross wearing the same stuff everyday</p>
 
   </div>
+  <div class="comment-actions">
+    <a href="#comment-form" class="comment-reply-link" data-comment-id="0e71d887e75a8745"
+      data-comment-name="Julia">Reply</a>
+  </div>
 
   
   
@@ -404,6 +440,14 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
     <p><em>Comments are moderated and won't appear immediately after submission.</em></p>
     <form method="POST" action="https://comments.hung-truong.com" class="comment-form-fields" id="comment-form">
   <input name="options[slug]" type="hidden" value="wii-fit-anomalies-easter-eggs">
+  <input name="fields[replying_to]" type="hidden" id="comment-replying-to" value="">
+
+  <div id="reply-to-display"
+    style="display: none; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+    Replying to <strong id="reply-to-name"></strong>
+    <button type="button" id="cancel-reply"
+      style="float: right; background: none; border: none; cursor: pointer; color: #999;">✕ Cancel</button>
+  </div>
 
   <div class="field">
     <label for="comment-name">Name *</label>
@@ -443,55 +487,104 @@ I could only do 8 push ups, and all my friends make fun of me for it</p>
 </div>
 
 <script>
-  const form = document.getElementById('comment-form');
-  const success = document.getElementById('comment-success');
-  const error = document.getElementById('comment-error');
-  const errorText = document.getElementById('comment-error-text');
-  const submitBtn = document.getElementById('comment-submit');
+  (function () {
+    const form = document.getElementById('comment-form');
+    const success = document.getElementById('comment-success');
+    const error = document.getElementById('comment-error');
+    const errorText = document.getElementById('comment-error-text');
+    const submitBtn = document.getElementById('comment-submit');
+    const replyingToInput = document.getElementById('comment-replying-to');
+    const replyToDisplay = document.getElementById('reply-to-display');
+    const replyToName = document.getElementById('reply-to-name');
+    const cancelReplyBtn = document.getElementById('cancel-reply');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
-    error.style.display = 'none';
-
-    const formData = new FormData(form);
-
-    // Convert to URLSearchParams for x-www-form-urlencoded
-    const params = new URLSearchParams();
-    for (const pair of formData) {
-      params.append(pair[0], pair[1]);
+    function resetForm() {
+      form.reset();
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Comment';
     }
 
-    fetch(form.action, {
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    cancelReplyBtn.addEventListener('click', function () {
+      replyingToInput.value = '';
+      replyToDisplay.style.display = 'none';
+    });
+
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('comment-reply-link')) {
+        const commentId = e.target.getAttribute('data-comment-id');
+        const commentName = e.target.getAttribute('data-comment-name');
+
+        replyingToInput.value = commentId;
+        replyToName.textContent = commentName;
+        replyToDisplay.style.display = 'block';
+
+        form.scrollIntoView({ behavior: 'smooth' });
+
+        // Optional: focus the name field
+        document.getElementById('comment-name').focus();
       }
-    })
-      .then(response => {
-        if (response.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          if (response.status === 403) {
-            errorText.innerText = "lol ur a spammer";
-          } else {
-            errorText.innerText = "There was an error submitting your comment. Please try again.";
-          }
-          error.style.display = 'block';
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Comment';
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      error.style.display = 'none';
+
+      const formData = new FormData(form);
+
+      // Convert to URLSearchParams for x-www-form-urlencoded
+      const params = new URLSearchParams();
+      for (const pair of formData) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: params,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-      .catch(() => {
-        errorText.innerText = "There was an error submitting your comment. Please try again.";
-        error.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Comment';
-      });
-  });
+        .then(response => {
+          if (response.ok) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            error.style.display = 'none';
+            try {
+              resetForm();
+            } catch (e) {
+              console.error("Error resetting form:", e);
+            }
+          } else {
+            if (response.status === 403) {
+              errorText.innerText = "lol ur a spammer";
+            } else {
+              errorText.innerText = "There was an error submitting your comment. Please try again.";
+            }
+            error.style.display = 'block';
+            success.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Comment';
+          }
+        })
+        .catch((err) => {
+          // If success is already shown, ignore errors (e.g. from resetForm)
+          if (success.style.display === 'block') {
+            console.error("Post-success error:", err);
+            return;
+          }
+
+          errorText.innerText = "There was an error submitting your comment. Please try again.";
+          error.style.display = 'block';
+          success.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Comment';
+        });
+    });
+  })();
 </script>
   </div>
 
