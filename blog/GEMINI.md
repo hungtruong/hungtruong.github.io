@@ -112,12 +112,15 @@ A vector-based search engine leveraging Cloudflare Workers AI (Qwen3-0.6b embedd
   - `blog-index` (Legacy): Embeds `Title + Summary` only.
 
 ### Indexing (`scripts/smart_indexer.py`)
-Run locally to populate Cloudflare Vectorize.
-- **Dependency**: Requires `tiktoken` for accurate token limits.
-- **Run**: `python3 scripts/smart_indexer.py --mode content` (Processing 600+ posts takes ~2 min with greedy batching).
-- **Logic**: 
-  - Uses Greedy Batching (max 3000 tokens/batch) to optimize speed without hitting API payload errors.
-  - Caches hashes in `scripts/.vector-cache-blog-index-content.json` to process only new/changed files.
+This process is automated via GitHub Actions to keep Cloudflare Vectorize in sync.
+
+- **Automated Update**: Triggers on any push to `_posts/` via the `reindex-vector-db.yml` workflow.
+- **Manual Trigger**: Can be run from the Actions tab or locally: `python3 scripts/smart_indexer.py --mode content`.
+- **Logic (Zero-Cache Remote Sync)**: 
+  - **Source of Truth**: The script fetches the list of all vector IDs and their content hashes directly from Cloudflare metadata at runtime.
+  - **Delta Processing**: Only new/modified posts are embedded and upserted. 
+  - **Auto-Purge**: Any vectors in Cloudflare that no longer exist on disk are automatically deleted.
+  - **Batching**: Uses greedy batching (max 3000 tokens/batch) and respects Cloudflare's `get_by_ids` limit (20 per request).
 
 ### Search API (`search-api/`)
 Custom Cloudflare Worker handling vector search requests.
@@ -130,4 +133,4 @@ Custom Cloudflare Worker handling vector search requests.
 To verify the index quality or debug missing results:
 1. **Compare Indices**: Use `scripts/compare_indices.py` to run side-by-side queries.
 2. **Missing Posts**: Check `scripts/check_skipped_posts.py` if posts appear missing.
-3. **Reset Cache**: To force full re-index, delete `scripts/.vector-cache-[index-name].json` and run indexer.
+3. **Status Check**: Check the latest run of the "Reindex Vector Database" GitHub Action.
