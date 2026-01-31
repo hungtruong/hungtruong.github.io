@@ -173,6 +173,8 @@
       <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
     </div>
     <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.m4a"
+        type="audio/mp4">
       <source src="/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.mp3"
         type="audio/mpeg">
       Your browser does not support the audio element.
@@ -204,13 +206,13 @@
   
   <!-- Hyperaudio Integration -->
   <script
-    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769805795"></script>
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1769866753"></script>
   <script
-    src="/blog/assets/js/vtt-inject.js?v=1769805797"></script>
+    src="/blog/assets/js/vtt-inject.js?v=1769866755"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Standardized path: /assets/audio/[slug].vtt
-      var vttUrl = "/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.vtt?v=1769805795";
+      var vttUrl = "/blog/assets/audio/ingrid-michaelson-at-neumos-seattle-10122009.vtt?v=1769866753";
       window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
 
       // Add 'is-active' class on play to enable interaction styles
