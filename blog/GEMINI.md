@@ -90,6 +90,17 @@ To force regeneration (e.g. to fix typos):
 2. **Commit & Push**.
 3. **Run Batch** on Kaggle. It will detect the missing audio and regenerate.
 
+### Local Generation (Mac Studio / MLX)
+For faster, local generation without Kaggle, use the MLX-based script:
+- **Dependencies**: Uses `uv` to handle dependencies automatically.
+- **Run**:
+  ```bash
+  uv run scripts/generate_blog_audio_mlx.py "https://www.hung-truong.com/blog/YYYY/MM/DD/slug/"
+  ```
+- **Options**:
+  - `--model`: Defaults to `mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16`.
+  - `--output`: Directory to save `.m4a` and `.vtt` files.
+
 
 ## Semantic Search System
 A vector-based search engine leveraging Cloudflare Workers AI (Qwen3-0.6b embeddings) and Cloudflare Vectorize.
