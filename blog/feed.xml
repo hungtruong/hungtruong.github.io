@@ -5,8 +5,8 @@
     <description>I say potato, you say potato...</description>
     <link>https://www.hung-truong.com/blog/</link>
     <atom:link href="https://www.hung-truong.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 31 Jan 2026 17:07:33 -0500</pubDate>
-    <lastBuildDate>Sat, 31 Jan 2026 17:07:33 -0500</lastBuildDate>
+    <pubDate>Sat, 31 Jan 2026 17:36:50 -0500</pubDate>
+    <lastBuildDate>Sat, 31 Jan 2026 17:36:50 -0500</lastBuildDate>
     <generator>Jekyll v4.4.1</generator>
     
       
@@ -37,6 +37,13 @@
 &lt;p&gt;It was about a week ago that I started getting the week-long refreshes on Opus. At that time I just switched over to Gemini 3 Pro and Flash to do my work instead. I favored Pro since, why not, I’m a pro! But after using up the quota a few times on that model, I got the banhammer for the pro models as well! So now I have a week-long wait to get my Anthropic and Gemini Pro models back to this stupid IDE.&lt;/p&gt;
 
 &lt;p&gt;So anyway, now I’m just hanging on with Gemini 3 Flash resetting every 5 hours. Maybe I’ll get hit with a weekly refresh on that, too! At that point I’ll just switch to using Gemini CLI since it seems like it uses a separate method of calculating quotas.&lt;/p&gt;
+
+&lt;p&gt;It also doesn’t help that sometimes, Gemini will just get into a really strange loop and start sounding like a &lt;a href=&quot;https://www.youtube.com/watch?v=XuYJbiHq66M&quot;&gt;kid in a Japanese horror anime&lt;/a&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/blog/wp-content/uploads/2026/antigravity-hallucination.webp&quot; alt=&quot;Antigravity Hallucination&quot; /&gt;
+  &lt;figcaption&gt;TFW you use up your whole context window on... this.&lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;I already wrote a &lt;a href=&quot;/blog/2026/01/27/adding-audio-to-my-blog-with-qwen3-tts-voice-cloning/&quot;&gt;whole blog post&lt;/a&gt; about my process of adding audio articles (which sound like they’re read by me) to my blog with Qwen3-TTS. I mentioned that I used AI, and the models that I used were mainly Gemini 3 Pro and Flash due to Opus being drained.&lt;/p&gt;
 
