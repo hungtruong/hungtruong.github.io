@@ -129,6 +129,33 @@
   <ul class="posts noList">
     
       <li>
+        <span class="date">May 07, 2007</span>
+        <h3><a class="post-link" href="/blog/2007/05/07/the-facebook-api-somewhat-disappointing/">The Facebook API: Somewhat Disappointing</a></h3>
+        <p><p>I had read a few months back or so about Facebook coming up with a developer API. I hadn’t really felt like trying anything with it until recently when I heard about the FQL (like SQL for Facebook) Query language being created.</p>
+
+<p>Anyway, I tried to think of a few ideas for mini-apps using the API, and today I finally got around to messing with it. I hit a roadblock pretty quickly, though. Apparently Facebook’s API will let you find all of the current user’s friends, but it won’t let you see all of the friends of any other user. This seriously limits the capabilities of the API by a whole lot.</p>
+
+<p>This sort of makes sense. If the API let you see more than a logged in user could, that user could theoretically get past privacy setting that are in place. However, the API just blocks all queries that try to find all friends of anyone other than yourself. When logged in, you can see this info, so I don’t see the harm in offering it in the API.</p>
+
+<p>What this means is that there’s no way to really “traverse graphs” with the API. You only get info on the user’s immediate friends. Thus, any application using the API is really only rehashing or using data that is already available on the main site. That’s fine for simple applications that can sync your address book to Facebook or let you rate how hot your friends are.</p>
+
+<p>But Facebook is a social networking site. The interesting applications require some kind of access to the graph data of the site. It’s really disappointing to see that the API limits this so much.</p>
+
+<p>I really would’ve liked to see a bit more capability with the Facebook API. If Facebook really wants developers to come up with interesting and complex applications, I’d suggest opening it up a bit more.</p>
+
+
+          
+            
+            
+            
+
+            
+          
+          
+        </p>
+      </li>
+    
+      <li>
         <span class="date">May 06, 2007</span>
         <h3><a class="post-link" href="/blog/2007/05/06/seriously-what-is-the-deal-with-twitter/">Seriously, What Is The Deal With Twitter!?</a></h3>
         <p><center>
@@ -237,29 +264,6 @@
 &lt;script type="text/javascript" src="/js/prototype.js"&gt;&lt;/script&gt;&lt;br /&gt;
 ...&lt;br /&gt;
 </code></p>
-
-
-          
-            
-            
-            
-
-            
-          
-          
-        </p>
-      </li>
-    
-      <li>
-        <span class="date">May 01, 2007</span>
-        <h3><a class="post-link" href="/blog/2007/05/01/craigslist-and-google-maps-mashup-thingy-day-1213-dot-com-and-cities/">Craigslist and Google Maps Mashup Thingy: Day 12+13 – Dot Com and Cities</a></h3>
-        <p><p>So I worked on the mashup quite a bit yesterday. So much that when I was done, I was too tired to write a blog entry about it. I mostly spent yesterday buying the domain name, upgrading my server, and getting the project to work on my “production” server. It wasn’t too difficult; I just needed to move the database, change some names, and make sure there weren’t any old names being used. I also started adding all of the cities on CraigsList to the database. At least, the US ones.</p>
-
-<p>This took a lot of time to do manually. I had to figure out if the area was an actual city, or a bunch of cities, then figure out the geo coordinates, and stuff it into the database. I thought it might be faster to do it by hand than write a script. Nope.</p>
-
-<p>Today I wrote a script that would make the entry faster by automagically getting the coordinates from Google Maps’ http request service. It still took a while, but today I finished inserting almost all of the US cities (excluding the combination ones, since Google can’t do those).</p>
-
-<p>Now all that’s left is for me to make the pop up windows a little prettier, and maybe add a list of the CraigsList listings to the side for easy browsing by price, # of bedrooms, etc. That shouldn’t take too long. Then I can launch the site!</p>
 
 
           

@@ -8,6 +8,7 @@ You are an AI agent that helps the user, Hung Truong, write and maintain this bl
   - *Added 2026-01-29*: REPEATED OFFENSE: Do NOT double-down on mistakes. If scolded for pushing, PAUSE and ask for clarification before doing anything git-related again.
   - *Added 2026-01-30*: When debugging build failures, search for framework-specific errors (e.g., "Liquid Exception", "Jekyll") instead of acting on secondary environment warnings (e.g., Git/Submodule noise).
   - *Added 2026-01-30*: When asked a question, prioritize explaining the answer clearly before taking any corrective actions, especially while in PLANNING mode. Do not jump into "fix mode" without user confirmation.
+  - *Added 2026-01-31*: Do NOT run the `update_post_metadata.py` script on blog posts that are only in the outline or draft stage. Wait for the user to write the content or explicitly ask for metadata generation.
 - **VERIFICATION PROTOCOL**: Do NOT consider a visual/UI task complete until you have verified it matches the context (e.g., surrounding text width). If it 'looks wrong', it IS wrong. Don't stop at the first technical 'fix' if the result is visually inconsistent.
 - **BROWSER TOOL PROTOCOL**: Prefer `chrome-devtools` MCP over `browser_subagent` whenever possible for inspecting or interacting with pages.
 - **ZERO TOLERANCE COMMIT POLICY**: STRICTLY FORBIDDEN from running `git commit` or `git push` unless the user explicitly asks. 
