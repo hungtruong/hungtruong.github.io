@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.880
+Wii Fit: Fun With Linear Regression!
+
+00:00:04.380 --> 00:00:07.100
+Published on July 13, 2008.
+
+00:00:08.100 --> 00:00:10.180
+So I’ve been playing Wii Fit for a while.
+
+00:00:10.680 --> 00:00:17.960
+One of the really neat things about the program (it’s not really a game, right?) is that it automagically graphs your progress as you lose weight.
+
+00:00:18.460 --> 00:00:21.900
+It’s pretty nice getting positive feedback when you put hard work into something.
+
+00:00:22.400 --> 00:00:26.000
+I think this is one of the very well thought-out features of Wii Fit.
+
+00:00:27.000 --> 00:00:32.760
+Anyway, I was looking at my weight going down and figured I’d do some rudimentary linear regression on it.
+
+00:00:33.260 --> 00:00:37.820
+I’m pretty much just eyeballing it because I don’t want to throw stuff into R or Matlab.
+
+00:00:38.320 --> 00:00:43.200
+It seems as though I’ll reach a threshold (away from Obesity) around the end of August.
+
+00:00:43.700 --> 00:00:46.500
+Though I’m basing this on a linear fit.
+
+00:00:47.000 --> 00:00:53.400
+It’s possible that the actual plot will end up looking more like a power law since it’s easier to lose weight when you’re way overweight.
+
+00:00:53.900 --> 00:00:58.460
+The point is, I’m losing weight and it’s nice to try and see when I might reach my goals.
+
+00:00:59.460 --> 00:01:03.380
+I also think it’s worth noting that Wii Fit seems to overestimate my weight.
+
+00:01:03.880 --> 00:01:07.800
+Because when I use my bathroom scale my weight is always lower than what Wii Fit says.
+
+00:01:08.300 --> 00:01:14.540
+I guess I could adjust the “weight of clothing” but since I always pick the same thing I don’t want to mess with the consistency.
+
+00:01:15.540 --> 00:01:21.860
+Now, if Nintendo had programmed some regression in automatically, I’d have to give it a 10/10 for science!
+
+00:01:22.360 --> 00:01:25.400
+But for now I’m pretty happy with just the graph functionality.
+
+00:01:25.900 --> 00:01:30.140
+It’s fun seeing large local fluctuations with a general downward trend.
+
+00:01:30.640 --> 00:01:35.840
+Now, if I can only keep this graph from turning into a parabola like with my DDR Diet…
