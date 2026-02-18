@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.000
+SXSW 2009 Presentation Submission + My Panel Picker Picks
+
+00:00:07.500 --> 00:00:09.660
+Published on August 09, 2008.
+
+00:00:10.660 --> 00:00:16.660
+A few weeks ago, I saw that SXSW Interactive was accepting applications for panel ideas.
+
+00:00:17.160 --> 00:00:31.800
+I’ve been playing a lot with analyzing social networks and network structure in and out of my coursework at the University of Michigan, so I wrote a panel proposal for a walkthrough of network theory and how it’s relevant and useful to companies and products that have some kind of social component.
+
+00:00:32.800 --> 00:00:41.520
+My general motivation for proposing this is that I’m sure that a lot of companies have some really interesting network data about their users that isn’t being put to good use.
+
+00:00:42.020 --> 00:00:56.420
+Sure, a company like Microsoft or Yahoo will have their own research labs ( this paper from Yahoo Research about the evolution of social networks is totally awesome), but smaller companies will most likely lack the resources and skills to do interesting network analysis.
+
+00:00:56.920 --> 00:01:04.840
+Hopefully my presentation will serve as a good starting point for people with access to rich network data to produce some really interesting data and maybe even share it.
+
+00:01:05.340 --> 00:01:11.500
+This kind of data is usually difficult to get access to, so it’s kind of a shame if the data exists and isn’t being used.
+
+00:01:12.500 --> 00:01:14.740
+Anyway, check out my official submission here .
+
+00:01:15.240 --> 00:01:21.160
+It’d be cool if I could get some supporters to vote and comment on the thing, but I guess that might become kind of spammy as well.
+
+00:01:21.660 --> 00:01:25.740
+I also checked out a bunch of the proposals on the SXSW Panel Picker.
+
+00:01:26.240 --> 00:01:28.560
+Here’s a few I think look interesting:
+
+00:01:29.560 --> 00:01:38.920
+Ruby Sinreich , Understanding Social Networks, Beyond the Graph – This one seems probably the most similar to mine, so it makes sense that it looks really interesting to me.
+
+00:01:39.420 --> 00:01:44.140
+It looks like rather than focusing on theory, this panel will be more practical in nature.
+
+00:01:45.140 --> 00:01:56.020
+Mussie Shore , Bustin’ Social out of the Network – This one looks neat mainly because the speaker founded a mobile software company that was acquired by Google and now works on OpenSocial.
+
+00:01:56.520 --> 00:02:01.640
+Plus there’s a ton of positive comments already (wonder if he’s got his possee on this).
+
+00:02:02.640 --> 00:02:09.680
+ian nieves , Discovery: The Future of Friend Search – Searching people is a problem that I’ve always had an interest in.
+
+00:02:10.180 --> 00:02:14.660
+Using network centrality measure makes sense to rank which people come up in a search.
+
+00:02:15.160 --> 00:02:19.400
+I’m interested in seeing what kind of algorithm this guy is using for friend search.
+
+00:02:20.400 --> 00:02:24.800
+Russ Unger , Friendship is Dead – I just love the idea of this panel.
+
+00:02:25.300 --> 00:02:30.260
+The fact that people aren’t really people anymore; they’re just items to collect in Facebook.
+
+00:02:30.760 --> 00:02:32.120
+Kind of like Pokemon.
+
+00:02:33.120 --> 00:02:38.320
+I haven’t gotten through all the panels but I’m hoping to skim through all the sections I might find interesting.
+
+00:02:38.820 --> 00:02:41.620
+Hopefully my idea will be interesting enough to be selected.
+
+00:02:42.120 --> 00:02:47.800
+Remember, sign up for a SXSW account, check out the Panel Picker , and vote for stuff (including me )!
