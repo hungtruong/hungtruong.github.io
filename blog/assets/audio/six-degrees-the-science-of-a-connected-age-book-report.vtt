@@ -1,0 +1,157 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.080
+Six Degrees: The Science of a Connected Age – Book Report
+
+00:00:05.580 --> 00:00:08.220
+Published on May 31, 2008.
+
+00:00:09.220 --> 00:00:13.620
+The weekend is here, and I’m trying to use my “free” time as effectively as possible.
+
+00:00:14.620 --> 00:00:21.180
+I just finished a book that I borrowed form the library, Six Degrees: The Science of a Connected Age by Duncan Watts.
+
+00:00:21.680 --> 00:00:27.440
+The book is basically an overview of the evolution of Network Science, the thing I’m studying in grad school.
+
+00:00:27.940 --> 00:00:36.020
+I’m technically specializing in “Social Computing,” which includes the study of stuff like complex systems, graph theory, sociology, etc.
+
+00:00:36.520 --> 00:00:42.840
+Since it’s a relatively new (or recently popular) field, there’s a lot of overlap with other fields.
+
+00:00:43.340 --> 00:00:46.540
+And as described in the book, it is very interdisciplinary.
+
+00:00:47.040 --> 00:00:51.360
+Much of the book covers things I studied in SI 508: Networks.
+
+00:00:51.860 --> 00:00:58.020
+But in the sense that Six Degrees is more of a historical recollection than a textbook, there was quite a lot to take in.
+
+00:00:58.520 --> 00:01:05.800
+For example, Watts starts by describing previous attempts to map out social networks at a time when computing power was non-existent.
+
+00:01:06.300 --> 00:01:13.580
+The complexity of the problems ensured that the researchers could only dream of solving their problems until the next generation of scientists (and computers) arrived.
+
+00:01:14.080 --> 00:01:20.320
+The book then follows a fairly linear path from the study of random networks to small-world networks to scale free networks.
+
+00:01:20.820 --> 00:01:26.580
+Then we get to read about network dynamics: epidemics, cascades, percolation.
+
+00:01:27.080 --> 00:01:32.360
+Finally there’s a neat section about multi-scale networks and complex systems that exist in our everyday lives.
+
+00:01:33.360 --> 00:01:37.040
+There are a few recurring themes in Six Degrees that I noticed.
+
+00:01:37.540 --> 00:01:43.540
+First is that physicists seem to be spoken very highly of (possibly because Duncan Watts is a physicist?).
+
+00:01:44.040 --> 00:01:52.760
+If you ask me, Computer Scientists are actually pretty good at solving problems, too… Secondly, there is a common “critical threshold” that systems can pass.
+
+00:01:53.260 --> 00:02:00.300
+A sort of on/off switch that determines whether a network is a small-world or whether a musician enjoys platinum success.
+
+00:02:00.800 --> 00:02:05.680
+Another is that innovation really occurs when people with differing backgrounds and ideas work together.
+
+00:02:06.180 --> 00:02:14.740
+That last one is something I really want to stay aware of as the school I’m currently attending has a great number of smart people, all with their own unique interests and projects.
+
+00:02:15.740 --> 00:02:20.540
+I felt a certain sense of appropriateness while reading a book entitled “Six Degrees.”
+
+00:02:21.040 --> 00:02:28.800
+While I don’t know Duncan Watts directly, quite a few people I do know were referenced in the book, either in the actual narrative or the bibliography.
+
+00:02:29.300 --> 00:02:35.700
+Cris Moore, a researcher at the Santa Fe institute was my professor at UNM for one of my algorithms classes.
+
+00:02:36.200 --> 00:02:48.360
+For that class, I did experiments with random graphs, determining at which average degree distribution the “giant component” emerged (which is possibly why I went down the path to study social networks, eventually).
+
+00:02:49.360 --> 00:02:53.680
+Lada Adamic is also referenced a bit briefly in the book.
+
+00:02:54.180 --> 00:02:58.500
+She was the professor for that aforementioned Networks class that I took last Fall.
+
+00:02:59.000 --> 00:03:04.840
+I’ve also taken another class with her and she’s been advising me quite a bit on what direction to go with my studies.
+
+00:03:05.340 --> 00:03:13.180
+Mark Newman, who I haven’t worked directly with but who works directly down the hall from the School of Information has a fairly huge role in the book as well.
+
+00:03:13.680 --> 00:03:24.240
+Perhaps it’s the fact that I’m studying networks for school, or maybe it’s that the group of people studying networks is very tightly knit, but I still think it’s pretty awesome whenever I see someone I know mentioned by name in a book!
+
+00:03:25.240 --> 00:03:32.520
+By my calculations, my “Watts number” is at least three since I am a student of Lada who works with Mark who worked directly with Watts.
+
+00:03:33.020 --> 00:03:37.980
+Or equivalently, I was a student of Cris who worked with Mark who worked with Watts.
+
+00:03:38.480 --> 00:03:45.760
+It might actually be two, but since there’s a level of uncertainty in this particular social network, I’d have to ask around to find out.
+
+00:03:46.260 --> 00:03:51.620
+I guess I could just walk up to Mark Newman at school one day and shake his hand to bring it down to two for certain.
+
+00:03:52.120 --> 00:03:59.000
+Maybe one day I can bring it down to one (I actually convinced Lada to hand Watts my resume at a conference they were both attending!).
+
+00:04:00.000 --> 00:04:07.440
+Throughout the book, I’ve gotten several ideas on how I could do further research on the datasets that I’ve gathered over the past few semesters.
+
+00:04:07.940 --> 00:04:13.700
+I think the biggest challenges might actually be working them into my coursework since I’m not quite a research track student.
+
+00:04:14.200 --> 00:04:22.680
+Specifically, I haven’t probed far enough with dynamic networks, especially in the context of contagion in things like the spread of Facebook App installation.
+
+00:04:23.180 --> 00:04:29.740
+I’m sure there’s a ton of other things I can do with the data I have; I just don’t know what would be most interesting, or interesting at all.
+
+00:04:30.740 --> 00:04:39.620
+It’s probably just the perspective of the book, but Six Degrees makes it seem like Duncan Watts was behind all of the breakthroughs in network science for the past 10 years or so.
+
+00:04:40.120 --> 00:04:43.800
+Seriously, it reads like Watts is the Superman of network analysis.
+
+00:04:44.300 --> 00:04:53.740
+The fact that he knows his own experiences better than anyone else’s is most likely the reason for this (I could write a lot about what I did, but not as much about what anyone else has done).
+
+00:04:54.240 --> 00:04:57.520
+But still, I bet Watts is a network beast in real life!
+
+00:04:58.520 --> 00:05:04.040
+Anyway, if you’re interested in studying social networks or networks in general, I highly recommend this book.
+
+00:05:04.540 --> 00:05:07.260
+Duncan Watts has a way of writing for ordinary people.
+
+00:05:07.760 --> 00:05:14.800
+Actually, I’m not sure if this book is entirely accessible since I already had a semester of network theory under my belt before reading it.
+
+00:05:15.300 --> 00:05:17.140
+But I have a feeling it’s very readable.
+
+00:05:18.140 --> 00:05:22.540
+In the end, Watts concedes that the science of networks is still in its infancy.
+
+00:05:23.040 --> 00:05:29.280
+I think this represents a very cool opportunity, and hopefully I can contribute to the work that’s already been done so far.
+
+00:05:29.780 --> 00:05:31.780
+Man, I’m totally pumped right now!
+
+00:05:32.280 --> 00:05:36.200
+Another book I’ve been meaning to read is “ Nexus .”
+
+00:05:36.700 --> 00:05:40.460
+Hopefully that one’s available at the library when I go to return Six Degrees.
