@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.280
+Fire Eagle Invite Get!
+
+00:00:02.780 --> 00:00:05.340
+Published on March 06, 2008.
+
+00:00:06.340 --> 00:00:10.340
+Thanks to LordElph , I got an invite to Yahoo’s newest thing, Fire Eagle.
+
+00:00:10.840 --> 00:00:16.840
+I feel as though there’s enough fire stuff in the world with Firefox and its eternal enemy, Firedog.
+
+00:00:17.340 --> 00:00:18.380
+But oh well.
+
+00:00:19.380 --> 00:00:23.220
+Fire Eagle is a centralized location information service, basically.
+
+00:00:23.720 --> 00:00:31.320
+You can use its built-in APIs to set user location information and grab user information from it (assuming you have the correct permissions).
+
+00:00:32.320 --> 00:00:37.360
+This is cool because in the past, applications have had to do this location stuff on their own.
+
+00:00:37.860 --> 00:00:46.020
+For example, if I wanted to set up a Twitter clone that knew a user’s location, I’d have to be able to take the information and process it, and retrieve it later.
+
+00:00:46.520 --> 00:00:58.040
+Fire Eagle handles a lot of stuff like figuring out exactly where a user when things might be ambiguous (I typed in “University of Michigan” and it gave me a choice between the main campus and the Dearborn one).
+
+00:00:59.040 --> 00:01:08.000
+I’m planning on coding up some location aware applications at some point soon, so I think it’ll be fun to try and see what I can do with the help of this Fire Eagle thing.
+
+00:01:08.500 --> 00:01:13.140
+Yahoo has definitely done something unique and I give them some props for working on this service!
