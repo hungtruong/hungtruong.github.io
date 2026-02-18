@@ -1,0 +1,64 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.040
+Google App Engine + Django == FAIL
+
+00:00:04.540 --> 00:00:06.940
+Published on April 08, 2008.
+
+00:00:07.940 --> 00:00:14.820
+Edit: Using the tutorial from this dude , I was able to get the Django “hey, you got the barebones working!” page working.
+
+00:00:15.320 --> 00:00:18.200
+I may have time to mess around with this more in a week or so.
+
+00:00:19.200 --> 00:00:25.360
+I just wasted an hour trying to get the Google App Engine and Django to work together on both my Mac and my PC.
+
+00:00:25.860 --> 00:00:29.140
+Both give failure errors when I try to run the server.
+
+00:00:30.140 --> 00:00:32.700
+Should I assume I’m a bad computer scientist?
+
+00:00:33.200 --> 00:00:38.000
+Or should I assume that Google needs to do more testing/documentation before releasing stuff?
+
+00:00:38.500 --> 00:00:44.820
+Granted, I haven’t used Django before, but it should really work if I follow the directions correctly (and I did, twice)!
+
+00:00:45.820 --> 00:00:51.740
+I would consider learning the webapp framework, but I’d rather learn something I could use on a server other than Google’s.
+
+00:00:52.240 --> 00:00:54.960
+I’ve been meaning to learn Django for a while now.
+
+00:00:55.460 --> 00:01:00.660
+I had some high hopes that I’d be able to get something cool running in a short amount of time, but I guess not.
+
+00:01:01.660 --> 00:01:05.580
+People are saying this App Engine thing is a great competitor to Amazon’s ECC.
+
+00:01:06.080 --> 00:01:07.200
+Not quite yet.
+
+00:01:07.700 --> 00:01:16.340
+You can’t run any software you want on App Engine, you’re limited to using Python for now, and from my experience, App Engine seems a bit half-baked at this point.
+
+00:01:16.840 --> 00:01:18.680
+What about cron-jobs?
+
+00:01:19.180 --> 00:01:21.100
+What about running scripts?
+
+00:01:21.600 --> 00:01:23.440
+What about root access?
+
+00:01:23.940 --> 00:01:30.100
+I can’t see why Google didn’t just decide to copy Amazon and allow developers to upload a linux image or something.
+
+00:01:31.100 --> 00:01:32.940
+My initial impressions are disappointing.
+
+00:01:33.440 --> 00:01:37.760
+Maybe once the semester is over, they’ll have a more stable version of this available…
