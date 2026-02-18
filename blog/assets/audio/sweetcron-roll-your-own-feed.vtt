@@ -1,0 +1,64 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.720
+Sweetcron: Roll Your Own Feed
+
+00:00:04.220 --> 00:00:06.620
+Published on August 28, 2008.
+
+00:00:07.620 --> 00:00:11.940
+I just found out that the roll your own feed thing called “Sweetcron” has been released.
+
+00:00:12.440 --> 00:00:16.840
+Basically, you install it on your server and it aggregates your activity onto one page.
+
+00:00:17.340 --> 00:00:21.660
+I installed it and stuck my blog, twitter and delicious accounts into it.
+
+00:00:22.160 --> 00:00:26.080
+Oh, and Digg too, I think, but I don’t really Digg stuff much anymore.
+
+00:00:26.580 --> 00:00:30.580
+You can see it here (it should have this post on it by the time you can read this, too).
+
+00:00:31.580 --> 00:00:34.940
+The initial release is really barebones and somewhat crappy.
+
+00:00:35.440 --> 00:00:38.160
+There’s no commenting system (it just tells you to add one).
+
+00:00:38.660 --> 00:00:45.140
+I like the way that the system formats images within imported blog posts, but everything else seems like an afterthought.
+
+00:00:45.640 --> 00:00:50.360
+The Twitter imports had a picture of some random Asian dude before I changed it to my own picture.
+
+00:00:50.860 --> 00:00:53.420
+Why not use the Twitter user image?
+
+00:00:53.920 --> 00:00:59.760
+Also, when you click through to a blog post, all of the text just pops out, unformatted.
+
+00:01:00.260 --> 00:01:02.900
+It turns everything into one long paragraph.
+
+00:01:03.900 --> 00:01:06.140
+I’m all about paragraph breaks.
+
+00:01:07.140 --> 00:01:12.420
+Besides a few supported feeds, Sweetcron kinda just imports RSS generically.
+
+00:01:12.920 --> 00:01:15.880
+Like my delicious bookmarks don’t have anything special.
+
+00:01:16.380 --> 00:01:18.780
+Just the text and a link to the bookmark.
+
+00:01:19.280 --> 00:01:23.440
+At the very least, Sweetcron should have support for all of the things that FriendFeed does.
+
+00:01:23.940 --> 00:01:28.820
+And by support, I mean it should intelligently handle any categorization and formatting of the content.
+
+00:01:29.820 --> 00:01:37.180
+I guess Sweetcron is strictly for the hardcore such as myself, but I was hoping it’d have a little more going for it upon its first release.
