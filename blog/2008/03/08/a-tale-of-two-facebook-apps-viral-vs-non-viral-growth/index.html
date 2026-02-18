@@ -166,6 +166,21 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/a-tale-of-two-facebook-apps-viral-vs-non-viral-growth.m4a"
+        type="audio/mp4">
+      <source src="/blog/assets/audio/a-tale-of-two-facebook-apps-viral-vs-non-viral-growth.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p>For my SI 508 Networks class last semester I did an analysis of one of my Facebook applications, Notecentric. <a href="http://www.facebook.com/apps/application.php?id=2558208834">Notecentric</a> was a social network that I had written during the Summer of ‘06 and I had recently ported it to the Facebook Developer Platform in Summer ‘07 shortly after the platform had been launched.</p>
@@ -205,6 +220,41 @@ Anyway, I got some neat network data from it, which made the whole thing worthwh
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1771449175"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1771449177"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/a-tale-of-two-facebook-apps-viral-vs-non-viral-growth.vtt?v=1771449175";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->

@@ -1,0 +1,148 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+A Tale of Two Facebook Apps: Viral Vs. Non-Viral Growth
+
+00:00:05.500 --> 00:00:08.380
+Published on March 08, 2008.
+
+00:00:09.380 --> 00:00:16.420
+For my SI 508 Networks class last semester I did an analysis of one of my Facebook applications, Notecentric.
+
+00:00:16.920 --> 00:00:27.640
+Notecentric was a social network that I had written during the Summer of ‘06 and I had recently ported it to the Facebook Developer Platform in Summer ‘07 shortly after the platform had been launched.
+
+00:00:28.640 --> 00:00:32.000
+The growth of Notecentric isn’t what I had hoped it would be.
+
+00:00:32.500 --> 00:00:51.620
+Not too many people use it, probably due to network effects of Facebook promoting a competing app (note to Facebook: if you want to promote a level playing field, don’t play favorites!) and other general performance issues (the application is pretty barebones and the RFacebook library I used to write it is pretty damn slow. It times out a lot!).
+
+00:00:52.120 --> 00:00:56.520
+Anyway, I got some neat network data from it, which made the whole thing worthwhile.
+
+00:00:57.020 --> 00:01:00.060
+You can check out the original paper I wrote last semester here .
+
+00:01:01.060 --> 00:01:05.860
+I’m going to be presenting my analysis during the School of Information’s annual expoSItion .
+
+00:01:06.360 --> 00:01:10.040
+It’s like a science fair except without the exploding volcanoes.
+
+00:01:10.540 --> 00:01:15.100
+During my Winter break, I developed another app, mainly for fun.
+
+00:01:15.600 --> 00:01:17.120
+It’s called Musical Instruments .
+
+00:01:17.620 --> 00:01:22.900
+Basically it lets you list which instruments you play and see which instruments your friends play.
+
+00:01:23.400 --> 00:01:30.840
+I had somewhat higher hopes for this application as a data gathering tool, and sure enough, it seems to be doing some cool stuff on first analysis.
+
+00:01:31.340 --> 00:01:35.820
+For expoSItion I figured I’d grab some data from this new app and compare the two.
+
+00:01:36.820 --> 00:01:41.220
+I ran some initial analysis on the Musical Instruments app.
+
+00:01:41.720 --> 00:01:51.080
+I won’t go over a lot of the original metrics I used (number of peers with app installed, percentage of peers with app installed, etc) and I’ll just skip to the pictures.
+
+00:01:52.080 --> 00:01:55.920
+This is an initial view of the Notecentric network:
+
+00:01:56.920 --> 00:02:01.480
+It’s pretty interesting because the application has two large strongly connected components.
+
+00:02:01.980 --> 00:02:11.980
+One includes me and the many others I influenced to add the application and the other is a bunch of people from the Philippines (I think) who decided to add and invite their friends to add the application.
+
+00:02:12.480 --> 00:02:13.520
+Pretty neat stuff.
+
+00:02:14.020 --> 00:02:17.940
+But the majority of the users lie outside of the two large components.
+
+00:02:18.940 --> 00:02:25.100
+The singleton users make up about 60% of the total users, more or less, during the evolution of the application.
+
+00:02:25.600 --> 00:02:30.320
+This signals to me that Notecentric was never really that “viral” in nature.
+
+00:02:30.820 --> 00:02:39.860
+People didn’t think the application was cool enough to invite their friends and people who saw their friends add the app didn’t feel compelled to add it themselves.
+
+00:02:40.360 --> 00:02:42.440
+Fair enough; it’s a pretty nerdy app.
+
+00:02:42.940 --> 00:02:45.260
+I mean, who wants to take notes on Facebook!?
+
+00:02:46.260 --> 00:02:49.380
+Here’s a picture of the Musical Instruments application network:
+
+00:02:50.380 --> 00:02:53.740
+It’s pretty small, so click on the image for a bigger one.
+
+00:02:54.240 --> 00:02:55.840
+This one is pretty neat.
+
+00:02:56.340 --> 00:03:01.060
+Instead of just two large strongly connected components, there’s a whole bunch!
+
+00:03:01.560 --> 00:03:05.880
+One is obviously bigger than the others, though there are quite a few clusters of users.
+
+00:03:06.380 --> 00:03:16.700
+It’s a little unrealistic to assume that this network would form into just one strongly connected component since Facebook users are generally decentralized and musicians can come from anywhere.
+
+00:03:17.200 --> 00:03:22.480
+If I did more analysis, I’d imagine that these components correspond to physical regions.
+
+00:03:22.980 --> 00:03:30.020
+Sure, there’s that “join this group if you’ve played music with someone in it” group, but I’m sure that’s not even a strongly connected graph!
+
+00:03:31.020 --> 00:03:34.300
+The growth of the Musical Instruments application is interesting.
+
+00:03:34.800 --> 00:03:48.160
+It follows the same sort of domination of large components (possibly due to me inviting all of my friends) but instead of letting smaller components take over, the large (size 5 or bigger) components eventually stabilize at somewhere like 55% or so.
+
+00:03:48.660 --> 00:03:53.860
+This indicates to me that the Musical Instruments application is actually better at viral growth.
+
+00:03:54.360 --> 00:04:00.120
+People seem to invite their musical friends and others want to add the app if they see it on a friend’s profile.
+
+00:04:00.620 --> 00:04:04.620
+This is also the impression I’ve gotten from the add statistics available from Facebook.
+
+00:04:05.620 --> 00:04:12.340
+Overall, it’s fun to see how the differences in application usage contribute to the kind of growth that each application sees.
+
+00:04:12.840 --> 00:04:17.080
+Notecentric has been stuck at around 670 active installs for a few months now.
+
+00:04:17.580 --> 00:04:25.340
+Compare that to Musical Instruments, which has been growing by around 20 users a day, and has around 2,700 so far.
+
+00:04:25.840 --> 00:04:32.320
+The growth of Musical Instruments is by no means monumental, but it is seeing some success due to its sharable nature.
+
+00:04:33.320 --> 00:04:40.360
+I’m planning on showing the images that I’ve posted and perhaps some fun statistics that show the differences in the growth of the two apps.
+
+00:04:40.860 --> 00:04:46.380
+I think I’ll also load up GUESS on my laptop so people can check out the two networks in a more interactive setting.
+
+00:04:46.880 --> 00:04:55.120
+There’s prizes for the expoSItion of $750, $500 and $200 for first, second and third place, respectively.
+
+00:04:55.620 --> 00:05:03.940
+There’s also a $500 and $250 prize from Microsoft for entries specifically in Social Computing (which my project should qualify for).
+
+00:05:04.440 --> 00:05:07.000
+So hopefully I’ll make a few Benjamins for my work!
