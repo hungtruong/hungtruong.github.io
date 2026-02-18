@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.080
+KVM DVI Switches: Why So Expensive!?
+
+00:00:05.580 --> 00:00:07.980
+Published on May 07, 2008.
+
+00:00:08.980 --> 00:00:12.820
+Right now I’m using a Dell 24-inch screen with my hand-built Windows box.
+
+00:00:13.320 --> 00:00:20.680
+But I also have a 13-inch Macbook that I’ve been using for school and software development (Unix is simply a nicer environment than Windows).
+
+00:00:21.180 --> 00:00:27.100
+I’ve been wanting to get the Mac on the 24-inch screen, but I only have a mini-dvi to DVI adapter.
+
+00:00:27.600 --> 00:00:34.880
+So I was thinking of getting one of those nifty KVM switches that let you use one set of input devices for multiple computers.
+
+00:00:35.880 --> 00:00:41.880
+A KVM switch that supports DVI video inputs costs like, $175!
+
+00:00:42.380 --> 00:00:43.980
+Why so expensive!?
+
+00:00:44.480 --> 00:00:50.480
+I’m not an electrical engineer (or computer engineer even), but it doesn’t make sense that the hardware can cost so much.
+
+00:00:50.980 --> 00:00:55.140
+Couldn’t you just rig something up that just physically “switches” the wiring?
+
+00:00:55.640 --> 00:01:01.480
+Maybe the switch requires some power, but I can’t imagine the logic being that terribly complex.
+
+00:01:01.980 --> 00:01:08.620
+In comparison, a lot of the VGA KVM switches I’ve looked at cost maybe $25.
+
+00:01:09.120 --> 00:01:12.960
+What’s the difference, besides a few extra signals being re-routed?
+
+00:01:13.960 --> 00:01:19.320
+So my short term cheapo fix will probably be to buy a $19 Mini-dvi to VGA adapter for my Macbook.
+
+00:01:19.820 --> 00:01:29.980
+My monitor has multiple inputs (VGA, DVI, Component, Composite, S-Video) so I can just switch from VGA to DVI for Mac to PC.
+
+00:01:30.480 --> 00:01:36.720
+The video quality might suffer, but I probably won’t be able to tell the difference anyway (my older brother claims he can).
