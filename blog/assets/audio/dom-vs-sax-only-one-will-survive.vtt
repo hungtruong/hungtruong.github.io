@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.280
+DOM Vs. SAX: Only One Will Survive
+
+00:00:04.780 --> 00:00:07.660
+Published on October 06, 2008.
+
+00:00:08.660 --> 00:00:13.060
+So while working on iPhone stuff, we used a SAX parser to handle xml.
+
+00:00:13.560 --> 00:00:21.400
+I thought this was a wacky way of parsing stuff, and I prefer DOM since it is much easier to understand as it’s conveniently in tree form.
+
+00:00:22.400 --> 00:00:26.720
+Today, I tried parsing a 39mb xml file with Python’s minidom.
+
+00:00:27.220 --> 00:00:32.980
+Bad idea. It’s currently making my MacBook choke and it also made my desktop PC cry for memory.
+
+00:00:33.480 --> 00:00:39.720
+Apparently SAX is 1337 when it comes to memory efficiency while DOM is incredibly inefficient.
+
+00:00:40.220 --> 00:00:45.900
+Seriously, Python was taking more than 1gb of memory to parse a 39mb file!
+
+00:00:46.400 --> 00:00:54.400
+Perhaps my actual use of the minidom stuff was incorrect, but either way, I’ll probably try doing stuff in SAX if the file happens to be even remotely big.
+
+00:00:55.400 --> 00:00:56.360
+Lesson learned!
+
+00:00:57.360 --> 00:01:01.120
+Update: SAX totally pwned those large files.
+
+00:01:01.620 --> 00:01:02.660
+All 8 of them!
+
+00:01:03.160 --> 00:01:04.920
+And in less than a minute!
