@@ -1,0 +1,148 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.960
+Stats Project: Sociability of Musical Instruments Using Facebook Data
+
+00:00:06.460 --> 00:00:09.180
+Published on May 08, 2008.
+
+00:00:10.180 --> 00:00:16.740
+For my SI 544: Stats class this semester, I worked with two cool dudes, Jim Laing and Sameer Halai .
+
+00:00:17.240 --> 00:00:24.840
+Our project involved using data gathered from a Facebook application to test a hypothesis about the perceived sociability of certain musical instruments.
+
+00:00:25.840 --> 00:00:32.960
+If you recall, I wrote a blog post a few months ago about the viral vs. non-viral growth of Facebook applications that I had developed .
+
+00:00:33.460 --> 00:00:38.420
+One of those apps, Musical Instruments , lets you list which musical instruments you play.
+
+00:00:38.920 --> 00:00:44.680
+It’s kind of fun because some people play really whacked-out instruments (I play pianica and soprano trombone).
+
+00:00:45.180 --> 00:00:54.700
+I think playing instruments is typically a pretty social experience, which sort of led me to think about comparing the “sociability” of certain instruments to each other with the data gathered from this app.
+
+00:00:55.700 --> 00:01:00.100
+Users input their instruments via an autocompleting text field.
+
+00:01:00.600 --> 00:01:06.680
+If an instrument already exists in the database (and at least 3 or so users have claimed it), it will autocomplete.
+
+00:01:07.180 --> 00:01:12.860
+In the above screenshot, I’ve typed “Trumpet” and you can see there’s many different types of trumpet to choose from.
+
+00:01:13.360 --> 00:01:19.600
+A user can also type an instrument that doesn’t yet exist in the database and it’ll be added automatically.
+
+00:01:20.100 --> 00:01:27.220
+This kind of free vocabulary is nice because it doesn’t require an administrator to continuously accept new instruments.
+
+00:01:28.220 --> 00:01:30.940
+The data that the application has access to are:
+
+00:01:31.940 --> 00:01:36.900
+The user’s FBID (Their unique Facebook user ID in the form of a number)
+
+00:01:37.900 --> 00:01:40.940
+The instruments that the user claims to play
+
+00:01:41.940 --> 00:01:44.100
+The number of friends that the user has
+
+00:01:45.100 --> 00:01:49.660
+We ended up getting 8603 rows of data (user/instrument pairs).
+
+00:01:50.160 --> 00:01:56.880
+After getting a bunch of free text instruments, we went to work classifying many of them into groups and subgroups.
+
+00:01:57.380 --> 00:02:00.740
+So Piccolo is in the group “Flute” and subgroup “Woodwind.”
+
+00:02:01.740 --> 00:02:06.540
+We then generated a survey for people to rank 16 instruments in order of sociability.
+
+00:02:07.040 --> 00:02:11.600
+That is, people who play x instrument probably have more friends than y instrument.
+
+00:02:12.600 --> 00:02:18.680
+The survey results showed that people thought Vocalists had the most friends and that Guitar was pretty popular too.
+
+00:02:19.680 --> 00:02:24.160
+From the application data and survey results, we formed a hypothesis.
+
+00:02:24.660 --> 00:02:31.540
+We hypothesized that the instruments given high sociability rank would also have statistically higher mean numbers of friends.
+
+00:02:32.040 --> 00:02:35.960
+So people who played Guitar would have more friends than people who played Flute.
+
+00:02:36.960 --> 00:02:44.880
+First, we did some basic analysis of the data using R , the free stats program that we were using for class assignments and labs.
+
+00:02:45.880 --> 00:02:49.880
+This figure shows the histogram of frequency of number of friends.
+
+00:02:50.380 --> 00:02:56.380
+Basically, many people have 0-100 friends, less people have 101-200 friends, etc.
+
+00:02:56.880 --> 00:03:04.800
+This probably follows a power law curve, but we didn’t think it would be really important to find the alpha or anything for our purposes.
+
+00:03:05.800 --> 00:03:09.640
+This is a graph of the mean number of friends, by instrument.
+
+00:03:10.140 --> 00:03:17.500
+This looks like a pretty standard normal distribution and it shows off the central limit theorem that Lada is always talking about in class.
+
+00:03:18.500 --> 00:03:23.140
+This is just a boxplot of all of the classified instruments and their # of friends.
+
+00:03:23.640 --> 00:03:27.160
+There are some crazy outliers; people who have 1000 friends.
+
+00:03:27.660 --> 00:03:32.540
+From this boxplot, it’s hard to make out whether or not any of the means are actually statistically significant.
+
+00:03:33.540 --> 00:03:36.900
+Finally, we ran pairwise t-tests on each set of instruments.
+
+00:03:37.400 --> 00:03:42.600
+We could see that there was a significant difference in the mean number of friends for certain instruments.
+
+00:03:43.100 --> 00:03:47.260
+For example, Guitar and Horn, Guitar and Oboe, and Guitar and Saxophone.
+
+00:03:47.760 --> 00:03:54.560
+Looking at the mean number of friends for these instruments, Saxophone players had on average 20 more friends than Guitar players.
+
+00:03:55.060 --> 00:04:02.020
+This is interesting because Saxophone was ranked 10.7 (not very sociable) and Guitar was ranked very sociable.
+
+00:04:03.020 --> 00:04:09.820
+The scope of this project was pretty small, and given some more time, I think we could’ve come up with some more interesting conclusions.
+
+00:04:10.320 --> 00:04:24.880
+Stuff like “is flute really a girly instrument?” by looking at the average number of female flute players vs male flute players and “do guitar players get more chicks?” by looking at relationship status of guitar players vs. something like trumpet players (personal burn!).
+
+00:04:25.880 --> 00:04:29.640
+I was glad my Facebook app actually provided some interesting data.
+
+00:04:30.140 --> 00:04:34.940
+I’ve always been sort of skeptical to the ability of Facebook apps to be profitable.
+
+00:04:35.440 --> 00:04:40.960
+I think the data that the apps provide is very valuable in the context of social network research.
+
+00:04:41.460 --> 00:04:44.980
+Anyway, I hope you found this post to be somewhat entertaining.
+
+00:04:45.480 --> 00:04:50.440
+I’ve also uploaded the project report and presentation slides in PDF if you want to check them out.
+
+00:04:51.440 --> 00:04:55.120
+Many thanks to Jim and Sameer for sharing much of the work in this project.
+
+00:04:55.620 --> 00:05:01.860
+I ended up providing data, formatting it, and presenting the final presentation, so props to my teammates!
