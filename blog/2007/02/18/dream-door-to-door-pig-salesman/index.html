@@ -166,6 +166,21 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/dream-door-to-door-pig-salesman.m4a"
+        type="audio/mp4">
+      <source src="/blog/assets/audio/dream-door-to-door-pig-salesman.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p>So I had this totally weird dream last night. It involved my entire neighborhood! For some reason, there was someone going door to door leaving pigs at people’s houses. When the guy got to our house, we didn’t answer the door. He opened our outer shutter door and left a pig in between the two doors. I could see all of this happening through our peep hole, even though It’d be pretty impossible to see that low in real life. Weird. Okay, now that I think of it, I guess he was more of a pig mailman than a salesman, but I have a feeling we were billed for the pig. To be payed for at a later date.</p>
@@ -178,6 +193,41 @@
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1771536066"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1771536068"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/dream-door-to-door-pig-salesman.vtt?v=1771536066";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->
