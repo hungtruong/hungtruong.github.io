@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.520
+Craigslist and Google Maps Mashup Thingy: Day 7 – Asynchronous JavaScript and XML!
+
+00:00:07.020 --> 00:00:09.180
+Published on April 21, 2007.
+
+00:00:10.180 --> 00:00:15.140
+I haven’t really been working on the Google Maps and Craigslist mashup very much recently.
+
+00:00:15.640 --> 00:00:25.240
+I blame it on a combination of going to Denver for a wedding, having a huge anime and manga backlog, getting Command and Conquer: Kane Edition, and general laziness.
+
+00:00:25.740 --> 00:00:28.540
+I think that’s a pretty good reason.
+
+00:00:29.540 --> 00:00:32.500
+Anyway, today I sorta got back into it.
+
+00:00:33.000 --> 00:00:39.000
+As the mashup worked on day 6, the Google map would preload all the stuff within the tabs for the markers.
+
+00:00:39.500 --> 00:00:45.260
+This meant it would poll Craigslist like a billion times in one second to get all of the images preloaded.
+
+00:00:45.760 --> 00:00:48.640
+Guess what? Craigslist doesn’t like that.
+
+00:00:49.140 --> 00:00:54.980
+They put a ban on me (and anyone else who would use the badly implemented map) after loading one page.
+
+00:00:55.480 --> 00:00:58.360
+Luckily it was only a temporary ban.
+
+00:00:59.360 --> 00:01:04.640
+My solution was to use AJAX to load the tabbed info windows for the markers on demand.
+
+00:01:05.140 --> 00:01:08.820
+So no pictures or anything get loaded until you request them.
+
+00:01:09.320 --> 00:01:14.840
+It’s much nicer to Craigslist, though I don’t know if it’s friendlier to my server, since there’ll be more requests.
+
+00:01:15.340 --> 00:01:16.700
+That’s okay, though.
+
+00:01:17.700 --> 00:01:23.060
+It was kind of a pain to learn how to grab the xml files and parse them, but I finally got it working.
+
+00:01:23.560 --> 00:01:29.640
+Now all I have to do is generate the xml files for each listing (shouldn’t be hard at all).
+
+00:01:30.140 --> 00:01:35.900
+I’ve already got experience generating xml from the RSS feeds that I make for Notecentric and Anime Nano .
+
+00:01:36.900 --> 00:01:40.820
+Plus, I get some street cred (maybe) for including AJAX in the site!
+
+00:01:41.320 --> 00:01:45.240
+It’s a requirement of Web 2.0, so I figure I should fulfill it.
