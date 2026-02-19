@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.120
+Craigslist and Google Maps Mashup Thingy: Day 5 – CakePHP
+
+00:00:06.620 --> 00:00:09.100
+Published on April 10, 2007.
+
+00:00:10.100 --> 00:00:19.940
+Today technically counts as day 5 of my Craigslist and Google Maps Mashup thing since I didn’t work on it at all yesterday due to getting Command and Conquer 3: Kane Edition .
+
+00:00:20.440 --> 00:00:25.960
+I got the limited edition number 73137, which is cool since it’s a palindrome!
+
+00:00:26.960 --> 00:00:30.400
+Anyway, today I actually did work a little bit on the mashup.
+
+00:00:30.900 --> 00:00:36.180
+I spent most of my time switching out from a random php output file to a CakePHP setup.
+
+00:00:36.680 --> 00:00:41.320
+I haven’t ever used CakePHP before, but I have used Ruby on Rails quite a bit.
+
+00:00:41.820 --> 00:00:45.500
+CakePHP is sort of like PHP’s answer to rails.
+
+00:00:46.000 --> 00:00:50.880
+It copies a lot of the ideas and conventions that Ruby on Rails expects developers to follow.
+
+00:00:51.880 --> 00:00:59.160
+Because of the similarities between CakePHP and Rails, I found it pretty simple to migrate the PHP I already had to CakePHP.
+
+00:00:59.660 --> 00:01:03.180
+I just had to learn the proper syntax to get everything working in Cake.
+
+00:01:03.680 --> 00:01:07.360
+I still think Ruby is a really beautifully simple language to write code in.
+
+00:01:07.860 --> 00:01:12.900
+Cake tries to get things looking Ruby-ish, but there’s still some weirdness involved.
+
+00:01:13.400 --> 00:01:16.040
+It’s good for me to be learning these PHP things anyway, though.
+
+00:01:16.540 --> 00:01:19.260
+I’ve put PHP on the backburner for too long.
+
+00:01:20.260 --> 00:01:25.940
+Tomorrow, if I have time to work on the project, I think I’ll implement the actual UI side of things.
+
+00:01:26.440 --> 00:01:30.680
+I have a rough idea of how I want users to be able to interact with the site.
+
+00:01:31.180 --> 00:01:34.540
+Hopefully designing the interface will be as easy as it is in Rails.

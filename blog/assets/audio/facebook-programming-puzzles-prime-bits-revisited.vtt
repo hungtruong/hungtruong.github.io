@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+Facebook Programming Puzzles – Prime Bits Revisited
+
+00:00:05.500 --> 00:00:08.940
+Published on April 12, 2007.
+
+00:00:09.940 --> 00:00:16.340
+So I got a comment on my original post about the Facebook Programming Puzzle called “Prime Bits” that asked:
+
+00:00:17.340 --> 00:00:18.780
+did you get this part ?
+
+00:00:19.280 --> 00:00:24.160
+Your implementation should have a running time faster than O(n), where n is b – a.
+
+00:00:24.660 --> 00:00:27.060
+id like to see how you solved it.
+
+00:00:28.060 --> 00:00:32.860
+I felt really stupid for not catching that part until I checked the Google cache of the page.
+
+00:00:33.360 --> 00:00:40.880
+Apparently Facebook added that requirement some time after April 2nd and, presumably, getting a lot of inefficient entries (mine included).
+
+00:00:41.880 --> 00:00:50.840
+It’s also funny to note that if you look at the actual html, there’s a fun message hidden in comments that reads “with ‘efficient’ meaning whatever you think it ought to mean.”
+
+00:00:51.340 --> 00:00:53.660
+Touché, facebook, touché.
+
+00:00:54.660 --> 00:01:00.820
+Off the top of my head, I can think of a way using dynamic programming to make the problem a lot more efficient.
+
+00:01:01.320 --> 00:01:07.080
+I’m not sure whether or not it’s just an amortization hack, or an actual better than O(n) implementation, technically.
+
+00:01:08.080 --> 00:01:12.240
+Okay, so I went ahead and coded up the dynamic programming version.
+
+00:01:12.740 --> 00:01:17.380
+The running time actually does increase at a less than O(n) rate, so I think it counts.
+
+00:01:17.880 --> 00:01:21.080
+Maybe I’ll plot out the running time growth for good measure.
+
+00:01:21.580 --> 00:01:23.580
+I believe it’s in the neighborhood of log(n).
+
+00:01:24.080 --> 00:01:28.560
+I guess I’ll send this new version along with my resume again, and see if they’ll respond this time 🙂
+
+00:01:29.560 --> 00:01:31.400
+Also, Rest in Peace, Facebook Guy.
+
+00:01:31.900 --> 00:01:33.420
+You’ll be sorely missed.
