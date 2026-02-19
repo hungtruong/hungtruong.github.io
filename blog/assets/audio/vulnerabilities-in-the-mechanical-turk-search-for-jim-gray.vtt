@@ -1,0 +1,151 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.760
+Vulnerabilities In The Mechanical Turk Search For Jim Gray
+
+00:00:05.260 --> 00:00:07.820
+Published on February 03, 2007.
+
+00:00:08.820 --> 00:00:14.580
+I just read about a really awesome use for Amazon.com’s Mechanical Turk: finding missing people!
+
+00:00:15.080 --> 00:00:16.840
+From the Mechanical Turk’s page:
+
+00:00:17.840 --> 00:00:25.360
+On Sunday, January 28th, 2007, Jim Gray , a renowned computer scientist was reported missing at sea.
+
+00:00:25.860 --> 00:00:33.380
+As of Thursday, Feb. 1st, the US Coast Guard has called off the search, having found no trace of the boat or any of its emergency equipment.
+
+00:00:33.880 --> 00:00:36.600
+Follow the story here.
+
+00:00:37.100 --> 00:00:45.820
+Through the generous efforts of his friends, family, various communities and agencies, detailed satellite imagery has been made available for his last known whereabouts.
+
+00:00:46.320 --> 00:00:48.880
+You will be presented with 5 images.
+
+00:00:49.380 --> 00:00:57.300
+The task is to indicate any satellite images which contain any foreign objects in the water that may resemble Jim’s sailboat or parts of a boat.
+
+00:00:57.800 --> 00:01:06.520
+Jim’s sailboat will show up as a regular object with sharp edges, white or nearly white, about 10 pixels long and 4 pixels wide in the image.
+
+00:01:07.020 --> 00:01:09.900
+If in doubt, be conservative and mark the image.
+
+00:01:10.400 --> 00:01:17.520
+Marked images will be sent to a team of specialists who will determine if they contain information on the whereabouts of Jim Gray.
+
+00:01:18.520 --> 00:01:25.000
+While I think it’s a really nifty and commendable idea, it bothers me how vulnerable this system is from the way I understand it.
+
+00:01:25.500 --> 00:01:32.060
+It seems to me that once an image is marked as containing a sailboat-like object, it will be sent to others for investigation.
+
+00:01:32.560 --> 00:01:34.400
+If not, it will be discarded.
+
+00:01:35.400 --> 00:01:39.560
+In computer science, you’re trained to think as an adversary to the algorithm.
+
+00:01:40.060 --> 00:01:46.940
+While I’d hope there aren’t any people malicious enough to try and sabotage this system, it’s always worth considering the possibility.
+
+00:01:47.440 --> 00:01:52.160
+I’ve thought of a few vulnerabilities that the Mechanical Turk faces in the search for Jim Gray:
+
+00:01:53.160 --> 00:01:54.920
+Vulnerability 1
+
+00:01:55.920 --> 00:02:00.560
+The adversary marks each picture as not containing anything of interest, even if it does.
+
+00:02:01.060 --> 00:02:06.340
+In the case that an adversary finds the picture with the sailboat, he and he alone can invalidate it.
+
+00:02:06.840 --> 00:02:09.720
+The data is never considered and the search fails.
+
+00:02:10.720 --> 00:02:13.120
+I’m assuming a few things about the system.
+
+00:02:13.620 --> 00:02:18.020
+The biggest assumption is that each HIT will be viewed by only one person.
+
+00:02:18.520 --> 00:02:20.760
+The Mechanical Turk doesn’t specify this.
+
+00:02:21.260 --> 00:02:25.260
+If two people are assigned to each hit, the odds of this happening are lower.
+
+00:02:25.760 --> 00:02:30.240
+Though this system can still be defeated by two adversaries working in tandem.
+
+00:02:31.240 --> 00:02:33.000
+Vulnerability 2
+
+00:02:34.000 --> 00:02:37.440
+The adversary marks each picture as being interesting.
+
+00:02:37.940 --> 00:02:43.140
+An overwhelming amount of data is sent to the “team of specialists” and we’re back to square one.
+
+00:02:43.640 --> 00:02:49.560
+We can’t just assume that all of the pictures flagged as interesting were not, because one could be useful.
+
+00:02:50.560 --> 00:02:54.000
+This kind of attack seems much more malicious to me.
+
+00:02:54.500 --> 00:02:58.660
+At best, you could invalidate all of the adversary’s HITs and reassign them.
+
+00:02:59.160 --> 00:03:05.000
+This could take precious time, though, since once a HIT is taken, it is locked from other users to attempt.
+
+00:03:06.000 --> 00:03:07.680
+Vulnerability 3
+
+00:03:08.680 --> 00:03:15.000
+The adversary randomly marks non-interesting pictures interesting, and interesting pictures to be non-interesting.
+
+00:03:16.000 --> 00:03:19.040
+This is probably the most malicious and the hardest to detect.
+
+00:03:19.540 --> 00:03:25.300
+While the odds of finding an interesting picture to mark non-interesting would be low, it could happen.
+
+00:03:26.300 --> 00:03:31.180
+I can’t think of a way to combat this kind of attack, apart from having two users work on each HIT.
+
+00:03:31.680 --> 00:03:37.520
+Again, this could still be defeatable by two adversaries working together to dirty the results.
+
+00:03:38.520 --> 00:03:39.640
+Conclusion
+
+00:03:40.640 --> 00:03:46.240
+Even with these vulnerabilities, I think the Mechanical Turk’s search for Jim Gray is an incredible idea.
+
+00:03:46.740 --> 00:03:48.980
+I sincerely hope that they do find him.
+
+00:03:49.480 --> 00:03:52.200
+It would be a great victory for everyone involved.
+
+00:03:52.700 --> 00:03:54.860
+Please do join in the search for Jim Gray.
+
+00:03:55.360 --> 00:03:58.240
+Please don’t follow any of the adversarial techniques I mentioned!
+
+00:03:59.240 --> 00:04:09.960
+I just hope that the people behind the Mechanical Turk are aware of these vulnerabilities, and have come up with solutions (that are better than mine) to combat any kind of malicious use that could undermine the entire project.
+
+00:04:10.960 --> 00:04:19.120
+If you have any ideas to combat these vulnerabilities, or have any other ideas for vulnerabilities that I may have missed, please let me know in the comments.
+
+00:04:19.620 --> 00:04:22.260
+I’d be interested from a computer science sort of viewpoint.
