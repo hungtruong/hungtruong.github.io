@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.680
+Google Developers Day US – Theorizing from Data
+
+00:00:05.180 --> 00:00:07.980
+Published on June 24, 2007.
+
+00:00:08.980 --> 00:00:14.180
+So before I got on a plane to fly from NM to RH, I prepared myself for boredom.
+
+00:00:14.680 --> 00:00:20.680
+One of the things I did was encode some of the Google Developer Day videos on Youtube for my Sony PSP.
+
+00:00:21.180 --> 00:00:25.020
+I think it was one of three times I’ve actually used my PSP!
+
+00:00:26.020 --> 00:00:34.740
+Anyway, most of the videos were pretty fluffy and didn’t hold my interest, but the talk by Peter Norvig about statistical analysis was pretty darn interesting.
+
+00:00:35.240 --> 00:00:40.920
+Funny sidenote: when I went to Google for an interview, Peter Norvig was the special speaker dude.
+
+00:00:41.420 --> 00:00:44.860
+He had a pretty cool Hawaiian shirt on then too, as I recall.
+
+00:00:45.860 --> 00:00:53.860
+Anyway, the talk brings up some pretty interesting things, like how if you feed enough statistics to a computer, the actual algorithm matters less and less.
+
+00:00:54.360 --> 00:00:59.160
+I’ve been interested in AI and machine learning, but I never really took any formal classes.
+
+00:01:00.160 --> 00:01:03.520
+The stuff in the talk has sort of stuck in my head now.
+
+00:01:04.020 --> 00:01:09.540
+So I’m tending to see a lot of problems as being solvable by statistical analysis/classification.
+
+00:01:10.040 --> 00:01:12.600
+Like that Spock Challenge thing I blogged about earlier.
+
+00:01:13.100 --> 00:01:24.700
+Anyway, I’ve got an idea for a wacky application of Naive Bayesian Classification, but I won’t mention it yet (in case it’s an actual good idea, or in case I decide to bail after I don’t want to figure out the probability math).
+
+00:01:25.700 --> 00:01:26.580
+Stay tuned?
