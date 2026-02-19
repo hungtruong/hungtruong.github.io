@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.440
+Craigslist and Google Maps Mashup Thingy: Day 8 – CakePHP Routing and Caching
+
+00:00:06.940 --> 00:00:09.500
+Published on April 22, 2007.
+
+00:00:10.500 --> 00:00:14.820
+I spent a whole lotta time today trying to get caching working with CakePHP.
+
+00:00:15.320 --> 00:00:22.360
+Apparently, CakePHP doesn’t do caching quite as gracefully as Rails when it comes to custom routing, especially in the application root.
+
+00:00:22.860 --> 00:00:24.220
+Yeah, there’s a bug.
+
+00:00:24.720 --> 00:00:31.520
+I thought I was doing something wrong though, so it took me forever to find out it was actually a bug (or is it a “feature?”).
+
+00:00:32.520 --> 00:00:40.840
+Besides that, I got the interface to what it was previously, except with AJAX so that the Craigslist images are only downloaded when you click on a map marker.
+
+00:00:41.340 --> 00:00:48.380
+I also found that it takes a long time to put a week’s worth of listings (from Ann Arbor, at least) onto the map at once.
+
+00:00:48.880 --> 00:00:51.440
+I’m guessing there were at least 400 on there.
+
+00:00:51.940 --> 00:00:56.900
+I made a hard limit to the number of listings that show up, and it loads a lot faster now.
+
+00:00:57.900 --> 00:01:01.580
+I’m sort of back into the mood for working on this project again.
+
+00:01:02.080 --> 00:01:08.880
+I finally beat the Scrin campaign (it was really short) in Command and Conquer 3, so I’ll definitely be more focused now. I think.
