@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.280
+XPath: Learn It!
+
+00:00:02.780 --> 00:00:05.500
+Published on July 24, 2007.
+
+00:00:06.500 --> 00:00:17.460
+So I’ve been trying to do some Facebook App stuff in Ruby on Rails (I already did some in PHP) and the RFacebook Gem uses this wacky XHTML/XML parser called “Hpricot.”
+
+00:00:17.960 --> 00:00:25.720
+The most experience I have with parsing XML is winging it with REXML until I got something that was somewhat correct.
+
+00:00:26.720 --> 00:00:28.560
+So I tried using Hpricot tonight.
+
+00:00:29.060 --> 00:00:36.420
+Apparently it’s super fast, but the documentation assumes you know a whole lot about the mating habits (internal workings) of HTML and XML.
+
+00:00:36.920 --> 00:00:38.200
+And… I don’t really.
+
+00:00:39.200 --> 00:00:42.880
+At least, not until I found this handy XPath tutorial !
+
+00:00:43.380 --> 00:00:51.140
+After actually reading the tutorial, rather than trying to wing/hack it again, I think I have a pretty good feel for this Hpricot thing.
+
+00:00:51.640 --> 00:00:57.000
+Basically, there’s a pretty simple vocabulary for describing the nested nature of XML.
+
+00:00:57.500 --> 00:01:05.100
+It’s impossible to figure out from the Hpricot tutorials (which I tried doing for a while), but insanely simple once you just look at the tutorial.
+
+00:01:05.600 --> 00:01:10.800
+Ah well, I guess that’ll teach me a lesson not to hack so much when it’s easier to RTFM…
