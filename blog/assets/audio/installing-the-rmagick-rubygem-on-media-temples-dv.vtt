@@ -1,0 +1,52 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.760
+Installing The RMagick Rubygem On Media Temple’s DV
+
+00:00:05.260 --> 00:00:07.740
+Published on February 01, 2007.
+
+00:00:08.740 --> 00:00:10.980
+Damn you, RMagick Clown!
+
+00:00:11.480 --> 00:00:13.320
+You haunt my nightmares!!!
+
+00:00:14.320 --> 00:00:20.880
+Oh boy, so once I got rails actually running on my dv, I figured out that my applications needed the RMagick ruby gem.
+
+00:00:21.380 --> 00:00:27.220
+RMagick does graphics stuff, like resizing and creating captcha images and whatnot, so I really need it.
+
+00:00:27.720 --> 00:00:34.120
+I ran into a few gotchas while trying to install RMagic (well, installing ImageMagick) so here’s what I did:
+
+00:00:35.120 --> 00:00:37.440
+First, you must install ImageMagick.
+
+00:00:37.940 --> 00:00:41.140
+This involves installing a bunch of dependencies first.
+
+00:00:41.640 --> 00:00:47.400
+I did all of the ones listed on the Rmagick ImageMagick installation guide , but the .
+
+00:00:47.900 --> 00:00:51.180
+/configure command still wouldn’t see the jpeg delegate library.
+
+00:00:52.180 --> 00:00:58.740
+The error message I got when trying to install RMagick was like this: “No decode delegate for this image format.”
+
+00:00:59.240 --> 00:01:05.000
+I found out from this page that I needed to run: “./configure –enable-shared” for it to register properly.
+
+00:01:05.500 --> 00:01:09.420
+When I tried running make and make install, I got some error like this:
+
+00:01:10.420 --> 00:01:18.740
+Magick::ImageMagickError: unable to read font `…/ghostscript/fonts/n019003l.pfbâ€™
+
+00:01:19.740 --> 00:01:28.620
+It turns out the font directory set up for ImageMagick didn’t have any fonts… So I downloaded the GhostScript fonts (I had already installed GhostScript) into that directory.
+
+00:01:29.120 --> 00:01:30.880
+And it worked. The end.
