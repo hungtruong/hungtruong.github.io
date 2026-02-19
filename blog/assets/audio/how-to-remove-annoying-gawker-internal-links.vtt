@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.960
+How To Remove Annoying Gawker Internal Links
+
+00:00:04.460 --> 00:00:07.340
+Published on July 17, 2007.
+
+00:00:08.340 --> 00:00:10.580
+I like a lot of the blogs on the Gawker network.
+
+00:00:11.080 --> 00:00:18.040
+Kotaku, Gizmodo, Lifehacker, and Valleywag are all blogs I read, with Valleywag being the one I must read everyday.
+
+00:00:18.540 --> 00:00:23.980
+One thing that infuriates me, however, is their use of “SEO” tricks to up their pageviews.
+
+00:00:24.480 --> 00:00:32.640
+Almost every article on the Gawker blogs will have links to “Posts tagged as” whatever, which links to a tag list.
+
+00:00:33.640 --> 00:00:40.600
+I noticed on the actual sites that they change the color of internal link to blend in, and the external links look like links.
+
+00:00:41.100 --> 00:00:44.220
+That’s good, except that I read the blogs in Google Reader.
+
+00:00:44.720 --> 00:00:47.360
+So an article ends up looking like this:
+
+00:00:48.360 --> 00:00:53.080
+Holy Crap! 8 of the 12 links on that page are directed to a fucking tag list!
+
+00:00:53.580 --> 00:00:55.900
+First of all, this is incredibly annoying.
+
+00:00:56.400 --> 00:01:01.680
+If a person clicks on a link entitled “Facebook” then maybe clicking on it should take them to FACEBOOK!!!
+
+00:01:02.680 --> 00:01:08.600
+Second, linking to internal “search results” for SEO purposes is frowned upon by Google .
+
+00:01:09.100 --> 00:01:14.540
+Of course, they’re not just doing this for the SEO, but also for crazy-insane inflated pageview stats.
+
+00:01:15.540 --> 00:01:21.540
+I was gonna write a greasemonkey script to remove the annoying links, but before I could, I found an existing one .
+
+00:01:22.040 --> 00:01:24.520
+Unfortunately it doesn’t work in Google Reader.
+
+00:01:25.520 --> 00:01:29.520
+A lot of other blogs are starting to do this, and it’s really starting to annoy me.
+
+00:01:30.020 --> 00:01:32.260
+I’m sure others are annoyed too.
+
+00:01:32.760 --> 00:01:37.800
+Maybe if enough people complain, these sites will ditch the annoying SEO tactics.
+
+00:01:38.300 --> 00:01:40.860
+Maybe we should report their evil ways to Google?
+
+00:01:41.860 --> 00:01:48.580
+If I do end up giving up reading Valleywag, at least there’s a better (yet less often updated) successor, Uncov .
+
+00:01:49.080 --> 00:01:50.760
+Long live Uncov!
