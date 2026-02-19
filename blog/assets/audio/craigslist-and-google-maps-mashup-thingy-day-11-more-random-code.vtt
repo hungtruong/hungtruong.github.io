@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.040
+Craigslist and Google Maps Mashup Thingy: Day 11 – More Random Code
+
+00:00:06.540 --> 00:00:09.420
+Published on April 29, 2007.
+
+00:00:10.420 --> 00:00:16.740
+Today for the mashup thing, I did a bit of work on the main index page where each available city will show up as a marker.
+
+00:00:17.240 --> 00:00:20.920
+So when someone goes to the root of the website, they’ll see a bunch of cities.
+
+00:00:21.420 --> 00:00:25.260
+They can also pick the cities from a drop down menu, too.
+
+00:00:25.760 --> 00:00:29.600
+This required a bit of more javascript and some template files, etc.
+
+00:00:30.600 --> 00:00:35.880
+I did a little research on the person who did the Google Maps Craigslist mashup like two years ago.
+
+00:00:36.380 --> 00:00:38.540
+Apparently he got a job at Google!
+
+00:00:39.040 --> 00:00:47.600
+While that’s pretty awesome, I can’t see this project doing the same for me, since it’s something that’s already been done (and two years ago, which is an eternity in web time).
+
+00:00:48.100 --> 00:00:55.460
+Rather, I’m just building this for my own use and perhaps for other people who wish there were more cities available in that HousingMaps mashup.
+
+00:00:56.460 --> 00:00:59.020
+I came up with a name for the application.
+
+00:00:59.520 --> 00:01:03.600
+I was going to call it CraigsMaps, but someone already has that domain name.
+
+00:01:04.100 --> 00:01:08.820
+I’m thinking I should buy the domain name pretty soon, but what if I come up with a cooler name later!?
+
+00:01:09.320 --> 00:01:12.440
+The app should be ready in a couple of days anyway.
+
+00:01:12.940 --> 00:01:16.140
+Depending on how much extra stuff I want to cram in before I “launch” it.
