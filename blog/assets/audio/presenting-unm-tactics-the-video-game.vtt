@@ -1,0 +1,241 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.280
+Presenting UNM Tactics: The Video Game!
+
+00:00:04.780 --> 00:00:07.500
+Published on January 08, 2007.
+
+00:00:08.500 --> 00:00:13.860
+Back in the Spring of 2005, I took an intro to video game design and programming class.
+
+00:00:14.360 --> 00:00:20.200
+While I had a pretty good background in programming, I hadn’t done the kind of stuff for video games before.
+
+00:00:20.700 --> 00:00:27.340
+The first assignment in the class was to come up with some kind of game concept that would end up being a project for the class.
+
+00:00:28.340 --> 00:00:31.860
+I really love RPGs, and the more offbeat they are, the better.
+
+00:00:32.360 --> 00:00:35.560
+One of my favorites is Earthbound for the SNES.
+
+00:00:36.060 --> 00:00:40.780
+I also dig the SRPGs from Nippon Ichi like Disgaea.
+
+00:00:41.280 --> 00:00:45.520
+Originally I wanted to do a Strategy RPG in the setting of campus life.
+
+00:00:46.020 --> 00:00:48.340
+It was called “UNM Tactics!”
+
+00:00:48.840 --> 00:00:55.080
+The whole SRPG thing didn’t turn out so well, and in the end, we made a generic style university RPG instead.
+
+00:00:56.080 --> 00:01:01.120
+We kept the name as UNM Tactics, even though it wasn’t really a tactics type game.
+
+00:01:01.620 --> 00:01:08.580
+We used RPG Maker XP, which is a really easy to use frontend system for, well, making RPGs.
+
+00:01:09.080 --> 00:01:15.880
+After pulling a few all nighters, we finished the final presentation, and as a pleasant surprise, I got an A+!
+
+00:01:16.380 --> 00:01:23.340
+After the class, I sorta forgot about the game, but I was reminded of it after watching that movie, College Saga.
+
+00:01:24.340 --> 00:01:25.380
+From the readme:
+
+00:01:26.380 --> 00:01:30.860
+UNM Tactics is an RPG set at the University of New Mexico.
+
+00:01:31.360 --> 00:01:37.360
+It was created by a team of programmers and artists for CS 491: Intro to Video Game Development.
+
+00:01:37.860 --> 00:01:41.700
+While a working demo was created, the game was never fully completed.
+
+00:01:42.200 --> 00:01:46.120
+This game is the demo that was used for the final class presentation.
+
+00:01:47.120 --> 00:01:50.320
+You can download the game here if you don’t want the story to be spoiled.
+
+00:01:50.820 --> 00:01:54.340
+The game comes in a self extracting executable.
+
+00:01:54.840 --> 00:01:58.120
+You just need to run it and point it to an output directory.
+
+00:01:58.620 --> 00:02:02.220
+Then run the “Game.exe” file and you’re good to go!
+
+00:02:02.720 --> 00:02:07.200
+The game should run on any Windows system, though I’ve only tested it on Windows XP.
+
+00:02:07.700 --> 00:02:09.780
+Use the contact form if you need some support.
+
+00:02:10.780 --> 00:02:13.420
+Now it’s time for screencaps and commentary!
+
+00:02:14.420 --> 00:02:16.820
+This is the SUB, or Student Union Building.
+
+00:02:17.320 --> 00:02:19.560
+I made all of the tiles by hand.
+
+00:02:20.060 --> 00:02:23.900
+Well, in Photoshop… This screen is right before you fight the Emo.
+
+00:02:24.400 --> 00:02:28.720
+You need to fight the Emo to get a Chicken Burger for the ITEL system so you can pass the semester.
+
+00:02:29.220 --> 00:02:31.140
+Yeah, school is complicated…
+
+00:02:32.140 --> 00:02:33.980
+This is the overhead map.
+
+00:02:34.480 --> 00:02:38.000
+We just copied and pasted from Google Maps for the UNM area.
+
+00:02:38.500 --> 00:02:40.580
+Everything’s where it’s supposed to be, though!
+
+00:02:41.080 --> 00:02:44.200
+You need to press space on the bullseyes to get enter that area.
+
+00:02:44.700 --> 00:02:46.940
+To the North is the duck pond .
+
+00:02:47.440 --> 00:02:50.960
+To the South is South Lot (duh) and the bookstore.
+
+00:02:51.960 --> 00:02:53.880
+This is the battle screen.
+
+00:02:54.380 --> 00:02:58.300
+The Nerd is using his special power, Segmentation Fault .
+
+00:02:58.800 --> 00:03:03.600
+This attack has the elemental power of “math,” which thugs are weak against.
+
+00:03:04.100 --> 00:03:06.500
+You’ll also notice that the Emo has joined the party.
+
+00:03:07.000 --> 00:03:09.240
+His special move is “cut self.”
+
+00:03:10.240 --> 00:03:12.480
+This screen is from one of the missions.
+
+00:03:12.980 --> 00:03:16.340
+You need to fight the King Duck who has taken over the duck pond.
+
+00:03:16.840 --> 00:03:21.240
+He’s based on a real life goose who runs amok at the UNM Duck Pond.
+
+00:03:21.740 --> 00:03:23.660
+If you ever see him, watch out!
+
+00:03:24.660 --> 00:03:28.820
+Originally I wanted to make South Lot like the lost woods in The Legend of Zelda.
+
+00:03:29.320 --> 00:03:33.000
+This proved to be too much work, so I just made it a couple of screens.
+
+00:03:33.500 --> 00:03:36.620
+Yes, there are only like, 3 kinds of cars at the lot.
+
+00:03:37.120 --> 00:03:40.560
+And yes, those are DDR arrows pointing you to the next screen…
+
+00:03:41.560 --> 00:03:45.240
+Here’s the battle with the malfunctioning South Lot Bus.
+
+00:03:45.740 --> 00:03:50.460
+If you look closely, you can tell that it is in fact the G and Q Lot bus.
+
+00:03:50.960 --> 00:03:53.680
+Also, the background of the battle is the Q Lot.
+
+00:03:54.180 --> 00:03:57.060
+You’ll also notice that there’s a bus driver in there.
+
+00:03:57.560 --> 00:03:59.320
+He’s actually a pretty cool guy.
+
+00:03:59.820 --> 00:04:03.100
+The radio stations that Wesley picks are always the best.
+
+00:04:04.100 --> 00:04:09.220
+After you complete all of the missions in the demo, you get to fight the final boss.
+
+00:04:09.720 --> 00:04:12.360
+I won’t spoil it; you’ll have to beat the game yourself.
+
+00:04:12.860 --> 00:04:18.220
+Also, check it out, the Emo is back at Chick-fil-A, even though he’s in our party!
+
+00:04:18.720 --> 00:04:20.640
+So much for bug testing…
+
+00:04:21.640 --> 00:04:25.880
+While I did a whole lot of this game, I didn’t do all of it.
+
+00:04:26.380 --> 00:04:27.500
+Here’s some credits!
+
+00:04:28.500 --> 00:04:32.420
+Original Concept, Story, Programming, Scenario Maps:
+
+00:04:33.420 --> 00:04:34.460
+Hung Truong
+
+00:04:35.460 --> 00:04:37.540
+Character Design and Art:
+
+00:04:38.540 --> 00:04:40.700
+Robert Foley and Marcus Smith
+
+00:04:41.700 --> 00:04:42.740
+The World Map:
+
+00:04:43.740 --> 00:04:44.860
+Anthony Hayes
+
+00:04:45.860 --> 00:04:48.100
+The Alien and Emo Models:
+
+00:04:49.100 --> 00:04:51.500
+James R Holten IV
+
+00:04:52.500 --> 00:04:53.700
+Game Music:
+
+00:04:54.700 --> 00:04:57.740
+Alex Santoya and Weezer
+
+00:04:58.740 --> 00:05:03.220
+Funny story: All of the characters are supposed to correspond to one person who was in the game.
+
+00:05:03.720 --> 00:05:08.440
+The nerd is supposed to look like me, Anthony is the playboy, Robert is the jock.
+
+00:05:08.940 --> 00:05:15.260
+The emo character is some guy in our group who really did go emo and dropped the class. Go figure.
+
+00:05:16.260 --> 00:05:21.380
+Overall, UNM Tactics was a lot of hard work, but I’m fairly proud of the finished product.
+
+00:05:21.880 --> 00:05:25.160
+Feel free to download it, play it, and share it.
+
+00:05:25.660 --> 00:05:27.900
+Just don’t charge money or pay for it.
+
+00:05:28.400 --> 00:05:30.080
+Like anyone would pay for this…
