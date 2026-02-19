@@ -1,0 +1,61 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.760
+Craigslist and Google Maps Mashup Thingy: Day 4
+
+00:00:05.260 --> 00:00:07.660
+Published on April 08, 2007.
+
+00:00:08.660 --> 00:00:12.660
+Today I made a bit more progress with my Craigslist Google Maps mashup thing.
+
+00:00:13.160 --> 00:00:19.400
+I setup the database table that handled the pictures for the listings, and added the images to the view as well.
+
+00:00:19.900 --> 00:00:26.220
+After that, I setup a new parser to parse the listings that can be found at the Michigan off-campus housing listings page .
+
+00:00:26.720 --> 00:00:31.680
+I’m not sure if I should make a separate page for these, or include them in the Craigslist listings…
+
+00:00:32.680 --> 00:00:34.520
+I also came across a weird bug.
+
+00:00:35.020 --> 00:00:45.260
+When I ran the new Michigan parsing script by going to the page from a web browser, the thing would run fine, but after I uploaded to the server and ran it from the command line, it would flip out.
+
+00:00:45.760 --> 00:00:52.240
+It took me a really long time to figure out, but it turns out that I was calling a separate function by passing a value and not a reference.
+
+00:00:53.240 --> 00:00:59.400
+I actually thought this might be a problem when writing the function, but when it worked, I forgot about the issue momentarily.
+
+00:00:59.900 --> 00:01:02.860
+The weird part is that the function works fine when you hit the .
+
+00:01:03.360 --> 00:01:08.080
+php file from a browser, and not when you run it from the command line.
+
+00:01:08.580 --> 00:01:10.740
+It must be some setting in the environment…
+
+00:01:11.740 --> 00:01:16.460
+Besides that minor problem, everything seems to be going along smoothly.
+
+00:01:16.960 --> 00:01:22.960
+PHP has a lot of nice built in functionality for doing string manipulation, which this project has a lot of.
+
+00:01:23.460 --> 00:01:27.380
+It’s also got really nice networking and file reading capability.
+
+00:01:27.880 --> 00:01:32.520
+I guess that makes sense, since it originally came about as a tool for creating websites.
+
+00:01:33.520 --> 00:01:37.680
+Tomorrow I’ll try to get the mashup site setup with actual options and navigation.
+
+00:01:38.180 --> 00:01:40.500
+Right now it’s just set on Ann Arbor.
+
+00:01:41.000 --> 00:01:44.760
+I’ll have to do some routing to get the many different options that people might want set up.

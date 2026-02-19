@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.600
+Craigslist and Google Maps Mashup Thingy: Day 3
+
+00:00:05.100 --> 00:00:07.900
+Published on April 08, 2007.
+
+00:00:08.900 --> 00:00:14.100
+Yesterday I worked on the mashup thing, but then I got sleepy and didn’t write a post about it.
+
+00:00:14.600 --> 00:00:15.960
+So here’s a post!
+
+00:00:16.960 --> 00:00:23.840
+Basically I worked on adding the individual listings onto the Google Map with stuff like the description, address, and price.
+
+00:00:24.340 --> 00:00:31.460
+At first I thought about importing the points from some kind of xml document, but I figured the approach with just embedding it was easier.
+
+00:00:32.460 --> 00:00:37.820
+Then I figured out how to start scraping some of the listing info from the Michigan off campus housing site.
+
+00:00:38.320 --> 00:00:41.920
+This site seems to have better listings in terms of quality and price.
+
+00:00:42.420 --> 00:00:47.700
+I think today I’ll work on getting all of that info into the database so I can map it as well.
