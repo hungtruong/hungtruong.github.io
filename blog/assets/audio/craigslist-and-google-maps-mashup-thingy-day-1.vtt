@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.080
+Craigslist and Google Maps Mashup Thingy: Day 1
+
+00:00:05.580 --> 00:00:08.780
+Published on April 05, 2007.
+
+00:00:09.780 --> 00:00:14.020
+So I’m sort of looking for housing in Michigan since I’m gonna be living there for two years.
+
+00:00:14.520 --> 00:00:18.600
+The apartments apparently go fast, so I should be looking for them a few months ago.
+
+00:00:19.100 --> 00:00:20.380
+Which is to say now.
+
+00:00:21.380 --> 00:00:25.940
+A while back, some guy made a mashup of Craigslist and Google Maps.
+
+00:00:26.440 --> 00:00:31.720
+HousingMaps shows a giant google map with pushpins corresponding to communities on Craigslist.
+
+00:00:32.220 --> 00:00:34.220
+I think this was one or two years ago.
+
+00:00:34.720 --> 00:00:41.520
+Since then, other communities have been added to Craigslist, but the person who wrote this site hasn’t updated anything.
+
+00:00:42.020 --> 00:00:46.260
+Guess what? Ann Arbor isn’t one of the communities supported by HousingMaps.
+
+00:00:47.260 --> 00:00:55.180
+So I figured it’d be a good exercise in coding (in PHP and some javascript for the Google Maps component) for me to do something similar.
+
+00:00:55.680 --> 00:01:02.800
+Sure, I’m not doing anything very original, but at least I’ll learn something, and I think it’ll be difficult enough without being impossible.
+
+00:01:03.800 --> 00:01:08.920
+So far, I’ve gotten the important chunks of info parsed out of the individual Craigslist listings.
+
+00:01:09.420 --> 00:01:12.780
+Note to Craigslist: Your HTML is horrendous.
+
+00:01:13.280 --> 00:01:15.280
+It is formed: horribly.
+
+00:01:15.780 --> 00:01:20.100
+Okay, so maybe it’s not that bad, but it’s certainly not semantic .
+
+00:01:20.600 --> 00:01:28.200
+Honestly, figuring out how to parse this very crappily formed HTML took some crazy logic, but I think it came out okay in the end.
+
+00:01:29.200 --> 00:01:36.240
+Next, I’m going to have to figure out putting these listings into the database (shouldn’t be that hard), so that they can populate the map.
+
+00:01:36.740 --> 00:01:41.700
+After that, adding stuff to the map and getting the map to do what I want. Now, sleep.
