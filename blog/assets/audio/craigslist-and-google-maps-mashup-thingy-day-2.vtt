@@ -1,0 +1,55 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.560
+Craigslist and Google Maps Mashup Thingy: Day 2
+
+00:00:06.060 --> 00:00:08.700
+Published on April 06, 2007.
+
+00:00:09.700 --> 00:00:14.420
+Today I pretty much worked on my Craigslist Google Maps app all day.
+
+00:00:14.920 --> 00:00:24.760
+I spent a lot more time getting the data that I scraped from the individual Craigslist ads into the database, and then setting up the cron script thing to periodically pick up the new feeds.
+
+00:00:25.260 --> 00:00:29.500
+To parse the RSS feeds, I just used Magpie since it was really easy.
+
+00:00:30.500 --> 00:00:41.780
+Magpie wouldn’t parse the KML files that Google Maps uses to do its geocoding thing (where it gives you the latitude and longitude based on an address) so I had to use a regular expression.
+
+00:00:42.280 --> 00:00:45.800
+It was a pretty ugly hack, but at least it got the job done.
+
+00:00:46.300 --> 00:00:51.820
+I suppose it’s more efficient to use regular expressions rather than a full blown parser though. Maybe.
+
+00:00:52.820 --> 00:00:58.260
+I also got the database info for the apartment ads into Google Maps using their API.
+
+00:00:58.760 --> 00:01:01.800
+It’s actually pretty simple once you understand what all the lines mean.
+
+00:01:02.300 --> 00:01:07.020
+I’m sort of weak in Javascript, so I guess this is a good chance for me to learn some more.
+
+00:01:07.520 --> 00:01:12.560
+I know Java, but I’m not used to using things like event listeners for mouse clicks and stuff like that.
+
+00:01:13.060 --> 00:01:16.420
+GUI? Who needs ‘em, right?
+
+00:01:17.420 --> 00:01:19.740
+So I’ve got a sort of working prototype.
+
+00:01:20.240 --> 00:01:24.240
+Now all I need to do is clean it up and add more prettiness and features.
+
+00:01:24.740 --> 00:01:28.420
+Right now when you click on the map marker, you just get the description.
+
+00:01:28.920 --> 00:01:33.960
+Hopefully I can add stuff like the price, a link to the Craigslist listing, and pictures.
+
+00:01:34.460 --> 00:01:38.140
+It shouldn’t take too long, now that I’ve got the skeleton in place.
