@@ -1,0 +1,94 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.120
+Always Have Exact Change With Only 10 Coins!
+
+00:00:04.620 --> 00:00:07.100
+Published on February 22, 2007.
+
+00:00:08.100 --> 00:00:10.100
+I hate having spare change.
+
+00:00:10.600 --> 00:00:14.440
+Change sucks because it usually just sits in your house and it’s a waste of money.
+
+00:00:14.940 --> 00:00:19.660
+I found a way to use the change you have and never get change back when purchasing with cash.
+
+00:00:20.160 --> 00:00:25.120
+With a set of just 10 coins, you can make change for any amount from 1 cent to 99.
+
+00:00:26.120 --> 00:00:29.480
+I’ve already read about the 10 coins somewhere else online.
+
+00:00:29.980 --> 00:00:32.700
+It’s not really interesting to have the answer given to you.
+
+00:00:33.200 --> 00:00:38.560
+Since I’m a nerdy computer scientist, I was trying to come up with an algorithm to produce this set of coins.
+
+00:00:39.060 --> 00:00:42.500
+I came up with an iterative solution that goes like this:
+
+00:00:43.500 --> 00:00:45.260
+Start out with no coins.
+
+00:00:45.760 --> 00:00:51.360
+From 1 to 99 cents: If you can make exact change for the current amount, go to the next amount.
+
+00:00:51.860 --> 00:00:59.460
+Otherwise, try adding the largest denomination coin to your set of coins (a quarter) that will allow you to pay the exact amount.
+
+00:00:59.960 --> 00:01:04.520
+If it’s too big, go to the next smallest until you hit a penny. End Loop.
+
+00:01:05.520 --> 00:01:07.760
+I came up with this in the shower.
+
+00:01:08.260 --> 00:01:10.980
+When I got out and tried it, it actually worked!
+
+00:01:11.480 --> 00:01:14.120
+Here’s a portion of the trace through the loop:
+
+00:01:15.120 --> 00:01:18.160
+No coins, I need to make change for 1 cent.
+
+00:01:18.660 --> 00:01:20.340
+Add a penny.
+
+00:01:20.840 --> 00:01:23.160
+Yay, I can make change for one cent!
+
+00:01:23.660 --> 00:01:26.780
+… 4 pennies, need to make change for 5 cents.
+
+00:01:27.280 --> 00:01:28.400
+Add a nickel.
+
+00:01:28.900 --> 00:01:32.900
+… 4 pennies 1 nickel, need to make change for 10 cents.
+
+00:01:33.400 --> 00:01:35.000
+Add a dime.
+
+00:01:36.000 --> 00:01:36.800
+And so on.
+
+00:01:37.300 --> 00:01:44.500
+I believe the algorithm works because it uses a greedy heuristic of choosing the largest denomination coin first before defaulting to the penny.
+
+00:01:45.000 --> 00:01:46.440
+Am I a nerd? Yes.
+
+00:01:47.440 --> 00:01:51.120
+Oh, I just realized I didn’t actually say which 10 coins were the ones you need.
+
+00:01:51.620 --> 00:01:55.300
+They’re 4 pennies, one nickel, two dimes, and three quarters.
+
+00:01:55.800 --> 00:02:03.240
+You can also do it with two nickels and one dime but that’s not what my algorithm came up with, plus two dimes are lighter than two nickels!
+
+00:02:04.240 --> 00:02:06.240
+Have fun getting rid of your change!
