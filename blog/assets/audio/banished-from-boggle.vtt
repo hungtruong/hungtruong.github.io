@@ -1,0 +1,106 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.440
+Banished From Boggle
+
+00:00:02.940 --> 00:00:05.180
+Published on November 07, 2007.
+
+00:00:06.180 --> 00:00:08.260
+There’s a Facebook app called “Bogglific.”
+
+00:00:08.760 --> 00:00:12.120
+It’s sort of the Boggle equivalent to Scrabulous.
+
+00:00:12.620 --> 00:00:17.020
+Anyway, my boss Gillian likes playing it, so I added it to play against her.
+
+00:00:17.520 --> 00:00:19.200
+And she beat me handily.
+
+00:00:19.700 --> 00:00:24.020
+So handily, in fact, that I was resolute to come up with a way to have my revenge.
+
+00:00:25.020 --> 00:00:28.300
+I’m the kind of person who likes to play smart, not hard.
+
+00:00:28.800 --> 00:00:30.560
+And I’m a programmer.
+
+00:00:31.060 --> 00:00:32.580
+So put one and one together.
+
+00:00:33.080 --> 00:00:35.320
+Go ahead, I’ll give you some time to predict what I did.
+
+00:00:36.320 --> 00:00:39.520
+YES, I WROTE A PROGRAM TO CHEAT AT BOGGLE!
+
+00:00:40.520 --> 00:00:43.480
+I mean, it’s sort of this fun problem if you think about it.
+
+00:00:43.980 --> 00:00:50.620
+My solution used a lot of recursion (probably too much), and a dictionary function that verified actual words.
+
+00:00:51.620 --> 00:00:53.060
+And it worked pretty well, too.
+
+00:00:53.560 --> 00:00:56.040
+I beat one of my coworkers 70 points to 1.
+
+00:00:56.540 --> 00:00:59.340
+Of course, afterwards I fully disclosed this information.
+
+00:00:59.840 --> 00:01:03.840
+I’d never be able to live up to the hype if someone challenged me to a live game anyway.
+
+00:01:04.340 --> 00:01:07.060
+I mostly cheated to see if my program was any good.
+
+00:01:07.560 --> 00:01:09.080
+And apparently it was.
+
+00:01:09.580 --> 00:01:14.540
+My plan was to make it to the top of the leaderboard, then retire from the business altogether.
+
+00:01:15.540 --> 00:01:18.420
+I have to hand it to the Bogglific people; they’re pretty clever.
+
+00:01:18.920 --> 00:01:21.640
+They detected that I was cheating and banned me.
+
+00:01:22.140 --> 00:01:23.820
+And I have nothing against that.
+
+00:01:24.320 --> 00:01:26.480
+I knew what I was getting wrapped up in.
+
+00:01:26.980 --> 00:01:31.300
+I still even have my pride intact, since it was my program that I was cheating with!
+
+00:01:31.800 --> 00:01:34.840
+I understand though that cheaters should be banned.
+
+00:01:35.340 --> 00:01:39.660
+It really isn’t fair for everyone else who comes up with their three and four letter words.
+
+00:01:40.660 --> 00:01:44.180
+I’m thinking of adapting my Boggle solver into a Facebook app.
+
+00:01:44.680 --> 00:01:47.560
+For educational purposes only, of course.
+
+00:01:48.060 --> 00:01:49.820
+Like, check out all the words you missed!
+
+00:01:50.320 --> 00:01:52.720
+It’ll be a sort of Boggle trainer…
+
+00:01:53.720 --> 00:01:56.600
+Anyway, I am taking my Boggle banishment in stride.
+
+00:01:57.100 --> 00:01:59.260
+I hold nothing against my oppressors.
+
+00:01:59.760 --> 00:02:06.960
+At least now I’ll have some free time to work on my Scrabulous Solver (which is actually a somewhat more computationally complex (and interesting) problem…).
