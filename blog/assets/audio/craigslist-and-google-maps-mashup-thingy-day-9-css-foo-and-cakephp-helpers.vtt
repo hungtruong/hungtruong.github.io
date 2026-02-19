@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.320
+Craigslist and Google Maps Mashup Thingy: Day 9 – CSS Foo and CakePHP Helpers
+
+00:00:07.820 --> 00:00:09.980
+Published on April 25, 2007.
+
+00:00:10.980 --> 00:00:16.340
+Today I did a bunch of CSS, making the mashup thing actually look kind of nice.
+
+00:00:16.840 --> 00:00:21.480
+Later, I may add some more “Web 2.0” features such as drop shadows and gradients.
+
+00:00:21.980 --> 00:00:29.020
+I was having a hard time getting the map to show up in the div with a few of the css layouts I downloaded, so I just decided to code it by hand.
+
+00:00:29.520 --> 00:00:36.560
+I think it looks pretty neat; the map stretches across the whole screen and then the other content is shown in absolutely positioned divs.
+
+00:00:37.560 --> 00:00:40.360
+I also did some stuff with the CakePHP helpers.
+
+00:00:40.860 --> 00:00:49.900
+CakePHP’s inferiority to Rails is really starting to show to me. I think it’s all a product of PHP having not been created for this kind of MVC design.
+
+00:00:50.400 --> 00:00:56.320
+CakePHP tries to follow the conventions of Rails, but it does so in a sort of copycat manner.
+
+00:00:56.820 --> 00:01:00.020
+As such, the result does not meet or exceed the original.
+
+00:01:01.020 --> 00:01:06.060
+In the case of Helpers, Rails automagically links the named helper to the controller.
+
+00:01:06.560 --> 00:01:11.200
+In CakePHP, you must specify that a certain controller uses a certain helper.
+
+00:01:11.700 --> 00:01:13.060
+It’s kind of annoying.
+
+00:01:13.560 --> 00:01:20.440
+There also isn’t any support for the Rails convention of “partials,” which is why I’m using their helpers to begin with… It’s annoying.
+
+00:01:21.440 --> 00:01:30.480
+Also, I find it annoying that CakePHP finds an objects associated objects by default when using “find()” or “findAll().”
+
+00:01:30.980 --> 00:01:34.660
+It’s useful when I want it, but when I don’t, it wastes a lot of memory!
+
+00:01:35.160 --> 00:01:39.240
+Now that I think of it, I’m not sure if Rails does this by default or not.
+
+00:01:39.740 --> 00:01:46.700
+The only reason I mention it is because I kept getting out of memory errors (or more accurately, memory limit errors) with my application.
+
+00:01:47.200 --> 00:01:53.760
+It’s a big waste when all I want is the name of the area and CakePHP fetches ALL of the associated listings for that area…
+
+00:01:54.760 --> 00:01:57.000
+I must sound really whiny right now.
+
+00:01:57.500 --> 00:12:52.780
+I guess it’s just from some frustration in learning a new language/framework instead of using one that I’m used to.
+
+00:12:53.280 --> 00:12:55.840
+It’s good for me, I won’t argue against that.
+
+00:12:56.340 --> 00:13:03.220
+It’s just a bit disappointing to see all of these flaws when a framework is purported to be things like “stable” and “good.”
+
+00:13:04.220 --> 00:13:08.780
+Oh, and also, I should say that I think my actual mashup is coming along pretty nicely.
+
+00:13:09.280 --> 00:13:13.520
+It should be ready in a few more “days,” where a “day” is one I am actively working on the mashup.
+
+00:13:14.020 --> 00:13:22.420
+I could probably “release” it pretty soon, but usually when I release something, it means I won’t work on it much anymore, moving to something else I find interesting.
+
+00:13:22.920 --> 00:13:25.640
+So I should probably actually have it done before I release it…
