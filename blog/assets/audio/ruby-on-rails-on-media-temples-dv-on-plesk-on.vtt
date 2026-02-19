@@ -1,0 +1,91 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.640
+Ruby on Rails on Media Temple’s (dv) on Plesk on…
+
+00:00:06.140 --> 00:00:08.780
+Published on January 30, 2007.
+
+00:00:09.780 --> 00:00:15.300
+So I’ve been fiddling around with trying to get my rails applications installed on Media Temple’s (dv) 3 server.
+
+00:00:15.800 --> 00:00:22.120
+It’s a pretty nice setup; basically a dedicated server (though virtual) that you can play around with to your heart’s content.
+
+00:00:23.120 --> 00:00:30.960
+While they “support” Plesk 8.1 which in turn supports ruby on rails, they do not offer support for ruby on rails installation.
+
+00:00:31.460 --> 00:00:35.220
+Since I’m a pretty hardcore CS guy, I don’t mind learning stuff.
+
+00:00:35.720 --> 00:00:38.280
+It is easier when there’s support people to help you though.
+
+00:00:39.280 --> 00:00:43.920
+At first I had tried using rails with fastcgi, but that’s apparently a bad idea.
+
+00:00:44.420 --> 00:00:46.580
+The dv supports fcgid anyway.
+
+00:00:47.080 --> 00:00:51.320
+Media Temple’s support told me it was already installed, but guess what?
+
+00:00:51.820 --> 00:00:55.340
+It wasn’t. I had to go into plesk and get the updater to install it.
+
+00:00:56.340 --> 00:00:59.700
+I’ve been trying to get my apps to run for more than a week now.
+
+00:01:00.200 --> 00:01:05.400
+I’ve been working on it in my free time, and I finally got one of them to actually start doing something.
+
+00:01:05.900 --> 00:01:09.020
+There were a bunch of hurdles I had to jump over just to get it to work.
+
+00:01:10.020 --> 00:01:12.100
+Here’s the last thing I needed to do:
+
+00:01:13.100 --> 00:01:17.660
+I was getting some “Application error: Rails application failed to start properly” errors.
+
+00:01:18.160 --> 00:01:20.800
+The rails log wasn’t too helpful.
+
+00:01:21.300 --> 00:01:23.940
+The httpd one wasn’t either.
+
+00:01:24.440 --> 00:01:30.440
+I looked in the /var/log/httpd/suexec_log file and it said stuff like:
+
+00:01:31.440 --> 00:01:40.080
+[2007-01-30 15:36:58]: file is writable by others: (/var/www/…/public/dispatch.fcgi)
+
+00:01:41.080 --> 00:01:43.640
+I thought, “well okay, it's just a warning.”
+
+00:01:44.140 --> 00:01:46.620
+Who cares if it's group writable?
+
+00:01:47.120 --> 00:01:52.640
+After doing some other random stuff, and changing the permissions accidentally, I got this:
+
+00:01:53.640 --> 00:02:03.960
+[2007-01-30 15:32:30]: file has no execute permission: (/var/www/…/public/dispatch.fcgi)
+
+00:02:04.960 --> 00:02:08.800
+Okay, so now it’s complaining that it has no execute permission.
+
+00:02:09.300 --> 00:02:17.060
+Whoops. I chmodded it to something like 775 and I get the “file is writable by others” thing again, along with the application error.
+
+00:02:17.560 --> 00:02:22.200
+So I thought, “what the heck” and chmodded the file to a safer 755.
+
+00:02:22.700 --> 00:02:25.260
+It seems that did the job, so now I can execute the app!
+
+00:02:26.260 --> 00:02:34.500
+I never knew that apache (or suexec or fcgid or whatever the heck is running dispatch.fcgi) really cared so much about permissions.
+
+00:02:35.000 --> 00:02:37.720
+I’ll have to be more thoughtful of logfiles from now on…
