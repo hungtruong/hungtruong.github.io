@@ -166,6 +166,21 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/craigslist-and-google-maps-mashup-thingy-day-10-custom-controls-and-housekeeping.m4a"
+        type="audio/mp4">
+      <source src="/blog/assets/audio/craigslist-and-google-maps-mashup-thingy-day-10-custom-controls-and-housekeeping.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p>I guess this should count as the project’s 10th and 11th day, though I didn’t really spend too much time on either day, so let’s just roll them into one. After doing some CSS to overlay some divs over the Google Map, I found out there’s another way to do this: with “custom controls.”</p>
@@ -178,6 +193,41 @@
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1771522277"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1771522279"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/craigslist-and-google-maps-mashup-thingy-day-10-custom-controls-and-housekeeping.vtt?v=1771522277";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->
