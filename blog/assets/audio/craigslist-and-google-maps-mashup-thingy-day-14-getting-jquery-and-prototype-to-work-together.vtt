@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.720
+Craigslist and Google Maps Mashup Thingy: Day 14 – Getting Jquery and Prototype to Work Together
+
+00:00:08.220 --> 00:00:10.540
+Published on May 02, 2007.
+
+00:00:11.540 --> 00:00:13.220
+Whoa, that’s a doozy of a title!
+
+00:00:13.720 --> 00:00:19.320
+Anyway, today I was working on making the mashup look prettier and actually somewhat usable for human consumption.
+
+00:00:19.820 --> 00:00:25.820
+I was using thickbox to get some pretty snazzy ajax stuff going on for displaying the about page and whatnot.
+
+00:00:26.320 --> 00:00:30.160
+Today, I included prototype for some even more snazzy ajax stuff.
+
+00:00:30.660 --> 00:00:32.500
+But apparently they clash.
+
+00:00:33.500 --> 00:00:38.140
+I guess both of them like using the ‘$’ character as a shortcut to make the code easier to read.
+
+00:00:38.640 --> 00:00:41.440
+Which means they have crazy namespace conflicts.
+
+00:00:41.940 --> 00:00:45.140
+Bad developers! Anyway, here’s how I got it to work.
+
+00:00:45.640 --> 00:00:50.200
+Right after the import of the jquery library, I set the ‘$’ thing to be ‘$j’ instead.
+
+00:00:50.700 --> 00:00:54.860
+Then I refactored thickbox to use the ‘$j’ name instead.
+
+00:00:55.360 --> 00:00:57.600
+It worked. Here’s what the head looks like:
+
+00:00:58.600 --> 00:01:11.000
+<br /> ...<br /> <script type="text/javascript" src="/js/jquery-latest.pack.js"></script><br /> <script>var $j = jQuery.noConflict();</script><br /> <script type="text/javascript" src="/js/thickbox.js"></script><br /> <script type="text/javascript" src="/js/prototype.js"></script><br /> ...<br />

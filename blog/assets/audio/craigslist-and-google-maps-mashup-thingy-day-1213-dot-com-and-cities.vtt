@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.440
+Craigslist and Google Maps Mashup Thingy: Day 12+13 – Dot Com and Cities
+
+00:00:06.940 --> 00:00:09.180
+Published on May 01, 2007.
+
+00:00:10.180 --> 00:00:12.500
+So I worked on the mashup quite a bit yesterday.
+
+00:00:13.000 --> 00:00:17.320
+So much that when I was done, I was too tired to write a blog entry about it.
+
+00:00:17.820 --> 00:00:24.620
+I mostly spent yesterday buying the domain name, upgrading my server, and getting the project to work on my “production” server.
+
+00:00:25.120 --> 00:00:31.680
+It wasn’t too difficult; I just needed to move the database, change some names, and make sure there weren’t any old names being used.
+
+00:00:32.180 --> 00:00:36.180
+I also started adding all of the cities on CraigsList to the database.
+
+00:00:36.680 --> 00:00:38.280
+At least, the US ones.
+
+00:00:39.280 --> 00:00:41.440
+This took a lot of time to do manually.
+
+00:00:41.940 --> 00:00:48.260
+I had to figure out if the area was an actual city, or a bunch of cities, then figure out the geo coordinates, and stuff it into the database.
+
+00:00:48.760 --> 00:00:52.680
+I thought it might be faster to do it by hand than write a script. Nope.
+
+00:00:53.680 --> 00:01:02.320
+Today I wrote a script that would make the entry faster by automagically getting the coordinates from Google Maps’ http request service.
+
+00:01:02.820 --> 00:01:10.740
+It still took a while, but today I finished inserting almost all of the US cities (excluding the combination ones, since Google can’t do those).
+
+00:01:11.740 --> 00:01:22.140
+Now all that’s left is for me to make the pop up windows a little prettier, and maybe add a list of the CraigsList listings to the side for easy browsing by price, # of bedrooms, etc.
+
+00:01:22.640 --> 00:01:24.320
+That shouldn’t take too long.
+
+00:01:24.820 --> 00:01:26.260
+Then I can launch the site!
