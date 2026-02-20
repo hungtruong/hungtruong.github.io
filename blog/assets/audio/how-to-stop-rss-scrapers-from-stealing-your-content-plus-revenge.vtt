@@ -1,0 +1,151 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.960
+How To Stop RSS Scrapers From Stealing Your Content. Plus Revenge!
+
+00:00:06.460 --> 00:00:08.860
+Published on June 22, 2006.
+
+00:00:09.860 --> 00:00:17.220
+I noticed a while back in my Technorati blog backlinks thing that a certain blog was reposting all of the articles from my anime blog.
+
+00:00:17.720 --> 00:00:22.360
+It was an RSS Scraper that ran on some software called “Autoblogger Pro.”
+
+00:00:22.860 --> 00:00:29.180
+Basically, the site scraped posts from a number of anime blogs and reposted the content with adsense ads.
+
+00:00:29.680 --> 00:00:36.320
+While I didn’t mind the link back, it still bugged me that the person who set this up was simply profiting from other people’s work.
+
+00:00:36.820 --> 00:00:38.740
+I figured I’d do something about it.
+
+00:00:39.740 --> 00:00:43.660
+The first thing I noticed was that all comments on the blog were turned off.
+
+00:00:44.160 --> 00:00:49.440
+This makes sense, since every comment would have probably been “stop stealing my content, you jackass!”
+
+00:00:49.940 --> 00:00:53.460
+There wasn’t any contact info or even an “about” page.
+
+00:00:53.960 --> 00:00:57.880
+I decided that contacting the owner of the website wouldn’t have helped anyway.
+
+00:00:58.380 --> 00:01:01.420
+It was time to take matters into my own hands.
+
+00:01:02.420 --> 00:01:06.260
+As a Computer Scientist, I’ve learned to think as an adversary.
+
+00:01:06.760 --> 00:01:11.320
+For most automated systems, there’s usually a way to exploit some sort of flaw.
+
+00:01:11.820 --> 00:01:15.100
+I just had to figure out the weakness in Autoblogger Pro.
+
+00:01:15.600 --> 00:01:20.400
+In this case, the weakness is that everything is automated via RSS scraping.
+
+00:01:20.900 --> 00:01:23.780
+If they can’t get my RSS feed, they can’t scrape it.
+
+00:01:24.780 --> 00:01:27.500
+The first thing I had to do was find their IP address.
+
+00:01:28.000 --> 00:01:32.000
+I used the dns lookup tool here to find the IP of the website.
+
+00:01:32.500 --> 00:01:36.740
+Note that the website’s IP is not necessarily the one that’s pulling the feed.
+
+00:01:37.240 --> 00:01:39.320
+It was in my case, though.
+
+00:01:40.320 --> 00:01:44.960
+Just to be safe, I checked out my logs to see if that IP was pulling my feed.
+
+00:01:45.460 --> 00:01:48.500
+Bingo! They were pulling the feed every few hours.
+
+00:01:49.500 --> 00:01:54.380
+In order to stop them from accessing the feed, all I’d have to do is deny that IP.
+
+00:01:54.880 --> 00:01:56.400
+It’s pretty simple with .
+
+00:01:56.900 --> 00:01:58.980
+htaccess’ rewrite engine.
+
+00:01:59.480 --> 00:02:04.360
+Now, you could simply throw a forbidden 403 code, but where’s the fun in that?
+
+00:02:04.860 --> 00:02:10.060
+Sure, your site isn’t indexed anymore, but what about all the other sites whose content is being stolen?
+
+00:02:10.560 --> 00:02:12.800
+Someone has to stand up to these bullies!
+
+00:02:13.800 --> 00:02:17.480
+I decided to make a fake RSS feed to redirect to.
+
+00:02:17.980 --> 00:02:23.900
+This one would have 1000 entries in it, each 1 minute apart from the last.
+
+00:02:24.400 --> 00:02:28.880
+This would muddy up their site, and disallow anyone from actually seeing the stolen content.
+
+00:02:29.380 --> 00:02:35.540
+The fake feed would be auto-generated at the time of request, so each time they pulled the feed, it would be recent.
+
+00:02:36.040 --> 00:02:41.400
+I wrote this in my rails application, but it would probably be just as easy in php.
+
+00:02:41.900 --> 00:02:43.340
+Then I made my .
+
+00:02:43.840 --> 00:13:39.120
+htaccess forward to the fake rss for addresses coming from that ip’s location.
+
+00:13:40.120 --> 00:13:41.640
+RewriteEngine On
+
+00:13:42.640 --> 00:13:47.360
+RewriteCond %{REMOTE_ADDR} ^209.200.12.(.*)$
+
+00:13:48.360 --> 00:13:56.280
+RewriteRule . * http://www.thebadrss.com/feed(not really the fake feed) [R,L]
+
+00:13:57.280 --> 00:14:02.400
+Voila! After waiting a while for the scraper to pick up the feed, I was happy to see the results .
+
+00:14:02.900 --> 00:14:08.180
+You’ll notice that I inserted random numbers into each entry, just to make sure they were all unique.
+
+00:14:08.680 --> 00:14:12.120
+I thought that maybe the software could detect duplicate entries.
+
+00:14:13.120 --> 00:14:19.600
+This might not work for all content stealers, but if enough people start spamming the spammers, maybe they’ll stop.
+
+00:14:20.100 --> 00:14:24.820
+I’d really love to see the look on their face when the guy running this site sees what’s become of it!
+
+00:14:25.820 --> 00:14:30.380
+Full Disclosure: I actually run an RSS aggregator of sorts, myself.
+
+00:14:30.880 --> 00:14:32.560
+It’s called Anime Nano.
+
+00:14:33.060 --> 00:14:35.140
+There are a few differences, though.
+
+00:14:35.640 --> 00:14:37.000
+First off, it’s opt in.
+
+00:14:37.500 --> 00:14:42.940
+Second, it’s a community of readers and bloggers who like anime, not a one-man profit machine.
+
+00:14:43.440 --> 00:14:46.960
+Third, visit it at animenano.com !
