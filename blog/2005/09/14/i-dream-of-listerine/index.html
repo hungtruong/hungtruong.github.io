@@ -166,12 +166,62 @@
   </header>
 
   
+  <div class="audio-player-container" id="audio-container">
+    <!-- Using standardized path: /assets/audio/[slug].mp3 -->
+    <div class="audio-header">
+      <div class="audio-label">Listen to this blog post</div>
+      <button class="audio-close" id="audio-close" aria-label="Close audio player">Hide</button>
+    </div>
+    <audio id="hyperplayer" controls preload="auto">
+      <source src="/blog/assets/audio/i-dream-of-listerine.m4a"
+        type="audio/mp4">
+      <source src="/blog/assets/audio/i-dream-of-listerine.mp3"
+        type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  
 
   <div class="post-content">
     <p>I had this weird dream where I was rinsing my mouth with Listerine, or Scope, or some mouthwash. Problem was, I was in this sort of wilderness where there wasn’t any sink, and I didn’t want to just spit the Listerine onto the ground. There were people around, and I think they would not have approved of that. So I’m walking around looking for a sink, and my mouth is burning because of the Listerine. Then I come up to a river, and it’s really clean and crystal clear. I don’t want to spit it out there, because I think it would be rude to mess up the really nice water with my Listerine spit. I follow the river and come up to a branch where there aren’t any people. I just decide to spit the Listerine out there because no one is watching. It feels good having the Listerine out of my mouth, but now I feel bad for hurting the environment. What does it mean!!!</p>
 
   </div>
 
+  
+  <!-- Hyperaudio Integration -->
+  <script
+    src="/blog/assets/js/libs/hyperaudio-lite.min.js?v=1771621137"></script>
+  <script
+    src="/blog/assets/js/vtt-inject.js?v=1771621139"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Standardized path: /assets/audio/[slug].vtt
+      var vttUrl = "/blog/assets/audio/i-dream-of-listerine.vtt?v=1771621137";
+      window.initHyperaudioInjection(vttUrl, 'hypertranscript', 'hyperplayer');
+
+      // Add 'is-active' class on play to enable interaction styles
+      var player = document.getElementById('hyperplayer');
+      var transcript = document.getElementById('hypertranscript');
+      var container = document.getElementById('audio-container');
+
+      if (player && transcript) {
+        player.addEventListener('play', function () {
+          transcript.classList.add('is-active');
+          if (container) container.classList.add('is-sticky');
+        });
+      }
+
+      // Handle Close Button
+      var closeBtn = document.getElementById('audio-close');
+      var container = document.getElementById('audio-container');
+      if (closeBtn && container) {
+        closeBtn.addEventListener('click', function () {
+          container.style.display = 'none';
+          if (player) player.pause();
+        });
+      }
+    });
+  </script>
   
 
   <!-- COMMENTS -->
