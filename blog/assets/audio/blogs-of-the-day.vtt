@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:01.680
+Blogs of the Day
+
+00:00:03.180 --> 00:00:05.980
+Published on January 28, 2006.
+
+00:00:06.980 --> 00:00:11.860
+http://blogsoftheday.com/ seems to be down right now.
+
+00:00:12.360 --> 00:00:17.080
+If you don’t know what that is, it’s a sort of popularity contest in the field of blogging.
+
+00:00:17.580 --> 00:00:24.940
+You install a plugin, and whenever one of your blog pages is loaded, it pings the blogsoftheday service, and counts as a “vote” for your blog.
+
+00:00:25.940 --> 00:00:32.580
+The pinging system needs a bit of work, as now every webpage that uses this service is extemely slow to load.
+
+00:00:33.080 --> 00:00:37.720
+I think it’s an issue with waiting for the ping time out so the page can finally finish loading.
+
+00:00:38.220 --> 00:00:42.860
+I’ve disabled the plugin on my blogs, because I’d rather not alienate my readers.
