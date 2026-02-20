@@ -1,0 +1,52 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.400
+Media Temple Offers “Grid-Server” Hosting
+
+00:00:03.900 --> 00:00:06.860
+Published on October 17, 2006.
+
+00:00:07.860 --> 00:00:13.380
+So just this morning, a host by the name of “Media Temple” started offering a new type of hosting.
+
+00:00:13.880 --> 00:00:18.600
+They call it “ Grid-Server ” and it seems to be a system of web servers running in parallel.
+
+00:00:19.600 --> 00:00:24.800
+It seems like one of those “why didn’t I think of that!” things (well, if you’re nerd, anyway).
+
+00:00:25.300 --> 00:00:30.420
+Most hosting services have single machines that will serve 5 or so users at once.
+
+00:00:30.920 --> 00:00:36.520
+The problem with these is that one user using many resources will slow down the rest of their neighbors’ sites too.
+
+00:00:37.020 --> 00:00:39.580
+I think this is what I’ve been doing with my sites…
+
+00:00:40.580 --> 00:00:45.300
+The whole idea of the grid thing is that each user will be on one large group of computers.
+
+00:00:45.800 --> 00:00:48.760
+If a user doesn’t use many resources, great.
+
+00:00:49.260 --> 00:00:53.340
+If the user uses many, the grid can accommodate that. Maybe.
+
+00:00:54.340 --> 00:00:57.940
+I’m really interested in this service and I might actually switch hosts.
+
+00:00:58.440 --> 00:01:01.720
+My host has been battling uptime for months now.
+
+00:01:02.220 --> 00:01:03.820
+I’m kind of getting tired of it.
+
+00:01:04.320 --> 00:01:09.760
+It really looks bad when Notecentric is down, since it’s supposed to let users access their notes ALL THE TIME.
+
+00:01:10.760 --> 00:01:15.080
+In fact, I may just order the service right now, and switch when my other hosting runs out.
+
+00:01:15.580 --> 00:01:18.140
+But what should I put on the mt host? Hmm….
