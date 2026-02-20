@@ -1,0 +1,58 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.160
+Anime Nano, na no!
+
+00:00:03.660 --> 00:00:06.220
+Published on June 01, 2006.
+
+00:00:07.220 --> 00:00:10.420
+And now for a little “What I did during my Summer vacation.”
+
+00:00:10.920 --> 00:00:16.680
+Well, I’ve been brushing up on my ‘gramming skills. And I’m pretty much done with my first web app. It’s called Anime Nano .
+
+00:00:17.180 --> 00:00:19.180
+As in “Anime, na no.”
+
+00:00:19.680 --> 00:00:22.000
+I know, only two or so of you will get that.
+
+00:00:23.000 --> 00:00:25.720
+Basically, It’s an anime blog feed indexer.
+
+00:00:26.220 --> 00:00:29.100
+There’s also a forum in there that I wrote in a day.
+
+00:00:29.600 --> 00:00:34.480
+Since its grand opening on midnight, quite a few anime blogs have joined in on the action.
+
+00:00:35.480 --> 00:00:39.240
+For those who are interested, it’s written purely in Ruby on Rails.
+
+00:00:39.740 --> 00:00:44.860
+I learned the language, learned some css skills, and wrote the project in about 3 weeks.
+
+00:00:45.360 --> 00:00:50.160
+RoR is a cool way to produce web application code in an Object Oriented paradigm.
+
+00:00:50.660 --> 00:00:52.980
+I’m losing most of you, aren’t I?
+
+00:00:53.980 --> 00:00:58.140
+My next web app is still a secret, but I’ll let you know when that hits.
+
+00:00:58.640 --> 00:01:06.240
+For now, visit AnimeNano at http://www.animenano.com and let me know what you think.
+
+00:01:06.740 --> 00:01:07.780
+Is it ugly?
+
+00:01:08.280 --> 00:01:09.720
+Is it cute?
+
+00:01:10.220 --> 00:01:11.580
+Is it teh suck?
+
+00:01:12.080 --> 00:01:13.920
+Perhaps all of the above…
